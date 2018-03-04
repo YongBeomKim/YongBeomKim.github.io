@@ -2,22 +2,6 @@
 title: "Layout: Sidebar with Navigation List"
 excerpt: "A post with a sidebar navigation list."
 author_profile: false
-sidebar:
-  title: "Sample Title"
-  nav: sidebar-sample
----
-
-This post has a custom navigation list set in the post's YAML Front Matter.
-
-```yaml
-sidebar:
-  title: "Sample Title"
-  nav: sidebar-sample
-```
-
-Along with navigation elements set in `_data/navigation.yml`.
-
-```yaml
 sidebar-sample:
   - title: "Parent Page A"
     children:
@@ -59,4 +43,24 @@ sidebar-sample:
         url: /
       - title: "Child Page D2"
         url: /
+---
+
+sidebar-sample:
+  - title: "Parent Page A"
+    children:
+      - title: "Child Page C1"
+        url: /
+
+This post has a custom navigation YAML Front Matter.
+
+An example of how that YAML could look is: (insert the image)
+
+```yaml
+sidebar:
+  - title: "Title"
+    image: http://placehold.it/350x250
+    image_alt: "image"
+    text: "Some text here."
+  - title: "Another Title"
+    text: "More text here."
 ```

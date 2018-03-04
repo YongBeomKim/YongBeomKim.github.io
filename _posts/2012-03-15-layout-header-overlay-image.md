@@ -12,31 +12,36 @@ tags:
   - image
   - layout
 last_modified_at: 2016-11-03T11:45:09-04:00
+toc: true
 ---
 
-This post should display a **header with an overlay image**, if the theme supports it.
-
-Non-square images can provide some unique styling issues.
-
-This post tests overlay header images.
-
-## Overlay filter
-
-You can use it by specifying the opacity (between 0 and 1) of a black overlay like so:
-
-![transparent black overlay]({{ "/assets/images/mm-header-overlay-black-filter.jpg" | absolute_url }})
-
+### tests a vertical header image
 ```yaml
-excerpt: "This post should [...]"
 header:
-  overlay_image: /assets/images/unsplash-image-1.jpg
-  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  image: /assets/images/unsplash-image-6.jpg
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-  cta_label: "More Info"
-  cta_url: "https://unsplash.com"
 ```
 
-Or if you want to do more fancy things, go full rgba:
+
+### Layout: Header Image (Horizontal)
+
+```yaml
+header:
+  image: /assets/images/unsplash-image-1.jpg
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
+```
+
+
+### color overlay 
+
+```yaml
+title: "Layout: Header Overlay with Background Fill"
+header:
+  overlay_color: "#333"
+```
+
+
+### Go full rgba filter:
 
 ![transparent red overlay]({{ "/assets/images/mm-header-overlay-red-filter.jpg" | absolute_url }})
 
