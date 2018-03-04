@@ -3,7 +3,7 @@ title:  "Exclude Post from Search Index"
 search: false
 categories: 
   - Jekyll
-last_modified_at: 2018-02-19T08:06:00-05:00
+last_modified_at: 2018-02-19T08:05:34-05:00
 ---
 
 This post should not appear in the search index because it has the following YAML Front Matter:
@@ -12,10 +12,10 @@ This post should not appear in the search index because it has the following YAM
 search: false
 ```
 
-**Note:** `search: false` only works to exclude posts when using Lunr as a search provider.
+**Note:** `search: false` only works to exclude posts when using **Lunr** as a search provider.
 {: .notice--info}
 
-To exclude files when using Algolia as a search provider add an array to `algolia.files_to_exclude` in your `_config.yml`. For more configuration options be sure to check their [full documentation](https://community.algolia.com/jekyll-algolia/options.html).
+To exclude files when using **Algolia** as a search provider add an array to `algolia.files_to_exclude` in your `_config.yml`. For more configuration options be sure to check their [full documentation](https://community.algolia.com/jekyll-algolia/options.html).
 
 ```yaml
 algolia:
