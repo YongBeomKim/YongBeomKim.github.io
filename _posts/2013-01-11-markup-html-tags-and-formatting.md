@@ -19,17 +19,13 @@ toc: true
 
 This is a paragraph. It should not have any alignment of any kind.
 
-This is a paragraph. It should not have any alignment of any kind.
-{: style="text-align: left;"}
+This is a paragraph. It should not have any alignment of any kind.{: style="text-align: left;"}
 
-This is a paragraph. It should not have any alignment of any kind.
-{: style="text-align: center;"}
+This is a paragraph. It should not have any alignment of any kind.{: style="text-align: center;"}
 
-This is a paragraph. It should not have any alignment of any kind.
-{: style="text-align: right;"}
+This is a paragraph. It should not have any alignment of any kind.{: style="text-align: right;"}
 
-This is a paragraph. It should not have any alignment of any kind.
-{: style="text-align: justify;"}
+This is a paragraph. It should not have any alignment of any kind.{: style="text-align: justify;"}
 
 
 
