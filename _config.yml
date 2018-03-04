@@ -13,9 +13,9 @@ title                    : "my Project's Note"
 title_separator          : "-"
 name                     : "Yong Beom Kim"
 description              : "my Project's Note"
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://yongbeomkim.github.io"  #  "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "YongBeomKim" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : #"/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -103,7 +103,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :
+  github           : "https://github.com/YongBeomKim"
   gitlab           :
   google_plus      :
   keybase          :
