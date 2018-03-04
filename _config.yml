@@ -1,12 +1,7 @@
 # Welcome to Jekyll!
 #
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
-
 theme                    : "minimal-mistakes-jekyll"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "contrast", #"default", "air", "aqua", dark", "dirt", "neon",
 
 # Site Settings
 locale                   : "en-US"
@@ -14,11 +9,10 @@ title                    : "Minimal Mistakes Development Test Site"
 title_separator          : "-"
 name                     : "Kim yong Beom"
 description              : "Less is more."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://yongbeomkim.github.io/"
 baseurl                  :
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-# breadcrumbs            : false # true, false (default)
+repository               : "https://github.com/YongBeomKim"
+teaser                   : "/assets/images/500x300.png"  # 티저 이미지는 뭔감?
 words_per_minute         : 200
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
@@ -87,34 +81,25 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Yong Beom , Kim"
   avatar           : "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
-  email            :
-  uri              :
+  bio              : "Less is More"
+  location         : "Suwon in Korea"
+  email            : "saltman21@naver.com"
+  uri              : "https://yongbeomkim.github.io/"
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
-  codepen          :
-  dribbble         :
-  flickr           :
   facebook         :
-  foursquare       :
-  github           :
+  github           : "https://github.com/YongBeomKim"
   google_plus      :
-  keybase          :
   instagram        :
-  lastfm           :
   linkedin         :
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. http://stackoverflow.com/users/123456/username)
   steam            :
   tumblr           :
-  twitter          : "mmistakes"
-  vine             :
-  weibo            :
-  xing             :
+  twitter          :
   youtube          : # "https://youtube.com/c/MichaelRoseDesign"
 
 
