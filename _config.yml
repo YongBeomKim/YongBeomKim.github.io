@@ -1,12 +1,18 @@
 # Welcome to Jekyll!
-minimal_mistakes_skin    : "contrast", # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint",
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
+
+minimal_mistakes_skin    : "contrast" #"default" , "dark", "neon"
 
 # Site Settings
 locale                   : "en-US"
 title                    : "Site Title"
 title_separator          : "-"
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "Yong Beom Kim"
+description              : "my Project's Note"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -85,9 +91,9 @@ analytics:
 # Site Author
 author:
   name             : "Yong Beom Kim"
-  avatar           : "/assets/images/bio-photo.jpg"
-  bio              : "Less is More"
-  location         : "Suwon in Korea"
+  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "to be a Programing Quant."
+  location         : "Suwom in Korea"
   email            : "saltman21@naver.com"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
