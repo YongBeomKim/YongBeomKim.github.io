@@ -8,7 +8,7 @@ tags:
     - t아카데미
     - javascript
 gallery:
-  - image_path: /assets/image/photo/20180131_img02.jpg
+  - image_path: /assets/images/photo/20180131_img02.jpg
     alt: "placeholder image 2"
 ---
 
