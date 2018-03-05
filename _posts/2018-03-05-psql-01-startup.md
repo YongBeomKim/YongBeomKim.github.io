@@ -10,19 +10,19 @@ toc: true
 ```
 $ sudo -u postgres psql          # psql 접속
 
-postgres=# createdb quent        # DB 생성          cf) \l : 목록확인 
+postgres=# createdb quent        # DB 생성  (\l|목록) 
         =# \c quent              # quent DB로 변경
 
-quent=# CREATE SCHEMA muyong     # SCHEMA 생성      df) \dn : 목록확인
-quent=# CREATE TABLE  muyong.alicetable
-       (id varchar(20) primary key, pw varchar(20)); # TABLE 생성(SCHEMA 지정)
+quent=# CREATE SCHEMA muyong     # SCHEMA 생성 (\dn|목록)
+quent=# CREATE TABLE  muyong.alicetable  # TABLE 생성(SCHEMA)
+       (id varchar(20) primary key, pw varchar(20)); 
 quent=# \dt
 No relations found.
-quent=# \dt muyong.*                                 # schema 지정 테이블 확인
+quent=# \dt muyong.*             # SCHEMA를 특정, 테이블 확인
 
-quent=# CREATE TABLE tbl_tea  (id int, name STR);    # (public)TABLE 생성
-quent=# DROP TABLE tbl_tea                           # (public)TABLE 삭제
-quent=# DROP DATABASE quent                          # (public)DB삭제
+quent=# CREATE TABLE tbl (id int, na str); # TABLE 생성
+quent=# DROP TABLE tbl                     # TABLE 삭제
+quent=# DROP DATABASE quent                # DATABASE 삭제
 ```
 
 
@@ -64,18 +64,16 @@ $ sudo -u postgres psql
   <figcaption>출처:https://blog.naver.com/alice_k106/220847310053</figcaption>
 </figure> 
 
-**CREATE DATABASE mydb**로 최상단의 DATABASE를 생성하고<br>
-바로 아래 계층에 **schema**를 구분 생성한다 (default : public)
+`CREATE DATABASE mydb`로 최상단의 DATABASE를 생성하고<br>
+바로 아래 계층에 **SCHEMA**를 구분 생성한다 (default : public)
 
 1. 여러 사용자들이 접속시 충돌을 최소화 하는 설계가 가능 
 2. 논리 DB를 분리하여 **관리용이성/ 충돌방지** 설계가 가능
-3. 개별 schema 간은 **Join**을 통해서 통합적 관리에 용이
+3. 개별 SCHEMA를 `Join`을 통해서 통합적 관리에 용이
 
-
-## PostgreSQL 사용하기
 
 ## DATABASE
-### 1-1 DATABASE 목록확인
+### 1 DATABASE 목록확인
 ```sql
 postgres=# \l
                                   List of databases
@@ -88,10 +86,10 @@ postgres=# \l
                                                       quents=CTc/postgres
 ```
 
-**postgres=#**의 의미는, 현재접속 DATABASE가 "postgres"임을 의미한다 <strike>User이름이 아니다</strike>
+`postgres=#`는, DB가 "postgres"임을 의미 <strike>User가 아니다</strike>
 
 
-### 1-2 DATABASE 변경하기
+### 2 DATABASE 변경하기
 ```sql
 postgres=# \c quent
 You are now connected to database "quent" as user "postgres".
@@ -100,7 +98,7 @@ quent=#
 
 
 
-### 1-3 DATABASE 생성하기
+### 3 DATABASE 생성하기
 ```sql
 quent=# CREATE DATABASE sample
 CREATE DATABASE
@@ -111,7 +109,7 @@ sample=#
 
 
 ## SCHEMA
-### 2 schema 목록확인, 생성
+### SCHEMA 목록확인, 생성
 ```sql
 quent=# \dn
   List of schemas
@@ -136,8 +134,9 @@ quent=# \dn
 muyong 스키마를 추가하였다
 
 
-##TABLE 
-### 3-1 table 목록확인, 생성
+## TABLE 
+
+### 1 TABLE 목록확인, 생성
 ```sql
 quent=# create table muyong.alicetable(id varchar(20) primary key, pw varchar(20));
 CREATE TABLE
@@ -186,9 +185,9 @@ Indexes:
 ```
 
 
-###3-2 table 내용(컬럼) 추가 : CREATE, READ, UPDATE, DELETE
-INSERT 의 경우 SQL 문법은 동일하다.
+### 2 table 내용(컬럼) 추가 : CREATE, READ, UPDATE, DELETE
+기본적 CRUD SQL 문법은 동일하다.
 
-다른점은 <br>
-INSERT INTO 테이블.스키마 VALUE ('test','test2'); 
-schema를 지정하지 않으면 search_path의 schema를 지정한다
+다만,<br>
+`INSERT INTO 테이블.스키마 VALUE ('test','test2')`<br> 
+SCHEMA를 지정하지 않으면 search_path의 schema를 지정한다
