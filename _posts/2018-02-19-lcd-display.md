@@ -1,9 +1,12 @@
 ---
-layout: post
 title : LCD 모니터 분해 
-subtitle: "diy monitor" 
-tags: [Diy, Monitor]
+last_modified_at: 2018-01-31T19:45:06-05:00
+tags:
+    - diy
+    - monitor
 ---
+
+
 쳐박혀 있는 노트북 재활용 해 볼 생각으로 분해를 해보니, 상태가 생각보다 더 심각 했다. 
 
 HDD도 sata 방식이 아니여서 재활용이 불가능 했고, 

@@ -1,8 +1,12 @@
 ---
-layout: post
-title: Porject01 - 시나리오 구성
-tags: [Post, Python, Django]
+title: Porject01's Work flow Sketch..
+last_modified_at: 2018-02-27T19:45:06-05:00
+tags: 
+    - python
+    - django
+    - project01
 ---
+
 <h2>구내식당 관리 Django </h2>
 
 <h3> recepie 1 : 메뉴관리</h3>

@@ -1,8 +1,14 @@
 ---
 layout: post
 title : [토크on세미나] Pytorch 딥러닝
-tags: [Diy, Monitor]
+categories:
+  - post
+tags: 
+    - 세미나
+    - t아카데미
+    - pytorch
 ---
+
 
 PyTorch는 '공인회계사회 김태식 회계사'님의 소개로 알게 된 모듈로
 API 들이 Pandas 처럼 깔끔해서 접근이 용이해 보이지만,

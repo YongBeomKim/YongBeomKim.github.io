@@ -1,8 +1,14 @@
 ---
-layout: post
 title : [토크on세미나] Javascript 디버깅 및 테스트 방법
-tags: [세미나, t아카데미, javascript]
+last_modified_at: 2018-01-31T19:45:06-05:00
+categories:
+  - post
+tags: 
+    - 세미나
+    - t아카데미
+    - javascript
 ---
+
 
 #![세미나 안내화면]({{ site.baseurl }}/assets/image/photo/20180131_img02.jpg)
 
