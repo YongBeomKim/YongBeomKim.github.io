@@ -1,8 +1,5 @@
 ---
-layout: post
 title : [토크on세미나] Pytorch 딥러닝
-categories:
-  - post
 tags: 
     - 세미나
     - t아카데미

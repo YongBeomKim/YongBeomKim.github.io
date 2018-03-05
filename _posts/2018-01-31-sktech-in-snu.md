@@ -7,10 +7,13 @@ tags:
     - 세미나
     - t아카데미
     - javascript
+gallery:
+  - image_path: /assets/image/photo/20180131_img02.jpg
+    alt: "placeholder image 2"
 ---
 
 
-#![세미나 안내화면]({{ site.baseurl }}/assets/image/photo/20180131_img02.jpg)
+{% include gallery caption="서울대 sk T 아카데미" %}
 
 조금만 발품을 팔면 IT무료 강연/ 세미나들이 많은데
 문제는 시간과 거리다 ㅠㅠ..
