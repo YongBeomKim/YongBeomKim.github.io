@@ -32,8 +32,13 @@ $ sudo -u postgres psql
 
 1. -u : user Id (사용자를 postgres 로 변경한다)
 
+**Note:** 사용자변경과 프로그램 실행을 같이 하면, 
+프로그램 종료시 사용자도 함께 빠져나와 편하다
+{: .notice--info}
+
 **Please Note:** 사용자변경과 프로그램 실행을 같이 하면, 
-프로그램 종료시 사용자도 함께 빠져나와 편하다{: .notice--danger}
+프로그램 종료시 사용자도 함께 빠져나와 편하다
+{: .notice--danger}
 
 ![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/psql/structure.png){: .align-center}
 
