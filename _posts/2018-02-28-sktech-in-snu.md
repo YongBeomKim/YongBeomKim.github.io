@@ -1,5 +1,5 @@
 ---
-title : [토크on세미나] Pytorch 딥러닝
+title : 토크on세미나 - Pytorch 딥러닝
 tags: 
     - 세미나
     - t아카데미

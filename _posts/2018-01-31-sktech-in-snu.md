@@ -1,5 +1,5 @@
 ---
-title : [토크on세미나] Javascript 디버깅 및 테스트 방법
+title : 토크on세미나 - Javascript 디버깅 및 테스트 방법
 last_modified_at: 2018-01-31T19:45:06-05:00
 categories:
   - post
