@@ -13,6 +13,37 @@ tags:
 toc: true
 ---
 
+
+### Tags
+
+Link [link](http://apple.com "Apple").
+The abbreviation CSS stands for "Cascading Style Sheets".
+
+*[CSS]: Cascading Style Sheets
+
+Cite Tag         : <cite>Automattic</cite>
+
+Strike Tag       : <strike>strikeout text</strike>.
+
+Emphasize Tag    : _italicize_ 
+
+Insert Tag       : <ins>inserted</ins>
+
+Quote Tag        : <q>Developers&#8230;</q> &#8211;Steve Ballmer
+
+Strong Tag       : **bold text**.
+
+Subscript Tag    : H<sub>2</sub>O
+
+Superscript Tag  : E = MC<sup>2</sup>
+
+Preformatted Tag :
+
+<pre>
+.post-title {margin: 0 0 5px;}
+</pre>
+
+
 ### Alignment
 
 *italics* and  **bold**.
@@ -138,25 +169,4 @@ Make any link standout more when applying the `.btn` class.
 <address>
   1 Infinite Loop<br /> Cupertino, CA 95014<br /> United States
 </address>
-
-### Tags
-
-Link [link](http://apple.com "Apple").
-The abbreviation CSS stands for "Cascading Style Sheets".
-
-*[CSS]: Cascading Style Sheets
-
-Cite Tag         : <cite>Automattic</cite>
-Strike Tag       : <strike>strikeout text</strike>.
-Emphasize Tag    : _italicize_ 
-Insert Tag       : <ins>inserted</ins>
-Quote Tag        : <q>Developers&#8230;</q> &#8211;Steve Ballmer
-Strong Tag       : **bold text**.
-Subscript Tag    : H<sub>2</sub>O
-Superscript Tag  : E = MC<sup>2</sup>
-Preformatted Tag :
-<pre>
-.post-title {margin: 0 0 5px;}
-</pre>
-
 
