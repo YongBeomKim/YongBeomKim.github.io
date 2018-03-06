@@ -76,6 +76,6 @@ Tensorflow등 머신러닝에 대한 경험이 부족한 학생들에게는 <br>
 
 
 이번 수업으로 부족함이 느껴진다면, <br>
-t아카데미의 '머신러닝' 이론 수업을 보강하고![t-머신러닝](https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=103) 
-'모두의 딥러닝' 유투브로 Tensorflow 코딩을 경험한 뒤 ![You-tube](https://hunkim.github.io/ml/) <strike>(할게 많지 애들아 ^^;)</strike> <br>
+t아카데미의 '머신러닝' 이론 수업을 보강하고 [t-머신러닝](https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=103) 
+'모두의 딥러닝' 유투브로 Tensorflow 코딩을 경험한 뒤 [You-tube](https://hunkim.github.io/ml/) <strike>(할게 많지 애들아 ^^;)</strike> <br>
 이번 세미나 동영상을 본다면 많은 도움의 될 것이다.
