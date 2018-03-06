@@ -1,6 +1,9 @@
 ---
 title : 토크on세미나 - Javascript 디버깅 및 테스트 방법
 last_modified_at: 2018-01-31T19:45:06-05:00
+header:
+  overlay_image: /assets/images/photo/20180131_img01.jpg
+  caption: "서울대 T 아카데미 전경"
 categories:
   - post
 tags: 
