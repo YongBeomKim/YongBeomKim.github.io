@@ -15,10 +15,11 @@ postgres=# createdb quent        # DB 생성  (\l|목록)
 
 quent=# CREATE SCHEMA muyong     # SCHEMA 생성 (\dn|목록)
 quent=# CREATE TABLE  muyong.alicetable  # TABLE 생성(SCHEMA)
-       (id varchar(20) primary key, pw varchar(20)); 
-quent=# \dt
+       (id varchar(20) primary key, pw varchar(20));
+
+quent=# \dt                      # TABLE 목록
 No relations found.
-quent=# \dt muyong.*             # SCHEMA를 특정, 테이블 확인
+quent=# \dt muyong.*             # SCHEMA를 특정하여 TABLE 목록 확인
 
 quent=# CREATE TABLE tbl (id int, na str); # TABLE 생성
 quent=# DROP TABLE tbl                     # TABLE 삭제
