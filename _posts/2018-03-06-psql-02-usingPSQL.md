@@ -60,14 +60,14 @@ postgres=# \d games_game;
 | 명령어 | 의미 |                                      |
 | ------------ | ---------------------------------------- |
 | \? | 도움말 호출 |  
-| \h `SQL명령`` | SQL 도움말 출력 |
+| \h `SQL명령` | SQL 도움말 출력 |
 | \l | DATABASE 목록 출력 |
-| \d, \d `table이름`` | TABLE에 대한 설명을 출력 |
+| \d, \d `table이름` | TABLE에 대한 설명을 출력 |
 | \da | 집합 통계함수 목록을 출력 |
 | \df | 함수목록 출력 (List of function) |
 | \do | 연산자목록 출력 (List of Operation) |
 | \dT | 자료형목록 출력 (List of data types) |
-| \i `파일이름`` | 파일을 불러와서 실행 |
-| \c `DB이름`` | 데이터 베이스 이동 |
+| \i `파일이름` | 파일을 불러와서 실행 |
+| \c `DB이름` | 데이터 베이스 이동 |
 | \r | buffer 를 초기화|
 | \q | psql을 종료 |
