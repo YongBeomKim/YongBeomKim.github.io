@@ -58,8 +58,6 @@ $ sudo -u postgres psql
 프로그램 종료시 사용자도 함께 빠져나와 편하다
 {: .notice--danger}
 
-![image-center]({{ site.url }}{{ site.baseurl }}/assets/images/psql/structure.png){: .align-center}
-
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/psql/structure.png" alt="">
   <figcaption>출처:https://blog.naver.com/alice_k106/220847310053</figcaption>
@@ -145,7 +143,7 @@ quent=# \dt
 No relations found.
 ```
 muyong 테이블의 **alicetable**로 생성한 결과, 출력시 내용이 없다<br>
-\dt muyong.* 를 입력해보자
+`\dt muyong.*` 를 입력해보자
 
 ```sql
 quent=# \dt muyong.*
@@ -187,7 +185,7 @@ Indexes:
 
 
 ### 2 table 내용(컬럼) 추가 : CREATE, READ, UPDATE, DELETE
-기본적 CRUD SQL 문법은 동일하다.
+기본적 SQL 의 CRUD 문법은 동일하다.
 
 다만,<br>
 `INSERT INTO 테이블.스키마 VALUE ('test','test2')`<br> 
