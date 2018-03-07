@@ -16,7 +16,7 @@ gallery:
 ---
 
 
-{% include gallery caption="JavsScript 수업 안내 화면 : 미리 이것것 저것 깔아야 수업을 따라가기 편하다" %}
+## sk t마카데미
 
 IT무료 강연/ 세미나들은 많지만
 문제는 시간과 거리다 ㅠㅠ..
@@ -38,9 +38,9 @@ IT무료 강연/ 세미나들은 많지만
 
 원래 재직자들은 잘 안되는데,
 신청자가 적었는지 선발되었다는 연락을 받고 도착을 할 수 있었다
+[동영상 바로가기](https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=126)
 
-> 교육 내용이 동영상으로 올라와서 링크를 올려놨다
-> (https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=126)
+{% include gallery caption="JavsScript 수업 안내 화면 : 미리 이것 저것 깔아야 수업을 따라가기 편하다" %}
 
 내용의 정리 
 1. Chrome 의 개발자 도구를 잘 쓰자 
