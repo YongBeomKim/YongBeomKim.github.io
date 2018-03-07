@@ -11,6 +11,31 @@ toc: true
 $ sudo -u postgres psql -d quant    # 해당 DB 접속
 ```
 
+
+## PostgreSQL 관리 
+
+### 1. 사용자
+
+```sql
+postgres=# select usename, usesysid, usecreatedb  from pg_user;
+ usename  | usesysid | usecreatedb 
+----------+----------+-------------
+ postgres |       10 | t
+ quents   |    16408 | f
+(2 rows)
+```
+사용자 정보는 **pg_user** 내부 테이블에 저장된다 <br>
+기본적 사용자 명으로 접속하지만, **PostgreSQL용 사용자**로 Overwriting 된다
+
+생성 및 삭제는 `CREATE USER`, `DROP USER`를 활용하여 관리한다 
+
+
+## PostgreSQL 문법
+
+'ABORT [work|transaction]' : 현재 트랜잭션을 취소한다
+'ALTER GROUP' : 사용자를 그룹에 추가/삭제한다 
+'ALTER TABLE' : TABLE의을 속성을 변경한다 
+
 \l  : DATABASE 목록
 \c (DB이름) : DataBase 이동
 
