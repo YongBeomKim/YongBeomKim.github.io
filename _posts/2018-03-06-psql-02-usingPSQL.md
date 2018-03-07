@@ -30,7 +30,7 @@ postgres=# select usename, usesysid, usecreatedb  from pg_user;
 생성 및 삭제는 `CREATE USER`, `DROP USER`를 활용하여 관리한다 
 
 
-## PSQL 명령모음
+## PSQL 명령모음[link](http://dbrang.tistory.com/749)
 
 ### Terminal 옵션들
 
