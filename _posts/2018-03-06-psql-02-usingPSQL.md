@@ -30,17 +30,13 @@ postgres=# select usename, usesysid, usecreatedb  from pg_user;
 생성 및 삭제는 `CREATE USER`, `DROP USER`를 활용하여 관리한다 
 
 
-## PSQL 명령행 
+## PSQL 명령모음
 
 ### Terminal 옵션들
 
-```sql
- psql [options] [dbname [username]]
 ```
-
-| Employee     | Salary |                                      |
-| ------------ | ------ | ------------------------------------ |
-| [John Doe](#)| $1     | Because that's all Steve Jobs needed for a salary.|
+$ sudo -u postgres psql [options] [dbname [username]]
+```
 
 
 | option | 설명 |                                      |
@@ -57,70 +53,21 @@ postgres=# select usename, usesysid, usecreatedb  from pg_user;
 
 ### psql 내부명령어 Quick 레퍼런스
 
+```sql
+postgres=# \d games_game;
+```
+
 | 명령어 | 의미 |                                      |
 | ------------ | ---------------------------------------- |
-| \a | 정렬/ 비정렬 모드 변환  |
-| -d, --dbname DB이름   | 연결하려는 DB를 지정하여 시작한다 |
-
-
-
-
-\l  : DATABASE 목록
-\c (DB이름) : DataBase 이동
-
-\dt           : DB 내부 TABLE 목록
-\d  table이름 : TABLE 상세목록
-
-\do : 연산자 목록
-\Dt : type 목록
-\i <file이름> : import file to Run
-\r : buffer 를 초기화
-\q : psql을 종료 
-\? : 도움말 
-\h <SQL명령> : SQL 도움말
-
-
-
-
-
-
-
-
-|-?| --help Show help, then exit|
-|-a| --echo_all Echo all input from script
--A, --no-align Unaligned table output mode ( -P format=unaligned )
--c, --command <command> Run only single command (SQL or internal) and exit
--d, --dbname <dbname> Specify database name to connect to (default: current username)
--e, --echo-queries Echo commands sent to server
--E, --echo-hidden Display queries that internal commands generate
--f, --file <filename> Execute commands from file, then exit
--F, --field-separator <string> Set field separator (default: " | ") ( -P fieldsep= )
--h, --host <hostname> Database server host or socket directory (default: "local socket")
--H, --html HTML table output mode ( -P format=html )
--l, --list List available databases, then exit
--n Disable enhanced command-line editing (readline)
--o, --output <filename> Send query results to file (use -o |program for a pipe)
--p, --port <port> Database server port (default: 5432 )
-
-
-
-
-
-'ABORT [work|transaction]' : 현재 트랜잭션을 취소한다
-'ALTER GROUP' : 사용자를 그룹에 추가/삭제한다 
-'ALTER TABLE' : TABLE의을 속성을 변경한다     
-
-\l  : DATABASE 목록
-\c (DB이름) : DataBase 이동
-
-\dt           : DB 내부 TABLE 목록
-\d  table이름 : TABLE 상세목록
-
-\do : 연산자 목록
-\Dt : type 목록
-\i <file이름> : import file to Run
-\r : buffer 를 초기화
-\q : psql을 종료 
-\? : 도움말 
-\h <SQL명령> : SQL 도움말
-
+| \? | 도움말 호출 |  
+| \h `SQL명령`` | SQL 도움말 출력 |
+| \l | DATABASE 목록 출력 |
+| \d, \d `table이름`` | TABLE에 대한 설명을 출력 |
+| \da | 집합 통계함수 목록을 출력 |
+| \df | 함수목록 출력 (List of function) |
+| \do | 연산자목록 출력 (List of Operation) |
+| \dT | 자료형목록 출력 (List of data types) |
+| \i `파일이름`` | 파일을 불러와서 실행 |
+| \c `DB이름`` | 데이터 베이스 이동 |
+| \r | buffer 를 초기화|
+| \q | psql을 종료 |
