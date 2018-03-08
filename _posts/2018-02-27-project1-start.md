@@ -8,6 +8,13 @@ tags:
 ---
 
 
+
+<figure>
+    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg"><img src="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg"></a>
+    <figcaption>메뉴관리 기본 R-DB 설계도</figcaption>
+</figure>
+
+
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg" alt="">
   <figcaption>메뉴관리 기본 R-DB 설계도</figcaption>
