@@ -7,6 +7,13 @@ tags:
     - project01
 ---
 
+
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg" alt="">
+  <figcaption>메뉴관리 기본 R-DB 설계도</figcaption>
+</figure> 
+
+
 <h2>구내식당 관리 Django </h2>
 
 <h3> recepie 1 : 메뉴관리</h3>
@@ -22,11 +29,6 @@ tags:
 2. 이를 바탕으로 Structure 및 기능들 구현하기
 3. Design & Triming
 4. Feed backs & Re Producting.
-
-<figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg" alt="">
-  <figcaption>메뉴관리 기본 R-DB 설계도</figcaption>
-</figure> 
 
 
 > Mark Down 꾸며주는 문법들을 보다 확인하며 적용해 나아가기
