@@ -23,6 +23,12 @@ tags:
 3. Design & Triming
 4. Feed backs & Re Producting.
 
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg" alt="">
+  <figcaption>메뉴관리 기본 R-DB 설계도</figcaption>
+</figure> 
+
+
 > Mark Down 꾸며주는 문법들을 보다 확인하며 적용해 나아가기
 
 > Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque
