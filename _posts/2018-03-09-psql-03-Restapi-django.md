@@ -198,6 +198,7 @@ DATABASES = {
 
 
 ### psql 과 django 접속 확인하기
+
 ```
 $ python manage.py makemigrations games
 Migrations for 'games':
@@ -213,4 +214,15 @@ Operations to perform:
 Running migrations:
   Applying contenttypes.0001_initial... OK
   Applying auth.0001_initial... OK
+
+
+$ sudo -u postgres psql -d games --command="\dt;"
+                  List of relations
+ Schema |            Name            | Type  | Owner 
+--------+----------------------------+-------+-------
+ public | auth_group                 | table | quant
+ public | auth_group_permissions     | table | quant
+ public | auth_permission            | table | quant
+ public | auth_user                  | table | quant
+ public | auth_user_groups           | table | quant
 ```
