@@ -197,3 +197,20 @@ DATABASES = {
 ```
 
 
+### psql 과 django 접속 확인하기
+```
+$ python manage.py makemigrations games
+Migrations for 'games':
+  games/migrations/0002_auto_20180309_1238.py
+    - Create model GameCategory
+    - Create model Player
+    - Create model PlayerScore
+
+
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, games, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+```
