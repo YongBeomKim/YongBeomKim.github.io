@@ -43,7 +43,7 @@ $ sudo raspi-config
 
 cli로 부팅, 비밀번호 변경, ssh 활성화를 한다
 
-**Note:** 기존의 접속정보가 있으면 ECDSA key fingerprint is SHA256:7eagzdh 오류 가 발생한다 
+**Note:** 기존의 접속정보가 있으면 ECDSA key fingerprint is SHA256:7eag.... 오류를 출력한다 
 ```
 $ cd .ssh 
 $ rm -f known_hosts          # 공개키 파일을 삭제
@@ -89,7 +89,7 @@ $ sudo apt-get clean
 
 4 머신러닝 도구 설치 [link](http://wyolum.com/numpyscipymatplotlib-on-raspberry-pi/)
 ```
-$ sudo apt-get install libblas-dev liblapack-dev python-dev libatlas-base-dev  gfortran  python-setuptools  python-matplotlib  python3-pandas  libxml2  ## 1~2 hours
+$ sudo apt-get install libblas-dev liblapack-dev python-dev libatlas-base-dev  gfortran  python-setuptools  python-matplotlib  python3-pandas  libxml2 libxml2-dev libxslt1-dev   ## 1~2 hours
 $ sudo easy_install scipy  ## 2-3 hours
 ```
 
@@ -125,12 +125,12 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 | ------------- | ------------------ |
 |"download-dir" | "/Download"       |
 |"rpc-password" | "원하는 비밀번호" |
-|"rpc-username" | "접속아이디"   # 접속 ID (login과는 별개다) |
+|"rpc-username" | "접속아이디"   **# 접속 ID (login과는 별개다**)** |
 |"rpc-port"     |  9091  |
-|"rpc-whitelist-enabled"       | false # 모든 IP 접속허가     |
-|"trash-original-torrent-files"| true  # 시작시 시드파일 삭제 |
-|"watch-dir"  | "/Download"  # 마지막 추가(seed 자동)|        
-|"watch-dir-enabled" | true  # 마지막 추가|
+|"rpc-whitelist-enabled"       | false **# 모든 IP 접속허가**     |
+|"trash-original-torrent-files"| true  **# 시작시 시드파일 삭제** |
+|"watch-dir"  | "/Download"  **# 마지막 추가(seed 자동)** |        
+|"watch-dir-enabled" | true  **# 마지막 추가** |
 
 마지막 2줄은, 설정폴더 내 토렌트 파일을 자동으로 다운로드 시작한다.
 

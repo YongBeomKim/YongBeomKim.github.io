@@ -19,67 +19,41 @@ SD카드를 포맷(ftp32)후 이미지를 덮어쓴다[link](http://odroid.com/d
 {: .notice--info}
 
 
+## 유용한 도구들 설치
+
+http://awesometic.tistory.com/19
 
 ### 초기설정
-
-**login id : pi** <br>
-**password : raspberry**<br>
+ 
+**login id : root / odroid** <br>
+**password : odroid**<br>
 
 ```
-$ sudo raspi-config
+$ sudo systemctl disable lightdm.service                    # CLI로 로그인
+$ sudo apt-get purge libx11.* libqt.* && apt-get autoremove # GUI 의존제거 
+$ sudo apt-get purge cups* && apt-get autoremove            # cups* 모듈 삭제
+$ sudo apt-get purge chromium* firefox* kodi* && sudo apt-get autoremove # 불필요 삭제
+$ sudo reboot
+
+$ sudo apt-get update && sudo apt-get dist-upgrade -y       # 업뎃실시
+$ sudo reboot
+$ sudo apt-get autoremove                                   # 청소  
 ```
 
-cli로 부팅, 비밀번호 변경, ssh 활성화를 한다
+ 새로운 사용자에게도 적용하기 위해, /etc/skel/.profile 에도 추가합니다
 
-**Note:** 기존의 접속정보가 있으면 ECDSA key fingerprint is SHA256:7eagzdh 오류 가 발생한다 
-```
-$ cd .ssh 
-$ rm -f known_hosts          # 공개키 파일을 삭제
-$ rm -f /etc/ssh/ssh_host_*  # 서버키 파일을 삭제
-```
-해당 파일들을 삭제후 접속을 하면 된다
-{: .notice--info}
+sudo vi /etc/skel/.profile
+TZ='Asia/Seoul'; export TZ
 
+ 추가로 기본 시간대를 바꿔줍니다.
 
-## Pyton 3.6 설치하기 [link](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f)
+dpkg-reconfigure tzdata
 
+ Asia/Seoul 로 설정해주시면 됩니다.
 
-1 python 설치에 필요한 모듈을 설치 
-```
-$ sudo apt-get update
-$ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev  # 기타 메세지에 따라서 추가설치 
-```
+ 재부팅 해줍니다.
 
-
-2 Python을 정식사이트와 압축파일로 설치하기
-```
-$ wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
-$ tar xf Python-3.6.0.tar.xz
-$ cd Python-3.6.0
-$ ./configure
-$ make
-$ sudo make altinstall
-```
-
-
-3 불필요한 파일들 삭제
-```
-$ sudo rm -r Python-3.6.0
-$ rm Python-3.6.0.tgz
-$ sudo apt-get --purge remove build-essential tk-dev
-$ sudo apt-get --purge remove libncurses5-dev libncursesw5-dev libreadline6-dev
-$ sudo apt-get --purge remove libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
-$ sudo apt-get --purge remove libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
-$ sudo apt-get autoremove
-$ sudo apt-get clean
-```
-
-
-4 머신러닝 도구 설치 [link](http://wyolum.com/numpyscipymatplotlib-on-raspberry-pi/)
-```
-$ sudo apt-get install libblas-dev liblapack-dev python-dev libatlas-base-dev  gfortran  python-setuptools  python-matplotlib  python3-pandas   ## 1~2 hours
-$ sudo easy_install scipy  ## 2-3 hours
-```
+sudo reboot
 
 
 ## Utility 설치 및 설정
