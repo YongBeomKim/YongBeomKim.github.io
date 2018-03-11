@@ -1,35 +1,23 @@
 ---
-title : Pi - 설치 메뉴얼
+title : odroid xu4 - 설치 메뉴얼
 last_modified_at: 2018-03-11T13:45:06-05:00
 tags: 
-    - raspberry 
-    - Pi
+    - odroid
 toc: true
 ---
 
 
-Raspberry Pi 서버는 설치와 설정이 편하긴 하다<br>
+odroid xu4 설치 매뉴얼
 
-```
-$ sudo raspi-config
-```
+## odroid 운영체제 설치[link](https://wikidocs.net/3277)
 
-만 실행하면 다양한 설정이 가능하다<br>
+ubuntu Mate 16.04 [**download**](http://odroid.com/dokuwiki/doku.php?id=en:xu3_release_linux_ubuntu_k49)
 
-하지만 구현할 내용이 많아지면서, 개인용임에도 개발 서버로는 부족해서<br>
-서버를 교체하기로 결정하였고,<br>
-이번시간은 Raspberry pi와 odroid xu4Q의 초기 설정 방법을<br>
-문서로써 정리하려고 한다
+SD카드를 포맷(ftp32)후 이미지를 덮어쓴다[link](http://odroid.com/dokuwiki/doku.php?id=en:odroid_flashing_tools)
 
-
-## Raspberry pi 운영체제 설치[link](https://wikidocs.net/3277)
-
-라즈베리파이 운영체제 [**download**](https://www.raspberrypi.org/downloads/)
-
-SD카드를 포맷(ftp32)후 이미지를 덮어쓴다
-
-**Note:** **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/)로 .img 설치가 가장 편하다 
+**Note:** 여기서도 **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/)가 가장 편하다 
 {: .notice--info}
+
 
 
 ### 초기설정
@@ -89,7 +77,7 @@ $ sudo apt-get clean
 
 4 머신러닝 도구 설치 [link](http://wyolum.com/numpyscipymatplotlib-on-raspberry-pi/)
 ```
-$ sudo apt-get install libblas-dev liblapack-dev python-dev libatlas-base-dev  gfortran  python-setuptools  python-matplotlib  python3-pandas  libxml2  ## 1~2 hours
+$ sudo apt-get install libblas-dev liblapack-dev python-dev libatlas-base-dev  gfortran  python-setuptools  python-matplotlib  python3-pandas   ## 1~2 hours
 $ sudo easy_install scipy  ## 2-3 hours
 ```
 
@@ -108,8 +96,6 @@ ssh 설치 위를 따라서 실행하면 끝 <strike>참 쉽죠??</strike>
 
 
 ### torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
-
-seeding 종료 후 자동삭제[link](http://vvchunvv.tistory.com/41)
 
 ```
 $ sudo apt-get install transmission-daemon          # 설치
