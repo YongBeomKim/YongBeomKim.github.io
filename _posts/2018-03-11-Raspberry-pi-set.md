@@ -28,7 +28,7 @@ $ sudo raspi-config
 
 SD카드를 포맷(ftp32)후 이미지를 덮어쓴다
 
-**Note:** **win32diskimager**[다운](https://sourceforge.net/projects/win32diskimager/) 유틸로 .img를 설치하는 방법이 가장 편하다 
+**Note:** **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/) 유틸로 .img를 설치하는 방법이 가장 편하다 
 {: .notice--info}
 
 
@@ -44,7 +44,7 @@ $ sudo raspi-config
 cli로 부팅, 비밀번호 변경, ssh 활성화를 한다
 
 
-### Pyton 3.6 설치하기 [link](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f)
+## Pyton 3.6 설치하기 [link](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f)
 
 
 1 python 설치에 필요한 모듈을 설치 
@@ -95,11 +95,11 @@ $ sudo apt-get install vsftpd  #ftp 설치하기
 $ sudo service vsftpd start    #ftp 활성화
 ```
 
-`sudo gedit /etc/vsftpd.conf  # ftp 접속 폴더 제한`
+`sudo gedit /etc/vsftpd.conf  # ftp 접속 폴더 제한`<br>
 ssh 설치 위를 따라서 실행하면 끝 <strike>참 쉽죠??</strike>
 
 
-#### torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
+### torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
 
 ```
 $ sudo apt-get install transmission-daemon          # 설치
@@ -110,8 +110,9 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 
 `sudo gedit /etc/transmission-daemon/settings.json` 내용 [link](https://trac.transmissionbt.com/wiki/EditConfigFiles)
 
-| option | 설명    |                                      |
-| -------------- | ---------------------------------------- |
+
+| option | 설명    |
+| -------------- | ------------------ |
 |"download-dir" | "/Download"      |
 |"rpc-password" | "원하는 비밀번호"  |
 |"rpc-username" | "접속아이디"   # 접속 ID (login과는 별개다) |
@@ -120,6 +121,7 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 |"trash-original-torrent-files"| true  # 시작시 시드파일 삭제 |
 |"watch-dir"  | "/Download"  # 마지막 추가(seed 자동)|        
 |"watch-dir-enabled" | true  # 마지막 추가|
+
 마지막 2줄은, 설정폴더 내 토렌트 파일을 자동으로 다운로드 시작한다.
 
 마지막에는 쉼표(,) 없고, 기타 모든 라인의 쉼표(,)는 꼭 확인한다  
