@@ -24,11 +24,11 @@ $ sudo raspi-config
 
 ## Raspberry pi 운영체제 설치[link](https://wikidocs.net/3277)
 
-라즈베리파이 운영체제를 **download** [link](https://www.raspberrypi.org/downloads/)
+라즈베리파이 운영체제 [**download**](https://www.raspberrypi.org/downloads/)
 
 SD카드를 포맷(ftp32)후 이미지를 덮어쓴다
 
-**Note:** **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/) 유틸로 .img를 설치하는 방법이 가장 편하다 
+**Note:** **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/)로 .img 설치가 가장 편하다 
 {: .notice--info}
 
 
@@ -85,7 +85,6 @@ $ sudo easy_install scipy  ## 2-3 hours
 ```
 
 
-
 ## Utility 설치 및 설정
 
 ### ftp 설치 [link](http://freehoon.tistory.com/48)
@@ -112,9 +111,9 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 
 
 | option | 설명    |
-| -------------- | ------------------ |
-|"download-dir" | "/Download"      |
-|"rpc-password" | "원하는 비밀번호"  |
+| ------------- | ------------------ |
+|"download-dir" | "/Download"       |
+|"rpc-password" | "원하는 비밀번호" |
 |"rpc-username" | "접속아이디"   # 접속 ID (login과는 별개다) |
 |"rpc-port"     |  9091  |
 |"rpc-whitelist-enabled"       | false # 모든 IP 접속허가     |
@@ -130,3 +129,30 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 “download-dir”: “[다운로드 할 곳의 default]“,
 “rpc-password”: “[transmission에 쓸 계정의 비밀번호. ]“,
 “rpc-username”: “[transmission에 쓸 계정명]“,
+
+
+## 외장하드 mount 연결 
+
+``` 
+# install SSD
+$ mkdir exthdd                           # '연결폴더'' 만들기 
+$ sudo fdisk -l                          # 디스크 확인
+$ sudo blkid                             # UUID info 확인
+$ sudo mount -t auto /dev/sda1 ./exthdd/ # '연결폴더'와 HDD 연결 
+$ sudo gedit /etc/fstab                  # blkid로 확인한 UUID info를 입력
+    proc       /proc   proc    defaults            0   0
+    UUID=575   /home2  ext4    errors=remount-ro   0   1
+$ sudo mount -a                          # 새로입력한 정보 적용 
+reboot
+```
+
+
+기존의 SSD
+```
+$ mount /dev/sdb1 /data
+Failed to mount '/dev/sdb1': 명령을 허용하지 않음
+The NTFS partition is in an unsafe state. Please resume...
+
+$ ntfsfix /dev/sdb1  # NTFS 오류는 ntfsfix
+```
+
