@@ -1,5 +1,5 @@
 ---
-title : Pi - 사용자 설정하기
+title : Pi - 초기 설정 메뉴얼
 last_modified_at: 2018-03-11T13:45:06-05:00
 tags: 
     - raspberry 
@@ -22,23 +22,23 @@ $ sudo raspi-config
 문서로써 정리하려고 한다
 
 
-## Raspberry pi 설정하기
-
-### 운영체제 설정하기 [link](https://wikidocs.net/3277)
+## Raspberry pi 운영체제 설치[link](https://wikidocs.net/3277)
 
 라즈베리파이 운영체제를 **download** [link](https://www.raspberrypi.org/downloads/)
 
 SD카드를 포맷(ftp32)후 이미지를 덮어쓴다
+
 **Note:** **win32diskimager**[다운](https://sourceforge.net/projects/win32diskimager/) 유틸로 .img를 설치하는 방법이 가장 편하다 
 {: .notice--info}
 
 
-### 초기설정하기 
+### 초기설정
 
 **login id : pi** <br>
 **password : raspberry**<br>
 
-```$ sudo raspi-config
+```
+$ sudo raspi-config
 ```
 
 cli로 부팅, 비밀번호 변경, ssh 활성화를 한다
@@ -86,9 +86,9 @@ $ sudo easy_install scipy  ## 2-3 hours
 
 
 
-### 필요한 utility 설정 
+## Utility 설치 및 설정
 
-#### ftp 설치 [link](http://freehoon.tistory.com/48)
+### ftp 설치 [link](http://freehoon.tistory.com/48)
 
 ```
 $ sudo apt-get install vsftpd  #ftp 설치하기
@@ -114,8 +114,8 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 | -------------- | ---------------------------------------- |
 |"download-dir" | "/Download"      |
 |"rpc-password" | "원하는 비밀번호"  |
-|"rpc-port"     |  9091  |
 |"rpc-username" | "접속아이디"   # 접속 ID (login과는 별개다) |
+|"rpc-port"     |  9091  |
 |"rpc-whitelist-enabled"       | false # 모든 IP 접속허가     |
 |"trash-original-torrent-files"| true  # 시작시 시드파일 삭제 |
 |"watch-dir"  | "/Download"  # 마지막 추가(seed 자동)|        
@@ -123,3 +123,8 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 마지막 2줄은, 설정폴더 내 토렌트 파일을 자동으로 다운로드 시작한다.
 
 마지막에는 쉼표(,) 없고, 기타 모든 라인의 쉼표(,)는 꼭 확인한다  
+
+
+“download-dir”: “[다운로드 할 곳의 default]“,
+“rpc-password”: “[transmission에 쓸 계정의 비밀번호. ]“,
+“rpc-username”: “[transmission에 쓸 계정명]“,
