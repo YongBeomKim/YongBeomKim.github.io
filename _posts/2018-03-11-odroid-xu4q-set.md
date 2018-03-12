@@ -7,9 +7,10 @@ toc: true
 ---
 
 
-odroid xu4 설치 매뉴얼
+## odroid 설치[link](https://wikidocs.net/3277)
 
-## odroid 운영체제 설치[link](https://wikidocs.net/3277)
+
+### ubuntu 16.04 LTS 를 SD 카드에 설치
 
 ubuntu Mate 16.04 [**download**](http://odroid.com/dokuwiki/doku.php?id=en:xu3_release_linux_ubuntu_k49)
 
@@ -18,54 +19,69 @@ SD카드를 포맷(ftp32)후 이미지를 덮어쓴다[link](http://odroid.com/d
 **Note:** 여기서도 **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/)가 가장 편하다 
 {: .notice--info}
 
+```
+# 불필요한 부분들 삭제
+$ sudo systemctl disable lightdm.service                    # CLI로 로그인
+$ sudo apt-get purge libx11.* libqt.* && apt-get autoremove # GUI 의존제거 
+$ sudo apt-get purge cups* && apt-get autoremove            # cups* 모듈 삭제
+$ sudo apt-get purge chromium* firefox* kodi* && sudo apt-get autoremove # 불필요 삭제
 
-## 유용한 도구들 설치
+$ sudo reboot
+$ sudo apt-get update && sudo apt-get dist-upgrade -y       # 업뎃실시
+$ sudo reboot
+$ sudo apt-get autoremove                                   # 청소  
+```
 
-http://awesometic.tistory.com/19
 
 ### 초기설정
  
 **login id : root / odroid** <br>
 **password : odroid**<br>
 
+**Note:** `passwd$사용자아이디` 로 비밀번호를 변경한다
+{: .notice--info}
+
+
+### 기준 시간대 변경 [link](http://xinet.kr/tc/entry/linux-timezone-%EC%84%A4%EC%A0%95)
+
 ```
-$ sudo systemctl disable lightdm.service                    # CLI로 로그인
-$ sudo apt-get purge libx11.* libqt.* && apt-get autoremove # GUI 의존제거 
-$ sudo apt-get purge cups* && apt-get autoremove            # cups* 모듈 삭제
-$ sudo apt-get purge chromium* firefox* kodi* && sudo apt-get autoremove # 불필요 삭제
-$ sudo reboot
+$ date
+   Mon Jan 01 00:00:00 UTC 2018
 
-$ sudo apt-get update && sudo apt-get dist-upgrade -y       # 업뎃실시
-$ sudo reboot
-$ sudo apt-get autoremove                                   # 청소  
+$ tzselect            # 옵션에 따라 시간을 변경
+$ nano /etc/profile   # 재부팅시에도 적용되도록 설정값 저장
+   TZ='Asia/Seoul'; export TZ
 ```
 
- 새로운 사용자에게도 적용하기 위해, /etc/skel/.profile 에도 추가합니다
-
-sudo vi /etc/skel/.profile
-TZ='Asia/Seoul'; export TZ
-
- 추가로 기본 시간대를 바꿔줍니다.
-
-dpkg-reconfigure tzdata
-
- Asia/Seoul 로 설정해주시면 됩니다.
-
- 재부팅 해줍니다.
-
-sudo reboot
 
 
-## Utility 설치 및 설정
+## 유용한 도구들 설치
+
+
+### ssh 활성화 [link](http://neoguru.tistory.com/57)
+
+```
+$ sudo apt-get update 
+$ sudo apt-get install  openssh-server
+$ netstat -ntl                    # 데몬 22 port 확인 
+    Active  Internet        connections (only servers)
+    Proto   Recv-Q          Send-Q...
+    0       0 0.0.0.0:22    LISTEN     
+$ sudo /etc/init.d/ssh restart    # ssh 재시작
+```
+
 
 ### ftp 설치 [link](http://freehoon.tistory.com/48)
 
 ```
-$ sudo apt-get install vsftpd  #ftp 설치하기
-$ sudo service vsftpd start    #ftp 활성화
+$ sudo apt-get install vsftpd  # ftp 설치하기
+$ sudo nano /etc/vsftpd.conf   # 설정값 추가
+    write_enable=YES           # 쓰기값 추가 
+
+$ sudo service vsftpd start    # ftp 재활성화
 ```
 
-`sudo gedit /etc/vsftpd.conf  # ftp 접속 폴더 제한`<br>
+`/etc/vsftpd.conf  # 설정` [link](http://dblabblog.tistory.com/m/entry/%EC%9A%B0%EB%B6%84%ED%88%AC%EB%A6%AC%EB%88%85%EC%8A%A4-FTP%EC%84%9C%EB%B2%84%EA%B5%AC%EC%B6%95vsftpd?category=338531)<br>
 ssh 설치 위를 따라서 실행하면 끝 <strike>참 쉽죠??</strike>
 
 
@@ -79,7 +95,6 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 ```
 
 `sudo gedit /etc/transmission-daemon/settings.json` 내용 [link](https://trac.transmissionbt.com/wiki/EditConfigFiles)
-
 
 | option | 설명    |
 | ------------- | ------------------ |
@@ -102,7 +117,7 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 “rpc-username”: “[transmission에 쓸 계정명]“,
 
 
-## 외장하드 mount 연결 
+### 외장하드 mount 연결 
 
 ``` 
 # install SSD
@@ -118,7 +133,9 @@ reboot
 ```
 
 
-기존의 SSD
+**Please Note:** 기존의 SSD로 충돌 발생시 해결방법
+{: .notice--danger}
+
 ```
 $ mount /dev/sdb1 /data
 Failed to mount '/dev/sdb1': 명령을 허용하지 않음
@@ -126,3 +143,133 @@ The NTFS partition is in an unsafe state. Please resume...
 
 $ ntfsfix /dev/sdb1  # NTFS 오류는 ntfsfix
 ```
+
+
+## Python 3.6.4 설치하기
+
+### Python 3.6.4 업데이트 [link](https://tecadmin.net/install-python-3-6-ubuntu-linuxmint/#)
+
+```
+## 관련 패키지 설치 
+$ sudo apt-get update
+$ sudo apt-get install build-essential checkinstall libreadline-gplv2-dev  libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+
+## 정식 사이트에서 다운 및 설치 
+$ cd /usr/src
+$ sudo wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+$ sudo tar xzf Python-3.6.4.tgz
+$ suro rm Python-3.6.4.tgz
+
+## python 3.6.4로 컴파일
+$ cd Python-3.6.4
+$ sudo ./configure --enable-optimizations
+$ sudo make altinstall
+$ python3.6 -V          # 설치확인
+```
+
+
+### 불필요한 파일 삭제
+
+```
+$ sudo rm -r Python-3.6.4
+$ rm Python-3.6.4.tgz
+$ sudo apt-get --purge remove build-essential tk-dev
+$ sudo apt-get --purge remove libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
+ libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
+$ sudo apt-get autoremove
+```
+
+
+### 파이썬에 필요한 모듈설치 (C++ 컴파일러등 설치)
+
+```
+$ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev libblas-dev liblapack-dev python3-dev libatlas-base-dev  gfortran  python3-setuptools  python3-matplotlib  python3-pandas  libxml2 libxml2-dev libxslt1-dev libfreetype6-dev  pkg-config  libpng12-dev  pkg-config
+```
+
+
+### tensorflow 설치 [link](https://hackernoon.com/running-yolo-on-odroid-yolodroid-5a89481ec141)
+
+```
+$ sudo apt-get install pkg-config zip g++ zlib1g-dev unzip
+$ sudo apt-get install gcc-4.8 g++-4.8
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+$ sudo apt-get install python-pip python-numpy swig python-dev
+$ sudo pip install wheel
+
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
+$ sudo apt-get install oracle-java8-set-default
+$ java -version
+```
+
+
+```
+# Google 플랫폼 설치를 위한 bazel 설치
+$ wget https://github.com/bazelbuild/bazel/releases/download/0.5.4/bazel-0.5.4-dist.zip
+$ unzip -d bazel bazel-0.5.4-dist.zip
+$ cd bazel
+$ sudo ./compile.sh
+$ sudo vi scripts/bootstrap/compile.sh   # java와 연결 활성화 
+```
+
+
+```
+# tensorflow 설치파일 다운로드
+$ git clone --recurse-submodules https://github.com/tensorflow/tensorflow.git
+$ cd tensorflow
+$ git checkout tags/v1.4.0
+$ ./configure
+```
+
+
+```
+## bazel 을 활용하여 Tensorflow 설치
+$ Target //tensorflow/tools/pip_package:build_pip_package up-to-date:
+ bazel-bin/tensorflow/tools/pip_package/build_pip_package
+
+$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+
+$ sudo pip3 install /tmp/tensorflow_pkg/tensorflow-1.4.0-cp36-cp36mu-linux_armv7l.whl --upgrade --ignore-installed
+```
+
+
+```
+## jupyter server 설치
+```
+
+
+
+
+
+
+
+
+```
+$ wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v0.11.0/tensorflow-0.11.0-py3-none-any.whl 
+$ sudo pip3 install tensorflow-0.11.0-py3-none-any.whl
+```
+
+http://kwangsics.tistory.com/entry/Tensorflow-설치일반-라즈베리파이
+
+https://github.com/samjabrahams/tensorflow-on-raspberry-pi/blob/master/GUIDE.md
+https://github.com/samjabrahams/tensorflow-on-raspberry-pi/issues/41
+```
+$ sudo apt-get update  
+$ sudo apt-get install pkg-config zip g++ zlib1g-dev unzip
+
+# For Python 3.3+
+$ sudo apt-get install python3-pip python3-numpy swig python3-dev
+$ sudo pip3 install wheel
+$ sudo apt-get install gcc-4.8 g++-4.8
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+```
+
+위 링크 참조하시기 바랍니다.
+
+
+
+### Jupyter Server 설치
+

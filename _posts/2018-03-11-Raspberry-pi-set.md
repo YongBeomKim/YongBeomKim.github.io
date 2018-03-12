@@ -1,5 +1,5 @@
 ---
-title : Pi - 설치 메뉴얼
+title : pi - 설치 메뉴얼
 last_modified_at: 2018-03-11T13:45:06-05:00
 tags: 
     - raspberry 
@@ -32,7 +32,7 @@ SD카드를 포맷(ftp32)후 이미지를 덮어쓴다
 {: .notice--info}
 
 
-### 초기설정
+### 초기설정 (cli 부팅, 기본비번 변경, ssh)
 
 **login id : pi** <br>
 **password : raspberry**<br>
@@ -53,6 +53,17 @@ $ rm -f /etc/ssh/ssh_host_*  # 서버키 파일을 삭제
 {: .notice--info}
 
 
+### 기준날짜 변경 [link](http://xinet.kr/tc/entry/linux-timezone-%EC%84%A4%EC%A0%95)
+```
+$ date
+   Mon Jan 01 00:00:00 UTC 2018
+
+$ tzselect            # 옵션에 따라 시간을 변경
+$ nano /etc/profile   # 재부팅시에도 적용되도록 설정값 저장
+   TZ='Asia/Seoul'; export TZ
+```
+
+
 ## Pyton 3.6 설치하기 [link](https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f)
 
 
@@ -65,9 +76,9 @@ $ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev l
 
 2 Python을 정식사이트와 압축파일로 설치하기
 ```
-$ wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
-$ tar xf Python-3.6.0.tar.xz
-$ cd Python-3.6.0
+$ wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
+$ tar xf Python-3.6.4.tar.xz
+$ cd Python-3.6.4
 $ ./configure
 $ make
 $ sudo make altinstall
