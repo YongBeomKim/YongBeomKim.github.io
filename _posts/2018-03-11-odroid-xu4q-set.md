@@ -9,7 +9,7 @@ toc: true
 
 ## odroid 설치[link](https://wikidocs.net/3277)
 
-참고 odroid HC1 설치 매뉴얼[link]http://m.blog.daum.net/_blog/_m/commentList.do?blogid=07GHh&articleno=15837504)
+참고 odroid HC1 설치 매뉴얼[link](http://m.blog.daum.net/_blog/_m/commentList.do?blogid=07GHh&articleno=15837504)
 
 ### ubuntu 16.04 LTS 를 SD 카드에 설치
 
@@ -17,7 +17,7 @@ ubuntu Mate 16.04 [**download**](http://odroid.com/dokuwiki/doku.php?id=en:xu3_r
 
 SD카드를 포맷(ftp32)후 이미지를 덮어쓴다[link](http://odroid.com/dokuwiki/doku.php?id=en:odroid_flashing_tools)
 
-**Note:** 여기서도 **win32diskimager** [다운](https://sourceforge.net/projects/win32diskimager/)가 가장 편하다 
+**Note:** [win32diskimager](https://sourceforge.net/projects/win32diskimager/) 을 추천
 {: .notice--info}
 
 ```
@@ -34,10 +34,11 @@ $ sudo apt-get autoremove                                   # 청소
 ```
 cli 설정 매뉴얼 [link](http://awesometic.tistory.com/19)
 
+
 ### 초기설정
  
-**login id : root / odroid** <br>
-**password : odroid**<br>
+**id : root / odroid** <br>
+**pass : odroid**<br>
 
 **Note:** `passwd$사용자아이디` 로 비밀번호를 변경한다
 {: .notice--info}
@@ -46,18 +47,17 @@ cli 설정 매뉴얼 [link](http://awesometic.tistory.com/19)
 ### 기준 시간대 변경 [link](http://xinet.kr/tc/entry/linux-timezone-%EC%84%A4%EC%A0%95)
 
 ```
-$ date
-   Mon Jan 01 00:00:00 UTC 2018
+$ date                # 국제 표준시가 default로 지정 
+   Mon Jan 01 00:00:00 UTC 2018   
 
-$ tzselect            # 옵션에 따라 시간을 변경
-$ nano /etc/profile   # 재부팅시에도 적용되도록 설정값 저장
+$ tzselect            # 옵션을 따라가며 시간을 변경한다
+$ nano /etc/profile   # 부팅후 자동적용을 위해 설정값을 저장
    TZ='Asia/Seoul'; export TZ
 ```
 
 
 
 ## 유용한 도구들 설치
-
 
 ### ssh 활성화 [link](http://neoguru.tistory.com/57)
 
@@ -150,8 +150,8 @@ $ sudo /etc/init.d/transmission-daemon start
 ```
 
 
-**Please Note:** transmission permission 오류 발생시
-`$ sudo chmod 775 /var/lib/transmission-daemon/.config/transmission-daemon/resume`로 관련폴더 권한을 수정 [link](https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=13650)
+**Please Note:** transmission permission 오류시
+`$ sudo chmod 775 /var/lib/transmission-daemon/.config/transmission-daemon/resume`로 폴더권한을 수정한다 [link](https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=13650)
 {: .notice--danger}
 
 
@@ -171,16 +171,8 @@ reboot
 ```
 
 
-**Please Note:** 기존의 SSD로 충돌 발생시 해결방법
+**Please Note:** `Failed to mount '/dev/sdb1'` 기존의 SSD 설정값과 충돌문제는 `$ ntfsfix /dev/sdb1`를 통해서 해결한다
 {: .notice--danger}
-
-```
-$ mount /dev/sdb1 /data
-Failed to mount '/dev/sdb1': 명령을 허용하지 않음
-The NTFS partition is in an unsafe state. Please resume...
-
-$ ntfsfix /dev/sdb1  # NTFS 오류는 ntfsfix
-```
 
 
 ## Python 3.6.4 설치하기
@@ -198,7 +190,7 @@ $ sudo wget https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
 $ sudo tar xzf Python-3.6.4.tgz
 $ suro rm Python-3.6.4.tgz
 
-## python 3.6.4로 컴파일
+## python 3.6.4 컴파일
 $ cd Python-3.6.4
 $ sudo ./configure --enable-optimizations
 $ sudo make altinstall
@@ -233,7 +225,9 @@ $ sudo apt-get install fonts-hack-ttf       # Hack 폰트 설치
 $ jupyter-theme -t oceans16 -f hack -fs 10  # jupyter theme 설치
 $ nano /home/odroid/.jupyter/custom/custom.css 
 
-# .div.cell.{ # 여기 바로 아래에 덧 붙이자}  (!!!추가할 내용!!)
+div.cell.{ # 여기 바로 아래에 덧 붙인다}  
+
+(!!!추가할 내용!!)
 .container {
     width: 99% !important;
 }   
@@ -254,7 +248,7 @@ $ nano /home/odroid/.jupyter/jupyter_notebook_config.py
 
 # 위에서 추출한 비번을 입력
 c = get_config()
-c.NotebookApp.matplotlib='inline'
+# c.NotebookApp.matplotlib='inline'  # 오류를 발생
 c.NotebookApp.password = u'sha1:f24baff....' 
 # ssl인증을 입력
 c.NotebookApp.certfile = u'/absolute/path/to/your/certificate/mycert.pem'
@@ -263,7 +257,7 @@ c.NotebookApp.open_browser = False
 # 시작 폴더를 변경한다.
 c.NotebookApp.notebook_dir = u'/root/DataScience/'
 # The IP address the notebook server will listen on.
-c.NotebookApp.ip = 'xxx.xxx.xxx.xxx'
+c.NotebookApp.ip = '*'   # 'xxx.xxx.xxx.xxx'는 또 왜 안된나 ㅠㅠ..
 c.NotebookApp.port_retries = 8888
 
 $ jupyter notebook --ip=* --no-browser  # terminal 에서 위의 설정값을 입력
@@ -324,6 +318,3 @@ $ sudo pip3 install /tmp/tensorflow_pkg/tensorflow-1.4.0-cp36-cp36mu-linux_armv7
 http://kwangsics.tistory.com/entry/Tensorflow-설치일반-라즈베리파이
 https://github.com/samjabrahams/tensorflow-on-raspberry-pi/blob/master/GUIDE.md
 https://github.com/samjabrahams/tensorflow-on-raspberry-pi/issues/41
-
-
-
