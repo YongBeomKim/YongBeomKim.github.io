@@ -9,6 +9,7 @@ toc: true
 
 ## odroid 설치[link](https://wikidocs.net/3277)
 
+참고 odroid HC1 설치 매뉴얼[link]http://m.blog.daum.net/_blog/_m/commentList.do?blogid=07GHh&articleno=15837504)
 
 ### ubuntu 16.04 LTS 를 SD 카드에 설치
 
@@ -31,7 +32,7 @@ $ sudo apt-get update && sudo apt-get dist-upgrade -y       # 업뎃실시
 $ sudo reboot
 $ sudo apt-get autoremove                                   # 청소  
 ```
-
+cli 설정 매뉴얼 [link](http://awesometic.tistory.com/19)
 
 ### 초기설정
  
@@ -87,6 +88,8 @@ ssh 설치 위를 따라서 실행하면 끝 <strike>참 쉽죠??</strike>
 
 ### torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
 
+#### transmission-daemon 설치 
+
 ```
 $ sudo apt-get install transmission-daemon          # 설치
 $ sudo /etc/init.d/transmission-daemon stop         # 정지
@@ -98,23 +101,58 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 
 | option | 설명    |
 | ------------- | ------------------ |
-|"download-dir" | "/Download"       |
-|"rpc-password" | "원하는 비밀번호" |
-|"rpc-username" | "접속아이디"   # 접속 ID (login과는 별개다) |
-|"rpc-port"     |  9091  |
+|“speed-limit-down”| 100, # 최대 다운속도|
+|“speed-limit-down-enabled”| false, # 최대 다운속도|
+|“speed-limit-up”| 25, # 최대 업속도|
+|“speed-limit-up-enabled”| true, # 최대 업속도|
+|"download-dir"  | "/Download"       |
+|"rpc-password"  | "비밀번호" |
+|"rpc-username"  | "접속아이디"   # 접속 ID (login 별개) |
+|"rpc-port"      |  9091  |
 |"rpc-whitelist-enabled"       | false # 모든 IP 접속허가     |
 |"trash-original-torrent-files"| true  # 시작시 시드파일 삭제 |
-|"watch-dir"  | "/Download"  # 마지막 추가(seed 자동)|        
-|"watch-dir-enabled" | true  # 마지막 추가|
+|"watch-dir"     | "/Download"  # 마지막줄에 추가|        
+|"watch-dir-enabled" | true  # 마지막줄에 추가|
 
-마지막 2줄은, 설정폴더 내 토렌트 파일을 자동으로 다운로드 시작한다.
-
-마지막에는 쉼표(,) 없고, 기타 모든 라인의 쉼표(,)는 꼭 확인한다  
+마지막만 쉼표(,)가 없다.. 꼭 확인!!
 
 
-“download-dir”: “[다운로드 할 곳의 default]“,
-“rpc-password”: “[transmission에 쓸 계정의 비밀번호. ]“,
-“rpc-username”: “[transmission에 쓸 계정명]“,
+#### 접속완료시 자동종료 shell scripts 추가 [link](http://blog.naver.com/PostView.nhn?blogId=plaonn9&logNo=220894181618&categoryNo=0&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView)
+
+```
+$ sudo nano /Downloads/PurgeCompleted.sh
+
+  >> 아래의 스크립트를 삽입한다
+  SERVER=" 9091 --auth pi:pi_password "
+  TORRENTLIST=`transmission-remote $SERVER --list | sed -e '1d;$d;s/^ *//' | cut --only-delimited --delimiter=" " --fields=1`
+  for TORRENTID in $TORRENTLIST
+  do
+    DL_COMPLETED=`transmission-remote $SERVER --torrent $TORRENTID --info | grep "Percent Done: 100%"`
+    STATE_STOPPED=`transmission-remote $SERVER --torrent $TORRENTID --info | grep "State: Seeding\|Stopped\|Finished\|Idle"`
+    if [ "$DL_COMPLETED" ] && [ "$STATE_STOPPED" ]; then
+        transmission-remote $SERVER --torrent $TORRENTID --remove
+    fi
+  done
+
+$ sudo chmod +x /Downloads/PurgeCompleted.sh    # 권한설정
+$ sudo /etc/init.d/transmission-daemon stop    
+$ sudo nano /etc/transmission-daemon/settings.json
+
+  >>수정전
+   "script-torrent-done-enabled": false,
+   "script-torrent-done-filename": "",
+
+  >>수정후>
+   "script-torrent-done-enabled": true,
+   "script-torrent-done-filename": "/Downloads/PurgeCompleted.sh",
+
+$ sudo /etc/init.d/transmission-daemon start
+```
+
+
+**Please Note:** transmission permission 오류 발생시
+`$ sudo chmod 775 /var/lib/transmission-daemon/.config/transmission-daemon/resume`로 관련폴더 권한을 수정 [link](https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=13650)
+{: .notice--danger}
 
 
 ### 외장하드 mount 연결 
@@ -183,13 +221,62 @@ $ sudo apt-get autoremove
 ### 파이썬에 필요한 모듈설치 (C++ 컴파일러등 설치)
 
 ```
+$ sudo apt-get install python-pip                 # pip 최신버젼 설치
 $ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev libblas-dev liblapack-dev python3-dev libatlas-base-dev  gfortran  python3-setuptools  python3-matplotlib  python3-pandas  libxml2 libxml2-dev libxslt1-dev libfreetype6-dev  pkg-config  libpng12-dev  pkg-config
+```
+
+
+### Jupyter 설정값 변경 [link](http://goodtogreate.tistory.com/entry/IPython-Notebook-%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95)
+
+```  
+$ sudo apt-get install fonts-hack-ttf       # Hack 폰트 설치
+$ jupyter-theme -t oceans16 -f hack -fs 10  # jupyter theme 설치
+$ nano /home/odroid/.jupyter/custom/custom.css 
+
+# .div.cell.{ # 여기 바로 아래에 덧 붙이자}  (!!!추가할 내용!!)
+.container {
+    width: 99% !important;
+}   
+
+$ jupyter notebook --generate-config        # 설정파일 생성 
+   Writing default config to: /root/.jupyter/jupyter_notebook_config.py
+
+$ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem   # OpenSSL을 사용, 365일간 유효인증 설정 
+
+$ ipython
+    In [1]: from notebook.auth import passwd
+    In [2]: passwd()
+      Enter password: 
+      Verify password: 
+    Out[2]: 'sha1:f24baff....' 
+
+$ nano /home/odroid/.jupyter/jupyter_notebook_config.py
+
+# 위에서 추출한 비번을 입력
+c = get_config()
+c.NotebookApp.matplotlib='inline'
+c.NotebookApp.password = u'sha1:f24baff....' 
+# ssl인증을 입력
+c.NotebookApp.certfile = u'/absolute/path/to/your/certificate/mycert.pem'
+# web-browser를 실행하지 않음
+c.NotebookApp.open_browser = False
+# 시작 폴더를 변경한다.
+c.NotebookApp.notebook_dir = u'/root/DataScience/'
+# The IP address the notebook server will listen on.
+c.NotebookApp.ip = 'xxx.xxx.xxx.xxx'
+c.NotebookApp.port_retries = 8888
+
+$ jupyter notebook --ip=* --no-browser  # terminal 에서 위의 설정값을 입력
 ```
 
 
 ### tensorflow 설치 [link](https://hackernoon.com/running-yolo-on-odroid-yolodroid-5a89481ec141)
 
 ```
+$ wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v1.0.1/tensorflow-1.0.1-cp34-cp34m-linux_armv7l.whl 
+
+$ pip3 install tensorflow-1.0.1-cp34-cp34m-linux_armv7l.whl
+
 $ sudo apt-get install pkg-config zip g++ zlib1g-dev unzip
 $ sudo apt-get install gcc-4.8 g++-4.8
 $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
@@ -234,42 +321,9 @@ $ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 $ sudo pip3 install /tmp/tensorflow_pkg/tensorflow-1.4.0-cp36-cp36mu-linux_armv7l.whl --upgrade --ignore-installed
 ```
 
-
-```
-## jupyter server 설치
-```
-
-
-
-
-
-
-
-
-```
-$ wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v0.11.0/tensorflow-0.11.0-py3-none-any.whl 
-$ sudo pip3 install tensorflow-0.11.0-py3-none-any.whl
-```
-
 http://kwangsics.tistory.com/entry/Tensorflow-설치일반-라즈베리파이
-
 https://github.com/samjabrahams/tensorflow-on-raspberry-pi/blob/master/GUIDE.md
 https://github.com/samjabrahams/tensorflow-on-raspberry-pi/issues/41
-```
-$ sudo apt-get update  
-$ sudo apt-get install pkg-config zip g++ zlib1g-dev unzip
-
-# For Python 3.3+
-$ sudo apt-get install python3-pip python3-numpy swig python3-dev
-$ sudo pip3 install wheel
-$ sudo apt-get install gcc-4.8 g++-4.8
-$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
-$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
-```
-
-위 링크 참조하시기 바랍니다.
 
 
-
-### Jupyter Server 설치
 
