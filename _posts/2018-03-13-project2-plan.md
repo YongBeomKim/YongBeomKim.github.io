@@ -23,10 +23,14 @@ toc: true
 1. **Singular Value Decomposition** : 특이값 분해
 
 
+## 맛 구분표 
+단맛, 신맛, 짠맛, 쓴맛 (기본맛)
+매운맛, 떫은맛 (뒷맛)
+6개를 one hot encoding으로 조합한다
+
 
 **Note:** win32diskimager 추천
 {: .notice--info}
 
 **Please Note:** transmission permission 오류시
 {: .notice--danger}
-
