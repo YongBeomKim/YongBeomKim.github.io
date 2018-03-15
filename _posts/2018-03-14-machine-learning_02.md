@@ -1,13 +1,39 @@
 ---
-title : 웹을 위한 머신러닝 1
-last_modified_at: 2018-03-13T15:45:06-05:00
+title : 웹을 위한 머신러닝 2
+last_modified_at: 2018-03-14T15:45:06-05:00
 tags: 
     - python
     - ml
 toc: true
 ---
 
-## **Numpy()**
+
+## **자율학습**
+용도 : 군집화, 차원축소 
+
+## 군집화 알고리즘
+1. 정의 : 데이터를 여러 부분집합으로 재구성하여, 의미있는 구조를 추론
+1. 유형 : 확률분포방식, 중심방식, 밀도방식, 계층방식
+
+
+### 확률분포방식
+
+### 01 distribution Method 확률분포방식
+
+#### 1) EM 알고리즘 (기댓값 최대화 알고리즘) 
+- <strong>$X^i$</strong> 와 연관된 <strong>'가우시안'구성요소 $Z^i$(은닉변수)</strong>를 찾는 <strong>자율 알고리즘</strong>
+- E : <strong>Log 우도(log likelihood)</strong> 함수를 생성 (log 는 '오목함수'에 해당)
+- M : E를 최대화 하기 위한 <strong>'파라미터'</strong> 값을 다시 계산한다
+
+#### 2) 가우시안 혼합 (가우시안의 대표 모델 : 정규분포)
+- 전체 데이터 집합에 대해 <strong>'정규분포'</strong> 모델로 만든다 
+
+<img src="https://www.researchgate.net/profile/Jeremie_Sublime/publication/310644322/figure/fig4/AS:431286679543811@1479838165688/Figure-24-Illustration-of-the-EM-algorithm-GMM-on-the-Old-Faithful-data-set.ppm" align="left" width='450'></br></br>
+
+
+
+
+
 
 |  numpy 함수 |  설명 |
 |-------------|-------|
@@ -59,15 +85,16 @@ toc: true
 | pd객체.dropduplicates() | 유일한 값들로 구성된 row 반환 |
 
 
+**Note:** pandas 활용방법
 1. `data.ix[3,1] = 1` 특정셀에 값을 입력
-1. `data.ix[0] = [i for i in range(10)]` 특정 row 에 값을 입력(UPDATE) 
-1. `data.loc[len(data)] = [i for i in range(10)]` 마지막 row에 값 추가 (NEW)
-1. `data.apply(lambda x : pd.to_numeric(x))` float, int 석였을 떄 float로 변경
-1. `pd.concat( element데이터, target 데이터 )` 2개 TABLE을 1개로 결합
+2. `data.ix[0] = [i for i in range(10)]` 특정 row 에 값을 입력(UPDATE) 
+3. `data.loc[len(data)] = [i for i in range(10)]` 마지막 row에 값 추가 (NEW)
+4. `data.apply(lambda x : pd.to_numeric(x))` float, int 석였을 떄 float로 변경
+5. `pd.concat( element데이터, target 데이터 )` 2개 TABLE을 1개로 결합
 {: .notice--info}
 
 
-## **matplotlib**
+## ** matplotlib**
 
 |  matplotlib |  설명 |
 |--------------|-------|
