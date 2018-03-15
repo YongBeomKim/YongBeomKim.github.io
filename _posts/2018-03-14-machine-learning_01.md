@@ -60,13 +60,23 @@ toc: true
 | pd객체.fillna(-1) | 빈셀에 상수값을 채운다 |
 | pd객체.dropduplicates() | 유일한 값들로 구성된 row 반환 |
 
-**Note:** 
+
+**Note:** pandas 활용방법
 1. `data.ix[3,1] = 1` 특정셀에 값을 입력
 2. `data.ix[0] = [i for i in range(10)]` 특정 row 에 값을 입력(UPDATE) 
 3. `data.loc[len(data)] = [i for i in range(10)]` 마지막 row에 값 추가 (NEW)
 4. `data.apply(lambda x : pd.to_numeric(x))` float, int 석였을 떄 float로 변경
 5. `pd.concat( element데이터, target 데이터 )` 2개 TABLE을 1개로 결합
 {: .notice--info}
+
+
+## ** matplotlib**
+
+|  matplotlib |  설명 |
+|--------------|-------|
+| matplotlib.pyplot | plt : 파렛트 |
+| figure | fig : 그림객체 |
+| axis | ax : 축 기타 설정 |
 
 
 **Note:** win32diskimager 추천
