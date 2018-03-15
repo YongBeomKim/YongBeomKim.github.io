@@ -24,7 +24,7 @@ toc: true
 | np.transpose() | 전치행렬을 생성 (x,y축을 바꾼다) |
 | np.reshape()  | 배열을 다른 차원으로 재배열 |
 | np.concatenae() | 여러배열을 1개로 결합 (1차원/다차원)|
-| np.tostring() | 배열을 bin |ary로 변환 |
+| np.tostring() | 배열을 binary로 변환 |
 | np.fromstring() | binary를 배열로 변환 |
 | np배열.take(인덱스) | np배열을 '인덱스'배열에 맞춰서 재배치 한다 |
 | np배열.put([값], 인덱스) | np배열에 '값'배열을 '인덱스'순서로 입력 |
