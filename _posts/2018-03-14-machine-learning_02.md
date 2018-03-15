@@ -13,98 +13,44 @@ toc: true
 
 ## 군집화 알고리즘
 1. 정의 : 데이터를 여러 부분집합으로 재구성하여, 의미있는 구조를 추론
-1. 유형 : 확률분포방식, 중심방식, 밀도방식, 계층방식
+1. 유형 : 확률분포방식, 군집중심방식/밀도방식, 계층방식
 
+### 확률분포방식 (distribution Method)
+1. EM 알고리즘 : 파라미터 확률분포모델의 기댓값(log 우도) 최대화 알고리즘
+    1. E 단계 : **Log 우도(log likelihood)** 함수를 생성 (log : 오목함수)
+    1. M 단계 : **E를 최대화** 위한 '파라미터'를 다시 계산
 
-### 확률분포방식
+2. 가우시안 분포 혼합모델 [link](http://norman3.github.io/prml/docs/chapter09/2.html)
+    1. E 단계 : **베이지안** 정리로 **가중치** 계산
+    2. M 단계 : **E를 최대화** 위한 '파라미터'를 다시 계산
 
-### 01 distribution Method 확률분포방식
-
-#### 1) EM 알고리즘 (기댓값 최대화 알고리즘) 
-- <strong>$X^i$</strong> 와 연관된 <strong>'가우시안'구성요소 $Z^i$(은닉변수)</strong>를 찾는 <strong>자율 알고리즘</strong>
-- E : <strong>Log 우도(log likelihood)</strong> 함수를 생성 (log 는 '오목함수'에 해당)
-- M : E를 최대화 하기 위한 <strong>'파라미터'</strong> 값을 다시 계산한다
-
-#### 2) 가우시안 혼합 (가우시안의 대표 모델 : 정규분포)
-- 전체 데이터 집합에 대해 <strong>'정규분포'</strong> 모델로 만든다 
-
-<img src="https://www.researchgate.net/profile/Jeremie_Sublime/publication/310644322/figure/fig4/AS:431286679543811@1479838165688/Figure-24-Illustration-of-the-EM-algorithm-GMM-on-the-Old-Faithful-data-set.ppm" align="left" width='450'></br></br>
-
-
-
-
-
-
-|  numpy 함수 |  설명 |
-|-------------|-------|
-| np.nan      | NaN 상수 |
-| np.newaxis  | 축확장 상수|
-| np.unique() | 배열 내 중복값 제거 |
-| np.random(), np.shuffle() | 배열요소를 무작위 재배열 |
-| np.sort() | 배열 오름차순 정렬 |
-| np.argsort() | 배열 오름차순 정렬 후 index 출력 |
-| np.array_equal() | 두 배열의 '차원' 비교 (같으면 True)
-| np.flatten() | 다차원을 1차원으로 강제변경 |
-| np.transpose() | 전치행렬을 생성 (x,y축을 바꾼다) |
-| np.reshape()  | 배열을 다른 차원으로 재배열 |
-| np.concatenae() | 여러배열을 1개로 결합 (1차원/다차원)|
-| np.tostring() | 배열을 binary로 변환 |
-| np.fromstring() | binary를 배열로 변환 |
-| np배열.take(인덱스) | np배열을 '인덱스'배열에 맞춰서 재배치 한다 |
-| np배열.put([값], 인덱스) | np배열에 '값'배열을 '인덱스'순서로 입력 |
-| np배열.reshape((행's수, 열's수)) | np배열을 재배열 |
-| np배열.T     | np배열의 전치배열 |
-| np배열.mean() | np배열의 평균 |
-| np배열.std() | np배열의 표준편차 |
-| np배열.var() | np배열의 분산 |
-| np배열.min() | np배열의 최소값 |
-| np배열.max() | np배열의 최대값 |
-| np배열.argmin() | np배열의 최소값 인덱스 |
-| np배열.argmax() | np배열의 최대값 인덱스 |
-| np.dot(행렬, 행렬)  | 내적을 계산 | 
-| np.inner(행렬, 행렬)| 내적을 계산 |
-| np.cross(행렬, 행렬)| 외적을 계산 |
-
-
-## **Pandas()**
-
-|  pandas 함수 |  설명 |
-|--------------|-------|
-| pd.Series([배열]) | NaN 상수 |
-| pd.isnull(pd객체)  | NaN 여부 판단 | 
-| pd.notnull(pd객체) | not NaN 판단 |
-| pd객체.dtype | pd객체의 데이터타입 |
-| pd객체[판단문 & 판단문] | 판단결과 true 해당 데이터 추출 |
-| pd객체.ix[:3] | index 값으로 row 기준 선택 (0~2) |
-| pd객체.iloc[:3] | index 위치값으로 row 기준 선택 (0,1,2)|
-| pd객체.loc[:3] | index 레이블로 row 기준 선택 (0~3 주의!!) |
-| pd객체.duplicated() | row 에 중복 데이터 확인 |
-| pd객체.drop_duplicates() | 유일한 값들로 구성된 row 반환 |
-| pd객체.dropna() | 유일한 값들로 구성된 row 반환 |
-| pd객체.fillna(-1) | 빈셀에 상수값을 채운다 |
-| pd객체.dropduplicates() | 유일한 값들로 구성된 row 반환 |
-
-
-**Note:** pandas 활용방법
-1. `data.ix[3,1] = 1` 특정셀에 값을 입력
-2. `data.ix[0] = [i for i in range(10)]` 특정 row 에 값을 입력(UPDATE) 
-3. `data.loc[len(data)] = [i for i in range(10)]` 마지막 row에 값 추가 (NEW)
-4. `data.apply(lambda x : pd.to_numeric(x))` float, int 석였을 떄 float로 변경
-5. `pd.concat( element데이터, target 데이터 )` 2개 TABLE을 1개로 결합
+**Note:** EM알고리즘은 **자율학습 알고리즘**으로 **K개**의 가우시안 컴포넌트의 은닉변수를 찾는게 목표다
 {: .notice--info}
 
+### 군집중심방식 (centroid Method) : 중심과 포인트 거리 최소화 
+1. K-means : **K**개의 군집중심 값(유클리드 거리 최소값)을 계산
+2. DBSCAN (밀도기반 공간군집화) : 두 포인트간 밀도가 특정조건 만족시까지 계산
+3. Mean-shift (평균이동) : 밀도 커널함수의 지역 최댓값을 찾는 비모수 알고리즘
 
-## ** matplotlib**
+### 계층방식 : 연결기반 군집화 ex)DECISION TREE 
+1. 계층 군집화 : 유클리드결합, 단일결합, 완전결합, 평균결합, 와드 알고리즘 
 
-|  matplotlib |  설명 |
-|--------------|-------|
-| matplotlib.pyplot | plt : 파렛트 |
-| figure | fig : 그림객체 |
-| axis | ax : 축 기타 설정 |
+### 차원축소 
+1. 주성분 분석(PCA) : 주요정보가 포함된 부분공간을 식별하는 목표이다
 
+### 특이값 분해 
 
 **Note:**
 {: .notice--info}
 
 **Please Note:**
 {: .notice--danger}
+
+
+## **지도 학습**
+용도 : 군집화, 차원축소 
+
+### 모델 오류 평가 : Mean Square Error 를 사용해서 평가를 한다
+
+### 일반화 선형모델 : 레이블 $$y$$와 특징벡터$$x^{(i)}$$사이 선형관계를 생성
+
