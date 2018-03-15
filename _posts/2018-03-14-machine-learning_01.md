@@ -42,6 +42,31 @@ toc: true
 | np.cross(행렬, 행렬)| 외적을 계산 |
 
 
+## **Pandas()**
+
+|  pandas 함수 |  설명 |
+|--------------|-------|
+| pd.Series([배열]) | NaN 상수 |
+| pd.isnull(pd객체)  | NaN 여부 판단 | 
+| pd.notnull(pd객체) | not NaN 판단 |
+| pd객체.dtype | pd객체의 데이터타입 |
+| pd객체[판단문 & 판단문] | 판단결과 true 해당 데이터 추출 |
+| pd객체.ix[:3] | index 값으로 row 기준 선택 (0~2) |
+| pd객체.iloc[:3] | index 위치값으로 row 기준 선택 (0,1,2)|
+| pd객체.loc[:3] | index 레이블로 row 기준 선택 (0~3 주의!!) |
+| pd객체.duplicated() | row 에 중복 데이터 확인 |
+| pd객체.drop_duplicates() | 유일한 값들로 구성된 row 반환 |
+| pd객체.dropna() | 유일한 값들로 구성된 row 반환 |
+| pd객체.fillna(-1) | 빈셀에 상수값을 채운다 |
+| pd객체.dropduplicates() | 유일한 값들로 구성된 row 반환 |
+
+**Note:** 
+1. `data.ix[3,1] = 1` 특정셀에 값을 입력
+2. `data.ix[0] = [i for i in range(10)]` 특정 row 에 값을 입력(UPDATE) 
+3. `data.loc[len(data)] = [i for i in range(10)]` 마지막 row에 값 추가 (NEW)
+4. `data.apply(lambda x : pd.to_numeric(x))` float, int 석였을 떄 float로 변경
+5. `pd.concat( element데이터, target 데이터 )` 2개 TABLE을 1개로 결합
+{: .notice--info}
 
 
 **Note:** win32diskimager 추천
