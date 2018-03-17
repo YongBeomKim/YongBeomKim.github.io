@@ -15,6 +15,14 @@ toc: true
 | np.newaxis  | 축확장 상수|
 | np.unique() | 배열 내 중복값 제거 |
 | np.random(), np.shuffle() | 배열요소를 무작위 재배열 |
+| np.random.permutation(n) | n개의 정주배열난수 |
+| np.random.normal(n1,n2,n) | n1 ~ n2 사이 정규분포 n개 난수|
+| np.identity(n, dtype=float) | n X n 크기의 1 단위행렬 |
+| np.eye(n, k=1, dtype=float) | n X n 크기의 k번째 대각행렬 | 
+| np.ones((n1,n2), dtype=float) | n1 X n2 크기의 1행렬 |
+| np.zeros((n1,n2), dtype=float) | n1 X n2 크기의 0행렬 |
+| np.ones_like(arr배열) | arr과배열과 같은 크기의 1행렬 |
+| np.zeros_like(arr배열) | arr과배열과 같은 크기의 0행렬 |
 | np.sort() | 배열 오름차순 정렬 |
 | np.argsort() | 배열 오름차순 정렬 후 index 출력 |
 | np.array_equal() | 두 배열의 '차원' 비교 (같으면 True)
