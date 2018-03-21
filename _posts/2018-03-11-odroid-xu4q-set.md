@@ -88,18 +88,23 @@ ssh 설치 위를 따라서 실행하면 끝 <strike>참 쉽죠??</strike>
 
 ### torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
 
-#### transmission-daemon 설치 
+#### transmission-daemon 설치 / 폴더원한 설정[link](https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=13650) / settings.json 설정[link](https://trac.transmissionbt.com/wiki/EditConfigFiles)
 
 ```
 $ sudo apt-get install transmission-daemon          # 설치
 $ sudo /etc/init.d/transmission-daemon stop         # 정지
-$ sudo gedit /etc/transmission-daemon/settings.json # 사용자 설정
+
+## 관련폴더에 권한 부여
+$ sudo chmod 777 /var/lib/transmission-daemon/.config/transmission-daemon/resume
+$ sudo chmod 777 /home/odroid/torrent
+$ sudo chmod 777 /home/downloads/transmission
+
+$ sudo gedit /etc/transmission-daemon/settings.json # 사용자 설정 
 $ sudo /etc/init.d/transmission-daemon start        # 재시작
 ```
 
-`sudo gedit /etc/transmission-daemon/settings.json` 내용 [link](https://trac.transmissionbt.com/wiki/EditConfigFiles)
 
-| option | 설명    |
+| settings.json | 설명    |
 | ------------- | ------------------ |
 |“speed-limit-down”| 100, # 최대 다운속도|
 |“speed-limit-down-enabled”| false, # 최대 다운속도|
@@ -109,7 +114,7 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 |"rpc-password"  | "비밀번호" |
 |"rpc-username"  | "접속아이디"   # 접속 ID (login 별개) |
 |"rpc-port"      |  9091  |
-|"rpc-whitelist-enabled"       | false # 모든 IP 접속허가     |
+|"rpc-whitelist-enabled"       | false # 모든 IP허가 (403 forbidden 발생시 변경)     |
 |"trash-original-torrent-files"| true  # 시작시 시드파일 삭제 |
 |"watch-dir"     | "/Download"  # 마지막줄에 추가|        
 |"watch-dir-enabled" | true  # 마지막줄에 추가|
@@ -134,7 +139,7 @@ $ sudo nano /Downloads/PurgeCompleted.sh
     fi
   done
 
-$ sudo chmod +x /Downloads/PurgeCompleted.sh    # 권한설정
+$ sudo chmod +x /home/odroid/Downloads/PurgeCompleted.sh    # 권한설정
 $ sudo /etc/init.d/transmission-daemon stop    
 $ sudo nano /etc/transmission-daemon/settings.json
 
@@ -148,11 +153,6 @@ $ sudo nano /etc/transmission-daemon/settings.json
 
 $ sudo /etc/init.d/transmission-daemon start
 ```
-
-
-**Please Note:** transmission permission 오류시
-`$ sudo chmod 775 /var/lib/transmission-daemon/.config/transmission-daemon/resume`로 폴더권한을 수정한다 [link](https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=13650)
-{: .notice--danger}
 
 
 ### 외장하드 mount 연결 

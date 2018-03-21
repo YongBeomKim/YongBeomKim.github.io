@@ -47,14 +47,6 @@ Core i7-2640M 최대 지원 가능하고 중고물건도 찾았다[링크](http:
 
 이제 등장하는건 구글질..
 
-<figure>
-    <!-- 클릭시 이미지 확대 URL 추가 -->
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg">
-        <img src="{{ site.url }}{{ site.baseurl }}/assets/images/project/menu-rdb.jpg">
-    </a>
-    <figcaption>메뉴관리 기본 R-DB 설계도</figcaption>
-</figure>
-
 **Note:**
 {: .notice--info}
 
