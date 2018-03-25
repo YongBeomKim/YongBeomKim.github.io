@@ -83,14 +83,13 @@ $ sudo apt-get install transmission-daemon          # 설치
 $ sudo /etc/init.d/transmission-daemon stop         # 정지
 
 ## 관련폴더에 권한 부여
-$ sudo chmod 777 /var/lib/transmission-daemon/.config/transmission-daemon/resume
-$ sudo chmod 777 /home/odroid/torrent
-$ sudo chmod 777 /home/downloads/transmission
+$ sudo chmod 777 /var/lib/transmission-daemon/info/resume
+$ sudo chmod 777 /home/사용자명/다운폴더
+$ sudo chmod 777 /home/downloads/임시저장 폴더
 
-$ sudo gedit /etc/transmission-daemon/settings.json # 사용자 설정 
+$ sudo nano /etc/transmission-daemon/settings.json # 사용자 설정 
 $ sudo /etc/init.d/transmission-daemon start        # 재시작
 ```
-
 
 | settings.json | 설명    |
 | ------------- | ------------------ |
@@ -116,7 +115,7 @@ $ sudo /etc/init.d/transmission-daemon start        # 재시작
 $ sudo nano /Downloads/PurgeCompleted.sh
 
   >> 아래의 스크립트를 삽입한다
-  SERVER=" 9091 --auth pi:pi_password "
+  SERVER=" 9091 --auth 접속id : 접속_password "
   TORRENTLIST=`transmission-remote $SERVER --list | sed -e '1d;$d;s/^ *//' | cut --only-delimited --delimiter=" " --fields=1`
   for TORRENTID in $TORRENTLIST
   do
@@ -130,20 +129,19 @@ $ sudo nano /Downloads/PurgeCompleted.sh
 $ sudo chmod +x /home/odroid/Downloads/PurgeCompleted.sh    # 권한설정
 $ sudo /etc/init.d/transmission-daemon stop    
 $ sudo nano /etc/transmission-daemon/settings.json
-
   >>수정전
    "script-torrent-done-enabled": false,
    "script-torrent-done-filename": "",
 
   >>수정후>
    "script-torrent-done-enabled": true,
-   "script-torrent-done-filename": "/Downloads/PurgeCompleted.sh",
+   "script-torrent-done-filename": "/home/erdos/download/transmission/PurgeCompleted.sh",
 
 $ sudo /etc/init.d/transmission-daemon start
 ```
 
 
-### 외장하드 mount 연결 
+5. 외장하드 mount 연결 및 슬립모드[link](http://luyin.tistory.com/416)
 
 ``` 
 # install SSD
@@ -155,22 +153,30 @@ $ sudo gedit /etc/fstab                  # blkid로 확인한 UUID info를 입�
     proc       /proc   proc    defaults            0   0
     UUID=575   /home2  ext4    errors=remount-ro   0   1
 $ sudo mount -a                          # 새로입력한 정보 적용 
-reboot
 ```
 
+```
+$ sudo apt-get install hdparm   # 슬립모드 구성
+$ sudo vi /etc/hdparm.conf      # 제일 아래줄에 추가한다.
+  /dev/sda1 {                   # /dev/sda1 은 외장 HDD 경로명
+    spindown_time = 120         # 120(10초) HDD가 동작않으면 대기진입
+}
+$ sudo service hdparm restart
+```
 
 **Please Note:** `Failed to mount '/dev/sdb1'` 기존의 SSD 설정값과 충돌문제는 `$ ntfsfix /dev/sdb1`를 통해서 해결한다
 {: .notice--danger}
 
 
-## Python 3.6.4 설치하기
+
+## Install Python 3.6 
 
 ### Python 3.6.4 업데이트 [link](https://tecadmin.net/install-python-3-6-ubuntu-linuxmint/#)
 
 ```
 ## 관련 패키지 설치 
 $ sudo apt-get update
-$ sudo apt-get install build-essential checkinstall libreadline-gplv2-dev  libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+$ sudo apt-get install build-essential checkinstall libreadline-gplv2-dev  libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev  libxml2
 
 ## 정식 사이트에서 다운 및 설치 
 $ cd /usr/src
@@ -187,13 +193,12 @@ $ python3.6 -V          # 설치확인
 
 
 ### 불필요한 파일 삭제
+꼭 지워야만 `sudo pip3 install` 이 제대로 작동된다!!
 
 ```
 $ sudo rm -r Python-3.6.4
 $ rm Python-3.6.4.tgz
-$ sudo apt-get --purge remove build-essential tk-dev
-$ sudo apt-get --purge remove libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev
- libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
+$ sudo apt-get --purge remove build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev
 $ sudo apt-get autoremove
 ```
 
@@ -202,7 +207,12 @@ $ sudo apt-get autoremove
 
 ```
 $ sudo apt-get install python-pip                 # pip 최신버젼 설치
+
+$ sudo apt-get install build-essential checkinstall libreadline-gplv2-dev  libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+
 $ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev libblas-dev liblapack-dev python3-dev libatlas-base-dev  gfortran  python3-setuptools  python3-matplotlib  python3-pandas  libxml2 libxml2-dev libxslt1-dev libfreetype6-dev  pkg-config  libpng12-dev  pkg-config
+
+$ sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk   # Pillow 설치관련
 ```
 
 
@@ -211,7 +221,7 @@ $ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev libblas
 ```  
 $ sudo apt-get install fonts-hack-ttf       # Hack 폰트 설치
 $ jupyter-theme -t oceans16 -f hack -fs 10  # jupyter theme 설치
-$ nano /home/odroid/.jupyter/custom/custom.css 
+$ nano /home/사용자명/.jupyter/custom/custom.css 
 
 div.cell.{ # 여기 바로 아래에 덧 붙인다}  
 
@@ -224,7 +234,6 @@ $ jupyter notebook --generate-config        # 설정파일 생성
    Writing default config to: /root/.jupyter/jupyter_notebook_config.py
 
 $ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem   # OpenSSL을 사용, 365일간 유효인증 설정 
-
 $ ipython
     In [1]: from notebook.auth import passwd
     In [2]: passwd()
@@ -232,7 +241,7 @@ $ ipython
       Verify password: 
     Out[2]: 'sha1:f24baff....' 
 
-$ nano /home/odroid/.jupyter/jupyter_notebook_config.py
+$ nano /home/사용자명/.jupyter/jupyter_notebook_config.py
 
 # 위에서 추출한 비번을 입력
 c = get_config()
@@ -243,13 +252,16 @@ c.NotebookApp.certfile = u'/absolute/path/to/your/certificate/mycert.pem'
 # web-browser를 실행하지 않음
 c.NotebookApp.open_browser = False
 # 시작 폴더를 변경한다.
-c.NotebookApp.notebook_dir = u'/root/DataScience/'
+c.NotebookApp.notebook_dir = u'/home/사용자명/python/열고싶은 폴더/'
 # The IP address the notebook server will listen on.
 c.NotebookApp.ip = '*'   # 'xxx.xxx.xxx.xxx'는 또 왜 안된나 ㅠㅠ..
 c.NotebookApp.port_retries = 8888
 
 $ jupyter notebook --ip=* --no-browser  # terminal 에서 위의 설정값을 입력
 ```
+
+
+
 
 
 ### tensorflow 설치 [link](https://hackernoon.com/running-yolo-on-odroid-yolodroid-5a89481ec141)
