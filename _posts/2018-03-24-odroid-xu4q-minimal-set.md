@@ -19,6 +19,7 @@ toc: true
 
 
 1. SSH
+
 ```
 $ sudo apt-get install openssh-server
 $ netstat -ntl                                          # 22 port 확인 
@@ -30,6 +31,7 @@ $ sudo /etc/init.d/ssh restart                          # ssh 재시작
 
 
 2. 시간대 변경
+
 ```
 $ date                # 국제 표준시가 default로 지정 
    Mon Jan 01 00:00:00 UTC 2018   
@@ -48,6 +50,7 @@ $ sudo apt-get update && sudo apt-get dist-upgrade -y       # 업뎃실시
 3. 한글폰트 확인 
 
 아래로는 Python의 한글때문에 발생하는 문제만 해결
+
 ```
 $ sudo nano /etc/environment
  <아래의 내용을 추가한다>
@@ -55,6 +58,7 @@ $ sudo nano /etc/environment
 ```
 
 이걸로는 잘 안되보인다[link](http://osasf.net/discussion/470/ubuntu-server-os-%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%AA%A8%EB%93%9C%EB%A1%9C-%EC%84%A4%EC%B9%98-%ED%9B%84-%EC%84%9C%EB%B2%84-%EC%BD%98%EC%86%94%EC%97%90%EC%84%9C-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EB%B0%9C%EC%83%9D%EC%8B%9C-%EC%A1%B0%EC%B9%98-%EB%B0%A9%EB%B2%95)
+
 ```  
 $ sudo apt-get install fbterm             # Frame Buffer Terminal 설치
 $ sudo apt-get install fonts-nanum-coding # 나눔폰트 설치
@@ -64,6 +68,7 @@ $ sudo apt-get update
 ```
 
 새로운 방법으로 테스트[link](http://zzaps.tistory.com/261)
+
 ```
 $ sudo apt-get install language-pack-ko         # 한글팩 설치
 $ sudo apt-get install language-pack-ko-base
