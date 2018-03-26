@@ -35,13 +35,61 @@ $ date                # 국제 표준시가 default로 지정
    Mon Jan 01 00:00:00 UTC 2018   
 
 $ tzselect            # 옵션을 따라가며 시간을 변경한다
-$ nano /etc/profile   # 부팅후 자동적용을 위해 설정값을 저장
+
+$ sudo nano /etc/rc.local  # 부팅시마다 반복실행
+$ sudo nano /etc/profile   # 부팅후 자동적용을 위해 설정값을 저장
    TZ='Asia/Seoul'; export TZ
+   export PYTHONIOENCODING=utf8   # 한글 적용 확인 
+
 $ sudo apt-get update && sudo apt-get dist-upgrade -y       # 업뎃실시
 ```
 
 
-3. FTP 설치 [link](http://freehoon.tistory.com/48) 및 [link](http://egloos.zum.com/jinrowin/v/1369317) 설정 [link](http://dblabblog.tistory.com/m/entry/%EC%9A%B0%EB%B6%84%ED%88%AC%EB%A6%AC%EB%88%85%EC%8A%A4-FTP%EC%84%9C%EB%B2%84%EA%B5%AC%EC%B6%95vsftpd?category=338531)
+3. 한글폰트 확인 
+
+아래로는 Python의 한글때문에 발생하는 문제만 해결
+```
+$ sudo nano /etc/environment
+ <아래의 내용을 추가한다>
+ LC_ALL="en_US.UTF-8"
+```
+
+이걸로는 잘 안되보인다[link](http://osasf.net/discussion/470/ubuntu-server-os-%ED%95%9C%EA%B5%AD%EC%96%B4-%EB%AA%A8%EB%93%9C%EB%A1%9C-%EC%84%A4%EC%B9%98-%ED%9B%84-%EC%84%9C%EB%B2%84-%EC%BD%98%EC%86%94%EC%97%90%EC%84%9C-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EB%B0%9C%EC%83%9D%EC%8B%9C-%EC%A1%B0%EC%B9%98-%EB%B0%A9%EB%B2%95)
+```  
+$ sudo apt-get install fbterm             # Frame Buffer Terminal 설치
+$ sudo apt-get install fonts-nanum-coding # 나눔폰트 설치
+$ sudo apt-get install ttf-nanum-coding
+$ sudo fbterm                             # 한글출력 확인
+$ sudo apt-get update
+```
+
+새로운 방법으로 테스트[link](http://zzaps.tistory.com/261)
+```
+$ sudo apt-get install language-pack-ko         # 한글팩 설치
+$ sudo apt-get install language-pack-ko-base
+
+$ sudo nano /etc/environment
+ <<아래 내용을 추가>>
+LANG="ko_KR.UTF-8"
+LANG="ko_KR.EUC-KR"
+LANGUAGE="ko_KR:ko:en_GB:en"
+
+$ sudo nano /etc/default/locale
+ <<아래 내용을 추가>>
+LANG="ko_KR.UTF-8"
+LANG="ko_KR.EUC-KR"
+LANGUAGE="ko_KR:ko:en_GB:en"
+
+$ sudo nano /etc/profile
+<<아래내용 추가>>
+LANG="ko_KR.UTF-8"
+
+$ sudo reboot         # 리부팅 후 확인
+```
+
+
+
+4. FTP 설치 [link](http://freehoon.tistory.com/48) 및 [link](http://egloos.zum.com/jinrowin/v/1369317) 설정 [link](http://dblabblog.tistory.com/m/entry/%EC%9A%B0%EB%B6%84%ED%88%AC%EB%A6%AC%EB%88%85%EC%8A%A4-FTP%EC%84%9C%EB%B2%84%EA%B5%AC%EC%B6%95vsftpd?category=338531)
 
 ```
 $ sudo apt-get install vsftpd  # ftp 설치하기
@@ -127,6 +175,7 @@ $ sudo nano /Downloads/PurgeCompleted.sh
   done
 
 $ sudo chmod +x /home/odroid/Downloads/PurgeCompleted.sh    # 권한설정
+$ chown -R erdos /home/odroid/Downloads/
 $ sudo /etc/init.d/transmission-daemon stop    
 $ sudo nano /etc/transmission-daemon/settings.json
   >>수정전
@@ -140,6 +189,8 @@ $ sudo nano /etc/transmission-daemon/settings.json
 $ sudo /etc/init.d/transmission-daemon start
 ```
 
+[관련1](http://m.blog.daum.net/hevyflat/50?tp_nil_a=1)
+[관련2](http://blog.daum.net/_blog/BlogTypeView.do?blogid=0hcMr&articleno=50&categoryId=0&regdt=20150623142121)
 
 5. 외장하드 mount 연결 및 슬립모드[link](http://luyin.tistory.com/416)
 
@@ -148,21 +199,35 @@ $ sudo /etc/init.d/transmission-daemon start
 $ mkdir exthdd                           # '연결폴더'' 만들기 
 $ sudo fdisk -l                          # 디스크 확인
 $ sudo blkid                             # UUID info 확인
-$ sudo mount -t auto /dev/sda1 ./exthdd/ # '연결폴더'와 HDD 연결 
-$ sudo gedit /etc/fstab                  # blkid로 확인한 UUID info를 입력
+   /dev/sda1: LABEL="250 SSD" UUID="1F01-2C2A" TYPE="vfat" PARTU...
+
+$ sudo mount -t auto /dev/sda1 ./exthdd/     # '연결폴더'와 HDD 연결 
+$ sudo mount -t vfat -o iocharset=cp949 /dev/sda1 ./exthdd  # fat32포맷의 경우
+
+$ sudo nano /etc/fstab                  # blkid로 확인한 UUID info를 입력
     proc       /proc   proc    defaults            0   0
     UUID=575   /home2  ext4    errors=remount-ro   0   1
+    /dev/sda1  /home2  vfat    iocharset=cp949     0   0
+    UUID=575   /home2  vfat    iocharset=cp949     0   1
 $ sudo mount -a                          # 새로입력한 정보 적용 
+$ sudo chmod -R 777 /home/erdos/exthdd   # 쓰기권한 부여
+
+## 별도 설정 않는경우 아래에 스크립트를 추가한다
+$ sudo nano /etc/rc.local                # 부팅시마다 반복실행
+$ sudo umount ./exthdd                   # 폴더연결 드라이브 언마운트
 ```
 
 ```
 $ sudo apt-get install hdparm   # 슬립모드 구성
-$ sudo vi /etc/hdparm.conf      # 제일 아래줄에 추가한다.
+$ sudo nano /etc/hdparm.conf      # 제일 아래줄에 추가한다.
   /dev/sda1 {                   # /dev/sda1 은 외장 HDD 경로명
     spindown_time = 120         # 120(10초) HDD가 동작않으면 대기진입
 }
 $ sudo service hdparm restart
 ```
+
+
+
 
 **Please Note:** `Failed to mount '/dev/sdb1'` 기존의 SSD 설정값과 충돌문제는 `$ ntfsfix /dev/sdb1`를 통해서 해결한다
 {: .notice--danger}
@@ -213,6 +278,8 @@ $ sudo apt-get install build-essential checkinstall libreadline-gplv2-dev  libnc
 $ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev libblas-dev liblapack-dev python3-dev libatlas-base-dev  gfortran  python3-setuptools  python3-matplotlib  python3-pandas  libxml2 libxml2-dev libxslt1-dev libfreetype6-dev  pkg-config  libpng12-dev  pkg-config
 
 $ sudo apt-get install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk   # Pillow 설치관련
+
+$ sudo apt-get install python3-dev python-dev
 ```
 
 
