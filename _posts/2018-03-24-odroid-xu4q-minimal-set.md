@@ -194,6 +194,10 @@ $ sudo nano /etc/transmission-daemon/settings.json
 $ sudo /etc/init.d/transmission-daemon start
 ```
 
+/home/erdos/download/transmission/PurgeCompleted.sh",
+
+
+
 [관련1](http://m.blog.daum.net/hevyflat/50?tp_nil_a=1)
 [관련2](http://blog.daum.net/_blog/BlogTypeView.do?blogid=0hcMr&articleno=50&categoryId=0&regdt=20150623142121)
 
@@ -232,11 +236,8 @@ $ sudo service hdparm restart
 ```
 
 
-
-
 **Please Note:** `Failed to mount '/dev/sdb1'` 기존의 SSD 설정값과 충돌문제는 `$ ntfsfix /dev/sdb1`를 통해서 해결한다
 {: .notice--danger}
-
 
 
 ## Install Python 3.6 
