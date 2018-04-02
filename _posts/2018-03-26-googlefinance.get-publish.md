@@ -130,7 +130,26 @@ Uploading googlefinance_get-0.3-py2.py3-none-any.whl
 
 
 올리긴 했는데....
+검색은 되는데 다운은 안된다는 ...
+
+누구는 다운은 금방되고 검색이 안된다는데 
+우짜 이런일이 참이당...
+
+```
+
+$ pip search googlefinance.get
+googlefinance.get (0.4.1)  - googlefinance.get is a single function from google finance api to DataFrame.
+
+$ pip install googlefinance.get==0.4.1
+Collecting googlefinance.get==0.4.1
+  Could not find a version that satisfies the requirement googlefinance.get==0.4.1 (from versions: 0.3)
+  No matching distribution found for googlefinance.get==0.4.1
+```
+
+
 pip로 바로 검색이 안될경우 site를 통해서 설치를 한다 
+
+
 
 ```
 $ pip install -i https://pypi.python.org/pypi googlefinance.get
