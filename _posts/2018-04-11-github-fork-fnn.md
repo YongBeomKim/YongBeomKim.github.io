@@ -1,5 +1,5 @@
 ---
-title : GitHub 에서 수정본 만들기
+title : 금융인을 위한 통계분석
 last_modified_at: 2018-04-12T20:45:06-05:00
 tags: 
     - static
@@ -8,7 +8,7 @@ tags:
 ---
 
 
-<img src="http://gdimg.gmarket.co.kr/684735048/still/600?ver=0" width='400'>
+<img src="http://gdimg.gmarket.co.kr/684735048/still/600?ver=0" width='300'>
 
 작년 이책을 사서 봤을때에는 통계학 기초를 금융 사례를 작용하여 설명한 책 정도로만 알고 있었다. 지금도 크게 달라지진 않았지만, 금융분석 모델을 정의하고 개념들을 이해하려다 보니 기본적인 내용부터 정리를 할 필요성을 갖게 되어서 지금부터 이에 대한 정리 내용을 체계적으로 적어 나아가보려고 한다.
 

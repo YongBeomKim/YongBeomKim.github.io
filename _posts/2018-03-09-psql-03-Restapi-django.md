@@ -9,10 +9,9 @@ tags:
 toc: true
 ---
 
-- 모델 직렬화기를 사용하여 중복코드 제거하기
-- parsing & render 옵션 사용과 JSON
-- postgresql 과 대화관계 설정
-<출처>  RESTful 파이썬 웹 서비스 제작 
+1. 모델 직렬화기를 사용하여 중복코드 제거하기
+1. parsing & render 옵션 사용과 JSON
+1. postgresql 과 대화관계 설정
 
 
 ## Django ModelView를 활용한 직렬화기 설계
@@ -39,11 +38,7 @@ class GameSerializer(serializers.ModelSerializer):
 
 ```python
 # views.py
-
 from django.shortcuts import render
-
-# Create your views here.
-
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -65,7 +60,9 @@ def game_list(request):
             games_serializer.save()
             return Response(games_serializer.data, status=status.HTTP_201_CREATED)
         return Response(games_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
 
+```python
 @api_view(['GET','PUT','POST'])
 def game_detail(request, pk):
     try:
@@ -108,8 +105,9 @@ class GameCategory(models.Model):
         ordering = ('name',)
     def __str__(self): 
         return self.name
+```
 
-
+```python
 # Game 클래스를 정의
 class Game(models.Model):
     created       = models.DateTimeField(auto_now_add=True)
@@ -127,8 +125,10 @@ class Game(models.Model):
 
     def __set__(self):
         return self.name
+```
 
 
+```python
 class Player(models.Model):
     MALE    = 'M'
     FEMALE  = 'F'
@@ -143,8 +143,10 @@ class Player(models.Model):
 
     def __str__(self):
         return self.name
+```
 
 
+```python
 class PlayerScore(models.Model):
     Player     = models.ForeignKey(Player, 
                                    related_name = 'scores', 
@@ -206,16 +208,18 @@ Migrations for 'games':
     - Create model GameCategory
     - Create model Player
     - Create model PlayerScore
+```
 
-
+```
 $ python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, games, sessions
 Running migrations:
   Applying contenttypes.0001_initial... OK
   Applying auth.0001_initial... OK
+```
 
-
+```
 $ sudo -u postgres psql -d games --command="\dt;"
                   List of relations
  Schema |            Name            | Type  | Owner 
