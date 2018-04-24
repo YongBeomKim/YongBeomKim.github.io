@@ -24,20 +24,20 @@ https://dev.mysql.com/downloads/file/?id=474211
 markbaum@markbaum:~$ mysql -u root -p
 Enter password: 
 
-MariaDB [(none)]> CREATE DATABASE  DB이름 CHARACTER SET UTF8;
-MariaDB [(none)]> CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';
-MariaDB [(none)]> GRANT ALL PRIVILEGES ON DB이름.* TO 사용자@localhost;
-MariaDB [(none)]> FLUSH PRIVILEGES;
-MariaDB [(none)]> exit; 
+> CREATE DATABASE  DB이름 CHARACTER SET UTF8;
+> CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';
+> GRANT ALL PRIVILEGES ON DB이름.* TO 사용자@localhost;
+> FLUSH PRIVILEGES;
+> exit; 
 ```
 
 
 ### 사용자만 추가
 
 ```
-MariaDB [(none)]> create user '이름'@'%' identified by '비밀번호';
-MariaDB [(none)]> flush privileges;   # 전체 권한을 부여한다 
-MariaDB [(none)]> quit;
+> create user '이름'@'%' identified by '비밀번호';
+> flush privileges;   # 전체 권한을 부여한다 
+> quit;
 Bye
 ```
 
