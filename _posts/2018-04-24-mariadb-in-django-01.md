@@ -1,4 +1,4 @@
- ---
+---
 title : Maria DB 사용법 & Django 연결
 last_modified_at: 2018-04-24T20:45:06-05:00
 header:
@@ -13,7 +13,7 @@ toc: true
 
 ## mysql Workbench 설치하기
 
-**Please Note:**https://dev.mysql.com/downloads/file/?id=474211 에서 deb 파일을 다운 후 설치한다 
+**Please Note:** [https://dev.mysql.com/downloads/file/?id=474211](https://dev.mysql.com/downloads/file/?id=474211) 에서 deb 파일을 다운 후 설치한다 
 {: .notice--info}
 
 
@@ -75,8 +75,9 @@ DATABASES = {
         'PASSWORD': 'User 암호',
         'HOST': 'localhost',
         'PORT':  '3306', # mariaDB default 포트설정
-        'OPTIONS' :      # http://tibyte.kr/274 (Warning 경고 발생시)
-            {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+        'OPTIONS' :      # http://tibyte.kr/274 (Warning 경고시)
+            {'init_command': 
+            "SET sql_mode='STRICT_TRANS_TABLES'"},
         }
 }
 ```
