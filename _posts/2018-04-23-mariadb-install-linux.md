@@ -83,7 +83,8 @@ Enter current password for root (enter for none):
 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 ```
 
-초기 설정 후 비밀번호 때문에 계속 문제가 발생했다.<strike>google로도 잘 못찾는 문제중 의외로 Naver를 통하면 해결되는 경우가 종종 있는데, 이번이 그런 문제였다</strike>
+
+**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다.<strike>google로도 잘 못찾는 문제중 의외로 Naver를 통하면 해결되는 경우가 종종 있는데, 이번이 그런 문제였다</strike>{: .notice--info}
 
 ```
 # 이걸로 강제로 접속한다 (이것도 안되면 재설치를..)
