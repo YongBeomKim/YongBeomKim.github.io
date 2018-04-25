@@ -53,7 +53,7 @@ def hours_ahead(request, offset):
 ### 기본적 형태 (HTML의 일부분이다)
 
 ```sql
-template 객체 = ( "\{\{ 객체 | safe \}\}" )
+template 객체 = ( "{ { 객체 | safe } }" )
 template 함수 = ( "{% if %}" )
 template 주석 = ( "{# 사용설명 #}" )
 ```
