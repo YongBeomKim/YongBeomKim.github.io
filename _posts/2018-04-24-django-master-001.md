@@ -58,3 +58,12 @@ def hours_ahead(request, offset):
 
 **Please Note:** 위 내용이 MarkDown 본문에 붙어서 들어가면 commit 오류가 발생
 {: .notice--danger}
+
+```python
+from django import template
+t = template.Template('My name is {{name}}.') 
+c = template.Context({'name':'Nigl'})
+t.render(c)
+
+Out[]: 'My name is Nigl.'
+```
