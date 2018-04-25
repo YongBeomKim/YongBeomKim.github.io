@@ -1,5 +1,5 @@
 ---
-title : Django Shell in Jupyter
+title : Master Django 001
 last_modified_at: 2018-04-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -27,3 +27,22 @@ urlpatterns = [
 
 **Notice:** urls.py의 **약결합** 특성으로 **d{1,2}**를 와일드카드로써 작동한다
 {: .notice--info}
+
+
+### **_request_**
+
+`from django.http import HttpResponse` 의 객체로, 모든 View 함수들은 이를 상속받기 때문에, request 파라미터를 빠짐없이 연결한다
+
+```python
+def hours_ahead(request, offset):
+    try:
+        offset = int(offset)
+    except ValueError:
+        raise Http404()
+    dt = datetime.now() + timedelta(hours=offset)
+    html = "<html><body>In {} hour(s), it will be {}.</body></html>".format(offset,dt)
+    return HttpResponse(html)
+```
+
+**Please Note:** 정수로 변환이 되면 함수를 진행하고, 변환이 안되면 404 오류를 출력한다 
+{: .notice--danger}
