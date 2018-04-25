@@ -52,12 +52,13 @@ def hours_ahead(request, offset):
 
 ### 기본적 형태 (HTML의 일부분이다)
 
-1. template 객체 = ( "{ { 객체 | safe } }" )
+1. template 객체 = ( "{ { 객체 \| safe } }" )
 2. template 함수 = ( "{ % if % }" )
 3. template 주석 = ( "{ # 사용설명 # }" )
 
 **Please Note:** 위 내용이 MarkDown 본문에 붙어서 들어가면 commit 오류가 발생
 {: .notice--danger}
+
 
 ```python
 from django import template
@@ -67,3 +68,64 @@ t.render(c)
 
 Out[]: 'My name is Nigl.'
 ```
+
+
+### Context & {dict}
+
+```python
+import datetime
+c = Context({'name' : 'john', 
+              'date' : datetime.date(2018,4,23)})
+raw_template = "<p>Dear {{name}}, Thanks {{date|date:'F j, Y'}}"
+t = Template(raw_template)
+t.render(c)
+
+Out[] '<p>Dear john,</p><p>Thanks April 23, 2018'
+```
+
+
+### 다중 Context & 동일한 Template
+
+```python
+from django.template import Template, Context
+t = Template('hello, {{name}}')
+t.render(Context({'name':'erdos'}))
+'hello, erdos'
+
+for name in ('Jhon', 'Thomas', 'Kim'):
+    print(t.render(Context({'name':name})))
+     
+hello, Jhon
+hello, Thomas
+hello, Kim
+```
+
+
+### 탬플릿 객체 속성의 Access는 . : method를 활용 
+
+```python
+person = {'name':'Sally', 'age':'43'}
+t = Template('{{person.name}} is {{person.age}} years old')
+c = Context({'person':person})
+t.render(c)
+
+Out[] 'Sally is 43 years old'
+```
+
+
+### 사용자정의 class를 활용
+
+```python
+from django.template import Template, Context
+
+class Person(object):
+    def __init__(self, first_name, last_name):
+        self.first_name, self.last_name = first_name, last_name
+
+t = Template('Hello, {{person.first_name}} {{person.last_name}}.')
+c = Context({'person':Person('John', 'wick')})
+t.render(c)
+
+Out []  'Hello, John wick.'
+```
+
