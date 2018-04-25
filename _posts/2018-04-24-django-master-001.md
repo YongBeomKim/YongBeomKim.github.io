@@ -52,10 +52,11 @@ def hours_ahead(request, offset):
 
 ### 기본적 형태 (HTML의 일부분이다)
 
+```python
+\{\{ 객체 | safe \}\} : template 객체 
+\{% if %\} : template 함수
+\{# 사용설명 #\} : template 주석
 ```
-1. {{ 객체 | safe }} : template 객체 
-2. {% if %} : template 함수
-3. {# 사용설명 #} : template 주석
-```
+
 **Please Note:** 위 내용이 MarkDown 본문에 들어가면 commit 오류가 발생한다
 {: .notice--danger}
