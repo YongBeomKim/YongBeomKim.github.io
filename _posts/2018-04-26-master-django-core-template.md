@@ -173,3 +173,16 @@ t.render(c)
     { { key }} : { { value } }
 { % endfor % }
 ```
+
+
+### 3. empty
+
+for 반복문에서, 해당 content가 비어있는지를 확인을 위해, 앞에서 if 문으로 객체를 확인하는 코드를 삽입한다, 이러한 반복적 작업을 피하기 위해서 별도의 { % empty % } 절을 사용하면 더욱 간결해 진다
+
+```java
+{ % for shoe  in shoes_list % }
+    <p>{ { shoe.size } }</p>
+{ % empty % }
+    <p>There is no shoe</p>
+{ % endfor % }
+```
