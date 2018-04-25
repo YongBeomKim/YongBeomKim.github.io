@@ -56,11 +56,12 @@ def hours_ahead(request, offset):
 
 ```python
 IPython 6.2.1
-In [1]: from django import template
-In [2]: t = template.Template('My name is {{name}}.') 
-In [3]: c = template.Context({'name':'Nigl'})
-In [4]: t.render(c)
-Out[4]: 'My name is Nigl.'
+from django import template
+t = template.Template('My name is {{name}}.') 
+c = template.Context({'name':'Nigl'})
+t.render(c)
+
+Out[]: 'My name is Nigl.'
 ```
 
 
@@ -69,13 +70,14 @@ Out[4]: 'My name is Nigl.'
 ```python
 IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
 
-In [1]: import datetime
-In [2]: c = Context({'name' : 'john', 
-                     'date' : datetime.date(2018,4,23)})
-In [3]: raw_template = "<p>Dear {{name}}, Thanks {{date|date:'F j, Y'}}"
-In [4]: t = Template(raw_template)
-In [5]: t.render(c)
-Out[5]: '<p>Dear john,</p><p>Thanks April 23, 2018'
+import datetime
+c = Context({'name' : 'john', 
+              'date' : datetime.date(2018,4,23)})
+raw_template = "<p>Dear {{name}}, Thanks {{date|date:'F j, Y'}}"
+t = Template(raw_template)
+t.render(c)
+
+Out[] '<p>Dear john,</p><p>Thanks April 23, 2018'
 ```
 
 
@@ -84,13 +86,13 @@ Out[5]: '<p>Dear john,</p><p>Thanks April 23, 2018'
 ```python
 IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
 
-In [1]: from django.template import Template, Context
-In [2]: t = Template('hello, {{name}}')
-In [3]: t.render(Context({'name':'erdos'}))
-Out[3]: 'hello, erdos'
+from django.template import Template, Context
+t = Template('hello, {{name}}')
+t.render(Context({'name':'erdos'}))
+'hello, erdos'
 
-In [4]: for name in ('Jhon', 'Thomas', 'Kim'):
-   ...:     print(t.render(Context({'name':name})))
+for name in ('Jhon', 'Thomas', 'Kim'):
+    print(t.render(Context({'name':name})))
      
 hello, Jhon
 hello, Thomas
@@ -98,14 +100,15 @@ hello, Kim
 ```
 
 
-### 탬플릿 객체 속성의 Access는 "." method를 활용 
+### 탬플릿 객체 속성의 Access는 . : method를 활용 
 
 ```python
-In [1]: person = {'name':'Sally', 'age':'43'}
-In [2]: t = Template('{{person.name}} is {{person.age}} years old')
-In [3]: c = Context({'person':person})
-In [4]: t.render(c)
-Out[4]: 'Sally is 43 years old'
+person = {'name':'Sally', 'age':'43'}
+t = Template('{{person.name}} is {{person.age}} years old')
+c = Context({'person':person})
+t.render(c)
+
+Out[] 'Sally is 43 years old'
 ```
 
 
@@ -122,6 +125,6 @@ t = Template('Hello, {{person.first_name}} {{person.last_name}}.')
 c = Context({'person':Person('John', 'wick')})
 t.render(c)
 
-Out []:  'Hello, John wick.'
+Out []  'Hello, John wick.'
 ```
 
