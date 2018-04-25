@@ -11,10 +11,7 @@ tags:
 toc: true    
 ---
 
-
-## 2장 Urls 와 Views
-
-###  WildCard
+##  WildCard
 
 Wild card 는 **정식 선발은 아니지만 경기에 출전하는 선수** 를 의미하는 용어로써, **d{1,2}** 인수값이 hours_ahead(request, **hour**) 에 자동으로 연결된다
 
@@ -29,7 +26,7 @@ urlpatterns = [
 {: .notice--info}
 
 
-### **_request_**
+## **_request_**
 
 `from django.http import HttpResponse` 의 연결 객체로, 모든 View 함수들은 이를 상속받기 때문에, request 파라미터를 빠짐없이 연결한다
 
@@ -46,3 +43,6 @@ def hours_ahead(request, offset):
 
 **Http404:** 정수로 변환이 되면 함수를 진행하고, 변환이 안되면 404 오류를 출력한다 
 {: .notice--danger}
+
+
+

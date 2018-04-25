@@ -242,8 +242,26 @@ for 반복문 진행상황에 대한 정보를 제공한다
 
 ## 탬플릿 필터
 
+date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
+
 ```
 { { name.upper } }
 { { name | upper } }
-{ { name }}
+{ { name | first | upper } }         # 첫 글자를 대문자로 변환
+{ { value | addslashes } }           # 맨 뒤 \로 tag 닫는다
+{ { text | truncatewords : "30" } }  # 전체 자릿수를 30으로 한다  
+{ { date | date : "F j, Y" } }       # 날짜 출력 포맷
 ```
+
+
+## Django Template 철학과 한계 
+
+1. Python, HTML 과 분리되어 작동한다
+2. **안전**과 **보안**을 보장하고,**확장성** 을 고려한다
+3. 단 **중복성**은 철저하게 제한한다 
+4. **공백** 은 명확하게 처리한다 
+
+
+## views.py 뷰의 템플릿 함수
+
+ 
