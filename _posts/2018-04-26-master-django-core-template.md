@@ -233,7 +233,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 { % ifequal  variable  "foo" % }
 ```
 
-**if 문에서 기호 :** django 의 HTML 탬플릿에서는 약결합의 특성상 **기호의 사용을  최대한 억제**함이 깔끔하다.. ** ==, !=, <, >, <=, >=, in, not in, is, and is not ** 을 대체해서 사용할 수도 있다
+**if 문에서 기호 :** django 의 HTML 탬플릿에서는 약결합의 특성상 **기호의 사용을  최대한 억제**함이 깔끔하다.. ==, !=, <, >, <=, >=, in, not in, is, and is not  도 사용 가능하다 
 {: .notice--info}
 
 **ifequal 인식 불가능 객체 :** True, False, [1,2,3]  {'key':'value'} 는 비교할수 없다 [document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
