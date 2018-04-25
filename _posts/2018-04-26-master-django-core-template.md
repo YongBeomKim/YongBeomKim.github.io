@@ -140,11 +140,11 @@ t.render(c)
 2. **and, or, not** 조건을 활용가능하다  (and는 상대적 높은순위를 갖는다 )
 
 ```html
-{% if today_is_weekend %}
+{ % if today_is_weekend % }
     <p>Welcome</p>
-{% elif room_list %}
+{ % elif room_list % }
     <p>Get back to Work.</p>
-{% endif %}
+{ % endif % }
 ```
 
 **Please Note:** if 조건 내부에서  ex) `if (con_name and con_year) or con_date` 와 같은 **()**를 사용하면 안된다. 1) if 구문으로 분리하거나 2) 중접 if태그를 사용해야 한다
@@ -158,14 +158,14 @@ t.render(c)
 3. 객체가 { dict } 인 경우에는 .items 메소드를 활용 가능하다
 
 ```html
-{% for text in texts %}
+{ % for text in texts % }
     <h1>{ { text.name } }</h1>
 
-    {% for value in text.sortvalue}
+    { % for value in text.sortvalue % }
         <li>{ {value} }</li>
-    {% endfor %}
+    { % endfor % }
 
-{% endfor %}
+{ % endfor % }
 ```
 
 ```html
