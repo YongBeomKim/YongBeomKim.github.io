@@ -25,7 +25,7 @@ urlpatterns = [
 ]
 ```
 
-**Notice:** urls.py의 **약결합** 특성으로 **d{1,2}**를 와일드카드로써 작동한다
+**Wild Card:** urls.py의 **약결합** 특성으로 **d{1,2}**를 와일드카드로써 작동한다
 {: .notice--info}
 
 
@@ -44,6 +44,5 @@ def hours_ahead(request, offset):
     return HttpResponse(html)
 ```
 
-**Please Note:** 정수로 변환이 되면 함수를 진행하고, 변환이 안되면 404 오류를 출력한다 
+**Http404:** 정수로 변환이 되면 함수를 진행하고, 변환이 안되면 404 오류를 출력한다 
 {: .notice--danger}
-

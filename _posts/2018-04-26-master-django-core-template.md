@@ -99,7 +99,7 @@ t.render(Context({'var':'hello'}))
 'hello--HELLO--False'
 ```
 
-**Please Note:** Python의 모든 string method가 적용가능한건 아니다. 실 예로 .replace('','') 같이 내부 변수를 필요로 하는 경우는 오류를 출력, **필수 인수가 없는 메서드**만 호출 가능하다 
+**Warning in Django:** Python의 모든 string method가 적용가능한건 아니다. 실 예로 .replace('','') 같이 내부 변수를 필요로 하는 경우는 오류를 출력, **필수 인수가 없는 메서드**만 호출 가능하다 
 {: .notice--danger}
 
 
@@ -113,7 +113,7 @@ t.render(c)
 'Item 2 is carrots.'
 ```
 
-**Please Note:** 인덱스 값은 양수만 가능하고, **음수**는 오류를 출력한다 
+**Notice :** 인덱스 값은 양수만 가능하고, **음수**는 오류를 출력한다 
 {: .notice--danger}
 
  
@@ -131,7 +131,7 @@ t.render(c)
 
 
 
-## 탬플릿 태그 및 필터
+## 탬플릿 함수 태그
 
 ### 1. if / else 
 
@@ -147,7 +147,7 @@ t.render(c)
 { % endif % }
 ```
 
-**Please Note:** if 조건 내부에서  ex) `if (con_name and con_year) or con_date` 와 같은 **()**를 사용하면 안된다. 1) if 구문으로 분리하거나 2) 중접 if태그를 사용해야 한다
+**if 중접사용 :** if 조건 내부에서  ex) `if (con_name and con_year) or con_date` 와 같은 **()**를 사용하면 안된다. 1) if 구문으로 분리하거나 2) 중접 if태그를 사용해야 한다
 {: .notice--danger}
 
 
@@ -191,8 +191,56 @@ for 반복문에서, **content가 비어있는지를 확인** 하기 위해, if 
 ### 4. forloop 
 
 for 반복문 진행상황에 대한 정보를 제공한다 
+1. **forloop.counter** : 루프 반복 횟수 
+2. **forloop.revcounter** : 루프 나머지 항목 갯수 
+3. **forloop.first** : 첫 반복실행시 **True** 를 출력 
+4. **forloop.last** : 마지막 통과시 **True** 를 출력 
+
+
+반복 회수를 활용
 
 ```java
-{{item}}
-{% for %}
+{ % for  item  in todo_list % }
+    <p>{ { forloop.counter } } : { { item } }</p>
+{ % endfor % } 
 ```
+
+
+객체 사이에 쉽표나, p tag를 추가 
+
+```java
+{ % for p in places % }{ { p } }{ % if not forloop.last % },
+    { % endif % }
+{ % endfor % }
+```
+
+
+### 5. ifequal / ifnotequal
+
+1. ifequal : 나열된 2개 객체가(user, currentuser 를 비교) 동일 여부를 판단한다 
+2. 비교가능 객체는 : 템플릿변수, '문자열', 정수 및 십진수 
+
+```java
+{ % ifequal  user  currentuser % }
+    <h1>Welcome!</h1>
+{ % endequal % }
+```
+
+```java
+{ % ifequal  variable  1 % }
+{ % ifequal  variable  1.23 % }
+{ % ifequal  variable  'foo' % }
+{ % ifequal  variable  "foo" % }
+```
+
+**if 문에서 기호 :** django 의 HTML 탬플릿에서는 약결합의 특성상 **기호의 사용을  최대한 억제**함이 깔끔하다.. ** ==, !=, <, >, <=, >=, in, not in, is, and is not ** 을 대체해서 사용할 수도 있다
+{: .notice--info}
+
+**ifequal 인식 불가능 객체 :** True, False, [1,2,3]  {'key':'value'} 는 비교할수 없다 [document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
+{: .notice--danger}
+
+
+## 탬플릿 필터
+
+
+
