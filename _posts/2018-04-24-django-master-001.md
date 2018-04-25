@@ -31,7 +31,7 @@ urlpatterns = [
 
 ### **_request_**
 
-`from django.http import HttpResponse` 의 객체로, 모든 View 함수들은 이를 상속받기 때문에, request 파라미터를 빠짐없이 연결한다
+`from django.http import HttpResponse` 의 연결 객체로, 모든 View 함수들은 이를 상속받기 때문에, request 파라미터를 빠짐없이 연결한다
 
 ```python
 def hours_ahead(request, offset):
@@ -46,3 +46,12 @@ def hours_ahead(request, offset):
 
 **Please Note:** 정수로 변환이 되면 함수를 진행하고, 변환이 안되면 404 오류를 출력한다 
 {: .notice--danger}
+
+
+## 3장 Templates
+
+### 기본적 형태 (HTML의 일부분이다)
+
+1. {{ 객체 | safe }} : template 객체 
+2. {% if %} : template 함수
+3. {# 사용설명 #} : template 주석
