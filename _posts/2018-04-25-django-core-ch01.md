@@ -17,7 +17,7 @@ toc: true
 
 Wild card 는 **정식 선발은 아니지만 경기에 출전하는 선수** 를 의미하는 용어로써, **\d{1,2}** 인수값이 hours_ahead(request, **hour**) 에 자동으로 연결된다
 
-**Notice:** urls.py의 **약결합** 특성으로 d{1,2}가 와일드카드로써 작용한다
+**Notice:** urls.py의 **약결합** 특성으로 **d{1,2}**를 와일드카드로써 작동한다
 {: .notice--info}
 
 ```python
@@ -63,9 +63,6 @@ In [3]: c = template.Context({'name':'Nigl'})
 In [4]: t.render(c)
 Out[4]: 'My name is Nigl.'
 ```
-
-**Notice:** urls.py의 **약결합** 특성으로 d{1,2}가 와일드카드로써 작용한다
-{: .notice--info}
 
 
 ### Context & {dict}
