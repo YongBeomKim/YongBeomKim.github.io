@@ -168,7 +168,7 @@ t.render(c)
 { % endfor % }
 ```
 
-```html
+```java
 { % for key, value  in data.items  % }
     { { key }} : { { value } }
 { % endfor % }
