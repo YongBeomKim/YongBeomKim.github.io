@@ -264,4 +264,29 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 
 ## views.py 뷰의 템플릿 함수
 
+### 1. render 함수
+
+1. `from django.shortcuts import render` 
+2. render( 요청인자, template 이름, {context dict 객체} )
+
+```python
+def current_datetime(request):
+    now     = datetime.now()
+    content = {'current_date' : now }
+    return render(request, 'current_datetime.html', content)
+
+    # html = "<html><body>It is now {}/</body></html>".format(now)
+    # return HttpResponse(html)
+```
+
+
+### 2. { % include % }
  
+ 탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수 
+
+ ```java
+ { % include 'navigation.html' % }
+ ```
+
+
+
