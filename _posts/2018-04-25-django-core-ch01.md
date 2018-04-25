@@ -3,7 +3,6 @@ title : Django 마스터 01
 last_modified_at: 2018-04-25T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
-  caption: "Django Tutorial"
 tags: 
     - django
     - pyton
@@ -99,7 +98,7 @@ hello, Kim
 ```
 
 
-### 탬플릿 객체 내부 색인은 "." method를 활용 
+### 탬플릿 객체 속성의 Access는 "." method를 활용 
 
 ```python
 In [1]: person = {'name':'Sally', 'age':'43'}
@@ -108,3 +107,21 @@ In [3]: c = Context({'person':person})
 In [4]: t.render(c)
 Out[4]: 'Sally is 43 years old'
 ```
+
+
+### 사용자정의 class를 활용
+
+```python
+from django.template import Template, Context
+
+class Person(object):
+    def __init__(self, first_name, last_name):
+        self.first_name, self.last_name = first_name, last_name
+
+t = Template('Hello, {{person.first_name}} {{person.last_name}}.')
+c = Context({'person':Person('John', 'wick')})
+t.render(c)
+
+Out []:  'Hello, John wick.'
+```
+
