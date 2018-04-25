@@ -282,12 +282,12 @@ def current_datetime(request):
 
 ### 2. { % include % }
  
- 탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수 
+탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수로, 해당 객체가 미존재시 **TemplateDoesNotExist** 오류를 출력한다  
 
 ```java
  { % include 'navigation.html' % }
 ```
 
 
-
+### 3. { % block % }
 
