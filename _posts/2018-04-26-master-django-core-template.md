@@ -11,9 +11,9 @@ toc: true
 
 ## 기본적 형태 (HTML의 일부분이다)
 
-1. {{ 객체 | safe }} : template 객체 
-2. {% if %} : template 함수
-3. {# 사용설명 #} : template 주석
+1. { { 객체 \| safe } } : template 객체 
+2. { % if % } : template 함수
+3. { # 사용설명 # } : template 주석
 
 ```python
 from django import template
