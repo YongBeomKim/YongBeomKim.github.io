@@ -155,10 +155,11 @@ t.render(c)
 
 1. content의 시퀀스 항목들을 반복한다
 2. 시퀀스 객체만 존재하면 중첩적 for 도 가능하다 
+3. 객체가 { dict } 인 경우에는 .items 메소드를 활용 가능하다
 
 ```html
 {% for text in texts %}
-    <h1>{{text.name}}</h1>
+    <h1>{ { text.name } }</h1>
 
     {% for value in text.sortvalue}
         <li>{ {value} }</li>
@@ -167,3 +168,8 @@ t.render(c)
 {% endfor %}
 ```
 
+```html
+{ % for key, value}
+
+
+```
