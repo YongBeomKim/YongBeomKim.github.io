@@ -56,7 +56,7 @@ def hours_ahead(request, offset):
 2. template 함수 = ( "{ % if % }" )
 3. template 주석 = ( "{ # 사용설명 # }" )
 
-**Please Note:** 위 내용이 MarkDown 본문에 붙어서 들어가면 commit 오류가 발생
+**Please Note:** 위 내용이 MarkDown 본문에 붙어서 들어가면 commit 오류가 발생한다. 이는 jekkyl 2.0에서 발생한 오류라고 한다[link](https://jekyllrb.com/docs/troubleshooting/)
 {: .notice--danger}
 
 
