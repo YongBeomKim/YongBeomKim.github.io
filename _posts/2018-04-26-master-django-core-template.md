@@ -244,9 +244,6 @@ for 반복문 진행상황에 대한 정보를 제공한다
 
 ```
 { { name.upper } }
-{ { name \| upper } }
+{ { name | upper } }
 { { name }}
-
-
-
 ```
