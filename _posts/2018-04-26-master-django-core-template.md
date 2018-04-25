@@ -280,7 +280,7 @@ def current_datetime(request):
 ```
 
 
-### 2. { % include % }
+### 2. 내장 템플릿 : { % include % }
  
 탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수로, 해당 객체가 미존재시 **TemplateDoesNotExist** 오류를 출력한다  
 
@@ -289,5 +289,20 @@ def current_datetime(request):
 ```
 
 
-### 3. { % block % }
+### 3. 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
 
+1. 템플릿에 { % extends % } 가 있으면, 자식 템플릿임을 알 수 있다  
+2. 기본 뼈대를 작성하고, 자식에서 "블록"을 재정의(Override) 한다 
+3. { % block % } 로 재정의 영역들을 지정한다 
+
+```java
+{ % extends "부모 템플릿.hrml" % }
+
+# 자식 템플릿 재정의 영역 1 (title)
+{ % block title % }
+{ % endblock title % }
+
+# 자식 템플릿 재정의 영역 2 (본문) 
+{ % block content % }
+{ % endblock % }
+```
