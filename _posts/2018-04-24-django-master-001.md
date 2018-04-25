@@ -53,8 +53,8 @@ def hours_ahead(request, offset):
 ### 기본적 형태 (HTML의 일부분이다)
 
 ```sql
-template 함수 = ( "{% if %}" )
-template 주석 = ( "{# 사용설명 #}" )
+template 함수 = ( "{ % if % }" )
+template 주석 = ( "{ # 사용설명 # }" )
 ```
 
 **Please Note:** 위 내용이 MarkDown 본문에 들어가면 commit 오류가 발생한다
