@@ -51,7 +51,7 @@ t.render(Context({'name':'erdos'}))
 
 ```python
 for name in ('Jhon', 'Thomas', 'Kim'):
-    print(t.render(Context({'name':name})))
+    print(t.render(Context( {'name' : name} )))
      
 hello, Jhon
 hello, Thomas
@@ -122,10 +122,37 @@ t.render(c)
 ```python
 from django.template import Template, Context
 person = {'name':'Sally', 'age':'43'}
-t = Template('{ {person.name.upper} } is { { person.age } } years old.' )
-c = Context({'person':person})
+t = Template('{ { person.name.upper } } is { { person.age } } years old.' )
+c = Context( { 'person' : person } )
 t.render(c)
 
 'SALLY is 43 years old.'
 ```
+
+
+
+## 탬플릿 태그 및 필터
+
+### 1. if / else {% if %} 
+
+1. **유효한 값의 포함** 여부만 판단 (값의 존재여부)
+
+2. **and, or, not** 조건을 활용가능하다  (and는 상대적 높은순위를 갖는다 )
+
+```
+{% if today_is_weekend %}
+    <p>Welcome</p>
+{% elif room_list %}
+    <p>Get back to Work.</p>
+{% endif %}
+```
+
+**Please Note:** if 조건 내부에서  ex) `if (con_name and con_year) or con_date` 와 같은 **()**를 사용하면 안된다. 1) if 구문으로 분리하거나 2) 중접 if태그를 사용해야 한다
+{: .notice--danger}
+
+
+### 2. for {% for %} 탬플릿 태그 및 필터
+
+1. content의 시퀀스 항목들을 반복한다
+
 
