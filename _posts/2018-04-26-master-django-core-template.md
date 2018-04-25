@@ -157,7 +157,7 @@ t.render(c)
 2. 시퀀스 객체만 존재하면 중첩적 for 도 가능하다 
 3. 객체가 { dict } 인 경우에는 .items 메소드를 활용 가능하다
 
-```html
+```java
 { % for text in texts % }
     <h1>{ { text.name } }</h1>
 
@@ -169,7 +169,7 @@ t.render(c)
 ```
 
 ```html
-{ % for key, value}
-
-
+{ % for key, value  in data.items  % }
+    { { key }} : { { value } }
+{ % endfor % }
 ```
