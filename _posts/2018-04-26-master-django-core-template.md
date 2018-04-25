@@ -133,13 +133,13 @@ t.render(c)
 
 ## 탬플릿 태그 및 필터
 
-### 1. if / else {% if %} 
+### 1. if / else 
 
 1. **유효한 값의 포함** 여부만 판단 (값의 존재여부)
 
 2. **and, or, not** 조건을 활용가능하다  (and는 상대적 높은순위를 갖는다 )
 
-```
+```html
 {% if today_is_weekend %}
     <p>Welcome</p>
 {% elif room_list %}
@@ -151,8 +151,19 @@ t.render(c)
 {: .notice--danger}
 
 
-### 2. for {% for %} 탬플릿 태그 및 필터
+### 2. for 
 
 1. content의 시퀀스 항목들을 반복한다
+2. 시퀀스 객체만 존재하면 중첩적 for 도 가능하다 
 
+```html
+{% for text in texts %}
+    <h1>{{text.name}}</h1>
+
+    {% for value in text.sortvalue}
+        <li>{ {value} }</li>
+    {% endfor %}
+
+{% endfor %}
+```
 
