@@ -284,9 +284,10 @@ def current_datetime(request):
  
  탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수 
 
- ```java
+```java
  { % include 'navigation.html' % }
- ```
+```
+
 
 
 
