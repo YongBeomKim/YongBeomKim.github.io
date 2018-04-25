@@ -17,7 +17,7 @@ toc: true
 
 ```python
 from django import template
-t = template.Template('My name is {{name}}.') 
+t = template.Template('My name is { { name } }.') 
 c = template.Context({'name':'Nigl'})
 t.render(c)
 
@@ -30,8 +30,8 @@ Out[]: 'My name is Nigl.'
 ```python
 import datetime
 c = Context({'name' : 'john', 
-              'date' : datetime.date(2018,4,23)})
-raw_template = "<p>Dear {{name}}, Thanks {{date|date:'F j, Y'}}"
+             'date' : datetime.date(2018,4,23)})
+raw_template = "<p>Dear { { name } }, Thanks { { date|date:'F j, Y' } }"
 t = Template(raw_template)
 t.render(c)
 
@@ -43,7 +43,7 @@ Out[] '<p>Dear john,</p><p>Thanks April 23, 2018'
 
 ```python
 from django.template import Template, Context
-t = Template('hello, {{name}}')
+t = Template('hello, { { name } }')
 t.render(Context({'name':'erdos'}))
 
 'hello, erdos'
@@ -68,7 +68,7 @@ class Person(object):
     def __init__(self, first_name, last_name):
         self.first_name, self.last_name = first_name, last_name
 
-t = Template('Hello, {{person.first_name}} {{person.last_name}}.')
+t = Template('Hello,  { { person.first_name } }  { { person.last_name } }.')
 c = Context({'person':Person('John', 'wick')})
 t.render(c)
 
@@ -82,7 +82,7 @@ Out []  'Hello, John wick.'
 
 ```python
 person = {'name':'Sally', 'age':'43'}
-t = Template('{{person.name}} is {{person.age}} years old')
+t = Template('{ { person.name } }  is { {person.age} } years old')
 c = Context({'person':person})
 t.render(c)
 
@@ -93,7 +93,7 @@ Out[] 'Sally is 43 years old'
 ### 2. Python String 객체의 method 활용 (.upper, .lower)
 
 ```python
-t = Template("{{var}} -- {{var.upper}} -- {{var.isdigit}}")
+t = Template("{ {var} } -- { {var.upper} } -- { {var.isdigit} }")
 t.render(Context({'var':'hello'}))
 
 'hello--HELLO--False'
@@ -106,7 +106,7 @@ t.render(Context({'var':'hello'}))
 ### 3. [list] 객체의 index 값으로 호출
 
 ```python
-t = Template('Item 2 is {{ items.2 }}.')
+t = Template('Item 2 is  { { items.2 } }.')
 c = Context({'items':['apple', 'banana', 'carrots']})
 t.render(c)
 
@@ -116,13 +116,13 @@ t.render(c)
 **Please Note:** 인덱스 값은 양수만 가능하고, **음수**는 오류를 출력한다 
 {: .notice--danger}
 
-
+ 
 ### 4. ".(Dot)" 조회는 깊이있는 중첩적 접근도 가능하다
 
 ```python
 from django.template import Template, Context
 person = {'name':'Sally', 'age':'43'}
-t = Template('{{person.name.upper}} is {{ person.age }} years old.' )
+t = Template('{ {person.name.upper} } is { { person.age } } years old.' )
 c = Context({'person':person})
 t.render(c)
 
