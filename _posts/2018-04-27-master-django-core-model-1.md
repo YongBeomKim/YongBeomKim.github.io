@@ -1,5 +1,5 @@
 ---
-title : Master Django - model
+title : Master Django - model 1 MariaDB 와 Django
 last_modified_at: 2018-04-27T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -21,9 +21,9 @@ $ pip install mysqlclient
 ```
 
 
-### settings.py
-
 ```python
+# settings.py
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -38,7 +38,7 @@ DATABASES = {
 ```
 
 
-## Django 에서 Model
+## Django 에서 Model 정의하기
 
 Python 코드로 직접 SQL 입력출력 가능하다. 하지만 Django의 Model Data Layout을 활용하는 이유를 열거하자면 
 
@@ -48,9 +48,11 @@ Python 코드로 직접 SQL 입력출력 가능하다. 하지만 Django의 Model
 4. 단, SQL결과와 100% 일치하진 않는다
 
 
-### Model 정의
+### models.py
 
 ```python
+# models.py
+
 # CREATE TABLE books_publisher ("id" serial NOT NULL PRIMARY KEY...)
 class Publisher(models.Model):
     name           = models.CharField(max_length=30)
@@ -98,11 +100,17 @@ Running migrations:
 ```
 
 
-### mariaDB (mySQL) 에서 확인 
 
+## mariaDB (mySQL) 에서 확인 
+
+mariaDB 접속
 ```sql
 $ sudo mysql -u사용자 -p
 Enter password: 
+```
+
+DataBase 목록 확인 및 변경
+```sql
 
 MariaDB [(none)]> show databases;
 +--------------------+
@@ -114,12 +122,16 @@ MariaDB [(none)]> show databases;
 
 MariaDB [(none)]> use myproject;
 Database changed
+```
 
+Table 목록 확인 및 살펴보기
+```sql
 MariaDB [myproject]> show tables;
 +----------------------------+
 | Tables_in_myproject        |
 +----------------------------+
 | auth_group                 |
+| books_publisher            |
 +----------------------------+
 14 rows in set (0.01 sec)
 
@@ -128,11 +140,13 @@ MariaDB [myproject]> desc books_books;
 | Field            | Type         | Null | Key | Default | Extra          |
 +------------------+--------------+------+-----+---------+----------------+
 | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+| publisher_id     | int(11)      | NO   | MUL | NULL    |                |
 +------------------+--------------+------+-----+---------+----------------+
 4 rows in set (0.01 sec)
 ```
 
-**Check in mariaDB:** postgresql 보다 직관적이여서, 명령어를 익히기 용이하다 
+**Check in mariaDB:** 기본 key 테이블은 **books_publisher** 이지만, 외래키 컬렴명은 **publisher_id** 로 앱이름은 제외한 뒷부분 이름 만으로 참조한다
 {: .notice--info}
 
-
+**Check in mariaDB:** postgresql 보다 직관적이여서, 명령어를 익히기 용이하다 
+{: .notice--info}
