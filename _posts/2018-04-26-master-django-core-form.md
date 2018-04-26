@@ -33,7 +33,8 @@ def hello(request):
 
 ```python
 def current_url_view_good(request):
-    return HttpResponse("Url Address is {}".format(request.path))
+    return HttpResponse(
+        "Url Address is {}".format(request.path))
 ```
 
 [notice 다양한 옵션들](https://github.com/mmistakes/jekyll-theme-unit-test/blob/master/_posts/2010-02-05-post-notice.md)
@@ -70,7 +71,8 @@ META 정보를 나열하여 출력한다
     values = sorted(info)
     html = []
     for k, v in values:
-        html.append('<tr><td> {}</td> <td>{}</td></tr>'.format(k, v))
+        html.append(
+            '<tr><td> {}</td> <td>{}</td></tr>'.format(k, v))
 ```
 
 
@@ -83,13 +85,20 @@ META 정보를 나열하여 출력한다
 ```python
 # urls.py
 from django.urls import include
-urlpatterns = [ re_path(r'^books/', include('books.urls', namespace="books")),]
+urlpatterns = [ re_path(r'^books/', 
+                include('books.urls', 
+                namespace = "books")),]
 
 # apps/urls.py
 app_name='books'
 urlpatterns = [
-    re_path(r'^search-form/$', search_form, name='search'), #검색 form
-    re_path(r'^search/$', search),]                         #결과출력
+    # 검색 form
+    re_path(r'^search-form/$', 
+            search_form, 
+            name = 'search'),
+
+    # 결과출력
+    re_path(r'^search/$', search),]                         
 ```
 
 **urls.py :** django 2.0 이후에서는 app의 urls.py 에서 **app_name = '앱이름'** 을 앞에서 선언을 해야만 작동된다
@@ -112,8 +121,26 @@ urlpatterns = [
 {: .notice--warning}
 
 
+### 2. 검색결과를 문자열 쿼리로 DB에서 찾기 
 
-### 2. Django의 Query 매개변수를 활용한 검색폼 만들기
+`Book.objects.filter(title__icontains = q)`
+
+```python
+# views.py 
+
+def search(request):
+    if 'q'  in  request.GET and request.GET['q']:  # get 객체 & 'q'객체 확인
+        q       = request.GET['q']
+        books   = Book.objects.filter(title__icontains = q)
+        content = {'books':books, 'query':q}
+        return render(request, 'books/search_result.html', content)
+    else:
+        return render(request, 'books/search_form.html', {'error':True})
+```
+
+**__icontains :** 대소문자를 구분없이 q 내용을 포함한 튜플들을 가져온다 [Field Lookup 목록보기](https://docs.djangoproject.com/en/2.0/ref/models/querysets/#std:fieldlookup-icontains) [초코몽키의 QuerySet 설명모음](https://wayhome25.github.io/django/2017/07/25/tsd7-django-query-database/)
+{: .notice--primary}
+
 
 
 
@@ -131,7 +158,7 @@ test
 {: .notice--info}
 
 **Warning Notice:**
-{: .notice--warning}
+{: .notice--warning} 
 
 **Danger Notice:**
 {: .notice--danger}
