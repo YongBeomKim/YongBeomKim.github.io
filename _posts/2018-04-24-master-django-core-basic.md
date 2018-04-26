@@ -1,5 +1,5 @@
 ---
-title : Master Django - urls.py 와 views.py 기본
+title : Master Django | urls.py 와 views.py
 last_modified_at: 2018-04-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg

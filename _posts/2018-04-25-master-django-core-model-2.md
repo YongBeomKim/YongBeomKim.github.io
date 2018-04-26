@@ -1,5 +1,5 @@
 ---
-title : Master Django - model 2 데이터 Access
+title : Master Django | model Access
 last_modified_at: 2018-04-27T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
