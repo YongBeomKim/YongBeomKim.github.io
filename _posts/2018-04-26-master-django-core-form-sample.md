@@ -1,6 +1,6 @@
 ---
-title : Master Django  Form
-last_modified_at: 2018-04-27T12:45:06-05:00
+title : Master Django  Form 예제
+last_modified_at: 2018-04-26T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
 tags: 
@@ -126,14 +126,15 @@ urlpatterns = [
 `Book.objects.filter(title__icontains = q)`
 
 ```python
-# views.py 
-
+# views.py
 def search(request):
-    if 'q'  in  request.GET and request.GET['q']:  # get 객체 & 'q'객체 확인
+    # GET 객체 & 'q'객체 확인
+    if 'q'  in  request.GET and request.GET['q']:  
         q       = request.GET['q']
         books   = Book.objects.filter(title__icontains = q)
         content = {'books':books, 'query':q}
         return render(request, 'books/search_result.html', content)
+    # 'q' 객체 오류가 없을 때    
     else:
         return render(request, 'books/search_form.html', {'error':True})
 ```
@@ -142,26 +143,85 @@ def search(request):
 {: .notice--primary}
 
 
+```html
+<p>You Search for : <strong>{{query}}</strong></p>
+{% if books %}
+    <p>Found {{books|length}}
+        book {{books|pluralize}}.</p>
+    <ul>
+        {% for book in books %}
+        <li>{{book.title}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No books Match your search criteria</p>
+{% endif %}
+```
 
-
-
-
-
-
-test 
-
-
-**Primary Notice:**
-{: .notice--primary}
-
-**Info Notice:**
-{: .notice--info}
-
-**Warning Notice:**
+**Warning Notice:** length (객체의 갯수), pluralize(복수개인경우 's'를 추가), .title(컬럼호출)
 {: .notice--warning} 
 
-**Danger Notice:**
-{: .notice--danger}
 
-**Success Notice:**
-{: .notice--success}
+
+## 간단한 폼-처리 예제 개선하기
+
+```python
+def search_form(request):
+    return render(request, 'books/search_form.html')  
+
+def search(request):
+    errors = []
+    if 'q' in request.GET:
+        q  = request.GET['q']
+        if not q :
+            errors.append('입력된 검색어가 없습니다')
+        elif len(q) > 20 :
+            errors.append('검색어를 20자 이내로 입력해주세요')
+        else:
+            books   = Book.objects.filter(title__icontains=q)
+            content = {'books': books, 'query':q}
+            return render(request, 'books/search_result.html',
+                          content)
+
+    # 오류가 발생시 입력폼으로 다시 이동
+    content = {'error':error}
+    return render(request, 'books/search_form.html',
+                  content)```
+```
+
+
+```html
+# search_form.html 
+
+{% if errors %}
+<ul>
+    {% for error in errors %}
+    <li>{{ error }}</li>
+    {% endif %}
+</ul>
+{% endif %}
+
+<!-- q 를 포함한 쿼리를 Get방식으로 url 전달-->
+<form action="/books/search/"  method="get">
+    <input type="text"   name="q">
+    <input type="submit" value="Search">
+</form>
+```
+
+
+```html
+# search_result.html
+
+<p>You Search for : <strong>{{query}}</strong></p>
+{% if books %}
+    <p>Found {{books|length}}
+        book {{books|pluralize}}.</p>
+    <ul>
+        {% for book in books %}
+        <li>{{book.title}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No books Match your search criteria</p>
+{% endif %}
+```
