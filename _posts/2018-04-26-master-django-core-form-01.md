@@ -144,13 +144,13 @@ def search(request):
 
 
 ```html
-<p>You Search for : <strong>{{query}}</strong></p>
+<p>You Search for : <strong>{ {query} }</strong></p>
 {% if books %}
-    <p>Found {{books|length}}
-        book {{books|pluralize}}.</p>
+    <p>Found { {books|length} }
+        book { {books|pluralize} }.</p>
     <ul>
         {% for book in books %}
-        <li>{{book.title}}</li>
+        <li>{ {book.title} }</li>
         {% endfor %}
     </ul>
 {% else %}
@@ -196,7 +196,7 @@ def search(request):
 {% if errors %}
 <ul>
     {% for error in errors %}
-    <li>{{ error }}</li>
+    <li>{ { error } }</li>
     {% endif %}
 </ul>
 {% endif %}
@@ -214,11 +214,11 @@ def search(request):
 
 <p>You Search for : <strong>{{query}}</strong></p>
 {% if books %}
-    <p>Found {{books|length}}
-        book {{books|pluralize}}.</p>
+    <p>Found { {books|length} }
+        book { {books|pluralize} }.</p>
     <ul>
         {% for book in books %}
-        <li>{{book.title}}</li>
+        <li>{ {book.title} }</li>
         {% endfor %}
     </ul>
 {% else %}
