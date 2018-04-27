@@ -146,8 +146,8 @@ def search(request):
 ```html
 <p>You Search for : <strong>{ {query} }</strong></p>
 {% if books %}
-    <p>Found { {books|length} }
-        book { {books|pluralize} }.</p>
+    <p>Found { {books | length} }
+        book { {books | pluralize} }.</p>
     <ul>
         {% for book in books %}
         <li>{ {book.title} }</li>
@@ -212,16 +212,16 @@ def search(request):
 ```html
 # search_result.html
 
-<p>You Search for : <strong>{{query}}</strong></p>
-{% if books %}
-    <p>Found { {books|length} }
-        book { {books|pluralize} }.</p>
+<p>You Search for : <strong>{ {query} }</strong></p>
+{ % if books % }
+    <p>Found { {books | length} }
+        book { {books | pluralize} }.</p>
     <ul>
-        {% for book in books %}
+        { % for book in books % }
         <li>{ {book.title} }</li>
-        {% endfor %}
+        { % endfor % }
     </ul>
-{% else %}
+{ % else % }
     <p>No books Match your search criteria</p>
-{% endif %}
+{ % endif % }
 ```
