@@ -1,6 +1,6 @@
 ---
-title : Master Django  Form in Ipython
-last_modified_at: 2018-04-27T12:45:06-05:00
+title : Master Django Form 3.Valid Check
+last_modified_at: 2018-04-26T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
 tags: 
@@ -178,58 +178,3 @@ django form을 활용 메일의 보안성 낮춤을 허용해야 작동된다 [D
 ** csrf_token ** 모든 POST 양식은 꼭 암호화를 해야한 동작된다
 {: .notice--success}
 
-
-
-## 필드 랜더링 방법 변경하기
-
-### 1. 기본적인 내장출력 메소드
-
-```python
-from django import forms
-
-class ContactForm(forms.Form):
-    subject = forms.CharField(max_length=100)
-    email   = forms.EmailField(required=False)
-    message = forms.CharField(widget=forms.Textarea)
-```
-
-
-
-```python
-# form을 django를 사용하여 생성
-from django import forms
-
-class ContactForm(forms.Form):
-    subject = forms.CharField(max_length = 100) # 최대길이
-    email   = forms.EmailField(required  = False,  
-                               label = 'to e-mail')
-    # text 입력창 활용                           
-    message = forms.CharField(widget = forms.Textarea) 
-
-    # clean_필드이름  : 자동으로 message  필드의 유표성 검사를 실행
-    def clean_message(self):
-        message = self.cleaned_data['message']
-        num_words = len(message.split())
-
-        if num_words < 4:  # 전체 단어가 4개 미만일 떄
-          raise forms.ValidationError("Not enough words!")  # 폼에 오류를 표시
-        print(message)
-        return message
-```
-
-
-
-**Primary Notice:**
-{: .notice--primary}
-
-**Info Notice:**
-{: .notice--info}
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}

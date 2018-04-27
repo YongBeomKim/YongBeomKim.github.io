@@ -1,5 +1,5 @@
 ---
-title : Master Django  Form 예제
+title : Master Django Form 1.둘러보기
 last_modified_at: 2018-04-26T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
