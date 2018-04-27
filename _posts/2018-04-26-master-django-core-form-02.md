@@ -1,5 +1,5 @@
 ---
-title : Master Django Form 3.Valid Check
+title : Mastering Django Core - Form 2.example
 last_modified_at: 2018-04-26T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -8,7 +8,6 @@ tags:
     - pyton
 toc: true    
 ---
-
 
 ## Form 양식 만들기
 
@@ -38,7 +37,7 @@ print(f)
 <tr><th><label for="id_subject">Subject:</label></th><td><input type="text" name="subject" required id="id_subject" />...
 ```
 
-
+ 
 ### 2. 기본적인 내장출력 메소드
 
 ```python
@@ -71,7 +70,9 @@ print(f['message'])
 ### 4. 데이터 유효성 검사 
 
 ```python
-f = ContactForm({'subject':'Hello', 'email':'django@python.org', 'message':'web connected'})
+f = ContactForm({'subject':'Hello', 
+                 'email':'django@python.org', 
+                 'message':'web connected'})
 f.is_valid()
 True
 ```
@@ -163,12 +164,12 @@ django form을 활용 메일의 보안성 낮춤을 허용해야 작동된다 [D
 
 ```html 
 {% if form.errors %}
-    <p style="color:red;"> {{errors}} 오류{{form.errors|pluralize}} 를(을) 수정하세요</p>
+    <p style="color:red;"> { {errors} } 오류{ {form.errors|pluralize} } 를(을) 수정하세요</p>
 {% endif %}
 
 <form action="" method="post">
     <table>
-        {{form.as_table}}
+        { {form.as_table} }
     </table>
     {% csrf_token %}
     <input type="submit" name="Submit">
