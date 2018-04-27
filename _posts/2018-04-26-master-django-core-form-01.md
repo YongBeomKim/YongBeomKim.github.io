@@ -105,7 +105,7 @@ urlpatterns = [
 {: .notice--danger}
 
 
-```
+```html
 # books/search_form.html
 
 <form action="/books/search/"  method="get">
@@ -145,17 +145,17 @@ def search(request):
 
 ```html
 <p>You Search for : <strong>{ {query} }</strong></p>
-{% if books %}
+{ % if books % }
     <p>Found { {books | length} }
         book { {books | pluralize} }.</p>
     <ul>
-        {% for book in books %}
+        { % for book in books % }
         <li>{ {book.title} }</li>
-        {% endfor %}
+        { % endfor % }
     </ul>
-{% else %}
+{ % else % }
     <p>No books Match your search criteria</p>
-{% endif %}
+{ % endif % }
 ```
 
 **Warning Notice:** length (객체의 갯수), pluralize(복수개인경우 's'를 추가), .title(컬럼호출)
@@ -193,13 +193,13 @@ def search(request):
 ```html
 # search_form.html 
 
-{% if errors %}
+{ % if errors % }
 <ul>
-    {% for error in errors %}
+    { % for error in errors % }
     <li>{ { error } }</li>
-    {% endif %}
+    { % endif % }
 </ul>
-{% endif %}
+{ % endif % }
 
 <!-- q 를 포함한 쿼리를 Get방식으로 url 전달-->
 <form action="/books/search/"  method="get">
@@ -221,7 +221,7 @@ def search(request):
         <li>{ {book.title} }</li>
         { % endfor % }
     </ul>
-{ % else % }
+{ % else % } 
     <p>No books Match your search criteria</p>
 { % endif % }
 ```

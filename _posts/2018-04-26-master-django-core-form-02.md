@@ -9,6 +9,7 @@ tags:
 toc: true    
 ---
 
+
 ## Form 양식 만들기
 
 ### 1. 양식 Class 정의하기
@@ -163,19 +164,18 @@ django form을 활용 메일의 보안성 낮춤을 허용해야 작동된다 [D
 
 
 ```html 
-{% if form.errors %}
-    <p style="color:red;"> { {errors} } 오류{ {form.errors|pluralize} } 를(을) 수정하세요</p>
-{% endif %}
+{ % if form.errors % }
+    <p style="color:red;"> { {errors} } 오류{ {form.errors | pluralize} } 를(을) 수정하세요</p>
+{ % endif % }
 
 <form action="" method="post">
     <table>
         { {form.as_table} }
     </table>
-    {% csrf_token %}
+    { % csrf_token % }
     <input type="submit" name="Submit">
 </form>
 ```
 
 ** csrf_token ** 모든 POST 양식은 꼭 암호화를 해야한 동작된다
 {: .notice--success}
-
