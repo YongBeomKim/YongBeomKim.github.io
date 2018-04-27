@@ -78,7 +78,7 @@ f.is_valid()
 True
 ```
 
-** .is_valid() ** form 객체의 유효성 확인 결과를 출력
+**.is_valid()** form 객체의 유효성 확인 결과를 출력
 {: .notice--success}
 
 
@@ -87,7 +87,7 @@ f.cleaned_data
 {'email': 'django@python.org', 'message': 'web connected', 'subject': 'Hello'}
 ```
 
-** .cleaned_data** python dict 객체로 추출가능
+**.cleaned_data** python dict 객체로 추출가능
 {: .notice--success}
 
 
@@ -99,7 +99,7 @@ f['message'].errors
 []
 ```
 
-** ['subject'] ** 개별 field의 오류 메세지를 {dict} 포맷으로 제공한다
+**['subject']** 개별 field의 오류 메세지를 {dict} 포맷으로 제공한다
 {: .notice--success}
 
 
@@ -158,7 +158,7 @@ def contact(request):
     return render(request, 'contact_form.html',{'form':form})
 ```
 
-** send_mail ** settings.py 설정내용 [참고Site](https://www.codingforentrepreneurs.com/blog/use-gmail-for-email-in-django/), 
+**Send_mail** settings.py 설정내용 [참고Site](https://www.codingforentrepreneurs.com/blog/use-gmail-for-email-in-django/), 
 django form을 활용 메일의 보안성 낮춤을 허용해야 작동된다 [Document](https://docs.djangoproject.com/en/2.0/topics/email/) | [참고Site](https://sendgrid.com/docs/Integrate/Frameworks/django.html)
 {: .notice--success}
 
@@ -177,5 +177,5 @@ django form을 활용 메일의 보안성 낮춤을 허용해야 작동된다 [D
 </form>
 ```
 
-** csrf_token ** 모든 POST 양식은 꼭 암호화를 해야한 동작된다
+**{csrf_token}** 모든 POST 양식은 꼭 암호화를 해야한 동작된다
 {: .notice--success}

@@ -39,20 +39,45 @@ class ContactForm(forms.Form):
         return message
 ```
 
-** clean_ ** django Form 시스템에서는 **_ clean_피드명 _** 메서드를 자동으로 유효성 검증에 호출한다. 이들은 기본적 유효성 검사논리 직후에 호출한다 
+**clean_** django Form 시스템에서는 **_ clean_피드명 _** 메서드를 자동으로 유효성 검증에 호출한다. 이들은 기본적 유효성 검사논리 직후에 호출한다 
 {: .notice--success}
 
-** self.cleaned_data[필드] ** clean_피드명 메서드에서, ** self.cleaned_data[필드명] ** 객체를 통해서 데이터를 추출한다 
+**self.cleaned_data[필드]** clean_피드명 메서드에서, ** self.cleaned_data[필드명] ** 객체를 통해서 데이터를 추출한다 
 {: .notice--success}
 
 
 ### 2. CSS 양식 설계 사용자 정의
 
+```html
+# confirm_form.html
 
-```python
+{ % if form.errors % }
+    <p style="color:red;">
+        다음에 표시되는 { { form.errors | pluralize } } 오류를 수정하세요</p>
+{ % endif % }
 
+<form action="" method="POST">
+    <div class="field">
+        { { form.subject.errors } }
+        <label for="id_subject">Subject:</label>
+        { { form.subject } }
+    </div>
 
+    <div class="field">
+        { { form.email.errors } }
+        <label for="id_email">Your e-mail address:</label>
+        { { form.email } }
+    </div>
 
+    <div class="field">
+        { { form.message.errors } }
+        <label for="id_message">Message:</label>
+        { { form.message } }
+    </div>
+
+    { % csrf_token % }
+    <input type="submit" value="Submit">
+</form>
 ```
 
 
