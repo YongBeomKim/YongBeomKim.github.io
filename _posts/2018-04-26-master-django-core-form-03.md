@@ -12,8 +12,6 @@ toc: true
 
 ## 사용자 지정 유효성 검사 규칙
 
-### 1. 기본제공 유효성 메소드
-
 1. def clean_필드명:
 2. self.cleaned_data['필드명']
 
@@ -46,7 +44,26 @@ class ContactForm(forms.Form):
 {: .notice--success}
 
 
-### 2. CSS 양식 설계 사용자 정의
+## CSS 양식 설계 사용자 정의
+
+`<ul class="errorlist">` 를 통해서 form Error 메세지들이 출력된다
+
+```css
+ul.errorlist{
+    margin: 0;
+    padding: 0;
+}
+.errorlist li{
+    background-color: red;
+    color: white;
+    display: block;
+    font-size: 10px;
+}
+```
+
+
+
+## Error 출력 HTML 
 
 ```html
 # confirm_form.html
@@ -79,8 +96,6 @@ class ContactForm(forms.Form):
     <input type="submit" value="Submit">
 </form>
 ```
-
-
 
 
 **Primary Notice:**
