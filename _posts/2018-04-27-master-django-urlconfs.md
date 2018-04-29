@@ -1,5 +1,5 @@
 ---
-title : Mastering Django Core - Generic View 와 URLconfs
+title : Mastering Django Core - URLconfs
 last_modified_at: 2018-04-27T15:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -141,8 +141,10 @@ urlpatterns = [
 
 ## URL 반전 해결
 
-`include('', namespace=)`, `repath( ,name=)` : URL 역분해, 역 URL, 단순한 URL 반전 을 위해서 정의한다
+`include('', namespace= "응용 App이름")`, `repath( ,name= "특정 인스턴스 식별 ")` : URL 역분해, 역 URL, 단순한 URL 반전 을 위해서 정의한다
 
+
+### name 파라미터
 
 ```python
 urlpatterns = [
@@ -173,17 +175,15 @@ def redirect_year(request):
     return HttpResponseRedirect(reverse('review-year', args=(year,)))
 ```
 
-**Primary Notice:**
+**응용 App이름 : 특정 인스턴스** Html 템플릿에서 App별 이름을 지정한다
 {: .notice--primary}
 
-**Info Notice:**
+
+### namespace 파라미터 : 응용 App이름
+
+```python
+re_path(r'^review/', include('blog.urls', namespace='review-year', app_name='blog'))
+```
+
+**Info Notice:** app_name 은 실제 app의 이름을 혼동하지 않도록 선택적으로 활용되었지만, Django2.0 부터는 `blog/urls.py`  필수항목으로 변경되었다 
 {: .notice--info}
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}
