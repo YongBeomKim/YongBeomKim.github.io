@@ -88,17 +88,33 @@ http://접속아이피:설정포트
 ```
 
 
+### Jupyter Note 자동저장 설정하기 [출처](https://www.webucator.com/blog/2016/03/change-default-autosave-interval-in-ipython-notebook/)
+
+ipython 에서 설정 (해당 Code 만 적용된다)
+
+```python
+In[]: %autosave 180
+Out[] Autosaving every 180 seconds
+```
+
+
+.jupyter\custom\custom.js 파일을 수정한다 (전체 일괄적용)
+
+```
+define([
+    'base/js/namespace',
+    'base/js/events'
+    ],
+    function(IPython, events) {
+        events.on("notebook_loaded.Notebook",
+          function () {
+          IPython.notebook.set_autosave_interval(180000); //in milliseconds
+      }
+      );
+        //may include additional events.on() statements
+    }
+);
+```
+
 **Primary Notice:** `$ fc-list` 리눅스 폰트 살펴보기 `$ fc-list :lang=ko` 한글폰트만 살펴보기 `$ fc-list | grep "폰트명"` 찾는폰트 살펴보기
 {: .notice--primary}
-
-**Info Notice:**
-{: .notice--info}
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}
