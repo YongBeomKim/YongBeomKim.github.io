@@ -70,7 +70,7 @@ $ docker stop  컨테이너 id
 $ docker rm    컨테이너 id 
 ```
 
-**stop 과 rm:** 동작중인 컨테이너를 **stop**을 하더라도, Image로 저장하지 않고 container로 남겨준다면 계속적으로 부담이 된다. **rm** 작업을 통해서 해당 Container 를 제거해야만 **rmi** 이미지 삭제 작업이 가능하다
+**stop 와 rm:** 동작중인 컨테이너를 **stop**을 해도, **Container**로 남겨준다면 계속적으로 부담이 된다. **rm** 작업을 통해서 해당 Container 를 제거한 뒤에 **rmi** 이미지 삭제 작업  등이 가능하다
 {: .notice--info}
 
 
@@ -99,16 +99,3 @@ $ docker rmi  이미지 id
 ### Zeppline 실행 [document](https://zeppelin.apache.org/download.html)
 
 `docker run -p 8080:8080 --rm -v $PWD/logs:/logs -v $PWD/notebook:/notebook -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' --name zeppelin apache/zeppelin:0.7.3`
-
-
-**Info Notice:**
-{: .notice--info}
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}
