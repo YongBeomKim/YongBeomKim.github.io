@@ -26,10 +26,11 @@ Total Memory: 62.89GiB
 Docker Root Dir: /var/lib/docker
 ```
 
-설치폴더가 /var/lib/docker 로 고정되어 있는데 여유공간이 3Gb에 불과하다. 가능하면 /home 경로로 전환해서 설치가능 용량을 늘려보자 
+설치폴더가 `/var/lib/docker` 로 고정되어 있는데 여유공간이 3Gb에 불과하다. 가능하면 `/home` 경로로 전환해서 설치가능 용량을 늘려보자 
 
 
-/lib/systemd/system/docker.service  파일을 수정한다 (새로운 경로는 /home/share/docker 이다)
+`/lib/systemd/system/docker.service`  파일을 수정한다 (새로운 경로는 `/home/share/docker` 이다)
+
 ```
 $ nano /etc/systemd/system/docker.service.d/docker.root.conf
 
@@ -69,7 +70,7 @@ $ docker stop  컨테이너 id
 $ docker rm    컨테이너 id 
 ```
 
-**stop 과 rm:** 동작중인 컨테이너를 stop 하고 나면, 해당 container 를 창고로 옮겨놔야 한다. rm을 하지 않으면 계속 길목을 막아서 삭제작업이 안된다
+**stop 과 rm:** 동작중인 컨테이너를 **stop**을 하더라도, Image로 저장하지 않고 container로 남겨준다면 계속적으로 부담이 된다. **rm** 작업을 통해서 해당 Container 를 제거해야만 **rmi** 이미지 삭제 작업이 가능하다
 {: .notice--info}
 
 
