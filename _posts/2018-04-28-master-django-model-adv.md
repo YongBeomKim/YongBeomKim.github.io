@@ -12,6 +12,7 @@ toc: true
 
 ## 다대일 값 액세스
 
+
 ### 조건에 해당하는 객체에 접근
 
 ```python
@@ -59,7 +60,13 @@ class Book(models.Model):
 
 ## 모델 메서드
 
+### 모델 식별을 위한 고유 메서드들
+
+ex) _get_full_name(self) : 모델의 인스턴스에서 필요한 인자를 추출
+
 ```python
+# models.py
+
 class Person(models.Model):
     first_name = models.CharField(max_length=50)
     last_name  = models.CharField(max_length=50)
@@ -67,9 +74,52 @@ class Person(models.Model):
     def _get_full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
 
-    # property : 함수내부의 parametor에 접근한다
-    # first_name, last_name 함께 추출
+    # property : 내부 parametor 접근 (first_name, last_name)
     full_name = property(_get_full_name)
+```
+
+객체의 고유값을 식별하는 URL을 갖는 객체는 다음의 2가지를 정의해야 한다 1) **__str__() :** 객체의 유니코드를 반환, 2) **get_absolute_url() :** 객체의 Url을 추출하는 함수를 정의한다
+{: .notice--success} 
+
+
+### .save() .delete()를 활용한 객체 수정 : { dict } 모델 Overwrite 
+
+```python
+class Blog(models.Model):
+    name = models.CharField(max_length=100)
+    tagline = models.TextField()
+    
+    def save(self, *arg, **kwargs):
+        to do something ...
+        super(Blog, self).save(*arg, **kwargs)  # .save() 메소드를 실행
+        do something else()....
+```
+
+
+
+## SQL 쿼리
+
+### SQL 쿼리문 실행
+
+```python
+for p in Person.objects.raw('SELECT * FROM my_person'):
+    print(p)[0]   # list 객체를 반환 
+```
+
+**주의할점** SQL에 대한 점검을 수행하지 않으므로, 쿼리결과값이 없을 때 숨은 오류가 발생한다
+{: .notice--success} 
+
+
+### 사용자 정의 SQL 실행
+
+```python
+from django.db import connection
+
+def my_custom_sql(self):
+    cursor = connection.cursor()
+    cursor.execute("UPDATE bar SET foo=1 where... ")
+    row = cursor.fetchone()
+    return row
 ```
 
 **Warning Notice:**
