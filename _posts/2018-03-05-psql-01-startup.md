@@ -1,6 +1,8 @@
 ---
 title : PostgreSQL 01 - 시작하기
 last_modified_at: 2018-03-05T11:45:06-05:00
+categories:
+  - SQL
 tags: 
     - postgresql
 toc: true

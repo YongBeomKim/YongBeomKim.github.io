@@ -3,6 +3,8 @@ title : Mastering Django Core - Admin
 last_modified_at: 2018-04-27T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
+categories:
+  - django
 tags: 
     - django
     - pyton

@@ -4,6 +4,8 @@ last_modified_at: 2018-04-21T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/data_science.jpg
   caption: "Numsense! Data Science"
+categories:
+  - Quant
 tags: 
     - datascience
     - algorithm

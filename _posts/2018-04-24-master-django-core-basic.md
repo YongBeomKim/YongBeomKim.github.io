@@ -4,6 +4,8 @@ last_modified_at: 2018-04-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
   caption: "Django Shell"
+categories:
+  - django
 tags: 
     - django
     - pyton

@@ -1,6 +1,8 @@
 ---
 title : pi - 설치 메뉴얼
 last_modified_at: 2018-03-11T13:45:06-05:00
+categories:
+  - ubuntu
 tags: 
     - raspberry 
     - Pi

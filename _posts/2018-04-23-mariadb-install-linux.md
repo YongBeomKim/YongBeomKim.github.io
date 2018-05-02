@@ -4,6 +4,8 @@ last_modified_at: 2018-04-22T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/mariadb.jpg
   caption: "mariadb"
+categories:
+  - SQL
 tags: 
     - mariadb
     - mysql

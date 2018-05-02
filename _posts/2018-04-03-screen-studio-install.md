@@ -1,6 +1,8 @@
 ---
 title : 리눅스로 동영상 녹화하기
 last_modified_at: 2018-04-03T10:45:06-05:00
+categories:
+  - ubuntu
 tags: 
     - linux
     - screenstudio

@@ -1,6 +1,8 @@
 ---
 title : Django Restful API 사용하기
 last_modified_at: 2018-03-08T13:45:06-05:00
+categories:
+  - django
 tags: 
     - django
     - python

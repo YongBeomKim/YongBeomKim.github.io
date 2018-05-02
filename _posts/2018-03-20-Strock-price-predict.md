@@ -1,6 +1,8 @@
 ---
 title : 주가예측 Git Hub들 목록
 last_modified_at: 2018-03-14T18:45:06-05:00
+categories:
+  - Quant
 tags: 
     - stock
     - github

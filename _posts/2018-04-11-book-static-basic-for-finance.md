@@ -1,6 +1,8 @@
 ---
 title : 금융인을 위한 통계분석
 last_modified_at: 2018-04-12T20:45:06-05:00
+categories:
+  - Quant
 tags: 
     - static
     - finance

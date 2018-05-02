@@ -1,6 +1,8 @@
 ---
 title : miniconda 설치하기
 last_modified_at: 2018-03-28T10:45:06-05:00
+categories:
+  - ubuntu
 tags: 
     - python
     - miniconda
