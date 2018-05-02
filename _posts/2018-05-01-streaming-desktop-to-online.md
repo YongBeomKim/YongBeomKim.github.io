@@ -77,7 +77,7 @@ $ sudo apt-get install obs-studio
 [고급] 
 1. 일반 - 프로세스 우선 순위 설정 : 높음
 
-
+<br><br><br>
 
 # Periscope
 
