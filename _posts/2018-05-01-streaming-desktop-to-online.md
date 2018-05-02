@@ -8,14 +8,14 @@ categories:
 ---
 
 
-# OBS streaming Studio
+# OBS streaming Studio [Site](https://obsproject.com/)
 
 처음에는 **Stream Studio** 가 간결해서 좋아보였지만, setting 정보가 부족하다 보니 실행에 문제가 많았다.
 
 less is more 라고, 그럼 다른 플랫폼을 찾던중 **OBS Studio**에 대한 YouTube를 보니 직관적인 InterFace 가 인상적이였고, 추후에 알게된 사실이지만 세부설정 또한 간결하고 쉽게 조작이 가능하다
 
 
-## Installation
+## Installation [Document](https://github.com/obsproject/obs-studio/wiki/Install-Instructions#linux)
 
 OpenGL 3.2 이상이 설치되었는지를 확인한다
 
