@@ -1,5 +1,5 @@
 ---
-title : Desktop 작업화면 Streaming - ubuntu
+title : Streaming Video - ubuntu
 last_modified_at: 2018-05-01T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/periscope.jpg
