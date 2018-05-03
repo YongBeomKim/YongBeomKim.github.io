@@ -13,6 +13,9 @@ toc: true
 
 # Mastering Django Core
 
+
+[참고 Blog](https://kimdoky.github.io/django/2017/10/05/pyDjango-ch16.html)
+
 ## 기본적 형태 (HTML의 일부분이다)
 
 1. { { 객체 \| safe } } : template 객체 
