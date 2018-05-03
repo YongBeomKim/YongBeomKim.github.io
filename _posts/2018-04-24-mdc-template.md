@@ -244,11 +244,12 @@ for 반복문 진행상황에 대한 정보를 제공한다
 {: .notice--danger}
 
 
+
 ## 탬플릿 필터
 
 date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
 
-```
+```python
 { { name.upper } }
 { { name | upper } }
 { { name | first | upper } }         # 첫 글자를 대문자로 변환
@@ -256,6 +257,10 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 { { text | truncatewords : "30" } }  # 전체 자릿수를 30으로 한다  
 { { date | date : "F j, Y" } }       # 날짜 출력 포맷
 ```
+
+**| :** 템플릿 객체의 필터를 적용, **:** 필터인수 뒤의 일부 매개변수에 적용 
+{: .notice--info}
+
 
 
 ## Django Template 철학과 한계 
@@ -310,3 +315,24 @@ def current_datetime(request):
 { % block content % }
 { % endblock % }
 ```
+
+
+
+
+## 템플릿의 특수 메서드들
+
+### forloop 객체 메서드 - { % for % }
+
+1. **.counter** : for loop **입력된 횟수**를 integer로 출력 
+2. **.counter0** : for loop 의 **맨처음 객체**로 이동
+3. **.revcounter** : for loop 의 **나머지 항목의 수**를 출력 
+4. **.first** : for loop 최초 객체를 실행시 **True**를 출력
+5. **.last** : for loop 마지막 통과시 **True**를 출력
+
+
+```java
+{ % for link  in  links  % }
+    { { link } } { % if not forloop.last %} , { % endif % }
+{ % endfor % }
+```
+
