@@ -303,19 +303,44 @@ def current_datetime(request):
 
 ### 내장 템플릿 : { % include % }
  
-탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수로, 해당 객체가 미존재시 **TemplateDoesNotExist** 오류를 출력한다  
+탬플릿 내부에서 **중복된 내용을 재활용** 하는 template 함수로, 해당 객체가 미존재시 **TemplateDoesNotExist** 오류를 출력한다  
 
 ```java
  { % include 'navigation.html' % }
 ```
 
+**{ % include "foo/bar.html" % }** : 파일명을 따옴표로 묶거나, **{ % include template_name % }** : 파일명이 들어 있는 변수를 사용 가능하다
+{: notice-danger}
+
+재활용 템플릿의 컨텍스트 변수가 greeting은 “Hello”로, person은 “John”으로 주어진다면 **{ % include “foo/bar.html” with person=”Jane” greeting=”Hello” % }** 의 결과는 “Hello, John”이 될 것입니다.
+{: notice-danger}
+
+
+```python
+# sample.html
+
+{ % block title % }Post{ % endblock % }
+{ % block content % }
+<ul>
+    { % for date in date_list % }
+    <li a href="{ % url 'blog:post_year_archive' date|date:'Y' % }">
+    Year-{ { date|date:"Y" } }</a></li>
+    { % endfor % }
+</ul><br/>
+<div>
+    { % include "blog/post_archive_snippet.html" % } // 여기를 교체
+</div>
+{ % endblock % }
+```
+<br>
+
 
 
 ### 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
 
-1. 템플릿에 { % extends % } 가 있으면, 자식 템플릿임을 알 수 있다  
-2. 기본 뼈대를 작성하고, 자식에서 "블록"을 재정의(Override) 한다 
-3. { % block % } 로 재정의 영역들을 지정한다 
+1. { % extends % } 는, 현태 템플릿이, 자식임을 알 수 있다  
+2. { % block % } 로 **영역을 지정**한다 
+2. 자식에서 **블록을 재정의(Override)** 한다
 
 ```java
 { % extends "부모 템플릿.hrml" % }
