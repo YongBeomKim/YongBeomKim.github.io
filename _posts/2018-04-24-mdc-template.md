@@ -337,8 +337,9 @@ def current_datetime(request):
 <br>
 
 
+### sample.html
+
 ```python
-# sample.html
 
 { % block title % }Post{ % endblock % }
 { % block content % }
