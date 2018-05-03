@@ -316,26 +316,6 @@ def current_datetime(request):
 {: notice-danger}
 
 
-```python
-# sample.html
-
-{ % block title % }Post{ % endblock % }
-{ % block content % }
-<ul>
-    { % for date in date_list % }
-    <li a href="{ % url 'blog:post_year_archive' date|date:'Y' % }">
-    Year-{ { date|date:"Y" } }</a></li>
-    { % endfor % }
-</ul><br/>
-<div>
-    { % include "blog/post_archive_snippet.html" % } // 여기를 교체
-</div>
-{ % endblock % }
-```
-<br>
-
-
-
 ### 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
 
 1. { % extends % } 는, 현태 템플릿이, 자식임을 알 수 있다  
@@ -351,5 +331,25 @@ def current_datetime(request):
 
 # 자식 템플릿 재정의 영역 2 (본문) 
 { % block content % }
+{ % endblock % }
+```
+
+<br>
+
+
+```python
+# sample.html
+
+{ % block title % }Post{ % endblock % }
+{ % block content % }
+<ul>
+    { % for date in date_list % }
+    <li a href="{ % url 'blog:post_year_archive' date|date:'Y' % }">
+    Year-{ { date|date:"Y" } }</a></li>
+    { % endfor % }
+</ul><br/>
+<div>
+    { % include "blog/post_archive_snippet.html" % } // 여기를 교체
+</div>
 { % endblock % }
 ```
