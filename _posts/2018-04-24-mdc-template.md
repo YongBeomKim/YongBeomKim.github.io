@@ -1,5 +1,5 @@
 ---
-title : Mastering Django Core - Template
+title : Django MDC - Template
 last_modified_at: 2018-04-25T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -10,6 +10,8 @@ tags:
     - pyton
 toc: true    
 ---
+
+# Mastering Django Core
 
 ## 기본적 형태 (HTML의 일부분이다)
 

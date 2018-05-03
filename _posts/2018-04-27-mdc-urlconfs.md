@@ -1,5 +1,5 @@
 ---
-title : Mastering Django Core - URLconfs
+title : Django MDC - URLconfs
 last_modified_at: 2018-04-27T15:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -10,6 +10,9 @@ tags:
     - pyton
 toc: true    
 ---
+
+
+# Mastering Django Core
 
 
 ## URL 에서 매개변수의 활용
