@@ -13,7 +13,7 @@ toc: true
 
 # Mastering Django Core
 
-# 기본적 형태 (HTML의 일부분이다)
+## 기본적 형태 (HTML의 일부분이다)
 
 1. { { 객체 \| safe } } : template 객체 
 2. { % if % } : template 함수
@@ -29,7 +29,7 @@ Out[]: 'My name is Nigl.'
 ```
 
 
-## Context & {dict}
+### Context & {dict}
 
 ```python
 import datetime
@@ -43,7 +43,7 @@ Out[] '<p>Dear john,</p><p>Thanks April 23, 2018'
 ```
 
 
-## 다중 Context & 동일한 Template
+### 다중 Context & 동일한 Template
 
 ```python
 from django.template import Template, Context
@@ -52,6 +52,7 @@ t.render(Context({'name':'erdos'}))
 
 'hello, erdos'
 ```
+
 
 ```python
 for name in ('Jhon', 'Thomas', 'Kim'):
@@ -63,7 +64,7 @@ hello, Kim
 ```
 
 
-## 사용자정의 class 활용
+### 사용자정의 class 활용
 
 ```python
 from django.template import Template, Context
@@ -82,9 +83,9 @@ Out []  'Hello, John wick.'
 <br><br>
 
 
-# 탬플릿 객체 속성의 Access는 **_. (Dot)_**  method를 활용 
+## 탬플릿 객체 속성의 Access는 **_. (Dot)_**  method를 활용 
 
-## {dict} 객체의 key 값으로 호출 
+### {dict} 객체의 key 값으로 호출 
 
 ```python
 person = {'name':'Sally', 'age':'43'}
@@ -96,7 +97,7 @@ Out[] 'Sally is 43 years old'
 ```
 
 
-## Python String 객체의 method 활용 (.upper, .lower)
+### Python String 객체의 method 활용 (.upper, .lower)
 
 ```python
 t = Template("{ {var} } -- { {var.upper} } -- { {var.isdigit} }")
@@ -109,7 +110,7 @@ t.render(Context({'var':'hello'}))
 {: .notice--danger}
 
 
-## [list] 객체의 index 값으로 호출
+### [list] 객체의 index 값으로 호출
 
 ```python
 t = Template('Item 2 is  { { items.2 } }.')
@@ -123,7 +124,7 @@ t.render(c)
 {: .notice--danger}
 
  
-## ".(Dot)" 조회는 깊이있는 중첩적 접근도 가능하다
+### ".(Dot)" 조회는 깊이있는 중첩적 접근도 가능하다
 
 ```python
 from django.template import Template, Context
@@ -138,9 +139,9 @@ t.render(c)
 <br><br>
 
 
-# 탬플릿 함수 태그
+## 탬플릿 함수 태그
 
-## if / else 
+### if / else 
 
 1. **유효한 값의 포함** 여부만 판단 (값의 존재여부)
 2. **and, or, not** 조건을 활용가능하다  (and는 상대적 높은순위를 갖는다 )
@@ -157,7 +158,7 @@ t.render(c)
 {: .notice--danger}
 
 
-## for 
+### for 
 
 1. content의 시퀀스 항목들을 반복한다
 2. 시퀀스 객체만 존재하면 중첩적 for 도 가능하다 
@@ -183,7 +184,7 @@ t.render(c)
 
 
 
-## empty
+### empty
 
 for 반복문에서, **content가 비어있는지를 확인** 하기 위해, if 문으로 판단을 한다, 하지만 이러한 반복을 피하기 위해 { % empty % } 를 사용하면 간결해 진다
 
@@ -196,7 +197,7 @@ for 반복문에서, **content가 비어있는지를 확인** 하기 위해, if 
 ```
 
 
-## forloop 
+### forloop 
 
 for 반복문 진행상황에 대한 정보를 제공한다 
 1. **forloop.counter** : 루프 반복 횟수 
@@ -223,7 +224,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 ```
 
 
-## ifequal / ifnotequal
+### ifequal / ifnotequal
 
 1. ifequal : 나열된 2개 객체가(user, currentuser 를 비교) 동일 여부를 판단한다 
 2. 비교가능 객체는 : 템플릿변수, '문자열', 정수 및 십진수 
@@ -251,7 +252,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 <br><br>
 
 
-# 탬플릿 필터
+## 탬플릿 필터
 
 date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
 
@@ -270,7 +271,7 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 <br><br>
 
 
-# Django Template 철학과 한계 
+## Django Template 철학과 한계 
 
 1. Python, HTML 과 분리되어 작동한다
 2. **안전**과 **보안**을 보장하고,**확장성** 을 고려한다
@@ -281,9 +282,9 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 
 
 
-# views.py 뷰의 템플릿 함수
+## views.py 뷰의 템플릿 함수
 
-## render 함수
+### render()
 
 1. `from django.shortcuts import render` 
 2. render( 요청인자, template 이름, {context dict 객체} )
@@ -300,7 +301,7 @@ def current_datetime(request):
 
 
 
-## 내장 템플릿 : { % include % }
+### 내장 템플릿 : { % include % }
  
 탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수로, 해당 객체가 미존재시 **TemplateDoesNotExist** 오류를 출력한다  
 
@@ -310,7 +311,7 @@ def current_datetime(request):
 
 
 
-## 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
+### 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
 
 1. 템플릿에 { % extends % } 가 있으면, 자식 템플릿임을 알 수 있다  
 2. 기본 뼈대를 작성하고, 자식에서 "블록"을 재정의(Override) 한다 
