@@ -13,7 +13,7 @@ toc: true
 
 # Mastering Django Core
 
-## 기본적 형태 (HTML의 일부분이다)
+# 기본적 형태 (HTML의 일부분이다)
 
 1. { { 객체 \| safe } } : template 객체 
 2. { % if % } : template 함수
@@ -79,10 +79,12 @@ t.render(c)
 Out []  'Hello, John wick.'
 ```
 
+<br><br>
 
-## 탬플릿 객체 속성의 Access는 **_. (Dot)_**  method를 활용 
 
-### 1. {dict} 객체의 key 값으로 호출 
+# 탬플릿 객체 속성의 Access는 **_. (Dot)_**  method를 활용 
+
+## {dict} 객체의 key 값으로 호출 
 
 ```python
 person = {'name':'Sally', 'age':'43'}
@@ -94,7 +96,7 @@ Out[] 'Sally is 43 years old'
 ```
 
 
-### 2. Python String 객체의 method 활용 (.upper, .lower)
+## Python String 객체의 method 활용 (.upper, .lower)
 
 ```python
 t = Template("{ {var} } -- { {var.upper} } -- { {var.isdigit} }")
@@ -107,7 +109,7 @@ t.render(Context({'var':'hello'}))
 {: .notice--danger}
 
 
-### 3. [list] 객체의 index 값으로 호출
+## [list] 객체의 index 값으로 호출
 
 ```python
 t = Template('Item 2 is  { { items.2 } }.')
@@ -121,7 +123,7 @@ t.render(c)
 {: .notice--danger}
 
  
-### 4. ".(Dot)" 조회는 깊이있는 중첩적 접근도 가능하다
+## ".(Dot)" 조회는 깊이있는 중첩적 접근도 가능하다
 
 ```python
 from django.template import Template, Context
@@ -135,12 +137,11 @@ t.render(c)
 
 
 
-## 탬플릿 함수 태그
+# 탬플릿 함수 태그
 
-### 1. if / else 
+## if / else 
 
 1. **유효한 값의 포함** 여부만 판단 (값의 존재여부)
-
 2. **and, or, not** 조건을 활용가능하다  (and는 상대적 높은순위를 갖는다 )
 
 ```java
@@ -155,7 +156,7 @@ t.render(c)
 {: .notice--danger}
 
 
-### 2. for 
+## for 
 
 1. content의 시퀀스 항목들을 반복한다
 2. 시퀀스 객체만 존재하면 중첩적 for 도 가능하다 
@@ -172,6 +173,7 @@ t.render(c)
 { % endfor % }
 ```
 
+
 ```java
 { % for key, value  in data.items  % }
     { { key }} : { { value } }
@@ -179,7 +181,8 @@ t.render(c)
 ```
 
 
-### 3. empty
+
+## empty
 
 for 반복문에서, **content가 비어있는지를 확인** 하기 위해, if 문으로 판단을 한다, 하지만 이러한 반복을 피하기 위해 { % empty % } 를 사용하면 간결해 진다
 
@@ -192,7 +195,7 @@ for 반복문에서, **content가 비어있는지를 확인** 하기 위해, if 
 ```
 
 
-### 4. forloop 
+## forloop 
 
 for 반복문 진행상황에 대한 정보를 제공한다 
 1. **forloop.counter** : 루프 반복 횟수 
@@ -219,7 +222,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 ```
 
 
-### 5. ifequal / ifnotequal
+## ifequal / ifnotequal
 
 1. ifequal : 나열된 2개 객체가(user, currentuser 를 비교) 동일 여부를 판단한다 
 2. 비교가능 객체는 : 템플릿변수, '문자열', 정수 및 십진수 
@@ -229,6 +232,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
     <h1>Welcome!</h1>
 { % endequal % }
 ```
+
 
 ```java
 { % ifequal  variable  1 % }
@@ -245,7 +249,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 
 
 
-## 탬플릿 필터
+# 탬플릿 필터
 
 date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
 
@@ -258,12 +262,12 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 { { date | date : "F j, Y" } }       # 날짜 출력 포맷
 ```
 
-**| :** 템플릿 객체의 필터를 적용, **:** 필터인수 뒤의 일부 매개변수에 적용 
+**| :** 템플릿 객체의 필터를 적용, **:** 필터인수 뒤의 일부 매개변수에 적용 되고 **항상 큰따옴표** 로만 묶인다  
 {: .notice--info}
 
 
 
-## Django Template 철학과 한계 
+# Django Template 철학과 한계 
 
 1. Python, HTML 과 분리되어 작동한다
 2. **안전**과 **보안**을 보장하고,**확장성** 을 고려한다
@@ -271,9 +275,10 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 4. **공백** 은 명확하게 처리한다 
 
 
-## views.py 뷰의 템플릿 함수
 
-### 1. render 함수
+# views.py 뷰의 템플릿 함수
+
+## render 함수
 
 1. `from django.shortcuts import render` 
 2. render( 요청인자, template 이름, {context dict 객체} )
@@ -289,7 +294,8 @@ def current_datetime(request):
 ```
 
 
-### 2. 내장 템플릿 : { % include % }
+
+## 내장 템플릿 : { % include % }
  
 탬플릿 내부에서 중복된 내용을 재활용 하는 template 함수로, 해당 객체가 미존재시 **TemplateDoesNotExist** 오류를 출력한다  
 
@@ -298,7 +304,8 @@ def current_datetime(request):
 ```
 
 
-### 3. 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
+
+## 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
 
 1. 템플릿에 { % extends % } 가 있으면, 자식 템플릿임을 알 수 있다  
 2. 기본 뼈대를 작성하고, 자식에서 "블록"을 재정의(Override) 한다 
@@ -315,24 +322,3 @@ def current_datetime(request):
 { % block content % }
 { % endblock % }
 ```
-
-
-
-
-## 템플릿의 특수 메서드들
-
-### forloop 객체 메서드 - { % for % }
-
-1. **.counter** : for loop **입력된 횟수**를 integer로 출력 
-2. **.counter0** : for loop 의 **맨처음 객체**로 이동
-3. **.revcounter** : for loop 의 **나머지 항목의 수**를 출력 
-4. **.first** : for loop 최초 객체를 실행시 **True**를 출력
-5. **.last** : for loop 마지막 통과시 **True**를 출력
-
-
-```java
-{ % for link  in  links  % }
-    { { link } } { % if not forloop.last %} , { % endif % }
-{ % endfor % }
-```
-
