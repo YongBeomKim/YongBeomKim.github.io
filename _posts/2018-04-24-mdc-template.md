@@ -319,11 +319,16 @@ def current_datetime(request):
 {: notice-danger}
 
 
-### 탬플릿 상속 : { % extends % } , { % block % } / { % endblock % }
+
+### 탬플릿 상속 { % extends "부모html"% } , { % block % }/{ % endblock % }
 
 1. { % extends % } 는, 현태 템플릿이, 자식임을 알 수 있다  
 2. { % block % } 로 **영역을 지정**한다 
-2. 자식에서 **블록을 재정의(Override)** 한다
+3. 자식에서 **블록을 재정의(Override)** 한다
+4. { { block.**super** } }를 사용하면 **상위 템플릿 content**를 연결한다 
+5. 부모 템플에서 동일한 이름을 정의한 { % block % } 태그가 많을수록 자세하고 정교한 작업이 가능하다
+6. 동일한 템플렛에 동일한 { % block % }을 여럿 정의하지 않도록 주의해야 한다 
+
 
 ```java
 { % extends "부모 템플릿.hrml" % }

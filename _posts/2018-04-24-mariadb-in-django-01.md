@@ -22,7 +22,7 @@ toc: true
 ## Django와 연결을 위한 DataBase 및 사용자 추가
 
 ### 새로운 데이터베이스와 사용자를 추가한다
-
+ 
 ```
 markbaum@markbaum:~$ mysql -u root -p
 Enter password: 
