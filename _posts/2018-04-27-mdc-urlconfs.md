@@ -17,6 +17,19 @@ toc: true
 
 ## URL 에서 매개변수의 활용
 
+
+### HttpResponse 객체 메서드들
+
+
+| 메서드                | 설명                     | 예제   |
+|----------------------:|-------------------------:|-------:|
+|request.path           | 도메인을 제외한 전체경로 | "/blog/"|
+|request.get_host()     | 도메인 호스트      | "192.168.0.1" "www.example.com"|
+|request.get_full_path()|경로 Query     | "/blog/?print=true"|
+|request.is_secure()    |HTTPS 요청여부 | "True", "False" |
+
+
+
 ### regular expression
 
 | 정규식 기호 |    내용  |
