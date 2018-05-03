@@ -135,6 +135,7 @@ t.render(c)
 'SALLY is 43 years old.'
 ```
 
+<br><br>
 
 
 # 탬플릿 함수 태그
@@ -204,7 +205,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 4. **forloop.last** : 마지막 통과시 **True** 를 출력 
 
 
-반복 회수를 활용
+### 반복 회수를 활용
 
 ```java
 { % for  item  in todo_list % }
@@ -213,7 +214,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 ```
 
 
-객체 사이에 쉽표나, p tag를 추가 
+### 객체 사이에 쉽표나, p tag를 추가 
 
 ```java
 { % for p in places % }{ { p } }{ % if not forloop.last % },
@@ -247,6 +248,7 @@ for 반복문 진행상황에 대한 정보를 제공한다
 **ifequal 인식 불가능 객체 :** True, False, [1,2,3]  {'key':'value'} 는 비교할수 없다 [document](https://docs.djangoproject.com/en/2.0/ref/templates/builtins/)
 {: .notice--danger}
 
+<br><br>
 
 
 # 탬플릿 필터
@@ -265,6 +267,7 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 **| :** 템플릿 객체의 필터를 적용, **:** 필터인수 뒤의 일부 매개변수에 적용 되고 **항상 큰따옴표** 로만 묶인다  
 {: .notice--info}
 
+<br><br>
 
 
 # Django Template 철학과 한계 
@@ -273,6 +276,8 @@ date 필터 내용들 [Document](https://docs.djangoproject.com/en/2.0/ref/templ
 2. **안전**과 **보안**을 보장하고,**확장성** 을 고려한다
 3. 단 **중복성**은 철저하게 제한한다 
 4. **공백** 은 명확하게 처리한다 
+
+<br><br>
 
 
 
