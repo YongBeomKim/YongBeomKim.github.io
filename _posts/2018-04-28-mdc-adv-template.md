@@ -90,7 +90,7 @@ HTML 객체를 django가 생성시, 의도치 않은 Html변수가 포함되어 
 { % endautoescape % }
 ```
 
-
+<br>
 ```
 { % autoescape off % }
 
@@ -112,6 +112,93 @@ HTML 객체를 django가 생성시, 의도치 않은 Html변수가 포함되어 
 { { data | default : "3 &lt; 2"} }   <== 를 사용한다
 { { data | default : "3 > 2" } }     <== Auto Escape 문제가 발생가능하다 
 ```
+
+
+<br>
+## 템플릿 시스템 확장
+
+### 코드 레이아웃
+
+`{ % load review_extras % }`  는 
+
+1. INSTALLED_APPS 로 연결된 `review_extras.py` 파일의 모듈(태그/ 필터)을  로드한다
+2. `models.py`, `views.py` 와 동일한 레벨의 `templatetags폴더` 내부의 `review_extras.py` 파일의 모듈(태그/ 필터)을 로드한다 
+3. `% load %` 로 불러올 수 있는 모듈의 갯수는 제한이 없다
+
+
+<br>
+## 맞춤 템플릿 태그 및 필터
+
+<br>
+### 사용자 정의 템플릿 필터
+1. parametor : 변수의 값은 문자열은 아니다
+2. value : 기본값을 지정가능하고, 생략도 가능하다
+
+<br>
+### 인수를 포함하는 사용자 정의 템플릿 필터
+
+```python
+# modify.py
+
+def cut(value, arg):
+    return value.replace(arg, '')
+```
+
+<br>
+```java
+{ % load modify % }
+{ { somevalue | cut:"0"}}
+```
+
+cut( **value** , **arg**) 에서 1) **value :** 는 **somevalue**, 2) **arg :** 는 **"0"** 로 연결되어 작동된다
+{: .notice--warning} 
+
+
+<br>
+### 인수가 없는 사용자 정의 템플릿 필터
+
+```python
+def lower(value):
+    return value.lower()
+```
+
+대부분의 경우 인수가 없는 필터를 많이 활용한다
+{: .notice--warning} 
+
+
+<br>
+### 사용자 정의 필터 등록
+
+```python
+from django import template
+from django.template.defaultfilters import stringfilter
+
+register = template.Library()
+
+@register.filter
+@stringfilter
+def lower(value):
+    return value.lower()
+```
+
+<br>
+```python
+@register.filter(is_safe=True)
+```
+
+`is_safe=True`를 설정하면 자동 이스케이프 실행없이 raw 데이터를 tempalte로 출력한다. 때문에 이경우에는 <,>,& 등의 포함여부를 잘 살펴봐야 한다
+{:. notice--success} 
+
+<br>
+```python
+@register.filter(needs_autoescape=True)
+def letter_filter(text, autoescape=None):
+    return ....
+```
+
+`needs_autoescape=True`를 설정하면 { % autoescape on/off % } 태그에 영향을 받는다.
+{:. notice--success} 
+
 
 
 **Warning Notice:**

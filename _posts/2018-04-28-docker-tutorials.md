@@ -10,6 +10,41 @@ toc: true
 ---
 
 
+# docker Image & Container
+
+
+## Docker 간단 사용법 
+
+### 참고 Sites
+
+[docker 설치방법 정식 Document](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-from-a-package) 를 따라하자..
+
+[docker Image 삭제 참고사이트](https://www.openmakesoftware.com/docker-image-multiple-repositories/)
+
+[docker 명령어 모음](https://zzsza.github.io/development/2018/04/17/docker-kubernetes/)
+
+[docker 사용자 가이드](http://webkebi.zany.kr:9003/board/bView.asp?bCode=13&aCode=14123)
+
+<br>
+### docker 컨테이너 초기화
+
+```
+$ docker ps -q                 # 실행중 container 목록
+$ docker kill $(docker ps -q)  # 목록 container를 kill 한다
+$ docker rm $(docker ps -a -q) # 종료된 container를 삭제한다
+```
+
+<br>
+### docker 이미지 초기화
+
+```
+$ docker images -f dangling=true                  # docker image 목록 출력
+$ docker rmi $(docker images -q -f dangling=true) # 컨테이너 종료된 image 삭제
+$ docker rmi $(docker images -q)                  # 모든 image 삭제
+```
+
+
+<br>
 ## Docker Settings
 
 [Github](https://github.com/IronicBadger/til/blob/master/docker/change-docker-root.md)
@@ -68,6 +103,7 @@ $ docker ps -a
 ```
 $ docker stop  컨테이너 id
 $ docker rm    컨테이너 id 
+$ docker rm    레포지터리명 : TAG명   # 위로도 안될때 사용하면 되더라
 ```
 
 **stop 와 rm:** 동작중인 컨테이너를 **stop**을 해도, **Container**로 남겨준다면 계속적으로 부담이 된다. **rm** 작업을 통해서 해당 Container 를 제거한 뒤에 **rmi** 이미지 삭제 작업  등이 가능하다
