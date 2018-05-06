@@ -103,3 +103,20 @@ $ chsh -s `which bash`    # bash 를 기본 shell로 변경
 
 `$ sudo chsh -s /bin/bash` 을 사용하면 기본 Bash Shell로 되돌아간다
 {: .notice--success}
+
+
+## Conky manger 설정변경 
+
+위에서 설정 변경을 하다보면 시스템 글씨설정 변경으로 한글이 깨지는 문제가 발생한다. 이를 해결하기 위해 과거의 기억을 떠올리다가 안되서 결국엔 config 파일을 바꿈으로써 해결했다
+
+1. conky manger 를 연다
+2. 적용 테마를 선택한 뒤 'edit text editor' 로 설정파일을 연다
+3. 설정 text 중 아래의 내용에서 폰트명과 크기를 한글에 맞게 입력한다
+
+${voffset 8}${font NanumBarunGothic:size=20}${color}${time %H %M %p}${font}${voffset -8}
+
+${voffset 8}${font NanumBarunGothic:size=15}${color1}${time %A} ${time %e} ${time %B}${font}${voffset -8}
+
+${voffset 8}${font NanumBarunGothic:size=9}${color1}RM $mem/$memmax - HD ${fs_used /}/${fs_size /}${font}${voffset -8}
+
+${voffset 8}${font NanumBarunGothic:size=9}${color1}CPU $freq_g GHz $cpu% - ${if_up wlp1s0}WIFI ${wireless_link_qual wlp1s0}${font}${voffset -8}${endif}
