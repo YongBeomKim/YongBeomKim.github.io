@@ -2,7 +2,7 @@
 title : Zsh & Conky Setting - ubuntu
 last_modified_at: 2018-05-01T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/ubuntu.jpg
+  overlay_image: /assets/images/book/ubuntu.png
 categories:
   - ubuntu
 ---
