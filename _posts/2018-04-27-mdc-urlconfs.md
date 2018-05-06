@@ -1,5 +1,5 @@
 ---
-title : Django MDC - URLconfs
+title : Django MDC - URLconfs & 정규 표현식
 last_modified_at: 2018-04-27T15:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
