@@ -198,14 +198,3 @@ def letter_filter(text, autoescape=None):
 
 `needs_autoescape=True`를 설정하면 { % autoescape on/off % } 태그에 영향을 받는다.
 {:. notice--success} 
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}  
