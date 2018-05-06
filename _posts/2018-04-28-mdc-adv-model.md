@@ -11,9 +11,10 @@ tags:
 toc: true    
 ---
 
-
 # Mastering Django Core
 
+
+<br>
 ## 다대일 값 액세스
 
 
@@ -27,62 +28,79 @@ b.authors.all()
 ```
 
 
-### 외래키에서 엑세스
+### 외래키에서 **메소드**를 활용한 엑세스
 
 ```python
-author = Book.objects.get(first_name='King', last_name='steven')
+b = Book.objects.get(id=50)
+b.publisher                   # <== Book 테이블의 publisher 컬럼
+<Publisher: Apress Publisher> # 필드와 연결된 외래키 값을 보여준다
 
-author.book_set.all()
-author.book_set.count()    # .count() 결과물 갯수
-author.book_set.filter(title__icontain='python')
+b.publisher.website           # <== publisher 컬럼에 외래키 연결 값 직업추출
 ```
 
-**Info Notice:** `Book` 소문자 이름에 `_set`을 합친 `book_set` 메서스를 활용하면 **부모 객체로 이동**하여 **query 결과**를 호출한다 (저자의 모든 책 목록을 호출한다)
+
+### **외래키참조테이블이름_set**  메소드를 활용한 엑세스
+
+```python
+p = Publisher.objects.get(name='Apress')
+p.book_set.filter(title__icontain='django')
+[<Book: the Django Book>, <Book: Pro Django>]
+
+p.book_set.all()
+p.book_set.count()
+p.book_set.filter()
+```
+
+**.book_set :** `참조 테이블 명` 소문자 이름에 `_set`을 합친 `book_set` 메서스를 활용하면 **외래키 참조 기본키 테이블 객체**의 결과 값을 호출한다
 {: .notice--info}
 
 
-### 관리자 QuerySets 추가 정의
-
-```python
-# 모델의 특정조건 메서드를 정의한다
-class KingManager(models.Manager):
-    def get_queryset(self):
-        return super(KingManager, self).get_queryset().filter(author='king')
-```
-
-
-```python
-class Book(models.Model):
-    title       = models.CharField(max_length=100)
-    king_object = KingManager()  # 특정 메서드 결과를 필드에 저장한다
-```
-
-**Book.king_object.all()** 을 사용하면, 'king'이 작성한 책들만 반환한다. **vanilla Manager** 인스턴스 이름으로 설정함에 주의해야한다. **ex) __icontain**, 주의않은경우, 다른 **vanilla Manager** 객체들은 동작이 되지 않는다.
-{: .notice--success}
-
-
-
-## 모델 메서드
-
-### 모델 식별을 위한 고유 메서드들
-
-ex) _get_full_name(self) : 모델의 인스턴스에서 필요한 인자를 추출
+### 사용자 정의 QuerySets 추가
 
 ```python
 # models.py
+from django.db import models
+
+# 모델의 특정조건 메서드를 정의한다
+class NigelManager(models.Manager):
+    def get_queryset(self):
+        return super(NigelManager, self).get_queryset().filter(author='Nigel')
+
+class Book(models.Model):
+    nigel_objects = NigelManager()
+```
+
+**Book.nigel_object.all() :** 를 사용하면, 'Nigel'이 작성한 책들만 반환한다. 메서드 이름을 정의할 때 **vanilla Manager** 인스턴스 이름으로 설정하지 않도록 주의해야한다
+{: .notice--success}
+
+
+<br>
+## 모델 메서드
+
+### 날짜 데이터 특수 메소드
+
+```python
+from django.db import models
 
 class Person(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name  = models.CharField(max_length=50)
- 
-    def _get_full_name(self):
-        return "{} {}".format(self.first_name, self.last_name)
+    birth_date = models.DateField()
 
-    # property : 내부 parametor 접근 (first_name, last_name)
+    def babyboomer_status(self):
+        import datetime
+        if self.birth_date < datetime.date(1945, 8, 1)
+            return "베이비 부머 이전 세대입니다"
+        elif self.birth_date < datetime.date(1965, 1, 1)
+            return "베이비 부머 세대입니다"
+        else:
+            return "베이비 부머 이후 세대입니다"
+
+    def _get_full_name(self):
+        return '{} {}'.format(self.first_name, self.last_name)
     full_name = property(_get_full_name)
 ```
 
-객체의 고유값을 식별하는 URL을 갖는 객체는 다음의 2가지를 정의해야 한다 1) **__str__() :** 객체의 유니코드를 반환, 2) **get_absolute_url() :** 객체의 Url을 추출하는 함수를 정의한다
+**property :** 내부 parametor 접근하는 함수 (first_name, last_name), 
+**_get_full_name(self) :** 모델의 인스턴스에서 필요한 인자추출 메서드를 정의
 {: .notice--success} 
 
 
@@ -99,9 +117,19 @@ class Blog(models.Model):
         do something else()....
 ```
 
+**.save() :** 파라미터 메서드를 호출 후 저장한다
+{: .notice--success}
 
 
+<br>
 ## SQL 쿼리
+
+```python
+from django.db import models
+
+models.Manager.raw(raw_query, params=None, transpations=None)
+```
+
 
 ### SQL 쿼리문 실행
 
@@ -114,23 +142,18 @@ for p in Person.objects.raw('SELECT * FROM my_person'):
 {: .notice--success} 
 
 
-### 사용자 정의 SQL 실행
+### 사용자 정의 SQL 직접실행
 
 ```python
 from django.db import connection
 
 def my_custom_sql(self):
     cursor = connection.cursor()
-    cursor.execute("UPDATE bar SET foo=1 where... ")
+    cursor.execute("UPDATE bar SET foo=1 WHERE ... ")
+    cursor.execute("SELECT foo FROM bar WHERE ...")
     row = cursor.fetchone()
     return row
 ```
 
-**Warning Notice:**
+**db.connection :** 특정 데이터베이스에 대한 연결을 얻을 수 있다
 {: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success} 

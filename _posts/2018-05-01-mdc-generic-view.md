@@ -14,12 +14,16 @@ toc: true
 
 # Mastering Django Core
 
-## **ListView** (Generic View)
+[GenericView 설명서](https://wikidocs.net/9623)
+
+<br>
+## **ListView** (Generic View) 
 
 ### models
 
 ```python
 # models.py
+
 from django.db import models
 
 class Publisher(models.Model):
@@ -31,7 +35,9 @@ class Publisher(models.Model):
 
 ```python
 # views.py
+
 from django.views.generic import ListView
+from .models import Publisher
 
 class PublishList(ListView):
     model = Publisher
@@ -42,11 +48,12 @@ class PublishList(ListView):
 
 ```python
 # urls.py
+
 from django.urls import re_path
 from .views import PublishList
 
 urlpatterns = [
-    re_path(r'^view/$', PublishList.as_view()) 
+    re_path(r'^view/$', PublishList.as_view()), 
     ]
 ```
 
@@ -69,10 +76,14 @@ urlpatterns = [
 {.notice--info}
 
 
-### 사용자 임의의 Template 객체 
+<br>
+## context 조각
+
+### **ListView**와 사용자 Template 객체 
 
 ```python
 # views.py
+
 class PublishList(ListView):
     model = Publisher
     context_object_name = 'Template 전달 객체 이름'
@@ -82,12 +93,11 @@ class PublishList(ListView):
 {.notice--info}
 
 
-
-## context 조각
-
-### 콘텍스트 객체 추가하기
+### **DetailView**와 **Context** 객체 추가
 
 ```python
+# views.py
+
 from django.views.generic  import DetailView
 from .models import Publisher, Book
 
@@ -106,13 +116,14 @@ class PublisherDetail(DetailView):
 ### 객체의 하위집합 내용보기
 
 ```python
-from django.views.generic import DetailView
-from .models import Publisher
 
 class PublisherDetail(DetailView):
-    context_object_name = 'publiser'
+    context_object_name = 'publisher'
     queryset = Publisher.objects.all()
 ```
+
+**context_object_name :** 템플릿 파일에 전달하는 컨텍스트 변수명을 지정 [document](https://wikidocs.net/9623#context_object_name)
+{.notice--info}
 
 **queryset** ListView 등의 필터링 목록을 보다 구체화 한다
 {.notice--info}
@@ -141,12 +152,15 @@ class DjangoBookList(ListView):
     template_name = 'book/django_list.html'
 ```
 
+**template_name :** GenericView 에서 임의이 Template완 연결 파라미터
+{: .notice--success}
 
 
 ## 동적 필터링
 
 ```python
 # views.py
+
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 
@@ -167,17 +181,35 @@ class PublisherBookList(ListView):
 
 ```python
 # models.py
+
 from django.db import models
 
 class Author(models.Model):
-    salutation = models.CharField(max_length=10)
-    name = models.CharField(max_length=200)
-    email = models.EmailField()
-    headhot = models.ImageField(upload_to='author_headshot')
     last_accessed = models.DateTimeField()
 ```
 
+```python
+# views.py
 
+class AuthorDetailview(DetailView)
+    queryset = Author.objects.all()
+
+# 객체를 검색하는 메서드
+def get_object(self):
+    object = super(AuthorDetailview, self).get_object()
+    object.last_accessed = timezone.now()
+    object.save()
+    return object
+```
+
+
+
+
+```
+urlpatterns = [
+    re_path(r'^author/(?P<pk>[0-9]+)/$', AuthorDetailview.as_view(),
+    ]
+```
 
 **Info Notice:** `Book` 소문자 이름에 `_set`을 합친 `book_set` 메서스를 {: {.notice--info}
 
