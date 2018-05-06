@@ -105,7 +105,7 @@ $ chsh -s `which bash`    # bash 를 기본 shell로 변경
 {: .notice--success}
 
 
-## Conky manger 설정변경 
+## Conky manger 설정변경 [blog](https://kjvvv.kr/408707)
 
 위에서 설정 변경을 하다보면 시스템 글씨설정 변경으로 한글이 깨지는 문제가 발생한다. 이를 해결하기 위해 과거의 기억을 떠올리다가 안되서 결국엔 config 파일을 바꿈으로써 해결했다
 
