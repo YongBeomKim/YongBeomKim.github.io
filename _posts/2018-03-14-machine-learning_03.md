@@ -1,11 +1,10 @@
 ---
 title : 웹을 위한 머신러닝 3 - 추천시스템
 last_modified_at: 2018-03-14T18:45:06-05:00
+header:
+  overlay_image: /assets/images/book/machine-learning.jpg
 categories:
-  - Quant
-tags: 
-    - python
-    - ml
+  - machine learning
 toc: true
 ---
 
