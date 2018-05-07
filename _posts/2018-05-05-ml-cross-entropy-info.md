@@ -1,5 +1,5 @@
 ---
-title : [머신러닝] 크로스 엔트로피
+title : 머신러닝 - 크로스 엔트로피
 last_modified_at: 2018-05-04T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/machine-learning.jpg

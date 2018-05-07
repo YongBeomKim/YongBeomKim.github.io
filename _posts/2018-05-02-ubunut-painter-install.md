@@ -1,5 +1,5 @@
 ---
-title : Simple Painter - ubuntu
+title : ubuntu - Simple Painter
 last_modified_at: 2018-05-01T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/painter.png
