@@ -1,5 +1,5 @@
 ---
-title : Django MDC - 일반 View
+title : django 일반 View
 last_modified_at: 2018-05-01T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg

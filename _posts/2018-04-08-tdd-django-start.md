@@ -1,5 +1,5 @@
 ---
-title : Django로 배우는 테스트 주도 개발 1
+title : django로 배우는 테스트 주도 개발 1
 last_modified_at: 2018-04-08T10:45:06-05:00
 tags: 
     - tdd
