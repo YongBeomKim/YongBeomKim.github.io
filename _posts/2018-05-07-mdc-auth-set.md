@@ -47,6 +47,25 @@ u.save()
 ```
 
 
+<br>
+## 허가 및 권한 부여
+
+### djanog Code 로 사용 권한 만들기
+
+`META` 클래스에서 사용자 권한을 직접 작성가능하다. 
+
+```python
+from books.models import Book
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+
+content_type = ContentType.objects.get_for_model(Book)
+Permission = Permission.objects.create(codename='can_publish',
+                                      name = 'Can Publish Reviews',
+                                      content_type=content_type)
+```
+
+
 
 <br>
 ## 웹 요청의 인증 
@@ -145,19 +164,68 @@ urlpatterns = [
 
 
 <br>
-## 테스트를 통과한 로그인 사용자에 대한 Access 제한
+## 로그인 사용자에 대한 Access 제한
+
+### 관리자가 원하는 mail 도메인을 확인한다
+
+```python
+def my_view(request):
+    if not request.user.email.endswith('@django.com'):
+        return HttpResponse("You can't leave a review for this book")
+```
 
 
+@ user_passes_test 데코레이터를 활용하여 구현하기 
 
+```python
+from django.contrib.auth.decorators import user_passes_test
 
-**ListView의 Template:**
+def email_check(user):
+    return user.email.endswith('@django.com')
+
+@user_passes_test(email_check)
+def my_view(request):
+    pass
+
+@user_passes_test(email_check, login_url='/login/')
+def my_view(request):
+    pass
+```
+
+**@user_passes_test**는 필수인자를 취하고, 자동으로 익명여부를 판단한다
 {: .notice--info}
 
-**Warning Notice:**
-{: .notice--warning} 
 
-**Danger Notice:**
-{: .notice--danger}
+<br>
+## 인증 뷰
 
-**Success Notice:**
-{: .notice--success}  
+```
+urls.py
+
+urlpatterns = [
+    re_path(r'^/login/$', include('django.contrib.auth.urls'))
+    ]
+```
+
+
+### 기본 urls 경로명
+
+1. `/login/`
+2. `/logout/`
+3. `/password_change/`
+4. `/password_change_done/`
+5. `/password_reset/`
+6. `/password_reset_done/`
+7. `/password_reset_confirm/`
+8. `/password_reset_complete/`
+
+
+<br>
+
+## 템플릿의 데이터 인증
+
+로그인 사용자의 권한은 템플릿 변수 `{ { perm } }` 객체(permission)에 저장된다. 이는 `django.contrib.auth.context_processors.PermWrapper` 의 인스턴스객체로 생성된다
+
+로그인 사용자 이름이 `'foo'` 인 경우에는 `{ { prem.foo } }` 객체로 권한을 확인 가능하다 
+
+`{ { perm.foo.can_vote } }` 는 `foo` 사용자의 `can_vote` 권한이 있는지를 ** True / False**로 출력한다. 이는 `{ % if % }` 구문을 활용하면 확인 가능하다
