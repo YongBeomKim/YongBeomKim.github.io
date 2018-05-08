@@ -68,7 +68,7 @@ def my_view(request):
 ```
 
 모듈 호출시 **authenticate**을 먼저 불러온 뒤 **login** 모듈을 호출해야 성공적인 사용자 설정 모듈을 활용 가능하다 
-{: .notice--success}
+{: .notice--info}
 
 
 ### views.py 에서 사용자 로그아웃
@@ -80,14 +80,16 @@ def logout_view(request):
     logout(request)
 ```
 
-**사용자 특정없이** 함수만 작동하면 바로 로그아웃이 되고 세선에서 사용자 정보가 삭제된다
-{: .notice--success}
+**사용자 특정없이** 함수 작동만으로 바로 로그아웃과 세션정보를 삭제한다
+{: .notice--info}
  
+ **Check in mariaDB:** postgresql 보다 직관적이여서, 명령어를 익히기 용이하다 
+{: .notice--info}
 
 ### 로그인 사용자에 대한 접근제한
 
 **ListView의 Template:**
-{.notice--info}
+{: .notice--info}
 
 **Warning Notice:**
 {: .notice--warning} 
