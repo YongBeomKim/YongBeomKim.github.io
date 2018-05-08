@@ -1,5 +1,5 @@
 ---
-title : Django MDC - 사용자 인증
+title : Django - 사용자 인증
 last_modified_at: 2018-05-07T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
