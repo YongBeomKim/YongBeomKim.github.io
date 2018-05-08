@@ -83,10 +83,72 @@ def logout_view(request):
 **사용자 특정없이** 함수 작동만으로 바로 로그아웃과 세션정보를 삭제한다
 {: .notice--info}
  
- **Check in mariaDB:** postgresql 보다 직관적이여서, 명령어를 익히기 용이하다 
-{: .notice--info}
 
-### 로그인 사용자에 대한 접근제한
+### 로그인 사용자만 접근가능 함수 
+
+```python
+from django.shortcuts import redirect
+
+# 로그인 페이지로 redirect
+def my_view(request):
+    if not request.user.is_authenticated():
+        return redirect('/login/?next=%s' %request.path)
+
+# 로그인 오류 메세지 출력 html을 연결
+def my_view(request):
+    if not request.user.is_authenticated():
+        return redirect(request, 'books/login_error.html')
+```
+
+
+### 로그인 데코레이터
+
+@login_required
+
+```python
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def my_view(request):
+    return redirect('/login/?next=%s' %request.path)
+```
+
+**@login_required** 는 현재의 **query 경로**문자열을 **next** 쿼리 문자열 파라미터에 저장하는데, 사용자 임의로 파라미터이름을 바꿀수 있다
+
+```python
+@login_required(redirect_field_name='my_redirect_field')
+def my_view(request):
+    ...
+```
+
+또는 **login url** 또는 **template**이름을 임의로 지정할 필요가 있는 경우에도 활용 가능하다 
+
+```python
+@login_required(login_url='account/login/main')
+def my_view(request):
+    ...
+```
+
+
+### urls.py
+
+login url 경로에 login view 가 올바르게 연결되었는지 확인하는 함수를 추가한다
+
+```python
+# ./views.py와 혼동을 방지하기 위해 이름을 변경한다
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    re_path(r'^accounts/login/$', auth_views.login),] 
+```
+
+
+
+<br>
+## 테스트를 통과한 로그인 사용자에 대한 Access 제한
+
+
+
 
 **ListView의 Template:**
 {: .notice--info}
