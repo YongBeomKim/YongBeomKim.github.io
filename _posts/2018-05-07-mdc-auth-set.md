@@ -1,6 +1,5 @@
 ---
-title : Django MDC - 장고에서 사용자 인증
-일반 View
+title : Django MDC - 사용자 인증
 last_modified_at: 2018-05-07T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -81,9 +80,9 @@ def logout_view(request):
     logout(request)
 ```
 
-**사용자 특정없이** 함수만 작동하면 바로 로그아웃 된다
+**사용자 특정없이** 함수만 작동하면 바로 로그아웃이 되고 세선에서 사용자 정보가 삭제된다
 {: .notice--success}
-
+ 
 
 ### 로그인 사용자에 대한 접근제한
 
