@@ -184,15 +184,3 @@ compiled with version: 7.2.0 on 09 May 2018 05:52:45....
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
 os.environ["DJANGO_SETTINGS_MODULE"] = "server.settings"
 ```
-
-**ListView의 Template:**
-{: .notice--info}
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
