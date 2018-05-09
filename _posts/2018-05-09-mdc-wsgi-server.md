@@ -16,6 +16,7 @@ toc: true
 <br>
 ## Apache 의 mod_wsgi 서버 설치
 
+<img src="http://i.imgur.com/haqK19z.png"/> <br>
 
 [설정 blog](http://covenant.tistory.com/22)
 [설정 blog](http://www.hides.kr/868)
