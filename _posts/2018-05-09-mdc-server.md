@@ -106,13 +106,14 @@ Alias /static /home/사용자/django/lib/python3.6/site-packages/rest_framework/
 </Directory>  
 ```
 
+
 ### django 의 wsgi.py 을 연결한다
 
-<Directory /home/app/wsgi.py 경로>
-<Files wsgi.py>
-Require all granted
-</Files>
-</Directory>
+> <Directory /home/app/wsgi.py 경로>
+> <Files wsgi.py>
+> Require all granted
+> </Files>
+> </Directory>
 
 ```
 <Directory /home/markbaum/Python/Source/Django/project/server>
@@ -123,6 +124,7 @@ Require all granted
 ```
 
 
+### 
 
 ```
 WSGIScriptAlias / /home/사용자/Django/mysite/wsgi.py       # django wsgi.py
