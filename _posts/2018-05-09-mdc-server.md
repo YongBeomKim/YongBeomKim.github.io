@@ -94,10 +94,10 @@ settings.py 설정에서 `ALLOWED_HOSTS = ['*']` 로 변경한다
 
 ### rest-framework 를 설정에 추가한다 
 
-> Alias /static /home/사용자/static
-> <Directory /home/사용자/static>
-> Require all granted
-> </Directory>
+> Alias /static /home/사용자/static <br>
+> < Directory /home/사용자/static > <br>
+> Require all granted <br>
+> < / Directory > <br>
 
 ```
 Alias /static /home/사용자/django/lib/python3.6/site-packages/rest_framework/static
