@@ -16,7 +16,11 @@ toc: true
 <br>
 ## Apache 의 mod_wsgi 서버 설치
 
-<img src="http://i.imgur.com/haqK19z.png"/> <br>
+<figure class="align-center">
+  <img src="http://i.imgur.com/haqK19z.png" alt="">
+  <figcaption> uwsgi 구동원리 전개도</figcaption>
+</figure> 
+
 
 [설정 blog](http://covenant.tistory.com/22)
 [설정 blog](http://www.hides.kr/868)
