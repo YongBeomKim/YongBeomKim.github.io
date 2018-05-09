@@ -94,13 +94,10 @@ settings.py 설정에서 `ALLOWED_HOSTS = ['*']` 로 변경한다
 
 ### rest-framework 를 설정에 추가한다 
 
-```
-Alias /static /home/프로젝트이름/static
-<Directory /home/프로젝트이름/static>
-Require all granted
-</Directory>
-```
-
+> Alias /static /home/사용자/static
+> <Directory /home/사용자/static>
+> Require all granted
+> </Directory>
 
 ```
 Alias /static /home/사용자/django/lib/python3.6/site-packages/rest_framework/static
@@ -109,7 +106,7 @@ Alias /static /home/사용자/django/lib/python3.6/site-packages/rest_framework/
 </Directory>  
 ```
 
-django 의 wsgi.py 을 연결한다
+### django 의 wsgi.py 을 연결한다
 
 <Directory /home/app/wsgi.py 경로>
 <Files wsgi.py>
