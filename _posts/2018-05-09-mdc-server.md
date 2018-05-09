@@ -110,9 +110,9 @@ Alias /static /home/사용자/django/lib/python3.6/site-packages/rest_framework/
 ### django 의 wsgi.py 을 연결한다
 
 > <Directory /home/app/wsgi.py 경로> <br>
-> <Files wsgi.py> <br>
+> < Files wsgi.py > <br>
 > Require all granted  <br>
-> </Files> <br>
+> < / Files > <br>
 > </Directory> <br>
 
 ```
