@@ -17,11 +17,12 @@ toc: true
 ## Apache 의 mod_wsgi 서버 설치
 
 <figure class="align-center">
-  <img src="http://i.imgur.com/haqK19z.png" alt="">
+  <img src="https://static.vndeveloper.com/uploads/2017/07/django-behind-uwsgi-nginx.png" alt="">
   <figcaption> uwsgi 구동원리 전개도</figcaption>
 </figure> 
 
 
+[정식 Document](http://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
 [설정 blog](http://covenant.tistory.com/22)
 [설정 blog](http://www.hides.kr/868)
 [설정 Blog](http://yujuwon.tistory.com/entry/Django-Django%EC%99%80-apache-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0-%EC%9A%B0%EB%B6%84%ED%88%AC)
@@ -40,23 +41,23 @@ $ sudo apt-get install libapache2-mod-wsgi-py3  # 파이썬 연결 모듈
 
 ### mod_wsgi 및 apache2 설치확인
 
-1. `$ uwsgi` 로 설치를 확인한다
-2. apache2 는 `https://localhost:80` 로 접속하여 apache2 설치를 확인한다
+1. **`$ uwsgi`** 로 설치를 확인한다
+2. apache2 는 **`https://localhost:80`** 로 접속하여 apache2 설치를 확인한다
 
 <img width="300" src="https://www.ostechnix.com/wp-content/uploads/2016/02/Apache-test-page.png" /><br>
 
 
 ### django 사용 port를 연다
 
-1. `$ sudo ufw allow 8000` 로 `ufw` 방화벽에서 해당포트를 개방한다
-2. `$ sudo iptables -I INPUT -p tcp --dport 8000 -j ACCEPT` 로 `iptables`의 해당포트를 개방한다
-3. `python manage.py runserver 0.0.0.0:8000` 로 해당포트가 열린걸 확인한다
+1. **`$ sudo ufw allow 8000`** 로 `ufw` 방화벽에서 해당포트를 개방한다
+2. **`$ sudo iptables -I INPUT -p tcp --dport 8000 -j ACCEPT`** 로 `iptables`의 해당포트를 개방한다
+3. **`$ python manage.py runserver 0.0.0.0:8000`** 로 해당포트가 열린걸 확인한다
 
 
 <br>
 ## apache2에서 설정을 추가한다
 
-### **/etc/apache2/ports.conf**
+### **/etc/apache2/ports.conf** 설정변경
 
 <strike>`$ sudo nano /etc/apache2/ports.conf` 파일의 port 설정값을 추가한다 (80 포트는 기본 포트 이므로 **django 포트주소를 추가**한다)</strike>
 
@@ -71,9 +72,9 @@ Listen 8000
 
 
 
-### **/etc/apache2/sites-available/000-default.conf**
+### **/etc/apache2/sites-available/000-default.conf** 설정변경
 
-`$ sudo nano /etc/apache2/sites-available/000-default.conf` 여기도 포트 80번은 기본값이므로, django 포트 주소를 추가한다.
+**`$ sudo nano /etc/apache2/sites-available/000-default.conf`** 여기도 포트 80번은 기본값이므로, django 포트 주소를 추가한다.
 
 > WSGIDaemonProcess &nbsp; 프로젝트 &nbsp; python-home=/home/가상경로/env &nbsp; python-path=/home/프로젝트경로 <br>
 > WSGIProcessGroup rest <br>
