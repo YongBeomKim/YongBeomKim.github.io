@@ -42,7 +42,7 @@ def my_image(request):
     return HttpResponse(image_data, content_type="image/png")
 ```
 
-파일경로는 **project folder**를 기준으로 **./** 상대경로를 정의한다
+파일경로는 **project folder**를 기준으로 **./ : 상대경로** 로 정의한다
 {: .notice--info}
 
 
@@ -63,10 +63,7 @@ def some_view(request):
     return response
 ```
 
-**response** 객체의 타입을 정의 -->  **writer (인스턴스 객체)** 로 객체를 생성 -->  **response** 최종 객체를 출력한다
-{: .notice--info}
-
-**attachment;** 객체의 타입을 정의 -->  **writer (인스턴스 객체)** 로 객체를 생성 -->  **response** 최종 객체를 출력한다
+**response** 로 생성할 객체를 정의 -->  **writer (인스턴스 객체)** 로 객체를 생성 -->  **response** 최종 객체를 출력한다
 {: .notice--info}
 
 **MIME 타입**을 정의하고, **response['Content-Disposition']** 헤더를 지정하면 웹브라우저 기본 객체가 아닌 사용자 임의의 포맷을 호출한다(**csv** 객체를 생성) HttpResponse를 통해서 객체를 **download** 한다 
@@ -147,8 +144,8 @@ from django.http import HttpResponse
 
 def getfiles(request):
     # [압축 대상파일 목록] 과 '입축파일이름' 을 정의한다
-    filenames = ["/tmp/file1.txt", "/tmp/file2.txt"]
-    zip_subdir = "somefiles"
+    filenames    = ["/tmp/file1.txt", "/tmp/file2.txt"]
+    zip_subdir   = "zipfile"
     zip_filename = "%s.zip" % zip_subdir
     s = StringIO.StringIO()
 
@@ -167,6 +164,35 @@ def getfiles(request):
         'attachment; filename=%s' % zip_filename
     return response
 ```
+
+
+
+### Pillow 이미지 썸네일 만들기
+
+```python
+def webimage_thumb(img_url, img_size):
+    import os, requests
+    from PIL import Image
+    image  = requests.get(img_url).content # content : RawData
+    file   = os.path.basename(img_url)     # URL에서 파일명 추출
+    thumb  = file.split(".")[0] + '_thumb.' + file.split(".")[1]
+    result = thumb
+    with open(file, 'wb') as f:            # 'wb' 쓰기권한 저장
+        f.write(image)
+    with Image.open(file) as im:
+        im.thumbnail(img_size)  # 원본의 크기를 변경
+        im.save(thumb) # 여기서 이미지 파일 '인스턴스'가 날라간다
+    return result
+
+url = "http://image.chosun.com/sitedata/image/201709/14/2017091401592_0.jpg"
+web_thumb = webimage_thumb(url, (150,150))
+
+from IPython.display import Image as Ipy_Image
+Ipy_Image(filename=web_thumb)    
+```
+
+**from PIL import Image** 이 모듈 하나만 있으면 작동이 된다. jpeg도 최신버젼을 사용하니까 무난하게 실행됨. 단 **thumbnail 모듈**인만큼 크기를 키워도 늘어나진 않고, 줄여도 원본 비율을 유지한다
+{: .notice-info} 
 
 **ListView의 Template:**
 {: .notice--info}
