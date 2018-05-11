@@ -94,6 +94,33 @@ E627DDBA 960A2153 69A2D98A C87C0607
 ```
 
 
+
+<br>
+
+## Emmet 단축키 모음
+
+[Emmet gitbook 한국어](https://jeonghakhur.gitbooks.io/sublime-text3/content/package-emmet.html)
+
+HTML의 다중 자손들을 편집하다 보면 반복적인 내용을 계속 입력해야 하는데, 이런 부분에 대한 단축문법을 제공하는 유용한 Package 이다.
+
+
+아래의 단축문법을 입력한 뒤 **Tab** 을 누르면 완성된 Tag 목록을 생성한다
+
+|문법   |예제   |설명   |
+|------:|------:|------:|
+| >     | ul>li  | Child |
+| +     | p+bq   |Sibling|
+|^      | p>span+em^bq  |  Climb-up |
+|()     | (header>ul>li*2>a)+footer |   Grouping |
+|*      | ul>li*5     |Multiplication |
+|$      | ul>li.item$*5 |  numbering |
+|#, .   | form#search.wide |   ID and CLASS attributes |
+| []    | td[rowspan=2 colspan=3 title] |  Custom attributes |
+| {}    | p>{Click }+a{here}+{ to continue} |  Text |
+|       | table>.row>.col     | Implicit tag names(암시적 태그) |
+
+
+
 **ListView의 Template:**
 {: .notice--info}
 
