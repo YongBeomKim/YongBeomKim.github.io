@@ -134,9 +134,9 @@ def some_view(request):
 
 
 
-### Zipfiles 
+### Zipfiles 압축파일 생성 및 추출하기 
 
-[출처](https://stackoverflow.com/questions/12881294/django-create-a-zip-of-multiple-files-and-make-it-downloadable)
+[Python Source 출처](https://stackoverflow.com/questions/12881294/django-create-a-zip-of-multiple-files-and-make-it-downloadable)
 
 ```python
 import os, zipfile, StringIO
@@ -192,16 +192,4 @@ Ipy_Image(filename=web_thumb)
 ```
 
 **from PIL import Image** 이 모듈 하나만 있으면 작동이 된다. jpeg도 최신버젼을 사용하니까 무난하게 실행됨. 단 **thumbnail 모듈**인만큼 크기를 키워도 늘어나진 않고, 줄여도 원본 비율을 유지한다
-{: .notice-info} 
-
-**ListView의 Template:**
-{: .notice--info}
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
+{: .notice--info} 
