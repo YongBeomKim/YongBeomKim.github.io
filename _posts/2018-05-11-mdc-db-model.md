@@ -66,6 +66,34 @@ E627DDBA 960A2153 69A2D98A C87C0607
 **sublime text2** 용으로 업그레이드를 요구한다고 나오지만.. 그냥 쌩까자...
 {: .notice--info}
 
+<br>
+
+## Build System 추가하기
+
+### 윈도우의 경우
+
+서브라임텍스트3 에서 **Tools > Build System > New Build System** 을 선택한 뒤
+
+```
+{
+"cmd": ["c:\\ProgramFiles\\Google\\Chrome\\Application\\chrome.exe","$file"] 
+}
+```
+
+경로명은 개별 설정에 맞게 적어준다.[blog](http://megaton111.cafe24.com/2017/01/07/%EC%84%9C%EB%B8%8C%EB%9D%BC%EC%9E%84%ED%85%8D%EC%8A%A4%ED%8A%B83-%EC%97%90%EC%84%9C-html%ED%8C%8C%EC%9D%BC-%ED%81%AC%EB%A1%AC%EC%9C%BC%EB%A1%9C-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0/) 찾는방법은 **돋보기**에서 해당 브라우저를 검색한 뒤, **바로가기 파일**을 찾아서 **속성**을 열면 해당 파일을 경로가 있는 내용을 찾을 수 있다. **경로명의 '\'를 하나씩 더 추가**해 주면 위의 동작을 실행 됨을 볼 수 있다.
+{: .notice--info}
+
+
+### 리눅스의 경우
+
+위와 같은 경로로 실행하면 결과물은 `/home/markbaum/.config/sublime-text-3/Packages/User` 에 저장된다 
+
+```
+{  "cmd" : ["/usr/bin/firefox","$file"]  }       # FireFox의 경우
+{  "cmd" : ["/usr/bin/google-chrome","$file"] }  # chrome 의 경우 
+```
+
+
 **ListView의 Template:**
 {: .notice--info}
 
