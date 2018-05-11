@@ -19,8 +19,9 @@ toc: true
 
 ## MIME 유형을 사용하여 파일을 연결한다
 
-|확장자 |    문서 종류    |  MIME 타입|
-+-------+-----------------+-----------+
+
+|확장자  |    문서 종류     |  MIME 타입 |
+|-------:|-----------------:|-----------:|
 |.csv   | Comma-separated values (CSV) |    text/csv     |
 |.epub  | Electronic publication (EPUB) | application/epub+zip |
 |.pdf   | Adobe Portable Document Format (PDF) |   application/pdf |
