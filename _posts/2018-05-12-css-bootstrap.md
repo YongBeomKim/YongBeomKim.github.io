@@ -67,11 +67,11 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 
 ### column  modify  - push/ pull- (number)
 
-**col-md-**
+**col-md- :**
 
 <figure class="align-center">
   <img src="https://www.infragistics.com/community/cfs-filesystemfile/__key/CommunityServer.Blogs.Components.WeblogFiles/dhananjay_5F00_kumar.Maria_5F00_Blogs.Boostrap/0488.DJ_5F00_post_5F00_3.png" alt="">
-  <figcaption> <strong>col-md-12 :</strong> 12 전체 길이를 12로 기준삼아서 분할조절 활용하면 된다</figcaption>
+  <figcaption> <strong>col-md-12 :</strong> 전체 길이를 **12로** 기준삼아 분할조절을 활용한다</figcaption>
 </figure> 
 
 1. **col-md-3 :**  <small>column modify 3 줄 차지하는 객체</small> 
@@ -79,7 +79,7 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 3. **col-md-push-3 :** 객체를 3줄 단위로 오른쪽 이동
 
 
-**col-md-push-(num), col-md-pull-(num) :** 객체 이동옵션은 길이를 정의한 객체에 한해서 적용되므로 **class="col-md-10 col-push-2"** 와 같은 방법으로 적용해야한다
+**col-md-push-(num), col-md-pull-(num) :** 과 같은 **객체 이동옵션**은 길이를 정의한 객체에 한해서 적용되므로 **class="col-md-10 col-push-2"** 와 같은 방법으로 적용한다
 {: .notice--info}
 
 
