@@ -87,6 +87,8 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 
 ## Typo Graphy
 
+### font-family
+
 ```css
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -97,8 +99,10 @@ body {
 }
 ```
 
+
 **Helvetica Neue :** 부트스트랩 기본 글꼴 설정값으로, 해당 폰트가 없으면 Arial 등을 순차적으로 찾아서 적용한다. 대한민국의 경우 대표적인 **"맑은 고딕"** 을 추가해 주면 환경별 차이를 줄일 수 있다
 {: .notice--info}
+
 
 ```css
 body {
@@ -109,6 +113,22 @@ body {
 
 
 
+### @ font-face
+
+CSS 분법을 사용하여 font 객체 추가하기 [web info](https://www.cmsfactory.net/how-to-download-nanumgothic-webfonts)
+
+```css
+@font-face{
+  font-family:'NanumGothic';
+  src: url("//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot");
+  src:local(""), url('url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff') format("woff");
+}
+  body{
+    font-family: "Helvetica Neue", Helvetica, Arial,"맑은 고딕","NanumGothic",  sans-serif;
+  }
+```
+
+CSS 파일에 직접 @font-face 속성을 이용하여 처리함이 가정 명확하고, Google font에서 제공되는 Nanum Brush ,Hanna 등의 여러 폰트를 직업 가져와서 적용한다
 
 
 | box 속성 | 내용 |
