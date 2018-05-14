@@ -36,7 +36,18 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 ## Bootstrap 속성 추가
 
 ```css
-  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
+  .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
+  .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, 
+  .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, 
+  .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
+  .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
+  .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, 
+  .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, 
+  .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
+  .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, 
+  .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, 
+  .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
     border: 1px solid black;
     padding: 10px;
   }
@@ -51,13 +62,20 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 
 
 <br>
+## Bootstrap 화면 분할하기
 
-## Bootstrap 속성 추가
+
+### column  modify  - push/ pull- (number)
 
 <figure class="align-center">
   <img src="https://www.infragistics.com/community/cfs-filesystemfile/__key/CommunityServer.Blogs.Components.WeblogFiles/dhananjay_5F00_kumar.Maria_5F00_Blogs.Boostrap/0488.DJ_5F00_post_5F00_3.png" alt="">
   <figcaption> <strong>col-md-12 :</strong> 12 전체 길이를 12로 기준삼아서 분할조절 활용하면 된다</figcaption>
 </figure> 
+
+1. **col-md-3 :**  column modify 3 줄 차지하는 객체 
+2. **col-md-pull-3 :** 객체를 3줄 단위로 왼족으로 이동 (길이는 앞에서 정의한 그대로 적용되므로 class="col-md-10 col-push-2" 와 같은 방법으로 적용한다 )
+3. **col-md-push-3 :** 객체를 3줄 단위로 오른쪽 이동
+
 
 | box 속성 | 내용 |
 |---------:|-----:|
