@@ -83,6 +83,33 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 {: .notice--info}
 
 
+<br>
+
+## Typo Graphy
+
+```css
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;        // 글꼴크기
+  line-height: 1.425;     // 행간크기
+  color: #333;            // 글꼴 색 : 진한회색
+  background-color: #fff; // 배경 색 : 흰색
+}
+```
+
+**Helvetica Neue :** 부트스트랩 기본 글꼴 설정값으로, 해당 폰트가 없으면 Arial 등을 순차적으로 찾아서 적용한다. 대한민국의 경우 대표적인 **"맑은 고딕"** 을 추가해 주면 환경별 차이를 줄일 수 있다
+```css
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, 
+               "맑은 고딕", "Malgun gothic", sans-serif;
+}
+```
+{: .notice--info}
+
+
+
+
+
 | box 속성 | 내용 |
 |---------:|-----:|
 | Content  | 객체 |
