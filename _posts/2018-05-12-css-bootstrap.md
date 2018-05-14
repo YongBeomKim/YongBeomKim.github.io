@@ -98,13 +98,14 @@ body {
 ```
 
 **Helvetica Neue :** 부트스트랩 기본 글꼴 설정값으로, 해당 폰트가 없으면 Arial 등을 순차적으로 찾아서 적용한다. 대한민국의 경우 대표적인 **"맑은 고딕"** 을 추가해 주면 환경별 차이를 줄일 수 있다
+{: .notice--info}
+
 ```css
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, 
                "맑은 고딕", "Malgun gothic", sans-serif;
 }
 ```
-{: .notice--info}
 
 
 
