@@ -87,7 +87,10 @@ script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"
 
 ## Typo Graphy
 
-### font-family
+[구글 한글폰트 사용법](https://fonts.google.com/?subset=korean)
+
+
+### font-family 기본설정 옵션들
 
 ```css
 body {
@@ -98,7 +101,6 @@ body {
   background-color: #fff; // 배경 색 : 흰색
 }
 ```
-
 
 **Helvetica Neue :** 부트스트랩 기본 글꼴 설정값으로, 해당 폰트가 없으면 Arial 등을 순차적으로 찾아서 적용한다. 대한민국의 경우 대표적인 **"맑은 고딕"** 을 추가해 주면 환경별 차이를 줄일 수 있다
 {: .notice--info}
@@ -111,6 +113,17 @@ body {
 }
 ```
 
+
+### @ import 
+
+```html
+<style>
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon');
+</style>
+```
+
+**@import** 구문을 사용하면, 본문 가운데라도 **style** 태그를 활용하여 손쉽게 외부 폰트를 추가한 뒤 tag 내부에서 스타일 속성을 활용하여  `font-family: 'Do Hyeon', sans-serif;`  와 같은 방식으로 깔끔하게 적용 가능하다
+{: .notice--info}
 
 
 ### @ font-face
@@ -129,6 +142,56 @@ CSS 분법을 사용하여 font 객체 추가하기 [web info](https://www.cmsfa
 ```
 
 CSS 파일에 직접 @font-face 속성을 이용하여 처리함이 가정 명확하고, Google font에서 제공되는 Nanum Brush ,Hanna 등의 여러 폰트를 직업 가져와서 적용한다
+{: .notice--info}
+
+
+### Google 의 외부폰트 활용
+
+[Do+Hyeon 폰트 안내 페이지](https://fonts.google.com/specimen/Do+Hyeon?selection.family=Do+Hyeon)
+
+```css
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<style type="text/css">
+  body{
+  font-family: 'Do Hyeon', sans-serif;
+}
+```
+
+
+## Font 관련 속성들
+
+### 문단정렬
+
+| class 선택자  | 내용 |
+|--------------:|-----:|
+| .text-left    | 왼쪽정렬 |
+| .text-center  | 가운데 정렬 |
+| .text-right   | 오른쪽 정렬 |
+
+
+### 강조 class
+
+<div>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" >
+<p class="text-primary">.text-primary</p>
+<p class="text-secondary">.text-secondary</p>
+<p class="text-success">.text-success</p>
+<p class="text-danger">.text-danger</p>
+<p class="text-warning">.text-warning</p>
+<p class="text-info">.text-info</p>
+<p class="text-light bg-dark">.text-light</p>
+<p class="text-dark">.text-dark</p>
+<p class="text-muted">.text-muted</p>
+<p class="text-white bg-dark">.text-white</p>
+<div>
+
+
+
+`.text-muted`, `.text-primary`    | 왼쪽정렬 |
+
+
+
+
 
 
 | box 속성 | 내용 |
