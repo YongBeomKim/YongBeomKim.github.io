@@ -18,9 +18,10 @@ toc: true
 2장 부트스트랩 사이트 제작
 
 <figure class="align-center">
-  <img src="http://cfile23.uf.tistory.com/image/224B074554617E02218453" width="200" alt="">
-  <figcaption> <strong>col-md-12 :</strong> 전체 길이를 **12로** 기준삼아 분할조절을 활용한다</figcaption>
+  <img src="http://cfile23.uf.tistory.com/image/224B074554617E02218453" width=200 alt="">
+  <figcaption> 참고도서 </figcaption>
 </figure> 
+ 
 
 [Bootstrap 정식 Document](http://bootstrapk.com/css/)
 [Bootstrap 간단 개념 설명서](http://unikys.tistory.com/394)
