@@ -22,6 +22,7 @@ toc: true
   <figcaption> <strong>col-md-12 :</strong> 전체 길이를 **12로** 기준삼아 분할조절을 활용한다</figcaption>
 </figure> 
 
+[Bootstrap 정식 Document](http://bootstrapk.com/css/)
 [Bootstrap 간단 개념 설명서](http://unikys.tistory.com/394)
 
 실무자 블로그 글 중에 **https://materializecss.com/** 의 스타일을 더 추천하더라. 아직 나는 초보니까 ㅜㅜ... Bootstrap의 스타일을 익힌 뒤 **materializecss**을 확장해 나아가자  [사용자 blog](https://medium.com/chequer/materializecss-%EC%A0%81%EC%9A%A9%ED%9B%84%EA%B8%B0-b5ea72f4bc56)
