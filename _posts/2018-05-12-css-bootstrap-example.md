@@ -103,14 +103,3 @@ toc: true
 ## Carousel 이미지 자동 슬라이드
 
 [Document](http://bootstrap4.kr/docs/4.0/components/carousel/)
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
