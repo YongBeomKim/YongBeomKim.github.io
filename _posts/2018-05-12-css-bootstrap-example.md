@@ -17,6 +17,7 @@ toc: true
 1장 부트스트랩 환경과 구조<br>
 2장 부트스트랩 사이트 제작
 
+[Django 적용](https://tutorial.djangogirls.org/ko/css/)<br>
 [정식 Document](http://bootstrapk.com/css/) <br>
 [Blog Document](http://maczniak.github.io/bootstrap/components.html)<br>
 [간단 설명서](http://unikys.tistory.com/394)
@@ -97,6 +98,11 @@ toc: true
 </nav>
 ```
 
+
+<br>
+## Carousel 이미지 자동 슬라이드
+
+[Document](http://bootstrap4.kr/docs/4.0/components/carousel/)
 
 
 
