@@ -16,7 +16,7 @@ toc: true
 [Document](https://materializecss.com/css-transitions.html)<br>
 [사용자 blog](https://medium.com/chequer/materializecss-%EC%A0%81%EC%9A%A9%ED%9B%84%EA%B8%B0-b5ea72f4bc56)
 
-우선 bootstrap으로 Django를 꾸미고, materializecss 로 보완하면서 Django 결과물을 꾸미면서 작업을 진행해 나아가자
+우선 bootstrap으로 Django를 꾸미고, materializecss 로 보완하면서 작업을 진행하자 (to be a Big fail, to do a Big Project !!)
 
 
 
