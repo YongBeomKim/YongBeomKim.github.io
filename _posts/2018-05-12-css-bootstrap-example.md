@@ -43,6 +43,50 @@ toc: true
 </figure> 
 
 
+<br>
+## Page 패널 제목너비 적용하기
+
+```html
+<div class="jumbotron">
+  <div class="container">
+    <h1>Jumbotron  내부에 Container 포함시 ....  Hello, world!</h1>
+    <p>점보트론을 이용하면, 웹사이트에서 중요한 내용 또는 공지사항 등을  부각시킬 수 있습니다. </p>
+    <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+  </div>
+</div>
+
+<div class="container">
+   <div class="jumbotron">
+      <h1>Container 내부에 Jumbotron 포함시 ....  Hello, world!
+        <small>여기는 점보트론 내의 h1 글꼴 크기입니다. </small></h1>
+      <p>여기는 .container 내부에 있는 일반 글꼴 크기입니다.  </p>
+      <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+  </div>
+</div>
+```
+
+**.container** 는 **여백 스타일**을 적용하고, **.jumbotron** 는 **전체 너비를 사용**한다. 이는 **div 태그** 로 너비속성값 우선순위에 따라서 스타일이 다르게 적용된다
+{: .notice--info}  
+
+
+## progress bar style  
+
+```html
+<div class="progress">
+  <div class="progress-bar progress-bar-success" aria-valuenow="40"
+      aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+```
+
+**.progress** 로 객체를 선언한 뒤, **.progress-bar** 로 값을 적용하고  **progress-bar-success** 로 스타일을 선언한다
+{: .notice--info}
+
+**-success :** 녹색, **-info :** 파랑, **-warning :** 노랑 **-danger :** 빨강
+{: .notice--info}
+
+
 
 
 
