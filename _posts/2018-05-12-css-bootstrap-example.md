@@ -36,6 +36,69 @@ toc: true
 {: .notice--info}
 
 
+### Head 속성 정의하기
+
+```html
+<head>
+    <meta charset="utf-8">
+    <style>
+    @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+    .navbar {
+        background-color: #fff;
+    }
+    .navbar-toggle {  // navbar toggle 버튼 정의
+        position: relative;
+        margin-top: 47px;
+        top: 2px;
+    }
+    .navbar-nav {     // navbar 정의
+        padding-right: 10px;
+        margin-top: 20px;
+        background-color: #fff
+    }
+    .navbar-nav li {   // navbar 텍스트 자간 정의
+        margin: 0 20px;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+</head>
+```
+
+
+### 본문 내용 정의하기 
+
+```html
+<nav class = "navbar navbar-default navbar-fixed-top" 
+     role  = "navigation" 
+     id    = "navbar-scroll">
+    <div class = "container">
+        <div class="navbar-header">
+            <button type  = "button" 
+                    class = "navbar-toggle" 
+                    data-toggle = "collapse" 
+                    data-target = ".navbar-1-collapse">
+                <span class = "sr-only">Toggle navigation</span>
+                <span class = "icon-bar"></span>
+                <span class = "icon-bar"></span>
+            </button>
+            <a class = "navbar-brand" href="#">
+            <img src = "python.svg" alt = "9PixelStudio" height = "80"></a>
+        </div>
+
+        <div class="collapse navbar-collapse navbar-right navbar-1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">home </a></li>
+                <li><a href="#">about </a></li>
+                <li><a href="#">contact </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+```
+
+
+
 
 **Warning Notice:**
 {: .notice--warning} 
