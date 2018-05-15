@@ -24,7 +24,17 @@ toc: true
 실무자 블로그 글 중에 **https://materializecss.com/** 의 스타일을 더 추천하더라. 아직 나는 초보니까 ㅜㅜ... Bootstrap의 스타일을 익힌 뒤 **materializecss**을 확장해 나아가자  [사용자 blog](https://medium.com/chequer/materializecss-%EC%A0%81%EC%9A%A9%ED%9B%84%EA%B8%B0-b5ea72f4bc56)
 
 <br>
-## Panel 스타일 적용
+## Navigation Bar 스타일 적용
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+```
+
+버튼식 네이게이션 **navbar-toggle**을 활성화 하려면 **Jquery** 와 **bootstrap.min.js** 를 함께 설정해야 한다 <small> 이 둘을 활성화 해야만 bootstrap class 가 활성화 된다</small>
+{: .notice--info}
+
+
 
 **Warning Notice:**
 {: .notice--warning} 
