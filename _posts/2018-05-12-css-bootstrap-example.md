@@ -32,7 +32,7 @@ toc: true
 <script src="bootstrap.min.js"></script>
 ```
 
-버튼식 네이게이션 **navbar-toggle**을 활성화 하려면 **Jquery** 와 **bootstrap.min.js** 를 함께 설정해야 한다 <STRONG></STRONG><small> 이 둘을 활성화 해야만 navbar toggle 이 활성화 된다</small></strong>
+버튼식 네이게이션 **navbar-toggle**을 활성화 하려면 **Jquery** 와 **bootstrap.min.js** 를 함께 설정해야 한다 <strong><small> 이 둘을 활성화 해야만 navbar toggle 이 활성화 된다</small></strong>
 {: .notice--info}
 
 
