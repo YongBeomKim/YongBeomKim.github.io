@@ -2,7 +2,7 @@
 title : Celery, Redis 와 Django 연동
 last_modified_at: 2018-05-15T22:45:06-05:00
 header:
-  image: /assets/images/book/django-celery.png
+  overlay_image: /assets/images/book/django-celery.png
 categories:
   - django
 tags: 
