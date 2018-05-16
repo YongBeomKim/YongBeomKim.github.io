@@ -143,6 +143,20 @@ Configuration ->
 `celery -A [프로젝트명] beat -l info` 를 실행하면, **celery beat** 를 통해서 tasks.py 를 테스트 한다
 {: .notice--info}
 
+
+```python
+$ ipython manage.py shell_plus
+Python 3.6.3 (default, Oct  3 2017, 21:45:48) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from  server.tasks import add
+
+In [2]: add.delay(4, 4)
+Out[2]: <AsyncResult: 9f935894-17dd-48ce-bd9c-4779df2ec133>
+```
+
+
 <figure class="align-center">
   <img src="https://buildwithdjango.com/static/blog/progress-bars/async-task-architecture.png" alt="">
   <figcaption> 비동기 처리를 위한 message Q 구조</figcaption>
