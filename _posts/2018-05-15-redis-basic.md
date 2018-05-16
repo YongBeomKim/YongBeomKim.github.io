@@ -161,13 +161,3 @@ OK
 127.0.0.1:6379> exit
 @ubuntu$
 ```
-    
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
