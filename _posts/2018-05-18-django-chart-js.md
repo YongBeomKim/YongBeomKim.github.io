@@ -216,20 +216,3 @@ Morris.Bar({
 [20분안에 RestAPI 활용 익히기](https://codeburst.io/create-a-django-api-in-under-20-minutes-2a082a60f6f3)
 
 http://www.django-rest-framework.org/tutorial/3-class-based-views/
-
-
-
-<figure class="align-center">
-  <img src="http://datadrivenjournalism.net/uploads/teasers/skoli.png" alt="">
-  <figcaption>Django & families</figcaption>
-</figure>
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
