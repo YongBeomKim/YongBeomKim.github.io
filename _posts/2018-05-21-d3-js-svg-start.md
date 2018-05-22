@@ -1,5 +1,5 @@
 ---
-title : d3.js tutorial
+title : d3.js SVG
 last_modified_at: 2018-05-20T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/d3.jpg
@@ -8,6 +8,7 @@ categories:
 tags: 
     - javascript
     - d3
+    - svg
 toc: true    
 ---
 
@@ -77,10 +78,12 @@ d3.select("#myGraph")  // SVG 요소 지정
 
 
 Javascript에서 함수의 기본적인 형태는 다음과 같다
+
 > function 함수이름() {함수내용}
 
 
 **무명함수**를 사용하는 경우 위에서와 같이 **파라미터 위치에서 직접 정의**할 수도 있고, 또는 아래와 같이 **이름을 정의**한 뒤 **이를 호출**하여 사용하는 방법을 사용한다
+
 > var func = function(){}
 
 
@@ -248,3 +251,15 @@ d3.select("#myGraph").append("g")  // 그룹화
 > .attr("transform", "translate(10, "+((1+dataSet**.length**)*20+5)+")")  
 
 **X 방향**으로는 **10px**, **Y 방향**으로는 **(순번 X (20+5))** 위치값을 활용한다
+
+
+
+
+**Warning Notice:**
+{: .notice--warning} 
+
+**Danger Notice:**
+{: .notice--danger}
+
+**Success Notice:**
+{: .notice--success}   
