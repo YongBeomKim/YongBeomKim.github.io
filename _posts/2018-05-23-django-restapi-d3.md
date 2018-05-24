@@ -234,6 +234,46 @@ class GameSerializer(serializers.Serializer):
 
 참고로 이부분은 앞에서도 여러번 정리를 했니 우선은 여기서 마무리 하도록 한다
 
+| js차트      | 요구사항 | 특이사항           | 가격/1개발 |
+|------------:|---------:|-------------------:|-----------:|
+| Chartist.js | 부족  　 |  　   　           |            |
+| FusinoCharts [url](http://www.fusioncharts.com)| 만족     |코드구성이 약간복잡 |199         | 
+| Dygraphs    | 부족     |라인차트밖에 없음   |            |　   　
+| Chart.js [Url](http://www.chartjs.org/)   | 만족     |3D 없음             | MIT        |  
+| GoogleCharts | 만족    | 3D없음, 종류는 다양 | 390 　     |
+| Flot        | 부족     | 종류부족    　   　 |            |
+| D3.js [Url](https://github.com/mbostock/d3/wiki/Gallery)      | 코드난해 | js 분리하면 간단    | BSD        |
+| n3.js       | 부족     | 종류단순            |            |
+| nvd3.js     | 부족     | 3D 없음   　        |            |
+| jQuery Sparklines |  부족 | 3D 없음          |            |
+| sigmajs     | 부족     | 종류단순            |            | 
+| Morris.js   | 부족     | 종류단순            | BSD        |
+| Cytoscape.js| 부족     | 종류단순            |            |
+| C3.js       | 부족     | 종류단순            |            | 
+| Rickshaw    | 부족     | 종류단순            |            |
+| Cubism.js   | 부족     | 종류단순            |            |
+| Plottable.js    부족  종류단순    　   　
+CanvasJs    만족  3D 없는듯..    299 http://canvasjs.com/
+HighChart   부족  종류약간부족  　   http://www.highcharts.com/demo/
+JSCharts    부족  종류약간부족  79(domain)  http://www.jscharts.com/examples
+jQuery OrgChart 부족  조직도, 플로우차트 등만 가능.   　   https://dl.dropboxusercontent.com/u/4151695/html/jOrgChart/example/example.html
+jgPlot  부족  3D 없음   　   http://www.jqplot.com/examples/line-charts.php
+ GraphUp    부족  특이함 　   http://codecanyon.net/item/graphup-jquery-plugin/108025?ref=codegeekz&ref=codegeekz&clickthrough_id=691685678&redirect_back=true
+jsPlumb jQuery Plugin   부족  조직도, 플로우차트 등만 가능. 기능은 좋음    　   https://jsplumbtoolkit.com/demos.html
+amchart 만족  　   140(website)    https://www.amcharts.com/
+Smoothie Charts 부족  종류단순    　   http://smoothiecharts.org/
+Chartkick   부족  종류단순    　   http://ankane.github.io/chartkick/
+zingchart   만족  강력하지만 몹시 비쌈 2,499   http://www.zingchart.com/
+EJSChart    부족  종류약간부족  　   http://www.ejschart.com/examples.php
+uvCharts    부족  종류단순    　   http://imaginea.github.io/uvCharts/index.html#features
+Plotly  부족  종류약간부족  　   https://plot.ly/javascript/bar-charts/
+Online Charts   부족  온라인에서 직접 그리는듯.. 　   http://onlinecharttool.com/
+Teechart    만족  WebGL 사용가능  129 https://www.steema.com/files/public/teechart/html5/latest/demos/index.html
+
+[출처] JS 차트 약 30개 정리|작성자 해남배추
+
+
+
 
 <tbody>
 <tr style="mso-height-source:userset;height:38.25pt" height="51"><td class="xl68" style="color:windowtext;
