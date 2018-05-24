@@ -104,6 +104,14 @@ def data2(request):
 <br>
 ## Json to Morris.js
 
+[github Document](http://morrisjs.github.io/morris.js/#license)
+
+<figure class="align-center">
+  <img src="https://www.pixine.fr/wp-content/uploads/2015/02/lib-morris.png" alt="">
+  <figcaption>Morris.js</figcaption>
+</figure>
+
+
 `data : { { parse_json | safe } },` 또는 `var dataSet = { { parse_json | safe } }`  로 객체명을 사용해서 `views.py` 에서 **Json** 자료를 사용 가능하다. 이때 `data : ,` 의 맨 뒤 **,** 를 빼먹지 않도록 주의해야 한다.
 
 
