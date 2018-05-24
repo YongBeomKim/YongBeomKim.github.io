@@ -2,7 +2,7 @@
 title : RestAPI to d3.js
 last_modified_at: 2018-05-23T20:45:06-05:00
 header:
-  overlay_image: /assets/images/book/rest-api.jpg
+  overlay_image: /assets/images/book/restapi.png
 categories:
   - javascript
 tags: 
