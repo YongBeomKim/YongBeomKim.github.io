@@ -1,8 +1,8 @@
 ---
-title : RestAPI to d3.ks
+title : RestAPI to d3.js
 last_modified_at: 2018-05-23T20:45:06-05:00
 header:
-  overlay_image: /assets/images/book/api-banner.svg
+  overlay_image: /assets/images/book/rest-api.jpg
 categories:
   - javascript
 tags: 
@@ -55,24 +55,22 @@ def data(request):
 
 ```html
 <script src="//d3js.org/d3.v4.min.js">
-
+var parseDate = d3.time.format("%Y-%m-%d").parse;
 var callback_function = function (data) {
     data.forEach(function(d) {
         d.date = parseDate(d.date);
         d.close = +d.close; })
-    x.domain(d3.extent(data, 
-        function(d) { return d.date; }));
-    y.domain([0, d3.max(data, 
-        function(d) { return d.close; })]);
-  };
 
 d3.json("{ % url "js:data" % }",  callback_function);
 </script>
 ```
 
+외부 데이터를 **.forEach** 메서드로 불러올 경우, **문자는 바로 연결** 가능하지만, 날짜의 경우는 parseDate() 로 문자열 출력 포맷을 정의하고, 숫자는 **+- 를 사용하여 유형변환**을 해야한다 [참고site](http://learnjsdata.com/read_data.html)
+{: .notice--info}
+
 
 <br>
-### Model 데이터를 직렬화 역직렬화 관리
+## Model 데이터를 직렬화 역직렬화 관리
 
 **직렬화기 :** Django Model Instance **-->** Json  
 **역직렬화기 :** Json **-->** Django Model Instance 
