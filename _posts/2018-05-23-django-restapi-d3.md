@@ -30,6 +30,7 @@ toc: true
 
 ### np.array 객체를 RestAPI 생성
 
+
 **views.py**
 
 ```python
@@ -41,6 +42,7 @@ def data(request):
         mylist.append({"date":x[i], "close":y[i]})
     return JsonResponse(mylist, safe=False)
 ```
+
 
 **urls.py**
 
