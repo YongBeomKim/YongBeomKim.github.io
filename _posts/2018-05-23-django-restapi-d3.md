@@ -1,5 +1,5 @@
 ---
-title : RestAPI to d3.js
+title : Django RestAPI to d3.js
 last_modified_at: 2018-05-23T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/restapi.png
@@ -13,7 +13,7 @@ toc: true
 ---
 
 
-# RestAPI in Django
+# Django RestAPI to Javascript
 
 앞에서는 postgresql 모델연결에 중점을 뒀다면, 이번에는 **Series**객체, **CSV** 데이터 등 다양한 데이터에 따른 활용에 중점을 두고 작업을 할 예정이다
 
@@ -73,7 +73,33 @@ d3.json("{ % url "js:data" % }",  callback_function);
 ## Pandas DataFrame 을 Json으로 출력 <small>[stackflow](https://stackoverflow.com/questions/26733855/struggling-with-pandas-to-json-in-django)</small>
 
 
-https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
+### django views.py 에서 설정
+
+```python
+def data2(request):
+    data = [{ "year": '2008', "value": 20 }, { "year": '2009', "value": 10 },
+            { "year": '2010', "value": 5  }, { "year": '2011', "value": 5 },
+            { "year": '2012', "value": 20}]
+    import pandas as pd
+    df = pd.DataFrame(data)
+    data_json = df.to_json(orient='records') 
+    data_html = df.to_html()
+    return render(request, 'd3js/data2.html', context={'data_json': data_json,
+                                                       'data_html': data_html})
+```
+
+
+`data_json = df.to_json(orient='records')` : 옵션을 추가해야 **튜플단위**로 데이터가 묶여서 출력된다 [pandas.to_json() 옵션들](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html)   
+
+
+### template
+
+```html
+{ { data_json | safe } }
+```
+ 
+별도의 태그내용 없이 위의 내용만 사용하면 바로 Json API로 출력된다.
+
 
 
 
@@ -109,7 +135,7 @@ class GameSerializer(serializers.Serializer):
 ```
 
 
-
+참고로 이부분은 앞에서도 여러번 정리를 했니 우선은 여기서 마무리 하도록 한다
 
 
 **Warning Notice:**
