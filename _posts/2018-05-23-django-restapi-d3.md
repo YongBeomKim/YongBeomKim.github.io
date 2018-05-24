@@ -18,7 +18,7 @@ toc: true
 앞에서는 postgresql 모델연결에 중점을 뒀다면, 이번에는 **Series**객체, **CSV** 데이터 등 다양한 데이터에 따른 활용에 중점을 두고 작업을 할 예정이다
 
 <br>
-## RestAPI
+# RestAPI
 
 <figure class="align-center">
   <img src="https://impythonist.files.wordpress.com/2015/07/rstapi.jpg" alt="">
@@ -28,7 +28,7 @@ toc: true
 [django rest_framework](http://www.unionsmart.cn/archives/649)
 
 
-### np.array 객체를 RestAPI 생성
+## np.array 객체를 RestAPI 생성
 
 
 **views.py**
@@ -67,6 +67,14 @@ d3.json("{ % url "js:data" % }",  callback_function);
 
 외부 데이터를 **.forEach** 메서드로 불러올 경우, **문자는 바로 연결** 가능하지만, 날짜의 경우는 parseDate() 로 문자열 출력 포맷을 정의하고, 숫자는 **+- 를 사용하여 유형변환**을 해야한다 [참고site](http://learnjsdata.com/read_data.html)
 {: .notice--info}
+
+
+<br>
+## Pandas DataFrame 을 Json으로 출력 <small>[stackflow](https://stackoverflow.com/questions/26733855/struggling-with-pandas-to-json-in-django)</small>
+
+
+https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html
+
 
 
 <br>
