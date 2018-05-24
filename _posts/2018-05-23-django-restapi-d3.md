@@ -101,6 +101,95 @@ def data2(request):
 별도의 태그내용 없이 위의 내용만 사용하면 바로 Json API로 출력된다.
 
 
+<br>
+## Json to Morris.js
+
+`data : { { parse_json | safe } },` 또는 `var dataSet = { { parse_json | safe } }`  로 객체명을 사용해서 `views.py` 에서 **Json** 자료를 사용 가능하다. 이때 `data : ,` 의 맨 뒤 **,** 를 빼먹지 않도록 주의해야 한다.
+
+
+### Head 에 script 추가하기
+
+```html
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+```
+
+
+### Morris.js 활용 Line Chart
+
+```javascript
+new Morris.Line({
+    element: 'myfirstchart',
+    data: [ { year: '2008', value: 20 },
+        { year: '2009', value: 10 },
+        { year: '2010', value: 5 },
+        { year: '2011', value: 5 },
+        { year: '2012', value: 20 }],
+    xkey: 'year',     // x축 컬럼을 정의
+    ykeys: ['value'], // y축 컬럼을 정의(배열)
+    labels: ['Value'] // y축 표시할 이름명 
+});
+```
+
+
+### Morris.js 활용한 Pi Chart
+
+```javascript
+Morris.Donut({
+    element: 'donut-example',
+    data: [ { label: "Download Sales", value: 12 },
+        { label: "In-Store Sales", value: 30 },
+        { label: "Mail-Order Sales", value: 20 }]
+    });
+```
+
+
+### Morris.js 활용 bar Chart
+
+```javascript
+Morris.Bar({
+    element: 'bar-example',
+    data: [
+        { y: '2006', a: 100 },
+        { y: '2007', a: 75 },
+        { y: '2008', a: 50 },
+        { y: '2009', a: 75 },
+        { y: '2010', a: 50 },
+        { y: '2011', a: 75 },
+        { y: '2012', a: 100 }
+    ],
+    xkey: 'y',
+    ykeys: ['a'],
+    labels: ['Backlog Items']
+});
+```
+
+
+### Morris.js 활용 bar Chart2
+
+
+```javascript
+Morris.Bar({
+    element: 'bar-example2',
+    data: [
+        { y: '2006', a: 100, b: 90 },
+        { y: '2007', a: 75, b: 65 },
+        { y: '2008', a: 50, b: 40 },
+        { y: '2009', a: 75, b: 65 },
+        { y: '2010', a: 50, b: 40 },
+        { y: '2011', a: 75, b: 65 },
+        { y: '2012', a: 100, b: 90 }
+    ],
+    xkey: 'y',
+    ykeys: ['a', 'b'],
+    labels: ['Series A', 'Series B']
+});
+```
+
+
+
 
 
 <br>
