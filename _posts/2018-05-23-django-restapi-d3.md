@@ -234,10 +234,10 @@ class GameSerializer(serializers.Serializer):
 
 참고로 이부분은 앞에서도 여러번 정리를 했니 우선은 여기서 마무리 하도록 한다
 
-| table 적용 class          | 내용 |
-|--------------------------:|----------------------:|
-| **table class="table"**  | 좌우 꽉 채우는 스타일 | 
 
+# javascript charts
+
+[차트들 비교 site](https://thenextweb.com/dd/2015/06/12/20-best-javascript-chart-libraries/)
 
 | js차트      | 특이사항           | 가격/1개발 |
 |------------:|--------------------:|-----------:|
