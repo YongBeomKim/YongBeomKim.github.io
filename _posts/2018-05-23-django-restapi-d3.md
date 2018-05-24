@@ -104,7 +104,7 @@ def data2(request):
 <br>
 ## Json to Morris.js
 
-[github Document](http://morrisjs.github.io/morris.js/#license)
+[github Document](http://morrisjs.github.io/morris.js/)
 
 <figure class="align-center">
   <img src="https://www.pixine.fr/wp-content/uploads/2015/02/lib-morris.png" alt="">
