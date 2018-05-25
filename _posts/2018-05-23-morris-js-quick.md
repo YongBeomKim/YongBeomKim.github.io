@@ -21,7 +21,7 @@ toc: true
 
 ### DataFrame to Json
 
-**Python** 결과를 **DataFrame** 으로 정리한 뒤, 이를 json 객체로 전달해서 Client 단에서 시각화를 한다. json 변환시 **`Dataframe.to_json(orient='records')`** 으로 해야 튜플단위로 묶여서 json이 출력되므로 이 부분만 주의하면 된다
+**Python** 결과를 **DataFrame** 으로 정리한 뒤 json 변환시 **`df.to_json(orient='records')`** 으로 해야만 튜플단위로 묶여서 json이 출력되므로 이 부분만 주의하면 된다
 
 
 ### Json in Morris.js
