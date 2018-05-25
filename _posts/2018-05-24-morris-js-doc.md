@@ -18,12 +18,23 @@ toc: true
 [Document](http://morrisjs.github.io/morris.js/)<br>
 [Code Source](https://codepen.io/andreic/pen/CJoze/)
 
+## Basic Options
+
+### Header Setting
+
 ```html
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 ```
+
+
+### morris.js Basic Options
+
+**`resize: true`** margin, padding 모두 0px로, 해당 영역을 꽉 채운다
+**`grid: true`** Grid 설정을 활성화 한다
+
 
 
 <br>
@@ -134,9 +145,29 @@ Morris.Bar({
 ```
 
 
+### Bar Stacked Chart 
 
+```javascript
+Morris.Bar({
+  element: 'graph',
+  data: [
+    {x: '2011 Q1', y: 3, z: 2, a: 3},
+    {x: '2011 Q2', y: 2, z: null, a: 1},
+    {x: '2011 Q3', y: 0, z: 2, a: 4},
+    {x: '2011 Q4', y: 2, z: 4, a: 3}
+  ],
+  xkey: 'x',
+  ykeys: ['y', 'z', 'a'],
+  labels: ['Y', 'Z', 'A'],
+  stacked: true
+});
+```
+
+`  ykeys: ['y', 'z', 'a'],` 순서대로 차곡 차곡 쌓아올린 튜플당 1개의 막대를  출력한다
+
+
+<br>
 ## Day Chart 
-
 
 ## Day Chart Basic
 
@@ -146,7 +177,6 @@ Morris.Bar({
   <img src="https://peltiertech.com/images/2016-08/PlotMultipleTimeSeries.png" alt="">
   <figcaption></figcaption>
 </figure>
-
 
 ```javascript
 var day_data = [
@@ -243,14 +273,22 @@ Morris.Line({
   xkey: 'period',
   ykeys: ['licensed', 'sorned'],
   labels: ['Licensed', 'SORN'],
-  events: [
-    '2011-04',
-    ['2011-05', '2011-06'],
-    '2011-08'
-  ]
+  events: ['2011-04',['2011-05', '2011-06'],'2011-08']
 });
-
 ```
+
+
+### 날짜 구분별 다양한 Label 활용
+
+**<small>시간 정보를 포함</small>** <br>
+{x: '2013-03-30 22:00:00', y: 3, z: 3},
+
+**<small>Week 를 기준</small><br>
+{"period": "2011 W27", "licensed": 3407, "sorned": 660},
+
+**<small>Quater 를 기준</small><br>
+{"period": "2008 Q4", "licensed": 3155, "sorned": 681},
+
 
 
 <br>
@@ -319,7 +357,41 @@ Morris.Donut({
 ```
 
 
+## Line Animation Chart
 
+
+```javascript
+var nReloads = 0;
+function data(offset) {
+  var ret = [];
+  for (var x = 0; x <= 360; x += 10) {
+    var v = (offset + x) % 360;
+    ret.push({
+      x: x,
+      y: Math.sin(Math.PI * v / 180).toFixed(4),
+      z: Math.cos(Math.PI * v / 180).toFixed(4)
+    });
+  }
+  return ret;
+}
+var graph = Morris.Line({
+    element: 'graph',
+    data: data(0),
+    xkey: 'x',
+    ykeys: ['y', 'z'],
+    labels: ['sin()', 'cos()'],
+    parseTime: false,
+    ymin: -1.0,
+    ymax: 1.0,
+    hideHover: true
+});
+function update() {
+  nReloads++;
+  graph.setData(data(5 * nReloads));
+  $('#reloadStatus').text(nReloads + ' reloads');
+}
+setInterval(update, 100);
+```
 
 
 **Warning Notice:**
