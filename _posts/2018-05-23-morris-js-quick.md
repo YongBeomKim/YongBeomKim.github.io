@@ -1,5 +1,5 @@
 ---
-title : morris.js
+title : morris.js Quick
 last_modified_at: 2018-05-23T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/morris.png
@@ -11,30 +11,44 @@ tags:
 toc: true    
 ---
 
-
 # Morris.js
-
-[Document](http://morrisjs.github.io/morris.js/)<br>
-[Code Source](https://codepen.io/andreic/pen/CJoze/)
+<small>[Document](http://morrisjs.github.io/morris.js/)<br>
+[Code Source](https://codepen.io/andreic/pen/CJoze/)</small>
 
 
 <br>
-## DataFrame to Json
+## Morris.js Notices
+
+### DataFrame to Json
 
 **Python** 결과를 **DataFrame** 으로 정리한 뒤, 이를 json 객체로 전달해서 Client 단에서 시각화를 한다. json 변환시 **`Dataframe.to_json(orient='records')`** 으로 해야 튜플단위로 묶여서 json이 출력되므로 이 부분만 주의하면 된다
 
 
-<br>
-## Json in Morris.js
+### Json in Morris.js
 
 `data : { { parse_json | safe } },` 또는 `var dataSet = { { parse_json | safe } }`  로 객체명을 사용해서 `views.py` 에서 **Json** 자료를 사용 가능하다. 이때 `data : ,` 의 맨 뒤 **,** 를 빼먹지 않도록 주의해야 한다.
+
+
+### Header Settings
+
+```html
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+```
 
 
 
 <br>
 ## Morris.js chart example
 
-### Morris.js 활용 Line Chart
+### Line Chart
+
+<figure class="align-center">
+  <img src="https://www.codediesel.com/wp-content/uploads/2015/02/morris-chart1.jpg" alt="">
+  <figcaption>line chart</figcaption>
+</figure>
 
 ```javascript
 new Morris.Line({
@@ -51,7 +65,12 @@ new Morris.Line({
 ```
 
 
-### Morris.js 활용한 Pi Chart
+### Donut Chart
+
+<figure class="align-center">
+  <img src="https://d2.alternativeto.net/dist/s/morris-js_191216_full.png?format=jpg&width=1600&height=1600&mode=min&upscale=false" alt="">
+  <figcaption>donut-example</figcaption>
+</figure>
 
 ```javascript
 Morris.Donut({
@@ -63,7 +82,12 @@ Morris.Donut({
 ```
 
 
-### Morris.js 활용 bar Chart
+### Bar Chart
+
+<figure class="align-center">
+  <img src="https://camo.githubusercontent.com/9552f5d9257bd31f3e9c1d6c21c5a132c7a5b803/687474703a2f2f692e696d6775722e636f6d2f316c334c6e72452e706e67" alt="">
+  <figcaption>donut-example</figcaption>
+</figure>
 
 ```javascript
 Morris.Bar({
@@ -84,7 +108,12 @@ Morris.Bar({
 ```
 
 
-### Morris.js 활용 bar Chart2
+### Bar Compare Chart
+
+<figure class="align-center">
+  <img src="https://i.stack.imgur.com/TFWvE.png" alt="">
+  <figcaption></figcaption>
+</figure>
 
 ```javascript
 Morris.Bar({
@@ -108,19 +137,10 @@ Morris.Bar({
 
 <br>
 ## Morris.js chart example 2
-<small>[Code Source](https://codepen.io/andreic/pen/CJoze/)</small>
+<small>[Code Source](https://codepen.io/andreic/pen/CJoze/) : 단일 데이터를 다양한 방법으로 시각화</small>
 
 
-### Header  and  Data Setting
-
-Head tag Details
-
-```html
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-```
+### Data Setting
 
 Body tag Details 
 
@@ -132,7 +152,7 @@ Body tag Details
 <div id="pie-chart"></div>
 ```
 
-Script Data and Settings
+Script Data Settings
 
 ```javascript
 var dataSet = [
@@ -209,84 +229,3 @@ Morris.Donut({
 
 
 
-<head>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-</head>
-<body>
-    <div>
-    <div id="area-chart"></div>
-    <script>
-    var data = [
-            { y: '2014', a: 50, b: 90 },
-            { y: '2015', a: 65, b: 75 },
-            { y: '2016', a: 50, b: 50 },
-            { y: '2017', a: 75, b: 60 },
-            { y: '2018', a: 80, b: 65 },
-            { y: '2019', a: 90, b: 70 },
-            { y: '2020', a: 100, b: 75 },
-            { y: '2021', a: 115, b: 75 },
-            { y: '2022', a: 120, b: 85 },
-            { y: '2023', a: 145, b: 85 },
-            { y: '2024', a: 160, b: 95 }
-        ],
-        config = {
-            data: data,
-            xkey: 'y',
-            ykeys: ['a', 'b'],
-            labels: ['Total Income', 'Total Outcome'],
-            fillOpacity: 0.6,
-            hideHover: 'auto',
-            behaveLikeLine: true,
-            resize: true,
-            pointFillColors: ['#ffffff'],
-            pointStrokeColors: ['black'],
-            lineColors: ['gray', 'red']
-        };
-
-    config.element = 'area-chart';
-    Morris.Area(config);
-    </script>
-</div>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Example Codes
-
-### Head 에 script 추가
-
-```html
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-```
-
-
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
