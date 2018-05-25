@@ -1,24 +1,59 @@
 ---
-title : Django RestAPI to d3.js
+title : Django to Json
 last_modified_at: 2018-05-23T20:45:06-05:00
 header:
-  overlay_image: /assets/images/book/restapi.png
+  overlay_image: /assets/images/book/json.jpg
 categories:
   - javascript
 tags: 
     - django
-    - restapi
-    - d3
+    - json
 toc: true    
 ---
 
 
-# Django RestAPI to Javascript
+# Django to Json
 
-앞에서는 postgresql 모델연결에 중점을 뒀다면, 이번에는 **Series**객체, **CSV** 데이터 등 다양한 데이터에 따른 활용에 중점을 두고 작업을 할 예정이다
+Django 에서는 계산한 결과 데이터만 출력하고 시각화 작업등은 client 단으로 넘기면 처리가 분산되어 효율이 좋아진다. 이번 편에서는 데이터를 Json으로 넘기는 방법에 대해서만 정리하고, RestAPI를 활용한 CRUD 작업은 추후에 보완하도록 한다 
+
 
 <br>
-# RestAPI
+## Pandas DataFrame 을 Json으로 출력 <small>[stackflow](https://stackoverflow.com/questions/26733855/struggling-with-pandas-to-json-in-django)</small>
+
+위에서 Numpy array 의 for 문의 반복은 처리량에 따라 속도 저하가 필연적으로 일어난다. 이보다는 Numpy를 직접 활용하거나 Pandas 를 활용함이 속도 및 성능에서도 유리해 보인다 <small>(10만 row 데이터로 test 해보면 될거 같은데 바쁘니 <strike>실은 귀잖아서</strike> 다음번에 시도해보자)</small>
+
+
+### django views.py 에서 설정
+
+```python
+def data2(request):
+    data = [{ "year": '2008', "value": 20 }, { "year": '2009', "value": 10 },
+            { "year": '2010', "value": 5  }, { "year": '2011', "value": 5 },
+            { "year": '2012', "value": 20}]
+    import pandas as pd
+    df = pd.DataFrame(data)
+    data_json = df.to_json(orient='records') 
+    data_html = df.to_html()
+    return render(request, 'd3js/data2.html', context={'data_json': data_json,
+                                                       'data_html': data_html})
+```
+
+
+`data_json = df.to_json(orient='records')` : 옵션을 추가해야 **튜플단위**로 데이터가 묶여서 출력된다 [pandas.to_json() 옵션들](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html)   
+
+
+### template
+
+```html
+{ { data_json | safe } }
+```
+ 
+별도의 태그내용 없이 위의 내용만 사용하면 바로 Json API로 출력된다.
+
+
+
+<br>
+# RestAPI (기본내용 복습)
 
 <figure class="align-center">
   <img src="https://impythonist.files.wordpress.com/2015/07/rstapi.jpg" alt="">
@@ -28,8 +63,8 @@ toc: true
 [django rest_framework](http://www.unionsmart.cn/archives/649)
 
 
-## np.array 객체를 RestAPI 생성
 
+## np.array 객체를 RestAPI 생성
 
 **views.py**
 
@@ -69,136 +104,6 @@ d3.json("{ % url "js:data" % }",  callback_function);
 {: .notice--info}
 
 
-<br>
-## Pandas DataFrame 을 Json으로 출력 <small>[stackflow](https://stackoverflow.com/questions/26733855/struggling-with-pandas-to-json-in-django)</small>
-
-
-### django views.py 에서 설정
-
-```python
-def data2(request):
-    data = [{ "year": '2008', "value": 20 }, { "year": '2009', "value": 10 },
-            { "year": '2010', "value": 5  }, { "year": '2011', "value": 5 },
-            { "year": '2012', "value": 20}]
-    import pandas as pd
-    df = pd.DataFrame(data)
-    data_json = df.to_json(orient='records') 
-    data_html = df.to_html()
-    return render(request, 'd3js/data2.html', context={'data_json': data_json,
-                                                       'data_html': data_html})
-```
-
-
-`data_json = df.to_json(orient='records')` : 옵션을 추가해야 **튜플단위**로 데이터가 묶여서 출력된다 [pandas.to_json() 옵션들](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html)   
-
-
-### template
-
-```html
-{ { data_json | safe } }
-```
- 
-별도의 태그내용 없이 위의 내용만 사용하면 바로 Json API로 출력된다.
-
-
-<br>
-## Json to Morris.js
-
-[github Document](http://morrisjs.github.io/morris.js/)
-
-<figure class="align-center">
-  <img src="https://www.pixine.fr/wp-content/uploads/2015/02/lib-morris.png" alt="">
-  <figcaption>Morris.js</figcaption>
-</figure>
-
-
-`data : { { parse_json | safe } },` 또는 `var dataSet = { { parse_json | safe } }`  로 객체명을 사용해서 `views.py` 에서 **Json** 자료를 사용 가능하다. 이때 `data : ,` 의 맨 뒤 **,** 를 빼먹지 않도록 주의해야 한다.
-
-
-### Head 에 script 추가하기
-
-```html
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-```
-
-
-### Morris.js 활용 Line Chart
-
-```javascript
-new Morris.Line({
-    element: 'myfirstchart',
-    data: [ { year: '2008', value: 20 },
-        { year: '2009', value: 10 },
-        { year: '2010', value: 5 },
-        { year: '2011', value: 5 },
-        { year: '2012', value: 20 }],
-    xkey: 'year',     // x축 컬럼을 정의
-    ykeys: ['value'], // y축 컬럼을 정의(배열)
-    labels: ['Value'] // y축 표시할 이름명 
-});
-```
-
-
-### Morris.js 활용한 Pi Chart
-
-```javascript
-Morris.Donut({
-    element: 'donut-example',
-    data: [ { label: "Download Sales", value: 12 },
-        { label: "In-Store Sales", value: 30 },
-        { label: "Mail-Order Sales", value: 20 }]
-    });
-```
-
-
-### Morris.js 활용 bar Chart
-
-```javascript
-Morris.Bar({
-    element: 'bar-example',
-    data: [
-        { y: '2006', a: 100 },
-        { y: '2007', a: 75 },
-        { y: '2008', a: 50 },
-        { y: '2009', a: 75 },
-        { y: '2010', a: 50 },
-        { y: '2011', a: 75 },
-        { y: '2012', a: 100 }
-    ],
-    xkey: 'y',
-    ykeys: ['a'],
-    labels: ['Backlog Items']
-});
-```
-
-
-### Morris.js 활용 bar Chart2
-
-
-```javascript
-Morris.Bar({
-    element: 'bar-example2',
-    data: [
-        { y: '2006', a: 100, b: 90 },
-        { y: '2007', a: 75, b: 65 },
-        { y: '2008', a: 50, b: 40 },
-        { y: '2009', a: 75, b: 65 },
-        { y: '2010', a: 50, b: 40 },
-        { y: '2011', a: 75, b: 65 },
-        { y: '2012', a: 100, b: 90 }
-    ],
-    xkey: 'y',
-    ykeys: ['a', 'b'],
-    labels: ['Series A', 'Series B']
-});
-```
-
-
-
-
 
 <br>
 ## Model 데이터를 직렬화 역직렬화 관리
@@ -231,8 +136,9 @@ class GameSerializer(serializers.Serializer):
         return instance
 ```
 
-
 참고로 이부분은 앞에서도 여러번 정리를 했니 우선은 여기서 마무리 하도록 한다
+
+
 
 
 # javascript charts
@@ -274,14 +180,3 @@ class GameSerializer(serializers.Serializer):
 | Plotly      | 종류약간부족  　     |           |
 | Online Charts  | 부족, 온라인 직접  |           |
 | Teechart     | 만족 WebGL 사용가능  | 129      |
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
