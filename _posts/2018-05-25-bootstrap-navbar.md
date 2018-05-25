@@ -1,5 +1,5 @@
 ---
-title : morris.js
+title : Bootstrap Navbar
 last_modified_at: 2018-05-25T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/bootstrap.jpg
