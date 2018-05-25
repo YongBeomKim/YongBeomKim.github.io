@@ -32,7 +32,7 @@ toc: true
 
 ### morris.js Basic Options
 
-**`resize: true`** margin, padding 모두 0px로, 해당 영역을 꽉 채운다
+**`resize: true`** margin, padding 모두 0px로, 해당 영역을 꽉 채운다<br>
 **`grid: true`** Grid 설정을 활성화 한다
 
 
@@ -169,7 +169,7 @@ Morris.Bar({
 <br>
 ## Day Chart 
 
-## Day Chart Basic
+### Day Chart Basic
 
 날짜를 기준으로 비교군 line Chart 
 
@@ -283,10 +283,10 @@ Morris.Line({
 **<small>시간 정보를 포함</small>** <br>
 {x: '2013-03-30 22:00:00', y: 3, z: 3},
 
-**<small>Week 를 기준</small><br>
+**<small>Week 를 기준</small>**<br>
 {"period": "2011 W27", "licensed": 3407, "sorned": 660},
 
-**<small>Quater 를 기준</small><br>
+**<small>Quater 를 기준</small>**<br>
 {"period": "2008 Q4", "licensed": 3155, "sorned": 681},
 
 
