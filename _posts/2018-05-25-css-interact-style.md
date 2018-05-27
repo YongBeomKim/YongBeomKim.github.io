@@ -1,0 +1,118 @@
+---
+title : css Flexible Box
+last_modified_at: 2018-05-25T12:45:06-05:00
+header:
+  overlay_image: /assets/images/book/css.jpg
+categories:
+  - css
+tags: 
+    - css
+    - flexible
+toc: true    
+---
+
+
+# 반응형 웹 만들기
+
+<br>
+## CSS 함수
+
+### **calc** 함수
+
+Margin(외부충전) - Padding(경계) - Border(내부충전)
+
+```css
+#wrap div {
+    display: inline-block;
+    width: calc(100% - 100px);
+    height: 200px;
+    margin: 50px;
+    background: #f7e041;}
+```
+
+width 속성에서 `calc` **CSS 함수**를 사용하면, 고정된 margin 간격을 사용할 수 있다.
+{: .notice--info}
+
+`display: inline-block` : display 속성의 값 중 inline 처럼 한줄로도 보이고, block 태그에 적용 가능한 속성값이다. <small>그런데 무슨 뜻인지는 잘 모르겠다</small>
+{: .notice-info}
+
+
+<br> 
+## 가변 그리드
+
+### margin 을 가변으로 변환
+
+```css
+#wrap div:first-child{
+  margin-right:37.5%, //360px/960px
+  background:#1f5118b;
+}
+```
+
+
+### 글자크기 설정
+
+
+<body>
+  <div style="font-size:2em">(P태그 기본 16px) 2em 가변폰트는 P태그 기본값의 2배를 적용
+    <p style="font-size: 0.5em">(font-size: 0.5em)  1/2 크기로 상속값 적용</p>
+  </div>
+  <div style="font-size:2rem">(HTML 기본을 기준으로 P태그 기본 16px) 2rem 가변폰트는 P태그 기본값의 2배를 적용
+    <p style="font-size: 0.5rem">(font-size: 0.5rem)  1/2 크기로 상속값 적용</p>
+  </div>
+  <p style="font-size:5vw"> vw 단위! (5vw : 브라우저 width 5% 비율)</p>
+  <p style="font-size:5vh"> vh 단위! (5vh : 브라우저 height 5% 비율)</p>
+  <p style="font-size:5vmin"> vmin 단위! (5vmin : 브라우저 w/h 중 짧은쪽 기준 5% 비율)</p>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Flexible Box
+
+<figure class="align-center">
+  <img src="http://www.onextrapixel.com/wp-content/uploads/2013/04/flexbox-elements.jpg" alt="">
+  <figcaption>donut-example</figcaption>
+</figure>
+
+보통 flexbox로 불리는 Flexible Box 모듈은, 1차원적인 레이아웃 모델 인터페이스와 강력한 정렬 기능을 통해 항목 간 공간 배분을 제공할 수 있는 방법으로 설계되었습니다. 
+
+이전까지는 **.block .inline** 또는 **속성값 None** 으로만 정리를 했다면, 이제부터는 평면은 Flexible Layout Box 그리고 CSS GRID 를 한번 정리해 보고자 한다
+
+
+
+
+
+## Navigation Bar 스타일 적용하기
+
+[navbar 기본 스타일](http://zzznara2.tistory.com/562)
+
+[navbar customiz](http://twitterbootstrap.org/bootstrap-navbar-background-color-transparent/)
+
+[navbar style](https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/)
+
+
+[navbar color style](http://humy2833.dothome.co.kr/customizing.html)
+
+
+
+
+
+**Warning Notice:**
+{: .notice--warning} 
+
+**Danger Notice:**
+{: .notice--danger}
+
+**Success Notice:**
+{: .notice--success}   

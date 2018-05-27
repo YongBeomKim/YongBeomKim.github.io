@@ -11,7 +11,6 @@ tags:
 toc: true    
 ---
 
-
 # Flexible Box
 
 <figure class="align-center">
