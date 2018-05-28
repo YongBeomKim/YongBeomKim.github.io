@@ -45,6 +45,11 @@ Flexible Box 활성화
 
 
 <br>
+## Format Setting
+flexbox의 배열기준 정하기
+
+
+<br>
 ### flex-direction:row
 
 <figure class="align-center">
@@ -121,6 +126,10 @@ Flexible Box 활성화
 | space-between | 양 끝에 일치후 동일간격 배치 |
 | space-around | 양 끝에도 공간두고 간격배치  |
 
+
+<br>
+## Align
+기준 위에서 item들 정렬방향설정
 
 <br>
 ### align-items
