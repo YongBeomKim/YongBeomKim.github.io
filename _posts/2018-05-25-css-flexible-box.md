@@ -23,6 +23,86 @@ toc: true
 이전까지는 **.block .inline** 또는 **속성값 None** 으로만 정리를 했다면, 이제부터는 평면은 Flexible Layout Box 그리고 CSS GRID 를 한번 정리해 보고자 한다
 
 
+## Flexible Box 기본개념
+
+배치 시작점과 끝점을 정하고, 객체배열의 **주축**과 **교차축**을 정의하면 아이템 배치를 자유자재로 설정가능하다
+
+
+### Flexible Box 활성화
+
+```css
+{
+    display:-webkit-flex;
+    display:flex;
+}
+```
+
+**-webkit-flex** flexible box 는 아직 W3C 확정단계가 아니여서 브라우저 접두사를 추가해야 한다
+
+
+```css
+{
+    display:flex;
+    flex-direction:row;
+}
+```
+
+
+|  속성값        |   flex-direction 설명      |
+|---------------:|---------------------------:|
+| row            | 박스를 왼쪽에서 배치시작   |
+| row-reverse    | 박스를 오른쪽에서 배치시작 |
+| column         | 박스를 위에서 배치시작     |
+| column-reverse | 박스를 아래부터 배치시작   |
+
+
+
+### Flexible Box 여러줄로 배치
+
+`flex-wrap` : 위의 개별박스를 여러줄로 배치
+
+
+```css
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+```
+
+
+|  속성값        |   flex-wrap 설명            |
+|---------------:|----------------------------:|
+| nowrap         | 박스를 한줄로 배치(기본)    |
+| wrap           | 박스를 여러줄로 배치 (예제) |
+| wrap-reverse   | 박스 여러줄 역방향 배치     |
+
+
+
+### Flexible Box 다중설정
+
+위의 2개 설정값을 한꺼번에 설정하는 옵션설정
+
+`flex-flow` : flex-direction설정  flex-wrap설정
+
+```css
+{
+    display: flex;
+    flex-flow: row wrap-reverse;
+}
+```
+
+
+
+### 주축방향으로 다양한 플렉스 아이템 배치하기
+
+<figure class="align-center">
+  <img src="http://codefor.life/images/flexbox-justify-content.png" alt="">
+  <figcaption>donut-example</figcaption>
+</figure>
+
+| 속성값   | justify-content  |
+
 
 
 
