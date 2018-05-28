@@ -13,7 +13,8 @@ toc: true
 
 # Flexible Box
 
-[sk플래닛 블로그]( https://readme.skplanet.com/?p=13710)<br>
+[sk플래닛 블로그](https://readme.skplanet.com/?p=13710)<br>
+[sk플래닛 블로그](https://readme.skplanet.com/?p=13690)<br>
 [MSDN 기술노트](https://msdn.microsoft.com/ko-kr/library/bg124109)
 
 <figure class="align-center">
@@ -181,6 +182,7 @@ flexbox의 배열기준 정하기
 | space-around |                |
 
 
+<br>
 ## flex  
 
 플랙스 아이템을 가변적으로 적용한다
@@ -194,13 +196,105 @@ flexbox의 배열기준 정하기
 |flex-basis  | 아이템 기본크기 설정 |
 
 
-https://readme.skplanet.com/?p=13690
+<br>
+## flex Example
+
+### CSS code source
 
 
+```css
+    #wrap {
+        display: flex;
+        flex-flow: row wrap;
+        width: 90%;
+        margin: 0 auto;}
+    .header {
+        display: flex;
+        order: 1;
+        justify-content: flex-end;
+        position: relative;
+        width: 100%;}
+    .header h1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 12.5%;
+        height: 80px;
+        background: #ff6b57;}
+    .header nav {
+        width: 87.5%;
+        min-height: 80px;
+        background: #ff6b57;}
+    .slider_section {
+        order: 2;
+        width: 50%;
+        background: #3c90be;}
+    .gallery_section {
+        order: 3;
+        width: 27.083333333333333333333333333333%;
+        height: 440px;
+        background: #f8de73;}
+    .rankup_section {
+        order: 4;
+        width: 22.916666666666666666666666666667%;
+        background: #00d2a5;}
+    .latest_post_section {
+        order: 5;
+        width: 30%;
+        background: #9cabe4;}
+    .popular_post_section {
+        order: 6;
+        width: 30%;
+        background: #d76817;}
+    .banner_section {
+        display: flex;
+        order: 7;
+        flex-flow: column nowrap;
+        width: 22.916666666666666666666666666667%;
+    }
+    .banner_section div {
+        flex: 1 1 0;}
+    .banner_section div.banner_box_01 {
+        background: #0175bb;}
+    .banner_section div.banner_box_02 {
+        background: #1261c9;}
+    .social_section {
+        order: 8;
+        width: 17.083333333333333333333333333333%;
+        height: 270px;
+        background: #fe6eda;}
+    .footer {
+        order: 9;
+        width: 100%;
+        height: 94px;
+        background: #474747;}
+```
 
-<!DOCTYPE HTML>
+
+### HTML code source
+
+```html 
+<div id="wrap">
+    <header class="header">
+        <h1>h1 title is in this Ares...</h1>
+        <nav>Navigation</nav>
+    </header>
+    <section class="slider_section"><br><br><br><br>slider_section</section>
+    <section class="gallery_section">gallery_section</section>
+    <section class="rankup_section">rankup_section</section>
+    <section class="latest_post_section">latest_post_section</section>
+    <section class="popular_post_section">popular_post_section</section>
+    <section class="banner_section">
+        <div class="banner_box_01">banner_box_01</div>
+        <div class="banner_box_02">banner_box_02</div>
+    </section>
+    <section class="social_section">social_section</section>
+    <footer class="footer">footer</footer>
+</div>
+```
+
+
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
