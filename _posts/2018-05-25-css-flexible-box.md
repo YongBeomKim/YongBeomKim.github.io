@@ -131,10 +131,11 @@ flexbox의 배열기준 정하기
 ## Align
 기준 위에서 item들 정렬방향설정
 
+
 <br>
 ### align-items
 
-교차축 방향으로 flex item 배치
+세로 교차축 방향으로 flex item 배치
 
 <figure class="align-center">
   <img src="http://w3.unpocodetodo.info/css3/images/flex-align-items.gif" alt="">
@@ -142,7 +143,7 @@ flexbox의 배열기준 정하기
 </figure>
 
 > display:flex;<br>
-> align-items:center;
+> align-items:**center**;
 
 
 | 속성값      | align-items                     |
@@ -155,7 +156,45 @@ flexbox의 배열기준 정하기
 
 
 
+<br>
+### align-content
 
+교차축 방향으로 flex item 배치
+
+<figure class="align-center">
+  <img src="http://w3.unpocodetodo.info/css3/images/flex-align-content.gif" alt="">
+  <figcaption></figcaption>
+</figure>
+
+> display:flex;<br>
+> flex-wrap:wrap;<br>
+> align-content:**space-between**;
+
+
+| 속성값      | align-content                   |
+|------------:|--------------------------------:|
+| stretch     | 박스를 height-fit 늘린다(기본)  |
+| flex-start  |                 |
+| flex-end    |                 |
+| center      |                 |
+| space-between | 양 끝에 붙이고 나머지 동일간격  |
+| space-around |                |
+
+
+## flex  
+
+플랙스 아이템을 가변적으로 적용한다
+
+> flex : [flex-grow] [flex-shirink] [flex-basis]<br>
+
+| 속성값     |  설명                |
+|-----------:|---------------------:|
+|flex-grow   | 여백을 늘리는 속성   |
+|flex-shrink | 아이템 넘칠떄 줄임   |
+|flex-basis  | 아이템 기본크기 설정 |
+
+
+https://readme.skplanet.com/?p=13690
 
 
 
