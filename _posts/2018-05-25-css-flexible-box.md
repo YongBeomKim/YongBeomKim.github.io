@@ -99,14 +99,13 @@ Flexible Box 활성화
 > flex-flow: row wrap-reverse;
 
 
+
 ### justify-content
 
 주축방향으로 다양한 플렉스 아이템 배치하기
 
 > display: flex;<br>
 > justify-content: **space-around**;
-}
-```
 
 <figure class="align-center">
   <img src="http://codefor.life/images/flexbox-justify-content.png" alt="">
@@ -127,11 +126,8 @@ Flexible Box 활성화
 
 교차축 방향으로 flex item 배치
 
-```css
-{
-  display:flex;
-  align-items:center;}
-```
+> display:flex;<br>
+> align-items:center;
 
 <figure class="align-center">
   <img src="http://w3.unpocodetodo.info/css3/images/flex-align-items.gif" alt="">
@@ -144,7 +140,7 @@ Flexible Box 활성화
 | flex-start  | 박스를 교차 시작점 배치시작     |
 | flex-end    | 박스를 교차 끝점 배치시작       |
 | center      | 박스를 교차점 중앙 배치시작     |
-| baseline    | 
+| baseline    |                                 |
 
 
 
