@@ -102,10 +102,6 @@ media all 은 모든 기기에 동일한 기준을 적용하는 의미다
 
 이전까지는 **.block .inline** 또는 **속성값 None** 으로만 정리를 했다면, 이제부터는 평면은 Flexible Layout Box 그리고 CSS GRID 를 한번 정리해 보고자 한다
 
-
-
-
-
 ## Navigation Bar 스타일 적용하기
 
 [navbar 기본 스타일](http://zzznara2.tistory.com/562)
@@ -114,18 +110,4 @@ media all 은 모든 기기에 동일한 기준을 적용하는 의미다
 
 [navbar style](https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/)
 
-
 [navbar color style](http://humy2833.dothome.co.kr/customizing.html)
-
-
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
