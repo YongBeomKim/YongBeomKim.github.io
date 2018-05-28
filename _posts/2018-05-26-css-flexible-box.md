@@ -13,6 +13,8 @@ toc: true
 
 # Flexible Box
 
+반응형 웹 만들기 2판 <small>-김운아- 이지스퍼블리싱</small>
+
 [sk플래닛 블로그](https://readme.skplanet.com/?p=13710)<br>
 [sk플래닛 블로그](https://readme.skplanet.com/?p=13690)<br>
 [MSDN 기술노트](https://msdn.microsoft.com/ko-kr/library/bg124109)
@@ -410,11 +412,7 @@ flexbox의 배열기준 정하기
 
 [navbar style](https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/)
 
-
 [navbar color style](http://humy2833.dothome.co.kr/customizing.html)
-
-
-
 
 
 **Warning Notice:**

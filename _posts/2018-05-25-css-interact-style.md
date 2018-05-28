@@ -1,5 +1,5 @@
 ---
-title : CSS Interact Web
+title : css Interact Web
 last_modified_at: 2018-05-25T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/css.jpg
@@ -13,6 +13,8 @@ toc: true
 
 
 # 반응형 웹 만들기
+
+반응형 웹 만들기 2판 <small>-김운아- 이지스퍼블리싱</small>
 
 <br>
 ## CSS 함수
