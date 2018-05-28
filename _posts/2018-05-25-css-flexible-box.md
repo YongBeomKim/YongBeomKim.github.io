@@ -37,12 +37,8 @@ toc: true
 
 Flexible Box 활성화
 
-```css
-{
-    display:-webkit-flex;
-    display:flex;
-}
-```
+> display:-webkit-flex; <br>
+> display:**flex**;
 
 **-webkit-flex** flexible box 는 아직 W3C 확정단계가 아니여서 브라우저 접두사를 추가해야 한다
 
@@ -50,16 +46,12 @@ Flexible Box 활성화
 
 ### flex-direction:row
 
-```css
-{
-    display:flex;
-    flex-direction:row;
-}
-```
+> display:flex;<br>
+> flex-direction:**row**;
 
 <figure class="align-center">
   <img src="http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-flex-direction.png" alt="">
-  <figcaption>donut-example</figcaption>
+  <figcaption></figcaption>
 </figure>
 
 |  속성값        |   flex-direction 설명      |
@@ -75,18 +67,13 @@ Flexible Box 활성화
 
 `flex-wrap` : 위의 개별박스를 여러줄로 배치
 
-
-```css
-{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-```
+> display: flex;<br>
+> flex-direction: row;<br>
+> flex-wrap: wrap;
 
 <figure class="align-center">
   <img src="https://image.slidesharecdn.com/putting-flexbox-into-practiceblend-conf130907-130908160522-/95/putting-flexbox-into-practice-19-638.jpg" alt="">
-  <figcaption>donut-example</figcaption>
+  <figcaption></figcaption>
 </figure>
 
 |  속성값        |   flex-wrap 설명            |
@@ -105,26 +92,19 @@ Flexible Box 활성화
 
 <figure class="align-center">
   <img src="http://readme.skplanet.com/wp-content/uploads/css-flex-flow.gif" alt="">
-  <figcaption>donut-example</figcaption>
+  <figcaption></figcaption>
 </figure>
 
-```css
-{
-    display: flex;
-    flex-flow: row wrap-reverse;
-}
-```
-
+> display: flex;<br>
+> flex-flow: row wrap-reverse;
 
 
 ### justify-content
 
 주축방향으로 다양한 플렉스 아이템 배치하기
 
-```css
-{
-  display: flex;
-  justify-content: space-around;
+> display: flex;<br>
+> justify-content: **space-around**;
 }
 ```
 
@@ -140,6 +120,7 @@ Flexible Box 활성화
 | center      | 부모 주출 중앙부터 배치       |
 | space-between | 양 끝에 일치후 동일간격 배치 |
 | space-around | 양 끝에도 공간두고 간격배치  |
+
 
 
 ### align-items
@@ -164,6 +145,10 @@ Flexible Box 활성화
 | flex-end    | 박스를 교차 끝점 배치시작       |
 | center      | 박스를 교차점 중앙 배치시작     |
 | baseline    | 
+
+
+
+
 
 
 
