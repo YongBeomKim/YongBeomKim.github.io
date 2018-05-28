@@ -29,6 +29,54 @@ toc: true
 이전까지는 **.block .inline** 또는 **속성값 None** 으로만 정리를 했다면, 이제부터는 평면은 Flexible Layout Box 그리고 CSS GRID 를 한번 정리해 보고자 한다
 
 
+
+<br>
+## 미디어 쿼리
+
+### 기본문법
+
+> @media [only/not] [미디어유형] [and/,] (조건문) {실행문}
+
+> @media (min-width:320px) and (max-width:760px) {실행문}
+
+"@"는 미디어쿼리 문법의 시작을 알린다. 그리고 미디어 쿼리는 대/소문자를 구분하지 않는다. 그리고 head 본문에서 삽입시 `<style>@media all and () {}</style>` 을 사용한다 
+{: .notice--info}
+
+
+```css
+@media all and (min-width:320px){실행내용}
+```
+
+media all 은 모든 기기에 동일한 기준을 적용하는 의미다
+{: .notice--info}
+
+|  미디어유형 |   설명            |
+|------------:|------------------:|
+| all         | 모든장치          |
+| print       | 인쇄장치          |
+| screen      | 화명장치          |
+| tv          | 영상음성 도시출력 |
+
+
+
+### 링크방식
+
+> <link rel="stylesheet"  href="style.css">
+
+
+
+<br>
+
+## 뷰포트
+
+뷰포트는 실제 화면을 표시하는 영역으로, 기기별 설정된 초기 화면크기값이다
+
+`<meta name="viewport" content="width-device=width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">`
+
+**width :** 뷰포트의 너비값,  **initial-scale :** 초기배율값, **minimum-scale :** 초기축소비율, **user-scalable :** 확대/축소비율
+
+
+
 <br> 
 
 ## Flexible Box 기본개념
@@ -82,8 +130,8 @@ flexbox의 배열기준 정하기
 </figure>
 
 > display: flex;<br>
-> flex-direction: row;<br>
-> flex-wrap: wrap;
+> flex-direction: **row**;<br>
+> flex-wrap: **wrap**;
 
 |  속성값        |   flex-wrap 설명            |
 |---------------:|----------------------------:|
@@ -104,8 +152,8 @@ flexbox의 배열기준 정하기
   <figcaption></figcaption>
 </figure>
 
-> display: flex;<br>
-> flex-flow: row wrap-reverse;
+> display: **flex**;<br>
+> flex-flow: **row wrap-reverse**;
 
 
 <br>
@@ -170,7 +218,7 @@ flexbox의 배열기준 정하기
 </figure>
 
 > display:flex;<br>
-> flex-wrap:wrap;<br>
+> flex-wrap:**wrap**;<br>
 > align-content:**space-between**;
 
 
@@ -189,7 +237,7 @@ flexbox의 배열기준 정하기
 
 플랙스 아이템을 가변적으로 적용한다
 
-> flex : [flex-grow] [flex-shirink] [flex-basis]<br>
+> flex : flex-grow  flex-shirink  flex-basis<br>
 
 | 속성값     |  설명                |
 |-----------:|---------------------:|
@@ -202,7 +250,6 @@ flexbox의 배열기준 정하기
 ## flex Example
 
 ### CSS code source
-
 
 ```css
     #wrap {
