@@ -41,18 +41,19 @@ Flexible Box 활성화
 > display:**flex**;
 
 **-webkit-flex** flexible box 는 아직 W3C 확정단계가 아니여서 브라우저 접두사를 추가해야 한다
+{: .notice--info}
 
 
-
+<br>
 ### flex-direction:row
-
-> display:flex;<br>
-> flex-direction:**row**;
 
 <figure class="align-center">
   <img src="http://blog.teamtreehouse.com/wp-content/uploads/2012/12/flexbox-flex-direction.png" alt="">
   <figcaption></figcaption>
 </figure>
+
+> display:flex;<br>
+> flex-direction:**row**;
 
 |  속성값        |   flex-direction 설명      |
 |---------------:|---------------------------:|
@@ -62,19 +63,19 @@ Flexible Box 활성화
 | column-reverse | 박스를 아래부터 배치시작   |
 
 
-
+<br>
 ### Flexible Box 여러줄로 배치
 
 `flex-wrap` : 위의 개별박스를 여러줄로 배치
-
-> display: flex;<br>
-> flex-direction: row;<br>
-> flex-wrap: wrap;
 
 <figure class="align-center">
   <img src="https://image.slidesharecdn.com/putting-flexbox-into-practiceblend-conf130907-130908160522-/95/putting-flexbox-into-practice-19-638.jpg" alt="">
   <figcaption></figcaption>
 </figure>
+
+> display: flex;<br>
+> flex-direction: row;<br>
+> flex-wrap: wrap;
 
 |  속성값        |   flex-wrap 설명            |
 |---------------:|----------------------------:|
@@ -83,12 +84,12 @@ Flexible Box 활성화
 | wrap-reverse   | 박스 여러줄 역방향 배치     |
 
 
-
+<br>
 ### Flexible Box 다중설정
 
-위의 2개 설정값을 한꺼번에 설정하는 옵션설정
+위의 2개 설정값을 한꺼번에 설정 가능하다
 
-`flex-flow` : flex-direction설정  flex-wrap설정
+> `flex-flow` : flex-direction설정  flex-wrap설정
 
 <figure class="align-center">
   <img src="http://readme.skplanet.com/wp-content/uploads/css-flex-flow.gif" alt="">
@@ -99,18 +100,18 @@ Flexible Box 활성화
 > flex-flow: row wrap-reverse;
 
 
-
+<br>
 ### justify-content
 
 주축방향으로 다양한 플렉스 아이템 배치하기
-
-> display: flex;<br>
-> justify-content: **space-around**;
 
 <figure class="align-center">
   <img src="http://codefor.life/images/flexbox-justify-content.png" alt="">
   <figcaption>donut-example</figcaption>
 </figure>
+
+> display: flex;<br>
+> justify-content: **space-around**;
 
 | 속성값      | justify-content               |
 |------------:|------------------------------:|
@@ -121,18 +122,19 @@ Flexible Box 활성화
 | space-around | 양 끝에도 공간두고 간격배치  |
 
 
-
+<br>
 ### align-items
 
 교차축 방향으로 flex item 배치
-
-> display:flex;<br>
-> align-items:center;
 
 <figure class="align-center">
   <img src="http://w3.unpocodetodo.info/css3/images/flex-align-items.gif" alt="">
   <figcaption></figcaption>
 </figure>
+
+> display:flex;<br>
+> align-items:center;
+
 
 | 속성값      | align-items                     |
 |------------:|--------------------------------:|
