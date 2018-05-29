@@ -27,7 +27,7 @@ toc: true
 
 아이콘 및 메뉴를 디자인 하기 위해서 기본적인 Pen Tool 사용법을 익해보자
 
-[일러스트레이트 펜툴 사용법](https://m.blog.naver.com/PostView.nhn?blogId=kosoodream&logNo=220904375088&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+[일러스트레이트 펜툴 기초강좌 블로그](https://m.blog.naver.com/PostView.nhn?blogId=kosoodream&logNo=220904375088&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
 
 
 ### 디자인 Sketch 이미지를 배경에 놔둔다
