@@ -12,13 +12,15 @@ toc: true
 ---
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LsppEZJ7DYY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
 
 
 # Adobe Illustrator
 
 기본메뉴 및 UI 작업을 위한 illustrator 내용을 정리해 보겠습니다
+
+<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LsppEZJ7DYY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
 
 
 ## Adobe Illustrator Pen Tools
