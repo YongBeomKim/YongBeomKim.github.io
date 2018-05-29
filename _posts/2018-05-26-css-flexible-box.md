@@ -71,14 +71,50 @@ media all 은 모든 기기에 동일한 기준을 적용하는 의미다
 
 뷰포트는 실제 화면을 표시하는 영역으로, 기기별 설정된 초기 화면크기값이다
 
-`<meta name="viewport" content="width-device=width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">`
+> meta **name**="viewport" **content**="width-device=width, **initial-scale**=1.0, **minimum-scale**=1.0, **maximum-scale**=1.0, **user-scalable**=no"
+ 
 
 **width :** 뷰포트의 너비값,  **initial-scale :** 초기배율값, **minimum-scale :** 초기축소비율, **user-scalable :** 확대/축소비율
 
+모바일 기기들의 해상도가 높아짐에 따라 모바일에서도 반응형웹을 적용하기 위해서는 해상도만이 아닌 기기별 정보를 필요로 하고 이를 처리하기 위해서 뷰포트를 설정한다
+{: .notice--info}
 
 
-<br> 
+<br>
+## CSS 기본속성을 Clear Fix 
 
+**Tag** 의 기본적인 속성내용을 초기화 한다
+
+```css
+.page ul {
+    display:inline-block;
+}
+
+.page ul:after {
+    content : "";
+    display : block; 
+    clear : both}
+```
+
+
+<br>
+### clear : both 
+
+> .tag { **clear** : **both** }
+
+위에서 정의된 .tag 내부에서도 클리어픽스의 영향을 받는다
+
+
+<br>
+### :after, :front
+
+> .tag**:after** { display:block; clear:both; }
+
+해당 태그 다음/ 앞에 위치하는 태그들의 성격을 정의한다
+
+
+
+<br>
 ## Flexible Box 기본개념
 
 배치 시작점과 끝점을 정하고, 객체배열의 **주축**과 **교차축**을 정의하면 아이템 배치를 자유자재로 설정가능하다
