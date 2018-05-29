@@ -12,8 +12,6 @@ toc: true
 ---
 
 
-
-
 # Adobe Illustrator
 
 기본메뉴 및 UI 작업을 위한 illustrator 내용을 정리해 보겠습니다

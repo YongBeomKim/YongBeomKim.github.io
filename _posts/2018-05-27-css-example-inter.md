@@ -1,5 +1,5 @@
 ---
-title : css Example Page
+title : css Page 맛보기
 last_modified_at: 2018-05-25T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/css.jpg
@@ -100,16 +100,3 @@ span.prev_btn {
 [navbar customiz](http://twitterbootstrap.org/bootstrap-navbar-background-color-transparent/)<br>
 [navbar style](https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top)<br>
 [navbar color style](http://humy2833.dothome.co.kr/customizing.html)
-
-
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
