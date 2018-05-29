@@ -12,7 +12,7 @@ toc: true
 ---
 
 
-# 반응형 웹 만들기
+# 반응형 웹 만들기 첫째마당
 
 반응형 웹 만들기 2판 <small>-김운아- 이지스퍼블리싱</small>
 
@@ -129,13 +129,3 @@ media all 은 모든 기기에 동일한 기준을 적용하는 의미다
 보통 flexbox로 불리는 Flexible Box 모듈은, 1차원적인 레이아웃 모델 인터페이스와 강력한 정렬 기능을 통해 항목 간 공간 배분을 제공할 수 있는 방법으로 설계되었습니다. 
 
 이전까지는 **.block .inline** 또는 **속성값 None** 으로만 정리를 했다면, 이제부터는 평면은 Flexible Layout Box 그리고 CSS GRID 를 한번 정리해 보고자 한다
-
-## Navigation Bar 스타일 적용하기
-
-[navbar 기본 스타일](http://zzznara2.tistory.com/562)
-
-[navbar customiz](http://twitterbootstrap.org/bootstrap-navbar-background-color-transparent/)
-
-[navbar style](https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/)
-
-[navbar color style](http://humy2833.dothome.co.kr/customizing.html)

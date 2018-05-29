@@ -446,27 +446,3 @@ flexbox의 배열기준 정하기
     </div>
 </body>
 </html>
-
-
-
-<br>
-
-## Navigation Bar 스타일 적용하기
-
-[navbar 기본 스타일](http://zzznara2.tistory.com/562)
-
-[navbar customiz](http://twitterbootstrap.org/bootstrap-navbar-background-color-transparent/)
-
-[navbar style](https://getbootstrap.com/docs/3.3/examples/navbar-fixed-top/)
-
-[navbar color style](http://humy2833.dothome.co.kr/customizing.html)
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
