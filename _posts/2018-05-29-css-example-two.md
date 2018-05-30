@@ -271,20 +271,6 @@ div:not([class]) > div:not([class]){
     <title>샘플</title>
     <meta name="viewport" content="width=device-width">
     <style type="text/css">
-    [class^="box"],
-    div:not([class]){
-        border: solid 8px #faa;
-        color: #faa;
-        background-color: #fee;
-        -webkit-box-sizing: border-box;  // 브라우저별 경계 활성화
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        text-align: center;
-        line-height: 200px;
-        font-family: Verdata, Helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 40px;}
-
     /* 자식객체의 class 가 box~ 가 아닐 때*/
     [class^="box"] > *:not([class^="box"]) {
         min-height: 0;
