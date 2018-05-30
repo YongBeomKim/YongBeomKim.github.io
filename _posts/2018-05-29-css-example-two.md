@@ -271,12 +271,6 @@ div:not([class]) > div:not([class]){
     <title>샘플</title>
     <meta name="viewport" content="width=device-width">
     <style type="text/css">
-    @charset "UTF-8";
-    body    {font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
-
-    body>div:not([class]) {
-        min-height: 200px}
-
     [class^="box"],
     div:not([class]){
         border: solid 8px #faa;
@@ -306,20 +300,6 @@ div:not([class]) > div:not([class]){
         border-color: #e0e03d;
         color: #e0e03d;
         background-color: #ffe;}
-
-    /* ##### 768px 이상일때 미디어쿼리문 ###### */
-    @media (min-width: 768px) {
-        /* BOX1과 BOX2를 가로정렬 */
-        .boxA:after {
-            content: "";
-            display: block;
-            clear: both}
-        .box1 {
-            float: left;
-            width: 50%}
-        .box2 {
-            float: left;
-            width: 50%}}
 
     /*### 박스 내부의 요소 성격들 정의하기*/
     .site h1 {
