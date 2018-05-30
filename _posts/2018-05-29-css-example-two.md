@@ -288,29 +288,29 @@ div:not([class]) > div:not([class]){
         background-color: #ffe;}
 
     /*### 박스 내부의 요소 성격들 정의하기*/
-    .site h1 {
+    .sites h1 {
         margin: 0;
         font-size: 30px}
-    .site h1 a {
+    .sites h1 a {
         color: #000000;
         text-decoration: none}
 
     /*### 네비게이션 설정 */
-    .menu ul {
+    .menus ul {
         margin:0;
         padding:0;
         list-style: none}
-    .menu li a{
+    .menus li a{
         display:block;
         padding:5px;
         color: #000000;
         font-size: 14px;
         text-decoration: none}
-     .menu ul:after{
+     .menus ul:after{
         content: "";
         display:block;
         clear:both;}
-    .menu li{
+    .menus li{
         float:left;
         width:auto;}
     /*### 헤더 이미지 설정하기*/
@@ -320,25 +320,25 @@ div:not([class]) > div:not([class]){
         height:auto;
         vertical-align: bottom;}
     /*### 공지사항*/
-    .news h1 {
+    .newses h1 {
         margin-top:0;
         margin-bottom: 5px;
         font-size: 18;
         color:#666666;}
-    .news ul {
+    .newses ul {
         margin: 0;
         padding: 0;
         list-style: none;}
-    .news li a {
+    .newses li a {
         display: block;
         padding: 5px;
         color: #000000;
         font-site: 14px;
         text-decoration: none;
         border-bottom: dotted 2px #dddddd;}
-    .news li a:hover{
+    .newses li a:hover{
         background-color: #eeeeee}
-    .news time{
+    .newses time{
         margin-right: 10px;
         color: #888888;
         font-weight: bold;}
@@ -349,13 +349,13 @@ div:not([class]) > div:not([class]){
     <div class="boxA">
         <!-- Title bar -->
         <div class="box1">
-            <div class="site">
+            <div class="sites">
                 <h1><a href="#">Korea Strock Review</a></h1>
             </div>
         </div>
         <!-- Menu item -->
         <div class="box2">
-            <nav class="menu">
+            <nav class="menus">
                 <ul>
                     <li><a herf="#">메인</a></li>
                     <li><a href="#">연혁</a></li>
@@ -371,7 +371,7 @@ div:not([class]) > div:not([class]){
     </div>
     <!-- 공지사항 메뉴  -->
     <div class="box4">
-        <div class="news">
+        <div class="newses">
             <h1> 공 지 사 항 </h1>
             <ul>
                 <li><a href="#">
