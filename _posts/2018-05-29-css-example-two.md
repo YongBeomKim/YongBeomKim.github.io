@@ -262,9 +262,8 @@ div:not([class]) > div:not([class]){
 
 
 
+# Sample Page
 
-
-<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
