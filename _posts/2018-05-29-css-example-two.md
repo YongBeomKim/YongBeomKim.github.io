@@ -367,7 +367,7 @@ div:not([class]) > div:not([class]){
     </div>
     <!-- Header Image Item -->
     <div class="box3">
-        <img src="./img/map2.gif" alt="" class="topimg">
+        <img src="http://www.rmpholdings.co.za/wp-content/uploads/2015/07/business-network-banner.jpg" alt="" class="topimg">
     </div>
     <!-- 공지사항 메뉴  -->
     <div class="box4">
