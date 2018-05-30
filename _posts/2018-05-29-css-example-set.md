@@ -1,5 +1,5 @@
 ---
-title : css 비지니스 페이지 폼 만들기
+title : css 비지니스 페이지 
 last_modified_at: 2018-05-29T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/css.jpg
@@ -11,10 +11,143 @@ tags:
 toc: true    
 ---
 
+
 # 모던 웹사이트 디자인의 정석
+
 HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 
-실전 레이아웃 페이지를 만들기
+**기본 페이지 만들기**
+
+
+<br>
+# Sample Page
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>샘플</title>
+    <meta name="viewport" content="width=device-width">
+    <style type="text/css">
+    /* 자식객체의 class 가 box~ 가 아닐 때*/
+    [class^="box"] > *:not([class^="box"]) {
+        min-height: 0;
+        line-height: 1.5;
+        color: #000000;
+        font-size: 14px;
+        font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+        font-weight: normal;
+        text-align: left;}
+
+    [class^="box"] > [class^="box"],
+    div:not([class]) > div:not([class]){
+        border-color: #e0e03d;
+        color: #e0e03d;
+        background-color: #ffe;}
+
+    /*### 박스 내부의 요소 성격들 정의하기*/
+    .sites h1 {
+        margin: 0;
+        font-size: 30px}
+    .sites h1 a {
+        color: #000000;
+        text-decoration: none}
+
+    /*### 네비게이션 설정 */
+    .menus ul {
+        margin:0;
+        padding:0;
+        list-style: none}
+    .menus li a{
+        display:block;
+        padding:5px;
+        color: #000000;
+        font-size: 14px;
+        text-decoration: none}
+     .menus ul:after{
+        content: "";
+        display:block;
+        clear:both;}
+    .menus li{
+        float:left;
+        width:auto;}
+    /*### 헤더 이미지 설정하기*/
+    .topimg {
+        max-width: 100%;
+        /*max-height: 500px;*/
+        height:auto;
+        vertical-align: bottom;}
+    /*### 공지사항*/
+    .newses h1 {
+        margin-top:0;
+        margin-bottom: 5px;
+        font-size: 18;
+        color:#666666;}
+    .newses ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;}
+    .newses li a {
+        display: block;
+        padding: 5px;
+        color: #000000;
+        font-site: 14px;
+        text-decoration: none;
+        border-bottom: dotted 2px #dddddd;}
+    .newses li a:hover{
+        background-color: #eeeeee}
+    .newses time{
+        margin-right: 10px;
+        color: #888888;
+        font-weight: bold;}
+    </style>
+</head>
+<body>
+    <!-- Top Naviagation  -->
+    <div class="boxA">
+        <!-- Title bar -->
+        <div class="box1">
+            <div class="sites">
+                <h1><a href="#">Korea Strock Review</a></h1>
+            </div>
+        </div>
+        <!-- Menu item -->
+        <div class="box2">
+            <nav class="menus">
+                <ul>
+                    <li><a herf="#">메인</a></li>
+                    <li><a href="#">연혁</a></li>
+                    <li><a hreg="#">사업소개</a></li>
+                    <li><a href="#">채용문의</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Header Image Item -->
+    <div class="box3">
+        <img src="http://www.rmpholdings.co.za/wp-content/uploads/2015/07/business-network-banner.jpg" alt="" class="topimg">
+    </div>
+    <!-- 공지사항 메뉴  -->
+    <div class="box4">
+        <div class="newses">
+            <h1> 공 지 사 항 </h1>
+            <ul>
+                <li><a href="#">
+                    <time datetime="2018-06-01">06/01 </time> 데이터센터 유지보수를 수행한다</a></li>
+                <li><a href="#">
+                    <time datetime="2018-05-25">05/25 </time> 모바일 버젼을 확인한다</a></li>
+                <li><a href="#">
+                    <time datetime="2018-05-15">05/15 </time> 공지사항</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- footer Design -->
+    <div class="box5">
+        <div class="copyright">
+            <p>Copyright &copy; ErdosStock</p>
+        </div>
+    </div>
+</body>
+</html>
 
 
 <br>
@@ -259,147 +392,3 @@ div:not([class]) > div:not([class]){
     font-weight: bold;
 }
 ```
-
-
-
-# Sample Page
-
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>샘플</title>
-    <meta name="viewport" content="width=device-width">
-    <style type="text/css">
-    /* 자식객체의 class 가 box~ 가 아닐 때*/
-    [class^="box"] > *:not([class^="box"]) {
-        min-height: 0;
-        line-height: 1.5;
-        color: #000000;
-        font-size: 14px;
-        font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
-        font-weight: normal;
-        text-align: left;}
-
-    [class^="box"] > [class^="box"],
-    div:not([class]) > div:not([class]){
-        border-color: #e0e03d;
-        color: #e0e03d;
-        background-color: #ffe;}
-
-    /*### 박스 내부의 요소 성격들 정의하기*/
-    .sites h1 {
-        margin: 0;
-        font-size: 30px}
-    .sites h1 a {
-        color: #000000;
-        text-decoration: none}
-
-    /*### 네비게이션 설정 */
-    .menus ul {
-        margin:0;
-        padding:0;
-        list-style: none}
-    .menus li a{
-        display:block;
-        padding:5px;
-        color: #000000;
-        font-size: 14px;
-        text-decoration: none}
-     .menus ul:after{
-        content: "";
-        display:block;
-        clear:both;}
-    .menus li{
-        float:left;
-        width:auto;}
-    /*### 헤더 이미지 설정하기*/
-    .topimg {
-        max-width: 100%;
-        /*max-height: 500px;*/
-        height:auto;
-        vertical-align: bottom;}
-    /*### 공지사항*/
-    .newses h1 {
-        margin-top:0;
-        margin-bottom: 5px;
-        font-size: 18;
-        color:#666666;}
-    .newses ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;}
-    .newses li a {
-        display: block;
-        padding: 5px;
-        color: #000000;
-        font-site: 14px;
-        text-decoration: none;
-        border-bottom: dotted 2px #dddddd;}
-    .newses li a:hover{
-        background-color: #eeeeee}
-    .newses time{
-        margin-right: 10px;
-        color: #888888;
-        font-weight: bold;}
-    </style>
-</head>
-<body>
-    <!-- Top Naviagation  -->
-    <div class="boxA">
-        <!-- Title bar -->
-        <div class="box1">
-            <div class="sites">
-                <h1><a href="#">Korea Strock Review</a></h1>
-            </div>
-        </div>
-        <!-- Menu item -->
-        <div class="box2">
-            <nav class="menus">
-                <ul>
-                    <li><a herf="#">메인</a></li>
-                    <li><a href="#">연혁</a></li>
-                    <li><a hreg="#">사업소개</a></li>
-                    <li><a href="#">채용문의</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <!-- Header Image Item -->
-    <div class="box3">
-        <img src="http://www.rmpholdings.co.za/wp-content/uploads/2015/07/business-network-banner.jpg" alt="" class="topimg">
-    </div>
-    <!-- 공지사항 메뉴  -->
-    <div class="box4">
-        <div class="newses">
-            <h1> 공 지 사 항 </h1>
-            <ul>
-                <li><a href="#">
-                    <time datetime="2018-06-01">06/01 </time> 데이터센터 유지보수를 수행한다</a></li>
-                <li><a href="#">
-                    <time datetime="2018-05-25">05/25 </time> 모바일 버젼을 확인한다</a></li>
-                <li><a href="#">
-                    <time datetime="2018-05-15">05/15 </time> 공지사항</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- footer Design -->
-    <div class="box5">
-        <div class="copyright">
-            <p>Copyright &copy; ErdosStock</p>
-        </div>
-    </div>
-</body>
-</html>
-
-
-
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
