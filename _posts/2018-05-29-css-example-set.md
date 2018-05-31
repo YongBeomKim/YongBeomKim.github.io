@@ -19,7 +19,7 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 **기본 페이지 만들기**
 
 
-<br>
+<br><br>
 # Sample Page
 
 <html lang="ko">
@@ -150,7 +150,7 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 </html>
 
 
-<br>
+<br><br>
 ## Box 기본 Layout
 
 ### HTML
@@ -358,12 +358,18 @@ div:not([class]) > div:not([class]){
 
 
 <br>
-## 공지사항 설정 
+## 공지사항 Text 설정 
 
 ### 게시판 Text 속성값 정의하기
 
 ```css
-/*### 공지사항*/
+.site h1 {
+    margin: 0;
+    font-size: 30px}
+.site h1 a {
+    color: #000000;
+    text-decoration: none}
+
 .news h1 {
     margin-top:0;
     margin-bottom: 5px;
