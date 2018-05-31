@@ -81,19 +81,55 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 
 ### fontawesome 다운로드
 
-[fontawesome.com Web](https://fontawesome.com/v4.7.0/get-started/) | [font-awesome-4.7.0.zip download](https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip)
+[Web Site](https://fontawesome.com/v4.7.0/get-started/) | [font-awesome-4.7.0.zip download](https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip)
 
 
 <br>
-## 
+## Header 이미지에 Copy 메세지 올리기
+
+```css
+.topimg {
+    max-width: 100%;
+    height:auto;
+    vertical-align: bottom;
+}
+```
+
+```css
+/* ### 캐치카피 ### */
+.catch {
+    margin:0px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;}
+
+/* ### 이미지와 카피를 중첩한다 ### */
+.top {position: relative;}
+
+.catch {
+    position:absolute;
+    bottom: 7%;
+    left: 3%;}
+```
 
 
+## 삼각형 메뉴 CSS로 만들기
 
-**Warning Notice:**
-{: .notice--warning} 
+[css 모델을 그린뒤 소스 베껴오기](http://www.cssarrowplease.com/)
 
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
+```css
+.follow-info:after {
+    top:100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(221, 221, 221, 0);
+    border-top-color: #dddddd;
+    border-width: 15px;
+    margin-left: -15px;
+}
+```
