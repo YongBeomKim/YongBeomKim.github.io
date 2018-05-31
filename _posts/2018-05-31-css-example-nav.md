@@ -19,10 +19,8 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 **네비게이션 메뉴를 토글로 변환**
 
 
-
 <br>
 ## 상단메뉴 정렬하기 
-
 
 ### 메뉴의 정렬
 
@@ -150,6 +148,14 @@ $(function(){
 
 `cursor:pointer;`  마우스 포인터를 위에 올렸을 때 손가락 모양으로 바꾼다
 {: .notice--info}
+
+
+<br>
+## 데스크탑 메뉴 디자인하기
+
+> border-left: solid 20px #c50018;
+
+빨간색 버튼 모양의 박스를 생성한다
 
 
 **Warning Notice:**
