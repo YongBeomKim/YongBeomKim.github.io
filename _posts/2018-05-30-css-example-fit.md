@@ -62,7 +62,7 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 ## font-awesome 아이콘 활용하기
 
 <figure class="align-center">
-  <img src="https://www.innovedesigns.com/wp-content/uploads/2013/08/entypo-font-awesome.png" alt="">
+  <img src="http://themeflection.com/wp-content/uploads/2015/07/font-awesome-array-760x400.jpg" alt="">
   <figcaption>awesome-icons</figcaption>
 </figure>
 
