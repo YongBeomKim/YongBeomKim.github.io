@@ -1,5 +1,5 @@
 ---
-title : css 비지니스 페이지 레이아웃
+title : css awesomefont, Layout
 last_modified_at: 2018-05-29T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/css.jpg
@@ -81,13 +81,11 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 
 ### fontawesome 다운로드
 
-[fontawesome.com 웹페이지](https://fontawesome.com/v4.7.0/get-started/)
-
-[font-awesome-4.7.0.zip 압축파일 다운로드](https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip)
+[fontawesome.com Web](https://fontawesome.com/v4.7.0/get-started/) | [font-awesome-4.7.0.zip download](https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip)
 
 
-
-
+<br>
+## 
 
 
 
