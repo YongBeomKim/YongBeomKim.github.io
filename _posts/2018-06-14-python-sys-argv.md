@@ -1,5 +1,5 @@
 ---
-title : Python 외부 파리미터 사용
+title : python 외부 파리미터 사용
 last_modified_at: 2018-06-14T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/python.jpg
