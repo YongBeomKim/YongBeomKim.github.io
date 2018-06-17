@@ -81,7 +81,7 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
 
 ### fontawesome 다운로드
 
-[Web Site](https://fontawesome.com/v4.7.0/get-started/) | [font-awesome-4.7.0.zip download](https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip)
+[Web Site](https://fontawesome.com/v4.7.0/get-started/) // [font-awesome-4.7.0.zip download](https://fontawesome.com/v4.7.0/assets/font-awesome-4.7.0.zip)
 
 
 <br>
