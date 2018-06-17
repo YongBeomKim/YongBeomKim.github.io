@@ -7,7 +7,6 @@ categories:
   - python
 tags: 
     - python
-toc: true    
 ---
 
 
