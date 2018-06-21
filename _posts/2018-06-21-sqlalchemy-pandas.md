@@ -19,7 +19,7 @@ SQL은 아직도 익숙치 않아서 어렵게 생각하는 부분이다.
 완전하게 익숙해진 다음에 작업할 생각보다는, 조금씩 작업을 진행하면서 필요한 부분을 채워 나가보자.
 
 
-# SQLalchemy 와 Pandas로 조회하기
+## SQLalchemy 와 Pandas로 조회하기
 
 MariaDB와 연동 및 조회 (SQLalchemy & Pandas)
 
@@ -37,12 +37,14 @@ data.head()
 ```
 
 
-
-# 새로운 DataFrame 객체를 Pandas로 갱신하기
+<br>
+## DataFrame 객체를 Pandas로 갱신
 
 작업의 용이성을 위해서 테이블 전체를 Update 하는 `if_exist='replace'` 설정에는 계속 오류가 발생한다. 지금 가능한건 인덱스를 추가한다
 
 ```python
+import pandas as pd
+
 # 현재 저장된 TABLE을 조회한다
 table = 'Table'
 data  = pd.read_sql_table(table, conn)

@@ -37,13 +37,4 @@ var2 = 2
 var3 = 3
 sysinfo.py
 ```
-
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
+   
