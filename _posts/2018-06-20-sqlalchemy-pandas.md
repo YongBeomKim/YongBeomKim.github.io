@@ -1,6 +1,6 @@
 ---
 title : sqlalchemy 와 Pandas 
-last_modified_at: 2018-06-21T18:45:06-05:00
+last_modified_at: 2018-06-20T18:45:06-05:00
 header:
   overlay_image: /assets/images/book/sqlal.png
 categories:
@@ -60,12 +60,3 @@ data.to_sql(name=table, con=engine, if_exists='append', index=False)
 print("Saved successfully!! \n Connection is Terminated")
 conn.close()
 ```
-
-**Warning Notice:**
-{: .notice--warning} 
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
