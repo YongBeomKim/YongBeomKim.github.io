@@ -79,22 +79,79 @@ CELERY_TIMEZONE          = 'Asia/Seoul' # 스케줄러는 시간정의 필수
 
 
 <br>
-## Mariadb 와 django 연동하기
+## TEMPLATES
 
-**사용자, 암호, DATABASE** 3개를 정의한다
+```python
+TEMPLATES = 
+    'DIRS'    : [os.path.join(BASE_DIR, "static/templates")],
+    'APP_DIRS': True,
+
+```
+
+**TEMPLATES :**  `'APP_DIRS': True` 을 설정하면, 1)우선 해당 앱의 `/app이름/templates/` 를 우선 검색하고, 2) `static/templates/` 을 두번째로 검색한다. 
+{: .notice--info}
+
+
+
+<br>
+## DATABASES
+
+### MySQL 에서의 설정
+
+**사용자, 암호, DATABASE** 3개를 정의한다 [참고사이트](http://bluejake.tistory.com/28)
 
 ```sql
 $ mysql -u root -p
 Enter password: 
 
 >>> CREATE DATABASE  DB이름 CHARACTER SET UTF8;
->>> CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';
 >>> GRANT ALL PRIVILEGES ON DB이름.* TO 사용자@localhost;
 >>> FLUSH PRIVILEGES;
 >>> exit; 
 ```
 
-[참고사이트](http://bluejake.tistory.com/28)
+**`$ mysql -u root -p`** DB 추가, 사용자 권한 작업은 root로 실행
+**CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';** 사용자 추가작업 
+{: .notice--info}
+
+
+### Django 에서의 설정 
+
+<small>**SQLITE3** 설정</small>
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME'  : os.path.join(BASE_DIR, 'db.sqlite3'),}}
+```
+
+<small>**MariaDB** 설정</small>
+
+[DB설정방법](http://bluejake.tistory.com/28)
+
+```python
+
+DATABASES = {
+    'default': {
+        'ENGINE'  : 'django.db.backends.mysql',
+        'NAME'    : 'DATABASE이름',
+        'USER'    : 'USER이름',
+        'PASSWORD': 'USER_PASSWORD',
+        'HOST'    : 'localhost',
+        'PORT'    : '3306',
+        'OPTIONS' :
+            {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+        'TEST' : {
+            'NAME': 'test_myproject', },
+        }}
+```
+
+**'PORT':'3306'** MariaDB 의 기본 설정값이다
+**'OPTIONS':{'init_command':},** MariaDB Warning용 [참고](http://tibyte.kr/274)
+**'TEST':{'NAME':}** Test Driven Django 용 테이블을 정의 
+{: .notice--info}
+
 
 
 
