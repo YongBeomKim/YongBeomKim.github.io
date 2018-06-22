@@ -146,10 +146,11 @@ DATABASES = {
         }}
 ```
 
-**MariaDB 기본내용** 정리 블로그 보기[사이트](https://yongbeomkim.github.io/django/mdc-model-1/)<br>
+**MariaDB 기본내용** 정리 블로그[사이트](https://yongbeomkim.github.io/django/mdc-model-1/) 보기<br>
 **'PORT':'3306'** MariaDB 의 기본 설정값이다<br>
 **'TEST':{'NAME':}** Test Driven Django 용 테이블을 정의<br>
-**'OPTIONS':{'init_command':},** MariaDB Warning용 [참고](http://tibyte.kr/274){: .notice--info}
+**'OPTIONS':{'init_command':},** MariaDB [참고](http://tibyte.kr/274) Warning용 
+{: .notice--info}
 
 
 <br>
