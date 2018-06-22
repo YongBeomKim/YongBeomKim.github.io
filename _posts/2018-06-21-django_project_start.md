@@ -73,7 +73,7 @@ CELERY_TAST_SERIALIZER   = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE          = 'Asia/Seoul' # 스케줄러는 시간정의 필수
 ```
-**redis 와 CELERY :** Django 에서 **비동기적 실행** 을 추가한다 이둘을 설치하고 입력해야 하는건 다음근..
+**redis 와 CELERY :** Django 에서 **비동기적 실행** 을 추가한다. 물론 이들을 설치하고[설치내용](https://yongbeomkim.github.io/django/redis-django/) 입력해야 하는건 당근..
 {: .notice--warning} 
 
 
@@ -98,7 +98,7 @@ TEMPLATES =
 
 ### MySQL 에서의 설정
 
-**사용자, 암호, DATABASE** 3개를 정의한다 [참고사이트](http://bluejake.tistory.com/28)
+<small>**사용자, 암호, DATABASE** 3개를 정의한다 [참고사이트](http://bluejake.tistory.com/28)</small>
 
 ```sql
 $ mysql -u root -p
@@ -110,8 +110,8 @@ Enter password:
 >>> exit; 
 ```
 
-**`$ mysql -u root -p`** DB 추가, 사용자 권한 작업은 root로 실행
-**CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';** 사용자 추가작업 
+**`$ mysql -u root -p`** DB 추가, 사용자 권한 작업은 root로 실행<br>
+**>>> CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';** 사용자 추가 
 {: .notice--info}
 
 
@@ -126,9 +126,8 @@ DATABASES = {
         'NAME'  : os.path.join(BASE_DIR, 'db.sqlite3'),}}
 ```
 
-<small>**MariaDB** 설정</small>
 
-[DB설정방법](http://bluejake.tistory.com/28)
+<small>**MariaDB** 설정 [DB설정방법](http://bluejake.tistory.com/28)</small>
 
 ```python
 
@@ -147,10 +146,9 @@ DATABASES = {
         }}
 ```
 
-**'PORT':'3306'** MariaDB 의 기본 설정값이다
-**'OPTIONS':{'init_command':},** MariaDB Warning용 [참고](http://tibyte.kr/274)
-**'TEST':{'NAME':}** Test Driven Django 용 테이블을 정의 
-{: .notice--info}
+**'PORT':'3306'** MariaDB 의 기본 설정값이다<br>
+**'TEST':{'NAME':}** Test Driven Django 용 테이블을 정의<br>
+**'OPTIONS':{'init_command':},** MariaDB Warning용 [참고](http://tibyte.kr/274){: .notice--info}
 
 
 <br>
