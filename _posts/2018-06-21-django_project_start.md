@@ -19,6 +19,20 @@ toc: true
 
 
 <br>
+## Django Shell 기능을 추가
+
+```python
+INSTALLED_APPS = [
+    'django_extensions',
+    ]
+```
+`$ pip install django-extensions` 로 모듈을 추가한 뒤 **terminal** 에서<br>
+`$ python3 manage.py shell_plus` 을 하면 Ipython과 연동<br>
+`$ python manage.py shell_plus --notebook`을 하면 Jupyter와 연동된다
+{: .notice--info} 
+
+
+<br>
 ## SECRET_KEY 설정
 
 ```python
@@ -146,7 +160,7 @@ DATABASES = {
         }}
 ```
 
-**MariaDB 기본내용**은 블로그[사이트](https://yongbeomkim.github.io/django/mdc-model-1/) 정리내용을 참고하기<br>
+**MariaDB 기본내용**은 블로그[사이트](https://yongbeomkim.github.io/django/mdc-model-1/) 정리내용을 참고<br>
 **'PORT':'3306'** MariaDB 의 기본 설정값이다<br>
 **'TEST':{'NAME':}** TDD 용 DATABASE (권한설정 필요)<br>
 **'OPTIONS':{'init_command':},** MariaDB [참고](http://tibyte.kr/274) Warning용 
@@ -177,9 +191,3 @@ USE_I18N      = True
 USE_L10N      = True
 USE_TZ        = True
 ```
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
