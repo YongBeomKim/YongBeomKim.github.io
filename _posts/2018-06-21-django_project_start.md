@@ -153,9 +153,30 @@ DATABASES = {
 {: .notice--info}
 
 
+<br>
+## Gmail SMTP 서버의 활용
+
+[참고사이트](https://www.codingforentrepreneurs.com/blog/use-gmail-for-email-in-django/)
+
+```python
+EMAIL_HOST          = 'smtp.gmail.com'
+EMAIL_HOST_USER     = 'email@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT          = 587
+EMAIL_USE_TLS       = True
+```
 
 
+<br>
+## Internationalization 환경설정
 
+```python
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE     = 'Asia/Seoul'
+USE_I18N      = True
+USE_L10N      = True
+USE_TZ        = True
+```
 
 **Danger Notice:**
 {: .notice--danger}
