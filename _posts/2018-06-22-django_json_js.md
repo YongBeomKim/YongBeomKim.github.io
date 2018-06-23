@@ -30,7 +30,6 @@ toc: true
 ### { dict } -> **Json** -> **HTML**
 
 ```python
-
 def chart(request):
 
     data = [
@@ -42,7 +41,7 @@ def chart(request):
 
     import json
     data = json.dumps(data)
-    return render(request, 'template.html', context={'data_json': data})
+    return render(request, 'template.html', context={'data_json': data} )
 ```
 
 
@@ -57,8 +56,8 @@ data = json.dumps(data)
 return render(request, 'template.html', context={'data_json': data})
 ```
 
-**df.to_json()** 만 사용하면, 컬럼별로 묶어서 출력된다. `'{"value":{"0":20,"1":10},"year":{"0":"2008","1":"2009"}}'`<br>
-**df.to_json(orient='records')** 를 사용해야만 튜플단위로 묶여서 출력된다. `'[{"value":20,"year":"2008"},{"value":10,"year":"2009"}]'`
+**df.to_json()** 만 사용하면, 컬럼별로 묶어서 출력된다. `'{ "value":{"0":20,"1":10}, "year":{"0":"2008","1":"2009"} }'`<br>
+**df.to_json(orient='records')** 를 사용해야만 튜플단위로 묶여서 출력된다. `'[ {"value":20 , "year":"2008" }, {"value":10 , "year":"2009"} ]'`
 {: .notice--info}
 
 
@@ -107,10 +106,3 @@ new Morris.Bar({
 
 **MorrisJs** 여기서는 MorrisJs 의 튜토리얼을 활용햇지만, 다른 시각화 방법들에 따른다. 보면 알겠지만 내부설정은 JavaScript 내용을 활용하므로 이부분을 잘 익히면 된다
 {: .notice--info}
-
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
