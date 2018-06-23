@@ -41,11 +41,11 @@ def chart(request):
 
     import json
     data = json.dumps(data)
-    return render(request, 'template.html', context={'data_json': data} )
+    return render(request, 'template.html', context = { 'data_json' : data} )
 ```
 
 
-### DataFrame / Series -> **json**(orient='records') -> **HTML** 
+### DataFrame / Series -> **json(orient='records')** -> **HTML** 
 
 ```python
 import  pandas as pd
@@ -56,8 +56,8 @@ data = json.dumps(data)
 return render(request, 'template.html', context={'data_json': data})
 ```
 
-**df.to_json()** 만 사용하면, 컬럼별로 묶어서 출력된다. `'{ "value":{"0":20,"1":10}, "year":{"0":"2008","1":"2009"} }'`<br>
-**df.to_json(orient='records')** 를 사용해야만 튜플단위로 묶여서 출력된다. `'[ {"value":20 , "year":"2008" }, {"value":10 , "year":"2009"} ]'`
+**df.to_json()** 만 사용하면, 컬럼별로 묶어서 출력된다. `' { "value" : { "0":20 , "1":10 }, "year" : { "0":"2008" , "1":"2009" } }'`<br>
+**df.to_json(orient='records')** 를 사용해야만 튜플단위로 묶여서 출력된다. `'[ { "value" : 20 , "year" : "2008" }, {"value" : 10 , "year" : "2009"} ]'`
 {: .notice--info}
 
 
@@ -67,13 +67,13 @@ return render(request, 'template.html', context={'data_json': data})
 ```html
 <div id="chart">
     <script>
-    new Morris.Line({
+    new Morris.Line( {
         element: 'chart',
         data: { { data_json | safe } },
         xkey: 'year',     // x축 컬럼을 정의
         ykeys: ['value'], // y축 컬럼을 정의(배열)
         labels: ['Value'] // y축 표시할 이름명
-    });
+    } );
     </script>
 </div>
 ```
@@ -86,7 +86,7 @@ return render(request, 'template.html', context={'data_json': data})
 ```html
 <div id="graph2" class="boxB">
 <script>
-new Morris.Bar({
+new Morris.Bar( {
     element: 'graph2',
     data: { { data_json | safe } },
     xkey: 'x',
@@ -97,9 +97,9 @@ new Morris.Bar({
             var red = Math.ceil(255 * row.y / this.ymax);
         return 'rgb(' + red + ',0,0)';
         }
-        else {return '#000';}
+        else { return '#000'; }
         }
-    });
+    } );
 </script>
 </div>
 ```
