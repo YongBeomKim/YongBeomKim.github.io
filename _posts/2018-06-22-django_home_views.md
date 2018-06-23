@@ -73,30 +73,30 @@ urlpatterns = [
 ```html
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock title %}</title>
+    <title>{ % block title % }{ % endblock title % }</title>
 
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% block extrastyle %}
-        {% endblock extrastyle %}">
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    { % load staticfiles % }
+    <link rel="stylesheet" href="{ % static 'css/style.css' % }">
+    <link rel="stylesheet" href="{ % block extrastyle % }
+        { % endblock extrastyle % }">
+    <script src="{ % static 'js/jquery-3.3.1.min.js' % }"></script>
 </head>
 
 <body>
     <div class="title">
-        <div><img src="{% static 'photo/logo.gif' %}" align="left"></div>
+        <div><img src="{ % static 'photo/logo.gif' % }" align="left"></div>
     </div>
 
     <!-- 본문을 추가할 위치-->
-    {% block content %}
-    {% endblock content %}
+    { % block content % }
+    { % endblock content % }
 
     <!-- footer를 추가할 위치-->
-    {% block footer %}
+    { % block footer % }
     <div class="footer">
         <div><p>Copyright &copy; 2018</p></div>
     </div>
-    {% endblock footer %}
+    { % endblock footer % }
 </body>
 </html>
 ```
@@ -110,29 +110,29 @@ urlpatterns = [
 
 ```html
 <!-- HTML 기본내용을 bast.html 에서 상속 -->
-{% extends "base.html" %}
+{ % extends "base.html" % }
 
-{% block title %}식당메인{% endblock title %}
+{ % block title % }식당메인{ % endblock title % }
 
-{% load static %}
-{% block extrastyle %}
-    {% static 'css/home.css' %}
-{% endblock extrastyle %}
+{ % load static % }
+{ % block extrastyle % }
+    { % static 'css/home.css' % }
+{ % endblock extrastyle % }
 
-{% block content %}
+{ % block content % }
     <div class="main">
-        <img src="{% static 'photo/main.jpg' %}">
+        <img src="{ % static 'photo/main.jpg' % }">
             <p>기본적인 안내 메세지</p>
     </div>
-{% endblock content %}
+{ % endblock content % }
 
-{% block footer %}
+{ % block footer % } 
     <div class="boxZ">
         <div class="footer">
             <p>Copyright &nbsp; &copy; 2018</p>
         </div>
     </div>
-{% endblock footer %}}
+{ % endblock footer % }
 ```
 **extends** 는 부모를 상속받는다<br>
 **block** 은 자식에서 내용을 상속한다<br>

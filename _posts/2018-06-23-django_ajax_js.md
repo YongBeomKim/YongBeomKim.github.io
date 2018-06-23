@@ -29,6 +29,9 @@ toc: true
 3. `re_path('r^ajax/', include('ajax.urls', namespace='ajax'))` : **_urls.py_**
 
 
+<br>
+## App 추가하기 (ajax 를 구현할 앱을 설정한다)
+
 
 
 **Danger Notice:**
