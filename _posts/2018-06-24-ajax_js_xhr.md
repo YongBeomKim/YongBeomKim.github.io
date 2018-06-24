@@ -46,35 +46,24 @@ XMLHttpRequest 는 **xhr** 로써, Javascript 가 Ajax를 사용하는 객체로
 
 ```html
 <script>
-    // XMLHttpRequest 객체를 생성
+    // XMLHttpRequest 객체를 생성하는 함수
     function createRequest() {
-        try {
-            return new XMLHttpRequest();
+        try { return new XMLHttpRequest();
         } catch (exception) {
-            var vers = [
+            var versions = [
                 'Msxml2.XMLHTTP.6.0',
-                'Msxml2.XMLHTTP.5.0',
-                'Msxml2.XMLHTTP.4.0',
-                'Msxml2.XMLHTTP.3.0',
                 'Msxml2.XMLHTTP',
                 'Microsoft.XMLHttp'];
-            for (var i = 0; i < vers.length; i++) {
-                try {
-                    return new ActiveXObject(vers[i]);
+            for (var i = 0; i < versions.length; i++) {
+                try { return new ActiveXObject(versions[i]);
                 } catch (e) { } } } }
 
-    // XMLHttpRequest 객체를 생성
+    // XMLHttpRequest 객체생성 및 출력
     var request = createRequest();
-        request.open('GET', '/data.html', false);
-
-    // send() 메서드 시간 측정
-    var prevDate = new Date();
-        request.send();
-
-    var nowDate = new Date();
-
-    // 결과출력
-    alert(nowDate - prevDate);
+    request.onreadystatechange = function (event) {
+        alert(request.readyState); };
+    request.open('GET', '/data.html', true);
+    request.send();
 </script>
 ```
 
