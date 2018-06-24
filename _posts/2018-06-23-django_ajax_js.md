@@ -34,6 +34,81 @@ toc: true
 
 
 
+## Ajax JavaScript 작성하기
+
+```javascript
+$(document).ready(function(){
+    if($('#result') != null){ Read();}
+    $('#create').on('click', function(){
+        $firstname = $('#firstname').val();
+        $lastname  = $('#lastname').val();
+        if($firstname == "" || $lastname == ""){
+            alert("Please complete the required field");
+        }else{
+            $.ajax({
+                url  : 'create',
+                type : 'POST',
+                data : {
+                    firstname : $firstname,
+                    lastname  : $lastname,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val() },
+                success : function(){
+                    Read();
+                    $('#firstname').val('');
+                    $('#lastname').val('');
+        } }); } });
+
+    $(document).on('click', '.edit', function(){
+        $id = $(this).attr('name');
+        window.location = "edit/" + $id; });
+
+    $('#update').on('click', function(){
+        $firstname = $('#firstname').val();
+        $lastname  = $('#lastname').val();
+        if($firstname == "" || $lastname == ""){
+            alert("Please complete the required field");
+        }else{
+            $id = $('#member_id').val();
+            $.ajax({
+                url  : 'update/' + $id,
+                type : 'POST',
+                data : {
+                    firstname : $firstname,
+                    lastname  : $lastname,
+                    csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                    window.location = '/';
+                    alert('Updated!'); }
+            }); } });
+
+    $(document).on('click', '.delete', function(){
+        $id = $(this).attr('name');
+        $.ajax({
+            url  : 'delete/' + $id,
+            type : 'POST',
+            data : {
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }, success: function(){ Read(); alert("Deleted!");} }); }); });
+
+function Read(){
+    $.ajax({
+        url     : 'read',
+        type    : 'POST',
+        async   :  false,
+        data    : { res : 1,
+            csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()},
+        success : function(response){
+            $('#result').html(response);} }); }
+```
+
+**`async : false`** Read() 함수의 **동기화 설정**을 하면 **FireFox**에서는 
+`메인 쓰레드 XMLHttpRequest 더이상 사용하지 않습니다` 오류가 발생한다. 새로운 Jquery 에서는 `Prmoiss` 객체를 `Deffered`를 활용한다 [Promiss 를 위한 Deferred 설명](https://poiemaweb.com/jquery-deferred) | [Onky](https://okky.kr/article/301029?note=1000882) | [Deferred 설명](https://www.html5rocks.com/ko/tutorials/async/deferred/) | [Prmoiss객체](http://uwostudy.tistory.com/54)
+{: .notice--info}
+
+**동기식 처리시 발생하는 오류**로, 우선은 **비동기식**으로 django를 완성한 뒤 차후에 수정 보완해 나아가면 되는 부분으로 보인다.
+{: .notice--info}
+
 **Danger Notice:**
 {: .notice--danger}
 
