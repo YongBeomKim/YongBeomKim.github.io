@@ -1,5 +1,5 @@
 ---
-title : JQuery.ajax()
+title : Ajax JQuery
 last_modified_at: 2018-06-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ajax.png
@@ -18,11 +18,9 @@ toc: true
 <br>
 ## $.ajax() 기본 속성을 활용하자
 
-**$.ajax :** *JQuery** 에서는 **Ajax**와 관련된 메소드를 제공
+**$.ajax :** &nbsp; **JQuery** 에서는 **Ajax**와 관련된 메소드를 제공한다
 
-[정식 Document](http://api.jquery.com/jquery.ajax/)
-
-`$.ajax(url, option);`<br>
+`$.ajax(url, option);` [JQuery 정식 Document](http://api.jquery.com/jquery.ajax/)
 
 $ **.ajax** ( {<br>
 &nbsp;&nbsp; **url** : `요청이 보내지는 곳`,<br>
@@ -108,12 +106,6 @@ $(document).ready(function() {
     } ) ;
 </script>
 ```
-
-<br>
-
-
-
-
 
 **Danger Notice:**
 {: .notice--danger}

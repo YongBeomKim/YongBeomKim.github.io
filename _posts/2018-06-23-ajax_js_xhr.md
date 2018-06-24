@@ -101,13 +101,3 @@ XMLHttpRequest 는 **xhr** 로써, Javascript 가 Ajax를 사용하는 객체로
     request.send();
 </script>
 ```
-
-
-
-
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
