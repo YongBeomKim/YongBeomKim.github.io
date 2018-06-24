@@ -22,7 +22,6 @@ toc: true
 
 [정식 Document](http://api.jquery.com/jquery.ajax/)
 
-`$.ajax(option);`<br>
 `$.ajax(url, option);`<br>
 
 $ **.ajax** ( {<br>
@@ -36,7 +35,6 @@ $ **.ajax** ( {<br>
 &nbsp;&nbsp; **global** : true/false `전역함수`,<br>
 &nbsp;&nbsp; **async** : true/false `동기여부`,<br> 
 } ) ;
-
 
 
 ```html 
@@ -101,15 +99,13 @@ $(document).ready(function() {
 ```html
 <script>
     $(document).ready(function () {
-        // 변수를 선언합니다.
+        // 변수를 선언
         var data = {
-            name: 'RintIanTta',
-            region: 'Seoul',
-        };
-
-        // 출력합니다.            
+            name : 'RintIanTta',
+            region : 'Seoul', } ;
+        // 출력
         $('<h1></h1>').text($.param(data)).appendTo('body');
-    });
+    } ) ;
 </script>
 ```
 
