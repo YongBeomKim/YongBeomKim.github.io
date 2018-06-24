@@ -39,10 +39,13 @@ XMLHttpRequest 는 **xhr** 로써, Javascript 가 Ajax를 사용하는 객체로
 
 
 <br>
-## 동기 비동기 방식
+## **.readyState**
 
-<small>xhl 객체를 생성</small>
+<small>**request.readyState : ** xhr 프로젝트 속성 결과</small>
 
+<figure>
+    <img src="https://i.stack.imgur.com/HVIcv.png">
+</figure>
 
 ```html
 <script>
@@ -66,6 +69,41 @@ XMLHttpRequest 는 **xhr** 로써, Javascript 가 Ajax를 사용하는 객체로
     request.send();
 </script>
 ```
+
+<br>
+## **.responseText**
+
+<figure>
+    <img src="https://tzamtzis.gr/tzamtziswp/wp-content/uploads/2017/07/http_status_codes-cheatsheet.jpg">
+</figure>
+
+```html
+<script>
+    // XMLHttpRequest 객체를 생성
+    function createRequest() {
+        try { return new XMLHttpRequest();
+        } catch (exception) {
+            var versions = [
+                'Msxml2.XMLHTTP.6.0',
+                'Microsoft.XMLHttp' ];
+            for (var i = 0; i < versions.length; i++) {
+                try { return new ActiveXObject(versions[i]);
+                } catch (e) { } } } }
+
+    // XMLHttpRequest 객체를 생성
+    var request = createRequest();
+    request.onreadystatechange = function (event) {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+                document.body.innerHTML += request.responseText;
+            }; }; };
+    request.open('GET', '/data.html', true);
+    request.send();
+</script>
+```
+
+
+
 
 
 
