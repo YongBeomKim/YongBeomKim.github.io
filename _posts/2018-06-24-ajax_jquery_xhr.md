@@ -25,16 +25,16 @@ toc: true
 `$.ajax(option);`<br>
 `$.ajax(url, option);`<br>
 
-$.ajax( {<br>
-    **url** : `요청이 보내지는 곳`,<br>
-    **type** : get/post/put/delete `http요청 방식`<br> 
-    **success** : `http 성공시 동작함수`,<br>
-    **error** : `http 실패시 동작함수`,<br>
-    **complete** : `http 완료후 동작함수`,<br>
-    **data** : `서버 전달 값`,<br>
-    **dataType** : `data 타입`,<br>
-    **global** : true/false `전역함수`,<br>
-    **async** : true/false `동기여부`,<br> 
+$ **.ajax** ( {<br>
+&nbsp;&nbsp; **url** : `요청이 보내지는 곳`,<br>
+&nbsp;&nbsp; **type** : get/post/put/delete `http요청 방식`<br> 
+&nbsp;&nbsp; **success** : `http 성공시 동작함수`,<br>
+&nbsp;&nbsp; **error** : `http 실패시 동작함수`,<br>
+&nbsp;&nbsp; **complete** : `http 완료후 동작함수`,<br>
+&nbsp;&nbsp; **data** : `서버 전달 값`,<br>
+&nbsp;&nbsp; **dataType** : `data 타입`,<br>
+&nbsp;&nbsp; **global** : true/false `전역함수`,<br>
+&nbsp;&nbsp; **async** : true/false `동기여부`,<br> 
 } ) ;
 
 
