@@ -1,4 +1,4 @@
----
+ ---
 title : Django Settings.py 기본설정
 last_modified_at: 2018-06-21T15:45:06-05:00
 header:

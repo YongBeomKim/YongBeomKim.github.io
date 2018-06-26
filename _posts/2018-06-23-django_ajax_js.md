@@ -30,9 +30,94 @@ toc: true
 
 
 <br>
+## models.py
+
+<small>대상 모델을 정의한다</small>
+
+```python
+from django.db import models
+
+class Member(models.Model):
+    firstname = models.CharField(max_length=40)
+    lastname  = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.firstname + " " + self.lastname
+```
+
+
+<br>
+## views.py
+
+<small>**index** 및 **CRUD**에 대응하는 함수들을 정의한다</small>
+
+```python
+from django.shortcuts import render, redirect
+from .models import Member
+
+def index(request):
+    return redirect("crud:index")
+
+def create(request):
+    member = Member(firstname= request.POST['firstname'],\
+                    lastname = request.POST['lastname'])
+    member.save()
+    return redirect("crud:index")
+
+def read(request):
+    members = Member.objects.all()
+    context = {'members': members}
+    return render(request, 'crud/result.html', context)
+
+def edit(request, id):
+    members = Member.objects.get(id=id)
+    context = {'member': members}
+    return render(request, 'crud/edit.html', context)
+
+def update(request, id):
+    member = Member.objects.get(id=id)
+    member.firstname = request.POST['firstname']
+    member.lastname  = request.POST['lastname']
+    member.save()
+    return redirect("crud:index")
+
+def delete(request, id):
+    member = Member.objects.get(id=id)
+    member.delete()
+    return redirect("crud:index")
+```
+
+**template**  index.html  edit.html  result.html 3개를 만들면 된다
+{: .notice--info}
+
+
+**CRUD** 다른 책이나 내용을 살펴보면 **RestAPI** 를 활용하여 CRUD를 제어하고, 이를 back-hand 에서 Vue.js 등의 모듈을 사용해서 받는 방법으로 구현하는 경우도 많이 볼 수 있다 <small>우선은 Python을 중점적으로 정리하면서 기능들을 덧붙여 나아가자</small>
+{: .notice--info}
+
+
+<br>
+## urls.py
+
+<small>**index** 및 **CRUD**에 대응하는 함수들을 정의한다</small>
+
+```python
+from django.urls import re_path
+from . import views
+
+app_name="crud"
+urlpatterns = [
+    re_path(r'^$',                        views.index,  name='index'),
+    re_path(r'^read$',                    views.read,   name='read'),
+    re_path(r'^create$',                  views.create, name='create'),
+    re_path(r'^edit/(?P<id>\d+)$',        views.edit,   name='edit'),
+    re_path(r'^edit/update/(?P<id>\d+)$', views.update, name='update'),
+    re_path(r'^delete/(?P<id>\d+)$',      views.delete, name='delete'),
+]
+```
+
+
+<br>
 ## App 추가하기 (ajax 를 구현할 앱을 설정한다)
-
-
 
 ## Ajax JavaScript 작성하기
 

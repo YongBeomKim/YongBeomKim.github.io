@@ -12,7 +12,7 @@ toc: true
 ---
 
 
-# Python Json to JS
+# Python { dict } &nbsp;&nbsp; to &nbsp;&nbsp; HTML JSon
 
 
 <br>
