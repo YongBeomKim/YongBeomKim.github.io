@@ -1,5 +1,5 @@
 ---
-title : Ajax JQuery
+title : Js Promise 객체
 last_modified_at: 2018-06-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/js.jpg
