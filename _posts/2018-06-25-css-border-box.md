@@ -38,8 +38,8 @@ html {
 html도 소스코드인 만큼, 위에서 부터 순차적으로 내용확인한 뒤, 메모리에 올리고, 올라간 내용 중 해당함수를 찾는 과정을 거치면서 내용을 실행한다
 
 ```css
-<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'js/morris.min.js' %}"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/morris.min.js"></script>
 ```
 
 우선 기본이 되는 **Jquery**를 메모리에 올린 뒤, 이를 바탕으로 응용 모듈인 **morris.js** 을 실행하는 구조로 작동된다. 만약 위 소스코드에서 위/아래 순서를 바꾸게 된다면 **morris.js** 먼저 올라간 상태에서는, **jquery** 내용은 메모리에 올라오지 않은 상태로써 상속 받기 어려워 **morris.js** 는 **_연관된 jquery 를 찾을 수 없다_** 는 오류를 출력한다
