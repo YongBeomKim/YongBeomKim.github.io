@@ -55,25 +55,32 @@ class Member(models.Model):
 from django.shortcuts import render, redirect
 from .models import Member
 
+# 기본 page 를 render()
 def index(request):
-    return redirect("crud:index")
+    return render(request, 'crud/index.html')
 
+# DB 내용을 출력하는 render()
+# jQuery의 Read()를 실행
+def read(request):
+    members = Member.objects.all()
+    context = {'members': members}
+    return render(request, 'crud/result.html', context)
+
+# DB 를 수정하는 render()
+# .edit 객체를 누를 때 jQuery 실행
+def edit(request, id):
+    members = Member.objects.get(id=id)
+    context = {'member': members}
+    return render(request, 'crud/edit.html', context)
+
+# #create 객체를 누를 떄 jQuery 실행 
 def create(request):
     member = Member(firstname= request.POST['firstname'],\
                     lastname = request.POST['lastname'])
     member.save()
     return redirect("crud:index")
 
-def read(request):
-    members = Member.objects.all()
-    context = {'members': members}
-    return render(request, 'crud/result.html', context)
-
-def edit(request, id):
-    members = Member.objects.get(id=id)
-    context = {'member': members}
-    return render(request, 'crud/edit.html', context)
-
+# #update 객체를 누를 떄 jQuery 실행 
 def update(request, id):
     member = Member.objects.get(id=id)
     member.firstname = request.POST['firstname']
@@ -81,13 +88,14 @@ def update(request, id):
     member.save()
     return redirect("crud:index")
 
+# .delete 객체를 누를 때 jQuery 실행
 def delete(request, id):
     member = Member.objects.get(id=id)
     member.delete()
     return redirect("crud:index")
 ```
 
-**template**  index.html  edit.html  result.html 3개를 만들면 된다
+**template** 은 index.html,  edit.html,  result.html 3개를 사용한다 <small> **render()**를 통해서 반영
 {: .notice--info}
 
 
@@ -117,13 +125,12 @@ urlpatterns = [
 
 
 <br>
-## App 추가하기 (ajax 를 구현할 앱을 설정한다)
-
 ## Ajax JavaScript 작성하기
 
 ```javascript
 $(document).ready(function(){
     if($('#result') != null){ Read();}
+
     $('#create').on('click', function(){
         $firstname = $('#firstname').val();
         $lastname  = $('#lastname').val();
