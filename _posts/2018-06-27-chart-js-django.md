@@ -143,7 +143,7 @@ $.ajax({
     1. '/api/' : **절대좌표**를 활용
     2. 'api/'  : 서버기준 **상대좌표**를 활용 
 3. console.**log**(data)
-    1. data : 객체 **Json** 을 출력 `{"sales":100, "customers":10,}`
-    2. data.customers : **Json**의 **Key**의 value를 출력 `10(integer)`
+    1. data : 객체 **Json** 을 출력 `ex) {"sales":100, "customers":10,}`
+    2. data.customers : **Json**의 **Key**의 value를 출력 `ex) 10(integer)`
 
 
