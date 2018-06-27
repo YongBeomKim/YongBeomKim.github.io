@@ -43,7 +43,7 @@ toc: true
 ```
 
 **include** HTML 템플릿 사이에 `{ % include % }` 를 통해서 설정 내용을 별도의 파일로써 관리하고 이를 추가하는 방식을 사용한다
-{: .notice--info}**
+{: .notice--info}
 
 <br>
 **jQuery**
@@ -58,12 +58,12 @@ $(document).ready(function(){
 </script>
 ```
 
-**script** 페이지별 각기 다른 jquery 내용을 추가하는데 있어서 반복을 줄이기 위해서 **jquery** 블록을 사용한다 <small>jquery 이름은 사용자에 따라서 자유롭게 정의 가능하다</small>
+**script** 페이지별 각기 다른 jquery 내용을 추가하는데 있어서 반복을 줄이기 위해서 **jquery** 블록을 사용한다 <strike>jquery 이름은 사용자에 따라서 자유롭게 정의 가능하다</strike>
 {: .notice--info}
 
 
 <br>
-# Chart js APP
+# Chart js 의 **JSON 구조**를 설계한다
 
 <br>
 ## mysite 에서 APP의 추가
@@ -90,7 +90,7 @@ def get_data(request, *args, **kwargs):
     return JsonResponse(data)
 ```
 
-기본 **index.html**를 구현하고, **get_data** 은 Json 만 출력한다(템플릿 **X**)
+기본 **index.html**를 구현하고, **get_data** 은 **JSON** 만 출력한다(템플릿 **X**)
 {: .notice--info}
 
 <br>
@@ -111,7 +111,7 @@ urlpatterns = [
 {: .notice--info}
 
 <br>
-###  Chart Js 의 **index.html**
+## Chart Js 의 **index.html**
 
 ```javascript
 { % block jquery % }
@@ -138,12 +138,49 @@ $.ajax({
 ```
 
 위의 Ajax 결과값은 **Console**로 출력된다
+
 1. **endpoint** : **url** 내부 객체간 연결을 한다
 2. var **endpoint** = 'api/data/'
-    1. '/api/' : **절대좌표**를 활용
-    2. 'api/'  : 서버기준 **상대좌표**를 활용 
+    1. '/api/data/' : **절대좌표**를 활용
+    2. 'api/data/'  : 서버기준 **상대좌표**를 활용 
 3. console.**log**(data)
     1. data : 객체 **Json** 을 출력 `ex) {"sales":100, "customers":10,}`
     2. data.customers : **Json**의 **Key**의 value를 출력 `ex) 10(integer)`
 
 
+<br>
+# Chart js 의 **JSON**를 추가한다
+
+## **views.py**
+
+```python
+from django.shortcuts import render
+from django.http import JsonResponse
+
+def index(request, *args, **kwargs):
+    return render(request, 'chartjs/index.html', {"customers":22})
+
+def get_data(request, *args, **kwargs):
+    data = {"sales":100, "customers":10,}
+    return JsonResponse(data)
+```
+
+
+<br>
+## **index.html**
+**
+```javascript
+var endpoint = 'api/data/'
+var customerData = parseInt("{ { customers } }")
+$.ajax( { 
+    method : "GET",
+    } )
+```
+
+`{ { customers } }` **Django**객체를 **jQuery**로도 받지만, 모든 객체를 'String'으로 받으므로 숫자는 **parseInt()** 로 변환하는 번거로움이 존재한다
+{: .notice--info}
+
+
+
+<br>
+# REST API를 추가한다
