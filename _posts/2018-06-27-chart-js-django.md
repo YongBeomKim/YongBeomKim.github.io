@@ -107,7 +107,7 @@ urlpatterns = [
 ]
 ```
 
-**/api/data** 를 통해서 JSON API를 구현한다
+**/api/data** 를 통해서 **JSON API**를 구현한다
 {: .notice--info}
 
 <br>
