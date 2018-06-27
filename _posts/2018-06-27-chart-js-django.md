@@ -1,5 +1,5 @@
 ---
-title : Django Chart js
+title : Django Chart js 01 - JSON
 last_modified_at: 2018-06-27T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/chartjs.png
@@ -179,8 +179,3 @@ $.ajax( {
 
 `{ { customers } }` **Django**객체를 **jQuery**로도 받지만, 모든 객체를 'String'으로 받으므로 숫자는 **parseInt()** 로 변환하는 번거로움이 존재한다
 {: .notice--info}
-
-
-
-<br>
-# REST API를 추가한다
