@@ -15,7 +15,7 @@ toc: true
 
 # Django Chart js Setting
 
-[github](https://github.com/codingforentrepreneurs/Django-Chart.js) | [project Web](https://www.codingforentrepreneurs.com/projects/) | [YouTube](https://www.youtube.com/channel/UCWEHue8kksIaktO8KTTN_zg)
+[github](https://github.com/codingforentrepreneurs/Django-Chart.js), [project Web](https://www.codingforentrepreneurs.com/projects/), [YouTube](https://www.youtube.com/channel/UCWEHue8kksIaktO8KTTN_zg)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B4Vmm3yZPgc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
