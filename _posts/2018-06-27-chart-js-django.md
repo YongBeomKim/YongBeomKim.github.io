@@ -83,7 +83,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 def index(request, *args, **kwargs):
-    return render(request, 'chartjs/index.html', {})
+    return render(request, 'chartjs/index.html', { })
 
 def get_data(request, *args, **kwargs):
     data = {"sales":100, "customers":10,}
@@ -131,7 +131,7 @@ $.ajax({
 { % endblock jquery % }
 
 { % block content % }
-    <div class="col-sm-12" url-endpoint='{% url "chartjs:api-data" %}'>
+    <div class="col-sm-12" url-endpoint='{ % url "chartjs:api-data" % }'>
         <h1>Hello World</h1>
     </div>
 { % endblock % }
