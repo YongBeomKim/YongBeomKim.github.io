@@ -8,17 +8,14 @@ categories:
 tags: 
     - js
     - chartjs
+    - django
 toc: true 
 ---
 
 
-# Chart JS 
+# Django Chart js Setting
 
-**Morris.js** 가 **장점**으로는 구조가 간단하지만 **단점**은 결과가 고정적이고, 다양한 객체의 반응형 그래프를 구현하기 위해서는 격체별 Ajax를 추가해야 하는등 기능이 부족한 단점이 존재한다 <small><strike>그래프 객체별 Ajax를 구현하는 과정이 귀찮다고 말을 해!!!</strike></small>
-
-
-이를 극복하기 위해 **1) GoogleChart** [url](https://developers.google.com /chart/) 는 **장점**은 Tutorial이 자세하고 사용법이 쉽지만 **단점**은 Offline CDN을 제공하지 않아서 인터넷이 연결되지 않은 환경에서는 구현되지 않았다. [github](https://github.com/codingforentrepreneurs/Django-Chart.js) | [project Web](https://www.codingforentrepreneurs.com/projects/) | [YouTube](https://www.youtube.com/channel/UCWEHue8kksIaktO8KTTN_zg)
-
+[github](https://github.com/codingforentrepreneurs/Django-Chart.js) | [project Web](https://www.codingforentrepreneurs.com/projects/) | [YouTube](https://www.youtube.com/channel/UCWEHue8kksIaktO8KTTN_zg)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/B4Vmm3yZPgc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -29,28 +26,15 @@ toc: true
 <br>
 ## Chart js CDN 
 
-<small>[chart js CDN 다운로드](https://github.com/chartjs/Chart.js/releases)</small>
-
+<small>[다운로드](https://github.com/chartjs/Chart.js/releases)</small>
 `https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js`
 
-
-
-<br>
-## Chart JS 10 Samples
-
-<small>[chartjs-charts-to-get-you-started](http://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/)</small>
-
-위의 내용은 추후에 정리하도록 하고 이번 시간은 Django와 연동을 위한 위 YouTube를 정리해 보고자 한다
-
-
-<br>
-# Django & Chart.js
 
 <br>
 ## base.html
 
 <br>
-### CSS Template 
+**CSS JS**
 
 ```html
 <head>
@@ -58,12 +42,11 @@ toc: true
 </head>
 ```
 
-**include** HTML 템플릿 사이에 `{ % include % }` 를 통해서 설정 내용을 별도의 파일로써 관리하고 이를 추가하는 방식으로 응용하는 부분이 차이가 있었다. 이는 다양한 브라우저 및 환경별 각기 다른 설정을 파일관리를 사용한다는 점에서 장점으로 보인다 <small>하지만 나에게는 아직 이정도의 복잡성을 요구하진 못해서 다행이다 ^^</small>
-{: .notice--info}
-
+**include** HTML 템플릿 사이에 `{ % include % }` 를 통해서 설정 내용을 별도의 파일로써 관리하고 이를 추가하는 방식을 사용한다
+{: .notice--info}**
 
 <br>
-### jQuery Template 
+**jQuery**
 
 ```html
 { % include 'base/js.html' % }
@@ -78,35 +61,22 @@ $(document).ready(function(){
 **script** 페이지별 각기 다른 jquery 내용을 추가하는데 있어서 반복을 줄이기 위해서 **jquery** 블록을 사용한다 <small>jquery 이름은 사용자에 따라서 자유롭게 정의 가능하다</small>
 {: .notice--info}
 
-<br>
-# Chart js
 
 <br>
-## mysite 에서 Chart.js APP의 추가
+# Chart js APP
 
 <br>
-### **urls.py**
+## mysite 에서 APP의 추가
 
-```python
-urlpatterns = [
-    re_path(r'^chartjs/', include('chartjs.urls', namespace='chartjs')),
-]
-```
+**urls.py**
+`re_path(r'^chartjs/', include('chartjs.urls', namespace='chartjs')),`
 
-<br>
-### **settings.py**
+**settings.py**
+`INSTALLED_APPS = ['chartjs',]`
 
-```python
-INSTALLED_APPS = [
-    'chartjs',
-]
-```
 
 <br>
-## Chart Js
-
-<br>
-### **views.py**
+## Chart Js 의 **views.py**
 
 ```python
 from django.shortcuts import render
@@ -120,11 +90,11 @@ def get_data(request, *args, **kwargs):
     return JsonResponse(data)
 ```
 
-**index.html** chart.js 앱에서 기본적으로 사용할 **index.html**을 구현해야 한다. 참고로 **get_data** 은 Json 객체만 출력하므로 별도의 템플릿은 필요로 하지 않는다.
+기본 **index.html**를 구현하고, **get_data** 은 Json 만 출력한다(템플릿 **X**)
 {: .notice--info}
 
 <br>
-### **urls.py**
+## Chart Js 의 **urls.py**
 
 ```python
 from django.urls import re_path
@@ -137,8 +107,11 @@ urlpatterns = [
 ]
 ```
 
+**/api/data** 를 통해서 JSON API를 구현한다
+{: .notice--info}
+
 <br>
-### index.html
+###  Chart Js 의 **index.html**
 
 ```javascript
 { % block jquery % }
@@ -164,6 +137,7 @@ $.ajax({
 { % endblock % }
 ```
 
+위의 Ajax 결과값은 **Console**로 출력된다
 1. **endpoint** : **url** 내부 객체간 연결을 한다
 2. var **endpoint** = 'api/data/'
     1. '/api/' : **절대좌표**를 활용
@@ -171,8 +145,5 @@ $.ajax({
 3. console.**log**(data)
     1. data : 객체 **Json** 을 출력 `{"sales":100, "customers":10,}`
     2. data.customers : **Json**의 **Key**의 value를 출력 `10(integer)`
-
-
-
 
 
