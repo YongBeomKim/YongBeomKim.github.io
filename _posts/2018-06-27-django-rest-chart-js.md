@@ -1,5 +1,5 @@
 ---
-title : Django Chart js 02 - REST API
+title : Django REST API
 last_modified_at: 2018-06-27T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/chartjs.png
@@ -28,7 +28,6 @@ toc: true
 
 <br>
 # REST API Base Settings
-
 
 <br>
 ## 모듈의 설치 
@@ -98,3 +97,5 @@ class ChartData(APIView):
 
 <br>
 ## Ajax 의 경로를 RestAPI와 연결한다
+
+위의 동영상 정리결과 1단 데이터를 넘기는건 

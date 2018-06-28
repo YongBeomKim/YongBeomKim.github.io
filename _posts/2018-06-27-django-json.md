@@ -1,13 +1,12 @@
 ---
-title : Django Chart js 01 - JSON
+title : Django JSON
 last_modified_at: 2018-06-27T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/chartjs.png
 categories:
   - js
 tags: 
-    - js
-    - chartjs
+    - json
     - django
 toc: true 
 ---
