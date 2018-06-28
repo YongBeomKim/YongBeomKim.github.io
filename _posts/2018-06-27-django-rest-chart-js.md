@@ -33,7 +33,7 @@ toc: true
 ## 모듈의 설치 
 <small>[정식 document](http://www.django-rest-framework.org/tutorial/1-serialization/)</small>
 
-`pip install **djangorestframework**` 
+`pip install **djangorestframework**` <br>
 `pip install **pygments**  # We'll be using this for the code highlighting`
 
 
@@ -43,8 +43,8 @@ toc: true
 
 
 <br>
+<br>
 # App Additional Settings
-
 
 <br>
 ## RestAPI **views.py**
@@ -70,13 +70,13 @@ class ChartData(APIView):
 
 `re_path(r'^api/chart/data/$', ChartData.as_view())`
 
-http://localhost:8000/chartjs/api/chart/data/ 에 RestfulAPI를 출력한다
+`http://localhost:8000/chartjs/api/chart/data/` 로 **RestfulAPI**를 출력한다
 
 
 <br>
 ## RestAPI에 정보를 추가한다 
 
-Django 등록 사용자 수를 RestAPI에 추가한다
+Django 등록 사용자 수를 **RestAPI**에 추가한다
 
 ```python
 from django.contrib.auth import get_user_model
