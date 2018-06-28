@@ -2,10 +2,9 @@
 title : Maria DB 설치
 last_modified_at: 2018-04-22T20:45:06-05:00
 header:
-  overlay_image: /assets/images/book/mariadb.jpg
-  caption: "mariadb"
+  overlay_image: /assets/images/book/sql.jpg
 categories:
-  - SQL
+  - sql
 tags: 
     - mariadb
     - mysql

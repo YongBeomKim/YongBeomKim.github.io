@@ -1,8 +1,10 @@
 ---
 title : PostgreSQL 03 - Django에서 Restful API 활용
 last_modified_at: 2018-03-08T13:45:06-05:00
+header:
+  overlay_image: /assets/images/book/sql.jpg
 categories:
-  - django
+  - sql
 tags: 
     - postgresql
     - django

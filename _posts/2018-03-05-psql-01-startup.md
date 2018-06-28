@@ -1,8 +1,10 @@
 ---
 title : PostgreSQL 01 - 시작하기
 last_modified_at: 2018-03-05T11:45:06-05:00
+header:
+  overlay_image: /assets/images/book/sql.jpg
 categories:
-  - SQL
+  - sql
 tags: 
     - postgresql
 toc: true
