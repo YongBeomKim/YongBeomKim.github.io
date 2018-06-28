@@ -34,11 +34,12 @@ MariaDB [(none)]>  USE Test;
 ## **INSERT :** TABLE 생성
 
 <br>
-| 자료형       | 설명        |
-| -----------: | ----------: |
-| VARCHAR      | 문자열      |
-| INT          | 정수 숫자   |
-| DOUBLE       | 실수 숫자   |
+| 자료형       | 설명         |
+|:-----------: | :----------: |
+| VARCHAR      | 문자열       |
+| INT          | 정수 숫자    |
+| DOUBLE       | 실수 숫자    |
+
 
 ```sql
 MariaDB [Test]> CREATE TABLE products(
@@ -51,7 +52,7 @@ Query OK, 0 rows affected (0.02 sec)
 
 <br>
 | 필드속성       | 설명          |
-| --------------:| ------------: |
+| :--------------:| :------------: |
 | NOT NULL       | 반드시 입력   |
 | AUTO_INCREMENT | 자동증감      |
 | PRIMARY KEY    | 기본키 지정   |
@@ -103,7 +104,7 @@ MariaDB [Test]> SELECT  id, name  FROM products;
 
 <br>
 | 연산자         | 설명          |
-|----------------|---------------|
+|:--------------:|:-------------:|
 | =              | 동등 조건     |
 | != 또는 <>     | 서로 다름     |
 | <, >, <=, >=   | 크기 비교     |
