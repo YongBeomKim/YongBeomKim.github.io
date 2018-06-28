@@ -2,7 +2,7 @@
 title : Django multi JSON to Chart.JS
 last_modified_at: 2018-06-27T20:45:06-05:00
 header:
-  overlay_image: /assets/images/book/chartjs.png
+  overlay_image: /assets/images/book/chartjs.jpg
 categories:
   - js
 tags: 
@@ -79,7 +79,7 @@ def get_data(request, *args, **kwargs):
 ## **Template**
 
 <br>
-**Intex.html 템플릿 코드**
+**Intex.html 템플릿 코드** <br>
 `<canvas id="line-chart" height="100"></canvas>`
 
 <br>
