@@ -1,5 +1,5 @@
 ---
-title : Django REST API
+title : Django RestAPI to Chart.JS
 last_modified_at: 2018-06-27T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/chartjs.png
