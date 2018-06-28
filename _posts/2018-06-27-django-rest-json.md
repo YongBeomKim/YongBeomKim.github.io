@@ -17,6 +17,13 @@ toc: true
 
 <small>**Multi Json**을 **Django** 에서 활용하기</small> 
 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9N6a-VLBa2I" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+**Multi Json** 객체는 **Python** 의 **`{ dict }`** 객체를 활용하면 쉽게 구현 가능하다. 개별 Data 또는 Array 객체를 **'Key'** 값에 따라 개별 정의를 한 뒤, **JavaScript** 에서 **`객체.Key이름`** 을 사용하면 개별 **'Key'**값에 해당하는 **value** 들을 추출 가능하다 
+
+
 <br>
 ## 원본 Template
 
@@ -42,13 +49,12 @@ new Chart(document.getElementById("line-chart"), {
 ## **views.py**
 
 ```python
+from django.http import JsonResponse
+
 def get_data(request, *args, **kwargs):
-
     title  = 'World population per region (in millions)'
-
     labels = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050]
-
-    items = [{ "data" : [86, 114, 106, 106, 107, 111, 133, 221, 783, 278],
+    items  = [{ "data" : [86, 114, 106, 106, 107, 111, 133, 221, 783, 278],
                "label" : "Africa",
                "borderColor" : "#3e95cd",
                "fill" : False},
