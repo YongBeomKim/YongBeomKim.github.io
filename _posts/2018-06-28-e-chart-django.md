@@ -74,7 +74,7 @@ urlpatterns = [
 
 { % block js % }
 { % load static % }
-<script src="{% static 'js/echarts.min.js' %}"></script>
+<script src="{ % static 'js/echarts.min.js' % }"></script>
 { % endblock js % }
 
 { % block content % }
@@ -98,9 +98,9 @@ $.ajax({
 
     success: function(data){
 
-        var rawData = data.dataSet;
+        var rawData  = data.dataSet;
         var rawTitle = data.titleSet;
-        var myChart = echarts.init(document.getElementById('echart_main'));
+        var myChart  = echarts.init(document.getElementById('echart_main'));
 
         function calculateMA(dayCount, data) {
             var result = [];
