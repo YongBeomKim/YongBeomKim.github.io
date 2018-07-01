@@ -1,12 +1,12 @@
 ---
-title : Django Ajax
+title : Django Ajax by jQuery
 last_modified_at: 2018-06-23T13:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
 categories:
   - django
 tags: 
-    - json
+    - jquery
     - django
 toc: true 
 ---
@@ -127,6 +127,8 @@ urlpatterns = [
 <br>
 ## Ajax JavaScript 작성하기
 
+`window.location.replace()` <small>는 다른페이지로 이동하는 **JavaScript** 함수이다 [출처](http://dailydev.tistory.com/13)
+
 ```javascript
 $(document).ready(function(){
     if($('#result') != null){ Read();}
@@ -200,9 +202,3 @@ function Read(){
 
 **동기식 처리시 발생하는 오류**로, 우선은 **비동기식**으로 django를 완성한 뒤 차후에 수정 보완해 나아가면 되는 부분으로 보인다.
 {: .notice--info}
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   

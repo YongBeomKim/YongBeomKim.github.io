@@ -1,5 +1,5 @@
 ---
-title : Ajax JQuery
+title : Django Ajax JQuery
 last_modified_at: 2018-06-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ajax.png
@@ -106,9 +106,3 @@ $(document).ready(function() {
     } ) ;
 </script>
 ```
-
-**Danger Notice:**
-{: .notice--danger}
-
-**Success Notice:**
-{: .notice--success}   
