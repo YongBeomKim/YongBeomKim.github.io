@@ -1,5 +1,5 @@
 ---
-title : Do It Js,Jquery 02 객체
+title : Js 02 객체
 last_modified_at: 2018-06-27T21:45:06-05:00
 header:
   overlay_image: /assets/images/book/js.jpg
@@ -10,7 +10,9 @@ tags:
 toc: true 
 ---
 
-# JavaScript
+
+<br>
+# Do It 자바스크립트 / 제이쿼리 
 
 객체는 기능 과 **속성**(내장객체 지정 method) 를 갖는다
 
@@ -108,5 +110,87 @@ var t = "javascript"     // 이게 더 간단하고 직관적
 
 
 <br>
-## 문자객체 (String Object)
+## 브라우저 객체 모델 (Browser Object Model)
 
+<br>
+### **window** 객체와 구성
+
+> Web 브라우저 최상위 객체다
+
+<figure class="align-center">
+  <img src="https://1.bp.blogspot.com/-lcfB3MMC9Tc/V-PbB3dS_XI/AAAAAAAABIA/aEh8OM3yprQKmmiYDO1hN5SqCIBUdmS4gCLcB/s1600/f0019918_4a62d08a5b600.gif" alt="">
+  <figcaption>브라우저 객체 모델 개념도</figcaption>
+</figure> 
+
+|종류          | 설명                         |
+|:------------:|:----------------------------:|
+|open()        | 새로운 창을 연다             |
+|alert("메세지")       | **경고창**을 띄운다          |
+|prompt("질의응답","기본값")      | **Input** 창을 띄운다        |
+|confirm()     | **확인/ 취소** 창을 띄운다   |
+|moveTo(x좌표,y좌표)      | 창의 **위치**를 이동한다     |
+|resizeTo(width, height)    | 창의 **크기**를 변경한다     |
+|setInterval() | 일정간격 지속적 실행문을 실행 | 
+|setTimeout()  | 일정간격 한번만 실행문을 실행 |
+|screen.속성   | 모니터 출력 정보를 추출       |
+
+
+<br>
+### .open()
+
+> window.open("http://www.daum.net", "daum", "width=400, height=500, left=50, top=10, scrollbars=no, toolbars=no, location=no")
+
+
+<br>
+### 시간간격에 따른 실행
+
+반복실행
+
+```javascript
+var 참조변수 = setInterval(test(), 10(초단위));
+clearInterval(참조변수); // 실행을 중단
+```
+
+1번만 실행
+
+```javascript
+var 참조변수 = setTimeout(test(), 10);
+clearTimeout(참조변수)
+```
+
+
+
+<br>
+## 문서(Html) 객체 모델 (Document Object Model)
+
+<figure class="align-center">
+  <img src="https://www.kirupa.com/html5/images/DOM_js_72.png" alt="">
+  <figcaption>DOM 개념도</figcaption>
+</figure> 
+
+### Selector 선택자
+
+**CSS의 경우**
+
+> # box { color : red;}  
+
+**JavaScript의 경우 (document 를 활용한다)**
+
+> document.getElementById("box").style.color="red";
+
+
+| 원거리 선택자  | 설명                         |
+|:-----------------------:|:-------------------:|
+|getElementByTagName("태그") | 태그 선택자   |
+|getElementById("#아이디") | 아이디 선택자   |
+|document.폼이름.입력요소  | 폼요소 선택자   |
+
+
+| 인접 선택자    | 설명                |
+|:--------------:|:-------------------:|
+|parentNode      | 부모 선택자         |
+|childNodes      | 자식 선택자         |
+|children        | 자식 선택자         |
+|firstChild      | 첫 자식 선택자      |
+|previousSibring | 이전요소 선택자     |
+|nextSibring     | 다음요소 선택자     |

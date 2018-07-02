@@ -1,5 +1,5 @@
 ---
-title : Do It Js,Jquery 01 변수와 문법
+title : Js 변수와 문법
 last_modified_at: 2018-06-27T21:45:06-05:00
 header:
   overlay_image: /assets/images/book/js.jpg
@@ -12,8 +12,13 @@ toc: true
 
 
 <br>
-# Java Script 기초문법
+# Do It 자바스크립트 / 제이쿼리 
 
+Java Script 기초문법
+
+Jquery Ajax, JavaScript Chart 에 대해서 작업 또는 Python 에서 Selenium 관련 작업을 진행 하다보면, Javascript/ Jquery 개념에 대한 이해가 부족해서 간단한 수정에도 많은 시간을 소요하는 경우가 많았다. 이번기회에 기본 구성요소 및 개념에 대한 정리를 통해서 기본기를 탄탄하게 익혀 보려고 한다.
+
+<br>
 ## start 
 
 **`<sciprt></sciprt>`** <br>
