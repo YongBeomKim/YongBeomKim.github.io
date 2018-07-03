@@ -1,5 +1,5 @@
 ---
-title : Django Ajax 게시판 | Django 기본
+title : Django 게시판 - Django
 last_modified_at: 2018-07-01T11:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -14,13 +14,15 @@ toc: true
 
 
 <br>
-# Ask Django 의 Ajax 활용 게시판 만들기 
+# 장고 게시판 기본틀 만들기 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8hfKA-VfqaM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 <br>
 ## MEDIA_URL, MEDIA_ROOT 설정값 추가하기
+
+제목, 게시글과 함께 사진파일을 추가로 정리할 것이다
 
 **settings.py** <small>**MEDIA_URL, _ROOT** [참고 블로그](https://wayhome25.github.io/django/2017/05/10/media-file/)</small>
 
@@ -160,18 +162,3 @@ urlpatterns = [
       { { post.content | linebreaks } }
 { % endblock % }
 ```
-
-
-
-<br><br>
-## **JQuery Ajax** 를 사용하여 페이지 구분하기
-
-<br>
-### Generic View 의 기본기능을 사용한 페이지 구분
-
-```python
-from django.views.generic import ListView
-post_list = ListView.as_view(model=Post, paginate_by=2)
-```
-
-**ListView** 내부 메소드로 **paginate_by=2**를 사용하면 1페이지당 2개씩만 출력을 하고, 나머지 객체들은 `/blog/?page=2` **GET Query**로 처리를 한다.
