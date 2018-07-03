@@ -1,5 +1,5 @@
 ---
-title : Django Ajax 게시판 만들기
+title : Django Ajax 게시판 | Django 기본
 last_modified_at: 2018-07-01T11:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -19,18 +19,10 @@ toc: true
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8hfKA-VfqaM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
-## **blog** 앱을 추가한다
-
-```
-$ python manage.py startapp blog
-$ python manage.py createsuperuser
-```
-
-
 <br>
-### settings.py 
+## MEDIA_URL, MEDIA_ROOT 설정값 추가하기
 
-**MEDIA_URL, _ROOT** <small>[참고 블로그](https://wayhome25.github.io/django/2017/05/10/media-file/)</small>
+**settings.py** <small>**MEDIA_URL, _ROOT** [참고 블로그](https://wayhome25.github.io/django/2017/05/10/media-file/)</small>
 
 ```python
 MEDIA_URL  = '/media/'  # 접속가능 URL 경로
@@ -40,6 +32,37 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 게시판 작업을 본격화 할 때에 thumbnail 이미지 추가방법도 함께 정리하도록 하자
 [pillow 파이썬 활용법](http://rednooby.tistory.com/100) , [askdjango 질의응답](https://www.askcompany.kr/vod/crawling/126/)
 {: .notice--info}
+
+
+<br>
+**urls.py**
+
+<figure class="align-center">
+  <img src="https://i.stack.imgur.com/tjloT.png" alt="">
+  <figcaption>MEDIA URL Routing</figcaption>
+</figure> 
+
+<small>admin 에서 게시물을 등록한 뒤 이미지를 확인하면 위와 같은 오류를 출력한다. 이는 **MERIA URL Routing** 기능을 기본적으로 제공하지 않아서 발생하는 것으로, 사용자가 추가로 라우팅 경로설정을 덧 붙여야 한다 [Django Document](https://docs.djangoproject.com/en/2.0/howto/static-files/)</small>
+
+```python
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns =  [ .......]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+
+
+<br>
+## **blog** 앱을 추가 작업하기
+
+기본 `base.html` 템플릿으로 작업을 진행중인 프로젝트에 블로그 내용을 덧붙이는 방식으로 작업을 확인할 것이다. 이러한 악조건(?) 에서 코드의 작동을 확인함으로 써 다른 내용과 충돌여부를 더욱 확실하게 알 수 있는 장점이 있다 <small>대신 작업하면서 충돌부분이 도드라져서 받는 스트레스 또한 적지 않은점은 함정</small>
+
+```
+$ python manage.py **startapp** blog
+$ python manage.py **createsuperuser**
+```
+
 
 <br>
 ### models.py 
@@ -68,27 +91,6 @@ admin.site.register(Post)
 
 
 <br>
-### server/settings.py
-
-<figure class="align-center">
-  <img src="https://i.stack.imgur.com/tjloT.png" alt="">
-  <figcaption>MEDIA URL Routing</figcaption>
-</figure> 
-
-admin 에서 게시물을 등록한 뒤 이미지를 확인하면 위와 같은 오류를 출력한다. 이는 **MERIA URL Routing** 기능을 기본적으로 제공하지 않아서 발생하는 것으로, 사용자가 추가로 라우팅 경로설정을 덧 붙여야 한다 [Django Document](https://docs.djangoproject.com/en/2.0/howto/static-files/)
-
-```python
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns =  [ .......]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-```
-
-수정 후 작동 여부를 확인한다
-
-
-<br>
 ## views.py 
 
 객체의 목록을 출력한다
@@ -103,6 +105,7 @@ def post_list(request):
     return render(request, 'blog/post_list.html', content)
 ```
 
+<br>
 Django에서 기본적으로 제공하는 **Generic view**를 사용해서 기능을 추가해보자
 
 ```python
@@ -111,6 +114,7 @@ from django.views.generic import ListView, DetailView
 post_list   = ListView.as_view(model=Post)
 post_detail = DetailView.as_view(model=Post)
 ```
+
 **Generic View**를 사용하면 바로 함수객체를 생성하고, Template 는 자동적으로 `<app name >/< model name >_list.html , < model name >_detail.html` 과 연결을 합니다. [Document](https://docs.djangoproject.com/ko/2.0/intro/tutorial04/)
 {: .notice--info} 
 
@@ -160,7 +164,7 @@ urlpatterns = [
 
 
 <br><br>
-## **JQuery Ajax**
+## **JQuery Ajax** 를 사용하여 페이지 구분하기
 
 <br>
 ### Generic View 의 기본기능을 사용한 페이지 구분
