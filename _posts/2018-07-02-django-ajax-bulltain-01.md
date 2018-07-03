@@ -75,18 +75,17 @@ admin.site.register(Post)
   <figcaption>MEDIA URL Routing</figcaption>
 </figure> 
 
-admin 에서 사용자가 올린 이미지를 클릭하면, **MERIA User URL Routing** 기능을 기본적으로 제공하지 않아서 오류를 출력한다. 이를 극복하기 위해서는 사용자가 추가로 설정값을 입력해야 한다 [Django Document](https://docs.djangoproject.com/en/2.0/howto/static-files/)
+admin 에서 게시물을 등록한 뒤 이미지를 확인하면 위와 같은 오류를 출력한다. 이는 **MERIA URL Routing** 기능을 기본적으로 제공하지 않아서 발생하는 것으로, 사용자가 추가로 라우팅 경로설정을 덧 붙여야 한다 [Django Document](https://docs.djangoproject.com/en/2.0/howto/static-files/)
 
 ```python
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    ]
+urlpatterns =  [ .......]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
-수정 후 작동을 확인한다
+수정 후 작동 여부를 확인한다
 
 
 <br>
@@ -104,14 +103,58 @@ def post_list(request):
     return render(request, 'blog/post_list.html', content)
 ```
 
-조금 더 간략하고 안정적인 **Generic view**를 사용한다
+Django에서 기본적으로 제공하는 **Generic view**를 사용해서 기능을 추가해보자
 
 ```python
-from django.views.generic import ListView
-post_list = ListView.as_view(model=Post)
+from django.views.generic import ListView, DetailView
+
+post_list   = ListView.as_view(model=Post)
+post_detail = DetailView.as_view(model=Post)
 ```
-**Generic View**를 사용하면 바로 함수객체를 생성한다.
+**Generic View**를 사용하면 바로 함수객체를 생성하고, Template 는 자동적으로 `<app name >/< model name >_list.html , < model name >_detail.html` 과 연결을 합니다. [Document](https://docs.djangoproject.com/ko/2.0/intro/tutorial04/)
+{: .notice--info} 
 
 
+<br>
+## urls.py & Template
 
-16분 까지 정리를 완료 (오전중에 끝내보자!!!)
+```python
+from django.urls import re_path
+from .views import post_list, post_detail
+
+app_name="blog"
+urlpatterns = [
+    re_path(r'^$',             post_list,   name='post_list'),
+    re_path(r'^(?P<pk>\d+)/$', post_detail, name='post_detail'),
+]
+```
+
+**post_list.html**
+
+```sql
+{ % block content % }
+<h1>Django Ajax Test Site</h1>
+  <ul>
+  { % for post in post_list % }
+    <li><a href="{ % url 'blog:post_detail' post.pk % }">
+        { { post.title } }</a>  </li>
+  { % endfor % }
+  </ul>
+{ % endblock % }
+``` 
+
+
+**post_detail.html**
+
+```sql
+{ % block content % }
+  <h1>{ { post.title } }</h1>
+
+  { % if post.photo % }
+      <img src="{ { post.photo.url } }" style="max-width: 100px;"/>
+  { % endif % }
+      { { post.content | linebreaks } }
+{ % endblock % }
+```
+
+1234
