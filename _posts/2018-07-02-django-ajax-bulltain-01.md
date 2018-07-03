@@ -161,3 +161,13 @@ urlpatterns = [
 
 <br><br>
 ## **JQuery Ajax**
+
+<br>
+### Generic View 의 기본기능을 사용한 페이지 구분
+
+```python
+from django.views.generic import ListView
+post_list = ListView.as_view(model=Post, paginate_by=2)
+```
+
+**ListView** 내부 메소드로 **paginate_by=2**를 사용하면 1페이지당 2개씩만 출력을 하고, 나머지 객체들은 `/blog/?page=2` **GET Query**로 처리를 한다.
