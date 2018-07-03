@@ -137,13 +137,13 @@ urlpatterns = [
   <ul>
   { % for post in post_list % }
     <li><a href="{ % url 'blog:post_detail' post.pk % }">
-        { { post.title } }</a>  </li>
-  { % endfor % }
+        {{ post.title }}</a>  </li>
+  {% endfor %}
   </ul>
 { % endblock % }
 ``` 
 
-
+<br>
 **post_detail.html**
 
 ```sql
