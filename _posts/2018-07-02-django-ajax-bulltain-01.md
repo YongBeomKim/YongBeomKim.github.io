@@ -16,6 +16,8 @@ toc: true
 <br>
 # 장고 게시판 기본틀 만들기 
 
+[Soure Code](https://gist.github.com/allieus/71471537685df3b81f1d)
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8hfKA-VfqaM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
