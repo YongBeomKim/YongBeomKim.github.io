@@ -80,6 +80,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 2. **label** : label은 **input 이름표**로 'for 클래스'는 **input 'id'**로 연결
 3.  **submit** 버튼 : 버튼을 누르면 **action="http://media.daum.net" ** 으로 이동
 
+<br>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -111,6 +113,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
+
 ```html
 <form id="frm" name="frm" action="http://media.daum.net">
     <label for="userid">아이디 : </label>
@@ -132,6 +136,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 1. row="12" cols="70" 로 크기를 정의한다
 2. name="content" 텍스트 영역을 구분 -->
 
+<br>
 
 ```html
 <h3> 가입인사 </h3><br>
@@ -148,6 +153,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 1. 체크박스 : input type="checkbox" 원하는 내용 선택
 2. checked 속성 값이 true/ false 로 구분하여 출력
+
+<br>
 
 <html lang="ko">
 <head>
@@ -180,6 +187,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
 
 ```html
 <form>
@@ -194,6 +202,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 라디오 버튼 : 배타적으로 1개만 선택
+
+<br>
 
 <html lang="ko">
 <head>
@@ -226,6 +236,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
 
 ```html
 <form id="frm">
@@ -249,6 +260,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 1. multiple="multiple" : 다중선택 가능
 
+<br>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -278,6 +291,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
 
 ```html
 <select name="job" size="1">
@@ -291,6 +305,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <br>
 ### 파일 업로드 버튼
 
+<br>
+
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -320,6 +336,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
 
 ```html
 <form>
@@ -332,6 +349,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 입력양식 종합예제
+
+<br>
 
 <html lang="ko">
 <head>
@@ -365,6 +384,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
 
 ```html
 <form id="frm">
@@ -387,6 +407,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 1. \<label for="newnumber"\> 숫자 중 선택
 2. \<label for="newrange"\> 범위 바 선택
+
+<br>
 
 <html lang="ko">
 <head>
@@ -419,6 +441,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </form></body>
 </html>
 
+<br>
 
 ```html
 <form id="frm">
@@ -436,6 +459,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 날짜 예제
+
+<br>
 
 <html lang="ko">
 <head>
@@ -462,6 +487,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
     min="2017-01-01" max="2018-12-31"/></body>
 </html>
 
+<br>
+
 ```html
 <input type="date" id="start" name="trip"
     value="2017-07-22" 
@@ -470,6 +497,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 색상 입력양식
+
+<br>
 
 <html lang="ko">
 <head>
@@ -496,6 +525,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
+
 ```html
 <label for="start">Choose Color : </label>
     <input type="color" id="newcolor"/>
@@ -503,6 +534,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 날짜와 색상선택 예제
+
+<br>
 
 <html lang="ko">
 <head>
@@ -538,6 +571,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
+<br>
+
 ```html
 <form id="frm">
     <label for="newdate"> 날짜 : </label>
@@ -548,7 +583,7 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
     <input type="color" id="newcolor" name="newcolor">
     <div class="clear"></div>
 
-    <input type="submit" value="전송"/">
+    <input type="submit" value="전송"/>
 </form>
 ```
 
@@ -556,6 +591,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 ### 검색창 만들기 예제
 
 HTML 기본 속성클래스를 사용한 새로운 속성값 사용
+
+<br>
 
 <html lang="ko">
 <head>
@@ -593,6 +630,7 @@ HTML 기본 속성클래스를 사용한 새로운 속성값 사용
 </body>
 </html>
 
+<br>
 
 ```html
 <form id="frm">
@@ -617,4 +655,3 @@ HTML 기본 속성클래스를 사용한 새로운 속성값 사용
 <input type="submit" value="전송">
 </form>
 ```
-
