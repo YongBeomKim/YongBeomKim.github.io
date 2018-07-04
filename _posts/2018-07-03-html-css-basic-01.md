@@ -80,20 +80,6 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 2. **label** : label은 **input 이름표**로 'for 클래스'는 **input 'id'**로 연결
 3.  **submit** 버튼 : 버튼을 누르면 **action="http://media.daum.net" ** 으로 이동
 
-```html
-<form id="frm" name="frm" action="http://media.daum.net">
-    <label for="userid">아이디 : </label>
-    <input type="text" id="userid" name="userid">
-
-    <label for="userpwd">암호 : </label>
-    <input type="password" id="userpwd" name="userpwd">
-
-    <input type="submit" value="로그인">
-    <input type="reset"  value="최소">
-</form>
-```
-
-
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -126,9 +112,22 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </html>
 
 
+```html
+<form id="frm" name="frm" action="http://media.daum.net">
+    <label for="userid">아이디 : </label>
+    <input type="text" id="userid" name="userid">
+
+    <label for="userpwd">암호 : </label>
+    <input type="password" id="userpwd" name="userpwd">
+
+    <input type="submit" value="로그인">
+    <input type="reset"  value="최소">
+</form>
+```
 
 
-<br>
+
+<br><br>
 ### 글상자
 
 1. row="12" cols="70" 로 크기를 정의한다
