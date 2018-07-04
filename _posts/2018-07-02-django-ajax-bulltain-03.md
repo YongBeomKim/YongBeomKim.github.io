@@ -103,9 +103,9 @@ $(function() {
 
     <a href="{ % url 'blog:post_delete' post.pk % }"
        class="post-delete-btn"
-       data-target-id="post-{ { post.id } }">삭제</a>
+       data-target-id="post-\{\{ post.id \}\}">삭제</a>
 </li>
-{ % endfor % }
+\{% endfor %\}
 ```
 
 
