@@ -103,10 +103,12 @@ $(function() {
 
     <a href="{ % url 'blog:post_delete' post.pk % }"
        class="post-delete-btn"
-       data-target-id="post-\{\{ post.id \}\}">삭제</a>
+       data-target-id="post-{ { post.id } }">삭제</a>
 </li>
-\{\% endfor \%\}
+{ % endfor % }
 ```
 
+**HTML** 에서는 **`data-target-id=" "`**로 객체를 구분한 뒤, **jQuery** 에서 **`$(this).data('target-id')`** 를 연결하며 객체를 조작 가능하다 [stack flow 설명 페이지](https://stackoverflow.com/questions/16424502/jquery-datatarget-pattern/40869529)
+{: .notice--info}
 
-**jQuery** 에서 개별 객체간 구분을 위해서 **data-target-id=" "**를 활용한다 [stack flow 설명 페이지](https://stackoverflow.com/questions/16424502/jquery-datatarget-pattern/40869529)
+

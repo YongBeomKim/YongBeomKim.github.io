@@ -13,8 +13,15 @@ toc: true
 <br>
 # 웹표준을 위한 HTML5 with CSS JS
 
+
 <br>
-스타일 선언 방법으로는 **link**(외부연결), **embedding**(HTML 내부에 직접입력), **inline**(태그에 직접입력) 3가지가 있다 
+## Style 의 선언
+<br>
+스타일 선언 방법으로는 
+1. **link**(외부연결)
+2. **embedding**(HTML 내부에 직접입력)
+3. **inline**(태그에 직접입력) 3가지가 있다 
+
 
 ### link
 
@@ -45,6 +52,6 @@ toc: true
 <br>
 ## Table 
 
-**\<ul\>** : 순서가 없는 목록
-**\<ol\>** : 순서가 있는 목록
-**\<dl\>** : 정의 목록
+**\<ul\>** : 순서가 없는 목록 UnOrdered List<br>
+**\<ol\>** : 순서가 있는 목록 Ordered List<br>
+**\<dl\>** : 정의 목록 Definition List
