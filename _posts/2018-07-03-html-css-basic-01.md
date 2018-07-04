@@ -642,7 +642,7 @@ HTML 기본 속성클래스를 사용한 새로운 속성값 사용
     <input type="search" id="newsearch" name="newsearch" 
         placeholder="검색어를 입력하세요"/>
 
-    <!-- 2) 자동 포커싱 autofocus : 페이징 로딩 후 활성화-->
+    <!-- 2) 자동 포커싱 autofocus : 페이징 최우선 활성화-->
     <label for="userid"> 아이디(자동포커스) : </label>
     <input type="text" id="userid" name="userid" autofocus/>
 
