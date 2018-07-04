@@ -228,7 +228,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <form id="frm">
     <label for="gender"> 성별 : </label>
     <input type="radio" id="gender" name="gender" value="남자" checked="">남자
-    <input type="radio" id="gender" name="gender" value="여자">여자<br>
+    <input type="radio" id="gender" name="gender" value="여자">여자
+    <br><br>
     <label for="chk_mail"> 메일 정보 수신 여부 : </label>
     <input type="radio" id="chk_mail" name="chk_mail" value="yes" checked="">수신
     <input type="radio" id="chk_mail" name="chk_mail" value="no"> 거부
@@ -459,6 +460,8 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 날짜 예제
+
+[참고 사이트](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date)
 
 <br>
 
