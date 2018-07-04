@@ -530,10 +530,10 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
         min="2012-09-01" max="2012-12-31" value="2012-10-22">
     <label for="newcolor"> color : </label>
     <br>
-    <input type="color" id="newcolor" name="newcolor">
+    <input type="color" id="newcolor" na accept="" me="newcolor">
     <div class="clear"></div>
     <br>
-    <input type="submit" value="전송"/">
+    <input type="submit" value="전송"/>
 </form>
 </body>
 </html>
@@ -617,3 +617,4 @@ HTML 기본 속성클래스를 사용한 새로운 속성값 사용
 <input type="submit" value="전송">
 </form>
 ```
+
