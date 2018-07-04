@@ -108,7 +108,7 @@ $(function() {
 { % endfor % }
 ```
 
-**HTML** 에서는 **`\<tag data-target-id=" "\>`**로 객체를 구분한 뒤, **jQuery** 에서 **`$(this).data('target-id')`** 를 사용하여 객체를 조작 가능하다 [stack flow 설명 페이지](https://stackoverflow.com/questions/16424502/jquery-datatarget-pattern/40869529)
+**HTML** 에서는 **`\<tag data-target-id=" "\>`**로 객체를 구분한 뒤,<br> **jQuery** 에서 **`$(this).data('target-id')`** 를 사용하여 객체를 조작 가능하다 [stack flow 설명 페이지](https://stackoverflow.com/questions/16424502/jquery-datatarget-pattern/40869529)
 {: .notice--info}
 
 
