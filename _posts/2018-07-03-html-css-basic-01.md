@@ -218,13 +218,10 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <form id="frm">
     <label for="gender"> 성별 : </label>
     <input type="radio" id="gender" name="gender" value="남자" checked="">남자
-    <input type="radio" id="gender" name="gender" value="여자">여자
+    <input type="radio" id="gender" name="gender" value="여자">여자<br>
     <label for="chk_mail"> 메일 정보 수신 여부 : </label>
     <input type="radio" id="chk_mail" name="chk_mail" value="yes" checked="">수신
     <input type="radio" id="chk_mail" name="chk_mail" value="no"> 거부
-    <div class="clear"></div>
-    <input type="submit" value="전송">
-    <input type="reset" value="취소">
 </form>
 </body>
 </html>
@@ -314,23 +311,23 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
     </style>
 </head>
 <body>
-<select name="job" size="1">
-    <option value="#">선택하세요</option>
-    <option value="학생">학생</option>
-    <option value="컴퓨터">컴퓨터</option>
-    <option value="언론">언론</option>
-</select>
+<form>
+    <label for="filename">업로드 파일 이름을 선택하세요</label>
+    <div class="clear"></div>
+    <br><br>
+    <input type="file" id="filename" name="filename">
+</form>
 </body>
 </html>
 
 
 ```html
-<select name="job" size="1">
-    <option value="#">선택하세요</option>
-    <option value="학생">학생</option>
-    <option value="컴퓨터">컴퓨터</option>
-    <option value="언론">언론</option>
-</select>
+<form>
+    <label for="filename">업로드 파일 이름을 선택하세요</label>
+    <div class="clear"></div>
+    <br><br>
+    <input type="file" id="filename" name="filename">
+</form>
 ```
 
 <br>
@@ -358,16 +355,15 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <body>
 <form id="frm">
     <label for="usermail">이메일 :</label>
-    <input type="email"  id="usermail"  name="usermail">
+    <input type="email"  id="usermail"  name="usermail"><br>
     <label for="homepage">홈페이지 주소 :</label>
-    <input type="url"    id="homepage"  name="homepage">
+    <input type="url"    id="homepage"  name="homepage"><br>
     <label for="newsearch">검색 :</label>
     <input type="search" id="newsearch" name="newsearch">
     <input type="submit" value="전송"/>
 </form>
 </body>
 </html>
-
 
 
 ```html
@@ -441,6 +437,31 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <br>
 ### 날짜 예제
 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<input type="date" id="start" name="trip"
+    value="2017-07-22" 
+    min="2017-01-01" max="2018-12-31"/></body>
+</html>
+
 ```html
 <input type="date" id="start" name="trip"
     value="2017-07-22" 
@@ -450,6 +471,31 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <br>
 ### 색상 입력양식
 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<label for="start">Choose Color : </label>
+    <input type="color" id="newcolor"/>
+</body>
+</html>
+
 ```html
 <label for="start">Choose Color : </label>
     <input type="color" id="newcolor"/>
@@ -458,17 +504,50 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <br>
 ### 날짜와 색상선택 예제
 
-```html
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
 <form id="frm">
     <label for="newdate"> 날짜 : </label>
     <input type="date" id="newdate" name="newdate"
         min="2012-09-01" max="2012-12-31" value="2012-10-22">
     <label for="newcolor"> color : </label>
     <br>
-
     <input type="color" id="newcolor" name="newcolor">
     <div class="clear"></div>
     <br>
+    <input type="submit" value="전송"/">
+</form>
+</body>
+</html>
+
+```html
+<form id="frm">
+    <label for="newdate"> 날짜 : </label>
+    <input type="date" id="newdate" name="newdate"
+        min="2012-09-01" max="2012-12-31" value="2012-10-22">
+    <label for="newcolor"> color : </label>
+
+    <input type="color" id="newcolor" name="newcolor">
+    <div class="clear"></div>
+
     <input type="submit" value="전송"/">
 </form>
 ```
@@ -477,6 +556,43 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 ### 검색창 만들기 예제
 
 HTML 기본 속성클래스를 사용한 새로운 속성값 사용
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<form id="frm">
+    <label for="newsearch"> 검색 : </label>
+    <input type="search" id="newsearch" name="newsearch" 
+        placeholder="검색어를 입력하세요"/><br>
+    <label for="userid"> 아이디(자동포커스) : </label>
+    <input type="text" id="userid" name="userid" autofocus/><br>
+    <label for="userpwd"> 암호 (빈값검사) : </label>
+    <input type="password" id="userpwd" name="userpwd" required/><br>
+    <label for="usertel"> 전화번호 (정규식)</label>
+    <input type="tel" id="usertel" name="usertel" 
+        pattern="(010|011)-\d{3,4}-\d{4}"/><br>
+<input type="submit" value="전송">
+</form>
+</body>
+</html>
+
 
 ```html
 <form id="frm">
