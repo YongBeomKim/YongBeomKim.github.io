@@ -111,7 +111,6 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 </body>
 </html>
 
-
 ```html
 <form id="frm" name="frm" action="http://media.daum.net">
     <label for="userid">아이디 : </label>
@@ -150,6 +149,38 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 1. 체크박스 : input type="checkbox" 원하는 내용 선택
 2. checked 속성 값이 true/ false 로 구분하여 출력
 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<form id="frm">
+    <input type="checkbox" name="interest" value='생두'>생두
+    <input type="checkbox" name="interest" value='원두'>원두
+    <input type="checkbox" name="interest" value='로스팅'>로스팅
+    <input type="checkbox" name="interest" value='핸드드립'>핸드드립
+    <br>
+    <input type="submit" value="전송">
+</form>
+</body>
+</html>
+
+
 ```html
 <form>
     <input type="checkbox" name="interest" value='생두'>생두
@@ -163,6 +194,41 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 <br>
 ### 라디오 버튼 : 배타적으로 1개만 선택
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<form id="frm">
+    <label for="gender"> 성별 : </label>
+    <input type="radio" id="gender" name="gender" value="남자" checked="">남자
+    <input type="radio" id="gender" name="gender" value="여자">여자
+    <label for="chk_mail"> 메일 정보 수신 여부 : </label>
+    <input type="radio" id="chk_mail" name="chk_mail" value="yes" checked="">수신
+    <input type="radio" id="chk_mail" name="chk_mail" value="no"> 거부
+    <div class="clear"></div>
+    <input type="submit" value="전송">
+    <input type="reset" value="취소">
+</form>
+</body>
+</html>
+
 
 ```html
 <form id="frm">
@@ -186,6 +252,36 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 1. multiple="multiple" : 다중선택 가능
 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<select name="job" size="1">
+    <option value="#">선택하세요</option>
+    <option value="학생">학생</option>
+    <option value="컴퓨터">컴퓨터</option>
+    <option value="언론">언론</option>
+</select>
+</body>
+</html>
+
+
 ```html
 <select name="job" size="1">
     <option value="#">선택하세요</option>
@@ -198,17 +294,81 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 <br>
 ### 파일 업로드 버튼
 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<select name="job" size="1">
+    <option value="#">선택하세요</option>
+    <option value="학생">학생</option>
+    <option value="컴퓨터">컴퓨터</option>
+    <option value="언론">언론</option>
+</select>
+</body>
+</html>
+
+
 ```html
-<form>
-    <label for="filename">업로드 파일 이름을 선택하세요</label>
-    <div class="clear"></div>
-    <br><br>
-    <input type="file" id="filename" name="filename">
-</form>
+<select name="job" size="1">
+    <option value="#">선택하세요</option>
+    <option value="학생">학생</option>
+    <option value="컴퓨터">컴퓨터</option>
+    <option value="언론">언론</option>
+</select>
 ```
 
 <br>
 ### 입력양식 종합예제
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<form id="frm">
+    <label for="usermail">이메일 :</label>
+    <input type="email"  id="usermail"  name="usermail">
+    <label for="homepage">홈페이지 주소 :</label>
+    <input type="url"    id="homepage"  name="homepage">
+    <label for="newsearch">검색 :</label>
+    <input type="search" id="newsearch" name="newsearch">
+    <input type="submit" value="전송"/>
+</form>
+</body>
+</html>
+
+
 
 ```html
 <form id="frm">
@@ -231,6 +391,38 @@ Django 에서 **Form** 객체를 다양하게 다루는 방법이 있지만, 객
 
 1. \<label for="newnumber"\> 숫자 중 선택
 2. \<label for="newrange"\> 범위 바 선택
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1, 
+    minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>html form style</title>
+    <style type="text/css">
+    label {
+        display: block;
+        float: left;
+        width: 180px;
+        text-align: right;
+    }
+    #frm {
+        width: 480px;
+        text-align: center;}
+    </style>
+</head>
+<body>
+<form id="frm">
+    <label for="newnumber"> 숫자 : </label>
+    <input type="number" id="newnumber" name="newnumber" 
+        value="0" min="0" max="100" step="1">
+    <label for="newrange"> 범위 : </label>
+    <input type="range" id="newrange" name="newnumber" 
+        value="0" min="0" max="100" step="1">
+    <input type="submit" value="전송">
+</form></body>
+</html>
+
 
 ```html
 <form id="frm">
