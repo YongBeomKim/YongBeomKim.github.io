@@ -2,7 +2,7 @@
 title : 웹표준 Html 5 
 last_modified_at: 2018-07-03T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django.jpg
+  overlay_image: /assets/images/book/html.jpg
 categories:
   - 
 tags: 
