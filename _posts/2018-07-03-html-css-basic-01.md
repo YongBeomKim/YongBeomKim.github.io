@@ -34,5 +34,5 @@ toc: true
 </style>
 
 # inline 
-<a href="" style="속성명:속성값" "속성명:속성값">
+<a href="" style="속성명:속성값; 속성명:속성값;">
 ```
