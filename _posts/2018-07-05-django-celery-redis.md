@@ -225,9 +225,8 @@ CELERY_BEAT_SCHEDULE = {
 
 > class celery.schedules.crontab(**minute**=u'*', **hour**=u'*', **day_of_week**=u'*', **day_of_month**=u'*', **month_of_year**=u'*', **kwargs)
 
-
 |  예제         |   소스코드                                |
-|:-------------:|:-----------------------------------------:|
+|:-------------:|:----------------------------------------:|
 |1분 간격       |crontab()                                  |
 |15분 간격      |crontab(minute='*/15')                    |
 |매일 자정      |crontab(minute=0, hour=0)                  |
@@ -236,52 +235,12 @@ CELERY_BEAT_SCHEDULE = {
 |일요일 1분 간격 |crontab(day_of_week='sunday')             |
 |일요일 1분 간격 |crontab(minute='*', hour='*', day_of_week='sun') |
 |목요일과 금요일 between 3-4 am, 5-6 pm, and 10-11 pm 에 10분마다 실행|crontab(minute='*/10', hour='3,17,22',day_of_week='thu,fri') |
-
-
-
-
-
-, but only 
-crontab(minute=0, hour='*/2,*/3')
-
-# 짝수 시간과 3의 배수 시간에 실행. This means: at every hour except: 1am, 5am, 7am, 11am, 1pm, 5pm, 7pm, 11pm
-crontab(minute=0, hour='*/5')
-
-# 5의 배수 시간에 실행. 5시 10시 15시 (오후 5시에 실행되는것 아님)
-crontab(minute=0, hour='*/3,8-17')
-
-# 오전 8시부터 오후 5시 사이에 3의 배수 시간에 실행
-crontab(0, 0, day_of_month='2')
-
-# 매월 두번 째 날에 실행
-
-Execute on the second day of every month.
-
-crontab(0, 0,
-    day_of_month='2-30/3')
-
-# 짝수 날에 실행
-Execute on every even numbered day.
-
-crontab(0, 0,
-    day_of_month='1-7,15-21')
-
-# 매달 첫째주, 셋째주에 실행
-Execute on the first and third weeks of the month.
-
-crontab(0, 0, day_of_month='11',
-    month_of_year='5')
-
-# 매년 5월 11일에 실행
-Execute on the eleventh of May every year.
-
-crontab(0, 0,
-    month_of_year='*/3')
-
-# 4분기로 나누고 첫달마다 실행
-Execute on the first month of every quarter.
-
-
-출처: http://wangin9.tistory.com/entry/django-celery [잉구블로그]
-
+|짝수시간 & 3배수 시간에 실행|crontab(minute=0, hour='*/2,*/3')|
+|5배수시간 실행 | crontab(minute=0, hour='*/5') |
+|오전8시~오후5시 사이 3배수시간| crontab(minute=0, hour='*/3,8-17')|
+|매월 두번째 날|crontab(0, 0, day_of_month='2')|
+|짝수 날에 실행|crontab(0, 0, day_of_month='2-30/3')|
+|매달 첫째주, 셋째주|crontab(0, 0, day_of_month='1-7,15-21')|
+|매년 5월 11일|crontab(0, 0, day_of_month='11',month_of_year='5')|
+|4분기의 첫달마다 실행|crontab(0, 0, month_of_year='*/3')|
 
