@@ -1,5 +1,5 @@
 ---
-title : Django Celery 비동기 처리
+title : Django Celery CronTab
 last_modified_at: 2018-07-05T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-celery.jpg
@@ -15,7 +15,7 @@ toc: true
 # Django 에서 Celery 비동기 처리 
 
 
-이번 내용은 앞에서 한번 기록은 했지만, Ajax 등을 정리한 시점에서 실제 적용을 위한 내용을 한꺼번에 정리해 보려고 한다 <small>
+이번 내용은 앞에서 한번 기록은 했던 내용을 지우고, Ajax 등을 정리한 시점에서 실제 적용을 위한 내용을 새롭게 정리해 보려고 한다.
 
 <figure class="align-center">
   <img src="https://buildwithdjango.com/static/blog/progress-bars/async-task-architecture.png" alt="">
