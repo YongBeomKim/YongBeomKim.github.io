@@ -2,7 +2,7 @@
 title : Django Celery 비동기 처리
 last_modified_at: 2018-07-05T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/html.jpg
+  overlay_image: /assets/images/book/setup_celery_redis_django.jpg
 categories:
   - django
 tags: 
