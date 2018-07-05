@@ -2,7 +2,7 @@
 title : Django Celery 비동기 처리
 last_modified_at: 2018-07-05T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/setup_celery_redis_django.jpg
+  overlay_image: /assets/images/book/django-celery.jpg
 categories:
   - django
 tags: 
@@ -207,12 +207,12 @@ from celery.schedules import crontab
 CELERY_BEAT_SCHEDULE = {
 
     'task-number-one': {
-        'task': 'app이름.tasks.task_number_one함수',
+        'task': 'app이름.tasks.실행함수',
         'schedule': crontab(minute=59, hour=23)
     },
 
     'task-number-two': {
-        'task': 'app2.tasks.task_number_two함수',
+        'task': 'app이름.tasks.실행함수',
         'schedule': crontab(minute=0, hour='*/3,10-19')
     }
 }
