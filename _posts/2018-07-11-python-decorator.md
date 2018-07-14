@@ -171,3 +171,34 @@ worker(3)
 >>> [2018-07-14 15:28] args : (3,), kwargs : {}
 >>> worker function running time : 3 sec
 ```
+
+<br>
+## **Class Decorator**
+
+```python
+import time
+from functools import update_wrapper
+
+class MeasureRuntime:
+    # 클래스 생성자 정의
+    def __init__(self, f):
+        self.func = f
+        update_wrapper(self, self.func)
+    
+    # 클래스를 사용하기 위해 정의할 때 호출 
+    def __call__(self, *args, **kwargs):
+        start  = time.time()
+        result = self.func(*args, **kwargs)
+        end    = time.time()
+        print("{} function running time : {} sec".format(self.func.__name__, int(end - start)))
+        return result
+```
+
+```python
+@MeasureRuntime
+def worker(delay_time):
+    time.sleep(delay_time)
+worker(3)
+
+>>> worker function running time : 3 sec
+```
