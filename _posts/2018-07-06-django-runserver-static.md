@@ -1,12 +1,13 @@
 ---
-title : Django 배포시 Static 못찾을 때
+title : Django 배포시 Static 못찾을 때 
 last_modified_at: 2018-07-06T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
 categories:
   - django
 tags: 
-    - django 
+    - django
+    - whitenoise
 toc: true 
 ---
 
@@ -81,6 +82,7 @@ $ python manage.py collectstatic
 **settings.py**
 
 ```python
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 ```
 위의 설정을 마치면 STATICFILES_DIRS 을 비활성화 하고, STATIC_ROOT 를 중심으로 설정을 완료하면 제대로 작동하는 것을 알 수 있다.
