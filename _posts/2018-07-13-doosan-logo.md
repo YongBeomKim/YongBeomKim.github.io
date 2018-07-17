@@ -2,7 +2,7 @@
 title : 두산벤처다임 구내식당 로고 만들기
 last_modified_at: 2018-07-13T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/android.jpg
+  overlay_image: /assets/images/book/logo-sketch.jpg
 categories:
   - project
 tags: 
@@ -13,12 +13,8 @@ toc: true
 ---
 
 
-# 프로젝트 페이지 만들기
+# 프로젝트 페이지 로고 만들기
 
-<figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/book/doosan-logo.jpg" alt="">
-  <figcaption>두산벤처다임 로고 제작</figcaption>
-</figure>
 
 시작한지가 한참인데, 기술적 내용 수집한다고 머기적 머기적 거린 시간이 너무 많이 흘렀다. 그나마 이번에 'Django 카카오 프랜즈' 실습을 정리하면서 외부에 보여줄 내용이 필요로 했고 이기회에 삘받아서 로고도 만들게 되었다.
 
@@ -50,9 +46,9 @@ toc: true
 
 칼라는 음식 사진중에
 
-1. 가황/ 카레등 조미료의 칼라
-2. 풀잎 채소에서의 칼라
-3. 토마토/ 고기의 칼라
+1. 가황/ 카레등 **조미료**의 칼라
+2. **풀잎 채소**에서의 칼라
+3. 토마토/ **고기**의 칼라
 
 3개를 선택해서 DooSan의 로고에 각 각 배치를 함으로써 다양한 느낌을 줄 수 있도록 하였다.
 
