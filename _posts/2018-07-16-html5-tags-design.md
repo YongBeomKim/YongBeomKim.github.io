@@ -1,5 +1,5 @@
 ---
-title : HTML5 + CSS3 디자인
+title : HTML5 + CSS3 디자인 - Main Page
 last_modified_at: 2018-07-13T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/html.jpg
@@ -87,8 +87,7 @@ css 에서 반복적으로 사용하는 value 값을 재활용하기 쉽도록 *
 
 <figure class="align-center">
   <img src="http://www.bloter.net/wp-content/uploads/2016/06/google_font_rebrand_02.png" alt="">
-  <figcaption>[https://fonts.google.com](https://fonts.google.com)
- 에서 폰트 활용하기</figcaption>
+  <figcaption>https://fonts.google.com 폰트활용</figcaption>
 </figure>
 
 
@@ -138,7 +137,7 @@ background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(img/fru
 background-position: center;
 ```
 
-**linear-gradient(rgba(시작컬러), rgba(끝 컬러))** : 점점 변화하는 컬러의 시작과 끝을 설정하면 자동으로 중간값을 연산한 결과를 화면에 출력한다. 참고로 **rgba()** 는 **Red, Green, Blue, Alpha** 값을 입력하고 이는 [https://www.w3schools.com/colors/colors_picker.asp](https://www.w3schools.com/colors/colors_picker.asp)등의 사이트를 활용하면 원하는 색상값을 찾을 수 있다
+**linear-gradient(rgba(시작컬러), rgba(끝 컬러))** : 점점 변화하는 컬러의 시작과 끝을 설정하면 자동으로 중간값을 연산한 결과를 화면에 출력한다. 참고로 **rgba()** 는 **Red, Green, Blue, Alpha** 값을 입력하고 이는 [W3 웹컬러](https://www.w3schools.com/colors/colors_picker.asp)등의 사이트를 활용하면 원하는 색상값을 찾을 수 있다
 {: .notice--info}
 
 
@@ -163,4 +162,107 @@ background-position: center;
 
 <br>
 ## 링크연결 버튼 스타일 정의하기
+
+```css
+.conA a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 30px;
+  border: solid 3px currentColor;
+  border-radius: 6px;        // 경계의 라운드
+  background-color: var(--accent-color);
+  color: var(--text-bright-color);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.conA a:hover {
+  background-image: linear-gradient(
+    rgba(255,255,255,0.2),
+    rgba(255,255,255,0.2)
+  );
+}
+```
+
+**var(--accent-color) :** 앞에서 선언한 **:root{}**로 선언한 객체를 CSS에서 활용할 때에는 var() 메소드로 객체를 풀어어서 사용한다
+{: .notice--info}
+
+
+<br>
+## 개요 Text 
+
+```html
+<section class="conB">
+    <div class="container">
+        <div class="text">
+            <span class="fa fa-bar-chart icon"></span>
+            <h2>라이프로그란?</h2>
+            <p>일상의 이런저런 것들을 기록하다 보면 보이지 않던 소중한 것들이 보입니다.</p>
+            <a href="#">MORE<span class="fa fa-chevron-right"></span></a>
+        </div>
+    </div>
+</section>
+```
+
+
+<br>
+## 원형 아이콘 출력하기
+
+[awsome font](https://fontawesome.com/icons?d=gallery&m=free)
+
+```css
+.conB .icon {
+  line-height: 2em;
+  border-radius: 50%;
+  background-color: var(--icon-bk-color);
+  color: var(--icon-color);
+}
+```
+
+
+<br>
+## **flex** - 자동 반응형 배치 설정
+
+```css
+.conB .container {
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .conB .container {
+    display: flex;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .conB .text {flex: 1;}
+  /*텍스트 분배비율 (1:1:1:.. 분할)*/
+}
+```
+
+CSS3에서는 보다 복잡한 블록 타입 레이아웃 모드인 **flex** (firefox등)  **flexbox** (익스폴로러) 레이아웃을 지원한다. flexbox의 콘텐츠는 가용한 공간 내에서 **크기와 위치를 자동으로 조정** 한다.[자료출처](http://webdir.tistory.com/349)
+{: .notice--info}
+
+
+```css
+@media (min-width: 768px) {
+  .conC .container {
+    display: flex;
+    max-width: var(--large-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .conC .photo {flex: 3;}
+  .conC .text  {flex: 2;
+    padding: 50px;
+  }
+}
+```
+
+**photo** 를 3, **text** 를 2의 비율로 지정하여 배치를 한다. 이번에도 768px 보다 작을 때에는 한줄로 내려서 정렬이 된다.
+{: .notice--info}
+
 
