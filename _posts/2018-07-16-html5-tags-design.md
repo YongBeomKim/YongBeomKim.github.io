@@ -41,6 +41,8 @@ toc: true
 </html>
 ```
 
+<br>
+## CSS 변수 값 설정 - **:root {}**
 
 ```css
 @charset "UTF-8";
@@ -50,6 +52,8 @@ toc: true
     --dark-main-color: #2B5566; //어두운색
 }
 ```
+css 에서 반복적으로 사용하는 value 값을 재활용하기 쉽도록 **--변수명 : 값** 의 방법으로 객체를 생성한다. 하지만 모든 브라우저가 지원하는 포맷은 아니므로 이에 대응하는 `color:#fff` 등의 내용도 함께 설정한다
+{: .notice--info} 
 
 
 <br>
@@ -114,7 +118,7 @@ body {font-family: '맑은고딕'}
 }
 ```
 
-**0.2em : "vm"** 은 화면 너비값을 **100vm** 기준으로 상대적 크기를 정의한다면, **"em"** 은 해당 클래스 폰트크기를 **1em** 을 기준으로 상대적 크기값을 계산한다.
+**0.2em : 1) "vm"** 은 화면 너비값(width)을  **2) vh** 는 화면의 높이값(height) 을 **100vm / 100vh** 를 기준으로 상대적 크기를 계산해서 출력한다면, **3) "em"** 은 해당 클래스 폰트크기를 **1em** 을 기준으로 상대적 크기값을 계산한다.
 {: .notice--info}
 
 
@@ -124,3 +128,39 @@ body {font-family: '맑은고딕'}
 > < section class="" > < / section >
 
 section 태그는 html 문서의 주요한 태그들을 별도로 묶을 때 사용한다. 때문인지 section 태그 내부에는 별도의 **header** 와 **footer**가 들어올 수 있다.
+
+
+<br>
+## 이미지 위에 Gradation 효과 덧입히기
+
+```css
+background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(img/fruits.jpg);
+background-position: center;
+```
+
+**linear-gradient(rgba(시작컬러), rgba(끝 컬러))** : 점점 변화하는 컬러의 시작과 끝을 설정하면 자동으로 중간값을 연산한 결과를 화면에 출력한다. 참고로 **rgba()** 는 **Red, Green, Blue, Alpha** 값을 입력하고 이는 [https://www.w3schools.com/colors/colors_picker.asp](https://www.w3schools.com/colors/colors_picker.asp)등의 사이트를 활용하면 원하는 색상값을 찾을 수 있다
+{: .notice--info}
+
+
+<br>
+## 로고 이미지 출력 
+
+```css
+.conA img {width: 20%;}
+```
+
+로고 img src 그림을 부모의 요소 너비의 20%의 크기로 지정한다.
+{: .notice--info}
+
+
+```html
+<svg width="100" height="100">
+</svg>
+
+<svg viewBox="0 0 100 100">
+</svg>
+```
+
+<br>
+## 링크연결 버튼 스타일 정의하기
+
