@@ -59,6 +59,11 @@ css 에서 반복적으로 사용하는 value 값을 재활용하기 쉽도록 *
 <br>
 ## 반응형 폰트크기 설정
 
+```css
+.conA h1 {font-size: 15vw;}
+.conA p  {font-size: 18px;}
+```
+
 | 단위 |  내용설명 [실습URL](https://www.w3schools.com/cssref/tryit.asp?filename=trycss_unit_em)   |
 |:----:|:------------------------------------------:|
 | em   | 해당객체포함 클래스 폰트를 1로 삼는 비율값 |
@@ -71,11 +76,11 @@ css 에서 반복적으로 사용하는 value 값을 재활용하기 쉽도록 *
 | vmax | 너비 높이중 큰 값을 1%로 하는 비율값   |
 
 
+<figure class="align-center">
+  <img src="https://i.loli.net/2016/07/22/5791d750c02e3.png" alt="">
+  <figcaption>vmax vmin</figcaption>
+</figure>
 
-```css
-.conA h1 {font-size: 15vw;}
-.conA p  {font-size: 18px;}
-```
 
 **15vw :** 화면의 너비를 **100vm** 을 기준으로 하고 상대적 크기값을 사용한다. 이는 화면의 크기가 변함에 따라 글자의 크기도 같이 변하게 된다 
 {: .notice--info}
