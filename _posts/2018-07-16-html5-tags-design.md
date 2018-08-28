@@ -1,6 +1,6 @@
 ---
-title : HTML5 + CSS3 디자인 - Main Page
-last_modified_at: 2018-07-13T12:45:06-05:00
+title : 웹표준 디자인 강좌 01 - Main Page
+last_modified_at: 2018-07-16T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/html.jpg
 categories:
