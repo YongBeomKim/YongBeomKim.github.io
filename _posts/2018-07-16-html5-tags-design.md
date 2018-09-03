@@ -41,6 +41,7 @@ toc: true
 </html>
 ```
 
+
 <br>
 ## CSS 변수 값 설정 - **:root {}**
 
@@ -64,7 +65,7 @@ css 에서 반복적으로 사용하는 value 값을 재활용하기 쉽도록 *
 .conA p  {font-size: 18px;}
 ```
 
-**15vw :** 화면의 너비를 **100vm** 을 기준으로 하고 상대적 크기값을 사용한다. 이는 화면의 크기가 변함에 따라 글자의 크기도 같이 변하게 된다 
+**15vw :** 화면 **전체너비**를 **100vm** 을 기준으로 하고 상대적 크기값을 사용한다. 이는 화면의 크기가 변함에 따라 글자의 크기도 같이 변하게 된다 
 {: .notice--info}
 
 
@@ -107,11 +108,11 @@ css 에서 반복적으로 사용하는 value 값을 재활용하기 쉽도록 *
 
 <figure class="align-center">
   <img src="http://www.bloter.net/wp-content/uploads/2016/06/google_font_rebrand_02.png" alt="">
-  <figcaption>https://fonts.google.com 폰트활용</figcaption>
+  <figcaption>[https://fonts.google.com](https://fonts.google.com/?subset=korean) 폰트활용</figcaption>
 </figure>
 
 
-[폰트 오픈소스 모음](https://fonts.google.com) 에서는 해당 폰트별 **HTML HEAD**에서 소스폰트를 불러오는 값과, **CSS** 에서 **font-family** 설정 값이 제공된다. 사용자는 원하는 폰트의 설정 내용을 복사해서 사용하면 된다.
+[구글폰트 오픈소스 모음](https://fonts.google.com/?subset=korean) 에서는 해당 폰트별 **HTML HEAD**에서 소스폰트를 불러오는 값과, **CSS** 에서 **font-family** 설정 값이 제공된다. 사용자는 원하는 폰트의 설정 내용을 복사해서 사용하면 된다.
 
 ```html
 <link href="https://fonts.googleapis.com/css.." rel="stylesheet">
@@ -137,7 +138,7 @@ body {font-family: '맑은고딕'}
 }
 ```
 
-**0.2em : 1) "vm"** 은 화면 너비값(width)을  **2) vh** 는 화면의 높이값(height) 을 **100vm / 100vh** 를 기준으로 상대적 크기를 계산해서 출력한다면, **3) "em"** 은 해당 클래스 폰트크기를 **1em** 을 기준으로 상대적 크기값을 계산한다.
+**0.2em : 1) "vm"** 은 화면 너비(width)를  **2) vh** 는 화면의 높이(height)를 **100vm / 100vh** 를 기준으로 상대적 크기를 계산해서 출력한다면, **3) "em"** 은 해당 클래스 폰트크기를 **1em** 을 기준으로 상대적 크기값을 계산한다.
 {: .notice--info}
 
 
@@ -148,6 +149,28 @@ body {font-family: '맑은고딕'}
 
 section 태그는 html 문서의 주요한 태그들을 별도로 묶을 때 사용한다. 때문인지 section 태그 내부에는 별도의 **header** 와 **footer**가 들어올 수 있다.
 
+
+```html
+<section class="conA">
+    <div class="container">
+        <h1>LOGGER</h1>
+        <p>맛있고 즐거운 라이프로그</p>
+    </div>
+</section>
+```
+
+```css
+.conA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 450px;
+}
+```
+
+**CSS** 설정은 Section 태그 내부만 적용됨이 원칙이고, `height: 100vh` 속성값으로 화면 전체로 Section 영역이 넓어진다.
+{: .notice--info}
 
 <br>
 ## 이미지 위에 Gradation 효과 덧입히기
