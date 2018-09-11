@@ -24,7 +24,7 @@ toc: true
 
 
 <br>
-## redis 서버 설치
+## redis 서버설치
 
 <small>메모리 기반의 서버로 간단하게 바로 설치된다</small>
 
@@ -57,7 +57,6 @@ $ pip install django-celery-results
 
 <br>
 ### Basic Structure
-
     
 ```
 - Django_Project/
@@ -95,7 +94,7 @@ CELERY_TIMEZONE          = TIME_ZONE
 CELERY_BROKER_URL        = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND    = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT    = ['application/json']
-CELERY_TAST_SERIALIZER   = 'json'
+CELERY_TASK_SERIALIZER   = 'json'
 CELERY_RESULT_SERIALIZER = 'json' 
 ```
 
@@ -121,6 +120,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Django App Config에 등록된 모든 taks 모듈을 불러온다.
 app.autodiscover_tasks()
 
+# celery 터미널 실행내용을 정의한다
 @app.task(bind=True)
 def debug_task(self):
     print('Celery DATABASE Request: {0!r}'.format(self.request))
@@ -129,41 +129,38 @@ def debug_task(self):
 <br>
 ## Celery + Redis 실행 확인하기
 
-
 <br>
-## 연결된 app 에 celery 작업을 실행
-
-<br>
-### `server/app이름/tasks.py`
+### 연결된 app 에 celery 작업명령을 정의한다
+`server/app이름/tasks.py`
 
 ```python
+# Create your tasks here
 from __future__ import absolute_import, unicode_literals
+from celery import shared_task
 import random
-from celery.decorators import task
 
-@task(name="sum_two_numbers")
+@shared_task
 def add(x, y):
     return x + y
 
-@task(name="multiply_two_numbers")
+@shared_task
 def mul(x, y):
     total = x * (y * random.randint(3, 100))
     return total
 
-@task(name="sum_list_numbers")
+@shared_task
 def xsum(numbers):
     return sum(numbers)
 ```
 
-
 <br>
-### Redis 서버를 실행
+### Redis 서버를 실행하여 tasks.py 및 Celery 연결확인 
 
 ```
 $ celery -A server worker -l info
 ```
 
-별도의 터미널을 열고서 `redis` 로 실행하는 `celery DataBase` 를 실행한다. 만약 오류가 발생한다면 `RESULT_BACKEND` 를 잘못 지정해줬을 가능성이 크다.
+별도의 터미널을 열고서 `redis` 로 실행하는 `celery DataBase` 를 실행한다. 만약 오류가 발생한다면 1) 파이썬 모듈의 문법오류, 2)`RESULT_BACKEND` 를 잘못 지정해줬을 가능성 등을 점검한다 <small>작업결과 tasks.py 내의 문법오류시 오류가 발생하는 경우가 제일 많았다</small>
 {: .notice--info}
 
 

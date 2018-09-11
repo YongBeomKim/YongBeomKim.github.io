@@ -1,5 +1,5 @@
 ---
-title : /생활코딩/ 정규식의 사용
+title : 생활코딩 - 정규식의 사용
 last_modified_at: 2018-09-01T02:45:06-05:00
 header:
   overlay_image: /assets/images/book/regex.png
