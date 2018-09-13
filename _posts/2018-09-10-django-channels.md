@@ -14,16 +14,53 @@ toc: true
 <br>
 # Django 에서 Channels 비동기 처리
 
-앞에서 **celery**를 활용한 **함수적 비동기/ Crontab** 처리를 이해했다면, 이번에는 **channels**을 활용한 **Web Socket 의 구현** 을 하는 기능으로, 대표적인 예제로써 **Chatbot** 을 생각하면 될것이다.
+앞에서 **celery**를 활용한 **함수적 비동기/ Crontab** 처리를 이해했다면, 이번에는 **channels**을 활용한 **Web Socket 의 구현** 을 하는 기능으로, 대표적인 예제로써 **Chatbot** 을 생각하면 된다.
 
 서버에서 작업가능한 상황들로써
 1. **AJAX** : DB 와 temlplate 간의 연결 
 2. **Celery** : 함수의 비동기적 처리 
 3. **Channels** : 별도의 Web Socket 구현 
 
-의 기본개념과, Source Code 를 탄탄하게 익혀둔다면 
+의 기본개념과, Source Code 를 탄탄하게 익혀둔다면 어떠한 부가적인 내용에 대해서도 유연하게 해결책을 도출 가능 할 것이다.
 
-이번 내용은 앞에서 한번 기록은 했던 내용을 지우고, Ajax 등을 정리한 시점에서 실제 적용을 위한 내용을 새롭게 정리해 보려고 한다.
+
+<br>
+# Channels 의 내용
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RVH05S1qab8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+
+여기서는 Django2.0 이상, Python 3.6 이상, Channels 2.1.2 이상의 최신버젼(2018년 9월 기준)을 대상으로 작업을 진행할 것으로써,  YouTube 를 참고하면 더 자세하게 알 수 있다. 추가 내용은 [Document](https://channels.readthedocs.io/en/latest/installation.html) 를 통해서 Python 소스를 추가하면 된다
+
+
+<br>
+## 1 channels 설치 및 Django 적용
+
+> $ pip install channels
+
+```python
+# settings.py
+INSTALLED_APPS = [ 'channels', ]
+```
+
+위의 작업을 마치고 DB와 연동 가능한 'makemigrations', 'migrate' 작업을 진행한 뒤 `$ python manage.py runserver` 를 실행하면 
+
+> CommandError: You have not set ASGI_APPLICATION, which is needed to run the server.
+
+와 같은 오류를 출력함을 알 수 있다. (여기까지도 정상이다!!)
+
+
+<br>
+## 2 ASGI_APPLICATION
+
+웹소켓을 정의만 했지, 어떤 프로그램을 활용하여 실행될지를 설정하지 않아서 발생한 문제이다. 
+
+
+
+
+
+
+
 
 <figure class="align-center">
   <img src="https://buildwithdjango.com/static/blog/progress-bars/async-task-architecture.png" alt="">
