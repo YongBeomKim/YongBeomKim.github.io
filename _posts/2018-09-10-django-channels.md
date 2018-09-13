@@ -53,12 +53,87 @@ INSTALLED_APPS = [ 'channels', ]
 <br>
 ## 2 ASGI_APPLICATION
 
-웹소켓을 정의만 했지, 어떤 프로그램을 활용하여 실행될지를 설정하지 않아서 발생한 문제이다. 
+웹소켓을 정의 하기만 했지, 이를 활용할 **router**를 지정하지 않은 문제로, 
+1. settings.py 와 같은 폴더에 **routing.py**를 추가
+2. **settings.py** 에 위의 추가한 내용을 연결한다
+
+```python
+# /server/routing.py
+
+from channels.routing import ProtocolTypeRouter
+
+application = ProtocolTypeRouter({
+    # Empty for now (http->django views is added by default)
+})
+```
+
+```python
+# /server/settings.py
+ASGI_APPLICATION = "server.routing.application"
+```
+
+위 두가지 작업을 `$ python manage.py runserver` 를 실행하면 서버가 원활하게 작동하는 걸 볼 수 있다 
+
+
+<br>
+## 3 ASGI_APPLICATION [출처](http://victorydntmd.tistory.com/261)
+
+**ASGI(Asynchronous Server Gateway Interface)** 는 **WSGI** 를 계승한 것으로 비동기 방식으로 실행된다.
+
+웹 서버와 python 응용프로그램 간의 표준 인터페이스를 제공하기 위해 Django Channels와 배포에 사용되는 Daphne 서버에서 정의한 사양으로서 HTTP, HTTP/2 및 WebSocket와 같은 프로토콜을 지원한다.
+
+ASGI는 비동기 요청인 웹 소켓을 처리하는 이벤트로서 connect, send, receive, disconnect가 있다.
+
+Django 기본으로 설정된 WSGI를 비활성화 하고 **ASGI** 를 추가한다.
+
+```python
+#server/asgi.py
+import os, django
+from channels.routing import get_default_application
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
+django.setup()
+application = get_default_application()
+```
+
+그리고 settings.py 에서는 WGI 설정을 비활성화 하여 불필요한 작업을 제한한다
+
+```python
+# server/settings.py
+
+ROOT_URLCONF = 'cfehome.urls'
+ASGI_APPLICATION = "cfehome.routing.application"
+# WSGI_APPLICATION = 'cfehome.wsgi.application'
+```
+
+<br>
+# Chat Application
+
+
+## consumers.py
+
+웹소켓을 통해서 채팅하는 객체를 정의한다
+
+
+```python
+# chat/consumers.py
+
+import asyncio, json
+from django.contrib.auth import get_user_model
+from channels.consumer import AsyncConsumer
+from channels.db import database_sync_to_async
+
+from .models import Thread, ChatMessage
+
+class ChatConsumer(AsyncConsumer):
+    def websocket_connect(self, event):
+        print("connected", event)
+```
 
 
 
 
-
+출처: 
 
 
 
