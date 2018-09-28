@@ -32,7 +32,7 @@ Vue.Js 의 특징을 나열해 보자면
 5. 다른 Front End Frame Work에 비해 쉽게 점근가능 (Jquery와 유사)
 
 
-<br></br>
+<br>
 # Vue Instance
 
 ## Vue Instance (Vue 생성자) 개념
