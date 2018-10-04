@@ -46,12 +46,6 @@ toc: true
 
 구글에서 Python 검색해서 이동하면, 기본 사이트가 나오고 2018.10.4 현재 **Python 3.7**을 바로 다운받도록 되어있다. 하지만 Tensorflow 등이 아직은 Python 3.7을 제대로 지원 못하는 문제점이 있어서 위의 링크에서 연결된 다양한 버젼을 선택해서 받을 수 있는 페이지로 이동한 뒤, **Pyton 3.6x 버젼** 중 최신날짜로 업데이트 된 내용을 선택한다 (2018.10.04 현재 Python 3.6.6 2018-6-27 버젼을 선택한다)
 
-<figure class="align-center">
-  <img src="https://scontent-hkg3-1.xx.fbcdn.net/v/t1.0-9/42996851_325529291344829_6093464673443643392_n.jpg?_nc_cat=108&oh=e50e693c16e715646a6804763feaf149&oe=5C549C91" alt="">
-  <figcaption>Python 3.6 다운로드 페이지 이미지로 연결하기</figcaption>
-</figure> 
-
-
 해당 버젼을 선택하고 페이지를 밑으로 내리면, 해당버젼의 윈본소스, 맥OS, 윈도우 설치버젼 등 다양한 내용을 설치파일을 볼 수 있다. 이중에 **Windows x86-64 executable installer** 를 선택해서 다운로드 받는다
 
 <figure class="align-center">
