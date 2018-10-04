@@ -226,7 +226,7 @@ if defined _OLD_CODEPAGE (
 해당 내용의 밑에 우리가 필요로 하는 내용을 추가하면 된다.
 하지만 해당 파일을 바로 수정하면 윈도우 터미널에서 `activate.bat`를 실행하면 무조건 Jupyter Lab 이 실행된다. 이번에는 바로가기 파일을 만드는 게 목적이므로 `activate.bat` 파일의 사본을 생성하고, 별도의 이름을 지정한뒤 이를 사용해서 작업하도록 한다. `activate_lab.bat` 라는 이름으로 사본을 생성하였다.
 
-복사본의 이름을 변경한 뒤 메모장에서 `activate_lab.bat`파일을 열고 맨 밑에 아래의 2줄 내용을 추가한다 
+메모장에서 `activate_lab.bat` 파일을 열고 맨 밑에 아래의 2줄 내용을 추가한다 
 
 ```
 cd C:\Python\Source
@@ -244,7 +244,7 @@ jupyter lab
 
 
 <br>
-## 바로가기 아이콘 추가하기
+## 바로가기 아이콘 변경
 
 <figure class="align-center">
   <img src="https://www.tabmode.com/windows10/images/uac-prompt14.png" alt="">
