@@ -199,8 +199,8 @@ Jupyter lab 은 터미널에서 실행되는 폴더를 Root로 잡아준다. 하
 
 
 <figure class="align-center">
-  <img src="http://mblogthumb2.phinf.naver.net/MjAxNzA5MTJfNjUg/MDAxNTA1MTU4OTI2MDk2.HrB7CHLLyHcdh5bd5FhWVSBI1ChOy1dFABoMfw7MsLUg.Mks1NdwDzW9nUeHWgVi3ixhtGQPChoPqoNf8TsuVTOIg.PNG.winsweet/윈도우10-바탕화면-바로가기.png?type=w800" alt="">
-  <figcaption>터미널에서 파이썬 실행</figcaption>
+  <img src="https://cdn1.tekrevue.com/wp-content/uploads/2016/05/remove-shortcut-arrows-960x540.jpg" alt="">
+  <figcaption>다양한 바로가기 아이콘들</figcaption>
 </figure> 
 
 
@@ -247,7 +247,7 @@ jupyter lab
 ## 바로가기 아이콘 추가하기
 
 <figure class="align-center">
-  <img src="https://t1.daumcdn.net/cfile/tistory/2571324C54CC075701" alt="">
+  <img src="https://www.tabmode.com/windows10/images/uac-prompt14.png" alt="">
   <figcaption>바로가기 아이콘 변경</figcaption>
 </figure> 
 
