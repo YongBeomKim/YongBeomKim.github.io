@@ -64,17 +64,19 @@ toc: true
   <figcaption>설치파일 실행시 꼭 선택해야 할 2가지</figcaption>
 </figure> 
 
-위에서 보면,  1번은 윈도우 환경변수 설정을 자동으로 실행해 주는 것이므로 이를 꼭 선택한다. (선택하지 않으면 윈도우 환경변수 설정을 별도로 잡아야 한다)
+**1번은 윈도우 환경변수 설정을 자동으로 실행** 해 주는 것이므로 이를 꼭 선택한다. (선택하지 않으면 윈도우 환경변수 설정을 별도로 잡아야 한다)
 
-그리고 2번을 선택하는데, 자동으로는 `-> Install Now` 가 선택되어 있을 것이다. 그 아래에 있는 설치 폴더 이름을 보면 `c:\User\사용자이름\AppData\Local\Programs\` 으로 설치를 하는데 **사용자 이름** 부분이 한글로 되어 있음으로써, Tensorflow 등 다른 모듈에서 한글로된 경로명을 찾지 못해서 문제가 생기는 경우를 많이 보게된다. 이뿐만이 아니라 추후 삭제 후 재설치를 할 때에도 위의 경로같이 복잡하게 있으면 완전삭제할 때 뺴먹는 경우가 발생하기 때문에 2번을 눌러서 사용자가 경로명을 별도로 입력하는 방법을 추천한다
+**2번을 선택** 해야 하는데, 자동으로는 `-> Install Now` 가 선택되어 있을 것이다. 그 아래에 있는 설치 폴더 이름을 보면 `c:\User\사용자이름\AppData\Local\Programs\` 으로 설치를 하고 사용자 중에  **사용자 이름** 부분이 한글로 되어 있으면 Tensorflow 등 다른 모듈에서 한글로된 경로명을 찾지 못해서 문제가 생기는 경우를 많이 보게된다. 
+
+이뿐만이 아니라 재설치를 할 때에도 위의 경로같이 복잡하게 있으면 완전삭제할 때 뺴먹거나 잔류 파일들이 있어서 문제가 발생 가능하므로 2번을 눌러서 사용자가 경로명을 별도로 입력하는 방법을 추천한다
 
 
 <figure class="align-center">
   <img src="https://i.stack.imgur.com/eBARC.png" alt="">
-  <figcaption>설치파일 실행시 꼭 선택해야 할 2가지</figcaption>
+  <figcaption></figcaption>
 </figure> 
 
-> **C:\Python**
+> **C:\Python\Python36-64**
 
 **Customize Install location** 에서 **c:\Python\Python36-64** 와 같이 폴더 시작을 **c:\Python** 으로, 그리고 뒤에 붙는 설치폴더명은 기본적으로 제공하는 마지막 이름을 그대로 사용한다.
 
@@ -103,17 +105,19 @@ toc: true
 물론 위에서 보았듯이 윈도우에서 기본 파이썬을 삭제하고 재설치 할 수 도 있지만, **Venv** 모드를 사용하면 다양한 버젼을 설치함으로써, 한개는 **Tensorflow**등 머신러닝 분석에 최적화된 환경, 다른 하나는 **Django\ Flask**등 웹에 최적화된 환경 등등 다양한 환경설정을 자유자재로 내 컴퓨터 안에서 운영이 가능한 장점또한 제공한다. 
 
 ```
-c:\> cd c:\Python
-c:\Python> mkdir Venv
-c:\Python\Venv> python -m venv Tensorflow
+C:\> cd c:\Python
+C:\Python> mkdir Venv
+C:\Python\Venv> python -m venv Tensorflow
 ```
 
 **Tensorflow** 는 추가 생성되는 **폴더의 이름**이자 **가상환경 프로젝트 이름**이다. 이는 사용자가 선택에 맞게 변경이 가능하다. 원본 폴더에서 파일들을 복사하여 새로운 환경에서 실행이 가능한 사본이 복사 완료되면 작업이 끝난다 
 
 
 ```
-c:\Python\Venv> cd Tensorflow\Scripts
-c:\Python\Venv\Tensorflow\Scripts>activate
+C:\Python\Venv> cd Tensorflow\Scripts
+C:\Python\Venv\Tensorflow\Scripts>activate
+
+(Tensorflow) C:\Python\Venv\Tensorflow\Scripts>
 ```
 
 해당 프로젝트에서 `프로젝트 이름\Scripts` 로 이동한 뒤, `activate` 활성화 파일을 실행하면 가상환경이 실행된다. 이 때에는 Python의 환경변수가 윈도우 기본설정이 아닌 `c:\Python\Venv\Tensorflow\Scripts>` 를 최우선적으로 활용함으로써 별도의 환경에서 작업들이 실행되는 장점이 있다
@@ -140,7 +144,7 @@ C:\Python\Venv\Tensorflow\Scripts>
 
 무엇보다 컴파일 언어라는 파이썬의 단점을, 각 Cell 별로 나눠서 실행 및 결과를 분석 비교가 가능하다는 점에 있어서 다수에게 수업을 하기에는 Jupyter Notebook 이 여로모로 유용하다. 특히 초보자 분들에게 있어서 강력 추천하는 편집 도구이다
 
-## PyCharm 을 사용하고 싶은 경우
+## PyCharm 을 사용하는 경우
 
 Pycharm 에서도 위에서 설치한 환경과 동일한 Interpretor 로 설정을 잡아주면 훨씬더 강력한 디버깅 작업이 가능하다.  하는데, 위의 내용을 따라하신 분들이면 Interpreter 설정에서 **Add Local**을 선택한 뒤 `C:\Python\Venv\Tensorflow\Scripts\python.exe` 파일을 연결하면 같은 작업환경에서 파이참을 구현하실 수 있다
 
@@ -154,7 +158,7 @@ Pycharm 에서도 위에서 설치한 환경과 동일한 Interpretor 로 설정
 
 Jupyter notebook 이 등장한 뒤, 이를 업그레이드 한 jupyter lab 이 공개되었고, Jupyter lab 을 설치하더라고 동일하게, **Jupyter notebook**이 실행 가능하기 때문에 설치를 할 때에는 Jupyter lab 을 권장한다
 
-> (Tensorflow) C:\Python\Venv\Tensorflow\Scripts> pip install jupyterlab
+> pip install jupyterlab
 
 
 ## Jupyter Lab 의 실행
@@ -180,7 +184,7 @@ Jupyter lab 은 터미널에서 실행되는 폴더를 Root로 잡아준다. 하
 1. 가상환경 실행 폴더로 이동 (**C:\Python\Venv\Tensorflow\Scripts>**)
 2. **activate** 를 실행 (**(Tensorflow) C:\Python\Venv\Tensorflow\Scripts>**)
 3. Python Source 만 저장한 폴더로 이동한다 (**cd C:\Python\Source**)
-4. Jupyter lab을 실행한다 (** jupyter lab**)
+4. Jupyter lab을 실행한다 (**jupyter lab**)
 
 하지만 이러한 작업을 매번 반복해서 실행하기에는 불편한 점이 많다 <small>(하지만 리눅스를 쓰면 이러한 불편한 점을 반복해야 한다 ㅜㅜ. 물론 이를 보다 간단하게 하는 방법들이 있긴한데 그러기 위해선 보다 복잡한 내용을 설명해야 하므로 여기선 Pass!)</small>
 
@@ -228,6 +232,11 @@ jupyter lab
 <br>
 ## 바로가기 아이콘 추가하기
 
-window batch 파일이 때문에 바로가기 커서의 모양이 이쁘지 않다. 바로가기 파일을 선택한 뒤 오른쪽 버튼을 눌러서 **속성**을 선택한 뒤 **아이콘 변경**을 눌러서 수정이 가능하다. 누르면 기본 아이콘만 있어서 선택의 폭이 좁은데, 대신 인터넷에서 이미지 파일 중 **.ico** 확장자 파일을 검색해서 다운로드 받은뒤, **아이콘 변경**으로 해당 파일을 선택하면 보다 다양한 아이콘 이미지를 선택 가능하다
+<figure class="align-center">
+  <img src="https://t1.daumcdn.net/cfile/tistory/2571324C54CC075701" alt="">
+  <figcaption>바로가기 아이콘 변경</figcaption>
+</figure> 
+
+window batch 파일이 때문에 바로가기 커서의 모양이 이쁘지 않다. **바로가기 파일을 선택**한 뒤 오른쪽 버튼을 눌러서 **속성**을 선택한 뒤 **아이콘 변경**을 눌러서 수정이 가능하다. 누르면 기본 아이콘만 있어서 선택의 폭이 좁은데, 대신 인터넷에서 이미지 파일 중 **.ico** 확장자 파일을 검색해서 다운로드 받은뒤, **아이콘 변경**으로 해당 파일을 선택하면 보다 다양한 아이콘 이미지를 선택 가능하다
 
 복잡한 과정은 이제 다 끝났다. 주피터가 필요하면 생성된 바로가기 파일만 더블클릭하면 자동으로 실행되는 모습을 보실 수 있다
