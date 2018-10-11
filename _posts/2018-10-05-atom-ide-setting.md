@@ -17,6 +17,21 @@ toc: true
 Git 에서 개발한 IDE 도구로써, 그동안 무겁고 효율이 낮다는 편견속에서 별로 호기심이 가지 않았었지만, React Native / Vue.js 강사분들이 atom 을 많이 사용하셨고, 다양한 패키지들이 사용에 있어서 편의성이 인정됨에 따라 관련된 내용을 정리해 보려고 합니다.
 
 
+<br>
+## Reset to Factory Defaults [link](https://flight-manual.atom.io/hacking-atom/sections/debugging/#clearing-saved-state)
+
+> Application : Install Update
+
+Atom 을 설정하다 실수로 위를 누르는 경우, 계속 화면에는 아무것도 나오지 않는 경우가 발생한다. 이외에도 다양한 이유로 설정을 초기화 하려는 경우가 종종 필요로 한다 (삭제를 깨끗하게 하려는 경우에도 유용하다)
+
+> $ atom --clear-window-state 
+
+> $ mv ~/.atom ~/.atom-backup
+
+이를 실행해야 설정에 관련된 내용들이 삭제된다. 이를 실행 후 재설치를 해야 설정이 초기화 된 상태에서 설치가 가능하다
+
+
+<br>
 ## Install Package
 
 > **Ctrl + Shift + P**
