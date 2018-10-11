@@ -2,7 +2,7 @@
 title : Atom IDE Setting
 last_modified_at: 2018-10-05T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/atom.png
+  overlay_image: /assets/images/book/atom_ide.png
 categories:
   - atom
 tags: 
