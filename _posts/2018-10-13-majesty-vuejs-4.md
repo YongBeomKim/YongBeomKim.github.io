@@ -30,6 +30,8 @@ toc: true
  
 > v-for = "i in 10" 
 
+> { { i-1 } } 곱하기 4 는 { { (i-1) * 4 } }
+
 객체를 { { 변수 } } 를 사용하여 반복을 한다. { { } } **Vue 객체** 내부에서는 단단한 연산도 가능하다 
 
 ```html
@@ -60,8 +62,11 @@ toc: true
 
 > v-for = "(story, idx) in stories"
 
+> { {idx} }  { { story.writer } }  said  "{ { story.plot } }"
+
 1. **stories** : 원본 데이터 배열객체
-2. **(story, idx)** : 순환되는 배열 element **(key, value)**
+2. **stories.plot, stories.plot** : 배열 객체의 내부 프로퍼티
+3. **(story, idx)** : 순환되는 배열 element **(key, value)**
 
 ```html
 <link href="./js/bootstrap.min.css" rel="stylesheet">
