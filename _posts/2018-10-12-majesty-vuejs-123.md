@@ -1,5 +1,5 @@
 ---
-title : 쉽고 빠르게 배우는 Vue.js 2 - Chapter 1 ~ 3
+title : 쉽고 빠르게 배우는 Vue.js - 1장~3장
 last_modified_at: 2018-10-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
@@ -13,11 +13,6 @@ toc: true
 
 
 # Introduction
-
-<figure class="align-center">
-  <img src="https://pbs.twimg.com/media/DNou-HLXcAAW23s.jpg" alt="">
-</figure>
-
 
 1. vue 인스턴스 : **new Vue()**
 2. vue directive 함수 : **v-model, v-show, v-if, v-else, v-else-if**
