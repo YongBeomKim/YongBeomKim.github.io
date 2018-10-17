@@ -16,7 +16,7 @@ toc: true
 
 1. Js의 **배열객체** 기반의 **리스트 출력**
 2. Template 에서 **반복출력**
-3. **v-for** = "(value, key, index) in **story**" :key=**"index"**
+3. **v-for** = "(value, key, index) in **story**" &nbsp; :key=**"index"**
 4. Template 에서는 **{ {index} } : { {key} } : { {value} }**
 3. { { } } **객체 Property** 를 반복하며 실행
 
