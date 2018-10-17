@@ -144,14 +144,19 @@ tempate 태그에서는 **v-show** 가 실행 불가능 하고, 되더라도 오
 <link href="./js/bootstrap.min.css" rel="stylesheet">
 
 <div class = "container">
-  // v-if 조건문에서 OR 조건을 || 를 활용한다
+
+  // v-if 조건에 해당시 아래의 h1을 출력 
+  // v-if 조건문에서 OR 조건은 || 를 활용한다
   <div v-if = "gender === 'male' || gender === 'female'">
     <h1>안녕하세요,
       <span v-show = "gender === 'male'">남성 { { name } }.</span>
       <span v-show = "gender === 'female'">여성 { { name } }.</span>
     </h1>
   </div>
+
+  // 위의 v-if 조건에 비해당시, 아래의 h1을 출력 
   <h1 v-else>성별을 입력하지 않아도 괸찮습니다 ^^</h1>
+
   <label for="gender">성별을 입력해 주세요 :</label>
   <input v-model="gender" class="form-control" id="gender">
   <label for="name">이름을 입력해 주세요 :</label>
