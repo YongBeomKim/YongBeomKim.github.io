@@ -66,9 +66,10 @@ Atom 을 설정하다 실수로 위를 누르는 경우, 계속 화면에는 아
 1. **Seti-icons 1.5.4** : 파일 확장자에 따라 아이콘을 변경
 2. **autocomplete paths 2.12** : 외부파일과 연결시 경로 자동완성
 3. **autocomplete-modules 2.22** : 관련 폴더 모듈과 자동연결 [link](https://atom.io/packages/autocomplete-modules)
-4. **atom-beautify 0.33** : 태그들을 자동정렬
-5. **pigments 0.44** : #FF530D 등 컬러 값을 직관표시
-6. **highlight-seleted** : 객체를 더블클릭하면 하이라이트
+4. **autocomplete-project-paths 2.2.0** : HTML 에서 css, js 경로 자동완성 [link](https://atom.io/packages/autocomplete-project-paths)
+5. **atom-beautify 0.33** : 태그들을 자동정렬
+6. **pigments 0.44** : #FF530D 등 컬러 값을 직관표시
+7. **highlight-seleted** : 객체를 더블클릭하면 하이라이트
 
 
 <br>
