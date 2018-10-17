@@ -10,10 +10,7 @@ tags:
     - javascript
 toc: true 
 ---
-
-<figure class="align-center">
-  <img src="https://css-tricks.com/wp-content/uploads/2018/04/v-for_3.png" alt="">
-</figure> 
+ 
 
 # Introduction
 
@@ -23,6 +20,9 @@ toc: true
 4. Template 에서는 **{ {index} } : { {key} } : { {value} }**
 3. { { } } **객체 Property** 를 반복하며 실행
 
+<figure class="align-center">
+  <img src="https://css-tricks.com/wp-content/uploads/2018/04/v-for_3.png" alt="">
+</figure>
 
 <br>
 # Chapter 4 : 리스트 랜더링
