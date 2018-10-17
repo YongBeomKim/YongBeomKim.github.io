@@ -18,16 +18,18 @@ toc: true
 2. Template 에서 **반복출력**
 3. 객체의 Property를 반복하며 실행
 
-<br>
-# Chapter 4 : 리스트 랜더링
-
-## v-for
- 
-객체를 { { 변수 } } 를 사용하여 반복을 한다.
-
 <figure class="align-center">
   <img src="https://css-tricks.com/wp-content/uploads/2018/04/v-for_3.png" alt="">
 </figure> 
+
+<br>
+# Chapter 4 : 리스트 랜더링
+
+## v-for : 정수만큼 반복하면서 실행
+ 
+> v-for = "i in 10" 
+
+객체를 { { 변수 } } 를 사용하여 반복을 한다.
 
 ```html
 <link href="./js/bootstrap.min.css" rel="stylesheet">
@@ -47,5 +49,38 @@ toc: true
   new Vue({
     el: '.container'
   })
+</script>
+```
+
+
+## v-for : 배열 객체를 활용 
+
+> v-for = "(story, idx) in stories"
+
+```html
+<link href="./js/bootstrap.min.css" rel="stylesheet">
+
+<div class="container">
+  <ul class="list-group">
+    <li v-for="(story, idx) in stories" :key="idx" class="list-group-item">
+      { {idx} }  { { story.writer } }  said  "{ { story.plot } }"
+    </li>
+  </ul>
+</div>
+
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '.container',
+    data: {
+      stories: [
+        { plot: "I crashed my car today!",
+          writer: "Alex"},
+        { plot: "Yesterday, someone stole my bag!",
+          writer: "John"},
+        { plot: "Someone ate my chocolate...",
+          writer: "John"},]
+      }
+    })
 </script>
 ```
