@@ -25,23 +25,24 @@ toc: true
 <br>
 # Chapter 4 : 리스트 랜더링
 
+
 ## v-for : 정수만큼 반복하면서 실행
  
 > v-for = "i in 10" 
 
-객체를 { { 변수 } } 를 사용하여 반복을 한다.
+객체를 { { 변수 } } 를 사용하여 반복을 한다. { { } } **Vue 객체** 내부에서는 단단한 연산도 가능하다 
 
 ```html
 <link href="./js/bootstrap.min.css" rel="stylesheet">
 
 // bootstrap 의 **.container, list-group, list-group-item** 활용 
 <div class="container">
-    <h1>4단 곱셈 수식을 테이블로 출력</h1>
-    <ul class="list-group">
-      <li v-for="i in 10" class="list-group-item">
-        { { i } } 곱하기 4 는 { { i * 4 } }.
-      </li>
-    </ul>
+  <h1>4단 곱셈 수식을 테이블로 출력</h1>
+  <ul class="list-group">
+    <li v-for="i in 10" class="list-group-item">
+      { { i-1 } } 곱하기 4 는 { { (i-1) * 4 } }.
+    </li>
+  </ul>
 </div>
 
 <script src="./js/vue.js"></script>
@@ -55,7 +56,12 @@ toc: true
 
 ## v-for : 배열 객체를 활용 
 
+> v-for = "story in stories"
+
 > v-for = "(story, idx) in stories"
+
+1. **stories** : 원본 데이터 배열객체
+2. **(story, idx)** : 순환되는 배열 element **(key, value)**
 
 ```html
 <link href="./js/bootstrap.min.css" rel="stylesheet">
@@ -76,11 +82,11 @@ toc: true
       stories: [
         { plot: "I crashed my car today!",
           writer: "Alex"},
-        { plot: "Yesterday, someone stole my bag!",
-          writer: "John"},
         { plot: "Someone ate my chocolate...",
           writer: "John"},]
       }
     })
 </script>
 ```
+
+
