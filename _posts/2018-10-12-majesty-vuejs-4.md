@@ -1,5 +1,5 @@
 ---
-title : 쉽고 빠르게 배우는 Vue.js 2 - Chapter 1 ~ 3
+title : 쉽고 빠르게 배우는 Vue.js 2 - Chapter 4
 last_modified_at: 2018-10-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo_small.jpg
@@ -18,16 +18,9 @@ toc: true
   <img src="https://pbs.twimg.com/media/DNou-HLXcAAW23s.jpg" alt="">
 </figure>
 
-
-1. vue 인스턴스 : **new Vue()**
-2. vue directive 함수 : **v-model, v-show, v-if, v-else, v-else-if**
-3. { { **매개변수** } }, { { **$파라미터** } } 의 활용
-
-
 Do it! Vue.js 입문을 읽고 두번째로 접하게 되는 vue.js 책이다. Do it! 쉽다고 하면서 Web/ CSS/ JS 만 알면 된다고 하지만, 여기서 JS 는 JavaScript 만이 아닌, **Node.JS**,  **Express** 를 의미하는 것으로, 단순한 문법이 아닌 패키지를 접해보지 않은 나로써는 술술 넘어가진 않았다.
 
 **You-Tube** 에서 공개된 **Vue 강의** 들을 활용하여 개괄적인 아웃라인을 접한 뒤에서야, 이 책을 정리하면서 실제 활용 가능한 예시들을 정리해 보고자 한다
-
 
 <br>
 # Chapter 1, 2 시작하기 
