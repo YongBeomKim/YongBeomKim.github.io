@@ -1,5 +1,5 @@
 ---
-title : 쉽고 빠르게 배우는 Vue.js - 4장
+title : 쉽고 빠르게 배우는 Vue.js - 4장 (v-for)
 last_modified_at: 2018-10-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
@@ -16,7 +16,9 @@ toc: true
 
 1. Js의 **배열객체** 기반의 **리스트 출력**
 2. Template 에서 **반복출력**
-3. 객체의 Property를 반복하며 실행
+3. **v-for** = "(value, key, index) in **story**" :key=**"index"**
+4. Template 에서는 **{ {index} } : { {key} } : { {value} }**
+3. { { } } **객체 Property** 를 반복하며 실행
 
 <figure class="align-center">
   <img src="https://css-tricks.com/wp-content/uploads/2018/04/v-for_3.png" alt="">
@@ -66,15 +68,19 @@ toc: true
 
 1. **stories** : 원본 데이터 배열객체
 2. **stories.plot, stories.plot** : 배열 객체의 내부 프로퍼티
-3. **(story, idx)** : 순환되는 배열 element **(key, value)**
+3. **(story, index)** : 순환되는 배열 element **(value, index값)**
+
+**index** : 배열 객체의 index 주소값을 순차적 호출한다 (index 를 idx 등으로 이름을 바꿔도 된다)
+
+**:key=index** : 반복되는 DOM 성능 향상을 위해, 인덱스로 사용될 변수명을 사용하여, 가능하면 언제나 v-for에 key를 추가하는 것이 좋습니다. [Vue](https://kr.vuejs.org/v2/guide/list.html)
 
 ```html
 <link href="./js/bootstrap.min.css" rel="stylesheet">
 
 <div class="container">
   <ul class="list-group">
-    <li v-for="(story, idx) in stories" :key="idx" class="list-group-item">
-      { {idx} }  { { story.writer } }  said  "{ { story.plot } }"
+    <li v-for="(story, index) in stories" :key="index" class="list-group-item">
+      { { index } }  { { story.writer } }  said  "{ { story.plot } }"
     </li>
   </ul>
 </div>
@@ -95,3 +101,32 @@ toc: true
 ```
 
 
+## v-for : 배열 객체를 활용 
+
+> v-for="(value, key, index) in story" :key="index"
+
+> { {index} } : { {key} } : { {value} }
+
+```html
+<link href="./js/bootstrap.min.css" rel="stylesheet">
+
+<div class="container">
+  <ul class="list-group">
+    <li v-for="(value, key, index) in story" :key="index" class="list-group-item">
+      { {index} } : { {key} } : { {value} }
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="./js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '.container',
+    data: {
+      story: {
+        plot: "Someone ate my chocolate...",
+        writer: 'John',
+        upvotes: 47 } }
+  })
+</script>
+```
