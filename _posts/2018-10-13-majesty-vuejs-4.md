@@ -21,3 +21,31 @@ toc: true
 <br>
 # Chapter 4 : 리스트 랜더링
 
+## v-for
+ 
+객체를 { { 변수 } } 를 사용하여 반복을 한다.
+
+<figure class="align-center">
+  <img src="https://css-tricks.com/wp-content/uploads/2018/04/v-for_3.png" alt="">
+</figure> 
+
+```html
+<link href="./js/bootstrap.min.css" rel="stylesheet">
+
+// bootstrap 의 **.container, list-group, list-group-item** 활용 
+<div class="container">
+    <h1>4단 곱셈 수식을 테이블로 출력</h1>
+    <ul class="list-group">
+      <li v-for="i in 10" class="list-group-item">
+        { { i } } 곱하기 4 는 { { i * 4 } }.
+      </li>
+    </ul>
+</div>
+
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '.container'
+  })
+</script>
+```
