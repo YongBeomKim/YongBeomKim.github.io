@@ -14,8 +14,7 @@ toc: true
 
 # Introduction
 
-1. 객체가 아닌 **사용자의 Event**에 따라 결과를 변화한다
-2. 
+**사용자의 Event**에 따른 결과를 반환한다
 
 
 <br>
@@ -30,8 +29,6 @@ Vue 디렉티브(directive) 인 **v-on**을 쓰면 내용은 명확하겠지만,
 
 <br>
 ## 이벤트 처리 : Button 을 **Click** 하는 횟수를 Counting 한다
-
-
 
 ```html
 <button v-on:click="upvote">
@@ -124,3 +121,35 @@ v-model : 사용자 입력 데이터 자동변환 method [Vue.js](https://kr.vue
 .keyup 키보드 이벤트를 청취할 경우 **키 코드**를 확인할 필요가 있다. 참고로 **enter**의 경우는 **13**을 코드값으로 갖는다.
 
 일반적으로 많이 사용되는 키로는 **enter, tab, delete, esc, space, up, down, left, right** 가 있다.
+
+
+<br>
+## Computed Property 계산된 프로퍼티
+
+**Vue 인스턴스**의 **Computed 객체**에 정의된 함수는, **React** 의 **state** (변수가 변하면 변수가 포함된 함수도 같이 재실행 된다) 와 동일한 결과를 출력한다 <small>이를 남발하면 콜백에 빠진다</small>
+
+```html
+<html>
+<div class="container">
+  <h1>두 숫자를 연산한 결과를 출력</h1>
+  <form>
+    <input v-model.number="a" \> +
+    <input v-model.number="b" \>
+  </form>
+  <h2>결과 값 : { {a} } + { {b} } = { {c} }</h2>
+  <pre> { { $data } } </pre>
+</div>
+
+<script type="text/javascript">
+  new Vue({
+    el: '.container',
+    data: { a: 1, b: 2},
+    computed: {
+      // 계산된 프로퍼티 
+      c: function() {
+        return this.a + this.b
+      }
+    },
+  });
+</script>
+```
