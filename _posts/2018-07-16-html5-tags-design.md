@@ -15,14 +15,6 @@ toc: true
 
 # HTML5 + CSS3 디자인
 
-**모던 웹사이트 디자인의 정석**  [구판](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158390211&orderClick=LAH&Kc=) 의 최신개정판으로 HTML5 에서 추가된 태그들의 내용들을 활용해서 작업하는 내용으로 구성되어 있다. 이번 페이지에서는 추가 및 변경된 내용을 중심으로 정리를 해 보려고 한다.
-
-
-<figure class="align-center">
-  <img src="https://icreateadvertising.com.au/wp-content/uploads/2015/10/html5-1500x470.gif" alt="">
-  <figcaption></figcaption>
-</figure>
-
 
 <br>
 ## Main Frame 설정
