@@ -1,5 +1,5 @@
 ---
-title : /도서/ 웹을 위한 머신러닝 2 - 이론편
+title : 웹을 위한 머신러닝 2 - 이론편
 last_modified_at: 2018-03-14T15:45:06-05:00
 header:
   overlay_image: /assets/images/book/machine-learning.jpg

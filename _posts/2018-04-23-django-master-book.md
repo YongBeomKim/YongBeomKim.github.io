@@ -1,5 +1,5 @@
 ---
-title : /도서리뷰/ Django 마스터 하기
+title : 도서리뷰 // Django 마스터 하기
 last_modified_at: 2018-04-23T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
