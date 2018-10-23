@@ -9,6 +9,7 @@ tags:
     - python
 ---
 
+> Book Review
 
 1. 리뷰기간 : 2018.04 
 2. 총평 : **4/5** 
