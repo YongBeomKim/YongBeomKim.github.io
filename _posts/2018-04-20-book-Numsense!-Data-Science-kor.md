@@ -11,10 +11,6 @@ tags:
     - algorithm
 ---
 
-
-<img src="http://acornpub.co.kr/tb/detail/book/yk/rf/1510553792mLAtdGTc.jpg" width='300'>
-
-
 > 리뷰기간 : 2018.04 
 
 > 총평 : 4.5/5 
@@ -25,6 +21,8 @@ tags:
 
 > 난이도 : **초급** (가장 추천하는 대상은 머신러닝을 대충 공부하긴 했는데, 전체적인 그림이 잘 안그려지는 사람들)
 
+
+<img src="http://acornpub.co.kr/tb/detail/book/yk/rf/1510553792mLAtdGTc.jpg" width='300'>
 
 
 처음 이 책을 알게 된 것은 알라딘 중고서점에 저렴하게 올라와서, 아 또 그렇고 그런 입문서중에 하나 겠구나 하는 생각이 들었다 

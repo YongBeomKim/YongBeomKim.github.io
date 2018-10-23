@@ -11,9 +11,6 @@ tags:
 toc: true    
 ---
 
-
-<img src="http://braverokmc.dothome.co.kr/include/ckupload/10e76211b1e7873af193f37d59df6055.png" width='300'>
-
 > 리뷰기간 : 2017.05 
 
 > 총평 : 3/5 (나열 사전식으로 집중해서 봐야 함)
@@ -23,6 +20,9 @@ toc: true
 > 분량 : 3/5 (압축량이 상당함, 조금 지루하다)
 
 > 난이도 : **초급** (필요한 CSS를 복붙만 하면 된다)
+
+
+<img src="http://braverokmc.dothome.co.kr/include/ckupload/10e76211b1e7873af193f37d59df6055.png" width='300'>
 
 
 주변에서 Web 관련 작업을 하는 분들이 이야기를 듣다보면, Django를 꾸미기 위해서 CSS 옵션들을 Hard Coding 하기 보다는, Bootstrap 등을 활용하는게 오히려 더 좋다고들 추천해서 이 책을 찾아 정리하게 되었다.

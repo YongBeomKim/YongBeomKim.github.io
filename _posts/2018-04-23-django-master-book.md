@@ -13,9 +13,6 @@ tags:
 toc: true    
 ---
 
-
-<img src="http://acornpub.co.kr/tb/detail/book/yg/xt/1509600720l7K2NRh1.jpg" width='300'>
-
 > 리뷰기간 : 2018.03 ~ 05 
 
 > 총평 : 3.5/5 (깊이가 있어서 어렵지만 계속 찾아보며 작업할 책)
@@ -28,6 +25,8 @@ toc: true
 
 > 소스코드 : **Python 3.5, Django 1.10**
 
+
+<img src="http://acornpub.co.kr/tb/detail/book/yg/xt/1509600720l7K2NRh1.jpg" width='300'>
 
 파이썬을 Web Servie 완 연동하기 위해선 가장 기초적인 모듈이라고 생각해서 Django만 파다 보니 국내에 번역된 대부분의 책들은 다 갖고 있다. 김석훈 이분의 책과 **실전편**은 한빛 off line 수업까지 찾아 듣는 등 재미를 붙여보려고 노력은 했지만, 아직까지도 쉽지 않은 분야이기도 하다.
 

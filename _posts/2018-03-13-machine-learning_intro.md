@@ -9,8 +9,6 @@ toc: true
 ---
 
 
-<img src="http://acornpub.co.kr/tb/detail/book/dm/qn/1489112679ajXucfb6.jpg" width='300'>
-
 > 리뷰기간 : 2017.05 ~ 06 
 
 > 총평 : 3.5/5 (어렵지만 학습한 뒤 계속 찾아볼만한 책)
@@ -23,6 +21,7 @@ toc: true
 
 > 소스코드 : **Python 2.7, Django 1.7**
 
+<img src="http://acornpub.co.kr/tb/detail/book/dm/qn/1489112679ajXucfb6.jpg" width='300'>
 
 이 책은 작년에 스터디를 진행한 책으로, Django를 학습한 뒤 머신러닝을 Django에 연동하여 서비스를 제공하는 내용으로 구성된 책이다. 
 
