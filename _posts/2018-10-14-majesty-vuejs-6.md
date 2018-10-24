@@ -95,8 +95,8 @@ new Vue({
 ## 결과의 정렬
 
 > **stories** 배열 객체를 **item** 으로 하나씩 꺼내서 <br>
-> item 객체 중 **.upvotes > 25** 조건에 True 인 객체로 <br>
-> 새로운 객체를 출력한다.
+> **item** 객체 메소드 중 **.upvotes > 25** 가 True 인 <br>
+> 객체들로 새로운 배열을 생성한다.
 
 ```html
 <h1>가장 유명한 이야기들! {{famous.length}} th</h1>
