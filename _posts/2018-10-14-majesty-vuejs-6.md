@@ -150,3 +150,48 @@ new Vue({
 </script>
 ```
 
+## lodash 유틸리티 활용하기 
+
+[lodash 모듈 다운받기](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) [lodash GitHub](https://github.com/lodash/lodash)
+
+> **_.orderBy**(arraydata, ['key1', 'key2'], ['desc', 'asc'])
+
+1. **arraydata** : 정렬할 배열객체 
+2. **key1, key2** : 정렬 기준의 Key 들
+3. **desc, asc** : Key의 배열
+
+```html
+<ul>
+  <li v-for="(story, index) in orderedStories" :key="index">
+  { { story.writer } } 가 말하길 "{ { story.plot } }"
+  and 득표수는 { { story.upvotes } } 이다.
+  </li>
+</ul>
+<ul>
+  <li v-for="(story, idex) in _.orderBy(stories, ['upvotes'], [order])" :key="index">
+    { { story.writer } } 가 말하길 "{ { story.plot } }"
+    and 득표수는 { { story.upvotes } } 이다.
+  </li>
+</ul>
+<script src="./js/vue.js"></script>
+<script src="./js/lodash.min.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '.container',
+    data: {
+      stories: [...],
+      order : 'desc'
+    },
+    methods: {
+      reverseOrder: function () {
+        this.order = (this.order === 'desc') ? 'asc' : 'desc'
+      }
+    },
+    computed: {
+      orderedStories: function () {
+        var order = this.order
+        return _.orderBy(this.stories, 'upvotes', [order]) }
+    }
+  })
+</script>
+```
