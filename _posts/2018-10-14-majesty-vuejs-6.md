@@ -123,4 +123,30 @@ new Vue({
 ```
 
 
-## 전역 Vue.filter() 를 활용하기  
+## Custom Filter
+
+> 전역 **Vue.filter()** 로 필터를 정의하여 { { **|** } } 를 적용한다  
+
+```html
+<h1>Super Heroes 의 이야기들!</h1>
+<ul class="list-group">
+    <li v-for="(hero, index) in heroes" :key="index" class="list-group-item">
+        { {hero | snitch} }
+    </li>
+</ul>
+<script type="text/javascript">
+Vue.filter('snitch', function (heroes) {
+  return '"' +  heroes.isObvioulsy + '" 은(는) '  +
+         heroes.firstname + ' ' +
+         heroes.lastname + ' 이 현실에서 이름이다!'
+})
+new Vue({
+    el: '.container',
+    data: {
+       heroes:  [
+          { firstname: 'Bruce', lastname:  'Wayne', isObvioulsy: 'Batman'},]
+    }
+})
+</script>
+```
+
