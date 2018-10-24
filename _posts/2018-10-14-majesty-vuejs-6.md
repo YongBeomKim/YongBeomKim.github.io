@@ -94,8 +94,8 @@ new Vue({
 
 ## 결과의 정렬
 
-> **stories** 배열 객체를 **item** 으로 하나씩 꺼내서 
-> item 객체 중 **.upvotes > 25** 조건에 True 인 객체로 
+> **stories** 배열 객체를 **item** 으로 하나씩 꺼내서 <br>
+> item 객체 중 **.upvotes > 25** 조건에 True 인 객체로 <br>
 > 새로운 객체를 출력한다.
 
 ```html
@@ -121,3 +121,6 @@ new Vue({
 })
 </script>
 ```
+
+
+## 전역 Vue.filter() 를 활용하기  
