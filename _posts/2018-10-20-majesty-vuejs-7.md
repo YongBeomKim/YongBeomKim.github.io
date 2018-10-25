@@ -1,5 +1,5 @@
 ---
-title : 쉽고 빠르게 배우는 Vue.js - 7장 (컴포넌트)
+title : 쉽게 배우는 Vue.js - 7장 (컴포넌트)
 last_modified_at: 2018-10-20T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
@@ -171,6 +171,3 @@ new Vue({
 })
 </script>
 ```
-
-
-## 종합예제
