@@ -152,13 +152,16 @@ new Vue({
 
 ## lodash 유틸리티 활용하기 
 
-[lodash 모듈 다운받기](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) [lodash GitHub](https://github.com/lodash/lodash)
+[lodash 문법정리](http://kbs0327.github.io/blog/technology/lodash/) | [lodash 모듈 다운받기](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) | [lodash GitHub](https://github.com/lodash/lodash)
 
 > **_.orderBy**(arraydata, ['key1', 'key2'], ['desc', 'asc'])
 
 1. **arraydata** : 정렬할 배열객체 
 2. **key1, key2** : 정렬 기준의 Key 들
-3. **desc, asc** : Key의 배열
+3. **desc, asc** : Key의 배열 (없으면 오름차순 정렬)
+4. arraydata 를 **key1** 내림차순, 두번째 **key2**를 오름차순 정렬한다
+
+배열 객체의 정렬을, **orderedStories() 인 Vue 인스턴스**로 간단한 정렬(간단한 적용)을, **_.orderBy() 인 lodash** 를 활용하여 컬럼별 적용하는 방법, 2가지를 비교해보자
 
 ```html
 <ul>
@@ -168,6 +171,7 @@ new Vue({
   </li>
 </ul>
 <ul>
+  <!-- lodash 모듈을 사용하여 정렬 (다양한 설정이 가능) -->
   <li v-for="(story, idex) in _.orderBy(stories, ['upvotes'], [order])" :key="index">
     { { story.writer } } 가 말하길 "{ { story.plot } }"
     and 득표수는 { { story.upvotes } } 이다.
@@ -183,11 +187,13 @@ new Vue({
       order : 'desc'
     },
     methods: {
+      // 정렬 순서를 바꾼다
       reverseOrder: function () {
         this.order = (this.order === 'desc') ? 'asc' : 'desc'
       }
     },
     computed: {
+      // 자동정렬된 결과를 출력
       orderedStories: function () {
         var order = this.order
         return _.orderBy(this.stories, 'upvotes', [order]) }
@@ -195,3 +201,7 @@ new Vue({
   })
 </script>
 ```
+
+**this :** 자바스크립트에서 this 는 중요한 개념으로, **reverseOrder 의 경우**에는 **window** 환경에서 **this.order** 인 **order** 객체를 overwriting 한다
+{ : .notice--info}
+
