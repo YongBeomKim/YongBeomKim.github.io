@@ -14,7 +14,7 @@ toc: true
 
 # Introduction
 
-앞에서 실습한 render(), Computed 를 활용하여 조건에 해당되는 배열객체를 걸러서 출력합니다.
+배열 항목의 필터링/ 정렬, 사용자 정의 필터, 유틸리티 라이브러리 활용으로써, 1) 앞에서 실습한 **render(), Computed** 를 활용한 배열객체 정렬, 2) **lodash** 모듈을 활용하여 다양한 설정을 적용하는 방법을 익혀봅니다
 
 
 <br>
@@ -152,7 +152,7 @@ new Vue({
 
 ## lodash 유틸리티 활용하기 
 
-[lodash 문법정리](http://kbs0327.github.io/blog/technology/lodash/) | [lodash 모듈 다운받기](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) | [lodash GitHub](https://github.com/lodash/lodash)
+[lodash 문법정리](http://kbs0327.github.io/blog/technology/lodash/) , [lodash 모듈 다운받기](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) , [lodash GitHub](https://github.com/lodash/lodash)
 
 > **_.orderBy**(arraydata, ['key1', 'key2'], ['desc', 'asc'])
 
