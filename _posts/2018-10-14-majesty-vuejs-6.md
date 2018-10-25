@@ -152,7 +152,7 @@ new Vue({
 
 ## lodash 유틸리티 활용하기 
 
-[lodash 문법정리](http://kbs0327.github.io/blog/technology/lodash/) , [lodash 모듈 다운받기](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) , [lodash GitHub](https://github.com/lodash/lodash)
+[lodash 문법](http://kbs0327.github.io/blog/technology/lodash/) , [다운](https://raw.githubusercontent.com/lodash/lodash/4.17.10-npm/lodash.min.js) , [GitHub](https://github.com/lodash/lodash)
 
 > **_.orderBy**(arraydata, ['key1', 'key2'], ['desc', 'asc'])
 
