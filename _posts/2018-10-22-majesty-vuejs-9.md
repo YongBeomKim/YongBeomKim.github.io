@@ -14,9 +14,13 @@ toc: true
 
 # Introduction
 
+boolean 조건일 때 parameter 의 활용방법
+
+1. **true / false 객체**  ex) v-bind:class="{ 'red' : color, 'blue' : !color }
+2. **3항 연산자**  ex) v-bind:class="[ color ? 'red' : 'blue']"
+
+
 {: .notice--info}
-
-
 
 
 <br>
@@ -59,3 +63,31 @@ new Vue({
 </style>
 ```
 
+## 스타일 배열문법 적용 
+
+> **:style**="{'color':'blue', fontsize:'120px'}"
+
+> **:style**="{'color': nice.color, fontsize: nice.fontSize}"
+
+> **:style**="[niceStyle, badStyle]"
+
+
+**:style** 의 경우 1) 스타일을 Hard coding 하거나, 2) 자동으로 적절한 접두사를 자동감지, 3) 동일한 접두사가 여럿일 때 마지막 내용이 적용된다
+
+```html
+
+
+<div id="app">
+  <div :style="[nice, bad]">Such nice Day!</div>
+</div>
+
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      nice: { color: 'blue', fontSize: '120px'},
+      bad: { color: 'gray', fontStyle: 'italic'},}
+  });
+</script>
+```
