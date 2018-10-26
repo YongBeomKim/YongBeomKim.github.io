@@ -71,12 +71,9 @@ new Vue({
 
 > **:style**="[niceStyle, badStyle]"
 
-
 **:style** 의 경우 1) 스타일을 Hard coding 하거나, 2) 자동으로 적절한 접두사를 자동감지, 3) 동일한 접두사가 여럿일 때 마지막 내용이 적용된다
 
 ```html
-
-
 <div id="app">
   <div :style="[nice, bad]">Such nice Day!</div>
 </div>
