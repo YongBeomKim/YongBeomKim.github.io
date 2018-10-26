@@ -160,5 +160,77 @@ https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js
 
 ## 부모 자식이 아닌 관계에서 통신
 
-위에서는 Create Hook 에서 **.$on** 를 사용하여 이벤트를 등록하고, 이를 활성화 하기 위해 **.$emit**을 사용합니다. 
-위에서 본 것과 같이 `<사용자Tag @이벤트이름="함수">` 를 사용하면 이벤트를 청취 가능하지만, 자식 컴포넌트로 이벤트 내용을 보낼 수는 없다.
+위에서는 Create Hook 에서 **.$on** 를 사용하여 이벤트를 등록하고, 이를 활성화 하기 위해 **.$emit**을 사용합니다. 위와 같이 `<사용자Tag @이벤트이름="함수">` 를 사용하면 이벤트 청취는 가능하지만, 자식 컴포넌트로 이벤트 내용을 보낼 수는 없다.
+
+
+```html
+<h1>Food Battle</h1>
+<p>{ { votes.count } }</p>
+<button @click="reset">Reset votes</button>
+<hr>
+  <div class="row">
+    <food name="Cheeseburger"></food>
+    <food name="Double Bacon Burger"></food>
+    <food name="Whooper"></food>
+  </div>
+<hr><h1>Log:</h1>
+<ul>
+  <li v-for="(vote, index) in votes.log" 
+      :key="index"> { { vote } } </li>
+</ul>
+
+<template id="food">
+  <div>
+    <p>{ { votes } }</p>
+    <button @click="vote">{ { name } }</button>
+  </div>
+</template>
+
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+  var bus = new Vue()
+
+  Vue.component('food', {
+    template: '#food',
+    props: ['name'],
+    data: function() {
+      return { votes: 0 }
+    },
+    methods: {
+      vote: function(event) {
+        var food = event.srcElement.textContent;
+        this.votes++;
+        bus.$emit('voted', food);
+      },
+      reset: function() {this.votes = 0}
+    },
+    created() {
+      bus.$on('reset', this.reset)
+    }
+  })
+  new Vue({
+    el: '.container',
+    data: {
+      votes: { count: 0, log: [] }
+    },
+    methods: {
+      countVote: function(food) {
+        this.votes.count++;
+        this.votes.log.push(food + ' received a vote.');
+      },
+      reset: function() {
+        this.votes = { count: 0, log: [] },
+        bus.$emit('reset');
+      }
+    },
+    created() {
+      bus.$on('voted', this.countVote)
+    }
+  })
+</script>
+```
+
+함수 실행은 Vue 인스턴스에서 **methods** 내부에 함수를 정의한 뒤, 개별 Life Cycle 에서 **여기선 created()** 이벤트를 호출 **.$on** 한 뒤 **this.**countVote 를 활용한다. 이렇게 객체를 분리함으로써 개별 함수내 **this** 를 안정적으로 특정, 활용 가능하다
+{: .notice--info}
+
+
