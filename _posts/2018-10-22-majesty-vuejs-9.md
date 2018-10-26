@@ -16,11 +16,8 @@ toc: true
 
 boolean 조건일 때 parameter 의 활용방법
 
-1. **true / false 객체**  ex) v-bind:class="{ 'red' : color, 'blue' : !color }
-2. **3항 연산자**  ex) v-bind:class="[ color ? 'red' : 'blue']"
-
-
-{: .notice--info}
+1. **v-bind:class**="{ 'red' : color, 'blue' : !color } : **true / false 객체**
+2. **v-bind:class**="[ color ? 'red' : 'blue']" : **3항 연산자**
 
 
 <br>
@@ -28,7 +25,7 @@ boolean 조건일 때 parameter 의 활용방법
 
 ## 클래스 객체의 조작
 
-> **!**
+> **!this**, **!매개변수**
 
 **color** 와 **!color** 객체를 받을 때, **this.color, !this.color** 와 같이 객체를 boolean 형식으로 구분하여 적용 가능하다.  
 
