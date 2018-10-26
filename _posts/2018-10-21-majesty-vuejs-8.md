@@ -14,10 +14,12 @@ toc: true
 
 # Introduction
 
-1. **$on(event) :** 이벤트 청취
-2. **$emit(event) :** 이벤트 발생
-3. **$once(event) :** 이벤트를 (한번 만) 청취한다
-4. **$off(event) :** 이벤트 리스너를 제거한다
+1. **$on(eventName) :** 이벤트 청취
+2. **$emit(eventName) :** 이벤트 발생
+3. **$once(eventName) :** 이벤트를 (한번 만) 청취한다
+4. **$off(eventName) :** 이벤트 리스너를 제거한다
+
+중간 정리를 하는데 $emit $on 으로 이벤트를 발생하고, 이벤트 리스너를 연결하는데 eventName 이 어떻게 기능을 하는지, (템플릿에서는 v-on 으로 리스너를 연결한다) this 와의 차이에 있어서 구분이 명확하지 못해서 혼란을 격고 있다. Do It vue.js 에 나온 내용을 참고로 해서 잘 정리를 해보자 (React Native 에서)
 
 
 <br>
@@ -64,11 +66,15 @@ html 내부에서 **특정 이벤트**를 정의**(Emit)** 하고, 이를 활용
 
 ## 부모 - 자식 사이의 통신
 
+1. **@voted :** v-on : voted 
+2. **@click :** v-on : click
+
 **this** 로 객체를 binding 하는 경우 **this.$on** / **this.$emit** 을 활용하지만, this 같은 경우 환경에 따라 매개변수 범위가 달라지므로 **부모-자식** 사이의 통신에는 부적절하다. 대신에 **v-on**, **(@) 이벤트 리스너** 를 활용한다 
 
 
 ```html
 <div>
+  // 부모 템플릿
   <p style="font-size: 140px;"> { { votes } }</p>
   <food @voted="vote" name="치즈버거"></food>
 </div>
@@ -79,6 +85,7 @@ html 내부에서 **특정 이벤트**를 정의**(Emit)** 하고, 이를 활용
 
 <script src="./js/vue.js"></script>
 <script type="text/javascript">
+  // 부모 컴포넌트
   Vue.component('food', {
     template: '#food',
     props: ['name'],
@@ -96,3 +103,62 @@ html 내부에서 **특정 이벤트**를 정의**(Emit)** 하고, 이를 활용
   })
 </script>
 ```
+https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js
+## 인자 전달
+
+단일한 웹페이지 에서 여러 변수를 관리하는 경우 
+
+```html
+  <div>
+    <p style="font-size: 140px;">{ { votes } }</p>
+    <div class="row">
+      <food @voted="countVote" name="Cheeseburger"></food>
+      <food @voted="countVote" name="Double Bacon Burger"></food>
+      <food @voted="countVote" name="Rodeo Burger"></food>
+    </div>
+    <h1>Log:</h1>
+    <ul class="list-group">
+      <li class="list-group-item" v-for="(vote, index) in log" :key="index">{{ vote }}</li>
+    </ul>
+  </div>
+</body>
+
+<template id="food">
+  <div class="text-center col-lg-4">
+    <p style="font-size: 40px;">
+      {{ votes }}
+    </p>
+    <button class="btn btn-default" @click="vote">{{ name }}</button>
+  </div>
+</template>
+
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+  Vue.component('food', {
+    template: '#food',
+    props: ['name'],
+    data: function() {
+      return { votes: 0 }
+    },
+    methods: {
+      vote: function(event) {
+        this.votes++;
+        this.$emit('voted', event.srcElement.textContent); }
+    }
+  })
+  new Vue({
+    el: '.container',
+    data: { votes: 0, log: [] },
+    methods: {
+      countVote: function(food) {
+        this.votes++;
+        this.log.push(food + ' received a vote.');}
+    }
+  })
+</script>
+```
+
+## 부모 자식이 아닌 관계에서 통신
+
+위에서는 Create Hook 에서 **.$on** 를 사용하여 이벤트를 등록하고, 이를 활성화 하기 위해 **.$emit**을 사용합니다. 
+위에서 본 것과 같이 `<사용자Tag @이벤트이름="함수">` 를 사용하면 이벤트를 청취 가능하지만, 자식 컴포넌트로 이벤트 내용을 보낼 수는 없다.
