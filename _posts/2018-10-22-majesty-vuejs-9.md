@@ -18,7 +18,8 @@ boolean 조건일 때 parameter 의 활용방법
 
 1. **v-bind:class**="{ 'red' : color, 'blue' : !color } : **true / false 객체**
 2. **v-bind:class**="[ color ? 'red' : 'blue']" : **3항 연산자**
-
+3. **v-for** = "(task, index) in tasks" :key="index" : **배열객체 적용**
+4. @click = "completeTask(task)" : **3의 배열에 내용별 적용**
 
 <br>
 # Chapter 9 : 클래스와 스타일 바인딩
@@ -86,3 +87,44 @@ new Vue({
 </script>
 ```
 
+## 바인딩 예제
+
+**completeTask()** 함수를 활용하여 **tasks** 배열 내부의 객체를 반복하여 일정한 속성값을 변경 가능한 동적인 객체를 구현합니다.
+
+```html
+<div id="app">
+  <ul>
+    <li :class = "{'completed' : task.done}"
+        :style = "styleObject"
+        v-for = "(task, index) in tasks" :key="index">
+       { { task.body } }
+      <button @click = "completeTask(task)" class="btn">활성화!</button>
+    </li>
+  </ul>
+</div>
+
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      tasks: [
+        { body: "Feed the horses", done: true },
+        { body: "Wash armor", done: true},
+        { body: "Sharp sword", done: false},
+      ],
+      styleObject: { fontSize: '25px'}
+    },
+    methods: {
+      completeTask: function(task) {
+        task.done = !task.done;}
+    },
+  });
+</script>
+
+<style type="text/css">
+  .completed {
+    text-decoration: line-through;
+  }
+</style>
+```
