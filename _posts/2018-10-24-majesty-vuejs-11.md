@@ -15,11 +15,10 @@ toc: true
 
 # Introduction
 
+**vue-resource** 모듈과 **Jquery**를 사용하여 **Create, Read, Update, Delete** 내용을 간단하게 살펴봅니다.
 
 <br>
-# Chapter 11 : 외부 데이터 불러오기
-
-**vue-resource** , **axios** 를 활용하여 API 데이터를 가져오는 방법들을 익힙니다.
+# Chapter 11 : Jquery를 활용하여 외부 데이터 불러오기
 
 ```html
 <script type="text/javascript" src="./js/vue.js"></script>
