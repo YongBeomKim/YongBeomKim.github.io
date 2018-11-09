@@ -1,5 +1,5 @@
 ---
-title : 쉽게배우는 vue.js 요약
+title : 쉽게 배우는 Vue.js 요약
 last_modified_at: 2018-11-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
@@ -65,6 +65,15 @@ Examples
 
 ##  v-on (@) Event 핸들링 (ch 5)
 
+> <button **@click.prevent** = "변수/함수">
+
+**@이벤트** 실행시 화면을 새로고침 하므로, 
+1. input 부분 수정한 내용을 반영하는 경우 vue 인스턴스에 **event.preventDefault();**를 추가해야 한다. 
+2. 이벤트 동작을 제어하는 **.stop, .prevent, .once** [이벤트 핸들러](https://kr.vuejs.org/v2/guide/events.html)를 지원한다. ( .capture, .self는 거의 사용되지 않는다)
+3. Key 한정자는 **특정한 키보드 입력** 확인시 작동된다
+
+
+
 ```html
 1. integer 를 1씩 증가
 <button v-on:click="매개변수++">
@@ -73,5 +82,6 @@ Examples
 <button v-on:click="함수">
 <button @click="함수">
 
-3. 
+3. 새로고침 제한 핸들러
+<button @click.prevent="함수">
 ```
