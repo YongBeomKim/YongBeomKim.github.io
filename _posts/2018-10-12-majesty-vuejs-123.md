@@ -14,8 +14,15 @@ toc: true
 
 # Introduction
 
+## Vue.js 기초 및 디렉티브
+
 1. vue 인스턴스 : **new Vue()**
-2. vue directive 함수 : **v-model, v-show, v-if, v-else, v-else-if**
+2. vue **directive(지시)** 함수
+    1. **v-model :** Vue 엘리먼트를 HTML과 연결 
+    2. **v-show :** 엘리먼트를 화면에 표시 
+    3. **v-if :** True 조건시 엘리먼트를 화면에 표시
+    4. **v-else :** v-if 의 조건결과 false 일때 엘리먼트를 화면에 표시
+    5. **v-else-if :** v-if false 일때 추가조건 true시 엘리먼트를 화면에 표시
 3. { { **매개변수** } }, { { **$파라미터** } } 의 활용
 
 

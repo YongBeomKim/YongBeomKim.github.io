@@ -1,6 +1,6 @@
 ---
 title : Django Vue 를 활용한 RSS
-last_modified_at: 2018-11-04T10:45:06-05:00
+last_modified_at: 2018-11-02T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
 categories:
@@ -26,9 +26,7 @@ toc: true
 # Installation
 
 
-
-
-
 사용하면 axios 문법을 그대로 활용 가능하다
 {: .notice--info}
 
+su
