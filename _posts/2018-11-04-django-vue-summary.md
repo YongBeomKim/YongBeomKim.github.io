@@ -17,7 +17,8 @@ Vue.js의 구조를 1페이지로 요약해보자
 
 <img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
-## Vue 개념 및 디렉티브
+
+## Vue 개념 및 디렉티브 (Ch 1, 2, 3)
 
 1. vue 인스턴스 : **new Vue()**
 2. vue **directive(지시)** 함수
@@ -46,6 +47,31 @@ Examples
     <span v-show = "gender === 'female'">여성</span>
 ```
 
-사용하면 axios 문법을 그대로 활용 가능하다
+
+## v-for 배열객체 랜더링 (ch 4)
+
+```html
+1. integer 배열
+<li v-for="i in 10" class="list-group-item">{ { i } }</li>
+
+2. key, value 배열
+<li v-for="(story, idx) in stories" :key="idx">
+{{idx}} {{ story.writer }} said "{{ story.plot }}"</li>
+```
+
+**idx** 는 Python 의 enumerate() 와 같이 **배열의 index값을** 자동으로 출력한다. 개별 **key 값**은 **객체명.key**로 추출한다
 {: .notice--info}
 
+
+##  v-on (@) Event 핸들링 (ch 5)
+
+```html
+1. integer 를 1씩 증가
+<button v-on:click="매개변수++">
+
+2. 이벤트와 함수의 연결 
+<button v-on:click="함수">
+<button @click="함수">
+
+3. 
+```
