@@ -17,17 +17,34 @@ Vue.js의 구조를 1페이지로 요약해보자
 
 <img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
-## Chapter 1
+## Vue 개념 및 디렉티브
 
 1. vue 인스턴스 : **new Vue()**
 2. vue **directive(지시)** 함수
-    1. **v-model :** Vue 객체를 HTML과 binding
-    2. **v-show :** 엘리먼트를 화면에 표시 
-    3. **v-if :** True 조건시 엘리먼트를 화면에 표시
+        1. **v-model :** Vue 객체를 HTML과 binding
+    2. **v-show :** 엘리먼트 출력 (랜더링비용 높다 : **내용이 자주변경**)
+    3. **v-if :** True 조건 엘리먼트 출력 (토글비용 높다 : **조건제한**)
     4. **v-else :** v-if 의 조건결과 false 일때 엘리먼트를 화면에 표시
     5. **v-else-if :** v-if false 일때 추가조건 true시 엘리먼트를 화면에 표시
-3. { { **매개변수** } }, { { **$Vue 컴포넌트 파라미터** } } 의 활용
+3. { { **매개변수** } }, { { **$Vue 데이터(메서드)** } } 의 활용
 
+Examples
+```html
+1.특정 태그의 활성여부 
+<h1 v-if="!message"> Title </h1>
+
+2.여러개를 묶어서 활성여부 : HTML5 의 Template 태그를 활용 
+<template v-if=!message>... </template>
+
+3. v-else, v-else-if 블록의 활용
+<h1 v-if="조건내용">... </h1>
+<h2 v-else> Empty data </h2>
+
+4. v-if 와 v-show 의 구분예제
+<div v-if = "gender === 'male' || gender === 'female'">
+    <span v-show = "gender === 'male'">남성</span>
+    <span v-show = "gender === 'female'">여성</span>
+```
 
 사용하면 axios 문법을 그대로 활용 가능하다
 {: .notice--info}
