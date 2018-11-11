@@ -64,7 +64,7 @@ Examples
 {: .notice--info}
 
 
-#  v-on (@) (ch 5)
+# <small>ch 5</small> v-on (@)
 
 ## 1 **inline :** Event 핸들링 
 
