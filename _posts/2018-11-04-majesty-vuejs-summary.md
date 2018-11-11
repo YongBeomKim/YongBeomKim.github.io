@@ -18,7 +18,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 <img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
 
-# Vue 개념 및 디렉티브 (Ch 1, 2, 3)
+# <small>Ch 1, 2, 3</small> Vue 개념 및 디렉티브 ()
 
 1. vue 인스턴스 : **new Vue()**
 2. vue **directive(지시)** 함수
@@ -49,7 +49,7 @@ Examples
 ```
 
 
-# v-for 배열객체 랜더링 (ch 4)
+# <small>ch 4</small> v-for 배열객체 랜더링
 
 ```html
 1. integer 배열
@@ -146,3 +146,4 @@ new Vue({
       } },});
 ```
 
+# Filter 
