@@ -18,7 +18,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 <img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
 
-## Vue 개념 및 디렉티브 (Ch 1, 2, 3)
+# Vue 개념 및 디렉티브 (Ch 1, 2, 3)
 
 1. vue 인스턴스 : **new Vue()**
 2. vue **directive(지시)** 함수
@@ -30,6 +30,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 3. { { **매개변수** } } , { { **$Vue 메서드** } }
 
 Examples
+
 ```html
 1.특정 태그의 활성여부 
 <h1 v-if="!message"> Title </h1>
@@ -48,7 +49,7 @@ Examples
 ```
 
 
-## v-for 배열객체 랜더링 (ch 4)
+# v-for 배열객체 랜더링 (ch 4)
 
 ```html
 1. integer 배열
@@ -63,9 +64,9 @@ Examples
 {: .notice--info}
 
 
-##  v-on (@) (ch 5)
+#  v-on (@) (ch 5)
 
-### 1 **inline :** Event 핸들링 
+## 1 **inline :** Event 핸들링 
 
 > ex) <button **@click.prevent** = "변수/함수">
 
@@ -86,7 +87,7 @@ Examples
 <button @click.prevent="함수">
 ```
 
-### 2 **inline :** Key 한정자 
+## 2 **inline :** Key 한정자 
 
 > <input **v-model:"a" @keyup.13** = 함수>
 
@@ -96,7 +97,7 @@ Examples
 
 위의 Code 번호가 아닌 별칭을 사용할 수 있다 ex> **enter, tab, delete, esc, space, up, down, left, right**
 
-### 3 computed properties
+## 3 computed properties
 
 React 의 props 와 state 에서 언급된 state를 **Vue 함수 메서드**로 구현
 
@@ -112,7 +113,9 @@ new Vue({
 </script>
 ``` 
 
-계산기 구현예제로 input, button, select, option 의 속성을 잘 이해하자
+계산기 구현예제 
+
+> **input, button, select, option** 의 속성을 잘 이해하자
 
 ```html
 <div class="container">
@@ -142,6 +145,4 @@ new Vue({
           case '/' : this.c = this.a / this.b; break; }
       } },});
 ```
-
-
 
