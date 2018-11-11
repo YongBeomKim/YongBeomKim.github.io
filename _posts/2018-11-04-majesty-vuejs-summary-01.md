@@ -1,5 +1,5 @@
 ---
-title : 쉽게 배우는 Vue.js 요약
+title : 쉽게 배우는 Vue.js 요약 상편
 last_modified_at: 2018-11-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
@@ -17,7 +17,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 
 <img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
-
+<br>
 # <small>Ch 1, 2, 3</small> Vue 개념 및 디렉티브 ()
 
 1. vue 인스턴스 : **new Vue()**
@@ -28,8 +28,6 @@ Vue.js의 구조를 1페이지로 요약해보자
     4. **v-else :** v-if false 일때 엘리먼트를 출력
     5. **v-else-if :** v-if false 일때 조건 true시 엘리먼트를 출력
 3. { { **매개변수** } } , { { **$Vue 메서드** } }
-
-Examples
 
 ```html
 1.특정 태그의 활성여부 
@@ -48,7 +46,7 @@ Examples
     <span v-show = "gender === 'female'">여성</span>
 ```
 
-
+<br>
 # <small>ch 4</small> v-for 배열객체 랜더링
 
 ```html
@@ -63,7 +61,7 @@ Examples
 **idx** 는 Python 의 enumerate() 와 같이 **배열의 index값을** 자동으로 출력한다. 개별 **key 값**은 **객체명.key**로 추출한다
 {: .notice--info}
 
-
+<br>
 # <small>ch 5</small> v-on (@)
 
 ## 1 **inline :** Event 핸들링 
@@ -87,6 +85,7 @@ Examples
 <button @click.prevent="함수">
 ```
 
+<br>
 ## 2 **inline :** Key 한정자 
 
 > <input **v-model:"a" @keyup.13** = 함수>
@@ -97,6 +96,7 @@ Examples
 
 위의 Code 번호가 아닌 별칭을 사용할 수 있다 ex> **enter, tab, delete, esc, space, up, down, left, right**
 
+<br>
 ## 3 computed properties
 
 React 의 props 와 state 에서 언급된 state를 **Vue 함수 메서드**로 구현
@@ -146,4 +146,90 @@ new Vue({
       } },});
 ```
 
-# Filter 
+<br>
+# <small>ch 6</small> Filter 
+
+> this.stories.filter()
+
+현재까지는 Vue instance 내부에서 **data 와 methods** 를 함께 처리하고 있는데, django 에서 이를 html 에서 동적으로 처리하는 방법을 추후 보완해보자 [Stackflow](https://stackoverflow.com/questions/36255592/how-to-pass-json-data-from-django-view-to-vue-js-instance-methods)
+
+##  Text 데이터 내용중, 검색결과를 출력
+
+```html
+<div class="container">
+  <ul>
+    <li v-for="(story, index) in storiesBy('John')" :key="index">
+      { { story.writer } } 제목은 "{ { story.plot } }"</li>
+  </ul>
+  // 검색결과를 출력
+  <input v-model="query" id="query">
+      <li v-for="(story, index) in search" :key="index">
+        { { story.writer } } said "{ { story.plot } }"
+      </li>
+</div>
+```
+
+```javascript
+new Vue({
+    el: '.container',
+    data: {
+      stories: [{
+          plot: "I crashed my car today!",
+          writer: "Alex"},]
+    },
+    methods: {   // () => {} 처리안됨
+        storiesBy: function (writer) {
+          return this.stories.filter(function (story) {
+            return story.writer === writer }) }
+    },
+    computed: {
+        search: function () {
+          var query = this.query
+          return this.stories.filter(function (story) {
+            return story.plot.includes(query) }) }
+    }
+})
+```
+
+## 숫자 값을 활용한 계산
+
+```html
+<div class="container">
+    <ul>
+      <li v-for="(story, index) in orderedStories" :key="index">
+         "{ { story.plot } }" 점수는 { { story.upvotes } }</li>
+    </ul>
+    <button @click="order = order * -1">점수 반대로 정렬</button>
+</div>
+```
+
+```javascript
+    computed: {
+      orderedStories: function () {
+        var order = this.order;
+        return this.stories.sort(function (a, b) {
+          return (a.upvotes - b.upvotes) * order; }) }
+    }
+```
+
+## 사용자 정의 필터
+
+**snitch** 이름을 사용하여 필터객체를 활용가능
+
+```html
+<div class="container">
+    <ul class="list-group">
+        <li v-for="(hero, index) in heroes" :key="index">
+            { {hero | snitch} } </li>
+    </ul>
+</div>
+```
+
+```javascript
+Vue.filter('snitch', function (heroes) {
+  return '"' +  heroes.isObvioulsy + '" 은(는) '  +
+         heroes.firstname + ' ' +
+         heroes.lastname + ' 이 현실에서 이름이다!'
+})
+new Vue({...})
+```
