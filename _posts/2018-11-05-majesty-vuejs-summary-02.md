@@ -88,6 +88,17 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 <br>
 # <small>ch8 :</small> 사용자 정의 이벤트
 
+## 1 부모 자식간 이벤트 발생 과 청취
+
+props 에서 상위 컴포넌트에서 하위로 전달시
+
+> Vue.component('', { **props :** ['props 속성 이름']})
+
+하위 컴포넌트가 변경시 부모 컴포넌트를 동작한다
+
+> **이벤트 발생 :** this.$emit('**이벤트명**')
+> **이벤트 수신 :** v-on:'**이벤트명**'="상위 컴포넌트 method"
+
 **$emit() :** <small>이벤트 발생</small>, **$on :** <small>이벤트 청취</small>, **$once() :** <small>이벤트 1번만 청취</small>, **$off() :** <small>이벤트 리스너 제거</small>
 
 ```html
@@ -112,3 +123,59 @@ new Vue({
 ```
 
 created() 와 같은 [생명주기 Hook](https://blog.martinwork.co.kr/vuejs/2018/02/05/vue-lifecycle-hooks.html) 으로 1) **beforeCreate** (인스턴스 초기생성) / **created** (인스턴스 추가생성) 2) **beforeMount / mounted** 3) **beforeUpdate / updated** 4) **activated / deactivated** 5) **beforeDestroy / destoryed**
+
+
+## 2 부모 자식간 인자전달 예제
+
+**자식 컴포넌트를** 변경하면 **부모 컴포넌트도** 함께 변경된다. chrome 에서 잘 작동되고 firefox 에선 잘안되었다 (2018.11.05)
+
+```html
+// Main Html의 구현
+<div class="container">
+  <p>{{ votes }}</p>
+  <div>
+    <food @voted="countVote" name="치즈버거"></food>
+    <food @voted="countVote" name="베이컨"></food>
+  </div>
+</div>
+```
+
+```html 
+// Vue 사용자 food Tag를 생성한다
+<template id="food">
+  <div>
+    <p>{{ votes }}</p>
+    <button @click="vote">{ { name } }</button>
+  </div>
+</template>
+```
+
+```javascript
+Vue.component('food', {
+  template: '#food',
+  props: ['name'],
+  data: function() { return { votes: 0 }},
+  methods: {
+    vote: function(event) {
+      this.votes++;  // 자식 컴포넌트 메서드
+      this.$emit('voted', event.srcElement.textContent); }
+  }
+})
+
+new Vue({
+  el: '.container',
+  data: { votes: 0},
+  methods: {
+    countVote: function(food) {
+      this.votes++;} // 부모 컴포넌트 메서드  
+  }
+})
+```
+
+**.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다
+{: .notice--info} 
+
+
+## 비부모 자식간 통신 
+
+
