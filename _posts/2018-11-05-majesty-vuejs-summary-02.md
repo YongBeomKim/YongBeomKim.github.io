@@ -19,6 +19,8 @@ Vue.js의 구조를 1페이지로 요약해보자
 <br>
 # <small>ch7 :</small> 컴포넌트
 
+Vue 컴포넌트 속성으로는 **template (화면에 표시할 HTML/CSS), methods (화면로직 method), created (Vue 인스턴스 추가생성시 실행로직)** 가 있다
+
 ## 1 template 의 활용
 
 > **<plant></plant>**
@@ -88,3 +90,25 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 
 **$emit() :** <small>이벤트 발생</small>, **$on :** <small>이벤트 청취</small>, **$once() :** <small>이벤트 1번만 청취</small>, **$off() :** <small>이벤트 리스너 제거</small>
 
+```html
+<div class="container">
+  <p>{{ votes }}</p>
+  <button @click="vote">투표</button>
+</div>
+```
+
+```javascript
+// Vue 인스턴스를 생성 (부모)
+new Vue({
+  el: '.container',     // 인스턴스 부착위치
+  data: { vote_num: 0}, // 인스턴스 부착내용
+  methods: {  // Vue methods 컴포넌트 (자식)
+    vote: function() { this.$emit('voted') },
+  },
+  created() { // 인스턴스 추가생성시 실행(state)
+    this.$on('voted', function() {this.vote_num++})
+  }
+})
+```
+
+created() 와 같은 [생명주기 Hook](https://blog.martinwork.co.kr/vuejs/2018/02/05/vue-lifecycle-hooks.html) 으로 1) **beforeCreate** (인스턴스 초기생성) / **created** (인스턴스 추가생성) 2) **beforeMount / mounted** 3) **beforeUpdate / updated** 4) **activated / deactivated** 5) **beforeDestroy / destoryed**
