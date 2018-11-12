@@ -178,4 +178,16 @@ new Vue({
 
 ## 비부모 자식간 통신 
 
+1. **new Vue()** : 윈도우 제어 Vue 인스턴스
+2. **Vue.component() :** Vue 컴포넌트 객체
+3. **var eventBus** = new Vue() 빈 이벤트 버스를 생성
+4. eventBus**.$emit()**, eventBus**.$on(**)** 객체로 제약없이 제어가능
+
+<br>
+# ch9 클래스와 바인딩
+
+> <p v-bind:class="{ 'red' : color, 'blue' : !color }">
+> <p v-bind:class="{ color ? 'red' 'blue'}">
+
+**color 객체**가 **true / false** 따라, **red / blue** 를 출력합니다
 
