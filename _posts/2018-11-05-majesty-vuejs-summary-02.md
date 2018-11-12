@@ -19,6 +19,8 @@ Vue.js의 구조를 1페이지로 요약해보자
 <br>
 # <small>ch7 :</small> 컴포넌트
 
+## 1 template 의 활용
+
 > **<plant></plant>**
 
 html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후, vue component 완 연결하여 특정한 태그를 정의한다
@@ -45,9 +47,9 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 ```
 
 ```javascript 
-  Vue.component('planet', {
+  Vue.component('planet', { // 컴포넌트 Tag
     template: '#planet-template',
-    props: ['planet'],
+    props: ['planet'],      // Tag 내부의 Method
     methods: {
       visit: function() {
         this.planet.visits++; },
@@ -65,4 +67,24 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 사용자 정의 html 태그에서 **영문의 대소문자를 구분하지 않는다.** 코딩시 **CamelCase** 를 활용하는 경우, 태그 및 속성명의 대소문자 사이를 **'-'(하이픈)** 을 사용한다
 {: .notice--info}
 
+
+## 2 (:) v-bind 
+
+> <li v-for="(hero, index) in heroes" :key="index">
+> <li v-for="(hero, index) in heroes" v-bind:key="index">
+
+**v-bind (:)** 는 **속성** 또는 **컴포넌트 트로퍼티**를 **동적으로 binding** 함으로써 1) **vue component 객체** 연결 2) **반복문에서 key (index)** 지정 지정 등으로 활용한다
+
+```html
+<template id="story-template">
+  <h1>{{ sto.writer }} said "{{ sto.plot }}"</h1>
+</template>
+```
+
+**vue in-line method는** 반복이 많을수록 HTML 태그가 복잡하지만, 위와같은 **Vue 컴포넌트 Tag**를 사용하면 보다 간결하게 제어가 가능하다 <small>**python 함수와** 같이 **Vue 컴포넌트 Tag를** 활용하면 유용하다</small>
+
+<br>
+# <small>ch8 :</small> 사용자 정의 이벤트
+
+**$emit() :** <small>이벤트 발생</small>, **$on :** <small>이벤트 청취</small>, **$once() :** <small>이벤트 1번만 청취</small>, **$off() :** <small>이벤트 리스너 제거</small>
 
