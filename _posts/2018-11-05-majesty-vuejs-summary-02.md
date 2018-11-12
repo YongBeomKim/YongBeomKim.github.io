@@ -184,10 +184,59 @@ new Vue({
 4. eventBus**.$emit()**, eventBus**.$on(**)** 객체로 제약없이 제어가능
 
 <br>
-# ch9 클래스와 바인딩
+# <small>ch 9</small> 클래스와 스타일 바인딩
+
+**데이터 바인딩**은 엘리먼트의 **클래스 목록**과 **인라인 스타일**을 조작하기 위해 일반적으로 사용됩니다.
+
+## 1 조건 클래스 (true/false)
+
+**Boolean 조건(함수)**을 활용하여 **객체값을** 컨트롤 한다
 
 > <p v-bind:class="{ 'red' : color, 'blue' : !color }">
 > <p v-bind:class="{ color ? 'red' 'blue'}">
 
-**color 객체**가 **true / false** 따라, **red / blue** 를 출력합니다
+
+## 2 인라인 스타일의 조작
+
+Vue 객체를 활용하여 스타일 값을 제어한다. 1) 직접 값을 입력하거나 2) vue 인스턴스 메서드 객체값을 활용한다
+
+> <div :style="{'color':'blue', fontsize:'20px'}"> 
+> <div :style="{'color': bus.color, fontsize: bus.fontsize}"> 
+
+## 3 인라인 스타인 배열객체
+
+```html
+<div :style="[niceStyle, badStyle]">
+<script>
+data : {
+  niceStyle: { color:'blue', fontSize:'20px'}
+  badStyle: {fontStyle: 'italic'} }
+</script>
+```
+
+## 4 v-for 반복문 활용 
+
+```html
+<div id="app">
+  <li 
+  :class = "{'completed' : task.done}"  // 활성화 조건
+  :style = "styleObject"                // 스타일 객체
+   v-for = "(task, index) in tasks"     // 배열 데이터 호출
+  :key   = "index"> { {task.body} }     
+  <button @click="comTask(task)">활성!</button></li>
+</div>
+```
+```javascript
+data: {
+  tasks: [
+    { body: "the horses", done: true },],
+  styleObject: { fontSize: '25px'}
+},
+methods: {
+  comTask: function(task) {
+    task.done = !task.done;} 
+},
+```
+
+
 
