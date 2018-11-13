@@ -18,6 +18,8 @@ toc: true
 
 # Basic
 
+## functions
+
 1. if, for, else if, switch, break
 2. boolean 표현식 **?** \<true 일 때\> **:** \<false/undefined 일 때\>
 3. \<true/유효한 값이 존재시\> \|\| \<false/undefined 일 때\>
@@ -28,6 +30,9 @@ let test
 test = test || "초기화 합니다"
 ```
 
+## Data 
+
+1. 배열  `let array = [52, 273, '아침밥', 점심밥', true, false]`
 
 
 **.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다
