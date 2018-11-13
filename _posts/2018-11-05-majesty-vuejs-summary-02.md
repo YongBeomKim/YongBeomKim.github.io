@@ -23,7 +23,7 @@ Vue 컴포넌트 속성으로는 **template (화면에 표시할 HTML/CSS), meth
 
 ## 1 template 의 활용
 
-> **<plant></plant>**
+> **\<plant\>\</plant\>**
 
 html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후, vue component 완 연결하여 특정한 태그를 정의한다
 
@@ -72,8 +72,8 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 
 ## 2 (:) v-bind 
 
-> <li v-for="(hero, index) in heroes" :key="index">
-> <li v-for="(hero, index) in heroes" v-bind:key="index">
+> \<li v-for="(hero, index) in heroes" :key="index"\>
+> \<li v-for="(hero, index) in heroes" v-bind:key="index"\>
 
 **v-bind (:)** 는 **속성** 또는 **컴포넌트 트로퍼티**를 **동적으로 binding** 함으로써 1) **vue component 객체** 연결 2) **반복문에서 key (index)** 지정 지정 등으로 활용한다
 
@@ -192,16 +192,16 @@ new Vue({
 
 **Boolean 조건(함수)**을 활용하여 **객체값을** 컨트롤 한다
 
-> <p v-bind:class="{ 'red' : color, 'blue' : !color }">
-> <p v-bind:class="{ color ? 'red' 'blue'}">
+> \<p v-bind:class="{ 'red' : color, 'blue' : !color }"\>
+> \<p v-bind:class="{ color ? 'red' 'blue'}"\>
 
 
 ## 2 인라인 스타일의 조작
 
 Vue 객체를 활용하여 스타일 값을 제어한다. 1) 직접 값을 입력하거나 2) vue 인스턴스 메서드 객체값을 활용한다
 
-> <div :style="{'color':'blue', fontsize:'20px'}"> 
-> <div :style="{'color': bus.color, fontsize: bus.fontsize}"> 
+> \<div :style="{'color':'blue', fontsize:'20px'}"\> 
+> \<div :style="{'color': bus.color, fontsize: bus.fontsize}"\> 
 
 ## 3 인라인 스타인 배열객체
 
@@ -237,6 +237,3 @@ methods: {
     task.done = !task.done;} 
 },
 ```
-
-
-
