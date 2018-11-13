@@ -18,9 +18,9 @@ toc: true
 
 # Basic
 
-## functions
+## Datum functions
 
-1. if, for, else if, switch, break
+1. if, else if, switch, break
 2. boolean 표현식 **?** \<true 일 때\> **:** \<false/undefined 일 때\>
 3. \<true/유효한 값이 존재시\> \|\| \<false/undefined 일 때\>
 
@@ -30,9 +30,23 @@ let test
 test = test || "초기화 합니다"
 ```
 
-## Data 
+## Data functions
 
-1. 배열  `let array = [52, 273, '아침밥', 점심밥', true, false]`
+1. 배열 (인덱스별 element 묶음) `ex) let array = [52, 273, '아침밥', 점심밥', true, false]`
+2. while, for 
+
+
+```javascript
+// for (초기식; 종료식 <true 반복실행/false 종료>; step함수)
+for (let i=0; i< 반복횟수; i++){...} // 1씩 증가함수
+for (let length-1; i>=0; i--){...}   // 1씩 감소함수
+
+for (let i in array){                // 배열 인덱스
+      console.log('${i}인덱스 {array[i]}') }            
+
+for (let item of array){             // 배열 값
+      console.log(item)
+```
 
 
 **.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다
