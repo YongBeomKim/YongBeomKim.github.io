@@ -73,6 +73,7 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 ## 2 (:) v-bind 
 
 > \<li v-for="(hero, index) in heroes" :key="index"\>
+
 > \<li v-for="(hero, index) in heroes" v-bind:key="index"\>
 
 **v-bind (:)** 는 **속성** 또는 **컴포넌트 트로퍼티**를 **동적으로 binding** 함으로써 1) **vue component 객체** 연결 2) **반복문에서 key (index)** 지정 지정 등으로 활용한다
@@ -97,6 +98,7 @@ props 에서 상위 컴포넌트에서 하위로 전달시
 하위 컴포넌트가 변경시 부모 컴포넌트를 동작한다
 
 > **이벤트 발생 :** this.$emit('**이벤트명**')
+
 > **이벤트 수신 :** v-on:'**이벤트명**'="상위 컴포넌트 method"
 
 **$emit() :** <small>이벤트 발생</small>, **$on :** <small>이벤트 청취</small>, **$once() :** <small>이벤트 1번만 청취</small>, **$off() :** <small>이벤트 리스너 제거</small>
@@ -193,6 +195,7 @@ new Vue({
 **Boolean 조건(함수)**을 활용하여 **객체값을** 컨트롤 한다
 
 > \<p v-bind:class="{ 'red' : color, 'blue' : !color }"\>
+
 > \<p v-bind:class="{ color ? 'red' 'blue'}"\>
 
 
@@ -201,6 +204,7 @@ new Vue({
 Vue 객체를 활용하여 스타일 값을 제어한다. 1) 직접 값을 입력하거나 2) vue 인스턴스 메서드 객체값을 활용한다
 
 > \<div :style="{'color':'blue', fontsize:'20px'}"\> 
+
 > \<div :style="{'color': bus.color, fontsize: bus.fontsize}"\> 
 
 ## 3 인라인 스타인 배열객체
