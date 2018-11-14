@@ -170,6 +170,22 @@ Array 메소드 중에는 파괴적 / 비파괴적 메소드가 구분된다
 <br>
 # 예외처리 
 
+if 조건문으로도 가능, But!!!
+
+```javascript
+try{
+  // 실행함수
+} catch (exception) {
+  // 예외 처리함수
+} finally {
+  // 모든경우 경로를 거친다 
+}
+```
+
+catch, finally 구분은 필요에 따라서 선택적으로 사용한다, 오직 try{} 구문만 필수적으로 시작한다 (에외처리 시작함수)
+{: .notice--info}
+
+
 
 
 **.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다
