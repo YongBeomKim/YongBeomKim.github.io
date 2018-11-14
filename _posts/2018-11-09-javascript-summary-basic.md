@@ -15,6 +15,11 @@ toc: true
 
 **html5 태그 -> CSS 스타일 -> JavaScript 기본 기능 -> Jquery 동적기능 -> Vue / React 프레임워크** 순서대로 **기본 내용, 보완/추가 부분을 정리하는** 방식으로 내용을 정리하면 탄탄하게 기본기가 구축될 것이다. 이번 기회에 웹프로젝트를 구체화 하면서 체계적으로 정리하는 시간을 갖으려고 한다
 
+**method(메소드) :** 객체중 자료의 type이 함수인 속성을 갖는 것으로, 함수 내부값을 외부로 호출시 **this 키워드**를 사용합니다.
+{: .notice--info}
+
+% 나머지, || 논리합, && 논리곱, typeof() 자료형 
+
 
 # Basic
 
@@ -33,7 +38,8 @@ test = test || "초기화 합니다"
 ## Data functions
 
 1. 배열 (인덱스별 element 묶음) `ex) let array = [52, 273, '아침밥', 점심밥', true, false]`
-2. while, for 
+2. for 
+3. while, break (while 반복 중 break 조건을 추가) 
 
 
 ```javascript
@@ -49,5 +55,104 @@ for (let item of array){             // 배열 값
 ```
 
 
+## User functions
+
+1. **같은이름, 익명함수 반복 정의시** 뒤의 내용으로 overwriting
+2. `() => {}` **: 화살표 함수**
+3. `**function** 함수명() {...};` **: 익명함수**
+4. `**let** 함수명 = **function**(){...};` **: 선언적 함수** 
+
+익명함수를 생성하면 선언적 함수를 무조건 overwriting 한다. 이는 선언적 함수는 코드를 실행하기 전에 할당되기 때문이다. 이를 피하기 위해서 `let 함수` 를 선언하면 동일한 이름으로 선언되지 않는다 <small>하지만 익스플로에선 호환여부를 확인해야 한다</small>
+{: .notice--info}
+
+익명함수를 `function(){}` 과 `()=>` 두가지가 있고, **this**의 개념에서 차이를 갖는다. **전자의 this**는 최상위 객체에서 정의가 되고 **후자의 this**는 **자신과 관련된 것**으로 정의가 된다
+{: .notice--danger}
+
+
+
+```javascript
+// 함수의 기본형태
+function <함수이름> (<매개변수>, <매개변수>) {
+    let output = <초기값>
+    <함수코드>
+    return output;
+}
+
+// Call Back 함수 : 매개변수로 전달하는 함수
+function callTimes(callback) {
+    for (let i=0; i<10; i++) {
+        callback()
+    }
+}
+callTimes(function() { 
+    //callback() 함수의 내용 
+})
+```
+
+## 표준 내장함수
+
+1. **parseInt() :** 문자열을 정수로 변환
+2. **parseFloat() :** 문자열을 실수로 변환
+3. **setTimeout(함수, 시간) :** 특정시간 후 함수실행
+4. **setInterval(함수, 시간) :** 특정시간 마다 함수실행
+5. **clearInterval(<함수명>) :** 특정시간 실행함수 정지  
+
+
+<br>
+# Element (객체)
+
+## 객체 
+
+javascript 객체의 기본형태로, value값이 여럿인 경우 배열로 출력
+
+```javascript
+let product = {
+    key: value,
+    key: value,
+}
+
+for (let key in object) {
+    console.log(`${key}: ${object[key]}`)
+}
+
+product[key]
+product.key
+```
+
+
+```javascript
+// 함수의 기본형태
+function <함수이름> (<매개변수>, <매개변수>) {
+    let output = <초기값>
+    <함수코드>
+    return output;
+}
+// 함수결과를 객체값으로 저장
+let product = new <함수이름>(<매개변수>, <매개변수>);
+```
+
+## false
+
+**false 데이터** : **0, NaN, "", null**(키워드), **undefined**
+
+
+## Array 객체
+
+Array 메소드 중에는 파괴적 / 비파괴적 메소드가 구분된다
+
+| Array 메소드  |       내용     |
+|:-------------:|:--------------:|
+|concat()       | 합친 1개 배열  |
+|join()         | 문자열 1개로   |
+|pop()          | 마지막 제거    |
+|push()         | 마제막 추가    |
+|reverse()      | 순서 뒤집기    |
+|slice()        | 지정한 부분을 리턴 |
+|sort()         | 정렬 (-1/0/1)  |
+|splice()       | 특정부분 분리  |
+
+
+
 **.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다
 {: .notice--info} 
+
