@@ -164,8 +164,8 @@ Array 메소드 중에는 파괴적 / 비파괴적 메소드가 구분된다
 
 문자열은 \" \" 쌍따옴표로 작업을 해야한다
 
-1. **JSON.stringfy(\<<small>객체</small>\>, \<<small>변환함수</small>\>, \<<small>공백갯수</small>\>) :** JSON을 **문자열로** 변환 (join의 기능)
-2. **JSON.parse(\<<small>문자열</small>\>) :** JSON을 **자바스크립트 객체로** 파싱
+1. **JSON.stringfy(\< <small>객체</small> \>, \< <small>변환함수</small> \>, \< <small>공백갯수</small> \>) :** JSON을 **문자열로** 변환 (join의 기능)
+2. **JSON.parse(\< <small>문자열</small> \>) :** JSON을 **자바스크립트 객체로** 파싱
  
 <br>
 # 예외처리 
