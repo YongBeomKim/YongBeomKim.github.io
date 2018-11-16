@@ -164,10 +164,13 @@ Vue 에서 Directive는 **v-** 가 붙는 Template 속성들을 통칭한다
 
 | 디렉티브 |  역활                        |
 |:--------:|:----------------------------:|
-| v-if     | boolean 판단                 |
-| v-for    | 배열객체를 활용              |
-| v-show   | 객체를 활용                  |
-| v-bind   | Html 속성과 Vue 데이터 연결  |
-| v-on     | 이벤트를 감지하여 처리       |
-| v-model  | form 등에서 Vue 인스턴스 동기화 |  
+| **v-if**     | boolean 판단                 |
+| **v-for**    | 배열객체를 활용              |
+| **v-show**   | 객체를 활용                  |
+| **v-bind**   | Html 속성과 Vue 데이터 연결  |
+| **v-on**     | 이벤트를 감지하여 처리       |
+| **v-model**  | form 등에서 Vue 인스턴스 동기화 |  
+
+
+
 
