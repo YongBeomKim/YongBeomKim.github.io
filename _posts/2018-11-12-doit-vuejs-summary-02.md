@@ -1,0 +1,141 @@
+---
+title : Do It Vue.js 입문 요약 하편
+last_modified_at: 2018-11-11T10:45:06-05:00
+header:
+  overlay_image: /assets/images/book/vue_logo.jpeg
+categories:
+  - vue
+tags: 
+    - javascript
+    - vue
+toc: true 
+---
+
+
+> Book Review : Do It Vue.js 입문
+
+상편에서는 **Vue 인스턴스 와 컴포넌트** 그리고 전달객체로써 **props, emit 과 on, eventBus**를 살펴보았다 
+
+
+# 필수 기술들
+
+## Vue router
+
+> **\<router-view\> \</router-view\>** : 라우터 결과를 출력
+
+router 란 **Single Page Application에서** 사용하는 기법으로 웹페이지 간의 이동을 요청하는 경우, **웹페이지 일부분을 갱신하는** 기법으로 화면의 깜박임 없이 페이지를 변경한다
+
+```html
+<div id="app">
+  <router-link to="/main">Main 컴포넌트</router-link>
+  <router-link to="/login">Login 컴포넌트</router-link>
+  <router-view></router-view>
+</div>
+```
+
+```javascript
+var Main  = {template: '<div>main Page</div>'};
+var Login = {template: '<div>login In Page</div>'};
+
+var routes = [  // 라우팅할 url 및 컴포넌트 정의 
+    { path: '/main',
+      component: Main},
+    { path: '/login',
+      component: Login} ];
+
+var router = new VueRouter( // 라우터 인스턴스 생성
+    { mode : 'history',     // URL 초기화 (노출X)
+      routes });
+
+// .$mount() : 라우터 인스턴스를 화면에 부착
+var app = new Vue({router}).$mount('#app');
+```
+
+<br>
+## Nested Router
+
+Nested Router 는 하위 컴포넌트에서도 `</router-view>`를 활용하는 방법으로  `/user` 라우팅 경로에 덧붙여서 `/user/posts` , `user/profile` 라우팅을 추가로 구현한다.
+
+```html
+<div id="app">
+  <router-view></router-view>
+</div>
+```
+
+```javascript
+// Component, template 정의
+var User = {
+  template: `<div>사용자 컴포넌트<router-view></router-view></div>` 
+};
+var UserProfile = { template: '<p>User Profile Component</p>' };
+var UserPost    = { template: '<p>User Post Component</p>' };
+// Nested Routing
+var routes = [
+  { path: '/user',
+    component: User,
+    children: [ { path: 'posts',
+                  component: UserPost },
+                { path: 'profile',
+                  component: UserProfile },] } ];  
+// Vue Router 정의
+var router = new VueRouter({ routes });
+// Vue Instance 에 Router 추가
+var app = new Vue({ router }).$mount('#app');
+```
+
+<br>
+## Named View
+
+name 이름을 사용하면 객체들간 다양한 연결을 제어 가능하다. 없으면 default, Body 를 연결한다.
+
+```html
+<div id="app">
+  <router-view name="header"></router-view>
+  <router-view></router-view>  // default 연결
+  <router-view name="footer"></router-view>
+</div>
+```
+
+```javascript
+// 컴포넌트가 담길 객체들
+var Body   = {template: '<div>This "Router" is Body</div>'};
+var Header = {template: '<div>This "Router" is Header</div>'};
+var Footer = {template: '<div>This "Router" is Footer</div>'};
+// Router를 생성한다
+var router = new VueRouter({
+    routes: [
+      { path: '/', 
+        components: { default: Body,
+                      header: Header,
+                      footer: Footer} }]
+  })
+var app = new Vue({router}).$mount('#app');
+```
+
+<br>
+# Vue HTTP 통신
+
+## axios, vue-resource [참고](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
+
+> **axios** : ajax 통신을 지원하는 모듈이다 [axios 사용법](https://github.com/axios/axios#axios-api)
+
+<small>참고로 **vue resource 1.3.4** 이전까지는 Ajax 통신을 지원했지만, 이후 부터는 **.get** 을 지원하지 않는다</small>   
+
+```javascript
+axios.get('url주소').then(
+  function(){...}).catch(...);
+
+axios.post('url 주소').then(
+  function(){...}).catch(...);
+
+axios({
+  methods: 'get',
+  url: 'url 주소',
+})
+```
+
+<br>
+# Vue Template
+
+## Template
+
