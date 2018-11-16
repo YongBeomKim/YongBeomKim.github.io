@@ -137,5 +137,37 @@ axios({
 <br>
 # Vue Template
 
+<br>
 ## Template
+
+> render() 에서는 JSX 기반의 문법들을 활용하여 개발을 한다
+
+**v-once :** 데이터가 변경되어도 바꾸지 않는다, **v-bind () :** \: 객체로 요약하여 Vue 객체를 Template에 연결한다 
+
+<br>
+## \{ \{ \} \}
+
+**{ { } } :** 템플릿 객체로 인라인 방식으로 **자바스크립트 표현식을 활용** 가능하다
+
+```html
+<p>{ { message + '!!!'} }</p>
+<p>{ { message.split(''.reverse().join('/')) } }
+```
+
+자바스크립트를 내부에 구현하는 경우 var 선언문, if 분기문 은 불가능 하지만, **삼항연산자 `{ { true ? 100 : 0 } }`** 는 사용 가능하다
+{: .notice--info}
+
+<br>
+## Directive
+
+Vue 에서 Directive는 **v-** 가 붙는 Template 속성들을 통칭한다
+
+| 디렉티브 |  역활                        |
+|:--------:|:----------------------------:|
+| v-if     | boolean 판단                 |
+| v-for    | 배열객체를 활용              |
+| v-show   | 객체를 활용                  |
+| v-bind   | Html 속성과 Vue 데이터 연결  |
+| v-on     | 이벤트를 감지하여 처리       |
+| v-model  | form 등에서 Vue 인스턴스 동기화 |  
 
