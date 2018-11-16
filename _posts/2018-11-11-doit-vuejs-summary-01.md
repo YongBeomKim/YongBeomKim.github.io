@@ -25,7 +25,7 @@ toc: true
 > **new Vue()** 
 
 1. **Vue()** 객체를 **뷰 인스턴스** 라고 한다
-2. 속성으로는 **data, el, template, computed(state/객체변경 반응), methods(화면제어), created(생명주기)** 등이 있다
+2. 속성으로는 **data, el, template, methods(화면제어), computed(state/캐시 화면제어), watch(computed 비동기 처리) , created(생명주기)** 등이 있다
 3. **el : 유효범위 :** 웹페이지 생성 -> vue 인스턴스 -> 특정요소에 인스턴스 부착
 4. { { 변수 } }, { { $속성 } } 의 활용
 

@@ -172,5 +172,16 @@ Vue 에서 Directive는 **v-** 가 붙는 Template 속성들을 통칭한다
 | **v-model**  | form 등에서 Vue 인스턴스 동기화 |  
 
 
+## Vue 인스턴스 메서드
+
+1. **el :** 템플릿 부착위치
+2. **template :** Vue 인스턴스 템플릿 내용
+3. **methods :** 함수로써 화면제어
+4. **computed :** 함수로써 캐시로 화면제어 (내장 API)
+5. **watch :** 함수로써 캐시로 화면제어 (복잡한 비동기)
+
+
+
+
 
 
