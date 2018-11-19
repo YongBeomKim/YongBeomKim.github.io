@@ -202,3 +202,5 @@ print(json.dumps(items,indent=4))
 
 <br>
 # GraphQL 과 Django 연결
+
+동영상에도 포함되어 있지만 단순 view기능 만 구현되어 있었다. 이 부분은 [howtographql](https://www.howtographql.com/graphql-python/1-getting-started/) 에 정리된 내용을 통해서 추가적으로 정리해 보도록 한다
