@@ -80,3 +80,12 @@ USE_TZ = False            # Edited
 
 Python Anywhere 에서는 `USE_TZ = False` 로 변경을 해야 datetime 함수에서 시간대를 불러올 때 현재시간을 잘 찾는다. 
 {: .notice--info}
+
+
+# Check Out
+
+```
+$ python manage.py makemigrations && python manage.py migrate
+```
+
+DataBase 연결을 함으로써 전체적인 설정 내용을 확인한다
