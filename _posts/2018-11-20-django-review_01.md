@@ -114,7 +114,18 @@ class = Post(models.Model):
 
 > **page_obj :** Page 객체가 들어있는 컨텍스트 변수
 
-Page 객체로 자동 호출 가능한 메소드 [Django](https://docs.djangoproject.com/en/2.1/topics/pagination/)
+```html
+{% for post in posts %}
+  <a href="{ { post.get_absolute_url } }">{ {post.title} }</a>
+  { { post.modify_date | date:"N d, Y" } }
+  <p>{ { post.description } }</p>
+{% endfor %}
+```
+
+필터와 내용을 정의할 때 `post.modify_date | date:"N d, Y"` 를 작업할 때 **`date:"N d, Y"`** 는 꼭 붙여야 제대로 작동한다. 이부분을 주의해야 한다
+
+
+Page 객체로 자동호출 메소드를 정리하면.. [Django](https://docs.djangoproject.com/en/2.1/topics/pagination/)
 
 
 **Methods**
