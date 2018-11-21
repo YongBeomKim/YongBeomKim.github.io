@@ -109,3 +109,27 @@ class = Post(models.Model):
         return  self.get_next_by_modify_date()
 ```
 
+<br>
+## Page Objects
+
+> **page_obj :** Page 객체가 들어있는 컨텍스트 변수
+
+Page 객체로 자동 호출 가능한 메소드 [Django](https://docs.djangoproject.com/en/2.1/topics/pagination/)
+
+
+**Methods**
+
+1. **.has_next() :** 다음 페이지를 호출
+2. **.has_previous() :** 이전 페이지를 호출
+3. **.has_other_pages() :** 다음/이전 페이지 존재시 **True**를 출력 
+4. **.next_page_number() :** 다음 페이지 **숫자를 출력** (InvalidPage)오류출력
+5. **.previous_page_number() :** 이전 페이지의 **숫자를 출력** 
+6. **.start_index() :** 최초 인덱스 값을 출력 
+7. **.end_index() :** 마지막 인덱스 값을 출력
+
+
+**Attributes**
+
+1. **.object_list :** 페이지 객체를 List() 출력 
+2. **.number :** 이번 페이지의 숫자를 출력
+3. **.paginator :** The associated Paginator object
