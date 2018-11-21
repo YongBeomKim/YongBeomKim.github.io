@@ -149,7 +149,7 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 
 > **django.views.generic.dates**
 
-제너릭뷰 내용 살펴보기 [Web Page](http://epydoc.pythondiary.com/generic-views/django.views.generic.dates-module.html)
+제너릭뷰 내용 살펴보기[공식문서](https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/) [구조도](http://epydoc.pythondiary.com/generic-views/django.views.generic.dates-module.html)
 
 | 제너릭뷰           |   기본템플릿                   |
 |:------------------:|:------------------------------:|
