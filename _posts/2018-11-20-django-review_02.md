@@ -1,5 +1,5 @@
 ---
-title : 파이썬 웹 프로그래밍 상편 (북마크, 블로그)
+title : 파이썬 웹 프로그래밍 중편 (북마크, 블로그)
 last_modified_at: 2018-11-20T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
