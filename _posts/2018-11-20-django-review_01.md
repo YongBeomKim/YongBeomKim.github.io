@@ -5,9 +5,9 @@ header:
   overlay_image: /assets/images/book/django.jpg
 categories:
   - django
-  tags: 
-      - django
-      - python
+tags: 
+    - django
+    - python
 toc: true 
 ---
 
