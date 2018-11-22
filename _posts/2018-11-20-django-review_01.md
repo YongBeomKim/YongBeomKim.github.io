@@ -151,8 +151,8 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 
 제너릭뷰 내용 살펴보기[공식문서](https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/) [구조도](http://epydoc.pythondiary.com/generic-views/django.views.generic.dates-module.html)
 
-| 제너릭뷰           |   기본템플릿                   |
-|:------------------:|:------------------------------:|
+| 제너릭뷰               |   기본템플릿                      |
+|:----------------------:|:----------------------------------:|
 | **List**View           |  모델이름_**all**.html             |
 | **Detail**View         |  모델이름_**detail**.html          |
 | **Year**ArchiveView    |  모델이름_archive_**year**.html    |
@@ -168,7 +168,7 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 1. **`{ % now % }`** 함수는 현재의 정보를 출력한다 
 2. **date_list :** DateField, DateTimeField 모델 필드값을 기준으로 **템플릿별 적용한 Date Generic view** 기준 호출된 **List 객체**를 활용할 수 있다 [공식문서](https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/)
 
-```html
+```php
 <h1>블로그 글 모음 { % now "N d, Y" % }</h1>
 <ul>
   { % for date in date_list % }
