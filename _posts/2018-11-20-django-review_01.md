@@ -4,10 +4,10 @@ last_modified_at: 2018-11-20T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
 categories:
-  - django
-tags: 
-    - django
-    - python
+  - django`
+  tags: 
+      - django
+      - python`
 toc: true 
 ---
 
@@ -165,16 +165,16 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 
 > **date_list**
 
-1. **`{% now %}`** 함수는 현재의 정보를 출력한다 
+1. **`{\% now \%}`** 함수는 현재의 정보를 출력한다 
 2. **date_list :** DateField, DateTimeField 모델 필드값을 기준으로 **템플릿별 적용한 Date Generic view** 기준 호출된 **List 객체**를 활용할 수 있다 [공식문서](https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/)
 
 ```html
-<h1>블로그 글 모음 {% now "N d, Y" %}</h1>
+<h1>블로그 글 모음 { % now "N d, Y" % }</h1>
 <ul>
-  {% for date in date_list %}
+  { % for date in date_list % }
   <li style="display: inline;">
     <a href= "{% url 'blog:post_year_archive' date|date:'Y' %}">
       Year- { { date | date:"Y" } }</a></li>
-  {% endfor %}
+  { % endfor % }
 </ul>
 ```
