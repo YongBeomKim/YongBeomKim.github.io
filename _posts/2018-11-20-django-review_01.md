@@ -173,7 +173,7 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 <ul>
   { % for date in date_list % }
   <li style="display: inline;">
-    <a href= "{% url 'blog:post_year_archive' date|date:'Y' %}">
+    <a href= "{ % url 'blog:post_year_archive' date|date:'Y' % }">
       Year- { { date | date:"Y" } }</a></li>
   { % endfor % }
 </ul>
