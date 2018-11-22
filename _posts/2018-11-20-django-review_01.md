@@ -165,7 +165,7 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 
 > **date_list**
 
-1. **`{\% now \%}`** 함수는 현재의 정보를 출력한다 
+1. **`{ % now % }`** 함수는 현재의 정보를 출력한다 
 2. **date_list :** DateField, DateTimeField 모델 필드값을 기준으로 **템플릿별 적용한 Date Generic view** 기준 호출된 **List 객체**를 활용할 수 있다 [공식문서](https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/)
 
 ```html
