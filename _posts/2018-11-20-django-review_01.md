@@ -115,11 +115,11 @@ class = Post(models.Model):
 > **page_obj :** Page 객체가 들어있는 컨텍스트 변수
 
 ```html
-{% for post in posts %}
+{ % for post in posts % }
   <a href="{ { post.get_absolute_url } }">{ {post.title} }</a>
   { { post.modify_date | date:"N d, Y" } }
   <p>{ { post.description } }</p>
-{% endfor %}
+{ % endfor % }
 ```
 
 필터와 내용을 정의할 때 `post.modify_date | date:"N d, Y"` 를 작업할 때 **`date:"N d, Y"`** 는 꼭 붙여야 제대로 작동한다. 이부분을 주의해야 한다
