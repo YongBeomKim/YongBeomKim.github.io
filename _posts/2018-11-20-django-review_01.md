@@ -182,7 +182,7 @@ Page 객체 자동생성 메소드를 정리해보자.. [Django](https://docs.dj
 ```
 
 <br/>
-# 템플릿 함수들 
+# **4장 프로젝트 홈페이지 만들기 <small>템플릿 함수들 </small>**
 
 > **base.html / home.html**
 
