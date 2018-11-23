@@ -24,11 +24,10 @@ toc: true
 <br/>
 # **9장 검색기능**
 
-
 <br/>
 ## blog/forms.py
 
-form 객체를 정의합니다. 여기선 검색어 1개만 활용하므로 검색객체 1개를 정의합니다
+임시로 사용할 form 객체를 정의합니다. 여기선 검색어 1개만 활용하므로 검색객체 1개를 정의합니다
 
 ```python
 from django import forms
@@ -42,7 +41,7 @@ class PostSearchForm(forms.Form):
 <br/>
 ## blog/views.py
 
-form 객체와 템플릿 메소드를 정의합니다. 이를 위해서 1) 출력할 템플릿, 2) form 에서 서버에서 연산할 함수 메소드, 3) form 서버 전송결과 출력할 context 연산할 내용을 정의합니다
+임시로 사용할 form 객체와 템플릿 메소드를 정의합니다. 이를 위해서 1) 출력할 템플릿, 2) form 에서 서버에서 연산할 함수 메소드, 3) form 서버 전송결과 출력할 context 연산할 내용을 정의합니다
 
 ```python
 from .forms import PostSearchForm
@@ -92,6 +91,65 @@ class SearchFormView(FormView):
 ```
 
 1. **form action="." :** action 폼에서 **서버로 데이터를 보내는 목적지 URL** 을 지정한다
-2. 
+2. **object_list :** 해당 App의 DataBase에서 조건에 해당되는 인덱스 데이터를 list 형태로 불러옵니다. 반복 객체의 개별 필드값은 **.필드값** 메소드를 사용하여 호출합니다
 
-출처: http://mainia.tistory.com/4246 [녹두장군 - 상상을 현실로]
+<br/>
+# **11장 인증기능**
+
+> **django.contrib.auth** 
+
+장고에서 기본으로 제공하는 인증기능 모듈이다. 이를 사용하면 다양한 인증작업을 할 수 있다.
+
+**User**
+
+| User 필드   |  타입     |조건(초기값)|  설명        |
+|:-----------:|:---------:|:----------:|:------------:|
+| id          | integer   | pk         | 기본 키      |
+| password    | CharField |            | 비밀번호     |
+| username    | CharField | Unique     | 로그인 이름  |
+| first_name  | CharField | Blank      | 이름         |
+| last_name   | CharField | Blank      | 성           |
+| email       | CharField | Blank      | 이메일       |
+| is_superuser| Boolean   | False      | 관리자 여부  |
+| is_staff    | Boolean   | False      | 스탭 여부    |
+| is_active   | Boolean   | True       | 계정 활성화  |
+| date_joined | DateTime  | .now       | 계정 생성시간|
+| last_login  | DateTime  | null       | 마지막 로그인|
+
+
+**auth**
+
+**auth app** 은 위의 **User 테이블**, 이외에도 **Group, Permission** 테이블을 관리하고 있습니다. 이를 활용하여 사용자가 원하는 기능을 구현할 수 있습니다
+
+[초코몽키 Auth 사용법](https://wayhome25.github.io/django/2017/05/18/django-auth/)
+
+[초코몽키 Auth 회원가입](https://wayhome25.github.io/django/2017/03/01/django-99-my-first-project-2/)
+
+
+<br/>
+## **mysite/views.py**
+
+**auth 인증에** 필요한 **model객체, 함수**들은 **기본제공** 하므로, **views.py**  에서 필요한 내용을 바로 작성한다.
+
+```python
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+
+class UserCreateView(CreateView):
+    template_name = 'reg/reg.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('register_done') # 종료후 실행
+
+class UserCreateDoneTV(TemplateView):
+    template_name = 'reg/reg_done.html'
+```
+
+<br/>
+## **mysite/urls.py**
+
+```python
+
+```
+
