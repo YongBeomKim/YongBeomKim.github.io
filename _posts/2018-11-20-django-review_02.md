@@ -1,5 +1,5 @@
 ---
-title : 파이썬 웹 프로그래밍 중편 (워드클라우드, 댓글)
+title : 파이썬 웹 프로그래밍 중편 (태그클라우드, 댓글)
 last_modified_at: 2018-11-20T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -22,9 +22,10 @@ toc: true
 4. 템플릿의 **JSX `{ % % }` 함수를** 활용하는 방법들을 살펴보았다.
 
 <figure class="align-center">
-  <img src="https://4.bp.blogspot.com/-2a5Ix9fUu6o/WI0SiFp2gTI/AAAAAAAAA1o/pLAy3c2oKtI6GH0GW9o0fXwK2rHh_blTgCLcB/s1600/1.jpg" alt="" align="center">
+  <img src="http://python.astrotech.io/_images/django-request-response-flow.jpg" alt="" align="center" width="400">
   <figcaption></figcaption>
 </figure> 
+
 
 <br/>
 # **7장 Tag 달기 <small>django-tagging</small>**
@@ -149,6 +150,18 @@ re_path(r'^tag/(?P<tag>[^/]+)/$', PostTOL.as_view(), name="tagged_object_list")
 
 [블로그 참고](https://onsil-thegreenhouse.github.io/programming/django/web_programmig/2017/10/22/django_tutorial2_ch2-3/)
 
+```
+django_sample
+Your unique disqus URL will be: django-sample.disqus.com
+Customize Your URL
+```
+
 1. **[Disqus](https://disqus.com/)** 사이트에 가입을 한다 
 2. **[Install App in my Site](https://disqus.com/admin/create/)** 를 선택한다
-3. 
+
+
+<br/>
+# **9장 검색기능**
+
+
+
