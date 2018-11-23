@@ -94,7 +94,7 @@ class SearchFormView(FormView):
 2. **object_list :** 해당 App의 DataBase에서 조건에 해당되는 인덱스 데이터를 list 형태로 불러옵니다. 반복 객체의 개별 필드값은 **.필드값** 메소드를 사용하여 호출합니다
 
 <br/>
-# **11장 인증기능**
+# **11장 인증기능** [로그인/로그아웃](https://blog.hannal.com/2015/06/start_with_django_webframework_08/)
 
 > **django.contrib.auth** 
 
@@ -149,7 +149,18 @@ class UserCreateDoneTV(TemplateView):
 <br/>
 ## **mysite/urls.py**
 
-```python
+사용자 인증을 위한 기본 경로들을 활용한다.
 
+```python
+from django.contrib.auth import urls
+from .views import UserCreateView, UserCreateDoneTV
+
+urlpatterns = [
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
+    re_path(r'^accounts/register/$', UserCreateView.as_view(), 
+      name='register'),
+    re_path(r'^accounts/register/done/$', UserCreateDoneTV.as_view(), 
+      name='register_done'),
+]
 ```
 
