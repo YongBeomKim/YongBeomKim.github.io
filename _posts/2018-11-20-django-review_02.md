@@ -26,6 +26,31 @@ toc: true
   <figcaption></figcaption>
 </figure> 
 
+<br/>
+# **Tagging**
 
 
+## tagging App 설치 및 활성화
 
+> pip install **django-tagging**
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    'tagging.apps.TaggingConfig',
+]
+```
+
+터미널에서 **`$ django-admin startapp tagging`** 을 실행하면 오류가 발생한다. 따라서 별도의 App 설치없이 `settings.py` 에서 위와 같이 설정만 연결하면 된다. 대신 `models.py` 는 **tag 기능을 추가하고 싶은 App의 models.py**에 추가를 하면 자동으로 Tagging App이 연결된다
+{: .notice--info}
+
+## blog/models.py
+
+```python
+from tagging.fields import TagField
+
+class Post(models.Model):
+    tag = TagField()
+```
+
+admin에서 살펴보면 **TAGGING** 테이블이 blog가 아닌 **별도의 Table로** 생성됨을 알 수 있다. 즉 DataBase 테이블은 **별도의 App의 테이블로** 관리된다 

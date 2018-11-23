@@ -38,7 +38,7 @@ mysite/urls.py 에서 경로를 App으로 나눈다
 
 > **path**('', BookmarkLV.**as_view()**, name='index'),
 
-> **re_path**(r'^**(?P<pk>\d+)/$**', BookmarkDV.as_view(), name='detail')
+> **re_path**(r'^(?P<pk>\d+)/$', BookmarkDV.as_view(), name='detail')
 
 blog/urls.py 에서 App의 Home Url 경로같은 경우는 **path()** 함수를 사용하고, 내부에 정규식과 같은 내용이 추가되는 경우는 **re_path()** 함수를 사용한다 
 
