@@ -101,7 +101,7 @@ re_path(r'^tag/(?P<tag>[^/]+)/$', PostTOL.as_view(), name="tagged_object_list")
 { % load tagging_tags % }
 { % tags_for_object object as tags % }
 { % for tag in tags % }
-  <a href="{% url 'blog:tagged_object_list'  tag.name %}">
+  <a href="{ % url 'blog:tagged_object_list'  tag.name % }">
   { {tag.name} }</a>
 { % endfor % }
 <a href="{ % url 'blog:tag_cloud' % }"><i>태그 클라우드</i></a>
