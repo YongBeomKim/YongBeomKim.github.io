@@ -9,6 +9,8 @@ toc: true
 ---
 
 
+> 웹을 위한 머신러닝 - 에이콘
+
 <img src="http://acornpub.co.kr/tb/detail/book/dm/qn/1489112679ajXucfb6.jpg" width='300'>
 
 

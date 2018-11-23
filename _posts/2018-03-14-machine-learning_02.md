@@ -9,6 +9,9 @@ toc: true
 ---
 
 
+> 웹을 위한 머신러닝 - 에이콘 
+
+
 <img src="http://acornpub.co.kr/tb/detail/book/dm/qn/1489112679ajXucfb6.jpg" width='300'>
 
 ## **자율학습** : 군집화, 차원축소, 특이값 분해
