@@ -1,5 +1,5 @@
 ---
-title : 파이썬 웹 프로그래밍 상편 (북마크, 블로그)
+title : 파이썬 웹 프로그래밍 상편 - 북마크, 블로그
 last_modified_at: 2018-11-20T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -15,6 +15,13 @@ toc: true
 # 파이썬 웹 프로그래밍 (실전편)
 
 맨처음 파이썬을 공부하는 계기이자, 최초로 유로수업을 들었던 도서다. **Javascript, Jquery, Vue**를 공부하면서 도대체 Django로 할 수 있는건 무엇인가? 헷갈리면서 갈피를 잘 잡지 못해서 이번에 재대로 <small>빠르게</small> 부족한 부분들을 정리해 보려고 한다.
+
+앞으로 다룰 내용을 간단하게 살펴보면...
+
+1. **url을** 다루는 **slug, pk** 객체를 정규식의 활용 
+2. **model 의 method 들**
+3. **Generic View**에서 지원하는 **템플릿 메소드**
+4. 템플릿의 **JSX `{ % % }` 함수를** 활용하는 방법들을 살펴보았다.
 
 <figure class="align-center">
   <img src="https://4.bp.blogspot.com/-2a5Ix9fUu6o/WI0SiFp2gTI/AAAAAAAAA1o/pLAy3c2oKtI6GH0GW9o0fXwK2rHh_blTgCLcB/s1600/1.jpg" alt="" align="center">

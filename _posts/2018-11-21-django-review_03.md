@@ -1,5 +1,5 @@
 ---
-title : 파이썬 웹 프로그래밍 중편 (form 객체 다루기)
+title : 파이썬 웹 프로그래밍 추가 - Auth 인증
 last_modified_at: 2018-11-20T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg
@@ -14,91 +14,24 @@ toc: true
 
 # 파이썬 웹 프로그래밍 (실전편) 
 
-템플릿 결과 이외에, 별도의 정보를 서버로 전송 후 변화된 내용을 활용하기 위해 **form 객체를** 활용하는 방법을 익혀보자
-
-<figure class="align-center">
-  <img src="http://www.nextree.co.kr/content/images/2016/09/hjkwon-140328-form_-01.png" alt="" align="center">
-  <figcaption></figcaption>
-</figure> 
-
 <br/>
-# **9장 검색기능**
-
-<br/>
-## blog/forms.py
-
-임시로 사용할 form 객체를 정의합니다. 여기선 검색어 1개만 활용하므로 검색객체 1개를 정의합니다
-
-```python
-from django import forms
-
-class PostSearchForm(forms.Form):
-    search_word = forms.CharField(label='단어 검색 : ') 
-```
-`label ="web으로 출력할 내용"`으로 템플릿에서는 `{ {form.as_table} }` 를 사용하여 내용을 호출한다
-
-
-<br/>
-## blog/views.py
-
-임시로 사용할 form 객체와 템플릿 메소드를 정의합니다. 이를 위해서 1) 출력할 템플릿, 2) form 에서 서버에서 연산할 함수 메소드, 3) form 서버 전송결과 출력할 context 연산할 내용을 정의합니다
-
-```python
-from .forms import PostSearchForm
-from django.db.models import Q
-
-class SearchFormView(FormView):
-    form_class    = PostSearchForm
-    template_name = 'blog/post_search.html'
-
-    def form_valid(self, form):
-        schWord = "%s" %self.request.POST['search_word']
-        post_list = Post.objects.filter(Q(title__icontains = schWord) |
-                                        Q(description__icontains = schWord) |
-                                        Q(content__icontains = schWord)).distinct()
-        context = {}
-        context['form'] = form
-        context['search_term'] = schWord
-        context['object_list'] = post_list
-        return render(self.request ,self.template_name, context)
-```
-
-검색 연산작업을 수행하는 방법으로 1) **.filter(Q() | Q() | Q()).distinct()** 를 사용하여 검색조건을 정의할 수 있다 2) **필드이름__icontains :** 대소문자 구분없이 단어포함 여부를 검사한다. 한글도 무난하게 검색된다 3) **.distinct() :** 조건이 여럿인 경우, 중복결과는 제거 후 출력한다
-{: .notice--info}
-
-
-<br/>
-## **blog/template/blog/post_search.html**
-
-```html
-검색을 위해 입력폼을 출력합니다
-<form action="." method="post">{ % csrf_token % }
-  { {form.as_table} }
-  <input type="submit" value="Submit" />
-</form>
-
-{ % if object_list % }
-{ % for post in object_list % }
-  <h2><a href="{ {post.get_absolute_url} }">
-  { {post.title} }</a></h2>
-  { {post.modify_date | date:"N d, Y"} }
-  <p>{ {post.description} }</p>
-{ % endfor % }
-
-{ % elif search_term % }
-  <b><i>{ {search_term} } 검색결과가 없습니다</i></b>
-{ % endif % }
-```
-
-1. **form action="." :** action 폼에서 **서버로 데이터를 보내는 목적지 URL** 을 지정한다
-2. **object_list :** 해당 App의 DataBase에서 조건에 해당되는 인덱스 데이터를 list 형태로 불러옵니다. 반복 객체의 개별 필드값은 **.필드값** 메소드를 사용하여 호출합니다
-
-<br/>
-# **11장 인증기능** [로그인/로그아웃](https://blog.hannal.com/2015/06/start_with_django_webframework_08/)
+# **11장 인증기능** 
 
 > **django.contrib.auth** 
 
-장고에서 기본으로 제공하는 인증기능 모듈이다. 이를 사용하면 다양한 인증작업을 할 수 있다.
+**auth** 에서 기본제공 **Url 목록들**로 아래의 코드 중  `re_path(r'^accounts/', include('django.contrib.auth.urls'))` 에 의해서, `accounts/login/` 과 같이 주소의 앞 부분이 추가되어 활용한다
+
+1. 'login/', **LoginView**, 'login'
+2. 'logout/', **LogoutView**, 'logout'
+3. 'password_change/', **PasswordChangeView**, 'password_change'
+4. 'password_change/done/', **PasswordChangeDoneView**, 'password_change_done'
+5. 'password_reset/', **PasswordResetView**, 'password_reset'
+6. 'password_reset/done/', **PasswordResetDoneView**, 'password_reset_done'
+7. 'reset/<uidb64>/<token>/', **PasswordResetConfirmView**, 'password_reset_confirm',
+8. 'reset/done/', **PasswordResetCompleteView**, 'password_reset_complete',
+
+장고에서 기본으로 제공하는 인증기능 모듈이다. 이를 사용하면 다양한 인증작업을 할 수 있다.[로그인/로그아웃](https://blog.hannal.com/2015/06/start_with_django_webframework_08/)
+
 
 **User**
 
@@ -138,13 +71,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 
 class UserCreateView(CreateView):
-    template_name = 'reg/reg.html'
+    template_name = 'registration/register.html'
     form_class = UserCreationForm
     success_url = reverse_lazy('register_done') # 종료후 실행
 
 class UserCreateDoneTV(TemplateView):
-    template_name = 'reg/reg_done.html'
+    template_name = 'registration/register_done.html'
 ```
+
+`./registration` 등의 템플릿 경로는 **django 의 auth** 에서 기본 설정된 경로명으로 꼭 지켜야 한다
+{: .notice--info} 
+
 
 <br/>
 ## **mysite/urls.py**
@@ -163,4 +100,38 @@ urlpatterns = [
       name='register_done'),
 ]
 ```
+
+<br/>
+## **Templates**
+
+1. **registeration/login.html :** 로그인 화면을 디자인
+2. **registeration/logged_out.html :** 로그아웃 성공화면 디자인
+2. **registeration/register.html :** 새로운 사용자 계정을 생성
+3. **registeration/register_done.html :** 가입 성공시 실행
+4. **registeration/password_change_form.html :**
+5. **registeration/password_change_done.html :** 
+
+```html
+# templates/registeration/login.html
+
+<form method="post" action=".">{ % csrf_token % }
+
+  { % if form.errors % }
+  <p class="errornote">로그인 실패</p>{ % endif % }
+
+  <p>사용자 추가</p>
+  <fieldset class="aligned">
+      { {form.username.label_tag} }{ {form.username} }
+      { {form.password1.label_tag} }{ {form.password1} }
+      { {form.password2.label_tag} }{ {form.password2} }
+    </div>
+  </fieldset>
+  <div class="submit-row">   <!-- 등록버튼 --> 
+    <input type="submit" value="Register" /> 
+  </div>
+</form>
+```
+
+**form.errors :** form 객체에서 발생한 오류를 호출하는 객체이다. 기타 사용자 등록 부분은 함수나 경로를 Django 에서 기본으로 제공하는 부분이 많으므로 이 부분을 주의깊게 고려하여 경로와 views.py 및 템플릿을 주의해서 작성해야 한다
+
 
