@@ -19,7 +19,7 @@ toc: true
 앞으로 다룰 내용을 간단하게 살펴보면...
 
 1. **url을** 다루는 **slug, pk** 객체를 정규식의 활용 
-2. **model 의 method 들**
+2. **model 의 method 들** [models 의 API](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)
 3. **Generic View**에서 지원하는 **템플릿 메소드**
 4. 템플릿의 **JSX `{ % % }` 함수를** 활용하는 방법들을 살펴보았다.
 
