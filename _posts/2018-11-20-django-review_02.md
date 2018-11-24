@@ -22,6 +22,7 @@ toc: true
 4. from **django.contrib.auth.mixins** import **LoginRequiredMixin**
 5. from **django.views.generic.edit** import **CreateView, UpdateView, DeleteView**
 6. generic.view 에서 제공하는 함수들과, Template 경로를 잘 정리하자
+7. Template 에서는 **form.as_p(), as_table(), as_ul()**을 사용하면 form 결과물을 \<p\>, \<table\>, \<ul\> 객체로 자동 생성 후 출력한다 [form api](https://docs.djangoproject.com/en/2.1/ref/forms/api/)
 
 <figure class="align-center">
   <img src="http://www.nextree.co.kr/content/images/2016/09/hjkwon-140328-form_-01.png" alt="" align="center">
