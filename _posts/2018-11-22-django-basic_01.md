@@ -46,6 +46,18 @@ CREATE TABLE myapp_person(
 
 > \< **int** : year \>
 
+\< \> 부분을 Path Converter 라고 하는데, 내부에 객체 Type 설정값들은 다음과 같다.
+
+| type    |   내용                                         |
+|:-------:|:----------------------------------------------:|
+|**str**  | "/" 제외한 모든 **문자열**                     |
+|**int**  | 양의 **정수 값**                               |
+|**slug** | **slug 형식의** 문자열 (ASCII,숫자,하이픈,밑줄)|
+|**path** | **"/" 포함한 모든 문자열**                     |
+|**uuid** | **UUID** 형식의 문자열 [Document](https://docs.python.org/3/library/uuid.html) |
+
+
+
 
 
 ```python
