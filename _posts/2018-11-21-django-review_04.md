@@ -158,10 +158,3 @@ Customize Your URL
 
 1. **[Disqus](https://disqus.com/)** 사이트에 가입을 한다 
 2. **[Install App in my Site](https://disqus.com/admin/create/)** 를 선택한다
-
-
-<br/>
-# **9장 검색기능**
-
-
-
