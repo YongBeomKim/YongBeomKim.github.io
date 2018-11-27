@@ -97,3 +97,4 @@ def current_time(request):
     html = <html><body>지금 시간은 %s 입니다</body></html> %now
     return HeepResponse(html)
 ```
+
