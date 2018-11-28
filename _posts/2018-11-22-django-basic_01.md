@@ -42,6 +42,16 @@ CREATE TABLE myapp_person(
 
 
 <br/>
+## path()
+
+**path(\<route\>, \<vuew\>)** 두 개의 필수 인자와, 추가로 **kwarg, name** 2개의 선택인자를 받는다
+
+1. **route :** URL 경로를 정의하는 문자열로, URL String이라고도 한다
+2. **view :** 해당 URL 요청시, Python 에서 호출하는 view 함수
+3. **kwarg :** URL 이외에 추가로 POST, GET 요청시 view 함수에 전달하는 값
+4. **name :** URL 경로별 이름을 할당하여, Template와 연결시 사용한다 
+
+<br/>
 ## path() in urls.py 
 
 > \< **int** : year \>

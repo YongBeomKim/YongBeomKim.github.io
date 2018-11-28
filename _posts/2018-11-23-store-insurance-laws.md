@@ -2,12 +2,12 @@
 title : 보험내용 - 영업사에서 가입하는 보험의 내용들
 last_modified_at: 2018-11-23T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django.jpg
+  overlay_image: /assets/images/book/nh.jpg
 categories:
-  - tips
+  - insurance
 tags: 
-    - tips
-    - store
+    - nh
+    - insurance
 toc: true 
 ---
 
