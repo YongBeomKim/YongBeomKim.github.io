@@ -182,11 +182,11 @@ admin.site.register(Choice)
 
 위에서 설정한 **.ForeignKey()** 를 **함수** 및 **템플릿에서** 제어하는 메소드 들을 정리해 보면 다음과 같다
 
-| 메소드                        |      내용                |
-|:-----------------------------:|:---------------------------------:|
-|**.objects.all()**             | 클래스 테이블 모두 호출           |
-|**.order_by**('-pub_date')[:5] | 클래스 테이블 정렬                |
-|**get_object_or_404**(, **pk**= ) | 클래스 pk값을 호출하고 없으면 404 출력| 
+| 메소드                          |      내용                |
+|:-------------------------------:|:---------------------------------:|
+|**.objects.all()**               | 클래스 테이블 모두 호출           |
+|**.order_by**('-pub_date')[:5]   | 클래스 테이블 정렬                |
+|**get_object_or_404**(, **pk**= )| 클래스 pk호출, 없으면 404 Exception 발생| 
 
 ```python
 from django.shortcuts import render, get_object_or_404
@@ -212,6 +212,7 @@ def results(request, question_id):
 |**.objects.all()**       | 클래스 테이블 모두 호출             |
 |**.choice_set.get**()    | **ForeignKey** 참조 Choice 모델 호출|
 |**.DoesNotExist**        | 호출한 값이 없을 때 처리            |
+|**except** (KeyError, 클래스.DoesNotExist) | 클래스 pk 없으면 **KeyError** 출력 |
 
 아래의 경우 **try:, except:, else:**로 구성되어 있는데, **try:** 로 정상처리 된 경우 **else:** 에서는 이를 받아서 추가 실행을 한다 <small>의외로 헷랄렸던 부분이다.. 이런게 있엇군!![점프 투 파이썬](https://wikidocs.net/30#try-else)</small> 
 
@@ -241,32 +242,52 @@ def vote(request, question_id):
 ## polls/urls.py
 
 ```python
+from django.urls import re_path, path
+from .views import index, detail, results, vote
 
+app_name="polls"
+urlpatterns = [
+    path('',                           index,   name="index"),
+    path('<int:question_id>/',         detail,  name='detail'),
+    path('<int:question_id>/results/', results, name="results"),
+    path('<int:question_id>/vote/',    vote,    name='vote'),
+]
 ```
 
+## Template 
+
+Html 에서 Django 객체를 어떻게 처리할 지에 대해 익혀보자
 
 <br/>
 ## polls/templates/polls/index.html
 
+투표할 내용을 보여주는 대표 템플릿으로 내부의 **href** 링크 경로는 1) `/polls/{ { question.id } }/` 와 같이 **Hardcoing** 을 할 수 도 있고, 2) `{ % url 'polls:detail' question.id % }` 의 url 템플릿 함수를 사용하여 경로를 세분화 할 수 있다.  
+
 ```html
 { % if latest_question_list % }
-<ul>
-  { % for question in latest_question_list % }
-    <li><a href="/polls/{{question.id}}">
-    { {question.question_text} }</a></li>
-  { % endfor % }
-</ul>
-{ % else % }<p>투표할 내용이 없습니다</p>
+    <ul>
+    { % for question in latest_question_list % }
+        <!-- href="/polls/{ { question.id } }/" 동일-->
+        <li><a href="{ % url 'polls:detail' question.id % }">
+          { { question.question_text } }</a></li>
+    { % endfor % }
+    </ul>
+{ % else % } <p>투표할 내용이 없습니다</p>
 { % endif % }
 ```
 
 <br/>
 ## polls/templates/polls/detail.html
 
+템플릿 오류는 **error_message** 객체에 담겨서 전달되고. **Question** 테이블의 필드별 내용을 호출하여 템플릿에서 나열한다.
+
+**원본테이블.종속테이블_set.all** 메소드는 **1:N** 관계로 [공식문서](https://docs.djangoproject.com/en/2.1/topics/db/queries/) 를 참조하면 보다 자세한 내용을 볼 수 있다.
+
+**forloop.counter** 객체는 for 반복문 내부에서 1부터 시작하여 1씩 증가하여 결과값을 반환한다
+
 ```html
 <h1>{ {question.question_text} }</h1>
 
-<!-- 오류는 error_message 객체에 담긴다-->
 { % if error_message % }
   <p><strong>{ {error_message} }</strong></p>
 { % endif % }
@@ -284,3 +305,24 @@ def vote(request, question_id):
   <input type="submit" value="Vote" />
 </form>
 ```
+
+<br/>
+## polls/templates/polls/results.html
+
+
+```html
+<h1>{ { question.question_text } }</h1>
+
+<ul>
+{ % for choice in question.choice_set.all % }
+    <li>{ { choice.choice_text } } -- 
+    { { choice.votes } } 투표수 
+    { { choice.votes | pluralize } }</li>
+{ % endfor % }
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">
+다시 투표하시겠습니까?</a>
+```
+
+전체적으로 클래스 객체만 정의하면 내부적인 구조는 개별 메서드에서 자동으로 값을 계산해 주는 기능을 다양하게 익히면 보다 쉽게 구조를 확장할 수 
