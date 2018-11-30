@@ -1,5 +1,5 @@
 ---
-title : 파이썬 웹 프로그래밍 (계층 블로그)
+title : 파이썬 웹 프로그래밍 (실전편) (계층 블로그)
 last_modified_at: 2018-11-21T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django.jpg

@@ -111,11 +111,10 @@ def current_time(request):
 ```
 
 
-
 <br/>
 # 투표 시스템 구현하기
 
-위에서 구성한 djagno Project 폴더 위에서 **투표 기능을 구현하는 App** 작업을 진행한다
+[django 투표시스템 구현내용 정리](http://guswnsxodlf.github.io/python/) 위에서 정리한 djagno Project 위에서 **투표 기능을 구현하는 App** 작업을 진행한다
 
 <br/>
 ## polls\models.py
@@ -176,3 +175,112 @@ admin.site.register(Choice)
 ```
 
 위에서 정의한 테이블을 **admin.py**로 연동시켜 admin 페이지에서 수정 가능하게 한다 
+
+
+<br/>
+## polls/views.py
+
+위에서 설정한 **.ForeignKey()** 를 **함수** 및 **템플릿에서** 제어하는 메소드 들을 정리해 보면 다음과 같다
+
+| 메소드                        |      내용                |
+|:-----------------------------:|:---------------------------------:|
+|**.objects.all()**             | 클래스 테이블 모두 호출           |
+|**.order_by**('-pub_date')[:5] | 클래스 테이블 정렬                |
+|**get_object_or_404**(, **pk**= ) | 클래스 pk값을 호출하고 없으면 404 출력| 
+
+```python
+from django.shortcuts import render, get_object_or_404
+from .models import Question, Choice
+
+def index(request):
+    latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
+    context = {'latest_question_list' : latest_question_list}
+    return render(request, 'polls/index.html', context)
+
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, "polls/detail.html", {'question':question})
+
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question':question})
+```
+
+
+| 메소드                  |      내용                           |
+|:-----------------------:|:-----------------------------------:|
+|**.objects.all()**       | 클래스 테이블 모두 호출             |
+|**.choice_set.get**()    | **ForeignKey** 참조 Choice 모델 호출|
+|**.DoesNotExist**        | 호출한 값이 없을 때 처리            |
+
+아래의 경우 **try:, except:, else:**로 구성되어 있는데, **try:** 로 정상처리 된 경우 **else:** 에서는 이를 받아서 추가 실행을 한다 <small>의외로 헷랄렸던 부분이다.. 이런게 있엇군!![점프 투 파이썬](https://wikidocs.net/30#try-else)</small> 
+
+```python
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+
+    try:
+        selected_choice = question.choice_set.get(
+            pk=request.POST['choice']) # Html Form의 전달
+
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, "polls/detail.html",{
+            'question': question,
+            'error_message':"선택한 내용이 없습니다"})
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse("polls:results", 
+            args=(question_id,)))
+```
+
+<br/>
+## polls/urls.py
+
+```python
+
+```
+
+
+<br/>
+## polls/templates/polls/index.html
+
+```html
+{ % if latest_question_list % }
+<ul>
+  { % for question in latest_question_list % }
+    <li><a href="/polls/{{question.id}}">
+    { {question.question_text} }</a></li>
+  { % endfor % }
+</ul>
+{ % else % }<p>투표할 내용이 없습니다</p>
+{ % endif % }
+```
+
+<br/>
+## polls/templates/polls/detail.html
+
+```html
+<h1>{ {question.question_text} }</h1>
+
+<!-- 오류는 error_message 객체에 담긴다-->
+{ % if error_message % }
+  <p><strong>{ {error_message} }</strong></p>
+{ % endif % }
+
+<form action="{ % url 'poll:vote' question.id % }" 
+ method = "post">
+  { % csrf_token % }
+  { % for choice in question.choice_set.all % }
+    <input type="radio" name="choice" 
+    id = "choice{ {forloop.counter} }"
+    value = "{ {choice.id} }"/>
+    <label for="choice{ {forloop.counter} }">
+    { {choice.choice_text} }</label><br/>
+  { % endfor % }
+  <input type="submit" value="Vote" />
+</form>
+```
