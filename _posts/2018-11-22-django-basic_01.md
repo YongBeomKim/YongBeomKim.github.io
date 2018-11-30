@@ -22,7 +22,7 @@ toc: true
 <br/>
 ## models.py
 
-**Django 모델정의 함수**에서 아래와 같이 작성하면, 연결 **DataBase의 Query 문을** 자동으로 생성한다
+**Django 모델정의 함수**에서 아래와 같이 작성하면, 연결 **DataBase의 Query 문을** 자동으로 생성한다. 모델의 인덱스별 **pk**값은 자동으로 생성한다
 
 ```python
 from django.db import models
@@ -77,6 +77,8 @@ urlpatterns = [
     path('blog/<int:year>/<int:month>/<slug:slug>/', detail),
 ]
 ```
+파라미터의 이름인 **year, month, slug** 등은 사용자가 임의로 지정 가능하다. 단 여기서는 날짜별 관리를 Generic View를 사용하기 때문에, 위처럼 맞춰야 하지만 사용자 함수로써 이를 관리할 때에는 각각에 맞는 이름을 사용하면 된다
+{: .notice--info}
 
 <br/>
 ## re_path() in urls.py 
@@ -108,3 +110,69 @@ def current_time(request):
     return HeepResponse(html)
 ```
 
+
+
+<br/>
+# 투표 시스템 구현하기
+
+위에서 구성한 djagno Project 폴더 위에서 **투표 기능을 구현하는 App** 작업을 진행한다
+
+<br/>
+## polls\models.py
+
+```python
+from django.db import models
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date_published')
+
+    def __str__(self):
+        return self.question_text
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.choice_text
+```
+
+Question 클래스로 생성된 테이블 
+
+| 컬럼명                       | 내용                |
+|:----------------------------:|:-------------------:|
+| **id** (integer)             | pk 값으로 자동생성  |
+| question_text (varchar(200)) | 질문내용을 입력     |
+| pub_date (datetime)          | 배포날짜            |
+
+
+Choice 클래스로 생성된 테이블
+
+| 컬럼명                       | 내용                     |
+|:----------------------------:|:------------------------:|
+| id (integer)                 | pk 값으로 자동생성       |
+| **question_id** (integer)    | **Question 클래스** 키값 |
+| choice_text(varchar(200))    | 설문내용을 입력          |
+| votes (integer)              | 투표수 카운트            |
+
+> **models.ForeignKey( 참조클래스, on_delete = models.CASCADE)**
+
+**.ForeignKey() :** 다른 테이블의 기본키를 참조하는 필드로써, on_delete = models.**PROTECT** 는 **외래키 독립** 을, on_delete = models.**CASCADE** 는  **외래키 의존**으로 구성한다
+
+
+<br/>
+## polls/admin.py
+
+```python
+from django.contrib import admin
+# Register your models here.
+
+from .models import Question, Choice
+
+admin.site.register(Question)
+admin.site.register(Choice)
+```
+
+위에서 정의한 테이블을 **admin.py**로 연동시켜 admin 페이지에서 수정 가능하게 한다 
