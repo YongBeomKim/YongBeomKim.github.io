@@ -2,7 +2,7 @@
 title : Tutorial / django-table2
 last_modified_at: 2018-11-20T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django-girls.png
+  overlay_image: /assets/images/book/django-girls.jpg
 categories:
   - django
 tags: 
