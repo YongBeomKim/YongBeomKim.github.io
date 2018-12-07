@@ -94,14 +94,15 @@ def people(request):
 <br/>
 # **Generic View** <small>[link](https://django-tables2.readthedocs.io/en/latest/pages/generic-mixins.html)
 
-위의 작업을 보다 간단하게 구현하는 generic view 로써 **SingleTableMixin, MultiTableMixin**를 제공한다.
+위의 작업을 보다 간단하게 구현하는 generic view 로써 **SingleTableView, MultiTableMixin**를 제공한다.
 
 
-## **SingleTableMixin**
+## **1 SingleTableView**
 
-위의 작업들을 아래와 같이 간략하게 구현 가능하다.
+**SingleTableMixin**로 이후의 예제들에 구성되어 있지만, 이번 페이지에서는 **SingleTableView**로 작성이 되어있다. <small>**SingleTableMixin** 에서는 **model** 과 **modelclass** 2개를 요구하는데 이 차이는 아직 이해가 안된다</small>
+[일본자료 참고](https://afterall-wonderwall.blogspot.com/2018/01/django-tables2-singletableview.html) 
 
-## models.py, tables.py
+### models.py, tables.py
 ```python
 # app/models.py
 class Person(models.Model):
@@ -115,7 +116,7 @@ class PersonTable(tables.Table):
         model = Person
 ```
 
-## app/views.py
+### app/views.py
 ```python
 from .models import Person
 from .tables import PersonTable
@@ -123,12 +124,36 @@ class PersonList(SingleTableView):
     model       = Person
     table_class = PersonTable
     template_name = 'app/template.html'
+    table_pagination = False  # 페이지 구분없이 출력
 ```
 
-## app/template.html
+### app/template.html
 ```html
 { % load django_tables2 % }
 { % render_table table % }
 ```
 
+
+## **2 MultiTableMixin**
+
+2개 이상의 테이블을 구현하는 경우 예제로써, 내용이 불친절하고 `qs` 가 어떤형식을 이야기하는지 모호해서 우선 기록으로만 남긴다.
+
+```python
+from django_tables2 import MultiTableMixin
+from django.views.generic.base import TemplateView
+
+class PersonTablesView(MultiTableMixin, TemplateView):
+    template_name = 'multiTable.html'
+    tables = [
+        PersonTable(qs),
+        PersonTable(qs, exclude=('country', ))]
+    table_pagination = {'per_page': 10}
+```
+
+```php
+{ % load django_tables2 % }
+{ % for table in tables % }
+    { % render_table table % }
+{ % endfor % }
+```
 
