@@ -21,7 +21,7 @@ toc: true
 
 **Alternative column data :** 컬럼별로 데이터를 변형한다. 이를 적용하기 위해서는 앞에서 미리 컬럼별로 데이터를 일원화 한 정형화된 상태에서 적용해야 효과적이다
 
-### App/function.py
+### # App/function.py
 
 > **def render_필드명(self, value) :**
 
