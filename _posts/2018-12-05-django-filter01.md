@@ -18,3 +18,14 @@ django-filter [link](https://django-filter.readthedocs.io/en/master/)
 
 django-crispy-forms [link](https://django-crispy-forms.readthedocs.io/en/latest/install.html)
 
+
+# Install
+
+> **$ pip install django-filter**
+
+```python
+INSTALLED_APPS = [
+    'django_filters',
+]
+```
+
