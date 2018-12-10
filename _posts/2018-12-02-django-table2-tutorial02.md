@@ -1,5 +1,5 @@
 ---
-title : Tutorial / django-table2 중편
+title : Tutorial / django-table2 컬럼과 인덱스 2/3
 last_modified_at: 2018-11-20T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-girls.jpg
@@ -21,7 +21,7 @@ toc: true
 
 **Alternative column data :** 컬럼별로 데이터를 변형한다. 이를 적용하기 위해서는 앞에서 미리 컬럼별로 데이터를 일원화 한 정형화된 상태에서 적용해야 효과적이다
 
-### # App/function.py
+### App/function.py
 
 > **def render_필드명(self, value) :**
 
@@ -52,7 +52,7 @@ class SimpleTable(tables.Table):
         return "{:,}".format(value)
 ```
 
-### views.py
+### $ views.py
 
 ```python
 # 임의의 데이터 Set
@@ -77,7 +77,7 @@ Row 2, <13>, 41, 523,123
 
 ## 2) Table.value_필드명
 
-### 테이블 데이터로 출력합니다
+### $ 테이블 데이터로 출력합니다
 
 ```python
 import django_tables2 as tables
@@ -100,7 +100,7 @@ table = Example(data)
 </table>'''
 ```
 
-### img 등 다양한 포맷으로도 변형하여 출력 가능하다
+### $ img 등 다양한 포맷으로도 필드내 데이터를 출력
 
 ```python
 # 파일이름만 호출하고, 태그를 추가한 탬플릿을 생성 가능하다
@@ -110,26 +110,25 @@ class ImageColumn(tables.Column):
         return format_html('<img src="/media/img/{}.jpg" />', value)
 ```
 
-
 <br/>
 # **4 Alternative Table Template**
 
-### **1) Column 속성값 추가**
+## **1) Column 속성값 추가**
 
 > **tables.Column(attrs = {})**
 
-테이블의 템플릿 컬럼의 **id, class** 속성값을 추가한다 
+테이블의 템플릿 컬럼의 **id, class** 속성값을 추가한다
 
 ```python
 class SimpleTable(tables.Table):
     name = tables.Column(attrs={'th': {'id': 'foo'}})
 
-# will render something like this:
-'{snip}<thead><tr><th id="foo">{snip}<tbody><tr><td>{snip}'
+# 위의 내용을 적용한 결과 render()는 다음과 같이 출력한다
+{snip}<thead><tr><th id="foo">{snip}<tbody><tr><td>{snip}
 ```
 
 
-### **2) Row 속성값 추가**
+## **2) Row 속성값 추가**
 
 > **row_attrs**
 
@@ -141,7 +140,7 @@ class Table(tables.Table):
             'data-id': lambda record: record.pk
         }
 
-tr 테그에서 속성값을 추가한다.
+# tr 테그에서 속성값을 추가한다.
 <tr class="odd" data-id="1"> [...] </tr>
 <tr class="even" data-id="2"> [...] </tr>
 ```
@@ -149,6 +148,55 @@ tr 테그에서 속성값을 추가한다.
 <br/>
 # **4 Tabler Header / Footer 추가**
 
-페이지별 반복시, 맨 위와 아래에 덧붙일 내용을 입력 합니다. 여기서 추가하는 value 값들은 컬럼별 연산시에는 비해당됨에 유의해야 합니다 
+테이블 인스턴스를 수정하는 내용으로 **테이블 인스턴스 클래스** 내부에서 아래의 내용들을 적용 합니다.
 
-https://django-tables2.readthedocs.io/en/latest/pages/column-headers-and-footers.html
+## 1) 테이블 Footer를 테이블 클래스 함수에서 구현하기 
+
+테이블 인스턴스 클래스에서 **foorter = '출력할 내용'** 의 방식으로, 테이블 맨 밑줄에 추가할 내용을 입력합니다. [link](https://django-tables2.readthedocs.io/en/latest/pages/column-headers-and-footers.html) 아래의 내용은 `population` 필드값의 총합을 출력하는 예제 입니다.
+
+```python
+country = tables.Column(footer='총합 :')
+population = tables.Column(
+    footer=lambda table: sum(x['population'] for x in table.data))
+```
+
+## 2) 테이블 Footer 사용자 함수를 사용하여 구현하기 
+
+위와같이 개별필드에 `in-line` 방식으로도 추가가 가능하지만 복잡한 내용을 다양한 테이블에 적용하기 위해서는 번거로운 작업을 필요로 합니다. 이런 경우를 대비하기 위해서 별도 사용자 함수를 생성하고 이를 재활용하는 예제 입니다.
+
+```python
+# 해당 필드의 총합을 계산하는 함수
+class SummingColumn(tables.Column):
+    def render_footer(self, bound_column, table):
+        return sum(bound_column.accessor.resolve(row) for row in table.data)
+
+class Table(tables.Table):
+    name = tables.Column()
+    country = tables.Column(footer='Total:')
+    population = SummingColumn()
+```
+
+## 3) Pinned rows 1 : **get_top_pinned_data(self)** 
+
+**테이블의 맨 위 인덱스에 임의의 DataBases 튜플 데이터를 추가**한다. 단 여기에서 추가된 데이터는 필드별 인스턴스가 생선된 뒤에 생성됨으로써, 컬럼별 합계 등에서는 포함되지 않음에 유의하자ㄴ
+
+```python
+def get_top_pinned_data(self):
+    return [
+        {'name': 'Korea',
+         'population': 8000,
+         '기타': '어쩌고 탑'},]
+```
+
+## 4) Pinned rows 2 : **get_bottom_pinned_data(self)** 
+
+3) 의 내용과 동일하고 대신에, 테이블 맨 밑에 추가된다
+
+```python
+def get_bottom_pinned_data(self):
+    return [
+        {'name': 'Korea',
+         'population': 1111,
+         '기타': '어쩌고 바텀'},]
+```
+
