@@ -14,14 +14,18 @@ toc: true
 
 # django-table2
 
+1. 테이블 데이터 출력 바꾸기
+2. 테이블 컬럼 속성값 추가하기
+3. header / footer 튜플 추가하기
+
 <br/>
-# **3 Alternative Data**
+# **1 Alternative Data**
 
 ## 1) Table.render_필드명
 
 **Alternative column data :** 컬럼별로 데이터를 변형한다. 이를 적용하기 위해서는 앞에서 미리 컬럼별로 데이터를 일원화 한 정형화된 상태에서 적용해야 효과적이다
 
-### App/function.py
+### **App/function.py**
 
 > **def render_필드명(self, value) :**
 
@@ -52,7 +56,7 @@ class SimpleTable(tables.Table):
         return "{:,}".format(value)
 ```
 
-### $ views.py
+### **views.py**
 
 ```python
 # 임의의 데이터 Set
@@ -77,7 +81,7 @@ Row 2, <13>, 41, 523,123
 
 ## 2) Table.value_필드명
 
-### $ 테이블 데이터로 출력합니다
+### **테이블 데이터로 출력합니다**
 
 ```python
 import django_tables2 as tables
@@ -100,7 +104,7 @@ table = Example(data)
 </table>'''
 ```
 
-### $ img 등 다양한 포맷으로도 필드내 데이터를 출력
+### **img 등 다양한 포맷으로도 필드내 데이터를 출력**
 
 ```python
 # 파일이름만 호출하고, 태그를 추가한 탬플릿을 생성 가능하다
@@ -111,11 +115,11 @@ class ImageColumn(tables.Column):
 ```
 
 <br/>
-# **4 Alternative Table Template**
+# **2 Alternative Table Template**
 
 ## **1) Column 속성값 추가**
 
-> **tables.Column(attrs = {})**
+> tables.Column(**attrs = {}**)
 
 테이블의 템플릿 컬럼의 **id, class** 속성값을 추가한다
 
@@ -146,7 +150,7 @@ class Table(tables.Table):
 ```
 
 <br/>
-# **4 Tabler Header / Footer 추가**
+# **3 Tabler Header / Footer 추가**
 
 테이블 인스턴스를 수정하는 내용으로 **테이블 인스턴스 클래스** 내부에서 아래의 내용들을 적용 합니다.
 
@@ -199,4 +203,3 @@ def get_bottom_pinned_data(self):
          'population': 1111,
          '기타': '어쩌고 바텀'},]
 ```
-

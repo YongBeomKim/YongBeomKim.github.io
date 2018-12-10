@@ -14,6 +14,10 @@ toc: true
 
 # django-table2
 
+1. django-table2 설치하기
+2. 테이블 데이터 인스턴스 및 views.py 사용하기
+3. Generic View 사용하기 
+
 Django를 통해서 간단한 작업을 하다보면 다양한 기능들이 필요로 한다, 이를 모두 건건이 함수를 구현하다보면 어려움이 많으므로 작업을 효율성을 높이기 위해 다양한 확장팩들이 제작되어 있고 이들 중 대표적인 것들로써
 
 1. **Django Table2** [link](https://github.com/jieter/django-tables2/blob/master/docs/pages/tutorial.rst)
@@ -69,11 +73,11 @@ class PersonTable(tables.Table):
 
 | 템플릿                                | 설명         |
 |:-------------------------------------:|:-------------------------:|
-| django_tables2/table.html              |Basic table template (default).|
-| django_tables2/bootstrap.html          | bootstrap 3 사용 |
-| django_tables2/bootstrap4.html         | bootstrap 4 사용 |
-| django_tables2/bootstrap-responsive.html|bootstrap & 반응형 |
-| django_tables2/semantic.html           | semantic UI 사용   |
+| django_tables2/**table.html*          |Basic table template (default).|
+| django_tables2/**bootstrap.html**     | bootstrap 3 사용 |
+| django_tables2/**bootstrap4.html**    | bootstrap 4 사용 |
+| django_tables2/**bootstrap-responsive.html**|bootstrap & 반응형 |
+| django_tables2/**semantic.html**      | semantic UI 사용 |
 
 
 ### tutorial/views.py
@@ -89,6 +93,7 @@ def people(request):
     return render(request, 'tutorial/people.html', {'table': table})
 ```
 **RequestConfig() :** 모델링 데이터를 `request.GET` 방식을 통해 다양한 기능을 구현한다. 템플릿은 `{ % render_table % }` 로 출력한다.
+{: .notice--info}
 
 ### app/people.html
 ```php
@@ -100,7 +105,7 @@ def people(request):
 <br/>
 # **2 Generic View** <small>[link](https://django-tables2.readthedocs.io/en/latest/pages/generic-mixins.html)
 
-위의 작업을 보다 간단하게 구현하는 generic view 로써 **SingleTableView, MultiTableMixin**를 제공한다.
+generic view 로써 **SingleTableView, MultiTableMixin**를 제공한다.
 
 
 ## **1) SingleTableView**
@@ -142,7 +147,9 @@ class PersonList(SingleTableView):
 
 ## **2) MultiTableMixin**
 
-2개 이상의 테이블을 구현하는 경우 예제로써, 내용이 불친절하고 `qs` 가 어떤형식을 이야기하는지 모*호해서 우선 기록으로만 남긴다.
+2개 이상의 테이블을 구현하는 경우 예제로써, 내용이 불친절하고 `qs` 가 어떤형식을 이야기하는지 모호해서 우선 기록으로만 남긴다.
+
+### views.py
 
 ```python
 from django_tables2 import MultiTableMixin
@@ -156,10 +163,11 @@ class PersonTablesView(MultiTableMixin, TemplateView):
     table_pagination = {'per_page': 10}
 ```
 
+### app/multiTable.html
+
 ```php
 { % load django_tables2 % }
 { % for table in tables % }
     { % render_table table % }
 { % endfor % }
 ```
-

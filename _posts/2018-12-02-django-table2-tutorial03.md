@@ -15,7 +15,7 @@ toc: true
 # django-table2
 
 <br/>
-# **5 Meta 클래스 수정하기**
+# **1 Meta 클래스 수정하기**
 
 django-table2 기본개념 및 필드별, 수정에 대해 알아봤습니다. 이번에는 **테이블 인스턴스 클래스** 내부에서 `class Meta:` 객체를 활용하여 테이블 전체에 변형을 주는 방법들을 익힙니다.
 
@@ -64,7 +64,7 @@ class PeopleListView(SingleTableView):
 
 
 <br/>
-# 다양한 포맷으로 출력하기
+# 2 다양한 포맷으로 출력하기
 
 테이블 데이터를 **xls, csv, json** 등 다양한 포맷으로 외부 출력 link를 생성할 수 있습니다. 
 
@@ -74,6 +74,8 @@ class PeopleListView(SingleTableView):
 
 탬플릿 출력 함수에서 두번째 코드에 추가된 내용을 사용하면, 해당 출력 Url에 **Get Query** 로써 `url/?_출력Query=포맷` 을 추가하면 해당 데이터를 `파일이름.포맷` 파일로 다운로드 받을 수 있습니다
 
+
+#### 변경 전 (기본내용)
 ```python
 def output_table(request):
     table = SimpleCountryTable(People.objects.all(), orderable=True)
@@ -81,6 +83,7 @@ def output_table(request):
     return render(request, "app/template.html", {"table": table})
 ```
 
+#### 변경 후 (내용추가)
 ```python
 from django_tables2.export.export import TableExport
 
