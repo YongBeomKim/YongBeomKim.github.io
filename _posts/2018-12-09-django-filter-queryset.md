@@ -17,7 +17,7 @@ toc: true
 Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 Django 2.0에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다. 
 
 <div>
-  <img src="{{site.baseurl}}/assets/images/photo/filter_form.jpg" width='300'>
+  <img src="{{site.baseurl}}/assets/images/photo/cache.jpg" width='300'>
 </div>
 
 책을 뒤척이면서 진도가 더뎌서 무척 힘들었습니다. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들을 통해서** 작은 Project를 완성하고 이를 누적해 가면서 실력을 멈추지 말고 Upgrade 하며 진행하면 좋을거 같습니다.
@@ -25,7 +25,7 @@ Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filte
 <br/>
 # **1 Basic Tutorial** 
 
-<figure width="500" class="align-center">
+<figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter1.png">
 </figure> 
 
@@ -127,7 +127,7 @@ urlpatterns = [
 
 > first_name = **CharFilter**(lookup_expr=**'icontains'**)
 
-<figure width="500" class="align-center">
+<figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter2.png">
 </figure> 
 
@@ -147,7 +147,7 @@ class Userfilter_(FilterSet):
 
 > NumberFilter(name = 'date_joined', lookup_expr = 'year')
 
-<figure width="500" class="align-center">
+<figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter3.png">
 </figure> 
 
@@ -170,7 +170,7 @@ class UserFilter(FilterSet):
 
 > NumberFilter(name = 'date_joined', lookup_expr = 'year')
 
-<figure width="500" class="align-center">
+<figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter4.png">
 </figure> 
 
@@ -188,3 +188,5 @@ class UserFilter(FilterSet):
         model = User
         fields = ['username', 'first_name', 'last_name', ]
 ```
+
+
