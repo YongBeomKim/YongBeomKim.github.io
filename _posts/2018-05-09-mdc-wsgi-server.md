@@ -13,6 +13,8 @@ toc: true
 
 # Mastering Django Core
 
+아래의 방법은 후추에도 별도 실행을 해야 하지만, **파이썬 웹 프로그래밍(개정판)** 에서 추가된 **mod_wsgi-express**를 사용하면 apache2 구동할때마다 django의 **wsgi.py** 를 자동으로 실행하므로 더 쉽게 실행가능하다 <small><strike>다 작성된 이후에는 유용하겠지만, 제작중인 페이지에선 재부팅이 번거로운 단점에 유의하자 [유투브 동영상 참고](https://www.youtube.com/watch?v=cGBv3F9HN1k)</strike></small>
+
 <br>
 ## Apache 의 mod_wsgi 서버 설치
 
@@ -21,7 +23,8 @@ toc: true
   <figcaption> uwsgi 구동원리 전개도</figcaption>
 </figure> 
 
-
+[참고 Blog](https://jwkcp.github.io/2018/05/21/deployment-mod-wsgi/) 
+[구글검색](https://www.google.com/search?client=ubuntu&channel=fs&q=apache+mod++DJango+%EC%84%A4%EC%A0%95&ie=utf-8&oe=utf-8)
 [정식 Document](http://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
 [설정 blog](http://covenant.tistory.com/22)
 [설정 blog](http://www.hides.kr/868)
@@ -77,7 +80,9 @@ Listen 8000
 **`$ sudo nano /etc/apache2/sites-available/000-default.conf`** 여기도 포트 80번은 기본값이므로, django 포트 주소를 추가한다.
 
 > WSGIDaemonProcess &nbsp; 프로젝트 &nbsp; python-home=/home/가상경로/env &nbsp; python-path=/home/프로젝트경로 <br>
+
 > WSGIProcessGroup rest <br>
+
 > WSGIScriptAlias &nbsp; / &nbsp; /home/wsgi.py가 있는 경로/wsgi.py <br>
 
 ```
