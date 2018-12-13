@@ -22,7 +22,7 @@ Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filte
 
 
 <br/>
-# **App 만들기** 
+# **1 Basic Tutorial** 
 
 <img src="{{site.baseurl}}/assets/images/photo/filter_form.jpg" width='300' align="left">
 
@@ -77,8 +77,43 @@ def search(request):
 ```
 
 <br/>
-# **Generic View를 사용하여 App 만들기** 
+# **2 Generic View** 
 
+별도의 **views.py** 함수없이, **urls.py** 에서 **Generic View** 를 사용하여 inline 방식으로 활용하는 예시를 알아보도록 합니다.
+
+### **filters.py**
+```python
+from django.contrib.auth.models import User
+import django_filters
+
+class UserFilter(django_filters.FilterSet):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', ]
+```
+
+### **urls.py**
+
+```python
+from django.urls import path
+from django_filters.views import FilterView
+from .filters import Userfilter
+
+app_name = 'search'
+urlpatterns = [
+    path('', FilterView.as_view(
+                filterset_class = Userfilter,
+                template_name = 'search/user_list.html'),
+         name = 'index')
+]
+```
+
+<br/>
+# **3 Filtering Options** 
+
+> first_name = **CharFilter**(lookup_expr=**'icontains'**)
+
+**일부 검색용 필드**를 사용하면 **검색용 폼 label**도 자동 변경된다.
 
 <img src="{{site.baseurl}}/assets/images/photo/filter_form_contain.jpg" width='300' align="left">
 
@@ -87,10 +122,11 @@ def search(request):
 from django_filters import FilterSet, CharFilter
 
 class Userfilter_(FilterSet):
-    # 특정한 컬럼은 포함여부를 조건으로 검색한다
-    first_name = c'icontains')
+    first_name = CharFilter(lookup_expr='icontains')
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name']
 ```
+
+
 
