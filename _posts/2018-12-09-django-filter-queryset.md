@@ -75,3 +75,10 @@ def search(request):
 ```
 
 # **Generic View를 사용하여 App 만들기** 
+
+<form class="">
+  <p><label>Username:</label> <input type="text"/></p>
+<p><label>First name contains:</label> <input type="text"/></p>
+<p><label>Last name:</label> <input type="text"/></p>
+  <button type="submit">검색</button>
+</form>
