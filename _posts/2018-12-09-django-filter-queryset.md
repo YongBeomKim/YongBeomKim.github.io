@@ -24,6 +24,10 @@ Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filte
 
 # **App 만들기** 
 
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/images/photo/filter_form.jpg" alt="" width=500>
+</figure> 
+
 ### **models.py**
 `from django.contrib.auth.models import User` 의 **사용자 정보 Table** 을 사용합니다 
 
@@ -74,11 +78,12 @@ def search(request):
  </ul>
 ```
 
+<br/>
 # **Generic View를 사용하여 App 만들기** 
 
-<form class="">
-  <p><label>Username:</label> <input type="text"/></p>
-<p><label>First name contains:</label> <input type="text"/></p>
-<p><label>Last name:</label> <input type="text"/></p>
-  <button type="submit">검색</button>
-</form>
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/images/photo/filter_form_contain.jpg" alt="" width=500>
+</figure>
+
+
+
