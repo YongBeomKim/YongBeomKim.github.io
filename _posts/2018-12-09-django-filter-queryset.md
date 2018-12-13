@@ -14,17 +14,17 @@ toc: true
 
 # **Introduction**
 
-Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 Django 2.0에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 한다. 
+Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 Django 2.0에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다. 
 
-<img src="{{site.baseurl}}/assets/images/photo/cache.jpg" width='300' align="center">
+<img src="{{site.baseurl}}/assets/images/photo/cache.jpg" width='300' align="left">
 
-<small><strike>책을 뒤척이면서 진도가 더디다.. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들을 통해서** 작은 Project를 완성하고 이를 누적해 가면서 실력을 멈추지 말고 Upgrade 하자</strike></small>
+<small><strike>책을 뒤척이면서 진도가 더디다.. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들을 통해서** 작은 Project를 완성하고 이를 누적해 가면서 실력을 멈추지 말고 Upgrade 하며 진행하도록 한다</strike></small>
 
 
 <br/>
 # **App 만들기** 
 
-<img src="{{site.baseurl}}/assets/images/photo/filter_form" width='300' align="center">
+<img src="{{site.baseurl}}/assets/images/photo/filter_form.jpg" width='300' align="left">
 
 ### **models.py**
 `from django.contrib.auth.models import User` 의 **사용자 정보 Table** 을 사용합니다 
@@ -80,7 +80,7 @@ def search(request):
 # **Generic View를 사용하여 App 만들기** 
 
 
-<img src="{{site.baseurl}}/assets/images/photo/filter_form_contain.jpg" width='300' align="center">
+<img src="{{site.baseurl}}/assets/images/photo/filter_form_contain.jpg" width='300' align="left">
 
 ### **filters.py**
 ```python
