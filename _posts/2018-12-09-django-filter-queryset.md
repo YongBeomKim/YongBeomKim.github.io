@@ -82,8 +82,20 @@ def search(request):
 # **Generic View를 사용하여 App 만들기** 
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/images/images/photo/filter_form_contain.jpg" alt="" width=500>
+  <img src="{{site.url}}{{site.baseurl}}/assets/images/images/photo/filter_form_contain.jpg" width=500>
 </figure>
 
+<img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
+### **filters.py**
+```python
+from django_filters import FilterSet, CharFilter
+
+class Userfilter_(FilterSet):
+    # 특정한 컬럼은 포함여부를 조건으로 검색한다
+    first_name = c'icontains')
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name']
+```
 
