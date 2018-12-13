@@ -71,14 +71,15 @@ def search(request):
 
 **filter** 로 검색용 폼을 생성하고, 연동 필터링 결과는 `filter.qs` 객체로 호출 합니다. **.get_full_name** 파라미터는 **first_name** 과 **last_name** 필드값을 붙여서 출력합니다.
 
+> **filter.qs** : 필터링 QuerySet
+
 ```html
-<!-- 검색용 form -->
 <form class="" method="get">
   { { filter.form.as_p } }
   <button type="submit">검색</button>
 </form>
 
-<ul> <!-- filter.qs : 필터링 QuerySet -->
+<ul>
 { % for user in filter.qs  % }
   <li>{ {user.username} } - { {user.get_full_name} }</li>
 { % endfor % }
@@ -89,18 +90,6 @@ def search(request):
 # **2 Generic View** 
 
 별도의 **views.py** 함수없이, **urls.py** 에서 **Generic View** 를 사용하여 inline 방식으로 활용하는 예시를 알아보도록 합니다.
-
-### **filters.py**
-
-```python
-from django.contrib.auth.models import User
-import django_filters
-
-class UserFilter(django_filters.FilterSet):
-    class Meta:
-        model = User
-        fields = ['username', 'first_name', 'last_name', ]
-```
 
 ### **urls.py**
 
@@ -125,7 +114,7 @@ urlpatterns = [
 
 **일부 검색필드**를 사용하면 **폼 label**도 자동 변경된다.
 
-> first_name = **CharFilter**(lookup_expr=**'icontains'**)
+> **CharFilter(lookup_expr**='icontains')
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter2.png">
@@ -145,7 +134,7 @@ class Userfilter_(FilterSet):
 
 ## **2) Interger 일부 검색용 필드**
 
-> NumberFilter(name = 'date_joined', lookup_expr = 'year')
+> **NumberFilter**(name = 'date_joined', **lookup_expr** = 'year')
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter3.png">
@@ -168,7 +157,7 @@ class UserFilter(FilterSet):
 
 ## **3) Interger 일부 검색용 필드**
 
-> NumberFilter(name = 'date_joined', lookup_expr = 'year')
+> **NumberFilter**(name = 'date_joined', **lookup_expr** = 'year')
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/filter4.png">
