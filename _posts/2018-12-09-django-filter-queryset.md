@@ -111,13 +111,15 @@ urlpatterns = [
 <br/>
 # **3 Filtering Options** 
 
-### **filters.py**
+## **1) String 일부 검색용 필드** 
+
+**일부 검색필드**를 사용하면 **폼 label**도 자동 변경된다.
 
 > first_name = **CharFilter**(lookup_expr=**'icontains'**)
 
-**String 일부 검색필드**를 사용하면 **검색용 폼 label**도 자동 변경된다.
-
 <img src="{{site.baseurl}}/assets/images/photo/filter_form_contain.jpg" width='300' align="left">
+
+### **filters.py**
 
 ```python
 from django_filters import FilterSet, CharFilter
@@ -129,14 +131,13 @@ class Userfilter_(FilterSet):
         fields = ['username', 'first_name', 'last_name']
 ```
 
-
-### **filters.py**
+## **2) Interger 일부 검색용 필드**
 
 > NumberFilter(name = 'date_joined', lookup_expr = 'year')
 
-**Integer 일부 검색필드**를 사용하면 **검색용 폼 label**도 자동 변경된다.
-
 <img src="{{site.baseurl}}/assets/images/photo/filter_form_year.jpg" width='300' align="left">
+
+### **filters.py**
 
 ```python
 from django_filters import FilterSet, CharFilter, NumberFilter
