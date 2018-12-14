@@ -118,3 +118,42 @@ Author.objects.exclude(name='spike', email='spike@mail.com')
 <br/>
 # **Filed Lookup**
 
+**.objects.filter(), .objects.exclude()** 에서는 필드별 구체적인 값에대한 비교만 가능합니다. 이를 극복하기 위한 여러 **검색 조건들을** django 에서는 제공합니다.
+
+## 1) contains lookup
+
+> 모델.objects.**filter**(필드이름**__contains** = "py")
+
+**특정 문자열이 포함된** 튜플을 호출합니다
+
+```python
+Author.objects.filter(name__contains="ke")
+[Out] QuerySet [<Author: spike : spike@mail.com>]
+```
+
+## 2) icontains lookup
+
+> 모델.objects.**filter**(필드이름**__icontains** = "Py")
+
+case-**insensitive(무감각한)** 로써 **대소문자 구분없이** 판단합니다
+  
+```python
+Author.objects.filter(name__icontains="KE")
+[Out] QuerySet [<Author: spike : spike@mail.com>]
+```
+
+## **3) startswith lookup <small>ex> regex : ^</small>**
+
+> 모델.objects.**filter**(필드이름**__startswith**="t")
+  
+```python
+Author.objects.filter(name__startswith="t")
+[Out] QuerySet [<Author: tommy : tommy@email.com>]
+```
+
+## **4) endswith lookup <small>ex> regex : $</small>**
+
+```python
+Author.objects.filter(email__endswith="com")
+[Out] QuerySet [<Author: tom : tom@email.com>]
+```
