@@ -42,7 +42,7 @@ print(a.id, a.pk)
 <br/>
 # **Create / Delete**
 
-## **.create , .bulk_create**
+## **objects.create() , .objects.bulk_create()**
 
 1. **.create() :** 1줄씩 정보를 입력
 2. **.bulk_create() :** 묶음으로 정보를 입력
@@ -62,6 +62,8 @@ Author.objects.bulk_create([
 
 ## **.objects.count()**
 
+모델의 튜플 숫자를 카운트 합니다
+
 ```python
 Author.objects.count()
 [Out] 5
@@ -69,16 +71,18 @@ Author.objects.count()
 
 ## **.objects.all()**
 
+모델 내부의 모든 객체를 호출 합니다
+
 ```python
 l = Author.objects.all()
 type(l)
-[Out] <class 'django.db.models.query.QuerySet'>
+[Out] class 'django.db.models.query.QuerySet'
 
 l
-[Out] <QuerySet [<Author: tommy : tommy@example.com>, <Author: jerry : jerry@mail.com>, <Author: spike : spike@mail.com>, <Author: tyke : tyke@mail.com>, <Author: droopy : droopy@mail.com>]>
+[Out] QuerySet [<Author: tommy : tommy@example.com>, <Author: jerry : jerry@mail.com>, <Author: spike : spike@mail.com>, <Author: tyke : tyke@mail.com>, <Author: droopy : droopy@mail.com>]
 
 l[0]
-[Out] <Author: tommy : tommy@example.com>
+[Out] Author: tommy : tommy@example.com
 
 for a in l:
     print("Author: {0}".format(a.name))
@@ -89,23 +93,28 @@ Author: jerry
 
 ## **.objects.filter()**
 
+특정조건에 True 인 튜플목록을 호출합니다
+
 ```python
 Author.objects.filter(name='tommy')
-[Out] <QuerySet [<Author: tommy : tommy@example.com>]>
+[Out] QuerySet [<Author: tommy : tommy@example.com>]
 
 print(Author.objects.filter(name='tommy').query)
 [Out] ... WHERE "djangobin_author"."name" = tommy
 
 Author.objects.filter(id=2)
-[Out] <QuerySet [<Author: tommy : tommy@example.com>]>
+[Out] QuerySet [<Author: tommy : tommy@example.com>]
 ```
 
 ## **.objects.exclude()**
 
+특정조건에 False 인 튜플목록을 호출합니다
+
 ```python
 Author.objects.exclude(name='spike', email='spike@mail.com')
-[Out] <QuerySet [<Author: tommy : tommy@example.com>....]>
+[Out] QuerySet [<Author: tommy : tommy@example.com>....]
 ```
 
 <br/>
-# Filed_Lookup
+# **Filed Lookup**
+
