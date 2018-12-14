@@ -112,7 +112,7 @@ Author.objects.filter(id=2)
 
 ```python
 Author.objects.exclude(name='spike', email='spike@mail.com')
-[Out] QuerySet [<Author: tommy : tommy@example.com>....]
+[Out] QuerySet [<Author: tommy : tommy@example.com>...]
 ```
 
 <br/>
@@ -128,7 +128,7 @@ Author.objects.exclude(name='spike', email='spike@mail.com')
 
 ```python
 Author.objects.filter(name__contains="ke")
-[Out] QuerySet [<Author: spike : spike@mail.com>]
+[Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
 ## 2) icontains lookup
@@ -139,7 +139,7 @@ case-**insensitive(무감각한)** 로써 **대소문자 구분없이** 판단�
   
 ```python
 Author.objects.filter(name__icontains="KE")
-[Out] QuerySet [<Author: spike : spike@mail.com>]
+[Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
 ## **3) startswith lookup <small>ex> regex : ^</small>**
@@ -148,12 +148,60 @@ Author.objects.filter(name__icontains="KE")
   
 ```python
 Author.objects.filter(name__startswith="t")
-[Out] QuerySet [<Author: tommy : tommy@email.com>]
+[Out] QuerySet [<Author: tommy : tommy@email.com>...]
 ```
 
 ## **4) endswith lookup <small>ex> regex : $</small>**
 
+> 모델.objects.**filter**(필드이름**__endswith**="com")
+
 ```python
 Author.objects.filter(email__endswith="com")
-[Out] QuerySet [<Author: tom : tom@email.com>]
+[Out] QuerySet [<Author: tom : tom@email.com>...]
 ```
+
+## **5) Greater than**
+
+> 모델.objects.**filter**(필드이름**__gt**= Integer )
+
+특정한 **값 보다 큰** 튜플을 출력합니다 
+
+```python
+Author.objects.filter(id__gt=3)
+[Out] QuerySet [<Author: spike : spike@mail.com>...]
+```
+
+## **6) Less than**
+
+특정한 **값 보다 작은** 튜플을 출력합니다 
+
+```python
+Author.objects.filter(id__lt=3)
+[Out] QuerySet [<Author: tommy : tommy@example.com>...]
+```
+
+## **7) exact lookup**
+
+```python
+Author.objects.filter(name__exact="spike")
+[Out] QuerySet [<Author: spike : spike@mail.com>]
+```
+
+## **8) iexact lookup**
+
+대소문자 구분없이 일치하는 튜플을 출력합니다
+
+```python
+Author.objects.filter(name__iexact="SPIKE")
+[Out] QuerySet [<Author: spike : spike@mail.com>...]
+```
+
+## 9) isnull lookup
+
+The isnull lookup takes True or False, and adds IS NULL or IS NOT NULL operators to the query respectively.
+
+```python
+Author.objects.filter(name__isnull=False)
+QuerySet [<Author: tommy : tommy@example.com>...]
+```
+
