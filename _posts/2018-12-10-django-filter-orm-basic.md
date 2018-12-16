@@ -240,7 +240,23 @@ Author.objects.filter(created_on__year=2018).last()
 ```
 
 
-# **6 etcs**
+# **6 복잡한 쿼리문과 Q**
+
+AND, OR 조건문을 Django 에서는 Q를 통해서 구현합니다
+
+```python
+from django.db.models import Q
+Q(name__contains="tom")
+
+from django.db.models import Q
+Q(name__icontains="tom", email__icontains="example", created_on__year=2018)
+```
+
+
+
+
+
+# **7 etcs**
 
 ## 1) .filter(), .get()
 
@@ -279,6 +295,76 @@ Author.objects.filter(id__gt=3).order_by("-name")
 ```python
 Author.objects.values_list("id", "name")
 QuerySet [(2, 'tommy'), (3, 'jerry'), (4, 'spike'), (5, 'tyke'), (6, 'droopy')]
+```
+
+## 4) 조건출력 활용하기<small>
+
+```python
+Author.objects.filter(name__contains='kim').order_by("name")
+Author.objects.values_list("id", "name")
+Author.objects.filter(id__gt=3).values_list("id", "name")
+```
+
+## 5) 필터링 결과의 Indexing
+
+**.values_list(), .values()** 의 출력결과는 동일하지만, 전자는 **튜플 객체로 구성된 List** 후지는 **Dict 객체로 구성된 List** 를 출력합니다
+
+```python
+r = Author.objects.filter(id__gt=3).values_list("id", "name")
+r
+[Out] QuerySet [(4, 'spike'), (5, 'tyke'), (6, 'droopy')]
+
+r[0]
+[Out] (4, 'spike')
+
+r[0][0]
+[Out] 4
+
+r[0][1]
+[Out] 'spike'
+```
+
+```python
+r = Author.objects.filter(id__gt=3).values("id", "name")
+r
+[Out] QuerySet [{'name': 'spike', 'id': 4}, {'name': 'tyke', 'id': 5}]
+
+type(r[0])
+[Out] class 'dict'
+
+r[0]
+[Out] {'name': 'spike', 'id': 4}
+
+r[0]['name']
+[Out] 'spike'
+
+r[0]['id']
+[Out] 4
+```
+
+## 6) 필터링 결과의 Slicing
+
+```python
+Author.objects.order_by("id")[1]
+[Out] Author: tyke : tyke@mail.com
+
+Author.objects.order_by("-id")[:3]
+[Out] QuerySet [<Author: droopy : droopy@mail.com>..]
+
+Author.objects.filter(id__gt=1).order_by("-id")[2:5]
+[Out] QuerySet [<Author: spike : spike@mail.com>, ...]
+
+Author.objects.order_by("-id")[-1]
+AssertionError: Negative indexing is not supported.
+```
+
+
+
+
+조건 결과를 Slicing, index으로 요약 가능하다
+
+```python
+
 ```
 
 
