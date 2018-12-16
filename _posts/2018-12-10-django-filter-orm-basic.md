@@ -40,7 +40,7 @@ print(a.id, a.pk)
 {: .notice--info}
 
 <br/>
-# **2 Create / Delete**
+# **2 Create**
 
 ## **objects.create() , .objects.bulk_create()**
 
@@ -242,7 +242,7 @@ Author.objects.filter(created_on__year=2018).last()
 
 # **6 복잡한 쿼리문과 Q**
 
-AND, OR 조건문을 Django 에서는 Q를 통해서 구현합니다
+**AND, OR** 조건문을 Django 에서는 **Q**를 통해서 구현합니다
 
 ```python
 from django.db.models import Q
@@ -252,8 +252,12 @@ from django.db.models import Q
 Q(name__icontains="tom", email__icontains="example", created_on__year=2018)
 ```
 
+**filter(), exclude(), get(), Q()** 함수들은 **& (AND)** 그리고 **| (OR)** 필터를 혼용하여 활용 가능합니다.
 
-
+```python
+Author.objects.filter(Q(name__iexact="tommy") | Q(name__iexact="jerry"))
+QuerySet [<Author: tommy : tommy@example.com>...]
+```
 
 
 # **7 etcs**
@@ -358,15 +362,37 @@ Author.objects.order_by("-id")[-1]
 AssertionError: Negative indexing is not supported.
 ```
 
+# 8 Updating Multiple Objects
 
-
-
-조건 결과를 Slicing, index으로 요약 가능하다
+2번 인덱스의 데이터를 새롭게 갱신합니다 
 
 ```python
+a = Author.objects.get(pk=2)
+a
+[Out] Author: tommy : tommy@email.com
 
+a.name  = 'tom'
+a.email = 'tom@mail.com'
+a.save()
+a
+[Out] Author: tom : tom@mail.com
 ```
 
+```python
+# 조건에 일치하는 컬럼 데이터를 갱신 (갱신된 컬럼값을 출력)
+Author.objects.filter(id__gt=3).update(active=True, name='x')
+[Out] 3
+```
 
-[link](https://overiq.com/django-1-11/django-orm-basics-part-1/)
-Selecting the Fields 부분에서 마무리 작업을 진행하자...
+# 9 Delete
+
+특정조건의 QuerySet 을 호출하고 이를 삭제합니다 
+
+```python
+a = Author.objects.get(pk=2)
+a
+[Out] Author: tom : tom@mail.com
+
+a.delete()
+[Out] (1, {'djangobin.Author': 1})
+```
