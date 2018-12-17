@@ -2,7 +2,7 @@
 title : Example / django filter Queryset
 last_modified_at: 2018-12-05T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django-girls.jpg
+  overlay_image: /assets/images/book/django-screen.jpg
 categories:
   - django
 tags: 
@@ -16,12 +16,8 @@ toc: true
 
 Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 Django 2.0에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다. 
 
-<div>
-  <img src="{{site.baseurl}}/assets/images/photo/cache.jpg" width='600'>
-</div>
-
 <br/>
-책을 뒤척이면서 진도가 더뎌서 무척 힘들었습니다. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들을 통해서** 작은 Project를 완성하고 이를 누적해 가면서 실력을 멈추지 말고 Upgrade 하며 진행하면 좋을거 같습니다.
+이 내용을 정리하면서 여러책을 뒤척이다 보니 진도가 더뎌서 무척 힘들었습니다. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들을 통해서 **작은 Project 들을 완성해** 나아가고, 이를 누적해 가면서 실력을 멈추지 말고 Upgrade 하며 진행하면 좋을거 같습니다.
 
 <br/>
 # **1 Basic Tutorial** 
@@ -39,9 +35,9 @@ Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filte
 필터와 연동하는 **Queryset 필터링 캐시**를 정의합니다
 ```python
 from django.contrib.auth.models import User
-import django_filters
+from django_filters import FilterSet
 
-class UserFilter(django_filters.FilterSet):
+class UserFilter(FilterSet):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', ]
@@ -72,7 +68,7 @@ def search(request):
 
 **filter** 로 검색용 폼을 생성하고, 연동 필터링 결과는 `filter.qs` 객체로 호출 합니다. **.get_full_name** 파라미터는 **first_name** 과 **last_name** 필드값을 붙여서 출력합니다.
 
-> **filter.qs** : 필터링 QuerySet
+> **filter.qs** : `from django_filters import FilterSet` 에서 생성된 기본 QuerySet을 호출합니다 [출처](https://django-filter.readthedocs.io/en/master/guide/usage.html#generic-view-configuration)
 
 ```html
 <form class="" method="get">
