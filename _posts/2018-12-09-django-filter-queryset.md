@@ -56,8 +56,8 @@ class UserFilter(FilterSet):
 
 
 <div>
-  <img src="{{site.baseurl}}/assets/images/photo/cache.gif" width=400>
-</div><br/> 
+  <img src="{{site.baseurl}}/assets/images/photo/cache.gif" width=400 /> 
+</div>
 
 
 ```python
