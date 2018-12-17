@@ -12,7 +12,7 @@ toc: true
 ---
 
 
-Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 Django 2.0에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다. 
+**How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 Django 2.0에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다. 
 
 <br/>
 이 내용을 정리하면서 여러책을 뒤척이다 보니 진도가 더뎌서 무척 힘들었습니다. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들을 통해서 **작은 Project 들을 완성해** 나아가고, 이를 누적해 가면서 실력을 멈추지 말고 Upgrade 하며 진행하면 좋을거 같습니다.
@@ -199,6 +199,10 @@ class UserFilter(FilterSet):
 
 필드의 공통된 내용을 **CheckBox** 로 선택합니다.
 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/photo/filter5.png">
+</figure> 
+
 ```python
 from django.contrib.auth.models import User,Group
 from django_filters import ModelMultipleChoiceFilter
@@ -217,4 +221,109 @@ class UserFilter(FilterSet):
 ```
 
 <br/>
-# 5 **템플릿 구현하기**
+# **5 django-widget-tweaks <small>템플릿 구현하기</small>**
+
+지금까지 **django form** 기본 스타일을 사용하여 **filter.form** 검색조건과, **filter.qs** 결과변수를 사용하여 템플릿을 구현 하였습니다. 
+
+```html
+<form class="" method="get">
+  { { filter.form.as_p } }
+  <button type="submit">검색</button>
+</form>
+
+<ul>
+{ % for user in filter.qs  % }
+  <li>{ {user.username} } - { {user.get_full_name} }</li>
+{ % endfor % }
+</ul>
+```
+
+다양한 스타일을 적용하기 위해서 `django-widget-tweaks`을 사용합니다
+
+이 모듈은 템플릿의 폼 필드 렌더링을 조정합니다. 별도의 파이썬 코드를 사용하지 않고도 **CSS 클래스** 및 **HTML 속성 변경**을 지원합니다
+
+> **$ pip install django-widget-tweaks**
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    'widget_tweaks',
+]
+```
+
+bootstrap 스타일을 사용하여 폼 템플릿을 re-desing 합니다
+
+```html
+<head>
+  { % load static % }
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+</head>
+
+{ % load widget_tweaks % }
+<form method="get">
+  <div class="well">
+    <h4 style="margin-top: 0">Filter</h4>
+    <div class="row">
+      <div class="form-group col-sm-4 col-md-3">
+        { {filter.form.username.label_tag} }
+        { % render_field filter.form.username class="form-control" % }
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        { {filter.form.first_name.label_tag} }
+        { % render_field filter.form.first_name class="form-control" % }
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        { {filter.form.last_name.label_tag} }
+        { % render_field filter.form.last_name class="form-control" % }
+      </div>
+      <div class="form-group col-sm-4 col-md-3">
+        { {filter.form.year_joined.label_tag} }
+        { % render_field filter.form.year_joined class="form-control" % }
+      </div>
+      <div class="form-group col-sm-8 col-md-6">
+        { {filter.form.groups.label_tag} }
+        <div>
+          { % for choice in filter.form.groups % }
+            <label class="checkbox-inline">
+              { {choice.tag} }{ {choice.choice_label} }
+            </label>
+          { % endfor % }
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+  </div>
+</form>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>아이디</th> <th>이름</th> <th>성</th>
+      <th>가입일자</th> <th>그룹</th>
+    </tr>
+  </thead>
+  <tbody>
+    { % for user in filter.qs % }
+      <tr>
+        <td>{ {user.username} }</td>
+        <td>{ {user.first_name} }</td>
+        <td>{ {user.last_name} }</td>
+        <td>{ {user.date_joined} }</td>
+        <td>
+          { % for group in user.groups.all % }
+            { {group} }
+          { % empty % }
+            <em class="text-muted">No group</em>
+          { % endfor % }
+        </td>
+      </tr>
+    { % empty % }
+      <tr>
+        <td colspan="5">No data</td>
+      </tr>
+    { % endfor % }
+  </tbody>
+</table>
+```
