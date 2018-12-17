@@ -238,6 +238,8 @@ class UserFilter(FilterSet):
 </ul>
 ```
 
+## **1) django-widget-tweaks**
+
 다양한 스타일을 적용하기 위해서 `django-widget-tweaks`을 사용합니다
 
 이 모듈은 템플릿의 폼 필드 렌더링을 조정합니다. 별도의 파이썬 코드를 사용하지 않고도 **CSS 클래스** 및 **HTML 속성 변경**을 지원합니다
@@ -251,7 +253,47 @@ INSTALLED_APPS = [
 ]
 ```
 
-bootstrap 스타일을 사용하여 폼 템플릿을 re-desing 합니다
+**django-widget-tweaks**을 활용하는 방법은 템플릿 내부에서 `{ % render_field % }` 을 통해서 스타일 내용을 추가합니다.
+
+```html
+{ % render_field % }
+
+{ {filter.form.year_joined.label_tag} }
+{ % render_field  filter.form.year_joined  class="form-control" % }
+```
+
+## **2) Bootstrap Glyphicons**
+
+[부트스트랩(twitter)](https://getbootstrap.com/docs/3.3/getting-started/) 에서 [Glyphicons](https://stackoverflow.com/questions/19608873/how-to-include-glyphicons-in-bootstrap-3) 등을 적용하기 위한 설정방법을 정리해 보겠습니다. (버전 4도 있지만 오래된 예제들도 적용 가능하도록 3.3.7로 정리했습니다)
+
+[Bootstrap 3.7.7 다운로드](https://github.com/twbs/bootstrap/releases/download/v3.3.7/bootstrap-3.3.7-dist.zip) 에서 자료를 다운받습니다. 해당 압축파일을 풀면 **css, fonts, js** 3개의 폴더가 생성됩니다. 이를 django 의 static 폴더 내부에 3개의 폴더를 함께 붙여 넣습니다.
+
+> /css      <-- Bootstrap.css 폴더 <br/> 
+> /fonts    <-- Bootstrap fonts 폴더 <br/>
+> /js       <-- Bootstrap JavaScript 폴더
+
+```html
+{ % load static % }
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
+```
+
+위와같이 폴더들을 위치하면, bootstrap.min.css 파일만 불러와도 상대경로를 사용하여 **fonts** 에 존재하는 **bootstrap Glyphicons** 자료들도 활용할 수 있습니다.
+
+```css
+// bootstrap.min.css
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url(../fonts/glyphicons-halflings-regular.eot);
+}
+```
+
+## **3) Bootstrap Glyphicons Template**
+
+위에서 설정한 내용을 바탕으로 아래의 템플릿을 구현하면, 기본스타일과 다양한 아이콘을 활용한 내용을 출력합니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/photo/filter6.png">
+</figure> 
 
 ```html
 <head>
@@ -327,5 +369,3 @@ bootstrap 스타일을 사용하여 폼 템플릿을 re-desing 합니다
   </tbody>
 </table>
 ```
-
-

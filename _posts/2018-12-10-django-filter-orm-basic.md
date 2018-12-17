@@ -74,19 +74,18 @@ Author.objects.count()
 ```python
 l = Author.objects.all()
 type(l)
-[Out] class 'django.db.models.query.QuerySet'
+[Out] class django.db.models.query.QuerySet
 
 l
-[Out] QuerySet [<Author: tommy : tommy@example.com>, <Author: jerry : jerry@mail.com>, <Author: spike : spike@mail.com>, <Author: tyke : tyke@mail.com>, <Author: droopy : droopy@mail.com>]
+[Out] QuerySet [<Author: tommy : tommy@example.com>...]
 
 l[0]
 [Out] Author: tommy : tommy@example.com
 
 for a in l:
     print("Author: {0}".format(a.name))
-
 [Out] Author: tommy
-Author: jerry
+Author: jerry...
 ```
 
 ## **.objects.filter()**
@@ -278,7 +277,6 @@ Author.objects.filter(name__contains="ke")
 
 Author.objects.get(name__contains="ke")
 [Out] Traceback (most recent call last): djangobin.models.MultipleObjectsReturned: get() returned more than one Author--it returned 2!
-
 
 Author.objects.get(name__contains="captain planet")
 [Out] Traceback (most recent call last): djangobin.models.DoesNotExist: Author matching query does not exist.
