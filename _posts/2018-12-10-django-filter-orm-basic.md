@@ -1,5 +1,5 @@
 ---
-title : Example / django ORM
+title : Tutorial / django ORM
 last_modified_at: 2018-12-05T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-screen.jpg
@@ -11,10 +11,9 @@ tags:
 toc: true 
 ---
 
+Django 에서 기본으로 제공하는 **filed lookup** 파라미터가 많은데, 이번 페이지 에서는 **Django ORM 기초**를 최대한 압축적으로 정리해 보려고 합니다.
 
-django-filter 모듈의 내용을 정리하면서 **filed lookup** 파라미터들이 잔뜩 등장합니다. 기본부터 단계를 생각해 보면 **SQL Basic** -> **Django Object Relate** -> **django-filter** 순서로 정리를 한다면 저위망 포위식의 내용정리가 가능할 것으로 보입니다. <small><strike>조금씩 시작해보자 django 부터 ㅜㅜ</strike></small>
-
-이번 페이지 에서는 **Django ORM 기초**를 최대한 압축적으로 정리해 보려고 합니다.
+단계적으로 생각해 보면 **SQL Basic** -> **Django Object Relate** -> **django-filter** 순서로 정리를 한다면 저위망 포위식의 내용정리가 가능합니다. <small><strike>그러면 django 부터 조금씩 시작해 보겠습니다</strike></small>
 
 <br/>
 # 1 Tutorial
