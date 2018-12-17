@@ -256,11 +256,11 @@ bootstrap 스타일을 사용하여 폼 템플릿을 re-desing 합니다
 ```html
 <head>
   { % load static % }
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{ % static 'css/bootstrap.min.css' % }" />
 </head>
 
 { % load widget_tweaks % }
-<form method="get">
+<form method="get"> 
   <div class="well">
     <h4 style="margin-top: 0">Filter</h4>
     <div class="row">
@@ -327,3 +327,5 @@ bootstrap 스타일을 사용하여 폼 템플릿을 re-desing 합니다
   </tbody>
 </table>
 ```
+
+
