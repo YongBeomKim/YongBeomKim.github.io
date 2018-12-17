@@ -193,12 +193,28 @@ class UserFilter(FilterSet):
 
 
 <br/>
+# 4 **ModelMultipleChoiceFilter() <small>Filtering Options</small>**
 
-Exploring the Filtering Options
+> **ModelMultipleChoiceFilter**(queryset = Group.objects.all()
 
-# 4 Filtering Options 
+필드의 공통된 내용을 **CheckBox** 로 선택합니다.
 
 ```python
+from django.contrib.auth.models import User,Group
+from django_filters import ModelMultipleChoiceFilter
 
+class UserFilter(FilterSet):
+    first_name = CharFilter(lookup_expr = 'icontains')
+    year_joined = NumberFilter(name = 'date_joined', lookup_expr = 'year')
+    groups = ModelMultipleChoiceFilter(
+        queryset = Group.objects.all(),       # 필터링 데이터
+        widget = forms.CheckboxSelectMultiple # 필터링 방법(checkbox)
+        )
 
+    class Meta:
+        model = User
+        fields = ['username', 'year_joined', 'groups',]
 ```
+
+<br/>
+# 5 **템플릿 구현하기**
