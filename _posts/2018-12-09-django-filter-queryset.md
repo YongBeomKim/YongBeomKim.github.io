@@ -28,11 +28,12 @@ Simple is Better than Complex 사이트에서 예제로 올라온 **How to Filte
 
 ### **models.py**
 
-`from django.contrib.auth.models import User` 의 **사용자 정보 Table** 을 사용합니다 
+`from django.contrib.auth.models import User` **사용자 정보 Table** 을 사용합니다 
 
 ### **filters.py**
 
 필터와 연동하는 **Queryset 필터링 캐시**를 정의합니다
+
 ```python
 from django.contrib.auth.models import User
 from django_filters import FilterSet
@@ -42,7 +43,7 @@ class UserFilter(FilterSet):
         model = User
         fields = ['username', 'first_name', 'last_name', ]
 ```
-**fields =** 코딩하면서 **filter** 단수명으로 오타가 발생했던 부분으로 주의하자
+**fields =** 에서 **filter** 단수명 오타를 주의하자
 {: .notice--info}
 
 
@@ -52,6 +53,12 @@ class UserFilter(FilterSet):
 
 1. **user_list : 데이터베이스 인스턴스**를 생성합니다
 2. **user_filter : 필터링 캐시**를 생성합니다
+
+
+<div>
+  <img src="{{site.baseurl}}/assets/images/photo/cache.gif" width=400>
+</div><br/> 
+
 
 ```python
 from django.contrib.auth.models import User
@@ -109,7 +116,7 @@ urlpatterns = [
 
 ## **1) String 일부 검색용 필드** 
 
-**일부 검색필드**를 사용하면 **폼 label**도 자동 변경된다.
+django 의 **filter(), exclude(), get(), Q()** 에서 제공하는 여러 **filter lookup 파라미터** 들을 응용한, 다양한 검색조건을 제공합니다
 
 > **CharFilter(lookup_expr**='icontains')
 
