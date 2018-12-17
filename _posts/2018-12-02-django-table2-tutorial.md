@@ -12,8 +12,6 @@ toc: true
 ---
 
 
-# django-table2
-
 1. django-table2 설치하기
 2. 테이블 데이터 인스턴스 및 views.py 사용하기
 3. Generic View 사용하기 

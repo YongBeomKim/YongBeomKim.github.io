@@ -11,7 +11,6 @@ tags:
 toc: true 
 ---
 
-# Introduction & Links
 
 * django-filter [link](https://django-filter.readthedocs.io/en/master/)
 * django-crispy-forms [link](https://django-crispy-forms.readthedocs.io/en/latest/install.html)

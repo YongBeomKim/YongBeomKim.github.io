@@ -12,8 +12,6 @@ toc: true
 ---
 
 
-# django-table2
-
 1. 테이블 데이터 출력 바꾸기
 2. 테이블 컬럼 속성값 추가하기
 3. header / footer 튜플 추가하기
