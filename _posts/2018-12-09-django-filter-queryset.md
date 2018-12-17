@@ -1,5 +1,5 @@
 ---
-title : Example / django filter 사용법
+title : Example / django filter 예제
 last_modified_at: 2018-12-05T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-screen.jpg
@@ -274,8 +274,11 @@ INSTALLED_APPS = [
 
 ```html
 { % load static % }
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
+<link href="{ % static 'css/bootstrap.css' % }" rel="stylesheet" media="screen" />
 ```
+
+`bootstrap.min.css` 은 3.3.6 같은 경우에도 잘 작동합니다. 하지만 위에 링크의 압축과 연결된 3.3.7의 경우에는 `bootstrap.css` 을 사용하면 잘 작동합니다.
+{: .notice--info}
 
 위와같이 폴더들을 위치하면, bootstrap.min.css 파일만 불러와도 상대경로를 사용하여 **fonts** 에 존재하는 **bootstrap Glyphicons** 자료들도 활용할 수 있습니다.
 
@@ -327,7 +330,7 @@ INSTALLED_APPS = [
         <div>
           { % for choice in filter.form.groups % }
             <label class="checkbox-inline">
-              { {choice.tag} }{ {choice.choice_label} }
+              { {choice.tag} } { {choice.choice_label} }
             </label>
           { % endfor % }
         </div>
