@@ -1,8 +1,8 @@
 ---
-title : Tutorial / highchart in Django
+title : Sample / JavaScript Chart in Django
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/apexchart.jpg
+  overlay_image: /assets/images/book/django-sample.jpg
 categories:
   - chart
 tags: 
@@ -222,10 +222,10 @@ urlpatterns = [
 
 ### **template.html**
 
-html 템플릿 내부에 **[data-*](https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%86%8D%EC%84%B1_%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)속성은** 표준이 아닌 속성이나 추가적인 DOM 속성으로 의미론적 표준 HTML 요소에 **추가 정보를 저장할 수 있도록** 해줍니다.
+html 템플릿 내부에 **[data-](https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%86%8D%EC%84%B1_%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)속성은** 표준이 아닌 속성이나 추가적인 DOM 속성으로 의미론적 표준 HTML 요소에 **추가 정보를 저장할 수 있도록** 해줍니다.
 
 ```html
-<div id="container" data-url="{% url 'api' %}">
+<div id="container" data-url="{ % url 'api' % }">
 </div>
 
 <script src="highcharts.src.js"></script>
@@ -240,3 +240,5 @@ html 템플릿 내부에 **[data-*](https://developer.mozilla.org/ko/docs/Learn/
   });
 </script>
 ```
+
+이와같은 방식을 사용하면 Django 와 Javascript 를 독립적으로 작성하여 운영하실 수 있습니다. 다른 ChartJs 등에서 활용하는 경우에도 위의 내용을 활용하면 쉽게 접근 가능합니다.
