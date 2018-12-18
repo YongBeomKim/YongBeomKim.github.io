@@ -10,8 +10,20 @@ tags:
 toc: true
 ---
 
+sqlite3로 대충 버텨 왔지만 <br>
+서비스를 구축하기 위해서는 DB를 운영을 해야하는<br>
+현실에 직면해 있고, 
 
-```
+**mysql의 workbench** Entity 설계 용이성으로 흔들리기도 했지만<br> 
+<strike>(그러면서도 돈주고 이번주 토요일 세미나는 신청했다)</strike>
+
+무료라는 강력한 장점과 함께, <br>
+여러 공개된 블로거 분들의 자료들을 모아서<br>
+잘 한번 버무려 보려고 한다. <br>
+<strike>(사람들이 다들 좋다고 하니까 해볼려는 거다. 왜인지는 이제 알아가려는 건 함정..)</strike>
+
+
+```sql
 $ sudo -u postgres psql          # psql 접속
 
 postgres=# createdb quent        # DB 생성  (\l|목록) 
@@ -29,19 +41,6 @@ quent=# CREATE TABLE tbl (id int, na str); # TABLE 생성
 quent=# DROP TABLE tbl                     # TABLE 삭제
 quent=# DROP DATABASE quent                # DATABASE 삭제
 ```
-
-
-sqlite3로 대충 버텨 왔지만 <br>
-서비스를 구축하기 위해서는 DB를 운영을 해야하는<br>
-현실에 직면해 있고, 
-
-**mysql의 workbench** Entity 설계 용이성으로 흔들리기도 했지만<br> 
-<strike>(그러면서도 돈주고 이번주 토요일 세미나는 신청했다)</strike>
-
-무료라는 강력한 장점과 함께, <br>
-여러 공개된 블로거 분들의 자료들을 모아서<br>
-잘 한번 버무려 보려고 한다. <br>
-<strike>(사람들이 다들 좋다고 하니까 해볼려는 거다. 왜인지는 이제 알아가려는 건 함정..)</strike>
 
 
 ## PostgreSQL CLI

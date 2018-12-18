@@ -10,6 +10,7 @@ tags:
 toc: true
 ---
 
+보다 직접적인 명령들을 알아보도록 한다
 
 ```sql
 $ sudo -u postgres psql -d quant    # 해당 DB 접속
