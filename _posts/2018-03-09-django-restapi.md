@@ -25,7 +25,6 @@ $ python manage.py startapp games
 
 ## Dango 에서 직렬화, 역직렬화 관리
 
-
 ### 1 models.py 설정
 
 ```python
@@ -34,7 +33,6 @@ class Game(models.Model):
     name         = models.CharField(max_length=200, blank=True, default='')
     release_date = models.DateTimeField()
 ```
-
 
 ### 2 serializer.py 설정
 

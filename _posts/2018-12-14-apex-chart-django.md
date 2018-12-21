@@ -31,22 +31,22 @@ var options = {
     },
     dataLabels: { enabled: false },
     stroke: { curve: 'straight' },
-    series: [
-        { name: "Desktops",
-          data: [10, 41, 35, 51, 49] }
-    ],
     title: {
         text: 'Trends by Month',
         align: 'left'
     },
     grid: {
-        row: { // 컬럼에서 출력됩니다
+        row: { // 배경 그리드 간격 타일을 출력합니다
             colors: ['#f3f3f3', 'transparent'],
             opacity: 0.5
         },
     },
+    series: [ // 데이터를 Array 로 여러개 사용하면 여러 Line을 출력합니다
+        { name: "Desktops", // 필드명
+          data: [10, 41, 35, 51, 49] } // 필드 데이터 
+    ],
     xaxis: {
-        categories: [
+        categories: [ // 데이터셋 인덱스
         'Jan', 'Feb', 'Mar', 'Apr', 'May'],
     }
 }
@@ -59,6 +59,13 @@ var chart = new ApexCharts(
 chart.render();
 ```
 
+차트의 통합을 추출하고, 분기별은 클릭하면 출력되는 좋은 그래프다
+[Dynamic Chart](https://apexcharts.com/javascript-chart-demos/column-charts/dynamic-loaded-chart/)
 
 
+## 시계열 데이터 생성 및 출력
+
+# candle chart 를 출력하는 방법을 익힙니다
+
+[캔들차트](https://stackoverflow.com/questions/11875770/how-to-overcome-datetime-datetime-not-json-serializable)
 
