@@ -81,16 +81,11 @@ toc: true
 비엔나에서 활동하던 1940년대 주요 미술의 활동중 하나가 **초현실 주의** 입니다. 하지만 지금은 본류가 아닌 일시적인 유행으로 그치고 말았는데 하나는 유명한 **마그리트** 와 **달리**가 **벨기에와 스페인**등 주류 출신이 아니였다는 점, 그리고 가장 중요한 것은 **나치의 하켄크로이츠** 시절 이들의 상상력을 펼칠수 있는 기회로써 활용했기 때문입니다. 
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/art/Art-Sonje-Center.jpg">
-  <figcaption>삼청동 아트선재센터</figcaption>
-</figure>
-
-**나치식 경례** 는 실은 이전부터 올림픽 승리 후 이를 자축하는 용도로써 많이 활용되었습니다. 하지만 이를 나치가 차용하면서 지금은 모든 분야에서 사라지게 됩니다. 이런 방식으로 상징들과 트렌드가 사라지는 경우는 자주 발견할 수 있습니다.
-
-<figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/art/olympic_oath.jpg">
   <figcaption>올림픽 Oath</figcaption>
 </figure>
+
+**나치식 경례** 는 실은 이전부터 올림픽 승리 후 이를 자축하는 용도로써 많이 활용되었습니다. 하지만 이를 나치가 차용하면서 지금은 모든 분야에서 사라지게 됩니다. 이런 방식으로 상징들과 트렌드가 사라지는 경우는 자주 발견할 수 있습니다.
 
 **호안미로**의 작품에는 비정형적인 도형들이 중요한 위치를 차지하는데, 이는 무의식의 영역을 상징합니다
 
@@ -134,7 +129,7 @@ toc: true
 한때 **마크 톱**을 베꼈다는 이야기가 있었지만, 당시 마크톱은 주류 작가였고 그의 작품은 **앵포르벨 -> 추상주의 -> 한국의 단색화** 와 같은 정제된 표현이라는 점에서 폴락의 작품과 차이를 볼 수 있습니다. 
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/art/suwon_lgbt_art-4.jpg">
+  <img src="{{site.baseurl}}/assets/images/art/suwon_lgbt_art-3.jpg">
   <figcaption>마크톱 작품</figcaption>
 </figure>
 
