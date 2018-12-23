@@ -12,14 +12,11 @@ toc: true
 ---
 
 
-> Book Review : Do It Vue.js 입문
-
-상편에서는 **Vue 인스턴스 와 컴포넌트** 그리고 전달객체로써 **props, emit 과 on, eventBus**를 살펴보았다 
-
+상편에서는 **Vue 인스턴스 와 컴포넌트** 그리고 전달객체로써 **props, emit 과 on, eventBus**를 살펴 보았습니다.
 
 # 필수 기술들
 
-## Vue router
+## **Vue router**
 
 > **\<router-view\> \</router-view\>** : 라우터 결과를 출력
 
@@ -137,21 +134,19 @@ axios({
 <br>
 # Vue Template
 
-<br>
 ## Template
 
 > render() 에서는 JSX 기반의 문법들을 활용하여 개발을 한다
 
 **v-once :** 데이터가 변경되어도 바꾸지 않는다, **v-bind () :** \: 객체로 요약하여 Vue 객체를 Template에 연결한다 
 
-<br>
 ## \{ \{ \} \}
 
 **{ { } } :** 템플릿 객체로 인라인 방식으로 **자바스크립트 표현식을 활용** 가능하다
 
 ```html
 <p>{ { message + '!!!'} }</p>
-<p>{ { message.split(''.reverse().join('/')) } }
+<p>{ { message.split(''.reverse().join('/')) } }</p>
 ```
 
 자바스크립트를 내부에 구현하는 경우 var 선언문, if 분기문 은 불가능 하지만, **삼항연산자 `{ { true ? 100 : 0 } }`** 는 사용 가능하다

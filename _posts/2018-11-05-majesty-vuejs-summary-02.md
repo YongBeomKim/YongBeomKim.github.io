@@ -11,30 +11,27 @@ tags:
 toc: true 
 ---
 
-> Book Review
-
-Vue.js의 구조를 1페이지로 요약해보자
-
+앞에서 정리한 Vue 내용을 참고로 다양한 컴포넌트 등 예제를 정리해 보겠습니다.
 
 <br>
 # <small>ch7 :</small> 컴포넌트
 
-Vue 컴포넌트 속성으로는 **template (화면에 표시할 HTML/CSS), methods (화면로직 method), created (Vue 인스턴스 추가생성시 실행로직)** 가 있다
+Vue 컴포넌트 속성으로는 **Template Tag**(화면에 표시할 HTML/CSS), **methods** (화면로직 method), **created** (Vue 인스턴스 추가생성시 실행로직) 이 있다
 
 ## 1 template 의 활용
 
-> **\<plant\>\</plant\>**
+> **\<plant\> \</plant\>**
 
-html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후, vue component 완 연결하여 특정한 태그를 정의한다
+html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후, **vue component** 를 연결하여 특정한 태그를 정의합니다.
 
 ```html
 <div id="app">
-    <div class="container">
-      <ul class="list-group">
-        <planet v-for="(planet, index) in planets" 
+  <div class="container">
+    <ul class="list-group">
+      <planet v-for="(planet, index) in planets" 
          :key="index" :planet="planet"></planet>
-      </ul>
-    </div>
+    </ul>
+  </div>
 </div>
 ```
 
@@ -43,10 +40,12 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
     <li> { { planet.name } } 신청 { { planet.visits } } 명
       <button v-show="canBeVisited" @click="visit">신청</button>
       <span v-show="planet.visits>0" class="fa-rocket" aria-hidden="true">
-      </span> // v-show="planet.visits>0" True 면 aria-hidden="true" 활성화 
+      </span> 
     </li>
 </template>
 ```
+**v-show="planet.visits > 0"** 판단 결과 **True 값을** 충족하면 **aria-hidden = "true"** 조건에 해당되는 값을 출력합니다.
+{: .notice--info}
 
 ```javascript 
   Vue.component('planet', { // 컴포넌트 Tag
@@ -66,11 +65,11 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
   })
 ```
 
-사용자 정의 html 태그에서 **영문의 대소문자를 구분하지 않는다.** 코딩시 **CamelCase** 를 활용하는 경우, 태그 및 속성명의 대소문자 사이를 **'-'(하이픈)** 을 사용한다
+사용자 정의 **html 태그** 에서는 **영문의 대 소문자를 구분하지 않는다.** 코딩시 **Camel Case** 로 이름을 정의하는 경우에는, 태그 및 속성명의 대소문자 사이를 **'-'(하이픈)** 을 사용하여 중간 대문자를 구분합니다.
 {: .notice--info}
 
 
-## 2 (:) v-bind 
+## 2 v-bind : **(:)** <small> vue.js 객체를 template와 연결</small>
 
 > \<li v-for="(hero, index) in heroes" :key="index"\>
 

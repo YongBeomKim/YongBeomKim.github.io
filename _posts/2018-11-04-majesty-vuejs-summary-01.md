@@ -11,18 +11,16 @@ tags:
 toc: true 
 ---
 
-> Book Review
-
-Vue.js의 구조를 1페이지로 요약해보자
+Vue.js의 구조를 간략하게 정리 해 보겠습니다
 
 <img src="http://developerfarm.cdn1.cafe24.com/cover/s/9791158390754.jpg" width='300'>
 
 <br>
 # <small>Ch 1, 2, 3</small> Vue 개념 및 디렉티브 ()
 
-1. vue 인스턴스 : **new Vue()**
-2. vue **directive(지시)** 함수
-        1. **v-model :** Vue 객체를 HTML과 binding
+1. vue **인스턴스 객체** : ex) **new Vue()**
+2. vue **directive** (지시함수)
+    1. **v-model :** Vue 객체를 HTML과 binding
     2. **v-show :** 엘리먼트 출력 (랜더링 비용 높다 : **내용이 자주변경**)
     3. **v-if :** True 조건 엘리먼트 출력 (토글 비용 높다 : **조건제한**)
     4. **v-else :** v-if false 일때 엘리먼트를 출력
@@ -30,7 +28,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 3. { { **매개변수** } } , { { **$Vue 메서드** } }
 
 ```html
-1.특정 태그의 활성여부 
+1.특정 태그의 활성여부 : ! 객체값 포함시 활성화
 <h1 v-if="!message"> Title </h1>
 
 2.여러개를 묶어서 활성여부 : HTML5 의 Template 태그를 활용 
@@ -57,9 +55,12 @@ Vue.js의 구조를 1페이지로 요약해보자
 <li v-for="(story, idx) in stories" :key="idx">
 {{idx}} {{ story.writer }} said "{{ story.plot }}"</li>
 ```
-
-**idx** 는 Python 의 enumerate() 와 같이 **배열의 index값을** 자동으로 출력한다. 개별 **key 값**은 **객체명.key**로 추출한다
+**:key="idx"** 는 **v-bind key="idx"**를 축약한 것으로써, **idx** 는 Python 의 enumerate() 와 같이 **배열의 index값을** 자동으로 출력한다. 개별 **key 값** 은 **객체명.key** 로 추출한다.
 {: .notice--info}
+
+vue.js 에서 축약 템플릿 문법인 **:** (v-bind 는 하편에서 정리를 합니다) 와 바로 아래서 서술할 **@** (v-on) 을 계속 반복해서 이해하면 구조적인 틀이 잘 보일 것 입니다. 
+{: .notice--danger}
+
 
 <br>
 # <small>ch 5</small> v-on (@)
@@ -70,7 +71,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 
 **[@이벤트 목록](http://linuxism.tistory.com/1705)** ex) 실행시 화면을 새로고침 한다.
 
-1. input 부분 수정한 내용을 반영하는 경우 vue 인스턴스에 **event.preventDefault();**를 추가 
+1. input 부분 수정한 내용을 반영하는 경우 vue 인스턴스에 **event.preventDefault();**를 추가 합니다 
 2. **v-on** 이벤트를 제어하는 **.stop, .prevent, .once** [이벤트 핸들러](https://kr.vuejs.org/v2/guide/events.html)를 지원한다. ( .capture, .self는 거의 사용되지 않는다 / Chain Method도 가능)
 
 ```html
@@ -81,7 +82,7 @@ Vue.js의 구조를 1페이지로 요약해보자
 <button v-on:click="함수">
 <button @click="함수">
 
-3. 새로고침 제한 핸들러 (Chain Method 가능)
+3. 새로고침 제한 핸들러 (Chain Method)
 <button @click.prevent="함수">
 ```
 
@@ -111,7 +112,7 @@ new Vue({
         b: () => {return this.a + 1} } 
     });
 </script>
-``` 
+```
 
 계산기 구현예제 
 
@@ -177,7 +178,7 @@ new Vue({
           plot: "I crashed my car today!",
           writer: "Alex"},]
     },
-    methods: {   // () => {} 처리안됨
+    methods: {  // () => {} 처리안됨
         storiesBy: function (writer) {
           return this.stories.filter(function (story) {
             return story.writer === writer }) }

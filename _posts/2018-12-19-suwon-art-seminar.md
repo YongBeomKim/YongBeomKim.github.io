@@ -8,7 +8,6 @@ categories:
 tags: 
     - suwon
     - art
-toc: true 
 ---
 
 수요일 오후 문자한통이 왔는데 **[임근준](chungwoo.egloos.com) 평론가의 강연과** 함께 **페기 구겐하임 다큐멘터리를 19일 저녁에 상영한다** 였습니다. 임근준 평론가는 개인적으로 약 10년전 **KBS 문화산책** 라디오에서 의 **용감한 그들 당돌한 미술** 이라는 코너를 빠지지 않고 재미있게 들었습니다. 이분의 강연 문자를 보자마자 꼭 참석해야 한다는 생각으로 출발하였습니다.
@@ -163,7 +162,7 @@ toc: true
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/art/Truvada.jpg">
-  <figcaption>lgbt 예술가들이 시기와 질투나는 이유를 알 듯??</figcaption>
+  <figcaption>트루바다 | 관계전 2알투약 후 1일씩 1알 2일 복용</figcaption>
 </figure>
 
 LGBTQ도 줄어든 탄압과 함께 **[트루바다(Truvada)](http://www.econovill.com/news/articleView.html?idxno=324380)**의 출시로 인해, AIDS 의 공포까지 종식하게 됩니다. 즉 그들의 원하던 문한한 성생활도 가능해진 상황으로 변화하게 된 것입니다. <small>성관계 전 2알 그리고 이틀동안 1알 씩.. 비보험으로 1년 500만원 정도 약값이 드는데, 태국에 가면 2가지 카피본이 있고 이를 사용하면 1달 5만원 약 60만원으로 복용 가능하다는데 난 먹을일이 없다는.. </small>

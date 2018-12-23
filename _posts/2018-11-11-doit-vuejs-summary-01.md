@@ -11,10 +11,7 @@ tags:
 toc: true 
 ---
 
-
-> Book Review : Do It Vue.js 입문
-
-바로 앞에서 정리한 JavaScript 기본내용에 추가된 부분을 중심으로 내용들 정리하기
+바로 앞에서 정리한 **JavaScript** 기본내용에 추가로 활용 가능한 부분을 중심으로 내용을 간단하게 정리합니다.
 
 <br>
 # Vue 인스턴스 와 컴포넌트
@@ -53,7 +50,6 @@ new Vue({
 <br>
 # 뷰 컴포넌트 통신
 
-<br>
 ## 통신이 필요한 경우
 
 ```javascript
@@ -83,7 +79,6 @@ new Vue({
 **cmp2data: cmp1.data.cmp1data** cmp1, cmp2 이들이 Vue component 생성시 별개 유효범위를 할당받으므로 직접 접근이 불가능 하다
 {: .notice--info} 
 
-
 <br>
 ## 부모에서 자식에게 전달 (일반적)
 
@@ -103,13 +98,11 @@ Vue.component('cmp', {
     props: ['props'],               // props 속성이름 (v-bind로 연결)
     template: '<p>{ {props} }</p>', // props 활용 예
 });
-
 new Vue({
     el: '#app',
     data: { msg: '부모객체 통과' }
 });
 ```
-
 
 <br>
 ## 자식의 이벤트를 부모가 전달
@@ -146,10 +139,8 @@ new Vue({
     }
 });
 ```
-
 **.$emit('이벤트이름')** 에서 외부로 연결할 이벤트 이름을 정의하고, **template:**에서 앞의 **이벤트이름**을 활용하여 구현할 **템플릿 Design을** 정의한다
 {: .notice--info}
-
 
 <br>
 ## 같은 레벨의 컴포넌트 사이의 통신
@@ -161,15 +152,14 @@ new Vue({
 **Vue 전역변수를 Event Bus**로 사용하면 상위-하위 관계를 유지하지 않아도, 데이터를 한 컴포넌트에서 다른 컴포넌트로 전달할 수 있습니다.
 
 ```html
-    <div id="app">
-        <child-component></child-component>
-    </div>
+<div id="app">
+  <child-component></child-component>
+</div>
 ```
 
 ```javascript
 // 전역변수 eventBus 를 지정, 송수신 객체로 활용 
 var eventBus = new Vue();
-
 Vue.component('child-component', {
   template: '<div>하위 컴포넌트<button v-on:click="log">버튼</button></div>',
   methods: {
