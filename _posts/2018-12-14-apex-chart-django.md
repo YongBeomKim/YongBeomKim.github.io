@@ -13,10 +13,10 @@ toc: true
 ---
 
 
-E-chart, ChartJs, High Chart 등 여러가지를 앞에서 다뤘습니다. 바로 앞 페이지에서 JavaScript와 연동하는 방법을 익혔다면, 이번에는 JavaScript Chart 중 **MIT 라이센스를** 갖는 **[Apex Chart](https://apexcharts.com/)의 기본 문법들** 을 정리합니다.
+E-chart, ChartJs, High Chart 등 여러가지를 앞에서 다뤘습니다. 이번에는 **MIT 라이센스를** 갖는 **[Apex Chart](https://apexcharts.com/)의 기본 문법들** 을 정리하면서 **JavaScript 모듈에 필요한 from Python to Json 객체를** 생성하는 함수를 만들면서 **ApexChart** 의 특징들을 정리 해보겠습니다.
 
 
-# [Line Chart](https://apexcharts.com/javascript-chart-demos/line-charts/basic/)
+# **Line차트** <small>[link](https://apexcharts.com/javascript-chart-demos/line-charts/basic/)</small>
 
 앞에서 정리한 Django 이식 방법들을 apexchart에 적용합니다
 
@@ -59,8 +59,59 @@ var chart = new ApexCharts(
 chart.render();
 ```
 
+
+# **Scatter 차트** <small>[link](https://apexcharts.com/javascript-chart-demos/
+
+
+```javascript
+var options = {
+      chart: {
+        height: 350,
+        type  : 'scatter',
+        zoom  : {type: 'xy'}
+      },
+      series: [{
+          name: 'TEAM 1',
+          data: [ [시간값, 23], [timestamp, 33], ... ]
+        },
+        { name: 'TEAM 2',
+          data: [ [timestamp, 51], [timestamp, 13], ... ]
+        },
+      ],
+      dataLabels: {enabled: false},
+      grid: {
+        xaxis: {showLines: true},
+        yaxis: {showLines: true},
+      },
+      xaxis: {type: 'datetime',},
+      yaxis: {max: 70}
+    }
+
+var chart = new ApexCharts(
+  document.querySelector("#chart"),
+  options
+);
+chart.render();
+```
+
+
+
+
+
+
+
 차트의 통합을 추출하고, 분기별은 클릭하면 출력되는 좋은 그래프다
 [Dynamic Chart](https://apexcharts.com/javascript-chart-demos/column-charts/dynamic-loaded-chart/)
+
+
+
+
+
+
+
+
+
+
 
 
 ## 시계열 데이터 생성 및 출력
