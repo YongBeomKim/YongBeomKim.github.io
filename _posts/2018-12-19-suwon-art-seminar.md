@@ -116,11 +116,6 @@ toc: true
 
 이러한 작품들도 페기구겐하임의 콜렉션에 수집되었고, **1938~1947 미국의 모더니즘이 유럽으로 역수출** 되는 계기가 되었습니다
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/art/Jackson Pollock_1943_Mural.jpg">
-  <figcaption>1943 벽(Mural) 중간적인 작품으로 호불호가 갈림</figcaption>
-</figure>
-
 잭슨폴락의 작품에는 **No1**의 이름을 갖는 작품이 많은데, 이는 나의 주된 작품의 본류가 이것이다 라며, 최초의 스타일이라고 생각하는 작품마다 모두 **No1**이라는 제목을 붙였고, 대신 구분을 위해서 각각 부제를 다르게 붙였습니다
 
 
