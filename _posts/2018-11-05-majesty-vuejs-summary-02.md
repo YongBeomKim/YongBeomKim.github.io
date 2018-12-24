@@ -11,7 +11,7 @@ tags:
 toc: true 
 ---
 
-앞에서 정리한 Vue 내용을 참고로 다양한 컴포넌트 등 예제를 정리해 보겠습니다.
+앞에서 정리한 Vue 내용을 참고로 다양한 컴포넌트 와 함수의 활용예제를 정리해 보겠습니다.
 
 <br>
 # <small>ch7 :</small> 컴포넌트
@@ -71,15 +71,15 @@ html5 의 `<template>` 로 특별한 어플리케이션 내용을 정의한 후,
 
 ## 2 v-bind : **(:)** <small> vue.js 객체를 template와 연결</small>
 
-> \<li v-for="(hero, index) in heroes" :key="index"\>
+> \<li **v-for**="(hero, index) in heroes" **:key**="index"\>
 
-> \<li v-for="(hero, index) in heroes" v-bind:key="index"\>
+> \<li **v-for**="(hero, index) in heroes" **v-bind:key**="index"\>
 
 **v-bind (:)** 는 **속성** 또는 **컴포넌트 트로퍼티**를 **동적으로 binding** 함으로써 1) **vue component 객체** 연결 2) **반복문에서 key (index)** 지정 지정 등으로 활용한다
 
 ```html
 <template id="story-template">
-  <h1>{{ sto.writer }} said "{{ sto.plot }}"</h1>
+  <h1>{ { sto.writer } } said "{ { sto.plot } }"</h1>
 </template>
 ```
 
@@ -96,15 +96,18 @@ props 에서 상위 컴포넌트에서 하위로 전달시
 
 하위 컴포넌트가 변경시 부모 컴포넌트를 동작한다
 
-> **이벤트 발생 :** this.$emit('**이벤트명**')
+> **이벤트 발생 :** this.**$emit**('이벤트명')
 
-> **이벤트 수신 :** v-on:'**이벤트명**'="상위 컴포넌트 method"
+> **이벤트 수신 : v-on** :'이벤트명'=**"상위 컴포넌트 method"**
 
-**$emit() :** <small>이벤트 발생</small>, **$on :** <small>이벤트 청취</small>, **$once() :** <small>이벤트 1번만 청취</small>, **$off() :** <small>이벤트 리스너 제거</small>
+1. **$emit() :** 이벤트 발생
+2. **$on :** 이벤트 청취
+3. **$once() :** 이벤트 한번만 청취 후 중단
+4. **$off() :** 이벤트 리스너를 제거
 
 ```html
 <div class="container">
-  <p>{{ votes }}</p>
+  <p>{ { votes } }</p>
   <button @click="vote">투표</button>
 </div>
 ```
@@ -123,17 +126,23 @@ new Vue({
 })
 ```
 
-created() 와 같은 [생명주기 Hook](https://blog.martinwork.co.kr/vuejs/2018/02/05/vue-lifecycle-hooks.html) 으로 1) **beforeCreate** (인스턴스 초기생성) / **created** (인스턴스 추가생성) 2) **beforeMount / mounted** 3) **beforeUpdate / updated** 4) **activated / deactivated** 5) **beforeDestroy / destoryed**
+**created()** 와 같은 [생명주기 Hook](https://blog.martinwork.co.kr/vuejs/2018/02/05/vue-lifecycle-hooks.html) 목록정리
+1. **beforeCreate** (인스턴스 초기생성)
+2. **created** (인스턴스 추가생성) 
+3. **beforeMount / mounted** 
+4. **beforeUpdate / updated** 
+5. **activated / deactivated**
+6. **beforeDestroy / destoryed**
 
 
 ## 2 부모 자식간 인자전달 예제
 
-**자식 컴포넌트를** 변경하면 **부모 컴포넌트도** 함께 변경된다. chrome 에서 잘 작동되고 firefox 에선 잘안되었다 (2018.11.05)
+**자식 컴포넌트를** 변경하면 **부모 컴포넌트도** 함께 변경된다.
 
 ```html
 // Main Html의 구현
 <div class="container">
-  <p>{{ votes }}</p>
+  <p>{ { votes } }</p>
   <div>
     <food @voted="countVote" name="치즈버거"></food>
     <food @voted="countVote" name="베이컨"></food>
@@ -145,7 +154,7 @@ created() 와 같은 [생명주기 Hook](https://blog.martinwork.co.kr/vuejs/201
 // Vue 사용자 food Tag를 생성한다
 <template id="food">
   <div>
-    <p>{{ votes }}</p>
+    <p>{ { votes } }</p>
     <button @click="vote">{ { name } }</button>
   </div>
 </template>
@@ -155,7 +164,7 @@ created() 와 같은 [생명주기 Hook](https://blog.martinwork.co.kr/vuejs/201
 Vue.component('food', {
   template: '#food',
   props: ['name'],
-  data: function() { return { votes: 0 }},
+  data: function() { return { votes: 0 } },
   methods: {
     vote: function(event) {
       this.votes++;  // 자식 컴포넌트 메서드
@@ -173,16 +182,15 @@ new Vue({
 })
 ```
 
-**.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다
-{: .notice--info} 
-
+**.srcElement.textContent** 를 사용하면 엘리먼트에 접근 가능합니다. 하지만 아래의 코드는 **chrome** 에서 잘 작동되고 **firefox** 에선 잘 안되었다 (2018.11.05)
+{: .notice--info}
 
 ## 비부모 자식간 통신 
 
 1. **new Vue()** : 윈도우 제어 Vue 인스턴스
 2. **Vue.component() :** Vue 컴포넌트 객체
 3. **var eventBus** = new Vue() 빈 이벤트 버스를 생성
-4. eventBus**.$emit()**, eventBus**.$on(**)** 객체로 제약없이 제어가능
+4. eventBus**.$emit()**, eventBus**.$on()** 객체로 제약없이 제어가능
 
 <br>
 # <small>ch 9</small> 클래스와 스타일 바인딩
@@ -193,18 +201,17 @@ new Vue({
 
 **Boolean 조건(함수)**을 활용하여 **객체값을** 컨트롤 한다
 
-> \<p v-bind:class="{ 'red' : color, 'blue' : !color }"\>
+> \<p **v-bind**:class="{ 'red':color, 'blue':!color }"\>
 
-> \<p v-bind:class="{ color ? 'red' 'blue'}"\>
-
+> \<p **v-bind**:class="{ color **?** 'red' 'blue'}"\>
 
 ## 2 인라인 스타일의 조작
 
 Vue 객체를 활용하여 스타일 값을 제어한다. 1) 직접 값을 입력하거나 2) vue 인스턴스 메서드 객체값을 활용한다
 
-> \<div :style="{'color':'blue', fontsize:'20px'}"\> 
+> \<div **:style**="{'color':'blue', **fontsize**:'20px'}"\> 
 
-> \<div :style="{'color': bus.color, fontsize: bus.fontsize}"\> 
+> \<div **:style**="{'color': bus.color, **fontsize**: bus.fontsize}"\> 
 
 ## 3 인라인 스타인 배열객체
 

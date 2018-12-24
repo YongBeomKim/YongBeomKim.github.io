@@ -11,9 +11,9 @@ toc: true
 ---
 
 
-> Book Review : JavaScript 입문 2016 윤인성
+**html5 태그 -> CSS 스타일 -> JavaScript 기본 기능 -> Jquery 동적기능 -> Vue / React 프레임워크** 순서대로 **기본 내용, 보완/추가 부분을 정리하는** 방식으로 내용을 정리하면 탄탄하게 기본기가 구축될 것이다. 이번 기회에 웹프로젝트를 구체화 하면서 체계적으로 정리하는 시간을 갖으려고 합니다
 
-**html5 태그 -> CSS 스타일 -> JavaScript 기본 기능 -> Jquery 동적기능 -> Vue / React 프레임워크** 순서대로 **기본 내용, 보완/추가 부분을 정리하는** 방식으로 내용을 정리하면 탄탄하게 기본기가 구축될 것이다. 이번 기회에 웹프로젝트를 구체화 하면서 체계적으로 정리하는 시간을 갖으려고 한다
+> Book Review : JavaScript 입문 2016 윤인성
 
 **method(메소드) :** 객체중 자료의 type이 함수인 속성을 갖는 것으로, 함수 내부값을 외부로 호출시 **this 키워드**를 사용합니다.
 {: .notice--info}
@@ -25,7 +25,7 @@ toc: true
 
 ## Datum functions
 
-1. if, else if, switch, break
+1. **if, else if, switch, break**
 2. boolean 표현식 **?** \<true 일 때\> **:** \<false/undefined 일 때\>
 3. \<true/유효한 값이 존재시\> \|\| \<false/undefined 일 때\>
 
@@ -37,10 +37,11 @@ test = test || "초기화 합니다"
 
 ## Data functions
 
-1. 배열 (인덱스별 element 묶음) `ex) let array = [52, 273, '아침밥', 점심밥', true, false]`
-2. for 
-3. while, break (while 반복 중 break 조건을 추가) 
+> `ex) let array = [52, 273, '아침밥', 점심밥', true, false]`
 
+1. Array 배열 (인덱스별 element 묶음)
+2. for
+3. while, break (while 반복 중 break 조건추가) 
 
 ```javascript
 // for (초기식; 종료식 <true 반복실행/false 종료>; step함수)
@@ -54,21 +55,18 @@ for (let item of array){             // 배열 값
       console.log(item)
 ```
 
-
 ## User functions
 
 1. **같은이름, 익명함수 반복 정의시** 뒤의 내용으로 overwriting
 2. `() => {}` **: 화살표 함수**
-3. `**function** 함수명() {...};` **: 익명함수**
-4. `**let** 함수명 = **function**(){...};` **: 선언적 함수** 
+3. `function 함수명() {...};` **: 익명함수**
+4. `let 함수명 = function(){...};` **: 선언적 함수** 
 
-익명함수를 생성하면 선언적 함수를 무조건 overwriting 한다. 이는 선언적 함수는 코드를 실행하기 전에 할당되기 때문이다. 이를 피하기 위해서 `let 함수` 를 선언하면 동일한 이름으로 선언되지 않는다 <small>하지만 익스플로에선 호환여부를 확인해야 한다</small>
+익명함수를 생성하면 선언적 함수를 overwriting 한다. 이는 **선언적 함수는 코드실행 전** 초기할당 되기 때문이다. 이를 피하기 위해서는 `let 함수` 를 선언해야 합니다 <small>하지만 익스플로에선 호환여부를 확인해야 한다</small>
 {: .notice--info}
 
-익명함수를 `function(){}` 과 `()=>` 두가지가 있고, **this**의 개념에서 차이를 갖는다. **전자의 this**는 최상위 객체에서 정의가 되고 **후자의 this**는 **자신과 관련된 것**으로 정의가 된다
+익명함수를 `function(){}` 과 `()=>` 두가지가 있고, **this** 동작에서 차이를 갖는다. **전자의 this** 는 최상위 객체에서 정의가 되고 **후자의 this**는 **자신과 관련된 것**으로 정의 됩니다.
 {: .notice--danger}
-
-
 
 ```javascript
 // 함수의 기본형태
@@ -84,8 +82,7 @@ function callTimes(callback) {
         callback()
     }
 }
-callTimes(function() { 
-    //callback() 함수의 내용 
+callTimes(function() {  //callback() 함수의 내용 
 })
 ```
 
@@ -110,15 +107,12 @@ let product = {
     key: value,
     key: value,
 }
-
 for (let key in object) {
     console.log(`${key}: ${object[key]}`)
 }
-
 product[key]
 product.key
 ```
-
 
 ```javascript
 // 함수의 기본형태
@@ -134,7 +128,6 @@ let product = new <함수이름>(<매개변수>, <매개변수>);
 ## false
 
 **false 데이터** : **0, NaN, "", null**(키워드), **undefined**
-
 
 ## Array 객체
 
@@ -173,26 +166,21 @@ Array 메소드 중에는 파괴적 / 비파괴적 메소드가 구분된다
 if 조건문으로도 가능, But!!!
 
 ```javascript
-try{
-  // 실행함수
-} catch (exception) {
-  // 예외 처리함수
-} finally {
-  // 모든경우 경로를 거친다 
+try{  // 실행함수
+  } catch (exception) { // 예외 처리함수
+  } finally {           // 모든경우 거친다 
 }
 ```
 
-catch, finally 구분은 필요에 따라서 선택적으로 사용한다, 오직 try{} 구문만 필수적으로 시작한다 (에외처리 시작함수)
+**catch, finally** 경우에 따라 선택적으로 사용한다, 오직 **try{ }** <samll>(예외처리 시작함수)</samll> 구문만 필수로 시작한다 
 {: .notice--info}
 
-
-
 <br>
-# 문서객체 (Document)
+# **Document** <small>(문서객체)</small>
 
 **Dom Node :** html 페이지는 1) **Tag와 Script를** 생성하는 **Element Node**, 2) 화면 출력되는 **문자열은 Text Node** 로 구분된다.
 
-## 문서객체 선택 
+## **Document 객체선택**
 
 최초의 Dom으로 생성된 내용을 자바스크립트에서 객체로 변환하는 작업들을 의미 
 
@@ -219,7 +207,7 @@ window.onload = function(){
 
 ## 문서객체 배열선택 
 
-> **document.querySelectorAll(선택자)** // 배열객체
+> document **.querySelectorAll(선택자)** // 배열객체
 
 ```javascript
 var headers = document.querySelectorAll('h1');
@@ -234,11 +222,10 @@ for (var i=0; i<headers.length; i++){
   <figcaption>DOM window 와 document 개념도</figcaption>
 </figure> 
 
-
 <br>
 # 이벤트 (event)
 
-> window.onload = function () {}
+> window **.onload** = function () {}
 
 **범위**.on 이벤트 이름 (**event property**)
 

@@ -11,16 +11,21 @@ tags:
 toc: true 
 ---
 
-
-상편에서는 **Vue 인스턴스 와 컴포넌트** 그리고 전달객체로써 **props, emit 과 on, eventBus**를 살펴 보았습니다.
+상편에서는 **Vue 인스턴스 와 컴포넌트** 그리고 전달객체로써 **props, emit 과 on, eventBus**등을 구현하는 방법을 살펴 보았습니다. 이제는 보다 확장된 Router 등을 알아보겠습니다.
 
 # 필수 기술들
 
 ## **Vue router**
 
+**기본 Router, Nested Router, Named View** 등의 기술이 있습니다 [참고](http://ict-nroo.tistory.com/90) 간단하게 살펴보면
+
+1. **Router :** url별 다른 객체를 출력
+2. **Nested Router :** 컴포넌트 내부 컴포넌트를 조정합니다 
+3. **Named View :** 라우터 내부 component 에서 객체 여러개를 활용합니다
+
 > **\<router-view\> \</router-view\>** : 라우터 결과를 출력
 
-router 란 **Single Page Application에서** 사용하는 기법으로 웹페이지 간의 이동을 요청하는 경우, **웹페이지 일부분을 갱신하는** 기법으로 화면의 깜박임 없이 페이지를 변경한다
+router 란 **Single Page Application에서** 사용하는 기법으로 **웹페이지 일부분만 갱신하는** 기법으로 화면의 깜박임 없이 페이지를 변경한다
 
 ```html
 <div id="app">
@@ -31,16 +36,18 @@ router 란 **Single Page Application에서** 사용하는 기법으로 웹페이
 ```
 
 ```javascript
+// 컴포넌트를 정의
 var Main  = {template: '<div>main Page</div>'};
 var Login = {template: '<div>login In Page</div>'};
-
 var routes = [  // 라우팅할 url 및 컴포넌트 정의 
     { path: '/main',
       component: Main},
     { path: '/login',
-      component: Login} ];
+      component: Login} 
+    ];
 
-var router = new VueRouter( // 라우터 인스턴스 생성
+// 라우터 인스턴스
+var router = new VueRouter( 
     { mode : 'history',     // URL 초기화 (노출X)
       routes });
 
@@ -51,7 +58,9 @@ var app = new Vue({router}).$mount('#app');
 <br>
 ## Nested Router
 
-Nested Router 는 하위 컴포넌트에서도 `</router-view>`를 활용하는 방법으로  `/user` 라우팅 경로에 덧붙여서 `/user/posts` , `user/profile` 라우팅을 추가로 구현한다.
+> /name ,/name/profile
+
+Nested Router 는 부모-자식 컴포넌트를 같이 활용하는 방법으로, 하위 컴포넌트에서도 `</router-view>`를 활용 가능합니다. 예로 `/user` 라우팅 경로에 덧붙여서 `/user/posts` , `user/profile` 라우팅을 추가로 구현합니다.
 
 ```html
 <div id="app">
@@ -62,17 +71,18 @@ Nested Router 는 하위 컴포넌트에서도 `</router-view>`를 활용하는 
 ```javascript
 // Component, template 정의
 var User = {
-  template: `<div>사용자 컴포넌트<router-view></router-view></div>` 
+  template: `<div>컴포넌트<router-view></router-view></div>` 
 };
 var UserProfile = { template: '<p>User Profile Component</p>' };
 var UserPost    = { template: '<p>User Post Component</p>' };
-// Nested Routing
+// Nested Routing 
+//  ./user , /user/posts, /user/profile 
 var routes = [
-  { path: '/user',
-    component: User,
-    children: [ { path: 'posts',
+  { path: '/user',                 // /user 컴포넌트
+    component: User,  
+    children: [ { path: 'posts',   // /user/posts 컴포넌트 
                   component: UserPost },
-                { path: 'profile',
+                { path: 'profile', // /user/profile 컴포넌트
                   component: UserProfile },] } ];  
 // Vue Router 정의
 var router = new VueRouter({ routes });
@@ -83,22 +93,23 @@ var app = new Vue({ router }).$mount('#app');
 <br>
 ## Named View
 
-name 이름을 사용하면 객체들간 다양한 연결을 제어 가능하다. 없으면 default, Body 를 연결한다.
+name 이름을 사용하면 **단일 컴포넌트에 여러 객체 연결을** 제어하기에도 용이하다. 별도의 이름 객체가 없으면 **default, Body** 와 연결한다.
 
 ```html
 <div id="app">
   <router-view name="header"></router-view>
-  <router-view></router-view>  // default 연결
+  <router-view></router-view>
   <router-view name="footer"></router-view>
 </div>
 ```
 
 ```javascript
-// 컴포넌트가 담길 객체들
+// 컴포넌트 내용 객체
 var Body   = {template: '<div>This "Router" is Body</div>'};
 var Header = {template: '<div>This "Router" is Header</div>'};
 var Footer = {template: '<div>This "Router" is Footer</div>'};
-// Router를 생성한다
+
+// 단일 Router에서 여러 객체를 활용합니다
 var router = new VueRouter({
     routes: [
       { path: '/', 
@@ -106,6 +117,7 @@ var router = new VueRouter({
                       header: Header,
                       footer: Footer} }]
   })
+
 var app = new Vue({router}).$mount('#app');
 ```
 
