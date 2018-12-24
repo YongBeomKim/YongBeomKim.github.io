@@ -46,7 +46,6 @@ new Vue({
 });
 ```
 
-<br>
 # Template
 
 ## **0 기본 템플릿**
@@ -74,7 +73,6 @@ new Vue({
 </body>
 ```
 
-<br>
 ## **1 Text**
 
 ```html
@@ -87,7 +85,6 @@ new Vue({
   </div>
 </section>
 ```
-
 ```javascript
 new Vue({
   el: '#app',
@@ -99,7 +96,6 @@ new Vue({
 })
 ```
 
-<br>
 ## **2 Textarea**
 
 **`form.message`** 메세지 입력창을 추가합니다
@@ -113,7 +109,6 @@ new Vue({
   </div>
 </div>
 ```
-
 ```javascript
 data: {
   form : {
@@ -122,7 +117,6 @@ data: {
 }
 ```
 
-<br>
 ## **3 Select**
 
 ComboBOX 를 구현합니다
@@ -145,7 +139,6 @@ HTML5의 내용으로 위의 코드에서 **multiple**을 포함하는지 여부
   </select>
 </div></div></div>
 ```
-
 ```javascript
 data: {
   form : {...
@@ -159,7 +152,6 @@ data: {
 }
 ```
 
-<br>
 ## **4-1 Checkbox 01**
 
 true / false 선택객체 활용하기
@@ -180,7 +172,6 @@ data: {
 }
 ```
 
-<br>
 ## **4-2 Checkbox 02**
 
 **v-model** 로 **비어있는 array를** 활용한 다중선택
@@ -206,7 +197,6 @@ data: {
 }
 ```
 
-<br>
 ## **4-3 Checkbox 03 : Radio Button**
 
 빈 객체에 1개 값만 채울 때 사용한다 
@@ -233,10 +223,7 @@ data: {
 <br>
 # Validating user inputs
 
-<br>
 ## **vee-validate**
-
-검증을 위한 모듈로써, Vue 인스턴스 생성코드에 앞서서 먼저 활성화 해야 한다.
 
 ```javascript
 Vue.use(VeeValidate);
@@ -246,6 +233,8 @@ VeeValidate.Validator.extend("polite", {
   validate: value => value.toLowerCase().indexOf("please") !== -1
 });
 ```
+
+**VeeValidate** 는 검증을 위한 모듈로써, Vue 인스턴스 생성코드에 앞서서 먼저 활성화 해야 합니다.
 
 ```html
 <div class="field is-grouped">
@@ -266,5 +255,6 @@ VeeValidate.Validator.extend("polite", {
 
 <textarea 
   v-bind:class="{'is-danger': errors.has('message')}"
-  v-validate="'required|polite'"></textarea>
+  v-validate="'required|polite'">
+</textarea>
 ```
