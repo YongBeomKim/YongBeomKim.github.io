@@ -1,5 +1,5 @@
 ---
-title : Vue.js form 객체 다루기
+title : Vue.js form 다루기
 last_modified_at: 2018-11-17T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
@@ -12,6 +12,11 @@ toc: true
 ---
 
 Vue 에서 **HTML5**의 **form 객체를** 다루는 방법을 익힙니다.[원본보기](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/) 예제가 간단하고 소스코드도 정리가 잘 되어 있어서 해당 페이지를 정리하면서 많은 부분을 익힐 수 있었습니다. [CodePen 예시](https://codepen.io/olayinkaos/pen/GMmpPm)
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/photo/vueform.png">
+  <figcaption>Form 예제 종합 결과물</figcaption>
+</figure> 
 
 # **An imperative guide to forms in Vue.js**
 

@@ -36,7 +36,6 @@ tags:
 
 # 마르셀 뒤샹
 
-
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/art/moma-duchamp-0.jpg">
   <figcaption>뒤샹전 입구</figcaption>
