@@ -11,13 +11,9 @@ tags:
 toc: true 
 ---
 
+Vue 에서 **HTML5**의 **form 객체를** 다루는 방법을 익힙니다.[원본보기](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/) 예제가 간단하고 소스코드도 정리가 잘 되어 있어서 해당 페이지를 정리하면서 많은 부분을 익힐 수 있었습니다. [CodePen 예시](https://codepen.io/olayinkaos/pen/GMmpPm)
 
-> **An imperative guide to forms in Vue.js**
-
-Vue 에서 **HTML5**의 **form 객체를** 다루는 방법을 익힙니다.[원본보기](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/)
-
-예제가 간단하고 소스코드도 정리가 잘 되어 있어서 해당 페이지를 정리하면서 많은 부분을 익힐 수 있었다. [CodePen 예시](https://codepen.io/olayinkaos/pen/GMmpPm)
-
+# **An imperative guide to forms in Vue.js**
 
 # **Vue 인스턴스**
 
@@ -53,7 +49,6 @@ new Vue({
 <br>
 # Template
 
-<br>
 ## **0 기본 템플릿**
 
 ```html
