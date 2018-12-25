@@ -11,15 +11,14 @@ tags:
 toc: true 
 ---
 
-Vue 에서 **HTML5**의 **form 객체를** 다루는 방법을 익힙니다.[원본보기](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/) 예제가 간단하고 소스코드도 정리가 잘 되어 있어서 해당 페이지를 정리하면서 많은 부분을 익힐 수 있었습니다. [결과물을 구현한 CodePen](https://codepen.io/olayinkaos/pen/GMmpPm)
+Vue 에서 **HTML5**의 **form 객체를** 다루는 방법을 익힙니다.[원본보기](https://logrocket.com/blog/an-imperative-guide-to-forms-in-vue-js-2/) 예제가 간단하고 소스코드도 정리가 잘 되어 있어서 해당 페이지를 정리하면서 많은 부분을 익힐 수 있었습니다. [CodePen](https://codepen.io/olayinkaos/pen/GMmpPm)
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/photo/vueform.png">
-  <figcaption>Form 예제 종합 결과물</figcaption>
+  <figcaption>An imperative guide to forms in Vue.js</figcaption>
 </figure> 
 
-# **An imperative guide to forms in Vue.js**
-
+<br/>
 # **Vue 인스턴스**
 
 ```javascript
@@ -51,9 +50,10 @@ new Vue({
 });
 ```
 
+<br/>
 # Template
 
-## **0 기본 템플릿**
+## **1 기본 템플릿**
 
 ```html
 <body>
@@ -78,7 +78,7 @@ new Vue({
 </body>
 ```
 
-## **1 Text**
+## **2 Text**
 
 ```html
 <section class="form">
@@ -101,7 +101,7 @@ new Vue({
 })
 ```
 
-## **2 Textarea**
+## **3 Textarea**
 
 **`form.message`** 메세지 입력창을 추가합니다
 
@@ -122,9 +122,9 @@ data: {
 }
 ```
 
-## **3 Select**
+## **4 Select**
 
-ComboBOX 를 구현합니다
+**ComboBOX** 를 구현합니다
 
 > `\<select multiple v-model="form.logrocket_usecases"\>`
 
@@ -157,7 +157,7 @@ data: {
 }
 ```
 
-## **4-1 Checkbox 01**
+## **5-1 Checkbox 01**
 
 true / false 선택객체 활용하기
 
@@ -177,7 +177,7 @@ data: {
 }
 ```
 
-## **4-2 Checkbox 02**
+## **5-2 Checkbox 02**
 
 **v-model** 로 **비어있는 array를** 활용한 다중선택
 
@@ -202,7 +202,7 @@ data: {
 }
 ```
 
-## **4-3 Checkbox 03 : Radio Button**
+## **5-3 Checkbox 03 : Radio Button**
 
 빈 객체에 1개 값만 채울 때 사용한다 
 
