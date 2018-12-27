@@ -1,5 +1,5 @@
 ---
-title : Django / npm install 과 Django
+title : Tutorial / npm install 과 Webpack 개념
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
@@ -189,9 +189,30 @@ $ cd frontend
 $ npm install --save-dev webpack-bundle-tracker
 ```
 
+설치 후 GitHub의 내용 중 아래의 내용을 `/frontend/webpack.config.js` 에 추가 합니다.
+
+```javascript
+var BundleTracker  = require('webpack-bundle-tracker');
+```
+
 ### **write-file-webpack-plugin**
 
 [NPM](https://www.npmjs.com/package/write-file-webpack-plugin)
 [Github](https://github.com/gajus/write-file-webpack-plugin)
 
+```
+$ cd frontend
+$ npm install write-file-webpack-plugin --save-dev
+```
 
+위와 동일하게 추가내용을 `/frontend/webpack.config.js` 에 삽입 합니다.
+
+```javascript
+var WriteFilePlugin = require('write-file-webpack-plugin')
+```
+
+그리고 module 에 아래의 부분을 추가합니다
+
+## 잠깐만...
+
+여기까지 작업을 하고 나머지 동영상을 봤지만, django 의 static 과 연결여부등 애매한 부분이 많고, 가장 큰 문제는 제대로 동작을 안했다 ㅠㅠ (2018.12.26..)
