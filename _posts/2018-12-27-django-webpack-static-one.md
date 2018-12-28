@@ -1,5 +1,5 @@
 ---
-title : Tutorial / npm install 과 Webpack 개념
+title : Tutorial / django 에서 webpack 실행 상편
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
@@ -213,3 +213,66 @@ STATICFILES_DIRS = ['dist']
 ```
 $ npm i -D --save webpack-dev-server
 ```
+
+### package.json
+```javascript
+"scripts": {
+    "start": "webpack-dev-server", // 내용을 추가합니다
+    }
+```
+
+## webpack-dev-server 실행
+```
+$ npm start
+
+｢wds｣: Project is running at http://localhost:8080/
+｢wds｣: webpack output is served from /
+｢wdm｣: Hash: 63e8cb6e32ca147498e5
+Version: webpack 4.28.2
+Time: 474ms
+Built at: 2018. 12. 28. 오후 5:12:43
+  Asset     Size  Chunks             Chunk Names
+main.js  342 KiB    main  [emitted]  main
+｢wdm｣: Compiled successfully.
+```
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/webpack_dev.png">
+  <figcaption>nodejs로 구현한 서버실행을 볼 수 있습니다</figcaption>
+</figure> 
+
+## django 와 webpack-dev-server 연결
+
+### nodemon [npmjs](https://www.npmjs.com/package/nodemon)
+nodejs 내용이 수정될 때마다 바로 갱신하는 모듈로써, npmjs 에서 본 내용 중 가장 download 수가 많은 패키지 였습니다
+```
+$ npm i -D --save nodemon
+```
+
+### package.json
+nodemon 을 사용하여 webpack.config.js 파일이 구동되도록 설정합니다
+```javascript
+"scripts": {
+    "start": "nodemon -w webpack.config.js -x webpack-dev-server",
+    }
+```
+
+### settings.py
+```python
+# STATIC_URL = '/static/'
+STATIC_URL = 'http://127.0.0.1:8080/'
+STATICFILES_DIRS = ['dist']
+```
+
+## nodemon 과 django 실행
+
+우선 `nodemon` 을 사용하여 `webpack.config.js` 를 정상적 실행되는 모습을 확인한 뒤에 `django-webpack-loader` 를 실행합니다. 그리고 이들은 별도의 창에서 실행을 해야 합니다 (물론 background 실행을 해도 됩니다)
+
+수정과정에서 nodemon에서 `webpack.config.js` 오류가 발생했습니다. 서버를 종료 후 재실행 후에야 제대로 작동했습니다. 그리고 내부에 주석처리를 하면 오히려 오류가 발생했습니다. 이 부분을 유의해야 합니다
+{: .notice--info}
+
+```
+$ npm start
+$ ./manage.py runserver
+```
+
