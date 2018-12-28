@@ -268,15 +268,6 @@ STATICFILES_DIRS = ['dist']
 
 우선 `nodemon` 을 사용하여 `webpack.config.js` 를 정상적 실행되는 모습을 확인한 뒤에 `django-webpack-loader` 를 실행합니다. 그리고 이들은 별도의 창에서 실행을 해야 합니다 (물론 background 실행을 해도 됩니다)
  
-수정과정에서 오타등이 있으면  nodemon에서 `webpack.config.js` 오류가 발생했습니다. 서버를 종료 후 재실행 후에야 제대로 작동했습니다. 그리고 내부에 주석처리를 하면 오히려 오류가 발생했습니다. 이 부분을 유의해야 합니다
-
-그리고 설정이 제대로 되었어도 npm과 django를 별도의 환경에서 실행하다 보면 사진과 같은 오류가 발생하기도 합니다. nodemon 이 설치된 환경을 virtualenv 이 다르게 실행하면 발생하는 오류입니다. [stackoverflow](https://stackoverflow.com/questions/50965988/nodemon-internal-watch-failed-enospc-no-space-left-on-device-watch-home-u) 따라서 설치한 환경과 동일한 환경에서 npm 과 django를 실행하셔야 합니다.
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/enospc.png">
-  <figcaption>$npm start 실행시 종종 발생하는 오류</figcaption>
-</figure> 
-
 ```
 $ npm start
 $ ./manage.py runserver
@@ -285,6 +276,17 @@ $ ./manage.py runserver
 위와같이 서버를 실행한 뒤, `static/js/index.js` 의 내용을 수정하고 저장하면 바로 django 에서도 적용되는 모습을 보실수 있습니다.
 
 이와같이 개발단계에서 이를 적극 활용하고, 추후 정리가 되면 webpack 으로 builder 를 하여 완료를 하는 방식으로 작업을 단계별 진행하면 됩니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/enospc.png">
+  <figcaption>$npm start 실행시 종종 발생하는 오류</figcaption>
+</figure> 
+
+수정과정에서 오타등이 있으면  nodemon에서 `webpack.config.js` 오류가 발생했습니다. 그리고 내부에 자바스크립트의 주석처리를 하면 오히려 오류가 발생하는등 작업에 유의해야 합니다. 그리고 설정이 제대로 되었어도 npm과 django 실행 환경에 따라 `[nodemon] Internal watch failed: watch ENOSPC` 사진과 같은 오류가 발생합니다.
+
+> $ sudo sysctl fs.inotify.max_user_watches=582222 && sudo sysctl -p 
+
+이는 최대 실행가능한 포트의 숫자가 제한되어 발생하는 오류로써 터미널에서 다음과 같이 실행하여 넉넉한 포트를 할당하면 해결이 됩니다. [stackoverflow](https://stackoverflow.com/questions/34662574/node-js-getting-error-nodemon-internal-watch-failed-watch-enospc)
 
 ## index.js 를 모듈로 구분하기
 
@@ -316,3 +318,17 @@ setInterval(()=> counter.innerText = ++count, 1000);
 import './name';
 import './count';
 ```
+위와 같이 `index.js` 에서는 모듈로써 분할한 파일들이 같은 폴더내에 존재하므로 상대경로로써 동일한 경로를 특정하여 호출하면 됩니다. 그리고 뒤의 확장자인 `.js` 붙이지 않아도 정상적으로 작동하는 모습을 보실 수 있습니다.
+
+<br/>
+# 상편 마무리
+
+django를 실행한 뒤
+1. 간단한 **static** 을 이용한 javascript
+2. **webpack** 을 이용한 javascript
+3. **nodemon** 을 활용한 **webpack-dev-server** 로 구현한 javascript
+
+3가지를 구체적으로 오류들과 함께 살펴보았습니다.
+하편에서는 보다 고도화된 내용을 구현하도록 하겠습니다.
+
+
