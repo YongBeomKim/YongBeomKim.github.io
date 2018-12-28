@@ -276,3 +276,6 @@ $ npm start
 $ ./manage.py runserver
 ```
 
+위와같이 서버를 실행한 뒤, `static/js/index.js` 의 내용을 수정하고 저장하면 바로 django 에서도 적용되는 모습을 보실수 있습니다.
+
+이와같이 개발단계에서 이를 적극 활용하고, 추후 정리가 되면 webpack 으로 builder 를 하여 완료를 하는 방식으로 작업을 단계별 진행하면 됩니다.
