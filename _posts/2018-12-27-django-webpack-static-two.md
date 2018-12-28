@@ -12,8 +12,7 @@ tags:
 toc: true 
 ---
 
-상편에서 django 에서의 **Webpack** 의 실행에 대한 기본적인 설정방법을 익혀봤습니다. 앞에서 참고한 YouTube 동영상의 내용을 이어 나아가겠습니다.
-내용을 정리하기전 구체적인 목표는 다음과 같습니다
+상편에서는 django 에서의 **Webpack** 을 설정하고, **nodemon 과 webpack-dev-server** 를 사용하는 방법들을 익혔습니다. 나머지 앞에서 참고한 YouTube 동영상의 내용을 이어 나아가겠습니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/A2vEazcfJ7U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
