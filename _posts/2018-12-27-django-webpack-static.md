@@ -37,12 +37,14 @@ toc: true
 # to do List
 
 1. Django - simple page
-2. webpack, webpack-dev-server
-3. js 폴더를 webpack 으로 대체하기
-4. css 폴더를 webpack 으로 대체하기
-5. babel, react
-6. react-hot-loader 연결
+2. webpack
+3. webpack-dev-server
+4. js 폴더를 webpack 으로 대체하기
+5. css 폴더를 webpack 으로 대체하기
+6. babel, react
+7. react-hot-loader 연결
 
+<br/>
 # 1 Django : simple page
 
 ## Start Django
@@ -114,6 +116,7 @@ name.innerText = '여러분';
 setInterval(()=> counter.innerText = ++count, 1000);
 ```
 
+<br/>
 # 2 WebPack
 
 '안녕 여러분' 이 뜨고, 아래서 숫자가 카운트 되는 장면을 볼 수 있습니다. 그러면 이제 webpack 을 설치하고 연결해 보겠습니다
@@ -193,10 +196,20 @@ eval("const name = document.getElementById('name');\nconst counter = document.ge
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ['dist']
 ```
+
 ### app/template/home.html
+복잡한 CSS, JS 설정을 하지 않고, `./dist/main.js` 파일 한개만 불러오면 모든 작업들이 원활하게 구동하는 것을 보실 수 있습니다.
 ```html
 안녕! <span id="name"></span>
 <div id="counter"></div>
 <script src="{ % static 'main.js' % }"></script>
 ```
 
+<br/>
+# 3 webpack-dev-server
+위의 내용대로 따라하다 보면 javascript 의 내용이 바뀔 때 마다 바로 수정이 안되고, `$ npm run build` 로 `./dist/main.js` 파일을 작성한 뒤에야 갱신이 되는 불편함이 있습니다. 이를 보완하기 위한 작업을 시작합니다
+
+## dev-server 설치
+```
+$ npm i -D --save webpack-dev-server
+```
