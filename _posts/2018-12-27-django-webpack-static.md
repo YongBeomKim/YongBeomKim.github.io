@@ -185,4 +185,18 @@ Entrypoint main = main.js
 eval("const name = document.getElementById('name');\nconst counter = document.getElementById('counter');\nlet count = 0;\n\nname.innerText = '여러분';\nsetInterval(()=> counter.innerText = ++count, 1000);\n\n\n//# sourceURL=webpack:///./static/js/index.js?");
 ```
 
+## static
+빌드된 내용으로 django를 구현해 보겠습니다.
+
+### setting.py
+```python
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ['dist']
+```
+### app/template/home.html
+```html
+안녕! <span id="name"></span>
+<div id="counter"></div>
+<script src="{ % static 'main.js' % }"></script>
+```
 
