@@ -10,11 +10,11 @@ tags:
     - art
 ---
 
-수원 임근준 강의를 듣고서 추천한 2개의 전시가 있었는데, 하나는 서울시립미술관 에서 전시중인 **[이스트빌리지 뉴욕: 취약하고 극단적인
-181213-190224](https://sema.seoul.go.kr/ex/exDetail?exNo=258185&glolangType=KOR&searchDateType=CURR)** 그리고 나머지는 이번주 금요일에 개관한 **[마르셀 뒤샹 회고전](https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhId=201808280001081)** 이었습니다.
+수원 임근준 강의를 듣고서 추천한 2개의 전시가 있었는데, 하나는 **서울시립미술관 에서 전시중인** [이스트빌리지 뉴욕: 취약하고 극단적인
+181213-190224](https://sema.seoul.go.kr/ex/exDetail?exNo=258185&glolangType=KOR&searchDateType=CURR) 그리고 나머지는 **이번주 금요일에 국립현대미술관현 서울관에서 시작하는** [마르셀 뒤샹 회고전](https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhId=201808280001081) 이었습니다.
 
 
-시립미술관은 평일 화요일~금요일 PM 8시 까지 전시를 하고, 주말에는 6시 까지 개관을 합니다. 오후 5시에 끝나는 바람에 시립 미술관은 Pass를 하고 삼청동 현대미술관으로 향햇습니다.
+**시립미술관은 평일 화요일~금요일 PM 8시 까지** 전시를 하고, **주말에는 6시** 까지 개관을 합니다. 반면 국립현대미술관립은 오후 5시에 끝나는 바람에 시립 미술관은 Pass를 하고 삼청동 현대미술관으로 향햇습니다.
 
 
 # 국립현대미술관 

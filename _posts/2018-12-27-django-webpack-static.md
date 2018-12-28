@@ -31,4 +31,5 @@ toc: true
 
 그럼 시작해 보겠습니다. 
 
-[잘 정리된 페이지1](https://scotch.io/bar-talk/build-an-app-with-vuejs-and-django-part-one)
+[추가로 잘 정리된 페이지](https://scotch.io/bar-talk/build-an-app-with-vuejs-and-django-part-one)
+
