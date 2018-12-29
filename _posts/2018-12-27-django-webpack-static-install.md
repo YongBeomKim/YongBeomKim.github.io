@@ -283,7 +283,7 @@ $ ./manage.py runserver
 
 수정과정에서 오타등이 있으면  nodemon에서 `webpack.config.js` 오류가 발생했습니다. 그리고 내부에 자바스크립트의 주석처리를 하면 오히려 오류가 발생하는등 작업에 유의해야 합니다. 그리고 설정이 제대로 되었어도 npm과 django 실행 환경에 따라 `[nodemon] Internal watch failed: watch ENOSPC` 사진과 같은 오류가 발생합니다.
 
-> $ sudo **sysctl** fs.inotify.max_user_watches=582222 **&&** sudo **sysctl** -p 
+> <small>$ sudo **sysctl** fs.inotify.max_user_watches=582222 **&&** sudo **sysctl** -p</small> 
 
 이는 최대 실행가능한 포트의 숫자가 제한되어 발생하는 오류로써 터미널에서 다음과 같이 실행하여 넉넉한 포트를 할당하면 해결이 됩니다. [stackoverflow](https://stackoverflow.com/questions/34662574/node-js-getting-error-nodemon-internal-watch-failed-watch-enospc)
 
