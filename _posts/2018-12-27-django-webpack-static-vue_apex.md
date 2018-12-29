@@ -98,9 +98,9 @@ module.exports = {
     <ul id="demo">
       <item class="item" :model="treeData"></item>
     </ul>
-    {% endverbatim %}
+    { % endverbatim % }
 
-    {% render_bundle 'main' %}
+    { % render_bundle 'main' % }
   </body>
 </html>
 ```
