@@ -131,11 +131,6 @@ if (module.hot) {
 
 ## CSS 파일 Webpack 에서 사용하기
 위에서 **javascript** 객체의 개발시 비동기 개발환경 설정을 설정해 보았습니다. 이러한 배경위에서 **CSS** 스타일 설정을 위한 추가적인 모듈 및 작업내용을 살펴 보겠습니다. 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/npm_css_error.jpg">
-  <figcaption>크롬의 console 오류로 Preserve Log 를 체크</figcaption>
-</figure> 
-
 
 ### static/css/hello.css
 ```css
@@ -146,9 +141,45 @@ if (module.hot) {
 }
 ```
 
+### static/js/index.js
+아래와 같이 CSS 내용을 추가하면 다음과 같은 오류가 발생합니다.
+```javascript
+import './name';
+import './count';
+import '../css/hello.css'; // 추가내용
+```
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/npm_css_error.jpg">
+  <figcaption>npm start 터미널 오류</figcaption>
+</figure> 
 
+## css-loader style-loader
+이를 개선하기 위해서 **css-loader** 를 설치합니다
+```
+$ npm i --save css-loader style-loader
+```
 
-
-
-
-
+### webpack.config.js
+[css-loader](https://www.npmjs.com/package/css-loader) 의 내용을 참고하여 module 설정내용을 추가합니다.
+```javascript
+module.exports = {
+  mode : 'development',
+  entry : './static/js/index.js',
+  output: {
+    publicPath: 'http://127.0.0.1:8080/'
+  },
+  module:{ 
+    rule: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+  devServer: {
+    headers: {
+       'Access-Control-Allow-Origin': '*',
+    }
+  }
+}
+```
