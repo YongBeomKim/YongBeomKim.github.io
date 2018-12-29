@@ -1,13 +1,13 @@
 ---
-title : Tutorial / django 에서 webpack 실행 하편
+title : Tutorial / django 에서 webpack 추가 (--hot, babel, vue)
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
 categories:
-  - chart
+  - webpack
 tags: 
-    - django
-    - apex
+    - webpack
+    - nodejs
     - vue
 toc: true 
 ---
@@ -243,9 +243,10 @@ module.exports = {
 Do it Vue.js 에 나온 Webpack 설정내용을 추가해 보겠습니다. 작업에 필요한 모듈을 설치하고 다음과 같이 설정을 추가합니다.
 
 ## vue-style-loader, vue-loader, file-loader
+**file-loader** [블로그](http://blog.jeonghwan.net/js/2017/05/22/webpack-file-loader.html)
 ```
 $ npm i --save-dev file-loader 
-$ npm i --save vue vue-style-loader vue-loader
+$ npm i --save vue vue-style-loader vue-loader vue-router
 ```
 
 ### webpack.config.js 
