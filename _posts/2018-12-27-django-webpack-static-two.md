@@ -24,8 +24,9 @@ toc: true
 3. <strike>(상편) webpack-dev-server</strike>
 4. js 를 hot 모듈 webpack 으로 대체하기
 5. css 를 hot 모듈 webpack 으로 대체하기
-6. babel, react
-7. react-hot-loader 연결
+6. babel
+7. <strike>react, react-hot-loader 연결</strike>
+8. vue, vue-loader 연결
 
 <br/>
 # 4 js 를 hot 모듈 webpack 으로 대체하기
@@ -160,7 +161,7 @@ $ npm i --save css-loader style-loader
 ```
 
 ### webpack.config.js
-[css-loader](https://www.npmjs.com/package/css-loader) 의 내용을 참고하여 module 설정내용을 추가합니다.
+[css-loader](https://www.npmjs.com/package/css-loader) 의 내용을 참고하여 module 설정내용을 추가합니다. 이후 CSS 내용이 변경되면 바로 적용되는 모습을 확인할 수 있습니다.
 ```javascript
 module.exports = {
   mode : 'development',
@@ -168,12 +169,22 @@ module.exports = {
   output: {
     publicPath: 'http://127.0.0.1:8080/'
   },
-  module:{ 
-    rule: [
+  module: {
+    rules: [
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
     ],
   },
   devServer: {
@@ -181,5 +192,120 @@ module.exports = {
        'Access-Control-Allow-Origin': '*',
     }
   }
+}
+```
+
+<br/>
+# 6 babel
+
+npmjs 에서 [babel-loader](https://www.npmjs.com/package/babel-loader) 내용을 참고로 하여 설치를 하고 **webpack.config.js** 내용을 추가합니다.
+
+```
+$ npm install -D --save babel-loader @babel/core @babel/preset-env webpack
+```
+
+### webpack.config.js
+```javascript
+module.exports = {
+  mode : 'development',
+  entry : './static/js/index.js',
+  output: {
+    publicPath: 'http://127.0.0.1:8080/'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ],
+  },
+  devServer: {
+    headers: {
+       'Access-Control-Allow-Origin': '*',
+    }
+  }
+}
+```
+
+<br/>
+# 7 Vue.js 설치 및 webpack 연결하기 
+Do it Vue.js 에 나온 Webpack 설정내용을 추가해 보겠습니다. 작업에 필요한 모듈을 설치하고 다음과 같이 설정을 추가합니다.
+
+## vue-style-loader, vue-loader, file-loader
+```
+$ npm i --save-dev file-loader 
+$ npm i --save vue vue-style-loader vue-loader
+```
+
+### webpack.config.js 
+**vue** 를 추가함으로써 필요한 설정 내용을 다음과 같이 추가합니다.
+```javascript
+module.exports = {
+  mode : 'development',
+  entry : './static/js/index.js',
+  output: {
+    publicPath: 'http://127.0.0.1:8080/'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {}
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      },
+    ],
+  },
+  resolve:{  // 해당 파일이 어떻게 해석되는지 정의합니다
+    alias :{
+      'vue$': 'vue/dist/vue.esm.js' // vue 최신웹팩과 연결
+    },
+    extensions: ['*', '.js', '.vue', '.json']
+  },
+  devServer: {
+    historyApiFallback: true, // 클라이언트 뷰 라우터를 활용
+    //noInfo: true,             // 처음 시작때만 info를 출력
+    overlay: true,            // 오류를 browser로 출력
+    headers: {
+       'Access-Control-Allow-Origin': '*',
+    }
+  },
+  performance: {
+    hints: false // 빌더가 250kb 넘기면 경고를 출력
+  },
+  devtool: '#eval-source-map',
 }
 ```
