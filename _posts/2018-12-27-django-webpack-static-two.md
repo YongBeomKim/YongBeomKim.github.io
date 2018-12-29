@@ -19,16 +19,16 @@ toc: true
 <br/>
 # to do List
 
-1. (상편) Django - simple page 
-2. (상편) webpack
-3. (상편) webpack-dev-server
-4. js 폴더를 webpack 으로 대체하기
-5. css 폴더를 webpack 으로 대체하기
+1. <strike>(상편) Django - simple page</strike>
+2. <strike>(상편) webpack</strike>
+3. <strike>(상편) webpack-dev-server</strike>
+4. js 를 hot 모듈 webpack 으로 대체하기
+5. css 를 hot 모듈 webpack 으로 대체하기
 6. babel, react
 7. react-hot-loader 연결
 
 <br/>
-# 3 webpack-dev-server
+# 4 js 를 hot 모듈 webpack 으로 대체하기
 
 ## `--hot` 설정의 활성화
 앞에서 설정한 내용에서 **webpack** 의 `--hot` 설정을 추가합니다. [webpack 에서 hot의 설정](https://velopert.com/814) webpack 에 종속되는 객체들이 수정하면 바로 변경가능하도록 **webpack** 과 **dev-server** 를 실시간으로 연결해주는 옵션입니다.
@@ -50,7 +50,6 @@ if (module.hot) {
 ```
 
 설정을 변경한 뒤 `$ npm start` 로 실행하고 `$ ./manage.py runserver` 를 실행하면 잘 작동하는 듯 보이지만 **크롬의** 개발자모드에서 **Preserve Log** 를 활성화 하면 다음과 같은 세부적인 오류 내용을 보실 수 있습니다.
-
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/console_error.jpg">
   <figcaption>크롬의 console 오류로 Preserve Log 를 체크</figcaption>
@@ -70,14 +69,13 @@ module.exports = {
 }
 ```
 
-그리고 자바스크립트 내용을 변경하고 실행하면 이제는 다른종류의 오류를 출력합니다.  `Failed to load http://127.0.0.1:8080/d3a22e4ecc29a45701f1.hot-update.json: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8000' is therefore not allowed access.` 이는 연결은 되었지만 보안의 이유로써 접속이 거부되었다는 내용입니다. 
-
+그리고 자바스크립트 내용을 변경하고 실행하면 이제는 다른종류의 오류를 출력합니다. 이는 연결은 되었지만 보안의 이유로써 접속이 거부되었다는 내용입니다. 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/console_error_auth.jpg">
   <figcaption>크롬의 console 오류로 Preserve Log 를 체크</figcaption>
 </figure> 
 
-이를 수정하기 위해 위에서 요구하는 header 값을 webpack 에서 추가합니다.
+이를 수정하기 위해서는 위에서 요구하는 `Access-Control-Allow-Origin header` 값을 webpack 에 추가합니다.
 
 ```javascript
 module.exports = {
@@ -88,12 +86,69 @@ module.exports = {
   },
   devServer: {
     headers: {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*', // 추가내용 
     }
   }
 }
 ```
-참고로 작업시 `'Access-Control-Allow-Origin': "*",` 쌍 따옴표를 사용하니까 위에서 발생한 권한오류가 동일하게 발생하였습니다. PHP 에서 정의된 "" 는 string, '' 는 Raw Code 의 의미구분이 여기에서도 적용되는 듯 합니다. webpack 설정시에는 '' 단일한 따옴표를 사용하도록 주의를 하는 편이 좋습니다
+`'Access-Control-Allow-Origin': "*",` 에서 쌍따옴표를 사용하면 해당 오류가 해결되지 않습니다. 아마도 PHP 에서의 "" 는 string, '' 는 Raw Code 의 의미구분이 여기에서도 적용되는게 아닌가 싶습니다. **webpack 설정시에는 '' 의 단 따옴표만을** 사용하도록 주의를 하는 편이 좋습니다.
 {: .notice--info}
 
 이와같이 설정을 하면 오류가 사라진 것을 보실 수 있습니다.
+
+### static/js/count.js
+`--hot` 모듈을 사용하면 앞에서의 단일한 문자는 바로 변경되는 모습을 볼 수 있지만, **수치연산** 에서는 문제점이 발생합니다.
+
+```javascript
+const counter = document.getElementById('counter');
+let count = 1000;  // 숫자를 수정하는 경우
+setInterval(()=> counter.innerText = ++count, 1000);
+
+if (module.hot) {
+    module.hot.accept();
+}
+```
+
+String 같은 단일한 값은 바로 update 가 되는데 반해, 연산중인 숫자값은 메모리에 남아서 기존의 연산내용이 번갈아 가며 출력되는 모습을 보실 수 있습니다. 이를 수정하기 위해서는 숫자연산 매개변수를 상수로 설정하여 완전하게 대체하도록 변경을 하고, `--hot` 설정에서도 기존의 내용을 완전히 삭제하도록 명령을 해야 합니다.
+
+```javascript
+const counter = document.getElementById('counter');
+let count = 1000;
+const timer = setInterval(()=> counter.innerText = ++count, 1000); 
+
+if (module.hot) {
+    module.hot.dispose(() => {
+      clearInterval(timer);
+    });
+    module.hot.accept();
+}
+```
+연산함수를 상수로 고정시키고, `module.hot.dispose()` 를 사용하여 객체가 변경되었을 때 중복된 객체를 삭제합니다. 비록 복잡해 보이지만지 이로써 설정을 분명하게 함으로써 보다 안정적인 운영이 가능해 집니다.
+{: .notice--info}
+
+<br/>
+# 5 CSS 를 hot 모듈 webpack 으로 대체하기
+
+## CSS 파일 Webpack 에서 사용하기
+위에서 **javascript** 객체의 개발시 비동기 개발환경 설정을 설정해 보았습니다. 이러한 배경위에서 **CSS** 스타일 설정을 위한 추가적인 모듈 및 작업내용을 살펴 보겠습니다. 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/npm_css_error.jpg">
+  <figcaption>크롬의 console 오류로 Preserve Log 를 체크</figcaption>
+</figure> 
+
+
+### static/css/hello.css
+```css
+#counter {
+  width:100px;
+  height:100px;
+  border: 2px solid lightgray;
+}
+```
+
+
+
+
+
+
+
