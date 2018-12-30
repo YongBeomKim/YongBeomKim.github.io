@@ -21,15 +21,15 @@ django 의 views.py 에서 출력한 객체를 활용하기가 어렵습니다.*
 
 <br/>
 # 장고의 템플릿과 Vue의 하이브리드 설정
-Django 템플릿과 Vue 변수객체 모두 `{ { } }` 로 둘러싸여 있습니다. backhand 환경이 Django 속에서는 템플릿을 렌더링 할 때, django 엔진이 먼저 연결되므로 Vue는 `{ { } }` 과 연결되기 어려운 한계가 존재합니다.
+Django 템플릿과 Vue 변수객체 모두 `{ { } }` 로 둘러싸여 있습니다. backhand 환경이 Django 속에서는 템플릿을 렌더링 할 때, django 엔진이 먼저 연결되므로 Vue는 `{ { } }` 과 연결되기 어려운 한계가 존재합니다. [블로그](https://www.jianshu.com/p/fe74907e16b9)
 
 ### 방법 1
 Vue 구성을 변경하기 위해 `대괄호([[ ]])` 를 대신 사용합니다.<br/>
-`new **Vue**( { el: '#app', **delimiters: ['[[', ']]']**, } })` 
+`new Vue( { el: '#app', delimiters: ['[[', ']]'], } })` 
 
 ### 방법 2
 Django 템플릿 렌더링을 비활성화 하여 vue 엔진에서 렌더링 하도록 설정합니다.<br/>
-`{ % **verbatim** % } { { vue } } { % **endverbatim** % }`
+`{ % verbatim % } { { vue } } { % endverbatim % }`
 
 ### 사전배열을 JavaScript 로 전달합니다
 ```python
@@ -66,7 +66,7 @@ $ python manage.py runserver
 ```
 
 ## npm 설치
-```
+```python
 $ npm init -f
 $ npm install --save-dev webpack webpack-bundle-tracker vue style-loader css-loader
 ```
@@ -175,7 +175,7 @@ urlpatterns = [
 
 ## webpack 실행하기
 다음의 내용을 실행하면 webpack 파일을 생성합니다.
-```
+```python
 $ ./node_modules/.bin/webpack --config webpack.config.js --watch
 $ ./manage.py runserver
 ```
