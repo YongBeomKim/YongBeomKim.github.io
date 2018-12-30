@@ -215,3 +215,14 @@ urlpatterns = [
 ### **$ ./manage.py runserver** 를 실행합니다.
 
 webpack 내용이 실행되지 않아서 OSError를 출력합니다 (익숙하시쥬??) 이 부분을 수정한 뒤 나머지 불필요한 부분을 삭제하는 내용을 마무리를 하도록 합니다.
+
+
+
+### next !!
+내용을 다시 읽어보니 이를 보완하여 정리한 페이지가 링크로 걸려 있었다. 이걸 통해서 위에서 막힌 부분을 찾아서 수정하도록 하자[blog](https://medium.com/@rodrigosmaniotto/integrating-django-and-vuejs-with-vue-cli-3-and-webpack-loader-145c3b98501a)
+
+> webpack의 `output.publicPath` 를 수정하는 대신에 `Django baseUrl` 을 항상 사용하는 작업 환경을 구축하자.
+
+이러한 환경에서 작업을 해야만 보다 안정적인 작동이 가능해집니다.
+
+
