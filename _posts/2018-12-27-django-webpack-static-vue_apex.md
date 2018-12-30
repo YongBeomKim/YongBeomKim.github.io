@@ -15,20 +15,39 @@ toc: true
 앞에서 `$ npm start` 로 실행한 **webpackage** 과 **django의** 연결방법을 익혀보았습니다. 하지만 단점이 있는데 webpack 과 django 의 **실행포트가 달라서 
 django 의 views.py 에서 출력한 객체를 활용하기가 어렵습니다.** <small><strike>아직 사용법이 익숙치 않아서 그럴 수 있을수도 있으니까 조금 더 보완이 필요합니다</strike></small> 
 
-앞에서 npm 과 webpack 의 **hardcoding** 작업을 진행하며 내용을 이해하는 과정이었다면, 이번 페이지 에서는 **django 패키지로** 제공되는 `django-webpack-loader` [github](https://github.com/owais/django-webpack-loader) 를 활용하는 내용을 실습합니다. 미리 예제를 실습해본 결과
+앞에서 npm 과 webpack 의 **hardcoding** 작업을 진행하며 내용을 이해하는 과정이었다면, 이번 페이지 에서는 **django 패키지로** 제공되는 `django-webpack-loader` [github](https://github.com/owais/django-webpack-loader) 를 활용하는 내용을 실습합니다. 미리 예제를 실습해본 결과 다음의 장점이 존재합니다.
 1. npm 과 django 별도 실행할 필요가 없습니다
 2. django 의 views.py 에서 출력되는 content 객체의 활용에 유용
 
+정리에 도움된 자료들을 살펴보고 내용을 들어가 보겠습니다.
+1. [django-webpack-loader Github](https://github.com/owais/django-webpack-loader)
+2. vue 와 django 객체 하이브리드 설정 [블로그](https://www.jianshu.com/p/fe74907e16b9)
+3. [Github Source](https://github.com/chichi1091/django_webpack_vue)
+4. [내용정리 블로그](http://chichi1091.hatenablog.jp/entry/2018/02/24/233151) 
+
 <br/>
 # 장고의 템플릿과 Vue의 하이브리드 설정
-Django 템플릿과 Vue 변수객체 모두 `{ { } }` 로 둘러싸여 있습니다. backhand 환경이 Django 속에서는 템플릿을 렌더링 할 때, django 엔진이 먼저 연결되므로 Vue는 `{ { } }` 과 연결되기 어려운 한계가 존재합니다. [블로그](https://www.jianshu.com/p/fe74907e16b9)
+Django 템플릿과 Vue 변수객체 모두 `{ { } }` 로 둘러싸여 있습니다. backhand 환경이 Django 속에서는 템플릿을 렌더링 할 때, django 엔진이 먼저 연결되므로 Vue 등의 (Single Page Application) 모듈에서도 `{ { } }` 과 연결되기 어려운 한계가 존재합니다. 
 
 ### 방법 1
-Vue 구성을 변경하기 위해 `대괄호([[ ]])` 를 대신 사용합니다.<br/>
-`new Vue( { el: '#app', delimiters: ['[[', ']]'], } })` 
+Vue 객체를 다른 포맷으로 지정합니다<br/>
+`new Vue( { el: '#app', delimiters: ['${', '}'] } })` 
+
+```html
+<p v-if="count > -1">
+  반복횟수: ${ count }
+</p>
+<script>
+const app = new Vue({
+  el: '#app',
+  delimiters: [ '${', '}' ],
+  data: { count : 10 },
+});
+</script>
+```
 
 ### 방법 2
-Django 템플릿 렌더링을 비활성화 하여 vue 엔진에서 렌더링 하도록 설정합니다.<br/>
+Django 템플릿 엔진의 렌더링을 비활성화 블록을 지정하고, 이 구역 내에서 vue 렌더링 코드를 입력합니다<br/>
 `{ % verbatim % } { { vue } } { % endverbatim % }`
 
 ### 사전배열을 JavaScript 로 전달합니다
@@ -51,8 +70,7 @@ def index(request):
 
 <br/>
 # django-webpack-loader
-[Sample Github](https://github.com/ernieyang09/django-webpack-loader-test) [블로그](https://velog.io/@killi8n/Django-React-%EB%A1%9C-%EC%B2%AB-%ED%99%94%EB%A9%B4-%EB%9D%84%EC%9B%8C%EB%B3%B4%EA%B8%B0-55jm970olw) [예제블로그](http://chichi1091.hatenablog.jp/entry/2018/02/24/233151) [Github Source](https://github.com/chichi1091/django_webpack_vue)
-
+[Sample Github](https://github.com/ernieyang09/django-webpack-loader-test) [블로그](https://velog.io/@killi8n/Django-React-%EB%A1%9C-%EC%B2%AB-%ED%99%94%EB%A9%B4-%EB%9D%84%EC%9B%8C%EB%B3%B4%EA%B8%B0-55jm970olw) 
 
 <br/>
 # tutorial - 실습하기
@@ -179,4 +197,3 @@ urlpatterns = [
 $ ./node_modules/.bin/webpack --config webpack.config.js --watch
 $ ./manage.py runserver
 ```
-
