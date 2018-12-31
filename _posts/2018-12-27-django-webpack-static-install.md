@@ -1,5 +1,5 @@
 ---
-title : Tutorial / django 와 webpack 연결 1/2 (js,css)
+title : nodemon / django 와 webpack 연결 1/2 (js,css)
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
