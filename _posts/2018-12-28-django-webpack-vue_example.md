@@ -2,7 +2,7 @@
 title : Vue.js 3 / django webpack 그리고 Vue.js 3 
 last_modified_at: 2018-12-28T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django-sample.jpg
+  overlay_image: /assets/images/code/django_vue.jpg
 categories:
   - webpack
 tags: 
