@@ -12,7 +12,7 @@ tags:
 toc: true 
 ---
 
-상편에서는 django 에서의 **Webpack** 을 설정하고, **nodemon 과 webpack-dev-server** 를 사용하는 방법들을 익혔습니다. 나머지 앞에서 참고한 YouTube 동영상의 내용을 이어 나아가겠습니다.
+상편에서는 django 에서의 **Webpack** 을 설정하고, **nodemon 과 webpack-dev-server** 를 사용하는 방법들을 익혔습니다. 이번 페이지에서는 webpack 에서 **--hot** 모듈을 설치하고 **css**까지 활용하는 방법을 익힙니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/A2vEazcfJ7U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

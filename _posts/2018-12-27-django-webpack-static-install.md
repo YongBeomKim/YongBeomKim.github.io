@@ -159,7 +159,6 @@ The 'mode' option has not been set, webpack will fallback to 'production' for th
 
 ## webpack.config.js
 `webpack.config.js` 설정파일을 다음과 같이 작성하고 `$ npm run build` 를 실행하면 정상적으로 빌드가 완료됨을 보실 수 있습니다
-
 ```javascript
 module.exports = {
   mode : 'development',
@@ -242,7 +241,7 @@ main.js  342 KiB    main  [emitted]  main
 
 ## django 와 webpack-dev-server 연결
 
-### nodemon [npmjs](https://www.npmjs.com/package/nodemon)
+### nodemon [npmjs.com](https://www.npmjs.com/package/nodemon)
 nodejs 내용이 수정될 때마다 바로 갱신하는 모듈로써, npmjs 에서 본 내용 중 가장 download 수가 많은 패키지 였습니다
 ```
 $ npm i -D --save nodemon
@@ -264,9 +263,8 @@ STATICFILES_DIRS = ['dist']
 ```
 
 ## nodemon 과 django 실행
-
 우선 `nodemon` 을 사용하여 `webpack.config.js` 를 정상적 실행되는 모습을 확인한 뒤에 `django-webpack-loader` 를 실행합니다. 그리고 이들은 별도의 창에서 실행을 해야 합니다 (물론 background 실행을 해도 됩니다)
- 
+
 ```
 $ npm start
 $ ./manage.py runserver
@@ -276,14 +274,13 @@ $ ./manage.py runserver
 
 이와같이 개발단계에서 이를 적극 활용하고, 추후 정리가 되면 webpack 으로 builder 를 하여 완료를 하는 방식으로 작업을 단계별 진행하면 됩니다.
 
+### **[nodemon] Internal watch failed: watch ENOSPC**
+> <small>$ sudo **sysctl** fs.inotify.max_user_watches=582222 **&&** sudo **sysctl** -p</small> 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/enospc.png">
   <figcaption>$npm start 실행시 종종 발생하는 오류</figcaption>
 </figure> 
-
 수정과정에서 오타등이 있으면  nodemon에서 `webpack.config.js` 오류가 발생했습니다. 그리고 내부에 자바스크립트의 주석처리를 하면 오히려 오류가 발생하는등 작업에 유의해야 합니다. 그리고 설정이 제대로 되었어도 npm과 django 실행 환경에 따라 `[nodemon] Internal watch failed: watch ENOSPC` 사진과 같은 오류가 발생합니다.
-
-> <small>$ sudo **sysctl** fs.inotify.max_user_watches=582222 **&&** sudo **sysctl** -p</small> 
 
 이는 최대 실행가능한 포트의 숫자가 제한되어 발생하는 오류로써 터미널에서 다음과 같이 실행하여 넉넉한 포트를 할당하면 해결이 됩니다. [stackoverflow](https://stackoverflow.com/questions/34662574/node-js-getting-error-nodemon-internal-watch-failed-watch-enospc)
 
@@ -318,7 +315,7 @@ import './name';
 import './count';
 ```
 위와 같이 `index.js` 에서는 모듈로써 분할한 파일들이 같은 폴더내에 존재하므로 상대경로로써 동일한 경로를 특정하여 호출하면 됩니다. 그리고 뒤의 확장자인 `.js` 붙이지 않아도 정상적으로 작동하는 모습을 보실 수 있습니다.
-ㄸ
+
 <br/>
 # 상편 마무리
 
@@ -329,5 +326,3 @@ django를 실행한 뒤
 
 3가지를 구체적으로 오류들과 함께 살펴보았습니다.
 하편에서는 보다 고도화된 내용을 구현하도록 하겠습니다.
-
-

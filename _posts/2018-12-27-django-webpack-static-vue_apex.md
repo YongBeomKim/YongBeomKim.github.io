@@ -86,7 +86,7 @@ $ python manage.py runserver
 ## npm 설치
 ```python
 $ npm init -f
-$ npm install --save-dev webpack webpack-bundle-tracker vue style-loader css-loader
+$ npm install --save-dev webpack-cli webpack-bundle-tracker vue style-loader css-loader
 ```
 
 ### mysite/settings.py
@@ -194,6 +194,7 @@ urlpatterns = [
 ## webpack 실행하기
 다음의 내용을 실행하면 webpack 파일을 생성합니다.
 ```python
-$ ./node_modules/.bin/webpack --config webpack.config.js --watch
+$ ./node_modules/.bin/webpack --config webpack.config.js
 $ ./manage.py runserver
 ```
+webpack 실행시 `--watch` 설정은 미리 설치된 버젼에서는 잘 작동했는데, 새로 update 한 뒤로는 불필요 한듯 합니다. 오히려 이 옵션이 있으면 동작이 멈춰 버려서 이를 제거하고 실행하니 제대로 작동하였습니다. 
