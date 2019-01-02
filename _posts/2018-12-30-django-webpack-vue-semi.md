@@ -12,9 +12,9 @@ tags:
 toc: true 
 ---
 
-앞에서 첫번째로 **django 와 webpack** 의 `--hot`(HMR) 모드 연결방법을 2부에 걸쳐서, 두번째는 **django-webpack-loader** 를 이용한 js의 연결, 마지막으로 **vue SPA(Single Page Applicaion)** 을 직접 연결하는 방법까지 알아봤습니다.
+django 와 vue 의 연결 방법으로, 첫번째는 **django 와 webpack** 의 `--hot`(HMR) 모드 연결방법을 2부에 걸쳐서, 두번째는 **django-webpack-loader** 를 이용한 js의 연결, 마지막으로 **vue SPA(Single Page Applicaion)** 을 직접 연결하는 방법까지 알아봤습니다.
 
-각각 장단점이 있으므로 두번째 내용을 기준으로, 설치부터 시작하여 단점은 보완하고 버젼업에 따른  추가내용을 정리 및 강화하는 방향으로 정리를 해 나가겠습니다.
+각각의 완결성 보다는 장단점이 있어서 이번 페이지에서는 두번째 내용을 기준으로 설치부터 시작하여 단점은 보완하고 버젼업에 따른 변경된 내용을 보완 및 강화하는 방향으로 정리를 해 나가겠습니다.
 
 <br/>
 # Project Install
@@ -40,7 +40,7 @@ $ npm i --save-dev vue webpack webpack-cli webpack-bundle-tracker file-loader cs
   <img src="{{site.baseurl}}/assets/images/code/sourcemap.gif">
   <figcaption>css-loader 에 의한 sourceMapUrl 오류 메세지</figcaption>
 </figure> 
-앞에서는 `$ npm i --save css-loader style-loader` 를 사용하였습니다만, firefox에서 **SourceMapUrl** 오류를 출력 했습니다. 해결책으로 새로운 `css-hot-loader` 모듈을[npmjs](https://www.npmjs.com/package/css-hot-loader) 사용하고 부족한 부분은 `mini-css-extract-plugin` [npmjs](https://www.npmjs.com/package/mini-css-extract-plugin) 로써 보완하는 방법을 사용하면 해당오류가 사라진 것을 볼 수 있습니다.[git issue](https://github.com/webpack-contrib/style-loader/issues/303)
+`$ npm i --save css-loader style-loader` 를 사용하는 경우 크롬에선 정상작동 하였지만, firefox에서는 **SourceMapUrl** 오류를 출력 합니다. 이의 해결책으로써 새로운 `css-hot-loader` 모듈을[npmjs](https://www.npmjs.com/package/css-hot-loader) 사용하고 부족한 부분은 `mini-css-extract-plugin` [npmjs](https://www.npmjs.com/package/mini-css-extract-plugin) 로써 보완을 하면 firefox, chrome 모두에서 해당오류가 사라짐을 볼 수 있었습니다.[git issue](https://github.com/webpack-contrib/style-loader/issues/303)
 {:. notice--info}
 
 <br/>

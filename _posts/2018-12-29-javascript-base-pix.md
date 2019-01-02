@@ -31,10 +31,17 @@ module.exports = {
 }
 ```
 
-# 각각의 이름들
+# Javascript 에서 객체
 ```javascript
 선언문 객체 (Object) = 
+배열 (Array) = [ 'x', 'y', 'z', 100, false, true]
+오브젝트 (Object) = {
+  키값 : 벨류값,
+} // json
+```
 
+# 객체의 깊이별 속성값
+```javascript
 객체.메소드 = {
   속성 (attribute)): {
     벨류 (value): [
