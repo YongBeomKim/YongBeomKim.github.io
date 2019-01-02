@@ -1,5 +1,5 @@
 ---
-title : django-webpack-loader / vue 연결하기 (중간정리)
+title : django-webpack-loader / Hot Replacement Module
 last_modified_at: 2018-12-30T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_vue.jpg
@@ -13,6 +13,8 @@ toc: true
 ---
 
 바로 앞페이지에서 **webpack**을 사용하여 번들객체를 만들고 결과를 출력하는 간단한 process를 정리하였습니다. 하지만 결과를 볼려면 **bundle** 파일을 생성한 뒤 결과를 볼 수 있는 번거로움이 존재합니다. 개발단계에서 유용한 **HMR(Hot Module Replacement)** 모드의 **django-webpack-loader** 모듈작업 환경을 정리해 보겠습니다.
+
+**javascript WebPack 과 Django를 다이렉트로 연결하면** 문제는 해결되지만, **배포시 django-webpack-loader 를 추가로 설정하는 번거로움이** 존재합니다. <strike>참 번거로운 것도 많아요 ㅠㅠ.. 그런데 설정시 오류가 나면 고생하는건 팩폭입니다</strike> 
 
 ```javascript
 import VueApexCharts from 'vue-apexcharts'
