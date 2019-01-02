@@ -12,13 +12,9 @@ tags:
 toc: true 
 ---
 
-앞에서 django 와 webpack 의 `--hot`(HMR) 모드 연결방법을 2부에 걸쳐서, django-webpack-loader 를 이용한 js의 연결, 마지막으로 vue SPA(Single Page Applicaion) 을 직접 연결하는 방법까지 알아봤습니다.
+앞에서 첫번째로 **django 와 webpack** 의 `--hot`(HMR) 모드 연결방법을 2부에 걸쳐서, 두번째는 **django-webpack-loader** 를 이용한 js의 연결, 마지막으로 **vue SPA(Single Page Applicaion)** 을 직접 연결하는 방법까지 알아봤습니다.
 
-이들중에는 어떤것은 node.js 와 vue가 너무 최신이라서 안정성이 보장되지 못한 방법(3번째), js 까지는 연결되었지만 django 의 css 와 이미지 파일의 연결부분이 빠진 내용(2번째), 그리고 npm, django 를 별도로 실행해야 하는 내용(첫번째)등 어느 한가지씩 부족한 내용들이었습니다.
-
-우선 2번째 내용을 바탕으로, 단점들은 보완하고 작업을 하면서 새롭게 추가된 내용을 추가하면서 정리 및 강화하는 방향으로 정리를 해 나아가겠습니다.
-
-[style-loader 오류의 보완]()<br/>
+각각 장단점이 있으므로 두번째 내용을 기준으로, 설치부터 시작하여 단점은 보완하고 버젼업에 따른  추가내용을 정리 및 강화하는 방향으로 정리를 해 나가겠습니다.
 
 <br/>
 # Project Install
@@ -27,6 +23,8 @@ toc: true
 ```python
 $ pip install django django-webpack-loader
 $ django-admin startproject mysite
+```
+```python
 $ cd mysite
 $ ./manage.py makemigrations && ./manage.py migrate
 $ ./manage.py runserver
@@ -36,7 +34,7 @@ $ ./manage.py runserver
 ```python
 # ./mysite 에서 해당 작업을 실행합니다
 $ npm init -f
-$ npm i --save-dev vue webpack-cli webpack-bundle-tracker file-loader css-hot-loader mini-css-extract-plugin
+$ npm i --save-dev vue webpack webpack-cli webpack-bundle-tracker file-loader css-loader css-hot-loader mini-css-extract-plugin vue-loader
 ```
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/sourcemap.gif">
@@ -60,18 +58,6 @@ INSTALLED_APPS = [
     'webpack_loader',
 ]
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-
-# /assets/bundles/ 폴더에 webpack 빌드파일을 저장합니다
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'assets'),)
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-    }
-}
-
 # templates 폴더를 특정합니다
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
@@ -88,16 +74,30 @@ TEMPLATES = [
         },
     },
 ]
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# webpack 에서 빌드파일이 저장된 경로 : ./static/bundles/
+# bundles 데이터를 django 의 호출용 json 파일을 생성합니다
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-state.json'),
+    }
 ```
 
-## webpack.config.js
+##  webpack Setting
+[webpack option](https://trustyoo86.github.io/webpack/2018/01/10/webpack-configuration.html) 내용을 참고하여 주요 속성들의 개념과 내용을 학습합니다.
 
-[webpack 의 개념설명](http://blog.jeonghwan.net/js/2017/05/15/webpack.html)<br/>
-[참고예시 site](https://406.ch/writing/our-approach-to-configuring-django-webpack-and-manifeststaticfilesstorage/)<br/>
+### ./webpack.config.js
+webpack 에서 **bundle 을 생성하기** 위한 연결모듈의 설정과, **대상파일 및 저장파일의 경로를** 설정합니다. 주의할 점은 django 와의 연결을 위해 `settings.py` 에서 호출하는 webpack bundle 파일을 일치시켜야 합니다.
+[webpack bundle 설정](https://github.com/owais/django-webpack-loader/issues/117)
 
-
-https://github.com/chichi1091/django_webpack_vue/blob/master/webpack.config.js
-
+그리고 배포를 위한 관리용 파일 폴더를 `./public`, `./static` 2개로 중복하여 생성하였습니다. 이유는 하나는 `webpack` 에서 **HMR** 등으로 관리를 위한 용도로써 `public`, 나머지는 django 에서 활용을 위한 `./static` 으로 구분을 위해 나누었고 추후 보완해 나아갈 부분이라 볼 수 있습니다.
 ```javascript
 var path = require("path")
 var webpack = require('webpack')
@@ -107,45 +107,47 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   context: __dirname,
   mode : 'development',
-  entry: './public/js/index.js',  // 시작점을 정의합니다
-  output: { // 컴파일 결과물 저장폴더를 지정합니다
-      path: path.resolve('./assets/bundles/'),
+  entry: {  // 시작점을 정의합니다
+      index: './public/js/index.js',
+  },
+  output: { // 컴파일 결과 저장폴더를 지정합니다
+      path: path.resolve('./static/bundles/'),
       filename: "[name]-[hash].js",
   },
   plugins: [
-    new BundleTracker({filename: './webpack-stats.json'}),
+    new BundleTracker({filename: './webpack-state.json'}),
+    // webpackOptions.output 의 설정을 추가합니다
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: "[name].css",
       chunkFilename: "[id].css"
     })
   ],
   module : {
     rules : [
-      {
-        test: /\.css$/,
+      { test: /\.css$/, // css 로딩 webpack 모듈 (firefox와 호환문제)
         use: [
           {loader: 'css-hot-loader',},
           {loader: MiniCssExtractPlugin.loader,},
           {loader: 'css-loader',
-           options: { url: false, sourceMap: true },},
+            options: {
+              url: false,      // css 를 url() 과 결합을 금지합니다
+              sourceMap: true, // sourceMap 사용을 활성화
+            },
+          },
         ],
       },
-      {
-        test: /\.vue$/,
+      { test: /\.vue$/,
         loader: 'vue-loader',
-        options: { loaders: {} }
+        options: { loaders: {} },
       },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
+      { test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
-        options: { name: '[name].[ext]?[hash]'}
+        options: { name: '[name].[ext]?[hash]' }
       },
     ]
   },
-  resolve: {
-    alias: {
+  resolve: { // 모듈을 해석하는데 필요한 모듈을 설정합니다
+    alias: { // vue의 실행을 위한 별칭을 지정합니다.
       'vue': path.resolve('./node_modules/vue/dist/vue.js'),
     }
   },
@@ -153,15 +155,209 @@ module.exports = {
     historyApiFallback: true, // 클라이언트 뷰 라우터를 활용
     //noInfo: true,           // 처음 시작때만 info를 출력
     overlay: true,            // 오류를 browser로 출력
-    headers: {'Access-Control-Allow-Origin': '*',}
+    headers: {
+       'Access-Control-Allow-Origin': '*',
+    }
   },
-  // 빌더가 250kb 넘기면 경고를 출력합니다
-  performance: {hints: false},
+  performance: {
+    hints: false // 빌더가 250kb 넘기면 경고를 출력
+  },
   devtool: '#eval-source-map',
 }
+```
+`entry: './public/js/index.js',` 와 같이 단일한 객체만 생성하는 경우에는 `main` 객체이름을 자동으로 생성합니다. 다만 실제 작업에서는 이러한 경우는 드물기 때문에 위와같이 객체명을 특정한 뒤 대상을 지정합니다.
+{: .notice--info}
+
+`alias: {'vue':}`  부분은 webpack bundle 파일에서 **Vue.js** 모듈은 별도의 CDN 없이도 `window.Vue = require('vue');` 만으로도 호출 가능하도록 도와줍니다.
+{: .notice--info}
+
+<br/>
+# building Django
+예제 작업을 위해서 django 작업을 진행합니다.
+
+## mysite/views.py
+```python
+from django.shortcuts import render
+ 
+def index(request):
+    return render(request, 'index.html')
+```
+
+## mysite/urls.py
+```python
+from django.contrib import admin
+from django.urls import path
+from .views import index
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', index),
+]
+```
+
+# building Template
+예제 작업을 위해서 django 작업을 진행합니다.
+
+## templates/index.html
+랜더링 `index.html` 웹페이지를 생성합니다.
+```python
+{ % load render_bundle from webpack_loader % }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+  <body>
+    <!-- 템플릿에서 vue 랜더링을 위해 django 제한구역을 설정 -->
+    { % verbatim % } 
+
+    <script type="text/x-template" id="item-template">
+      <li>
+        
+        <div :class = "{bold: isFolder}" 
+             @click = "toggle" 
+             @dblclick = "changeType">
+          { { model.name } }
+          <span v-if="isFolder">[{ { open ? '-' : '+' } }]</span>
+        </div>
+
+        <ul v-show="open" v-if="isFolder">
+          <item class="item"
+            v-for="(model, index) in model.children"
+            :key="index" :model="model">
+          </item>
+          <li class="add" @click="addChild">+</li>
+        </ul>
+
+      </li>
+    </script>
+
+    <p>(You can double click on an item to turn it into a folder.)</p>
+    <!-- the demo root element -->
+    <ul id="demo">
+      <item class="item" :model="treeData"></item>
+    </ul>
+    { % endverbatim % }
+    { % render_bundle 'main' % }
+  </body>
+</html>
+```
+
+### public/css/app.css
+스타일 설정파일을 생성합니다.
+```css
+body {
+  font-family: Menlo, Consolas, monospace;
+  color: #444;
+  background-color: lightblue; 
+}
+.item {
+  cursor: pointer;
+}
+.bold {
+  font-weight: bold;
+}
+ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: dot;
+}
+```
+
+### public/js/index.js
+```javascript
+import '../css/app.css';
+
+// demo data
+var data = {
+  name: 'My Tree',
+  children: [
+    { name: 'hello' },
+    { name: 'wat' },
+    {
+      name: 'child folder',
+      children: [
+        {
+          name: 'child folder',
+          children: [
+            { name: 'hello' },
+            { name: 'wat' }
+          ]
+        },
+        { name: 'hello' },
+        { name: 'wat' },
+        {
+          name: 'child folder',
+          children: [
+            { name: 'hello' },
+            { name: 'wat' }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+// define the item component
+window.Vue = require('vue');
+Vue.component('item', {
+  template: '#item-template',
+  props: {
+    model: Object
+  },
+  data: function () {
+    return {
+      open: false
+    }
+  },
+  computed: {
+    isFolder: function () {
+      return this.model.children &&
+        this.model.children.length
+    }
+  },
+  methods: {
+    toggle: function () {
+      if (this.isFolder) {
+        this.open = !this.open
+      }
+    },
+    changeType: function () {
+      if (!this.isFolder) {
+        Vue.set(this.model, 'children', [])
+        this.addChild()
+        this.open = true
+      }
+    },
+    addChild: function () {
+      this.model.children.push({
+        name: 'new stuff'
+      })
+    }
+  }
+})
+
+// boot up the demo
+var demo = new Vue({
+  el: '#demo',
+  data: {
+    treeData: data
+  }
+})
+```
+
+### building webpack
+```python
+$ ./node_modules/.bin/webpack --config webpack.config.js
 ```
 
 
 
 # 참고자료 
+
+[webpack 의 개념설명](http://blog.jeonghwan.net/js/2017/05/15/webpack.html)<br/>
+[참고예시 site](https://406.ch/writing/our-approach-to-configuring-django-webpack-and-manifeststaticfilesstorage/)<br/>
 [mini-css-extract-plugin setting](https://webpack.js.org/plugins/mini-css-extract-plugin/)<br/>
+[webpack 이름이 여럿일 때](https://github.com/owais/django-webpack-loader/issues/117)<br/>
+[webpack bundle 참고](https://stackoverflow.com/questions/49123760/cannot-resolve-bundle-style)<br/>
