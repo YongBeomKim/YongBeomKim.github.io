@@ -77,7 +77,7 @@ $ npm i webpack-dev-server --save-dev
 [webpack document](https://webpack.js.org/guides/hot-module-replacement/) 의 내용을 참고하여 설정을 추가합니다
 ```javascript
 var path = require("path")
-+ const webpack = require('webpack');
+(+) const webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -93,8 +93,8 @@ module.exports = {
       filename: "[name]-[hash].js",
   },
   plugins: [
-+    new webpack.HotModuleReplacementPlugin(),
-+    new webpack.NoErrorsPlugin(), // don't reload if there is an error
+(+)    new webpack.HotModuleReplacementPlugin(),
+(+)    new webpack.NoErrorsPlugin(), // don't reload if there is an error
     new BundleTracker({filename: './webpack-stats.json'}),
     new MiniCssExtractPlugin({
       filename: "[name].css",
@@ -118,7 +118,9 @@ module.exports = {
       },
       { test: /\.vue$/,
         loader: 'vue-loader',
-        options: { loaders: {} }
+        options: { 
+          loaders: {} 
+        }
       },
       { test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
@@ -134,7 +136,7 @@ module.exports = {
     }
   },
   devServer: {
-+    hot: true
+(+)    hot: true
     historyApiFallback: true, // 클라이언트 뷰 라우터를 활용
     //noInfo: true,           // 처음 시작때만 info를 출력
     overlay: true,            // 오류를 browser로 출력
@@ -148,3 +150,5 @@ module.exports = {
   devtool: '#eval-source-map',
 }
 ```
+
+
