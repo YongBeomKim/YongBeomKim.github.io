@@ -35,17 +35,17 @@ module.exports = {
 ```javascript
 선언문 객체 (Object) = 
 배열 (Array) = [ 'x', 'y', 'z', 100, false, true]
-오브젝트 (Object) = {
-  키값 : 벨류값,
+객체 (Object) = {
+  속성 이름 : 속성 값,
 } // json
 ```
 
 # 객체의 깊이별 속성값
 ```javascript
 객체.메소드 = {
-  속성 (attribute)): {
-    벨류 (value): [
-      벨류키 : 벨류값
+  객체 메소드의 속성객체 (attribute): {
+    벨류객체 (value): [
+      속성 이름 : 속성 값,
     ]
   }
 }

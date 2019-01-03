@@ -152,3 +152,39 @@ module.exports = {
 ```
 
 
+webpack dev server 실행
+단 실행전 `package.json` 에 다음의 내용을 추가해야 합니다.
+
+```json
+{
+  "disableHostCheck": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -w webpack.config.js -x webpack-dev-server --hot",
+    "build": "webpack",
+  },
+}
+```
+
+"main" 속성은 최 우선적으로 불러오는 entry point를 특정합니다. [npmjs](https://docs.npmjs.com/files/package.json) django 같은 경우에는 root 메인 페이지에서 호출하는 bundle javascript 파일을 특정합니다.
+
+
+[webpack-hmr-tutorial](https://www.javascriptstuff.com/webpack-hmr-tutorial/) [webpack dev server](https://www.toptal.com/javascript/hot-module-replacement-in-redux)
+> ./node_modules/.bin/webpack-dev-server --content-base-www --inline --hot 
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/webpack_wds.jpg">
+  <figcaption>$ npm run build</figcaption>
+</figure> 
+
+webpakc-dev-server 를 실행하는 경우 위와같은 오류를 출력합니다 [stackoverflow](https://github.com/angular/angular-cli/issues/4839) 다음의 내용을 `webpack.config.js` 에 추가합니다
+
+```javascript
+module.exports = {
+  devServer: {
+    disableHostCheck: true
+  }
+}
+```
+
+## https://github.com/webpack/webpack/tree/master/examples/multiple-entry-points
