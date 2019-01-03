@@ -163,7 +163,7 @@ urlpatterns = [
 
 ### ./templates/index.html
 ```html
-{% load static %}
+{ % load static % }
 <!DOCTYPE html>
   <head>
     <meta charset="UTF-8">
@@ -171,7 +171,7 @@ urlpatterns = [
   <body>
     <span id="name"></span>
     <div  id="counter"></div>
-    <script src="{% static 'index.js' %}"></script>
+    <script src="{ % static 'index.js' % }"></script>
   </body>
 </html>
 ```
