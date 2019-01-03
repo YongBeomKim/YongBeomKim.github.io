@@ -119,7 +119,7 @@ module.exports = {
   <img src="{{site.baseurl}}/assets/images/code/webpack_wds.jpg">
   <figcaption>$ npm run build</figcaption>
 </figure> 
-**firefox** 에서 작업을 하는 경우 **CORS 요청오류, [WDS] Disconnected!** 오류 메세지를 출력하는 경우에는, 위와같이 **headers** 내용을 추가합니다.
+**firefox** 에서 작업을 하는 경우 **CORS 요청오류, [WDS] Disconnected!** 오류 메세지를 출력하는 경우에는, 위와같이 **headers** 내용을 추가합니다.[webpack git](https://github.com/webpack/webpack-dev-server/issues/851#issuecomment-449518624)
 {: .notice--info}
 
 ### ./package.json
