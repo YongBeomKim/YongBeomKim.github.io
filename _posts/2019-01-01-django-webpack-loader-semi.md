@@ -12,69 +12,77 @@ tags:
 toc: true 
 ---
 
-
-
-
-바로 앞에서 django-webpack-loader 를 사용하여 webpack bundle 파일을 만들고 이를 활용하여 배포하는 작업까지 진행하였습니다. 하지만 개발단계에서 매번 bundle 작업을 진행 후 확인하는 것은 번거롭기 때문에 이를 한페이지로 정리를 해보겠습니다.
-
-이번내용을 간단하게 정리하면, nodemon을 사용하여
+바로 앞에서 **nodemon webpack-dev-server** 환경과, **Django 의 Backhand** 를 연결하여 동적인 개발 환경을 실습하였습니다. 이번에는 django 의 views.py 의 **content 객체를** 활용 가능하고, **django-webpack-loader** 의 **webpack bundle** 파일을 만들어 배포가능한 환경까지 구축하는 내용을 정리해 보겠습니다. [React & webpack-loader](https://medium.com/uva-mobile-devhub/set-up-react-in-your-django-project-with-webpack-4fe1f8455396) [webpack Setting](https://gist.github.com/genomics-geek/81c6880ca862d99574c6f84dec81acb0)
 
 <br/>
-# HMR Development Mode Setting
+# Setting 
 
-## Terminal Setting (django & npm)
+## django-webpack-loader, django-cors-headers <small>[webpack-loader](https://github.com/owais/django-webpack-loader), [cors-headers](https://github.com/ottoyiu/django-cors-headers)</small>
 ```python
-$ django-admin startproject mysite
-$ cd mysite
-$ ./manage.py makemigrations && ./manage.py migrate
-$ mkdir -p templates public/{css,js} static/{img}
-
-$ npm init -f
-$ npm i --save webpack webpack-cli 
-$ npm i --save css-loader style-loader
-$ npm i --save-dev nodemon webpack-dev-server
+$ pip install django-webpack-loader django-cors-headers
 ```
 
 ## Django Setting
-
 ### ./mysite/settings.py
+앞에서는 **nodemon 의 webpack** 의 포트를 받아서 활용 하였다면, 이번에는 **django-webpack-loader** 에 의해 **bundles** 결과를 사용합니다. **작업경로의 안전성** 을 위해서 **webpack entry** 폴더는 `./public/{css, js}` 를 사용하고,  **배포단계** 에서는 `./static/{bundles, img}` 로 구분하여 작업을 진행합니다.
+
+그리고 `./webpack-state.json` 파일의 정보를 활용하여 webpack 과 django-webpack-loader 의 연결 설정내용을 저장 및 활용합니다 <small>파일이름 오타에 주의를 합니다</small>
+
+앞에서는 번들파일을 바로 `STATICFILES_DIRS = ['dist']` 연결을 하였습니다. 이를 `os.path.join(BASE_DIR, 'static')` 와 같이 django 엔진을 거치면서 HMR 모드를 사용하면면 `(원인: CORS 요청이 성공하지 못함)` 의 오류가 발생합니다. 물론 배포시엔 제거하면 되지만 개발 단계에서는 문제가 되므로 이를 해결하기 위해 ` django-cors-headers` 를 추가합니다. <strike>안해도 되기도 하고 오락가락 합니다</strike>[한글](http://ngee.tistory.com/1154)[일어](https://murabo.hatenablog.com/entry/2018/02/01/121925)
 ```python
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-TEMPLATES = [
-    {   'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR,],
-        'APP_DIRS': True,
-    },
+INSTALLED_APPS = [
+    'webpack_loader',
+    'corsheaders',
 ]
 
-#STATIC_URL = '/static/'
-STATIC_URL = 'http://127.0.0.1:3030/' # webpack-dev-server 를 받습니다
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'dist'),
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080',
+    '127.0.0.1:8080'
 )
+
+# STATIC_URL = 'http://127.0.0.1:8080/'
+STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = ['dist']
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+WEBPACK_LOADER = {
+    'DEFAULT': {  # ./static/bundles/ 에 번들파일을 저장합니다
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-state.json'),
+    }
+}
 ```
-**webpack** 에서 **기본 번들파일을** 생성하면 `./dist/index-hash034i345.js`  경로에 생성되므로 `./dist` 폴더를 django 의 static과 연결합니다
 
-<br/>
-# Webpack dev Server
+## Webpack  Setting
 
-## Webpack Setting
+### webpack-bundle-tracker
+```python
+$ npm install --save-dev webpack-bundle-tracker
+```
 
-### ./webpack.config.js
+### webpack.config.js
 ```javascript
 var path = require("path")
-const webpack = require('webpack')
+var webpack = require('webpack')
+var BundleTracker = require('webpack-bundle-tracker')
 
 module.exports = {
   context: __dirname,
-  mode : 'development',  // 개발자 모드 활성화
-  devtool: 'source-map', // firefox 문제해결
+  mode : 'development',
+  devtool: 'source-map',
   entry: {
-      index: './public/js/index.js', 
+      home: './public/js/index.js',
   },
-  output: {   // webpack-dev-server 로 출력 (HMR)
-      publicPath: 'http://127.0.0.1:3030/',
+  output: { // django-webpack-loader 에게 전달
+      path: path.resolve('./static/bundles/'),
+      filename: "[name]-[hash].js",
   },
+  plugins: [ // django 에서 추적가능하도록 설정
+    new BundleTracker({filename: './webpack-state.json'}),
+  ],
   module : {
     rules : [
       { test: /\.css$/,
@@ -83,11 +91,14 @@ module.exports = {
     ]
   },
   performance: {
-    hints: false // 빌더가 250kb 넘기면 경고를 출력
+    hints: false
   },
-  devServer: {   // webpack-dev-server 설정
+  devServer: {
+    historyApiFallback: true,
+    //noInfo: true,
+    overlay: true,
     inline: true,
-    port: 3030,
+    port: 8080,
     headers: { 
        'hot' : 'true',
        'Access-Control-Allow-Origin': '*',
@@ -98,127 +109,23 @@ module.exports = {
   }
 }
 ```
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/webpack_wds.jpg">
-  <figcaption>$ npm run build</figcaption>
-</figure> 
-**firefox** 에서는 **CORS 요청오류, [WDS] Disconnected!** 오류를 출력하는 경우가 발생합니다. 이는 **nodemon을 사용한 webpack-dev-server** 문제로 예상되며, 위와같이 **headers** 내용을 추가하면 됩니다.[webpack git](https://github.com/webpack/webpack-dev-server/issues/851#issuecomment-449518624)
-{: .notice--info}
 
-### ./package.json
-```json
-{
-  "disableHostCheck": true,
-  "scripts": {
-    "start": "nodemon -w webpack.config.js -x webpack-dev-server --hot",
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-}
-```
 
-<br/>
-# Simple Example
 
-## Django Setting
 
-### ./mysite/views.py
-```python
-from django.views.generic import TemplateView
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
-```
 
-### ./mysite./urls.py
-```python
-from django.contrib import admin
-from django.urls import path
-from .views import HomeView
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name='home'),
-]
-```
 
-## Template Setting
 
-### ./templates/index.html
-```html
-{ % load static % }
-<!DOCTYPE html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
-  <body>
-    <span id="name"></span>
-    <div  id="counter"></div>
-    <script src="{ % static 'index.js' % }"></script>
-  </body>
-</html>
-```
 
-## JavaScript & Style CSS Setting
 
-### ./public/js/name.js
-```json
-const name = document.getElementById('name');
-name.innerText = '장고 웹팩';
 
-if (module.hot) { // hot 모듈의 적용
-   module.hot.accept();
-}
-```
-
-### ./public/js/count.js
-```json
-const counter = document.getElementById('counter');
-let count = 0;
-const timer = setInterval(() => counter.innerText = ++count, 1000);
-
-if (module.hot) {
-   module.hot.dispose(()=> {
-      clearInterval(timer);  // HMR로 갱신시 값들을 초기화 합니다
-   })
-   module.hot.accept();
-}
-```
-
-### ./public/index.js
-```json
-import './name';
-import './count';
-import '../css/hello.css';
-```
-
-<br/>
-# Running Site
-아래의 두가지 서버를 각각 별도의 서버 또는 background 실행을 합니다.
-
-## webpack dev server running
-```python
-$ npm start
-```
-
-## django server running
-```python
-$ ./manage.py runserver
-```
 <br/>
 # 참고자료 사이트 
 
 > ./node_modules/.bin/webpack-dev-server --content-base-www --inline --hot 
 
-```javascript
-import VueApexCharts from 'vue-apexcharts'
-import Vue from 'vue'
-```
-[webpack-hmr-tutorial](https://www.javascriptstuff.com/webpack-hmr-tutorial/)<br/>
-[webpack dev server](https://www.toptal.com/javascript/hot-module-replacement-in-redux)<br/>
-[stackoverflow](https://github.com/angular/angular-cli/issues/4839)<br/>
-[참고 Blog](https://medium.com/a-beginners-guide-for-webpack-2/webpack-loaders-css-and-sass-2cc0079b5b3a)<br/>
-[multi name](https://github.com/webpack/webpack/tree/master/examples/multiple-entry-points)<br/>
-[HMR Github](https://github.com/owais/django-webpack-loader/tree/master/examples/hot-reload)<br/>
-[HMR React 예제](https://gist.github.com/genomics-geek/81c6880ca862d99574c6f84dec81acb0)<br/>
-[Vue HMR 설명](https://ariera.github.io/2017/09/26/django-webpack-vue-js-setting-up-a-new-project-that-s-easy-to-develop-and-deploy-part-1.html)<br>
+
+[webpack in django & vue](https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3)<br/>
+[webpack-loader Hot Github](https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3)<br/>

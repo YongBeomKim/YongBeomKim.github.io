@@ -45,10 +45,8 @@ TEMPLATES = [
 ]
 
 #STATIC_URL = '/static/'
-STATIC_URL = 'http://127.0.0.1:3030/' # webpack-dev-server 를 받습니다
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'dist'),
-)
+STATIC_URL = 'http://127.0.0.1:8080/' # webpack-dev-server 를 받습니다
+STATICFILES_DIRS = ['dist']
 ```
 **webpack** 에서 **기본 번들파일을** 생성하면 `./dist/index-hash034i345.js`  경로에 생성되므로 `./dist` 폴더를 django 의 static과 연결합니다
 
@@ -66,8 +64,8 @@ module.exports = {
   context: __dirname,
   mode : 'development',  // 개발자 모드 활성화
   devtool: 'source-map', // firefox 문제해결
-  entry: {
-      index: './public/js/index.js', 
+  entry: {   // entry 를 ./dist/home.js 로 build
+      home: './public/js/index.js', 
   },
   output: {   // webpack-dev-server 로 출력 (HMR)
       publicPath: 'http://127.0.0.1:3030/',
@@ -83,8 +81,11 @@ module.exports = {
     hints: false // 빌더가 250kb 넘기면 경고를 출력
   },
   devServer: {   // webpack-dev-server 설정
+    historyApiFallback: true, // 클라이언트 뷰 라우터를 활용
+    //noInfo: true,           // 처음 시작때만 info를 출력
+    overlay: true,            // 오류를 browser로 출력
     inline: true,
-    port: 3030,
+    port: 8080,
     headers: { 
        'hot' : 'true',
        'Access-Control-Allow-Origin': '*',
@@ -151,7 +152,7 @@ urlpatterns = [
   <body>
     <span id="name"></span>
     <div  id="counter"></div>
-    <script src="{ % static 'index.js' % }"></script>
+    <script src="{ % static 'home.js' % }"></script>
   </body>
 </html>
 ```
