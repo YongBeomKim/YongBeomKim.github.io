@@ -12,7 +12,7 @@ tags:
 toc: true 
 ---
 
-바로 앞에서 **nodemon webpack-dev-server** 환경과, **Django 의 Backhand** 를 연결하여 동적인 개발 환경을 실습하였습니다. 이번에는 django 의 views.py 의 **content 객체를** 활용 가능하고, **django-webpack-loader** 의 **webpack bundle** 파일을 만들어 배포가능한 환경까지 구축하는 내용을 정리해 보겠습니다. [React & webpack-loader](https://medium.com/uva-mobile-devhub/set-up-react-in-your-django-project-with-webpack-4fe1f8455396) [webpack Setting](https://gist.github.com/genomics-geek/81c6880ca862d99574c6f84dec81acb0)
+바로 앞에서 **nodemon webpack-dev-server** 환경과, **Django 의 Backhand** 를 연결하여 동적인 개발 환경을 실습하였습니다. 이번에는 django **django-webpack-loader** 의 **webpack bundle** 파일을 만들어 배포가능한 환경을 구성하는 방법을 정리해 보겠습니다. [React & webpack-loader](https://medium.com/uva-mobile-devhub/set-up-react-in-your-django-project-with-webpack-4fe1f8455396) [webpack Setting](https://gist.github.com/genomics-geek/81c6880ca862d99574c6f84dec81acb0)
 
 <br/>
 # Setting 
@@ -129,3 +129,6 @@ module.exports = {
 
 [webpack in django & vue](https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3)<br/>
 [webpack-loader Hot Github](https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3)<br/>
+[setting django in vue](https://eldarion.com/blog/2018/10/09/setup-guide-django-vue-webpack/)<br/>
+[django Hot reload](https://zaccc123.github.io/blog/2017/guide-on-using-reactjs-with-django-part1-3/)<br/>
+
