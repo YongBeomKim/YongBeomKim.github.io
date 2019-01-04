@@ -1,6 +1,6 @@
 ---
-title : Webpack & Django / Hot Replacement Module
-last_modified_at: 2018-12-30T10:45:06-05:00
+title : django-webpack-loader in Django
+last_modified_at: 2019-01-01T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_vue.jpg
 categories:
@@ -11,6 +11,9 @@ tags:
     - webpack
 toc: true 
 ---
+
+
+
 
 바로 앞에서 django-webpack-loader 를 사용하여 webpack bundle 파일을 만들고 이를 활용하여 배포하는 작업까지 진행하였습니다. 하지만 개발단계에서 매번 bundle 작업을 진행 후 확인하는 것은 번거롭기 때문에 이를 한페이지로 정리를 해보겠습니다.
 
