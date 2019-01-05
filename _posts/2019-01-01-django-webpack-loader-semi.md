@@ -69,6 +69,8 @@ WEBPACK_LOADER = {
 ```python
 $ npm install --save-dev webpack-bundle-tracker
 ```
+**--save** 는 package.json 에 개발정보를 저장하는 옵선으로 npm@5 이후부터는 초기값으로 지정되어 있습니다. **-dev** 는 **development** 설치써로써, 개발단계 에서만 사용하고, 배포단계에서는 불필요한 모듈을 구분하는 용도로 활용됩니다.
+
 
 ### webpack.config.js
 ```javascript
