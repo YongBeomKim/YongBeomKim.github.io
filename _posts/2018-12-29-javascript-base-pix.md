@@ -51,3 +51,13 @@ module.exports = {
 }
 ```
 
+# yarn 
+내용을 찾다보면 `npm` 대신에 `yarn` 을 사용하여 설치하는 내용을 자주 볼 수 있습니다. `npm` 은 node.js 에서 제공하는 패키지 관리도구이며, `yarn` 은 **Facebook** 에서 제공하는 패키지 매니저로 몇가지 기능이 추가되어 있고, npm 서버가 느릴 경우에는 대체하는 방식으로 활용 가능합니다. [install](https://yarnpkg.com/lang/en/docs/install/#debian-stable)
+
+```python
+$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+$ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+$ sudo apt-get update && sudo apt-get install yarn
+```
+
+
