@@ -178,6 +178,11 @@ module.exports = {
 ## Django Setting
 `webpack-stats.json` 의 내용이 변경되었기 대문에 별도의 내용변경없이 django를 실행하면 됩니다.
 
+## Bootstrap [npm 설치](https://stevenwestmoreland.com/2018/01/how-to-include-bootstrap-in-your-project-with-webpack.html)
+```
+$ npm i bootstrap
+```
+
 <br/>
 # 참고 사이트들
 [React & webpack-loader](https://medium.com/uva-mobile-devhub/set-up-react-in-your-django-project-with-webpack-4fe1f8455396)<br/>
