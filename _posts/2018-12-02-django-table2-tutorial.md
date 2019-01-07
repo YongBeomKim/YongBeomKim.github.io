@@ -94,18 +94,15 @@ def people(request):
 ### app/people.html
 ```php
 <link href="css/bootstrap.min.css" />
-{ % load render_table from django_tables2 % }
-{ % render_table table % }
+    { % load render_table from django_tables2 % }
+    { % render_table table % }
 ```
 
 <br/>
 # **2 Generic View** <small>[link](https://django-tables2.readthedocs.io/en/latest/pages/generic-mixins.html)
-
-generic view 로써 **SingleTableView, MultiTableMixin**를 제공한다.
-
+generic view 로는 **SingleTableView, MultiTableMixin**를 제공한다.
 
 ## **1) SingleTableView**
-
 **SingleTableMixin**로 이후의 예제들에 구성되어 있지만, 이번 페이지에서는 **SingleTableView**로 작성이 되어있다. <small>**SingleTableMixin** 에서는 **model** 과 **modelclass** 2개를 요구하는데 이 차이는 아직 이해가 안된다</small>
 [일본자료 참고](https://afterall-wonderwall.blogspot.com/2018/01/django-tables2-singletableview.html) 
 
@@ -140,13 +137,10 @@ class PersonList(SingleTableView):
 { % render_table table % }
 ```
 
-
 ## **2) MultiTableMixin**
-
 2개 이상의 테이블을 구현하는 경우 예제로써, 내용이 불친절하고 `qs` 가 어떤형식을 이야기하는지 모호해서 우선 기록으로만 남긴다.
 
 ### views.py
-
 ```python
 from django_tables2 import MultiTableMixin
 from django.views.generic.base import TemplateView
@@ -160,7 +154,6 @@ class PersonTablesView(MultiTableMixin, TemplateView):
 ```
 
 ### app/multiTable.html
-
 ```php
 { % load django_tables2 % }
 { % for table in tables % }
