@@ -22,7 +22,6 @@ toc: true
 # what is the **<small>"$ npm install"?</small>**
 
 npm 은 **Node Package Manager** 의 약자입니다. 이에대해 체험을 한 것은 React Native를 수업하면서 필요한 내용들을 Node Js로 불러오면서 사용하였습니다.
-
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/npmjs.png">
   <figcaption>npmjs.com npm설치 가능한 모듈검색</figcaption>
@@ -118,7 +117,7 @@ vue.js 템플릿을 Webpack 으로 만든 [Github](https://github.com/vuejs-temp
   <figcaption>How to work Webpack</figcaption>
 </figure> 
 
-```
+```python
 $ npm install vue
 $ vue init webpack-simple frontend
   ? Project description 작업의 내용을 설명 (git commit 내용)
@@ -141,7 +140,7 @@ $ vue init webpack-simple frontend
 
 설치된 내용을 바탕으로 필요한 부가설치를 진행합니다
 
-```
+```python
 $ cd frontend
 $ npm install
 $ npm run dev
@@ -151,7 +150,7 @@ $ npm run dev
 
 ## **step 3** django-webpack-loader
 
-```
+```python
 $ pip install django-webpack-loader
 ```
 
@@ -180,10 +179,8 @@ WEBPACK_LOADER = {
 ## **step 4** 부가적인 WebPack Package를 설치합니다
 
 ### **webpack-bundle-tracker**
-
 [NPM](https://www.npmjs.com/package/webpack-bundle-tracker)
 [Github](https://github.com/owais/webpack-bundle-tracker)
-
 ```
 $ cd frontend
 $ npm install --save-dev webpack-bundle-tracker
@@ -196,7 +193,6 @@ var BundleTracker  = require('webpack-bundle-tracker');
 ```
 
 ### **write-file-webpack-plugin**
-
 [NPM](https://www.npmjs.com/package/write-file-webpack-plugin)
 [Github](https://github.com/gajus/write-file-webpack-plugin)
 

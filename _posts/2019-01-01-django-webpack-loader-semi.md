@@ -1,5 +1,5 @@
 ---
-title : django-webpack-loader in Django
+title : CORS, django-webpack-loader in Django
 last_modified_at: 2019-01-01T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_vue.jpg
@@ -14,10 +14,8 @@ toc: true
 
 바로 앞에서 **nodemon webpack-dev-server** 환경과, **Django 의 Backhand** 를 연결하여 동적인 개발 환경을 실습하였습니다. 이번에는 django **django-webpack-loader** 의 **webpack bundle** 파일을 만들어 배포가능한 환경을 구성하는 방법을 정리해 보겠습니다. [React & webpack-loader](https://medium.com/uva-mobile-devhub/set-up-react-in-your-django-project-with-webpack-4fe1f8455396) [webpack Setting](https://gist.github.com/genomics-geek/81c6880ca862d99574c6f84dec81acb0)
 
-
 현재 ./Webpack 으로 django 배포용 간략버젼을 정리하였습니다. 아래의 내용으로 정리를 해보고, 안되면 그냥 앞의 HMR 모드로 `./HmrServer` 작업후 bundle 파일 생성한 뒤 배포로 연결해 버리자 (너무 작업들이 지체되었습니다)
 https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3
-
 
 <br/>
 # Setting 

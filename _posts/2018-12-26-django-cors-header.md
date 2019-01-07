@@ -1,5 +1,5 @@
 ---
-title : Django / JavaScript 교차 CORS 오류에 대한 대책들
+title : Django, Js 교차 CORS 오류에 대한 대책
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
@@ -28,7 +28,7 @@ toc: true
 
 ```python
 INSTALLED_APPS = [
-    'corsheaders', 
+    # 'corsheaders',  # 설치 없이도 잘 작동합니다.
     ...
 ]
 
@@ -39,6 +39,10 @@ MIDDLEWARE = [  # Or MIDDLEWARE_CLASSES on Django < 1.10
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3030',
+    '127.0.0.1:3030'
+)
 ```
 
 이와같이 설정하고 json 을 받으면 오류를 출력하지 않습니다

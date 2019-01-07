@@ -1,5 +1,5 @@
 ---
-title : Django / Ajax Axios 그리고 Javascript
+title : Django Ajax Axios 그리고 Javascript
 last_modified_at: 2018-12-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
