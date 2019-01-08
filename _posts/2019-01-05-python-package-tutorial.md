@@ -12,7 +12,7 @@ tags:
 toc: true 
 ---
 
-이번에는 배포 가능한 python package 를 정리해 보겠습니다. 예전에 `googlefinence.get` 을 만들어 배포한 적이 있엇지만, 다시 하려다가 헤매었습니다. 마침 2019년 1월부터 GitHub 에서 3개의 private repository를 제공하는 뉴스가 나왔고 이를 사용하여 개인적인 package 간단 배포내용을 정리해 보겠습니다. <strike>점점 더 1등만 기억하는 더러운 세상이 강화되는 느낌 또한 듭니다</strike>
+2019년 1월부터 GitHub 에서 3개의 private repository를 제공하는 뉴스가 나왔고 이를 사용하여 **간단한 package 배포내용을** 정리해 보겠습니다. <strike>점점 더 1등만 기억하는 더러운 세상이 강화되는 느낌이 드는건..</strike>
 
 <br/>
 # Python Docstring
