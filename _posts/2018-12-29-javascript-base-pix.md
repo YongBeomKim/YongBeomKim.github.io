@@ -15,6 +15,11 @@ toc: true
 
 지금까지 정리한 개념 및 추후 정리를 한 내용들을 모아두는 저장 창고로써 기능을 하도록 작업을 진행해 보겠습니다.
 
+1. **Module** - 개별 함수, 클래스의 모음
+2. **Package** - 모듈의 묶음
+3. **App** - 기능의 단위묶음
+4. **Project** - 프로젝트 묶음
+
 # Example
 ```javascript
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -59,5 +64,3 @@ $ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 $ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 $ sudo apt-get update && sudo apt-get install yarn
 ```
-
-
