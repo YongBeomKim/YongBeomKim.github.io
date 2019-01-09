@@ -15,7 +15,7 @@ toc: true
 
 <br/>
 # 1 기본 Method
-### **itertools.chain**(객체1, 객체2, 객체3)
+## **itertools.chain**(객체1, 객체2, 객체3)
 여러 객체를 **1개로 묶는다**
 ```python
 import itertools
@@ -27,7 +27,7 @@ list(itertools.chain(letters, booleans, decimals))
 [Out]>> ['a', 'b', 'c', 'd', 'e', 'f', 1, 0, 1, 0, 0, 1, 0.1, 0.7, 0.4, 0.5]
 ```
 
-### **itertools.count**(시작값, Step)
+## **itertools.count**(시작값, Step)
 **Key, Value 를** 묶어서 **{ dict }** 객체를 생성합니다
 ```python
 from itertools import count
@@ -39,7 +39,7 @@ for number, letter in zip(count(0, 10), ['a', 'b', 'c', 'd', 'e']):
 
 <br/>
 # 2 Python 기본 함수를 활용
-### zip()
+## zip()
 객체를 **튜플(tuple)로** 묶는다 
 ```python
 list(zip([1, 2, 3], ['a', 'b', 'c']))
@@ -47,7 +47,7 @@ list(zip([1, 2, 3], ['a', 'b', 'c']))
 [Out]>> [(1, 'a'), (2, 'b'), (3, 'c')]
 ```
 
-### map()
+## map()
 개별 인덱스 값을 **lambda 함수로** 묶은 뒤 **list()** 객체를 생성합니다 
 ```python
 list(map(lambda x: x * x, range(10)))
@@ -55,7 +55,7 @@ list(map(lambda x: x * x, range(10)))
 [Out]>> [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 ```
 
-### filter()
+## filter()
 전체 인덱스 값 중 **lambda 조건에 True** 를 출력합니다
 ```python
 list(filter(lambda x: x < 10, [1, 4, 6, 7, 11, 34, 66, 100, 1]))
@@ -65,7 +65,7 @@ list(filter(lambda x: x < 10, [1, 4, 6, 7, 11, 34, 66, 100, 1]))
 
 <br/>
 # 3 itertools 계산 함수들 
-### tee()
+## tee()
 동일한 객체의 복사본을 생성하고, 이는 출력 후 바로 메모리에서 지운다.
 ```python
 from itertools import tee
@@ -80,7 +80,7 @@ print (tuple(i3)) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 print (list(i3))  # []
 ```
 
-### **cycle()**
+## **cycle()**
 0, 1 **2개 인덱스 값을** 사용하여 객체를 출력한다
 ```python
 from itertools import cycle
@@ -90,7 +90,7 @@ for number, letter in zip( cycle (range(2)), ['a', 'b', 'c', 'd', 'e'] ):
 >> 0: a; 1: b; 0: c; 1: d; 0: e
 ```
 
-### **repeat()**
+## **repeat()**
 value 값을 **반복 출력한다**
 ```python
 from itertools import repeat
@@ -99,7 +99,7 @@ print(list(repeat('Hello, world!', 3)))
 [Out]>> ['Hello, world!', 'Hello, world!', 'Hello, world!']
 ```
 
-### **dropwhile()**
+## **dropwhile()**
 Whlie 반복문에서, lambda 조건값은 Drop 하고 **나머지를 출력** 한다<br/>
 <small>ex) 11에서 Drop을 멈추고 나머지를 출력</small>
 ```python
@@ -109,7 +109,7 @@ list(dropwhile(lambda x: x < 10, [1, 4, 6, 7, 11, 7, 66, 100, 1, 22]))
 [Out]>> [11, 7, 66, 100, 1, 22]
 ```
 
-### **takewhile()**
+## **takewhile()**
 Whlie 반복문에서 **lambda 조건값을 출력** 하고, 나머지를 Drop 한다<br/>
 <small>ex) 11에서 출력을 멈춘다</small>
 ```python
