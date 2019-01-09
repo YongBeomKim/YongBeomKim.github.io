@@ -30,7 +30,6 @@ def test(a, b):
 
 <br/>
 # Project Packaging
-
 ## Create Package
 배포시 사용할 Package 폴더를 만든 뒤, 작업한 class, def 를 App별로 파일로 묶은 파일을 추가합니다.  `LICENSE` 와 `README.rst` 는 Github 에서 repository를 생성하면서 자동으로 추가됩니다. 
 ```
@@ -42,13 +41,13 @@ def test(a, b):
 ```
 
 ### __init__.py
-프로젝트 시작을 선언하는 파일을 생성합니다. 패키지 생성시 기준점으로 활용되기 때문에 꼭 필요한 파일 입니다.
+**프로젝트 시작을 선언하는 파일을** 생성합니다. 패키지 생성시 **기준점으로 활용되기** 때문에 꼭 필요한 파일 입니다.
 ```python
 # __import__('pkg_resources').declare_namespace(__name__)
 ```
 
 ### README.rst 
-[Rst문법예제](http://svn.python.org/projects/external/Sphinx-1.2/doc/markup/code.rst) 를 살펴보면 LaTex 과는 달라서 그대로 사용하면 제대로 표현이 되지 않습니다. 위의 예제를 참고하여 원하는 내용을 기록합니다. [reStructure 온라인 에디터](http://rst.ninjs.org/#)
+[Rst 문법예제](http://svn.python.org/projects/external/Sphinx-1.2/doc/markup/code.rst) 를 살펴보면 LaTex 과는 달라서 그대로 사용하면 제대로 표현이 되지 않습니다. 위의 예제를 참고하여 원하는 내용을 기록합니다. [reStructure 온라인 에디터](http://rst.ninjs.org/#)
 ```javascript
 .. image:: https://media.sproutsocial.com/uploads/2015/04/API_defined3-02.png
     :target: https://www.google.com/finance
@@ -83,12 +82,12 @@ Personal functions and Api, Json generators
   <img src="{{site.baseurl}}/assets/images/code/shields.png">
   <figcaption>$ npm run build</figcaption>
 </figure> 
-github 등의 소스코드에 대한 설명페이지를 살펴보다 보면 위와같이 각각의 version 정보를 icon 과 같이 보이는 이미지를 종종 볼 수 있습니다. 이를 위해 링크를 연결하기 위한 Image Source 를 제공하는 곳으로 [https://shields.io/#/](https://shields.io/#/) 가 있습니다. 이곳의 이미지 링크를 사용하여 내용에 추가를 합니다.
+소스코드 설명페이지를 보면 **version 정보를 표시하는 icon** 이미지를 종종 볼 수 있습니다. 이는 링크로 연결하며 활용하는 것들로 **Image Source** 를 제공하는 곳으로 [https://shields.io/#/](https://shields.io/#/) 가 있습니다. 이곳의 이미지 링크를 사용하여 내용에 추가를 합니다.
 
 ### ./setup.py
 > `$ pip install setuptools`
 
-이제는 배포용 파일을 생성합니다. 위의 [패키지](https://pypi.org/project/setuptools/) 가 설치되어 있지 않는다면 위의 설치내용을 추가한 뒤 **setuptools** 패키지에서 setup()과 find_packages()를 호출하여 진행합니다. 아래의 내용을 참고하여 목적과 내용에 맞는 내용을 수정 보완하여 입력합니다.
+이제는 배포용 파일을 생성합니다. 위의 [패키지](https://pypi.org/project/setuptools/) 가 설치되어 있지 않는다면 위의 설치내용을 추가한 뒤 **setuptools** 패키지의 **setup() 와 find_packages()** 를 사용합니다. 아래의 내용을 참고하여 목적과 내용에 맞는 내용을 수정 보완하여 입력합니다.
 ```python
 # coding: utf-8
 from codecs import open
@@ -118,7 +117,6 @@ setup(
 ```
 
 **setup()** 함수의 파라미터를 정리하면 다음과 같습니다.
-
 | 파라미터 |  설명                                      |
 |:--------:|:------------------------------------------:|
 |name      |패키지 이름(PYPI에 어떻게 나열될지를 지정)  |
@@ -135,19 +133,19 @@ setup(
 description-file = README.rst
 
 [nosetests]
-verbose=1
-nocapture=1
+verbose = 1
+nocapture = 1
 ```
 
 <br/>
 # Project build 
-> $ python setup.py bdist_wheel
+> $ python setup.py **bdist_wheel**
 
 위의 준비들을 모두 거쳤다면, build 파일을 생성합니다. 위 명령은 **순수 휠 또는 플랫폼 휠을 빌드하는 명령으로** 이로써 생성된 `./dist/프로젝트-버젼-정보.whl` 파일만 있으면 어떠한 환경에서도 `$ pip install 프로젝트-버젼-정보.whl` 을 사용하여 해당 프로젝트를 설치 및 활용할 수 있습니다. 
 
 <br/>
 # PyPi 배포하기 
-> $ python setup.py sdist
+> $ python setup.py **sdist**
 
 소스 배포판을 만들기 위해서는 위의 명령을 실행합니다. 기타 Pypi와의 연결 및 내용 전송 및 확인등은 앞에 정리한 내용을 참고하면 됩니다.
 

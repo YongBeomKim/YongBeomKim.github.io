@@ -15,8 +15,7 @@ toc: true
 
 <br/>
 # **1 Alternative Data**
-
-## 1) Table.render_필드명
+## Table.render_필드명
 **Alternative column data :** 컬럼별로 데이터를 변형한다. 이를 적용하기 위해서는 앞에서 미리 컬럼별로 데이터를 일원화 한 정형화된 상태에서 적용해야 효과적이다
 
 ### **App/function.py**
@@ -24,8 +23,8 @@ toc: true
 
 `def render_필드명(self, value) :`  테이블 데이터 **인스턴스 클래스** 내부에 `render_필드명` 함수를 정의하면 **django-table2** 모듈에서 자동으로 **이름이 동일한 필드 데이터를** 호출하여 함수내용을 적용한다.
 ```python
-import django_tables2 as tables
 import itertools 
+import django_tables2 as tables
 class SimpleTable(tables.Table):
     
     # 인스턴스 생성할 컬럼들 (row_number는 인덱스 값)
@@ -38,7 +37,7 @@ class SimpleTable(tables.Table):
         super(SimpleTable, self).__init__(*args, **kwargs)
         self.counter = itertools.count()
     
-    def render_row_number(self):  # 반복자 Count
+    def render_row_number(self): # 반복자 Count
         return 'Row %d' % next(self.counter) 
     
     def render_id_num(self, value): # id 컬럼 < > 씌우기
@@ -69,7 +68,7 @@ Row 1, <11>, 34, 232,123
 Row 2, <13>, 41, 523,123
 ```
 
-## 2) Table.value_필드명
+## Table.value_필드명
 ### **테이블 데이터로 출력합니다**
 ```python
 import django_tables2 as tables
@@ -85,11 +84,19 @@ data = [{'normal': 'Hi there!',
          'upper':  'Hi there!'}]
 
 table = Example(data)
-# 테이블 결과값을 렌더링한 결과값
-'''<table>
-    <thead><tr><th>Normal</th><th>Upper</th></tr></thead>
-    <tbody><tr><td>Hi there!</td><td>HI THERE!</td></tr></tbody>
-</table>'''
+```
+렌더링한 결과는 다음과 같이 출력합니다
+```html
+<table>
+    <thead>
+        <tr><th>Normal</th>
+        <th>Upper</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Hi there!</td>
+        <td>HI THERE!</td></tr>
+    </tbody>
+</table>
 ```
 
 ### **img 등 다양한 포맷으로도 필드내 데이터를 출력**
@@ -103,7 +110,6 @@ class ImageColumn(tables.Column):
 
 <br/>
 # **2 Alternative Table Template**
-
 ## **1) Column 속성값 추가**
 > tables.Column(**attrs = {}**)
 
@@ -111,8 +117,9 @@ class ImageColumn(tables.Column):
 ```python
 class SimpleTable(tables.Table):
     name = tables.Column(attrs={'th': {'id': 'foo'}})
-
-# 위의 내용을 적용한 결과 render()는 다음과 같이 출력한다
+```
+위의 내용을 적용한 결과 render()는 다음과 같이 출력한다
+```html
 {snip}<thead><tr><th id="foo">{snip}<tbody><tr><td>{snip}
 ```
 
@@ -136,7 +143,7 @@ class Table(tables.Table):
 # **3 Tabler Header / Footer 추가**
 테이블 인스턴스를 수정하는 내용으로 **테이블 인스턴스 클래스** 내부에서 아래의 내용들을 적용 합니다.
 
-## 1) 테이블 Footer를 테이블 클래스 함수에서 구현하기 
+## 테이블 Footer를 테이블 클래스 함수에서 구현하기 
 테이블 인스턴스 클래스에서 **foorter = '출력할 내용'** 의 방식으로, 테이블 맨 밑줄에 추가할 내용을 입력합니다. [link](https://django-tables2.readthedocs.io/en/latest/pages/column-headers-and-footers.html) 아래의 내용은 `population` 필드값의 총합을 출력하는 예제 입니다.
 ```python
 country = tables.Column(footer='총합 :')
@@ -144,7 +151,7 @@ population = tables.Column(
     footer=lambda table: sum(x['population'] for x in table.data))
 ```
 
-## 2) 테이블 Footer 사용자 함수를 사용하여 구현하기 
+## 테이블 Footer 사용자 함수를 사용하여 구현하기 
 위와같이 개별필드에 `in-line` 방식으로도 추가가 가능하지만 복잡한 내용을 다양한 테이블에 적용하기 위해서는 번거로운 작업을 필요로 합니다. 이런 경우를 대비하기 위해서 별도 사용자 함수를 생성하고 이를 재활용하는 예제 입니다.
 ```python
 # 해당 필드의 총합을 계산하는 함수
@@ -158,8 +165,8 @@ class Table(tables.Table):
     population = SummingColumn()
 ```
 
-## 3) Pinned rows 1 : **get_top_pinned_data(self)** 
-**테이블의 맨 위 인덱스에 임의의 DataBases 튜플 데이터를 추가**한다. 단 여기에서 추가된 데이터는 필드별 인스턴스가 생선된 뒤에 생성됨으로써, 컬럼별 합계 등에서는 포함되지 않음에 유의하자ㄴ
+## Pinned rows 1 : **get_top_pinned_data(self)** 
+**테이블의 맨 위 인덱스에 임의의 DataBases 튜플 데이터를 추가**한다. 단 여기에서 추가된 데이터는 필드별 인스턴스가 생선된 뒤에 생성됨으로써, 컬럼별 합계 등 **연산에서는 포함되지 않음에** 유의하자
 ```python
 def get_top_pinned_data(self):
     return [
@@ -168,8 +175,8 @@ def get_top_pinned_data(self):
          '기타': '어쩌고 탑'},]
 ```
 
-## 4) Pinned rows 2 : **get_bottom_pinned_data(self)** 
-3) 의 내용과 동일하고 대신에, 테이블 맨 밑에 추가된다
+## Pinned rows 2 : **get_bottom_pinned_data(self)** 
+위와 동일하고 대신, **테이블 맨 밑에 추가된다**
 ```python
 def get_bottom_pinned_data(self):
     return [
