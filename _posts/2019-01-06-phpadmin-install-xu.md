@@ -152,3 +152,4 @@ Alias /sql /usr/share/phpmyadmin
 # 참고사이트
 [Tutorial](https://websiteforstudents.com/install-apche2-php-phpmyadmin-ubuntu-17-04-17-10/)<br/>
 [apache Server Connect](https://askubuntu.com/questions/668734/the-requested-url-phpmyadmin-was-not-found-on-this-server)<br/>
+[phpMyAdmin 생활코딩](https://opentutorials.org/course/195/1469)<br/>
