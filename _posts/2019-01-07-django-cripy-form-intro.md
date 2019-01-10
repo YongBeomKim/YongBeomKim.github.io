@@ -1,8 +1,8 @@
 ---
 title : Tutorial / django-crispy-forms
-last_modified_at: 2018-12-05T10:45:06-05:00
+last_modified_at: 2019-01-07T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django-girls.jpg
+  overlay_image: /assets/images/book/django_pro.png
 categories:
   - django
 tags: 
@@ -10,7 +10,6 @@ tags:
     - python
 toc: true 
 ---
-
 
 * django-filter [link](https://django-filter.readthedocs.io/en/master/)
 * django-crispy-forms [link](https://django-crispy-forms.readthedocs.io/en/latest/install.html)
