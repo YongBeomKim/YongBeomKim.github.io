@@ -135,9 +135,6 @@ module.exports = {
 
 [Vue3 Django](https://medium.com/@rodrigosmaniotto/integrating-django-and-vuejs-with-vue-cli-3-and-webpack-loader-145c3b98501a)<br/>
 [React Django](https://medium.com/labcodes/configuring-django-with-react-4c599d1eae63)<br/>
-
-
-
 [webpack in django & vue](https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3)<br/>
 [webpack-loader Hot Github](https://medium.com/@michealjroberts/part-1-integrating-django-2-vue-js-and-hot-webpack-reload-setup-387a975166d3)<br/>
 [setting django in vue](https://eldarion.com/blog/2018/10/09/setup-guide-django-vue-webpack/)<br/>
