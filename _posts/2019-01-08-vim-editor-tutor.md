@@ -12,6 +12,8 @@ toc: true
 ---
 
 서버파일을 작업하다 보면 `nano` 편집기를 자주 사용했지만, 문법 오류등은 감으로 작업을 해야하는 한계가 존재합니다. 그러던 중 [Django Hot Reload](https://www.youtube.com/embed/A2vEazcfJ7U)  동영상에서 vim을 자유롭게 사용하는 모습을 보고 한번 따라하고 싶어서 정리하게 되었습니다.
+
+cf) neovim 설치하기 [install](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 ```python
 $ sudo add-apt-repository ppa:neovim-ppa/unstable
 $ sudo apt-get update
