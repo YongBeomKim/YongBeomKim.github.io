@@ -13,13 +13,6 @@ toc: true
 
 서버파일을 작업하다 보면 `nano` 편집기를 자주 사용했지만, 문법 오류등은 감으로 작업을 해야하는 한계가 존재합니다. 그러던 중 [Django Hot Reload](https://www.youtube.com/embed/A2vEazcfJ7U)  동영상에서 vim을 자유롭게 사용하는 모습을 보고 한번 따라하고 싶어서 정리하게 되었습니다.
 
-cf) neovim 설치하기 [install](https://github.com/neovim/neovim/wiki/Installing-Neovim)
-```python
-$ sudo add-apt-repository ppa:neovim-ppa/unstable
-$ sudo apt-get update
-$ sudo apt-get install neovim
-```
-
 <br/>
 # vimtutor 
 도서등을 참고하려고 했지만 분량이 너무 많기도 해서, `$ vimtutor` 를 통해서 나온 내용들을 참고하여 정리하는 편이 핵심도 잘 정리되어 있고 분량도 적어서 참고하게 되었습니다.
@@ -67,6 +60,16 @@ $ sudo apt-get install neovim
 | **ctrl+g**     | **파일이름 및 줄 정보** 표시       |
 | 숫자 **ctrl+g**| **행 번호로** 이동하기             |
 | **shift+g**    | 문서의 **마지막 줄** 이동하기      |
+
+<br/>
+# NeoVim
+neovim 설치하기 [install](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+```python
+$ sudo add-apt-repository ppa:neovim-ppa/unstable
+$ sudo apt-get update
+$ sudo apt-get install neovim
+```
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w3Y-Ow_QeAc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <br/>
 # 참고사이트
