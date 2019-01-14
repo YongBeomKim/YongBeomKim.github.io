@@ -57,7 +57,7 @@ pd.read_html(table_html)[0].head(3)
 
 <br/>
 # **Selenium**
-위와같이 소스코드를 불러오면 객체값이 JavaScript 로 구성된 경우가 많습니다. 
+requests를 사용하여 소스코드를 불러오면 객체값이 JavaScript 로 구성된 경우가 많습니다. 
 ```html
 <table summary="주요 시세." class="no_info">
   <tr><td class="first">
@@ -67,7 +67,7 @@ pd.read_html(table_html)[0].head(3)
 </table>
 ```
 
-`requests` 는 소스코드 추출 이외에 특별한 작업을 제공하지 않기 때문에 Selenium 등의 모듈을 사용하여 객체내 포함된 `JavaScript 함수를` 실행하고 그 결과값을 출력합니다. **(select -> action -> new Position Result)** 자세한 내용은 [YouTube](https://www.google.com/search?q=%ED%8C%8C%EC%9D%B4%EC%8D%AC+%EC%9B%B9%ED%81%AC%EB%A1%A4%EB%A7%81+selenium&client=ubuntu&hs=nWL&channel=fs&source=lnms&tbm=vid&sa=X&ved=0ahUKEwiS8cLh8OzfAhWLw7wKHQHKBfIQ_AUIDigB&biw=1360&bih=728) 를 참고하면 많은 참고가 가능합니다.
+이러한 경우 javascript 스크립트를 실행하고 결과값을 사용해야 합니다 이러한 경우 가장 대중적으로 활용되는 모듈이 [seleniumHQ](https://www.seleniumhq.org) 입니다. **(select -> action -> new Position Result)** 과정으로 구조를 설계 및 실행합니다. 이에대한 자세한 내용은 [YouTube](https://www.google.com/search?q=%ED%8C%8C%EC%9D%B4%EC%8D%AC+%EC%9B%B9%ED%81%AC%EB%A1%A4%EB%A7%81+selenium&client=ubuntu&hs=nWL&channel=fs&source=lnms&tbm=vid&sa=X&ved=0ahUKEwiS8cLh8OzfAhWLw7wKHQHKBfIQ_AUIDigB&biw=1360&bih=728) 를 참고하면 많은 참고가 가능합니다.
 ```python
 from selenium import webdriver
 url    = "https://finance.naver.com/item/coinfo.nhn?code=035720"
