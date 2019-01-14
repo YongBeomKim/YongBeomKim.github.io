@@ -39,7 +39,7 @@ import pandas as pd
 pd.read_html(table_html)[0].head(3)
 ```
 <table border="1" class="dataframe">
-<thead><tr style="text-align: right;">
+<thead><tr style="text-align: right;"><th></th>
     <th>Date</th><th>Open*</th><th>High</th><th>Low</th><th>Close**</th>
     <th>Volume</th><th>Market Cap</th></tr></thead>
 <tbody>
@@ -50,3 +50,4 @@ pd.read_html(table_html)[0].head(3)
   <tr><th>2</th><td>Jan 11, 2019</td><td>3674.02</td><td>3713.88</td>
     <td>3653.07</td><td>3687.37</td><td>5538712865</td><td>64443301117</td>
 </tr></tbody></table>
+
