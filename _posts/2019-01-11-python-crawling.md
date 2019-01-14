@@ -39,48 +39,14 @@ import pandas as pd
 pd.read_html(table_html)[0].head(3)
 ```
 <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Open*</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close**</th>
-      <th>Volume</th>
-      <th>Market Cap</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Jan 13, 2019</td>
-      <td>3658.87</td>
-      <td>3674.76</td>
-      <td>3544.93</td>
-      <td>3552.95</td>
-      <td>4681302466</td>
-      <td>62106461671</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Jan 12, 2019</td>
-      <td>3686.97</td>
-      <td>3698.98</td>
-      <td>3653.81</td>
-      <td>3661.30</td>
-      <td>4778170883</td>
-      <td>63994140882</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Jan 11, 2019</td>
-      <td>3674.02</td>
-      <td>3713.88</td>
-      <td>3653.07</td>
-      <td>3687.37</td>
-      <td>5538712865</td>
-      <td>64443301117</td>
-    </tr>
-  </tbody>
-</table>'
+<thead><tr style="text-align: right;">
+    <th>Date</th><th>Open*</th><th>High</th><th>Low</th><th>Close**</th>
+    <th>Volume</th><th>Market Cap</th></tr></thead>
+<tbody>
+  <tr><th>0</th><td>Jan 13, 2019</td><td>3658.87</td><td>3674.76</td>
+    <td>3544.93</td><td>3552.95</td><td>4681302466</td><td>62106461671</td></tr>
+  <tr><th>1</th><td>Jan 12, 2019</td><td>3686.97</td><td>3698.98</td>
+    <td>3653.81</td><td>3661.30</td><td>4778170883</td><td>63994140882</td></tr>
+  <tr><th>2</th><td>Jan 11, 2019</td><td>3674.02</td><td>3713.88</td>
+    <td>3653.07</td><td>3687.37</td><td>5538712865</td><td>64443301117</td></tr>
+</tbody></table>
