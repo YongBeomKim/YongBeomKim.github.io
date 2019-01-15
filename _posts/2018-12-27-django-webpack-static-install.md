@@ -47,7 +47,7 @@ toc: true
 # 1 Django : simple page
 
 ## Start Django
-```
+```python
 $ django-admin startproject mysite
 $ cd mysite 
 $ ./manage.py startapp app      
@@ -56,7 +56,7 @@ $ ./manage.py runserver
 $ mkdir -p app/templates static/{js,css}
 ```
 
-```
+```php
 ├── app
 │   ├── __init__.py
 │   └── templates
@@ -66,7 +66,7 @@ $ mkdir -p app/templates static/{js,css}
 ```
 
 ## Simple Page
-```
+```python
 $ python manage.py startapp app
 ```
 
@@ -265,7 +265,7 @@ STATICFILES_DIRS = ['dist']
 ## nodemon 과 django 실행
 우선 `nodemon` 을 사용하여 `webpack.config.js` 를 정상적 실행되는 모습을 확인한 뒤에 `django-webpack-loader` 를 실행합니다. 그리고 이들은 별도의 창에서 실행을 해야 합니다 (물론 background 실행을 해도 됩니다)
 
-```
+```python
 $ npm start
 $ ./manage.py runserver
 ```

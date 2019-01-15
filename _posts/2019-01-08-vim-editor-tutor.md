@@ -61,6 +61,7 @@ toc: true
 | 숫자 **ctrl+g**| **행 번호로** 이동하기             |
 | **shift+g**    | 문서의 **마지막 줄** 이동하기      |
 
+<br/>
 # NeoVim
 neovim 설치하기 [install](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 ```python

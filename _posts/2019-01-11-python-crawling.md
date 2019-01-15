@@ -112,3 +112,6 @@ Methods : [... , 'element', 'encoding', 'find', 'full_text', 'html', 'links', 'l
 table_source = r.html.find('table')[1].html
 pd.read_html(table_source)[0]
 ```
+
+<script id="dsq-count-scr" src="//http-yongbeomkim-github-io.disqus.com/count.js" async>
+</script>
