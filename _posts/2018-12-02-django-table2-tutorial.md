@@ -65,6 +65,7 @@ class PersonTable(tables.Table):
         model = Person
         template_name = 'django_tables2/bootstrap.html'
 ```
+
 | 템플릿                                | 설명         |
 |:-------------------------------------:|:-------------------------:|
 | django_tables2/**table.html**          |Basic table template (default).|
