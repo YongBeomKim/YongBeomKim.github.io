@@ -92,7 +92,7 @@ def people(request):
 **RequestConfig() :** 모델링 데이터를 `request.GET` 방식을 통해 다양한 기능이 구현 가능합니다. 템플릿 에서는 `{ % render_table % }` 를 사용하여 출력합니다.
 {: .notice--info}
 
-### app/people.html
+### ./app/people.html
 ```php
 <link href="css/bootstrap.min.css" />
     { % load render_table from django_tables2 % }
@@ -107,7 +107,7 @@ generic view 로는 **SingleTableView, MultiTableMixin**를 제공한다.
 **SingleTableMixin**로 이후의 예제들에 구성되어 있지만, 이번 페이지에서는 **SingleTableView**로 작성이 되어있다. <small>**SingleTableMixin** 에서는 **model** 과 **modelclass** 2개를 요구하는데 이 차이는 아직 이해가 안된다</small>
 [일본자료 참고](https://afterall-wonderwall.blogspot.com/2018/01/django-tables2-singletableview.html) 
 
-### models.py, tables.py
+### ./app/models.py, ./app/tables.py
 ```python
 # app/models.py
 class Person(models.Model):
@@ -121,7 +121,7 @@ class PersonTable(tables.Table):
         model = Person
 ```
 
-### app/views.py
+### ./app/views.py
 ```python
 from .models import Person
 from .tables import PersonTable

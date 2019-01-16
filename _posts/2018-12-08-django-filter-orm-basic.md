@@ -38,6 +38,7 @@ print(a.id, a.pk)
 ## **objects.create() , .objects.bulk_create()**
 1. **.create() :** 1줄씩 정보를 입력
 2. **.bulk_create() :** 묶음으로 정보를 입력
+
 ```python
 a2 = Author.objects.create(name='jerry', email='jerry@mail.com')
 a2.save()
@@ -97,7 +98,7 @@ Author.objects.exclude(name='spike', email='spike@mail.com')
 ```
 
 <br/>
-# **4 Filed Lookup**
+# **3 Filed Lookup**
 > 모델.objects.**filter**(필드이름**__lookup** = value )
 
 **.objects.filter(), .objects.exclude()** 에서는 필드별 구체적인 값에대한 비교만 가능합니다. 이를 극복하기 위한 여러 **검색 조건들을** django 에서는 제공합니다.
@@ -178,7 +179,7 @@ Author.objects.filter(created_on__day=24, created_on__month=3, created_on__year=
 ```
 
 <br/>
-# **5 Chaining QuerySet**
+# **4 Chaining QuerySet**
 ## 1) Chaining Methods
 위의 **단일 조건들을 연결하여** 쿼리문으로 사용할 수 있습니다
 ```python
@@ -195,7 +196,7 @@ Author.objects.filter(created_on__year=2018).first()
 Author.objects.filter(created_on__year=2018).last()
 ```
 
-# **6 복잡한 쿼리문과 Q**
+# **5 복잡한 쿼리문과 Q**
 **AND, OR** 조건문을 Django 에서는 **Q**를 통해서 구현합니다
 ```python
 from django.db.models import Q
@@ -211,7 +212,7 @@ QuerySet [<Author: tommy : tommy@example.com>...]
 ```
 
 <br/>
-# **7 etcs**
+# **6 etcs**
 ## 1) .filter(), .get()
 ```python
 Author.objects.get(name="tommy")
@@ -300,7 +301,7 @@ Author.objects.order_by("-id")[-1]
 AssertionError: Negative indexing is not supported.
 ```
 
-# 8 Updating Multiple Objects
+# 7 Updating Multiple Objects
 2번 인덱스의 데이터를 새롭게 갱신합니다 
 ```python
 a = Author.objects.get(pk=2)
@@ -319,7 +320,7 @@ Author.objects.filter(id__gt=3).update(active=True, name='x')
 [Out] 3
 ```
 
-# 9 Delete
+# 8 Delete
 특정조건의 QuerySet 을 호출하고 이를 삭제합니다 
 ```python
 a = Author.objects.get(pk=2)
