@@ -232,7 +232,7 @@ Author.objects.get(name__contains="captain planet")
 [Out] Traceback (most recent call last): djangobin.models.DoesNotExist: Author matching query does not exist.
 ```
 
-## 2) Ordering Results <small>**.order_by()</small>
+## 2) Ordering Results <small>**.order_by()**</small>
 ```python
 Author.objects.order_by("id")
 Author.objects.filter(id__gt=3).order_by("name")
@@ -301,6 +301,7 @@ Author.objects.order_by("-id")[-1]
 AssertionError: Negative indexing is not supported.
 ```
 
+<br/>
 # 7 Updating Multiple Objects
 2번 인덱스의 데이터를 새롭게 갱신합니다 
 ```python
@@ -320,6 +321,7 @@ Author.objects.filter(id__gt=3).update(active=True, name='x')
 [Out] 3
 ```
 
+<br/>
 # 8 Delete
 특정조건의 QuerySet 을 호출하고 이를 삭제합니다 
 ```python
