@@ -16,6 +16,8 @@ toc: true
 
 [Kaggle Korea Compition](https://www.kaggle.com/c/2019-1st-ml-month-with-kakr/kernels)
 
+[Kaggle Titanic 분석예제](https://www.kaggle.com/daehungwak/guide-kor-dg)
+
 [Tutorial Git](https://nbviewer.jupyter.org/github/TOTOFRIEND/Titanic_Tutorial/tree/master/)
 
 <br/>

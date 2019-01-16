@@ -1,6 +1,6 @@
 ---
 title : Sample / django filter 예제
-last_modified_at: 2018-12-05T10:45:06-05:00
+last_modified_at: 2018-12-09T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
 categories:
@@ -12,9 +12,13 @@ toc: true
 ---
 
 
-**How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 정리해 보았습니다.
+**How to Filter QuerySets Dynamically** [site](https://simpleisbetterthancomplex.com/tutorial/2016/11/28/how-to-filter-querysets-dynamically.html) 의 내용을 정리해 보았습니다. **Django 2.0** 에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다.
 
-**Django 2.0** 에 맞게, 그리고 Project에 추가할 때는 어떻게 해야하는지를 실습하면서 그 내용을 정리해 보고자 합니다. 정리하면서 여러책을 뒤척이다 보니 진도가 더디어서 무척 힘들었습니다. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들로 작은 Project를 여럿 완성하면서** Upgrade 를 해 나아가는 방향으로 진행하는 방법을 추천합니다.
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/photo/filter6.png">
+</figure> 
+
+정리하면서 여러책을 뒤척이다 보니 진도가 더디어서 무척 힘들었습니다. **기본은 완성되었다는 자신감** 속에서 **필요한 예제들로 작은 Project를 여럿 완성하면서** Upgrade 를 해 나아가는 방향으로 진행하는 방법을 추천합니다.
 
 <br/>
 # **1 Basic Tutorial** 
