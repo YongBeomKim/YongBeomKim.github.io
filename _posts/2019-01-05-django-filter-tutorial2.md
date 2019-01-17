@@ -74,10 +74,12 @@ class ProductFilter(FilterSet):
 모델 필드의 이름을 필터링합니다. 관련있는 모델(ex, manufacturer__name -manufacturer는 models.py에서 foriegn key로 잡혀있기 때문에 가능) 필드를 장고의 __구문을 사용하여 "관계 경로(relationship paths)"를 통과 할 수 있습니다.
 
 ### **lookup_expr=" "** 
-`lookup_expr` 조건문을 하용하여 조회필드를 정의 합니다. 장고엥서  `__구문` 은 조회된 결과의 조건에 대한 변환을 지원 합니다. (ex, year**__gte**)
+`lookup_expr` 조건문을 하용하여 조회필드를 정의 합니다. 장고에서  `__구문` 은 조회된 결과의 조건에 대한 변환을 지원 합니다. (ex, year **__gte**)
 
-필드 name과 lookup_expr은 완벽한 Django 검색 표현을 나타냅니다. 검색 표현의 상세한 설명은 해당 lookup reference에서 제공하고 있습니다. django-filter는 transforms과 Django version 1.9 둘 다 지원하지만 장고 버전 1.8의 경우, 변환 표현식은 지원되지 않습니다.
-Common declarative problems
+필드에서 name과 lookup_expr은 완벽한 Django 검색 표현을 나타냅니다. 검색 표현의 상세한 설명은 해당 lookup reference에서 제공하고 있습니다. django-filters 는 transforms과 Django 둘 다 지원합니다.
+
+<br/>
+# Common declarative problems
 
 다음은 필터를 선언 할 때 발생하는 일반적인 문제 중 일부입니다. 필터가 어떻게 작동하는지에 대한 방법을 제공하기 때문에 읽어보는 것을 추천합니다.
 Filter name and lookup_expr not configured
