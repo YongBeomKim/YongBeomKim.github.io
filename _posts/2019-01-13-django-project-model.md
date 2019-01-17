@@ -37,6 +37,17 @@ class Post(models.Model):
 # Django 내장 Filter
 Django 내부에 제공하는 filter 내용들이 존재합니다. [My Blog](https://yongbeomkim.github.io/django/django-filter-orm-basic/)
 
+## 사용자 filter 추가
+[사용자 필터-초코몽키](https://wayhome25.github.io/django/2017/06/22/custom-template-filter/)
+
+[사용자 필터-위키북스](https://wikidocs.net/9678)
+
+
+# filter 목록
+
+https://django-filter.readthedocs.io/en/master/ref/filters.html?highlight=Date%20Range
+
+
 
 
 
