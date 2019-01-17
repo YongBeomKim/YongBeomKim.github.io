@@ -1,6 +1,6 @@
 ---
 title : MariaDB in phpMyAdmin
-last_modified_at: 2019-01-06T10:45:06-05:00
+last_modified_at: 2019-01-02T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/phpmyadmin.png
 categories:
