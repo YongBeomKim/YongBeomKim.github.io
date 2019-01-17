@@ -1,6 +1,6 @@
 ---
 title : Sample / django filter 예제
-last_modified_at: 2018-12-09T10:45:06-05:00
+last_modified_at: 2019-01-03T17:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-sample.jpg
 categories:

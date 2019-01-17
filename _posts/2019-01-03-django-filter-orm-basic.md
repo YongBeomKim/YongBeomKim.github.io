@@ -1,6 +1,6 @@
 ---
 title : Tutorial / Django 내장 Filter
-last_modified_at: 2018-12-05T10:45:06-05:00
+last_modified_at: 2019-01-03T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-tutorial.png
 categories:
