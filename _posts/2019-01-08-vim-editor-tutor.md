@@ -62,16 +62,57 @@ toc: true
 | **shift+g**    | 문서의 **마지막 줄** 이동하기      |
 
 <br/>
+# Fisa Dev Vim [(Web Page)](http://fisadev.github.io/fisa-vim-config/)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vlb3qUiS2ZY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+vim 편집기를 사용하면 메모장과 별반 차이가 없지만, 위의 동영상처럼 설치를 하면, **Auto-Complete 와  문법검사** 기능을 제공합니다. 다만 `sudo apt-get` 의 환경에서 설치가 되므로 `virtualenv` 환경에서는 문법검사 가능범위에 차이가 존재합니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/vim_demo.gif">
+  <figcaption></figcaption>
+</figure> 
+
+## Install 
+```php
+$ sudo apt-get update 
+$ sudo apt-get install vim
+
+$ sudo apt-get install curl vim exuberant-ctags git ack-grep
+$ sudo pip install pep8 flake8 pyflakes isort yapf
+```
+
+##  .vimrc
+root 폴더에 위와 파일을 생성한 뒤 [WebPage](https://raw.githubusercontent.com/fisadev/fisa-vim-config/master/.vimrc) 의 내용을 붙여 넣습니다. 
+```javascript
+" Fisa-vim-config
+" http://fisadev.github.io/fisa-vim-config/
+" version: 8.3.1
+
+let vim_plug_just_installed = 0
+let vim_plug_path = expand('~/.vim/autoload/plug.vim')
+if !filereadable(vim_plug_path)
+    echo "Installing Vim-plug..."
+endif
+```
+그리고 `$ vim` 을 실행하면 `.vimrc` 파일의 내용을 바탕으로 필요한 **추가 패키지들을** 설치합니다. 해당 패키지 설치가 완료된 뒤 `$ vim` 을 실행 하면 스타일과 기능이 추가되어 있음을 알 수 있습니다.
+
+<br/>
 # NeoVim
+Python으로 제작한 편집기로 다양한 매뉴얼에서 vim 대용으로 추천드릉ㄹ 
 neovim 설치하기 [install](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 ```python
 $ sudo add-apt-repository ppa:neovim-ppa/unstable
 $ sudo apt-get update
 $ sudo apt-get install neovim
 ```
-<iframe width="560" height="315" src="https://www.youtube.com/embed/w3Y-Ow_QeAc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w3Y-Ow_QeAc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+## Fisa Dev Vim 
+위에서 vim을 변경한 내용을 NeoVim 에서도 적용가능하도록 설명이 되어 있습니다. 하지만 몇번 작업해본 결과 잘 되지 않았습니다. 몇번더 다른 내용을 참고하여 성공하면 추후 보완하겠습니다. (2019-01-18)
 
 <br/>
 # 참고사이트
+[Install Vim Package](https://www.youtube.com/watch?v=vlb3qUiS2ZY)<br/>
 [stackoverflow](https://stackoverflow.com/questions/11272501/enable-vim-syntax-highlighting-by-default)<br/>
 
