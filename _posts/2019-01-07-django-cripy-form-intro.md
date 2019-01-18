@@ -46,6 +46,7 @@ django의 기본 함수를 사용한 form 객체를 실습합니다.
 </figure> 
 
 ### ./app/forms.py
+주의할 점으로는 `required = True` 를 기본값으로 설정됩니다. 때문에 필수가 아닌 부분에 대해서는 `required = False` 로 설정값을 변경합니다.
 ```python
 from django.forms import Form, CharField, TextInput, \
                 PasswordInput, ChoiceField, BooleanField
@@ -59,8 +60,7 @@ STATES = (
 class AddressForm(Form):
     email     = CharField(
         widget = TextInput(
-            attrs={
-            'placeholder': 'Email-Address'}
+            attrs = {'placeholder': 'Email-Address'}
         )
     )
     password  = CharField(
@@ -69,16 +69,12 @@ class AddressForm(Form):
     address_1 = CharField(
         label  = 'Address',
         widget = TextInput(
-            attrs={
-            'placeholder': '1234 Main St'
-            }
+            attrs={'placeholder': '1234 Main St'}
         )
     )
     address_2 = CharField(
         widget = TextInput(
-            attrs={
-            'placeholder': 'Apartment, studio, or floor'
-            }
+            attrs={'placeholder': 'Apartment'}
         )
     )
     city         = CharField()
@@ -87,7 +83,6 @@ class AddressForm(Form):
     check_me_out = BooleanField(required = False)
 ```
 django 에서 지원하는 `Form(), CharField(), TextInput(), PasswordInput(), ChoiceField(), BooleanField()`  객체를 사용하여 `input-tag` 를 생성합니다. 기타 `DecimalField(), DateTimeField() , DateField(), SelectDateWidget(), ComboField()` 함수들도 사용 가능합니다.
-
 
 ### ./app/views.py
 ```python
@@ -119,7 +114,15 @@ urlpatterns = [
 ```
 
 <br/>
-# crispy_forms 만들기
+# Crispy_Forms 만들기
+
+## BootStrap4 기본스타일 적용
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/form2.png">
+  <figcaption></figcaption>
+</figure> 
+django form 함수로 생성한 객체들을 template 에서 `{ { form|crispy } }` 만 사용하면 기본 스타일로 랜더링 합니다.
+
 ### ./app/templates/app/address.html
 ```html
 { % load crispy_forms_tags % }
@@ -130,9 +133,195 @@ urlpatterns = [
 </form>
 ```
 
+## 사용자 정의 스타일 적용하기
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/form3.png">
+  <figcaption></figcaption>
+</figure> 
+기본 스타일은 label과 form 을 **개별 line으로** 처리를 합니다. 다음의 내용을 활용하면 form의 스타일을 정의할 수 있습니다
+
+### ./app/template/address.html  
+```html
+{ % load crispy_forms_tags % }
+<body>
+<form method="post">
+  { % csrf_token % }
+
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      { { form.email|as_crispy_field } }
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      { { form.password|as_crispy_field } }
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      { { form.address_1|as_crispy_field } }
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      { { form.address_2|as_crispy_field } }
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-4 mb-0">
+      { { form.city|as_crispy_field } }
+    </div>
+    <div class="form-group col-md-4 mb-0">
+      { { form.state|as_crispy_field } }
+    </div>
+    <div class="form-group col-md-4 mb-0">
+      { { form.zip_code|as_crispy_field } }
+    </div>
+  </div>
+  
+  { { form.check_me_out|as_crispy_field } }
+  <button type="submit" class="btn btn-primary">제출</button>
+</form>
+</html>
+```
+
+<br/>
+# Crispy_Forms 스타일 함수 만들기
+
+## 스타일 추가하기
+```python
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
+
+class AddressForm(Form):
+    email     = CharField()
+    ... 
+
+class CustomCheckbox(Field):
+    template = 'app/custom_checkbox.html'
+
+# 위에서 선언한 form 객체에 스타일을 추가합니다
+class CustomFieldForm(AddressForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('email', css_class='form-group col-md-6 mb-0'),
+                Column('password', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('address_1', css_class='form-group col-md-6 mb-0'),
+                Column('address_2', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('city', css_class='form-group col-md-6 mb-0'),
+                Column('state', css_class='form-group col-md-4 mb-0'),
+                Column('zip_code', css_class='form-group col-md-2 mb-0'),
+                css_class='form-row'
+            ),
+            CustomCheckbox('check_me_out'),  # 체크박스를 삽입합니다
+            Submit('submit', '제출')
+        )
+```
+### app/custom_checkbox.html
+위에서 추가할 `check_box` 템플릿을 정의합니다. 하지만 실제로는 번거롭기 때문에 예제중 하나로 살펴봅니다.
+```html
+{ % load crispy_forms_field % }
+<div class="form-group">
+  <div class="custom-control custom-checkbox">
+    { % crispy_field field 'class' 'custom-control-input' % }
+    <label class="custom-control-label" for="{ { field.id_for_label } }">
+    { { field.label } }</label>
+  </div>
+</div>
+```
+위와같이 별도의 클래스 객체에서 스타일을 추가할 수도 있지만, 아래와 같이 1개의 클래스 객체에서 `CSS` 스타일을 정의할 수 있습니다. 
+```python
+class AddressForm(Form):
+    email = CharField(
+        widget = TextInput(
+            attrs = {'placeholder': 'Email'}))
+    password = CharField(
+        widget = PasswordInput()
+        )
+    address_1 = CharField(
+        label = 'Address',
+        widget = TextInput(
+            attrs = {'placeholder': '1234 Main St'}))
+    address_2 = CharField(
+        widget = TextInput(
+            attrs = {'placeholder': 'Apartment, studio, or floor'}))
+    city     = CharField()
+    state    = ChoiceField(choices = STATES)
+    zip_code = CharField(label = 'Zip')
+    check_me_out = BooleanField(required = False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('email', css_class = 'form-group col-md-6 mb-0'),
+                Column('password', css_class = 'form-group col-md-6 mb-0'),
+                css_class = 'form-row'
+            ),
+            Row(
+                Column('address_1', css_class='form-group col-md-6 mb-0'),
+                Column('address_2', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('city', css_class='form-group col-md-4 mb-0'),
+                Column('state', css_class='form-group col-md-4 mb-0'),
+                Column('zip_code', css_class='form-group col-md-4 mb-0'),
+                css_class='form-row'
+            ),'check_me_out',
+            Submit('submit', '제출하기')
+        )
+```
+
+## View 함수를 Generic View 활용하기
+### ./app/views.py
+앞에서는 다음과 같이 `render()` 함수를 사용하여 템플릿을 구현하였습니다. 
+```python
+from .form import AddressForm
+
+def address_form(request):
+    form = AddressForm()
+    content = { 'form' : form }
+    return render(request, 'foods/address.html', content)
+```
+하지만 내용이 번거롭고 정돈되지 않은 모습들을 보완하기 위해 Django 에서 지원하는 Generic view 중에 하나인 `FormView` 를 활용하고, Form 입력이 완료된 경우에는 `reverse_lazy()` 함수를 사용하여 `name='success'` url을 출력합니다.
+```python
+from django.urls import reverse_lazy
+from django.views.generic import FormView, DeleteViewTemplateView
+
+class CrispyAddressFormView(FormView):
+    form_class = AddressForm
+    success_url = reverse_lazy('success')
+    template_name = 'foods/address.html'
+
+class SuccessView(TemplateView):
+    template_name = 'success.html'
+```
+
+### ./app/urls.py
+```python
+urlpatterns = [
+    ...
+    path('success/', SuccessView.as_view(), name='success'),
+]
+```
+
+### ./app/templates/success.html
+```html 
+<p class="text-success">Form 입력을 성공하였습니다!</p>
+```
 
 <br/>
 # 참고 사이트
+* [Source github](https://github.com/sibtc/advanced-crispy-forms-examples)
 * [Django Form 개념설명](https://developer.mozilla.org/ko/docs/Learn/Server-side/Django/Forms)
 * [초코몽키 Django form 예제](https://wayhome25.github.io/django/2017/05/06/django-form/)
 * [원본 참고문서](https://simpleisbetterthancomplex.com/tutorial/2018/11/28/advanced-form-rendering-with-django-crispy-forms.html)<br/>
