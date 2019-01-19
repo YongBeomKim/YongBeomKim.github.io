@@ -15,6 +15,56 @@ toc: true
 
 단점으로는 `django-filter` 에서 지원하는 `RangeDate()` 등 다양한 함수 및, **FilterSet** 의 `class Meta:` 에서 **django Lookup Expr** 을 사용한 파생 조건문으로 생성된 form 객체의 스타일 정리를 위해서 개별 속성을 확인한 뒤에야 작업하는 등의 난이도가 존재합니다.
 
+```python
+from crispy_forms.helper import FormHelper
+
+# Style 객체를 Python 에서 선언합니다
+class AddressForm(Form):
+    email = CharField(
+        label = '이메일',
+        widget = TextInput(
+            attrs = {'placeholder': 'Email'}))
+    password = CharField(
+        label = '암호',
+        widget = PasswordInput()
+        )
+    address_1 = CharField(
+        label = '상세주소',
+        widget = TextInput(
+            attrs = {'placeholder': '1234 Main St'}))
+    address_2 = CharField(
+        label= '도로명 주소',
+        widget = TextInput(
+            attrs = {'placeholder': 'Apartment, studio, or floor'}))
+    city     = CharField(label='도시명')
+    state    = ChoiceField(choices = STATES)
+    zip_code = CharField(label = '우편번호')
+    check_me_out = BooleanField(required = False)
+    test         = ComboField(fields=[CharField(max_length=20), EmailField()])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('email', css_class = 'form-group col-md-6 mb-0'),
+                Column('password', css_class = 'form-group col-md-6 mb-0'),
+                css_class = 'form-row'
+            ),
+            Row(
+                Column('address_1', css_class='form-group col-md-6 mb-0'),
+                Column('address_2', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('city', css_class='form-group col-md-4 mb-0'),
+                Column('state', css_class='form-group col-md-4 mb-0'),
+                Column('zip_code', css_class='form-group col-md-4 mb-0'),
+                css_class='form-row'
+            ),'check_me_out',
+            Submit('submit', '제출하기')
+        )
+```
 form 객체를 다루기 용이하도록 도와주는 package 로써 `django-crispy-forms` 이 유명합니다. 이번 페이지 에서는 `django form` 객체의 기본에서 부터 `django-crispy-forms` 을 사용한 스타일 지정까지를 정리해 보겠습니다. [참고문서](https://simpleisbetterthancomplex.com/tutorial/2018/11/28/advanced-form-rendering-with-django-crispy-forms.html)
 
 <figure class="align-center">
