@@ -18,7 +18,6 @@ toc: true
   <figcaption></figcaption>
 </figure> 
 
-<br/>
 # Install 
 
 ## Vim
