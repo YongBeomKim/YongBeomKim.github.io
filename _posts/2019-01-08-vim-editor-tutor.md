@@ -47,12 +47,15 @@ Space-Vim 의 환경설정 내용을 추가합니다. `$ nano .SpaceVim.d/init.t
 설정파일에 아래의 내용을 추가한 뒤, `vim` 을 처음 실행하면 필요한 패키지들을 자동으로 설치합니다 
 ```php
 [[layers]]
-  name = "lang#python"
+name = "lang#python"
 ```
 
-### **pip install --user isort**
-그리고 실행 환경에서 설치되어 있는 `Python package` 목록을 조회할 수 있도록 도와주는 모듈을 설치합니다. 설치가 완료된 뒤 파이썬 파일을 열고서 작업을 진행하면 자동으로 문법검사와 해당 패키지내 클래스, 함수들의 목록을 자동으로 완성하는 모습을 보실 수 있습니다. 
-> pip install --user isort 
+### **sudo pip install --user isort**
+그리고 실행 환경에서 설치되어 있는 `Python package` 목록을 조회할 수 있도록 도와주는 모듈을 설치합니다. 
+> $ sudo pip install --user isort 
+
+## Appendix
+Python Virtual Env 를 사용하는 경우에는 각각의 환경에 따라 목록이 달라지고 바로 위의 모듈만으로는 한계가 있었습니다. 이에 대한 여러 대안들을 찾아서 연구할 필요가 있습니다. [env Python](https://duseev.com/articles/vim-python-pipenv/)
 
 <br/>
 # Vim-tutor 
