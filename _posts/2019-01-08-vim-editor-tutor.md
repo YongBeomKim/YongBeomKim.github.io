@@ -100,6 +100,18 @@ Space-Vim 의 환경설정 내용을 추가합니다. `$ nano .SpaceVim.d/init.t
 | **shift+g**    | 문서의 **마지막 줄** 이동하기      |
 
 <br/>
+# Tips
+
+## Vim 에서 새로운 Terminal 실행
+Space-Vim 은 기본 windows 분할을 활용합니다. 하지만 인위적인 화면분할을 사용하면 보다 효과적인 작업이 가능한 경우가 많습니다. 이를 정리해 보겠습니다
+
+### **: vertical terminal**
+vim 을 실행한 뒤 해당 명령을 실행하면 화면이 분할되어 새로운 Terminal 창이 열립니다 [Raddit](https://www.reddit.com/r/vim/comments/8nbrju/vim_81_terminal_on_a_vertical_split/)
+
+### Reload
+분할된 화면을 되돌리기 위해서는 `Ctrl + d` 단축키를 사용합니다. [Dev To](https://dev.to/thiht/learn-to-use-screen-a-terminal-multiplexer-gl)
+
+<br/>
 # Etc
 
 ## Fisa Dev Vim [(Web Page)](http://fisadev.github.io/fisa-vim-config/) [YouTube](https://www.youtube.com/embed/vlb3qUiS2ZY)
