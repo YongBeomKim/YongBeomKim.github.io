@@ -20,11 +20,6 @@ webpack 과 Rest API 등 부가적인 기능을 추하했다면 이를 종합적
 ## Js, Vue 그리고 Webpack
 앞에서는 webpack을 사용하지 않았기 때문에 한 페이지를 구성하기 위해 **HTML, Js, CSS** 3개의 파일만을 활용하여 작업을 하셨습니다. webpack을 활용하는 상황에서는 **.vue** 파일을 활용한 작업이 가능합니다.
 
-##  
-
-
-
-
 
 Tree Component
 

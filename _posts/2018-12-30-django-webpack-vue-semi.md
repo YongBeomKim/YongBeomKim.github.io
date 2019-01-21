@@ -195,6 +195,7 @@ urlpatterns = [
 ]
 ```
 
+<br/>
 # building Template
 예제 작업을 위해서 django 작업을 진행합니다.
 
@@ -352,8 +353,7 @@ var demo = new Vue({
 $ ./node_modules/.bin/webpack --config webpack.config.js
 ```
 
-
-
+<br/>
 # 참고자료 
 
 [webpack 의 개념설명](http://blog.jeonghwan.net/js/2017/05/15/webpack.html)<br/>

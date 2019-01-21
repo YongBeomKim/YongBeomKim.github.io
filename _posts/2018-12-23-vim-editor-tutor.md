@@ -54,13 +54,21 @@ name = "lang#python"
 그리고 실행 환경에서 설치되어 있는 `Python package` 목록을 조회할 수 있도록 도와주는 모듈을 설치합니다. 
 > $ sudo pip install --user isort 
 
-
-### 플러그인 추가하기
-vim 의 일반적인 경우에는 `.vimrc` 파일에 추가합니다. Space-Vim 에서는 별도파일이 아닌 `init.toml` 에 아래와 같이 설정내용을 추가합니다.
+### ./Space-Vim.d/init.toml
+vim 의 일반적인 설정은 경우에는 `.vimrc` 파일에 추가합니다. **Space-Vim** 에서 플러그 인을 추하는 경우에는  `./Space-Vim.d/init.toml` 에 아래와 같이 설정내용을 추가합니다.
 ```php
 [[custom_plugins]]
 name = "lilydjwg/colorizer"
 merged = 0
+```
+
+### ./Space-Vim/vimrc
+배경을 투명하게 사용하려는 경우에는 `vimrc` 를 바로 변경할 필요가 생깁니다. 그때에는 이 파일을 열어서 다음의 내용을 덧붙이면 됩니다. [SoaceVim dark Setting](https://github.com/liuchengxu/space-vim-dark/blob/master/README.md)
+```java
+colorscheme space-vim-dark
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 ```
 
 ## Appendix

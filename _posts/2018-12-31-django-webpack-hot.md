@@ -14,13 +14,11 @@ toc: true
 
 바로 앞에서 django-webpack-loader 를 사용하여 webpack bundle 파일을 만들고 이를 활용하여 배포하는 작업까지 진행하였습니다. 하지만 개발단계에서 매번 bundle 작업을 진행 후 확인하는 것은 번거롭기 때문에 이를 한페이지로 정리를 해보겠습니다.
 
-이번내용을 간단하게 정리하면, nodemon을 사용하여
-
 <br/>
 # HMR Development Mode Setting
 
 ## Terminal Setting (django & npm)
-```python
+```php
 $ django-admin startproject mysite
 $ cd mysite
 $ ./manage.py makemigrations && ./manage.py migrate
@@ -203,6 +201,42 @@ $ npm start
 ```python
 $ ./manage.py runserver
 ```
+
+<br/>
+# Babel, Babel-loader 추가
+Js, Css 만 활용하는 경우에는 css-loader, style-loader 만 설치하면 되었지만, React, Vue.js 와 같은 패키지들을 사용하기 위해서는 버젼의 일치를 위해서도 자의반 타의반 **Babel** 을 필요로 합니다.
+
+## Babel 이해하기
+babel은 자바스크립트 컴파일러로써, 최신 버전의 자바스크립트 문법은 브라우저가 이해하지 못하는 경우가 발생합니다. 때문에 babel이 브라우저가 이해할 수 있는 문법으로 변환을 함으로써 생산성이 향상됩니다
+
+## babel, babel-loader 설치하기 [npmjs](https://www.npmjs.com/package/babel-loader)
+해당 모듈의 설정내용은 항상 공식문서를 확인하는 편이 좋습니다.
+
+## vue, vue-loader 추가
+[npmjs](https://www.npmjs.com/package/@vue/babel-preset-app) **babel-preset-vue** 를 설치합니다. 설정을 `.babelrc` 를 추천하고 있지만 webpack을 사용하는 만큼 `webpack.config.js` 파일에 내용을 추가합니다. [vue-cli](https://cli.vuejs.org/guide/browser-compatibility.html#usebuiltins-usage)
+
+```php
+$ npm install -D babel-loader @babel/core @babel/preset-env 
+$ npm i @vue/babel-preset-app
+```
+
+```javascript
+module: {
+  rules: [
+    {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: { presets: ['@babel/preset-env', 'vue'] }
+      }
+    },
+  ]
+}
+```
+
+
+
 <br/>
 # 참고자료 사이트 
 
@@ -212,6 +246,7 @@ $ ./manage.py runserver
 import VueApexCharts from 'vue-apexcharts'
 import Vue from 'vue'
 ```
+[babel의 이해](https://medium.com/@ljs0705/babel-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-a1d0e6bd021a)<br/>
 [webpack-hmr-tutorial](https://www.javascriptstuff.com/webpack-hmr-tutorial/)<br/>
 [webpack dev server](https://www.toptal.com/javascript/hot-module-replacement-in-redux)<br/>
 [stackoverflow](https://github.com/angular/angular-cli/issues/4839)<br/>
