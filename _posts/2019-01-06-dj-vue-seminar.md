@@ -54,7 +54,8 @@ Vue.config.delimiters = [ "[[", "]]" ]
 ## Django REST API
 Model 의 직렬화 함수를 만들고, 이를 사용하여 endpoint url 로 구조화 합니다. 위의 3가지중 추천하는 방법으로 **intergrate** 에 용이하고, 문서들이 잘 되어 있으며, **Json, Xml** 등 다양한 포맷을 지원합니다
 
-### ./django/serializers.py : 모델의 직렬화(Serialise)
+### Step 1 : 모델 직렬화(Serialise) 함수
+**./django/serializers.py**
 ```python
 from .models import JobList
 from rest_framework import serializers
@@ -65,7 +66,8 @@ class JobsSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('jobtitle', 'jobdescription', 'postdate')
 ```
 
-### ./django/views.py : 직렬화 함수로 EndPoint
+### Step 2 : 직렬화 함수 EndPoint
+**./django/views.py**
 ```python
 from .models import JobList
 from rest_framework import viewsets
@@ -76,7 +78,8 @@ class JobsViewSet(viewsets.ModelViewSet):
     serializer_class = JobsSerializer
 ```
 
-### ./django/urls.py : API 라우터를 정의합니다
+### Step 3: API 라우터 정의
+**./django/urls.py**
 ```python
 from django.conf.urls import path, include
 from django.contrib import admin
@@ -93,7 +96,8 @@ urlpatterns = [
 ]
 ```
 
-### ./django/template/vue.vue : EndPoint 데이터를 Vue.js 에서 호출합니다
+### Step 4 : EndPoint 데이터를 Vue.js 에서 호출합니다
+**./django/template/vue.js**
 ```javascript
 ver demo = new Vue({
     el: '#app',
@@ -114,4 +118,3 @@ ver demo = new Vue({
         }
     });
 ```
-
