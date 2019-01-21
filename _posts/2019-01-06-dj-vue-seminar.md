@@ -118,3 +118,17 @@ ver demo = new Vue({
         }
     });
 ```
+
+## 장점
+1. frontend 의 JavaScript를 간결하게 할 수 있다
+2. 런닝커브를 줄일 수 있다 <strike>(py, dj, js를 쌩으로 구현시와 비교)</strike>
+3. 다양한 프레임워크로 대체가 용이하다 
+
+## 단점
+1. 규모에 상관없이 Set Up 위한 일정량이 필요
+2. 거대한 프로젝트에서는 복잡해 질 수 있다
+3. Webpack 을 설정하기 어렵다 <strike>그거 하느라 죽는줄 알았어..</strike>
+
+<br/>
+# 참고사이트
+[GitHub Source](https://github.com/andrewm89/djangovuejs.git)<br/>
