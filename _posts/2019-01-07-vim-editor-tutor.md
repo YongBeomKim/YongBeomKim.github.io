@@ -1,6 +1,6 @@
 ---
 title : Tutorial / Space-Vim & Vim-Tutor
-last_modified_at: 2018-12-23T10:45:06-05:00
+last_modified_at: 2019-01-07T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/vim.png
 categories:
