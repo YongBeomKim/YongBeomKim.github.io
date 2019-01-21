@@ -168,5 +168,6 @@ $ sudo apt-get install neovim
 
 <br/>
 # 참고사이트
+[Space-Vim FAQ](https://spacevim.org/faq/#can-i-try-spacevim-without-overwriting-my-vimrc)<br/>
 [Install Vim Package](https://www.youtube.com/watch?v=vlb3qUiS2ZY)<br/>
 [stackoverflow](https://stackoverflow.com/questions/11272501/enable-vim-syntax-highlighting-by-default)<br/>
