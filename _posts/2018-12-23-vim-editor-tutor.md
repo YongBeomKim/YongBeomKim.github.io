@@ -1,6 +1,6 @@
 ---
 title : Tutorial / Space-Vim & Vim-Tutor
-last_modified_at: 2019-01-08T10:45:06-05:00
+last_modified_at: 2018-12-23T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/vim.png
 categories:
@@ -53,6 +53,15 @@ name = "lang#python"
 ### **sudo pip install --user isort**
 그리고 실행 환경에서 설치되어 있는 `Python package` 목록을 조회할 수 있도록 도와주는 모듈을 설치합니다. 
 > $ sudo pip install --user isort 
+
+
+### 플러그인 추가하기
+vim 의 일반적인 경우에는 `.vimrc` 파일에 추가합니다. Space-Vim 에서는 별도파일이 아닌 `init.toml` 에 아래와 같이 설정내용을 추가합니다.
+```php
+[[custom_plugins]]
+name = "lilydjwg/colorizer"
+merged = 0
+```
 
 ## Appendix
 Python Virtual Env 를 사용하는 경우에는 각각의 환경에 따라 목록이 달라지고 바로 위의 모듈만으로는 한계가 있었습니다. 이에 대한 여러 대안들을 찾아서 연구할 필요가 있습니다. [env Python](https://duseev.com/articles/vim-python-pipenv/)
