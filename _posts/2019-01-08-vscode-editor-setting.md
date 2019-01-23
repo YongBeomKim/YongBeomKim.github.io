@@ -61,7 +61,6 @@ vscode 설정에서 user.json 에 다음의 내용들을 추가합니다. 해당
     "path-intellisense.absolutePathToWorkspace": false,
 ```
 
-
 ## Tips
 화면을 최대한 **Atom**과 비슷하게 구성하는게 목표였습니다. <strike>익숙한 것에서 부터 하나씩 추가해 보겠습니다</strike> 왼쪽의 메뉴는 `activate bar` 를 줄입니다. 아쉬운 점은 **Pycharm**과 달리 다양한 **workspace**를 다르게 열때마다 설정내용을 **settings.json** 에 일일히 입력을 해야 한다는 점이 아직은 좀 번거롭지만 익숙해 지면서 이를 보완해 나아가도록 하겠습니다.
 
