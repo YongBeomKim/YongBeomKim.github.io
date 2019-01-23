@@ -5,10 +5,10 @@ header:
   overlay_image: /assets/images/code/django_pro.png
 categories:
   - django
-tags: 
+tags:
     - js
     - django
-toc: true 
+toc: true
 ---
 
 작년 강연자료를 만들면서 **막연한 두려움으로 인한 작업 스트레스가** 있었습니다. 지금 작업은 하는데 **제대로 하는건가? 해봤자 소용 없는건 아닐까?** Pandas 작업, 데이터 분석, 머신러닝 딥러닝 심지어 운전을 시작할 때도 막연한 두려움으로 인해 진도가 어려운 시점들이 있었습니다.
@@ -18,15 +18,15 @@ toc: true
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/webpack_sample.gif">
   <figcaption>아래의 샘플 실행결과</figcaption>
-</figure> 
+</figure>
 
 
 <br/>
-# Description 
-1. **Hot Reload** 모듈을 활성화 하는 설정 
+# Description
+1. **Hot Reload** 모듈을 활성화 하는 설정
 2. **mariaDB** 연결
-3. **django-filter** 연결 
-4. **django-table2** 연결 
+3. **django-filter** 연결
+4. **django-table2** 연결
 
 <br/>
 # Django Setting
@@ -35,7 +35,7 @@ toc: true
 ## Terminal Setting
 ```python
 $ django-admin startproject mysite
-$ cd mysite 
+$ cd mysite
 $ ./manage.py startapp app      
 $ ./manage.py makemigrations && python manage.py migrate
 $ ./manage.py runserver
@@ -87,7 +87,7 @@ WEBPACK_LOADER = {
 ```python
 $ npm init -f
 $ npm i webpack css-loader file-loader style-loader vue vue-loader
-$ npm i -D nodemon webpack-dev-server webpack-bundle-tracker 
+$ npm i -D nodemon webpack-dev-server webpack-bundle-tracker
 ```
 패키지 설치시 `-D` 의 의미는 **개발용 모듈** 로써 `package.json` 에서  **devDependencies** 에 추가합니다. 이를 제외하는 경우는 개발/배포 공용모듈로써 **dependencies** 에 추가하는 차이점이 있습니다.
 {: .notice--info}
@@ -95,7 +95,7 @@ $ npm i -D nodemon webpack-dev-server webpack-bundle-tracker
 ### ./package.json
 `$ npm run 스크립트내용` 과 같이, 설치된 모듈을 사용하여 실행할 스크립트 내용들을 `package.json` 에 포함을 시키면 긴 스크립트를 모두 사용하지 않고 **스크립트 예약어** 만으로도 해당 내용을 실행할 수 있습니다.
 ```javascript
-{ 
+{
   "scripts": {
     "start": "nodemon -w webpack.config.js -x webpack-dev-server --hot",
     "build": "webpack",
@@ -191,12 +191,12 @@ module.exports = {
 `nodemon -w webpack.config.js -x webpack-dev-server` 을 통해서  `-w` 는 **watch 대상을** 지정하고 `-x` 는 **execute 실행대상을** 지정합니다.
 
 <br/>
-# Django Sample Example 
+# Django Sample Example
 위와같이 `bundles` 파일을 지정하지 않은 상황에서 `$ npm start` 를 실행하면 아래와 같은오류를 출력합니다. 이를 테스트할 간단한 내용을 추가함으로써 `dev server` 작동을 확인해 보겠습니다.
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/npm_error.jpg">
   <figcaption>bundle 파일을 지정하지 않고 실행시 오류</figcaption>
-</figure> 
+</figure>
 
 ## Django Example
 ### ./mysite/views.py
@@ -313,9 +313,9 @@ module.exports = {
 <br/>
 # GitHub Source
 ```python
-$ git clone git@github.com:YongBeomKim/Project.git 
+$ git clone git@github.com:YongBeomKim/Project.git
 $ git log
-commit 0992d87d329f75a2808c31c0fd9aeeec937626cd 
+commit 0992d87d329f75a2808c31c0fd9aeeec937626cd
 Date:   Tue Jan 15 17:25:52 2019 +0900
     django webpack setting
 

@@ -1,16 +1,16 @@
 ---
 title : Beautiful Front Vue.js & Django
-last_modified_at: 2019-01-14T10:45:06-05:00
+last_modified_at: 2019-01-06T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_vue.jpg
 categories:
   - django
-tags: 
+tags:
     - vue
     - django
 ---
 
-지금까지 Django 에서 Webpack 연결 및 Vanila.Js CSS 의 번들연결까지 완성을 했다면, 이번부터는 Django Webpack 을 활용한 Vue.js 의 연결에 대해서 정리해 나아가겠습니다. 
+지금까지 Django 에서 Webpack 연결 및 Vanila.Js CSS 의 번들연결까지 완성을 했다면, 이번부터는 Django Webpack 을 활용한 Vue.js 의 연결에 대해서 정리해 나아가겠습니다.
 
 그 첫번째 시간으로 비록 2년전의 자료이긴 하지만, Django 와 Vue 의 연결에 대한 약 20분의 세미나를 정리해 보려고 합니다.
 
@@ -21,10 +21,10 @@ tags:
 # Introduction
 
 ## Django and Vue
-Django 와 Vue.js 의 관계는 **MVC**(model, view, controller) 에서 **View** 의 Template 의 Single Webpage Application 일부분으로써 위치를 합니다. 
+Django 와 Vue.js 의 관계는 **MVC**(model, view, controller) 에서 **View** 의 Template 의 Single Webpage Application 일부분으로써 위치를 합니다.
 
 ## How to Combine the Two?
-1. Django 의 views.py 객체중 **content** 를 사용해서 
+1. Django 의 views.py 객체중 **content** 를 사용해서
 2. interact API 를 만들어서
 3. Django Rest API
 
@@ -109,7 +109,7 @@ ver demo = new Vue({
     },
     ready: function()
         {this.$http.get('http://localhost:8000/api/jobs/')
-             .then(function(response){ 
+             .then(function(response){
                 this.jobs = response.data;
             },
             function (response) {
@@ -122,7 +122,7 @@ ver demo = new Vue({
 ## 장점
 1. frontend 의 JavaScript를 간결하게 할 수 있다
 2. 런닝커브를 줄일 수 있다 <strike>(py, dj, js를 쌩으로 구현시와 비교)</strike>
-3. 다양한 프레임워크로 대체가 용이하다 
+3. 다양한 프레임워크로 대체가 용이하다
 
 ## 단점
 1. 규모에 상관없이 Set Up 위한 일정량이 필요
