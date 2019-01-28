@@ -17,7 +17,8 @@ toc: true
 # Restful Python Web Service
 2년전에 구입한 **Restful 파이썬 웹서비스** 책의 내용을 바탕으로 전반적인 내용을 정리해 보겠습니다. 당시에는 내용이 적다고 생각했었는데 여러 패키지를 다루고서 반복해본 결과 생각보다 내용이 알차게 구성되어 있음을 알 수 있었습니다.
 
-## 1장 : Restful API in Django
+<br/>
+# 1장 : Restful API in Django
 
 | HTTP동사  |   설명                      |
 |:---------:|:---------------------------:|
@@ -26,7 +27,7 @@ toc: true
 | PUT       | 새로운 데이터를 업데이트    |
 | DELETE    | 데이터를 삭제합니다         |
 
-`serializers.Serializer` 를 사용하여 개별 메소드를 직접 작성하였습니다
+`serializers.Serializer` 를 사용하여 개별 메소드를 직접 작성 합니다.
 ```python
 from rest_framework import serializers
 class GameSerializer(serializers.Serializer):
@@ -48,9 +49,10 @@ class GameSerializer(serializers.Serializer):
 **파서(Parser) :** 입력된 데이터가 유효한지를 확인하기 위해 **.is_valid**를 호출합니다. 이 메서드에서 **True** 값을 출력하면 직렬화 함수에 접근이 가능하고. **.save** 메서드로 해당 튜플 데이터를 삽입합니다
 {: .notice--info}
 
-## 2장 : 클래스 기반 뷰와 하이퍼링크 API
+<br/>
+# 2장 : 클래스 기반 뷰와 하이퍼링크 API
 
-### 클래스 기반의 뷰
+## 클래스 기반의 뷰
 `serializers.ModelSerializer` 클래스를 호출하고 기타 설정내용은 `class Meta:` 로 정의를 합니다.
 ```python
 from rest_framework import serializers
@@ -65,10 +67,7 @@ $ http OPTIONS :8000/games/
 HTTP/1.1 200 OK
 Allow: GET, OPTIONS, POST, PUT
 Content-Length: 170
-Content-Type: application/json
 {
-    "description": "",
-    "name": "",
     "parses": [
         "application/json",
         "application/x-www-form-urlencoded",
@@ -81,10 +80,46 @@ Content-Type: application/json
 }
 ```
 
-### 브라우저블 API
+## 브라우저블 API
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/restweb.png">
   <figcaption>웹 브라우저에서 구현되는 REST API</figcaption>
 </figure>
 
+## 관계형 DataBase의 직렬화 역직렬화 `serializer.py` 
+### models.py
+`models.ForeignKey()` 을 사용하여 관계형 모델을 정의합니다
+```python
+from django.db import models
 
+class GameCategory(models.Model):
+
+class Game(models.Model):
+    category = models.ForeignKey(
+        GameCategory, 
+        on_delete=models.CASCADE)
+```
+
+### serializer.py
+관계형으로 모델을 구성하는 경우에는 Restful API 함수는 `serializers.HyperlinkedModelSerializer` 와 `serializers.HyperlinkedRelatedField` 로 변경하여 사용합니다. 그리고 추가로 여기에서 `serializers.SlugRelatedField` 를 활용하여 고유 슬러그 속성을 활용한 읽기/쓰기 필드를 생성합니다.
+```python
+from rest_framework import serializers
+
+class Serializer(serializers.HyperlinkedModelSerializer):
+    games = serializers.HyperlinkedRelatedField(
+        many = True,
+        read_only = True)
+
+    class Meta:
+        model = 카테고리클래스
+        fields = ('필드1', '필드2', '필드3', ...)
+
+class GameSerializer(serializers.HyperlinkedModelSerializer):
+    game_category = serializers.SlugRelatedField(
+      queryset = 카테고리클래스.objects.all(), 
+      slug_field = 'name')
+
+    class Meta:
+        model = 모델클래스
+        fields = ('필드1', '필드2', '필드3', ...)
+```
