@@ -86,7 +86,7 @@ Content-Length: 170
   <figcaption>웹 브라우저에서 구현되는 REST API</figcaption>
 </figure>
 
-## 관계형 DataBase의 직렬화 역직렬화 `serializer.py` 
+## 관계형 DataBase의 직렬화 역직렬화
 ### models.py
 `models.ForeignKey()` 을 사용하여 관계형 모델을 정의합니다
 ```python
@@ -108,7 +108,7 @@ from rest_framework import serializers
 class Serializer(serializers.HyperlinkedModelSerializer):
     games = serializers.HyperlinkedRelatedField(
         many = True,
-        read_only = True)
+        read_only = True) # 읽기전용
 
     class Meta:
         model = 카테고리클래스
@@ -122,4 +122,9 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = 모델클래스
         fields = ('필드1', '필드2', '필드3', ...)
+```
+
+### views.py
+```python
+class ScoreSerializer(serial)
 ```
