@@ -106,6 +106,7 @@ class Game(models.Model):
 from rest_framework import serializers
 
 class Serializer(serializers.HyperlinkedModelSerializer):
+    # 사용자 필드를 추가
     games = serializers.HyperlinkedRelatedField(
         many = True,
         read_only = True) # 읽기전용
@@ -122,9 +123,65 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = 모델클래스
         fields = ('필드1', '필드2', '필드3', ...)
+
+
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+    # 외부 PrimaryKey 의 serilaize 클래스를 연결합니다
+    scores = ScoreSerializer(many=True, read_only=True)
+    # Player.GENDER_CHOICES 의 내용을 사용하여 필드를 구성
+    gender = serializers.ChoiceField(
+        choices = Player.GENDER_CHOICES)
+    # get_필드명_display 를 사용하여 새로운 필드를 추가합니다
+    gender_description = serializers.CharField(
+        source = 'get_gender_display', 
+        read_only = True)
+
+    class Meta:
+        model = Player
+        fields = ('url','name','gender',
+            'gender_description','scores',)
 ```
 
-### views.py
+## views.py
+`serializer.py` 에서 직렬화, 역직렬화 클래스를 정의한 뒤, 이를 **Template** 로 출력하기 위한 **views.py** 함수를 구현하는 방법으로는 1) **JSONRender(), JSONResponse()** 를 사용한 사용자 함수 2) `@api_view` 데코레이터의 활용 3) `rest_framework.views.APIView` 의 **클래스 기반 뷰** 를 활용하는 방법 총 3가지를 이책에서는 설명하고 있습니다
 ```python
-class ScoreSerializer(serial)
+# 조회용 Genegric 클래스
+class Generic_List(generics.ListCreateAPIView):
+    queryset = 모델클래스.objects.all()
+    serializer_class = Rest 시리얼 함수
+    name = 'url 사용할 이름'
+
+# Get, Post, Put, Delete 모두 지원하는 클래스
+class Generic_Detail(generics.RetrieveUpdateDestroyAPIView):
+    ...
+
+# 위에서 생성한 4개의 재너릭뷰 Root 클래스
+class ApiRoot(generics.GenericAPIView):
+    name = 'api-root'
+    def get(self, request, *args, **kwargs):
+        return Response({
+            '테이블1': reverse(Generic_List.name, request=request),
+            '테이블2': reverse(Generic_Detail.name, request=request),
+            })
 ```
+
+<br/>
+# 3장 : API 인증 향상과 추가기능
+
+## 페이지 나누기
+### settings.py [(Doc)](https://www.django-rest-framework.org/api-guide/pagination/#using-your-custom-pagination-class)
+
+아래와 동일하기 설정을 하면, 한개의 페이지에 출력할 갯수가 제한됩니다. `http://localhost:8000/games/?offset=1` 과 같은 방식으로 **?offset=1** 의 숫자로 구분된 페이지 값들을 출력합니다.
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3  # 기본값은 "None" (무제한) 입니다
+}
+```
+숫자는 1에서 시작합니다. 데이터 내용이 많은경우 List 페이지를 열면 모든 데이터를 호출하느라 rack 이 걸리는 경우가 많은데, 위와같은 설정을 통해서 서버의 무리한 요청을 제한하는 효과가 있습니다.
+{: .notice--info}
+
+쿼리문에서 `http://localhost:8000/games/?limit=1&offset=1` 과 같이 **limit=1** 을 사용하면 제약조건의 숫자를 변경할 수 있습니다.
+{: .notice--info}
+
+## 인증, 권한 그리고 스로틀링
