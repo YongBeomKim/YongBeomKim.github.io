@@ -26,7 +26,9 @@ $ sudo apt-get install code
 </figure> 
 
 ## Python Virtualenv [(Doc)](https://code.visualstudio.com/docs/python/environments)
-`Ctrl+Shift+P` 통해서 `settings.json` 파일을 편집합니다. 매뉴얼에는 `user setting`, `workspace setting` 모두 다 가능하다고 하지만, 실제 작업해본 결과 `workspace setting` 에 해당 내용을 입력해야 합니다. 그리고 여러 패키지를 설치하다보면 설정이 변경되므로 해당 내용이 변경/삭제 여부를 꾸준하게 확인해야 합니다
+`Ctrl+Shift+P` 통해서 `settings.json` 파일을 편집합니다. 매뉴얼에는 `user setting`, `workspace setting` 모두 다 가능하다고 하지만, 실제 작업해본 결과 `workspace setting` 에 해당 내용을 입력해야 합니다. 그리고 여러 패키지를 설치하다보면 설정이 변경되므로 해당 내용이 변경/삭제 여부를 꾸준하게 확인해야 합니다.
+
+아래의 예시는 우분투에서 `~/Python/django` 가상환경을 만든 뒤 이를 연결한 것으로 윈도우에서 설정하신 내용이 있으면 그에 맞게 내용을 변경 하셔야 합니다. 그리고 Python 실행파일과, 관련 패키지를 설치한 폴더를 개인 환경에 맞게 설정을 해야 하는데 이부분이 잘 이해가 안되면 별도 내용을 참고하셔야 합니다. [아나콘다를 피해야 하는 이유](https://yongbeomkim.github.io/python/python-settings/)
 
 ```javascript
 {
