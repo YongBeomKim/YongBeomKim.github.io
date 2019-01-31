@@ -21,7 +21,7 @@ Atom, Sublime Text 등 여러 편집기를 사용하게 되었습니다. 물론 
 $ sudo apt-get install code
 ```
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/vim_demo.gif">
+  <img src="{{site.baseurl}}/assets/images/code/vs_demo.gif">
   <figcaption></figcaption>
 </figure> 
 

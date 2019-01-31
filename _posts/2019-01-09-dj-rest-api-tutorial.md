@@ -143,7 +143,10 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
 ```
 
 ## views.py
-`serializer.py` 에서 직렬화, 역직렬화 클래스를 정의한 뒤, 이를 **Template** 로 출력하기 위한 **views.py** 함수를 구현하는 방법으로는 1) **JSONRender(), JSONResponse()** 를 사용한 사용자 함수 2) `@api_view` 데코레이터의 활용 3) `rest_framework.views.APIView` 의 **클래스 기반 뷰** 를 활용하는 방법 총 3가지를 이책에서는 설명하고 있습니다
+`serializer.py` 에서 직렬화, 역직렬화 클래스를 정의한 뒤, 이를 **Template** 로 출력하기 위한 **views.py** 함수를 구현하는 3가지 방법을 설명하고 있습니다
+1. **JSONRender(), JSONResponse()** 를 사용한 사용자 함수 
+2. `@api_view` 데코레이터의 활용 
+3. `rest_framework.views.APIView` 의 **클래스 기반 뷰** 
 ```python
 # 조회용 Genegric 클래스
 class Generic_List(generics.ListCreateAPIView):
@@ -171,7 +174,7 @@ class ApiRoot(generics.GenericAPIView):
 ## 페이지 나누기
 ### settings.py [(Doc)](https://www.django-rest-framework.org/api-guide/pagination/#using-your-custom-pagination-class)
 
-아래와 동일하기 설정을 하면, 한개의 페이지에 출력할 갯수가 제한됩니다. `http://localhost:8000/games/?offset=1` 과 같은 방식으로 **?offset=1** 의 숫자로 구분된 페이지 값들을 출력합니다.
+아래와 동일하기 설정을 하면, 한개의 페이지에 출력할 갯수가 제한됩니다. `http://localhost:8000/games/?offset=1` 과 같은 방식으로 GET Query 문인 **?offset=1** 를 사용하여 구분 페이지를 출력합니다.
 ```python
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -184,4 +187,14 @@ REST_FRAMEWORK = {
 쿼리문에서 `http://localhost:8000/games/?limit=1&offset=1` 과 같이 **limit=1** 을 사용하면 제약조건의 숫자를 변경할 수 있습니다.
 {: .notice--info}
 
-## 인증, 권한 그리고 스로틀링
+## 인증, 권한 그리고 스로틀링 [(Doc)](https://www.django-rest-framework.org/api-guide/authentication/)
+
+**settings.py** 에서 위의 설정내용에 덧붙여서 다음의 내용을 추가합니다. 
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+```
