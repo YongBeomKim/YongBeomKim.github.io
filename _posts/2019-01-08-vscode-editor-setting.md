@@ -40,6 +40,23 @@ $ sudo apt-get install code
 }
 ```
 
+<br/>
+# Jupyter Notebook
+2019/01/29 기준으로 Python 업데이트를 제공하였습니다. [Python in vscode](https://blogs.msdn.microsoft.com/pythonengineering/2019/01/29/python-in-visual-studio-code-january-2019-release/?fbclid=IwAR3-RjozC2nWlY1QU4ykh_TvPa4pbIXzyVGrOFVPTqh0E-my5y89mK6UUZ0) 다양한 Extention 을 설치하면 오히려 충돌의 문제가 발생하므로 가장 기본적인 모듈을 설치 및 활용하도록 합니다.
+
+## Python, Jupyter 확장팩 설치 및 실행
+Jupyter 를 사용하기 위해서는 **Python, Jupyter** 두개의 확장팩만 설치합니다. 기존에 설치된 경우에는 확인을 통해서 최신버전으로 설치를 합니다. [Jupyter vscode](https://code.visualstudio.com/docs/python/jupyter-support) 그리고 다음의 링크를 따라서 Jupyter Notebook 을 터미널에서 실행을 한 뒤, vscode 에 url 링크를 연결하여 실행을 합니다. [Jupyter 사용법](http://www.sysop.jp/entry/2018/07/06/vscode_%2B_jupyter_%E3%81%8C%E3%81%99%E3%82%93%E3%81%92%E3%83%BC%E4%BE%BF%E5%88%A9) 링크를 따라서 Jupyter Notebook 을 실행한뒤 vscode 에 등록을 해야 이후에도 제대로 작동된다는 점 주의하시기 바랍니다. [Git Issue](https://github.com/Microsoft/vscode-python/issues/3332)
+
+```python
+Run cell|Run Cell|Run All cells
+#%%
+data = [i  for i in range(10)]
+print(data)
+```
+
+<br/>
+# HTML Web Front Edit
+
 ## Top Extenstions
 sublime, atom, vscode 등 편집기 자체의 성능과 함께, 가장 큰 차이는 지원하는 `Extenstion` 내용과 업데이트 입니다. 최근에는 **vscode** 가 널리 사용됨에 따라 다양한 확장팩들이 지원되므로 이를 정리해 보겠습니다.
 
