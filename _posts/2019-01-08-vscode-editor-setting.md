@@ -39,6 +39,8 @@ $ sudo apt-get install code
     "python.linting.pylintEnabled": true,
 }
 ```
+윈도우에서도 `c:/Python/Python3.6/Script/python.exe` 와 같이 '/'를 사용합니다. 설정값을 정의 후 터미널을 실행하면 window powershell 에서 `Permission Error` 를 출력합니다. 이를 해결하기 위해서는 **power shell** 을 관리자 권한으로 실행을 한 뒤 `>> Set-ExecutionPolicy RemoteSigned` 를 실행하면 오류없이 실행됩니다 [Github Issue](https://github.com/Microsoft/vscode-python/issues/2559)
+{:.notice--info}
 
 <br/>
 # Jupyter Notebook
