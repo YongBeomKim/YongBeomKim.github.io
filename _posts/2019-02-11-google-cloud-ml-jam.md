@@ -19,16 +19,19 @@ toc: true
   <figcaption></figcaption>
 </figure>
 
+
 # 전체리뷰
 문제는 내용을 이해하기 위해선 **Machine Learning 분류기준** (법으로 치면 해당 법률용어) 를 이해 가능해야 되고, Source Code 에 삽입하기 용이하도록 대부분의 내용이 **Terminal** 에서 실행됩니다. 때문에 **리눅스 및 소스코드 작업** 에 익숙하지 않은 분들에게는 해당 과정들이 불친절하게 느껴질 수 있습니다.
+
 
 # Start
 [구글 클라우드 학습 사이트](https://google.qwiklabs.com/home?locale=en)
 
 해당 사이트로 이동한 뒤, 구글 아이디를 사용하여 가입을 한 뒤 **스터디장이 보내준 코드를** 입력하여 **1달 무료 수강권** 을 등록합니다. 다른 메일주소는 해보지 않았지만 오리엔테이션 등에서도 구글메일을 권장하고 있습니다. <strike>구글의 서비스인데 구글걸 써야지 하는 생각으로 만들진 않았을거라고 믿습니다!!</strike>
 
+
 # Step 0 **공통 실습내용** 
-모든 수업에서 반복적으로 실행할 내용으로 유투브 동영상으로 안내가 되어 있습니다 [구글 클라우드 실행](https://www.youtube.com/watch?v=yF7EDXKTmoQ)
+구글클라우드 실행은 유투브로 안내가 됩니다 [구글 클라우드 실행](https://www.youtube.com/watch?v=yF7EDXKTmoQ)
 1. 최초 **구글 클라우드에 로그인** 하고
 2. 클라우드 **터미널을 실행** 하고
 3. 터미널에서 작업을 하면서
@@ -46,22 +49,50 @@ toc: true
 
 해당 분석내용을 변경하기 위해서는 **3-3 ~ 3-4** 내용만 반복 수정하면 됩니다. 추가로 설명이 필요하신 분들은 공동 수정작업중인 [구글슬라이드](https://docs.google.com/presentation/d/1B7Xsqw6pZei0E7PTvRw-c3mCPQnb3grm5JWMAtqlYhA/edit#slide=id.g4f71dfad65_2_17) 를 참고하시면 좋을거 같습니다
 
+
 # Step 1 **Google Cloud Speech API** [바로가기](https://goo.gl/y3rpWa)
+## 클라우드 환경설정
 클라우드를 로그인 한 뒤, 이후의 모든 작업은 **리눅스 터미널** 에서 진행을 합니다.
 
 ```s
 google_student@cloudshell:~ (gqewt12312) $ gcloud auth list
 ```
 
-위 터미널 실행을 하면 사용자 권한내용이 나온다고 했는데 저는 ACCESS 를 입력하라는 메세지가 나왔습니다. 하지만 이를 무시하고 다음의 내용을 실행해도 전체진행에는 문제가 없었습니다.
+위 터미널 실행을 하면 사용자 권한내용이 나온다고 했는데 **저는 ACCESS 를 입력하라는 메세지가** 나왔습니다. 하지만 이를 무시하고 다음의 내용을 실행해도 전체 진행에는 문제가 없었습니다.
 
 ```s
 google_student@cloudshell:~ (gqewt12312) $ gcloud config list project
 ```
-이를 실행하면 해당 페이지와 같이 프로젝트가 생성되어야 합니다.
-이제부터 수업내용을 시작하기 위한 환경설정은 완료되었습니다.
+이를 실행하면 작업을 진행 할 프로젝트가 생성됩니다.
 
 ```s
 google_student@cloudshell:~ (gqewt12312) $ export API_KEY="abcdeg12345"
 ```
-**API_KEY** 라는 변수명으로 해당값을 저장합니다. 이때 주의할 점은 해당 키값을 바로 입력하지 않고 꼭 \" \" 로 감싼 상태로 입력을 해야 정상적으로 작업이 진행됩니다.
+**API_KEY** 라는 변수명으로 **API Key** 값을 저장합니다. 이때 주의할 점은 해당 키값을 쌍따옴표로  \" \" 로 감싼 상태에서 입력해야 합니다.
+
+## Speech 음성파일을 Text로 변환하기
+이번 파트의 내용은 **음성 녹음파일** 을 구글 클라우드로 전송하면, 해당 음성의 내용을 **Text 문장** 으로 출력합니다.
+
+이를 입력하기 위해서 **request.json** 파일을 생성합니다
+```s
+google_student@cloudshell:~ (gqewt12312) $ touch request.json
+```
+
+이 명령은 **request.json** 파일을 생성만 합니다. 그리고 터미널 위의 연필버튼을 누르면 클라우드 속의 파일목록을 출력하고, **request.json** 을 선택하면 해당파일의 내용을 수정할 수 있습니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/gcloud-file.png">
+  <figcaption></figcaption>
+</figure>
+
+입력내용은 `gs://cloud-samples-tests/speech/brooklyn.flac` 파일의 내용을 전달하기 위한 설정내용입니다.
+
+입력이 완료된 **request.json** 파일의 내용을, `https://speech.googleapis.com/v1beta1/speech` 사이트로 Post 방식으로 정보를 전달하면, 해당 음성을 **텍스트 문장** 으로 출력하는 내용을 보실 수 있습니다.
+
+```s
+google_student@cloudshell:~ (gqewt12312) $ curl -s -X POST -H "Content-Type: application/json" --data-binary @request.json \
+"https://speech.googleapis.com/v1beta1/speech:syncrecognize?key=${API_KEY}"
+```
+
+
+# Step 2 **Cloud Natural Language API** [바로가기](https://goo.gl/uMMouk)
