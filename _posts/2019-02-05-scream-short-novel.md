@@ -1,5 +1,5 @@
 ---
-title : [소설] 나는 입이 없다, 그러나 나는 비명을 질러야 한다
+title : 나는 입이 없다, 그러나 나는 비명을 질러야 한다
 last_modified_at: 2019-01-15T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/scream.jpg
@@ -7,6 +7,7 @@ categories:
   - novel
 tags: 
     - novel
+toc: true 
 ---
 
 **_I Have No Mouth, And I Must Scream_**
