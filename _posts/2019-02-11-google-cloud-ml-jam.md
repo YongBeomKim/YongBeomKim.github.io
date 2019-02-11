@@ -53,3 +53,15 @@ toc: true
 google_student@cloudshell:~ (gqewt12312) $ gcloud auth list
 ```
 
+위 터미널 실행을 하면 사용자 권한내용이 나온다고 했는데 저는 ACCESS 를 입력하라는 메세지가 나왔습니다. 하지만 이를 무시하고 다음의 내용을 실행해도 전체진행에는 문제가 없었습니다.
+
+```s
+google_student@cloudshell:~ (gqewt12312) $ gcloud config list project
+```
+이를 실행하면 해당 페이지와 같이 프로젝트가 생성되어야 합니다.
+이제부터 수업내용을 시작하기 위한 환경설정은 완료되었습니다.
+
+```s
+google_student@cloudshell:~ (gqewt12312) $ export API_KEY="abcdeg12345"
+```
+**API_KEY** 라는 변수명으로 해당값을 저장합니다. 이때 주의할 점은 해당 키값을 바로 입력하지 않고 꼭 \" \" 로 감싼 상태로 입력을 해야 정상적으로 작업이 진행됩니다.
