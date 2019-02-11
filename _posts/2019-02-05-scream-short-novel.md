@@ -10,9 +10,10 @@ tags:
 toc: true 
 ---
 
-**_I Have No Mouth, And I Must Scream_**
-<small>나는 입이 없다, 그러나 나는 비명을 질러야 한다
-- 할란 엘리슨 - 출처 [번역 블로그](https://mendax.postype.com/post/555240)</small>
+**_I Have No Mouth, And I Must Scream_**<br/>
+나는 입이 없다, 그러나 나는 비명을 질러야 한다<br/>
+- 할란 엘리슨 - 출처 [번역 블로그](https://mendax.postype.com/post/555240)
+
 
 
 축 늘어진 고리스터의 몸뚱이가 분홍빛 기판에 매달려 있었다. 컴퓨터 체임버 안에 있는 우리의 머리 위, 저 높은 곳에 지지대도 없이. 이제 그 몸뚱이는 끊임없이 중앙 동굴을 따라 불어 오는 냉기 어린, 기름 섞인 바람에도 떨지 않았다.
