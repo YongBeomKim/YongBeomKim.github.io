@@ -52,7 +52,7 @@ toc: true
 
 그리고 해당 파트에서 분석내용을 변경해 보고 싶으신 분들은 위 과정 중 **3-3 ~ 3-4** 내용만 반복 수정하면 됩니다. 추가로 설명이 필요하신 분들은 [구글슬라이드](https://docs.google.com/presentation/d/1B7Xsqw6pZei0E7PTvRw-c3mCPQnb3grm5JWMAtqlYhA/edit#slide=id.g4f71dfad65_2_17) 를 참고하시면 좋을거 같습니다
 
-
+<br/>
 # Step 1 **Google Cloud Speech API** [바로가기](https://goo.gl/y3rpWa)
 ## 클라우드 환경설정
 클라우드를 로그인 한 뒤, 이후의 모든 작업은 **리눅스 터미널** 에서 진행을 합니다.
