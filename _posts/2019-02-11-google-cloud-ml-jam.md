@@ -133,9 +133,9 @@ gcloud ml language analyze-entities --content="Michelangelo Caravaggio, Italian 
 
 <br/>
 # Step 3 **Speech to Text Transcription with the Cloud Speech API** [바로가기](https://goo.gl/3p7YCY)
-이번 과정은 쉬어가는 과정으로 **Step 1 Google Cloud Speech API** 과 거의 동일하고, 추가로 프랑스어 Speech 음성정보를 Text로 변환하는 내용입니다.
+이번 과정은 쉬어가는 과정으로 **Step 1 Google Cloud Speech API** 과 거의 동일하고, **추가된 내용은 프랑스어 Speech 음성정보를 Text로(불어) 변환하는** 내용입니다.
 
-이에 대해선 Google Cloud 한글로 보다 자세한 설명이 되어있는 페이지를 참고하시면 좋습니다 [Google Cloud 설명서](https://cloud.google.com/speech-to-text/docs/basics?hl=ko)
+이에 대해서는 Google Cloud 에서 한글로 자세한 설명이 되어있는 다음의 페이지를 참고하시는 편이 더 좋습니다 [Google Cloud 설명서](https://cloud.google.com/speech-to-text/docs/basics?hl=ko)
 
 <br/>
 # Step 4 **Entity and Sentiment Analysis with the Natural Language API** [바로가기](https://goo.gl/vrQkmi)
