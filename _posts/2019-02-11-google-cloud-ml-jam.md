@@ -183,8 +183,7 @@ gcloud ml language analyze-entities --content="Michelangelo Caravaggio, Italian 
 2번째 문장이 1번과 바로 이어지는 만큼 **상관성의 가중치** 가 더 반영된다면 보다 정확한 결과값이 될 듯 합니다 <strike>하지만 그만큼 개발비와 서버비용이 상승하겠죠</strike>
 
 ## 객체어 분석
-아래의 문장에서 사용된 **명사** 들이 구체적으로 어떠한 분류에 해당되는지, **상품명, 서비스명, 회사명** 등을 분석해서 출력합니다. 이 부분만큼은 딥러닝은 오히려 적은 문장정보로 인해 오인할 가능성이 높고 통계적인 방법으로 접근하는 방법이 좋다고 보여지는 부분입니다. <strike>말해봐요.. 구글 당신들도 딥러닝으로 간단한 분류를 했을 뿐 분석및 결과값 도출은 통계적 분석을 썼죠?? 아닌가요</strike>
-
+아래의 문장에서 사용된 **명사** 에 대해 구체적으로 어떠한 분류에 해당되는지, **상품명, 서비스명, 회사명** 등을 분석해서 출력합니다. 
 ```json
  {
   "document":{
@@ -194,6 +193,53 @@ gcloud ml language analyze-entities --content="Michelangelo Caravaggio, Italian 
   "encodingType": "UTF8"
 }
 ```
+
+분석결과를 보면 **sushi** 와 **service** 2개의 단어에 대해 설명을 했는데, 단어별 설명이 2번씩 반복된 내용을 볼 수 있습니다. 이는 해당 단어가 **복합명사** (명사 여러개가 조합된 단어) 여부를 판단하여 출력한 내용으로 생각됩니다
+
+```json
+{
+    {
+      "name": "sushi",
+      "type": "CONSUMER_GOOD",
+      "mentions": [
+        { "type": "COMMON",
+          "sentiment": {
+            "magnitude": 0.9,
+            "score": 0.9}
+        }
+      ],
+      "sentiment": {
+        "magnitude": 0.9,
+        "score": 0.9
+      }
+    }, 
+    {
+      "name": "service",
+      "type": "OTHER",
+      "mentions": [
+        {
+          "text": {
+            "content": "service",
+            "beginOffset": 26
+          },
+          "type": "COMMON",
+          "sentiment": {
+            "magnitude": 0.9,
+            "score": -0.9
+          }
+        }
+      ],
+      "sentiment": {
+        "magnitude": 0.9,
+        "score": -0.9
+      }
+    }
+  ],
+  "language": "en"
+}
+```
+이 부분만큼은 딥러닝은 오히려 적은 문장정보로 인해 오인할 가능성이 높고 통계적인 방법으로 접근하는 방법이 좋다고 보여지는 부분입니다. <strike>말해봐요.. 구글 당신들도 딥러닝으로 간단한 분류를 했을 뿐 분석및 결과값 도출은 통계적 분석을 썼죠?? 아닌가요</strike>
+
 
 ## 문장의 구조적 분석
 문장이 얼마나 문법적으로 완결되었는지, 짜임새 있게 구성되어 있는지 단어간의 관계 및 우선순위를 분석합니다.
