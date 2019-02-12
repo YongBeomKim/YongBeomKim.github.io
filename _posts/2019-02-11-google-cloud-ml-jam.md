@@ -19,20 +19,20 @@ toc: true
   <figcaption></figcaption>
 </figure>
 
-
+<br/>
 # 전체리뷰
 한가지 아쉬운 부분은 해당 문제들의 내용을 이해하기 위해서
 1. **Machine Learning 의 내용** (법으로 치면 해당 법률용어)의 이해와
 2. **리눅스 작업** 에 대한 익숙함이 필요합니다
 윈도우 사용자가 대부분인 우리나라에서는 위의 내용을 전혀 접해보지 않은 분들에게는 해당 과정들이 불친절하게 느껴질 수 있어 보였습니다.
 
-
+<br/>
 # Start
 [구글 클라우드 학습 사이트](https://google.qwiklabs.com/home?locale=en)
 
 구글 아이디를 사용하여 가입을 한 뒤 **스터디장이 보내준 코드를** 입력하여 **1달 무료 수강권** 을 등록합니다. 다른 메일주소를 직접 해보진 않았지만 [오리엔테이션](https://www.youtube.com/watch?v=yF7EDXKTmoQ) 등에서도 구글메일을 권장하고 있습니다. <strike>구글의 서비스인데 구글걸 써야지 하는 생각으로 만들진 않았을거라고 믿습니다!!</strike>
 
-
+<br/>
 # Step 0 **공통 실습내용** 
 1. **구글 클라우드에서 제공하는 별도의 아이디/ 비밀번호로 로그인** 하면 별도 탭에서 로그인 화면이 뜹니다
 2. 클라우드가 실행되면 **터미널을 실행** 하고, **프로젝트를 정의** 합니다
@@ -96,7 +96,7 @@ google_student@cloudshell:~ (gqewt12312) $ curl -s -X POST -H "Content-Type: app
 "https://speech.googleapis.com/v1beta1/speech:syncrecognize?key=${API_KEY}"
 ```
 
-
+<br/>
 # Step 2 **Cloud Natural Language API** [바로가기](https://goo.gl/uMMouk)
 내용을 간단히 정리하면 Step 1 에서는 **음성정보를 Text** 로 변환을 했다면, 이번 Part 에서는 **입력한 Text를 분석하여 구체적인 정보** 를 출력하는 내용입니다. 예제에서는 해외의 유명한 미술가 작품을 입력하면, 해당 작가의 소개 및 작품에 대한 상세정보를 출력해 줍니다
 
@@ -130,14 +130,14 @@ gcloud ml language analyze-entities --content="Michelangelo Caravaggio, Italian 
 
 그리고 작가와 국가를 다르게 입력하면 `피카소, 미국작가` 제대로 된 결과를 찾지 못햇고, 아쉽게도 우리나라의 김홍도, 김환기등을 입력했을때에는 **None** 을 출력하는 모습을 보여주었습니다.
 
-
+<br/>
 # Step 3 **Speech to Text Transcription with the Cloud Speech API** [바로가기](https://goo.gl/3p7YCY)
 이번 과정은 쉬어가는 과정으로 **Step 1 Google Cloud Speech API** 과 거의 동일하고, 추가로 프랑스어 Speech 음성정보를 Text로 변환하는 내용입니다.
 
 이에 대해선 Google Cloud 한글로 보다 자세한 설명이 되어있는 페이지를 참고하시면 좋습니다 [Google Cloud 설명서](https://cloud.google.com/speech-to-text/docs/basics?hl=ko)
 
-
-# Step 3 **Entity and Sentiment Analysis with the Natural Language API** [바로가기](https://goo.gl/vrQkmi)
+<br/>
+# Step 4 **Entity and Sentiment Analysis with the Natural Language API** [바로가기](https://goo.gl/vrQkmi)
 자연어의 **기본적인 자연어(고유어/일반어) 분석** 과 **감정분석(긍정/중립/부정)** 그리고 개별 단어들의 **객체어 분석** 과정을 출력하는 Google Cloud API를 실습합니다.
 
 ## 기본적인 자연어 분석
@@ -223,7 +223,7 @@ gcloud ml language analyze-entities --content="Michelangelo Caravaggio, Italian 
 }
 ```
 
-
+<br/>
 # 결론
 이번 과정의 핵심은 Google Cloud 를 활용한 자연어 분석을 주고 다루고 있습니다. 기존의 단순한 사람과 사람의 소통의 부분은 자동화로 부분적 대체가 가능하다는 점인데, **콜서비스** 에서도 이 부분에 많은 준비가 되었었지만, **인간의 감정과 취향이라는 부분에 있어서** 만족하기 여렵기 때문에, 부분적으로 도입이 되고 있고 일반인 분들의 우려와 현장에서의 한계가 공존하고 있는 상황이긴 합니다.
 
