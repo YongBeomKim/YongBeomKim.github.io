@@ -1,0 +1,17 @@
+---
+title : 웹 서비스 기획
+last_modified_at: 2019-02-14T10:45:06-05:00
+header:
+  overlay_image: /assets/images/code/gcloud-logo.jpg
+categories:
+  - google
+tags: 
+    - google
+    - jam
+    - machine learning
+toc: true 
+---
+
+검색결과 웹 사이트 명함 페이지 기획자의 경험을 기록한 내용이 있어서 바로가기로 추가를 하게 되었습니다. 
+
+[삽질하며 배운 웹기획](https://brunch.co.kr/magazine/startup26)
