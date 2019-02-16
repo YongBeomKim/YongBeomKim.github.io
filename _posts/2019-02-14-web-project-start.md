@@ -14,6 +14,8 @@ tags:
 
 [삽질하며 배운 웹기획](https://brunch.co.kr/magazine/startup26)
 
+[Full Guide 7 step](https://xbsoftware.com/blog/website-development-process-full-guide/)
+
 1. **일관된 Concept** 을 활용하여
 2. **단순, 명확한 기능을** 구현하고 (범생이 Style)
 3. **고객에게 구체적인 이득을** 전달한다
