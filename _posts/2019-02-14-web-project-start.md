@@ -12,6 +12,8 @@ tags:
 
 # **디자이너 개발자의 웹기획 및 웹개발**
 
+**작업 스케줄 G-Sheet** [Gsheet](https://docs.google.com/spreadsheets/d/1Wywf6eM_N_9eRlogjfPc5DA-4gTg0_aTUnENHs80S2E/edit#gid=0)
+
 **작업시 주의할 점!! :** 웹기획을 처음 시도하다 보니, 자료수집에 많은 시간을 허비 하였습니다. (2월 15~17일) 내용은 **서울창조센터** 및 **디자인 수업** 에서 익숙한 내용들이므로, 간단한 틀이 구성되면 진행한 뒤, 추후 보완하는 작업으로 속도를 높이겠습니다
 {: .notice--info}
 
