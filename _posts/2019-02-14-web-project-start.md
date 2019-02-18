@@ -49,8 +49,39 @@ tags:
 **위에서 정의한 기준을** 바탕으로 **서비스에서 필요로 하는 내용(Feedback 요청사항), 그리고 이를 극복할 구체적인 Idea** 를 사안별로 정리 합니다. <strike>정리를 잘 해야 진도를 나아갈 수 있습니다</strike> 
 
 ## Sketch Story Board
-위에서 수립한 전략과 정책을 고려하여 필요한 기능/콘텐츠를 정의하고, 이를 바탕으로 메뉴구조를 조직화 합니다. 즉 구체적인 AI를 간단한 Map 의 형식으로 Sketch를 합니다.
-
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/project/ia-story.jpg">
+</figure>
+
+위에서 수립한 전략과 정책을 고려하여 필요한 기능/콘텐츠를 정의하고, 이를 바탕으로 메뉴구조를 조직화 합니다. 즉 구체적인 AI를 간단한 Map 의 형식으로 Sketch를 합니다. 이러한 작업을 UML(Unified Modeling language) 이라고 합니다. 대부분의 경우 손으로 sketch 작업을 하지만 보다 구조화된 결과물을 위해서 [Umlet](https://www.umlet.com/) 과 같은 도구들을 활용할 수 있습니다.
+
+## Information Architecture 초안작성 완료하기
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/project/ia-draft.jpg">
+</figure>
+
+story board 를 바탕으로 위에서 정의한 정책들의 내용을 종합하여, 해당 서비스의 **전체적인 Information Architecture 초안을** 작성합니다. 이 과정을 거치면서 필요한 내용들을 취합 및 구조화를 진행합니다. 초안을 바탕으로 해당 서비스의 진행과정을 색깔별로 구분하며 과정들은 점검 확인하는 용도로써 활용을 합니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/project/ia-table.jpg">
+</figure>
+
+<br/>
+# Story Board
+1. 전체 사이트 구조를 파악하기 위한 **Information Architecture**
+2. 해당 페이지별 버튼 하나까지 포함한 **기증 요구 정의서**
+3. 버튼, 테이블의 depth 단계별 **UI 스토리 보드**
+
+지금까지는 **서비스의 뼈대를** 세웠다면, [draw FlowChart만들기](https://www.draw.io/) 이제부터는 **정의된 골격을 바탕으로 서비스 내용을 구체화** 합니다. [Ovenapp 서비스 페이지 만들어보기](https://ovenapp.io/) 위의 3가지를 모두 갖추었다면 개발작업이 훨씬 용이합니다.
+
+**백핸드 와 프론트 데이터 흐름을** 우선적으로 구체적으로 정의한 뒤, 이를 바탕으로 스토리 보드를 구성 및 보완합니다. 이를 통해서 다음의 과정을 계속적으로 반복 정의를 합니다.
+
+1. **Information Architecture**
+2. 공통된 Layout **ex) Header, Menu**
+3. 각 버튼과 메뉴의 상호작용을 기록한 Flow Chart 
+4. 콘텐츠 기획내용 추가하기 (전체적인 통일성을 추가)
+5. 스토리 보드는 계속 Develop 해 나아갑니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/project/ia-flow.png">
 </figure>
