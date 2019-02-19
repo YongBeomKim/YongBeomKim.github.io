@@ -32,6 +32,6 @@ Django 에서 Back-hand 와 Front-hand 에서 **어떻게 데이터를 구조화
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/project/jupyter-ex.png">
-  <figcaption>jupyter notebook 예제</figcaption>
+  <figcaption>jupyter notebook 함수들을 구현합니다</figcaption>
 </figure>
 
