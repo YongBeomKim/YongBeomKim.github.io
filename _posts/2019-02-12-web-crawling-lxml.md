@@ -2,12 +2,12 @@
 title : 웹 크롤링 - requests, lxml
 last_modified_at: 2019-02-12T10:45:06-05:00
 header:
-  overlay_image: /assets/images/project/service.jpg
+  overlay_image: /assets/images/code/crawling.png
 categories:
-  - service
+  - crawling
 tags: 
-    - service
-    - plan
+    - lxml
+    - crawling
 ---
 
 크롤링에 대해선 앞에서 간단하게 다뤄본 적이 있습니다. [Requests-HTML](https://yongbeomkim.github.io/python/python-crawling/) 앞에서 확인했던 내용은 **JavaScript 로 구현한 데이터를** 수집하는 방법에 대해서 requests, selenium, Requests-HTML 로 접근하는 내용을 다뤄보았습니다 <strike>Requests-HTML 짱!!</strike>
