@@ -18,10 +18,31 @@ tags:
   allowfullscreen>
 </iframe>
 
-그러면 위 내용을 간단하게 정리해 보겠습니다. <strike>모든 정리내용은 5분안에 복습 가능하도록 합니다</strike>
+[An Intro to Web Scraping With lxml and Python](https://pythontips.com/2018/06/20/an-intro-to-web-scraping-with-lxml-and-python/) 그러면 위 내용을 간단하게 정리해 보겠습니다. <strike>모든 정리내용은 5분안에 복습 가능하도록 합니다</strike>
 
 
+## lxml 모듈을 활용한 크롤링
+원하는 Target 문서의 HTML 소스코드를 불러온 뒤, 분석가능한 객체로 변환을 합니다. 
 
+```python
+import requests
+from lxml.html import fromstring
+html = requests.get('https://store.steampowered.com/explore/new/')
+doc  = fromstring(html.content)
+```
+
+생성된 lxml 객체에서 최종적으로 원하는 요소들 추출하는 방법으로는 [xpath](http://twinbraid.blogspot.com/2015/02/xpath.html) 문법을 활용하는 방법이 가장 강력합니다. xpath 문법을 사용하여 해당 조건을 충족하는 객체들을 추출합니다.
+
+```python
+result = doc.xpath('//태그[@속성명="속성값"]')
+result
+
+[<Element table at 0x7ff142dee958>,
+ <Element table at 0x7ff142dee9f8>,
+ <Element table at 0x7ff142deea48>]
+```
+
+하지만 위의 결과로써, 몇개의 객체가 발견되었는지를 알 수 있을 뿐, 최종적인 모습과는 차이가 있습니다. 이를 해결하기 위해 추가적인 작업을 필요로 합니다.
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/project/jupyter-ex.png">
   <figcaption>jupyter notebook 함수들을 구현합니다</figcaption>
