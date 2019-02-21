@@ -12,7 +12,8 @@ toc: true
 ---
 
 # **디자이너 개발자의 웹기획 및 웹개발**
-기획을 위해 필요한 절차들을 간단하게 나열하면
+기획을 위해 필요한 절차와 준비물을 간단하게 나열해 보겠습니다
+
 1. 서비스에 대한 **Brain Storming**
 2. <span style="color:blue; font-weight:bold">Information Architecture</span> (스토리 보드 스케치)
 3. 기능/ 버튼별 **기능정의서, 정책정의서** (자세할 수록 좋다)
