@@ -12,13 +12,13 @@ toc: true
 ---
 
 # **디자이너 개발자의 웹기획 및 웹개발**
+
 기획을 위해 필요한 절차와 준비물을 간단하게 나열해 보겠습니다. 현재 작업중인 **작업 스케줄** [Gsheet](https://docs.google.com/spreadsheets/d/1Wywf6eM_N_9eRlogjfPc5DA-4gTg0_aTUnENHs80S2E/edit#gid=0) 입니다.
 
 1. 서비스에 대한 **Brain Storming**
-2. <span style="color:blue; font-weight:bold">Information Architecture</span> (스토리 보드 스케치)
+2. <span style="color:red; font-weight:bold">Information Architecture</span> (스토리 보드 스케치)
 3. 기능/ 버튼별 **기능정의서, 정책정의서** (자세할 수록 좋다)
 4. **앞의 과정을 반복하며** 부족한 부분을 수정/ 보완합니다
-
 
 **작업시 주의할 점!! :** 웹기획을 처음 시도하다 보니, 자료수집에 많은 시간을 허비 하였습니다. (2월 15~17일) 내용은 **서울창조센터** 및 **디자인 수업** 에서 익숙한 내용들이므로, 간단한 틀이 구성되면 진행한 뒤, 추후 보완하는 작업으로 속도를 높이겠습니다
 {: .notice--info}
@@ -27,9 +27,9 @@ toc: true
 {: .notice--danger}
 
 ## 참고자료
-1. **일관된 Concept** 을 활용하여
-2. **단순, 명확한 기능을** 구현하고 (범생이 Style)
-3. **고객에게 구체적인 이득을** 전달한다 
+1. **일관된 Concept** 기준을 정합니다
+2. **단순, 명확한 기능을** 구현합니다 (범생이 Style)
+3. **고객에게 구체적인 이득을** 전달합니다 
 
 검색결과 웹 사이트 명함 페이지 기획자의 경험을 기록한 내용이 있어서 바로가기로 추가를 하게 되었습니다. 그리고 다음의 자료를 참고하면 어떤 방식으로 기획을 하는지를 구체적으로 알 수 있습니다. [쇼핑몰 스토리보드](https://hmtalk.com/download/쇼핑몰_스토리보드.ppt)
 
