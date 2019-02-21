@@ -8,9 +8,15 @@ categories:
 tags: 
     - service
     - plan
+toc: true 
 ---
 
 # **디자이너 개발자의 웹기획 및 웹개발**
+
+기획을 위해 필요한 절차들을 간단하게 나열하면
+1. 서비스에 대한 Brain Storming
+2. 기능정의서, 정책정의서
+3. <span style="color:blue; font-weight:bold">Information Architecture</span> (아이디어 구조화)
 
 **작업 스케줄** [Gsheet](https://docs.google.com/spreadsheets/d/1Wywf6eM_N_9eRlogjfPc5DA-4gTg0_aTUnENHs80S2E/edit#gid=0)
 
