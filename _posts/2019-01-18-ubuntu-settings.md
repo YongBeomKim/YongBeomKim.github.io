@@ -36,3 +36,39 @@ exit 0
 <br/>
 # .bashrc
 bach shell 을 실행할때 실행되는 내용입니다. 예를들어 외부에서 **ssh** 접속하는 경우 위의 기본실행 이외에, 추가로 실행할 내용 (ex) virtualenv, spark path 설정) 을 기록하는 파일입니다.
+
+<br/>
+# 스크립트 만들기
+터미널에서 연속적인 내용을 반복 입력하는 경우 이를 파일로 묶어두면, 실행방법을 간단하게 만들 수 있습니다.
+
+```r
+$ touch run_server.sh
+$ sudo chmod u+x run_server.sh
+$ source run_server.sh
+```
+
+스크립트 파일을 작성할 때, 맨 윗줄에 스크립트 선언을 합니다 <strike>어떠한 기능을 하는지는 아직 정확하게는 모릅니다</strike>
+```r
+#!/bin/sh
+
+# open Apach server port
+sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
+
+# python virtualenv activate
+cd python/django/
+. bin/activate
+cd ~
+
+# running Django server
+cd python/DoosanVent/
+uwsgi --http :8000  --module  server.wsgi &
+cd ~
+
+# open jupyter notebook port
+sudo iptables -I INPUT 2 -p tcp --dport 8080 -j ACCEPT
+
+# running Jupyter Notebook
+cd python/Source/
+jupyter lab &
+cd ~
+```
