@@ -12,14 +12,13 @@ toc: true
 ---
 
 # **디자이너 개발자의 웹기획 및 웹개발**
-기획을 위해 필요한 절차와 준비물을 간단하게 나열해 보겠습니다
+기획을 위해 필요한 절차와 준비물을 간단하게 나열해 보겠습니다. 현재 작업중인 **작업 스케줄** [Gsheet](https://docs.google.com/spreadsheets/d/1Wywf6eM_N_9eRlogjfPc5DA-4gTg0_aTUnENHs80S2E/edit#gid=0) 입니다.
 
 1. 서비스에 대한 **Brain Storming**
 2. <span style="color:blue; font-weight:bold">Information Architecture</span> (스토리 보드 스케치)
 3. 기능/ 버튼별 **기능정의서, 정책정의서** (자세할 수록 좋다)
 4. **앞의 과정을 반복하며** 부족한 부분을 수정/ 보완합니다
 
-**작업 스케줄** [Gsheet](https://docs.google.com/spreadsheets/d/1Wywf6eM_N_9eRlogjfPc5DA-4gTg0_aTUnENHs80S2E/edit#gid=0)
 
 **작업시 주의할 점!! :** 웹기획을 처음 시도하다 보니, 자료수집에 많은 시간을 허비 하였습니다. (2월 15~17일) 내용은 **서울창조센터** 및 **디자인 수업** 에서 익숙한 내용들이므로, 간단한 틀이 구성되면 진행한 뒤, 추후 보완하는 작업으로 속도를 높이겠습니다
 {: .notice--info}
