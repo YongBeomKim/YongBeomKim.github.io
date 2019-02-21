@@ -11,7 +11,7 @@ tags:
 toc: true 
 ---
 
-# **디자이너 개발자의 웹기획 및 웹개발**
+# **디자이너 개발자의 웹기획하기**
 
 기획을 위해 필요한 절차와 준비물을 간단하게 나열해 보겠습니다. 현재 작업중인 **작업 스케줄** [Gsheet](https://docs.google.com/spreadsheets/d/1Wywf6eM_N_9eRlogjfPc5DA-4gTg0_aTUnENHs80S2E/edit#gid=0) 입니다.
 
