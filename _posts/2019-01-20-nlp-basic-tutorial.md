@@ -2,7 +2,7 @@
 title : 자연어 분석을 위한 머신러닝/ 딥러닝 기초
 last_modified_at: 2019-01-20T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/ubuntu.png
+  overlay_image: /assets/images/code/nlp.png
 categories:
   - nltk
 tags: 
