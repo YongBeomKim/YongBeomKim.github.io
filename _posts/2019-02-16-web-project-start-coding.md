@@ -21,7 +21,7 @@ In [3]: response = requests.get(url).text
 In [4]: response[400:600]
 Out[4]: '<meta name="robots" content="index,nofollow"/>\n<meta name="description" content="네이버 메인에서 다양한 정보와 유용한 컨텐츠를 만나 보세요"/>'
 ```
-작업단계에서는 함수로써 클래스/ 함수작업을 진행하고, 어느정도 완결성을 갖추고 나면 **프로젝트.whl** 와 같이 해당 프로젝트 이름을 사용해서 [패키지 모듈을](https://yongbeomkim.github.io/python/python-package-tutorial/) 제작/ 활용하는 방법으로 단계별 완결성을 갖춰 나아가는 습관을 갖도록 합니다.
+작업단계에서는 함수로써 클래스/ 함수작업을 진행하고, 어느정도 완결성을 갖추고 나면 **프로젝트.whl** 와 같이 해당 프로젝트 이름을 사용한 [패키지 모듈을](https://yongbeomkim.github.io/python/python-package-tutorial/) 제작/ 활용하여 단계별 완결성을 갖춰 나아가는 습관을 갖도록 합니다.
 
 <br/>
 # Django Project 시작하기
