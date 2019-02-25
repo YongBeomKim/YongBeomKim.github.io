@@ -13,7 +13,7 @@ tags:
 nltk basic
 
 <figure class="align-center">
-  <img src="https://www.nlpacademy.co.uk/images/uploads/whatisnlp.jpg">
+  <img src="{{site.baseurl}}/assets/images/code/whatisnlp.jpg">
   <figcaption>이미지 출처 : https://www.nlpacademy.co.uk</figcaption>
 </figure>
 
