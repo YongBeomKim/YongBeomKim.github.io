@@ -28,4 +28,5 @@ nltk basic
 5. **Chapter 5 : Word 2 Vec**
 
 <img src="https://miro.medium.com/max/1086/1*g_x1-5iYRn-SmdVucceiWw.png" width='300'>
+
 모든 실습코드는 **Google Colaboratory** (Python 3) 에 최적화 되어 있습니다.
