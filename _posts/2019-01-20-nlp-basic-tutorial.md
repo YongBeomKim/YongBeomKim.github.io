@@ -9,7 +9,7 @@ tags:
     - nltk
 ---
 
-# 파이썬으로 배우는 자연어분석 기초
+# 자연어 분석을 위한 머신러닝/ 딥러닝 기초
 nltk basic
 
 <figure class="align-center">
