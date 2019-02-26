@@ -52,5 +52,8 @@ NameError: name 'Tagger' is not defined
 해당 모듈이 설치된 뒤 간단한 예제를 통해서 작동을 확인합니다.
 
 ```python
-In [1]: from konlpy.tag import Mecab                                                        In [2]: mecab = Mecab()                                                                     In [3]: mecab.morphs(u'영등포구 여의도동 맛집을 알려주세요')                                Out[3]: ['영등포구', '여의도동', '맛집', '을', '알려', '주', '세요']
+In [1]: from konlpy.tag import Mecab
+In [2]: mecab = Mecab()
+In [3]: mecab.morphs(u'영등포구 여의도동 맛집을 알려주세요')
+Out[3]: ['영등포구', '여의도동', '맛집', '을', '알려', '주', '세요']
 ```
