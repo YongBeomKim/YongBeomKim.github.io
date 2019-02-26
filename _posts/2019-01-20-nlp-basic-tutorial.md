@@ -1,5 +1,5 @@
 ---
-title : 자연어 분석을 위한 머신러닝/ 딥러닝 기초
+title : mecab 설치하기 / 자연어 분석 기초
 last_modified_at: 2019-01-20T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/nlp.png
@@ -27,6 +27,30 @@ nltk basic
 4. **Chapter 4 : Word Cloud**
 5. **Chapter 5 : Word 2 Vec**
 
-<img src="https://miro.medium.com/max/1086/1*g_x1-5iYRn-SmdVucceiWw.png" width='300'>
-
 모든 실습코드는 **Google Colaboratory** (Python 3) 에 최적화 되어 있습니다.
+
+<br/>
+# Mecab
+우분투를 쓰면서 Mecab을 설치해 보고 싶었지만 계속 실패하다가 오늘 필받아서 설치했더니 바로 성공해 버렸다. <strike>(결국 중요한건 운빨인가 ㅜㅜ..)</strike> 작년 Alpha LAW 에서 **Colab** 에서는 실패했었는데 여기서도 설치를 성공하는 방법을 알아보겠습니다
+
+## Mecab 설치하기 [(Web)](https://bitbucket.org/eunjeon/mecab-ko-dic)
+**GridSearchCV()** 를 실행하면서 CPU의 Cache 로만 작동하는데 답답함을 느끼다가 Mecab 에서 GPU 연산을 지원한다는 내용에 바로 설치를 해야겠다고 결정을 하게 되었습니다.
+
+우선 Mecab 을 설치합니다. 뒤에 서술하겠지만 문제가 생긴 부분은 virtualenv 에서 Mecab 을 찾지 못했고 이를 보완하기 위해 **mecab-python-0.996.git** 을 추가로 설치를 함으로써 문제를 해결할 수 있었습니다.
+
+위의 페이지로 이동하여 진행과정을 따라가며 **mecab-ko** 모듈을 설치한 뒤 **mecab-ko-dic** 최신 데이터를 다운받아서 설치합니다.
+
+파이썬 IDE 를 실행하면 **Konlpy** 에서 모듈은 불러오지만 **클래스 인스턴스** 를 생성하면 다음과 같은 오류를 출력합니다.
+
+```r
+  File "/usr/local/lib/python3.6/site-packages/konlpy/tag/_mecab.py", line 102, in __init__
+    self.tagger = Tagger('-d %s' % dicpath)
+NameError: name 'Tagger' is not defined
+```
+특히 Virtualenv 환경에서 실행하는 경우에 발생하는데, mecab 데이터와 연결을 도와주는 **https://bitbucket.org/eunjeon/mecab-ko-dic** 모듈을 [설치합니다](https://github.com/konlpy/konlpy/issues/144)
+
+해당 모듈이 설치된 뒤 간단한 예제를 통해서 작동을 확인합니다.
+
+```python
+In [1]: from konlpy.tag import Mecab                                                        In [2]: mecab = Mecab()                                                                     In [3]: mecab.morphs(u'영등포구 여의도동 맛집을 알려주세요')                                Out[3]: ['영등포구', '여의도동', '맛집', '을', '알려', '주', '세요']
+```
