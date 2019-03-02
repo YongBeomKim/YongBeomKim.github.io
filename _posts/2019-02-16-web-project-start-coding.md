@@ -135,3 +135,4 @@ class Person(models.Model):
     # 저장할 때 추가적인 기능을 정의할 수 있습니다
     def save(self, *args, **kwargs):
         super(Person, self).save(*args, **kwargs)
+```
