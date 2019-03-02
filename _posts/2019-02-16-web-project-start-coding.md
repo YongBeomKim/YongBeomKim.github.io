@@ -27,10 +27,12 @@ Out[4]: '<meta name="robots" content="index,nofollow"/>\n<meta name="description
 # Django Project 시작하기
 배경문서와 자료들이 어느정도 구체화 되고나면, 문서화 작업과 함께 Django 서버에 적용합니다.
 
-**데이터는 sqlite3, 호출은 Django QuerySet, 구현은 HTML** 앞에서 Jupyter 함수만으로 보였던 내용들을 웹으로 제공하기 위해서는 각 단계별로 구조화한 뒤 실행을 해야하는 과정들이 복잡하고 어렵게 느껴지는 문제가 있어서 멈칫멈칫하는 문제가 현재 있습니다. 이러한 과정도 반복하면 난이도가 낮아질 것이라 보기 때문에 두려워 말고 실행하도록 합니다.
+**데이터는 sqlite3, 호출은 Django QuerySet, 구현은 HTML**  Jupyter 에서 함수로 구조화한 뒤 **해당 함수들을 묶어서 whl 모듈로** 묶으면서 진도를 진행하다 보면, 작업의 진행속도가 빨라지면서 구조화의 난이도가 낮아지게 될 것입니다.
 
-# models.py
-클래스 Table, 필드 객체와 매칭하면 모델링은 어렵지 않게 접근 가능합니다. 다만 모든 테이블을 단일하게 구성하면 **불필요하게 반복되는 내용들로 성능에 저하** 가 생깁니다.
+## models.py
+입력을 원하는 데이터
+
+사용자가 원하는 모델의 클래스 Table, 필드 객체와 매칭하면 모델링은 어렵지 않게 접근 가능합니다. 다만 모든 테이블을 단일하게 구성하면 **불필요하게 반복되는 내용들로 성능에 저하** 가 생깁니다.
 
 ## ForeignKey(테이블 클래스)
 다른 **부모 Table 의 id값** 을 상속받아, 자식 테이블에서 **부모테이블_id** 필드에서 매칭 합니다.
@@ -50,28 +52,37 @@ class Book(models.Model):
 1. **Publisher** 테이블에서 객체를 특정한 인스턴스를 생성
 2. **(자식테이블 소문자)_set** 메소드로 **자식테이블** 에 접근합니다
 
+**Django Python Shell**
 ```python
 p = Publisher.objects.get(name__contains="Apress")
 p.book_set.all()          # Apress 출판사의 전체 Book 목록
 p.book_set.filter(title__icontains="django") # 제목 필터링
-
-QuerySet [<Book: A Two django Story>, <Book: Python & django>]
 ```
 
 ## ManyToManyField(테이블 클래스)
-
-
+외래키와 대부분은 동일하고, 모델 instance 대신 **QuerySet** 값을 추출합니다
 ```python
 # Create your models here.
-class Publisher(models.Model):
-    name    = models.CharField(max_length=30)
-    website = models.URLField()
-
 class Author(models.Model):
     first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=40)
+    last_name  = models.CharField(max_length=40)
 
 class Book(models.Model):
-    authors     = models.ManyToManyField(Author) #, related_name='author')
-    publisher   = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    authors = models.ManyToManyField(Author) #, related_name='author')
+```
+
+**Django Python Shell**
+```python
+from books.models. import Book
+b = Book.objects.get(id=1)
+b.authors.filter(last_name="Kim") 
+```
+
+**ManytoMany 필드** 에서 동작하는 **.all .filter** 메소드는 1개의 튜플만 선택했을 떄 해당 인덱스의 ManyToMany 에서 연산 작용을 합니다. 이점을 주의해서 작업을 진행합니다
+{: .notice--danger}
+
+## 모델 관리자 메서드 추가
+사용자 기능을 추가하기 위한 method 를 추가할 수 있습니다.
+```python
+
 ```
