@@ -81,7 +81,7 @@ b.authors.filter(last_name="Kim")
 **ManytoMany 필드** 에서 동작하는 **.all .filter** 메소드는 **1개의 튜플만 선택했을 떄** 작동을 합니다. 이점을 주의해서 진행 합니다.
 {: .notice--danger}
 
-## 모델 관리자 메서드 추가
+## **모델 관리자 QuerySets** 추가
 사용자 기능을 추가하기 위한 method 를 추가할 수 있습니다.
 ```python
 # Many to Many 로 연결된 field 의 객체를 검색해서 출력하기
@@ -96,7 +96,7 @@ class Book(models.Model):
     title_objects = TitleManager()   # django 타이틀 포함목록
 ```
 
-## 동일한 모델에서 여러개 관리자 활용하기
+## **모델 관리자 QuerySet** 여럿 활용하기
 ```python
 class MaleManager(models.Manager):
     def get_queryset(self):
@@ -117,3 +117,7 @@ class Person(models.Model):
     woman   = FemaleManager()
 ```
 
+## **모델 메서드** 추가하기
+```python
+
+```
