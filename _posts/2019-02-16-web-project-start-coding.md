@@ -44,8 +44,10 @@ class Publisher(models.Model):
 
 class Book(models.Model):
     publisher = models.ForeignKey(
-                    Publisher, 
-                    on_delete = models.CASCADE)
+      "books.Publisher",      # App.모델클래스 
+      on_delete = models.CASCADE,
+      related_name = "books", # "books+" 역제한
+      related_query_name = "book")
 ```
 
 **Publisher** 테이블 정보를 **Book** 에서 상속합니다.
@@ -119,5 +121,17 @@ class Person(models.Model):
 
 ## **모델 메서드** 추가하기
 ```python
+import datetime as dt
+class Person(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name  = models.CharField(max_length=50)
 
-```
+    def _get_full_name(self):
+        return '%s %s' % (
+            self.first_name, self.last_name)
+    
+    full_name = property(_get_full_name)
+
+    # 저장할 때 추가적인 기능을 정의할 수 있습니다
+    def save(self, *args, **kwargs):
+        super(Person, self).save(*args, **kwargs)
