@@ -96,4 +96,24 @@ class Book(models.Model):
     title_objects = TitleManager()   # django 타이틀 포함목록
 ```
 
-## 동일한 모델에서 여러개 관리자
+## 동일한 모델에서 여러개 관리자 활용하기
+```python
+class MaleManager(models.Manager):
+    def get_queryset(self):
+        qs = super(MaleManager, self).get_queryset()
+        return qs.filter(sex="M")
+
+class FemaleManager(models.Manager):
+    def get_queryset(self):
+        qs = super(FemaleManager, self).get_queryset()
+        return qs.filter(sex="F")
+
+class Person(models.Model):
+    name    = models.CharField(max_length=50)
+    sex     = models.CharField(max_length=1, 
+        choices=(("M",'Male'),("F",'Female')))
+    objects = models.Manager()
+    men     = MaleManager()
+    woman   = FemaleManager()
+```
+
