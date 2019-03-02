@@ -1,5 +1,5 @@
 ---
-title : 웹 서비스 코딩하기 1 - Setting
+title : 웹 서비스 Django Coding 01 - Model
 last_modified_at: 2019-02-16T10:45:06-05:00
 header:
   overlay_image: /assets/images/project/service.jpg
