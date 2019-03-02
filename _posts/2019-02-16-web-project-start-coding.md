@@ -24,7 +24,7 @@ Out[4]: '<meta name="robots" content="index,nofollow"/>\n<meta name="description
 작업단계에서는 함수로써 클래스/ 함수작업을 진행하고, 어느정도 완결성을 갖추고 나면 **프로젝트.whl** 와 같이 해당 프로젝트 이름을 사용한 [패키지 모듈을](https://yongbeomkim.github.io/python/python-package-tutorial/) 제작/ 활용하여 단계별 완결성을 갖춰 나아가는 습관을 갖도록 합니다.
 
 <br/>
-# Django Project 시작하기
+# Django Model 정의하기
 배경문서와 자료들이 어느정도 구체화 되고나면, 문서화 작업과 함께 Django 서버에 적용합니다.
 
 **데이터는 sqlite3, 호출은 Django QuerySet, 구현은 HTML**  Jupyter 에서 함수로 구조화한 뒤 **해당 함수들을 묶어서 whl 모듈로** 묶으면서 진도를 진행하다 보면, 작업의 진행속도가 빨라지면서 구조화의 난이도가 낮아지게 될 것입니다.
@@ -56,32 +56,52 @@ class Book(models.Model):
 
 **Django Python Shell**
 ```python
+from books.models import Publisher, Book
+
+# 1 foreign 필드 조회하기
+# Book 테이블을 book_set 인스턴스로 접근
 p = Publisher.objects.get(name__contains="Apress")
 p.book_set.all()          # Apress 출판사의 전체 Book 목록
 p.book_set.filter(title__icontains="django") # 제목 필터링
+
+# 2 부모필드 업데이트
+# Book 테이블을 직접 연결하여 접근
+b = Publisher(name='Aplus')
+e = Book(publisher=b)
+e.save()
 ```
+mastering Django 내용보다 (694p) [위의 방식이](https://stackoverflow.com/questions/46314246/how-to-update-a-foreign-key-field-in-django-models-py) 직관적이여서 알기 쉽다
+
 
 ## ManyToManyField(테이블 클래스)
 외래키와 대부분은 동일하고, 모델 instance 대신 **QuerySet** 값을 추출합니다
 ```python
 # Create your models here.
 class Author(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name  = models.CharField(max_length=40)
+    name = models.CharField(max_length=30)
 
 class Book(models.Model):
-    authors = models.ManyToManyField(Author) #, related_name='author')
+    authors = models.ManyToManyField(Author)
 ```
 
 **Django Python Shell**
 ```python
-from books.models. import Book
+from books.models import Book, Author
+
+# 1 조회하기
 b = Book.objects.get(id=1)
 b.authors.filter(last_name="Kim") 
+
+# 2 데이터 추가하기
+book = Book.objects.get(pk=1)
+bill = Author.objects.create(name="Bill")
+john = Author.objects.create(name="John")
+book.authors.add(bill, john)
 ```
 
 **ManytoMany 필드** 에서 동작하는 **.all .filter** 메소드는 **1개의 튜플만 선택했을 떄** 작동을 합니다. 이점을 주의해서 진행 합니다.
 {: .notice--danger}
+
 
 ## **모델 관리자 QuerySets** 추가
 사용자 기능을 추가하기 위한 method 를 추가할 수 있습니다.
@@ -135,4 +155,17 @@ class Person(models.Model):
     # 저장할 때 추가적인 기능을 정의할 수 있습니다
     def save(self, *args, **kwargs):
         super(Person, self).save(*args, **kwargs)
+```
+
+<br/>
+# Django Model 데이터 저장하기
+정의한 모델을 대상으로 객체를 저장/관리하는 함수들을 정리해 보겠습니다.
+
+```python
+class Author(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name  = models.CharField(max_length=40)
+
+class Book(models.Model):
+    authors = models.ManyToManyField(Author)
 ```
