@@ -78,11 +78,22 @@ b = Book.objects.get(id=1)
 b.authors.filter(last_name="Kim") 
 ```
 
-**ManytoMany 필드** 에서 동작하는 **.all .filter** 메소드는 1개의 튜플만 선택했을 떄 해당 인덱스의 ManyToMany 에서 연산 작용을 합니다. 이점을 주의해서 작업을 진행합니다
+**ManytoMany 필드** 에서 동작하는 **.all .filter** 메소드는 **1개의 튜플만 선택했을 떄** 작동을 합니다. 이점을 주의해서 진행 합니다.
 {: .notice--danger}
 
 ## 모델 관리자 메서드 추가
 사용자 기능을 추가하기 위한 method 를 추가할 수 있습니다.
 ```python
+# Many to Many 로 연결된 field 의 객체를 검색해서 출력하기
+class TitleManager(models.Manager):
+    def get_queryset(self):
+        qs = super(TitleManager, self).get_queryset()
+        return qs.filter(title__icontains='django') 
 
+class Book(models.Model):
+    title         = models.CharField(max_length=100)
+    objects       = models.Manager() # 기본 매니저 재정의
+    title_objects = TitleManager()   # django 타이틀 포함목록
 ```
+
+## 동일한 모델에서 여러개 관리자
