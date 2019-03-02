@@ -28,3 +28,50 @@ Out[4]: '<meta name="robots" content="index,nofollow"/>\n<meta name="description
 배경문서와 자료들이 어느정도 구체화 되고나면, 문서화 작업과 함께 Django 서버에 적용합니다.
 
 **데이터는 sqlite3, 호출은 Django QuerySet, 구현은 HTML** 앞에서 Jupyter 함수만으로 보였던 내용들을 웹으로 제공하기 위해서는 각 단계별로 구조화한 뒤 실행을 해야하는 과정들이 복잡하고 어렵게 느껴지는 문제가 있어서 멈칫멈칫하는 문제가 현재 있습니다. 이러한 과정도 반복하면 난이도가 낮아질 것이라 보기 때문에 두려워 말고 실행하도록 합니다.
+
+# models.py
+클래스 Table, 필드 객체와 매칭하면 모델링은 어렵지 않게 접근 가능합니다. 다만 모든 테이블을 단일하게 구성하면 **불필요하게 반복되는 내용들로 성능에 저하** 가 생깁니다.
+
+## ForeignKey(테이블 클래스)
+다른 **부모 Table 의 id값** 을 상속받아, 자식 테이블에서 **부모테이블_id** 필드에서 매칭 합니다.
+
+```python
+# Create your models here.
+class Publisher(models.Model):
+    name    = models.CharField(max_length=30)
+
+class Book(models.Model):
+    publisher = models.ForeignKey(
+                    Publisher, 
+                    on_delete = models.CASCADE)
+```
+
+**Publisher** 테이블 정보를 **Book** 에서 상속합니다.
+1. **Publisher** 테이블에서 객체를 특정한 인스턴스를 생성
+2. **(자식테이블 소문자)_set** 메소드로 **자식테이블** 에 접근합니다
+
+```python
+p = Publisher.objects.get(name__contains="Apress")
+p.book_set.all()          # Apress 출판사의 전체 Book 목록
+p.book_set.filter(title__icontains="django") # 제목 필터링
+
+QuerySet [<Book: A Two django Story>, <Book: Python & django>]
+```
+
+## ManyToManyField(테이블 클래스)
+
+
+```python
+# Create your models here.
+class Publisher(models.Model):
+    name    = models.CharField(max_length=30)
+    website = models.URLField()
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=40)
+
+class Book(models.Model):
+    authors     = models.ManyToManyField(Author) #, related_name='author')
+    publisher   = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+```
