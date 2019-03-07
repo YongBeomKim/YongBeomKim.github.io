@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "GitBook"
+    url: /gitbook/
   - title: "tag"
     url: /tags/
   - title: "category"
