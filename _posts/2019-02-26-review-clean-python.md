@@ -2,7 +2,7 @@
 title : 도서리뷰 - 파이썬 클린코드
 last_modified_at: 2019-02-26T10:45:06-05:00
 header:
-  overlay_image: /assets/images/photo/startup.jpg
+  overlay_image: /assets/images/book/clean-py.jpg
 categories:
   - business
 tags: 
