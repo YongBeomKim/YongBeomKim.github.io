@@ -1,6 +1,6 @@
 ---
 title : 예비창업 사업계획서 3차 작업
-last_modified_at: 2019-02-23T10:45:06-05:00
+last_modified_at: 2019-02-12T10:45:06-05:00
 header:
   overlay_image: /assets/images/photo/startup.jpg
 categories:
@@ -10,7 +10,9 @@ tags:
     - business
 ---
 
-# 주간 메뉴 추천 및 이를 활용한 식당 창업 원가계산 및 수익률 예측 서비스(서울/경기) 
+주간 메뉴 추천 및 이를 활용한 식당 창업 원가계산 및 수익률 예측 서비스(서울/경기) 
+
+
 
 # 1 작성목차
 
