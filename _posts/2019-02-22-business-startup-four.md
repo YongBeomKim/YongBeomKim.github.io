@@ -25,7 +25,7 @@ tags:
 
 ## 1 문제인식
 ### 1-1 창업 아이템의 개발동기
-음식 메뉴와 식사재 원가 연동 시스템들은 **삼성웰스토리, 현대그린푸드, 중고교 급식시스템등** 유통업체 및 관리감독 기관에서 제작한 것으로(붙임1) 전문적인 영양사의 다양한 대량 주문을 위해 설계가 되어 있습니다. 그리고 식단정보는 [**농촌진흥청 의 메뉴젠**](http://koreanfood.rda.go.kr/kfi/mgnmenudiaKcalnnutri/list) 과 [**청정원의 건강식단**](http://www.jungonenutri.com/user/diet/dietSearch.do?dietOrdYn=Y&pageNum=16&rdoGender=&dietCd=&gender=&age=&kcal=&rowCount=10#none) 에서와 같이(붙임2) 모범 메뉴들을 단순 나열하고 있습니다. 때문에 일반인 및 중소식당에서는 이를 접근 및 활용에는 어려운  어려운 한계가 활용하기 어렵습니다. 
+식단정보는 [**농촌진흥청 의 메뉴젠**](http://koreanfood.rda.go.kr/kfi/mgnmenudiaKcalnnutri/list) 과 [**청정원의 건강식단**](http://www.jungonenutri.com/user/diet/dietSearch.do?dietOrdYn=Y&pageNum=16&rdoGender=&dietCd=&gender=&age=&kcal=&rowCount=10#none) 에서와 같이(붙임2) 모범 메뉴들을 단순 나열하고 있습니다. 이를 종합한 음식 메뉴와 식사재 원가 연동 시스템은 **삼성웰스토리, 현대그린푸드, 중고교 급식시스템** 과 같이 유통업체, 관리감독 기관에서 전문적인 영양사 분들의 대량주문을 위해 제작되어 있습니다. 때문에 일반 가정 및 중소식당에서 활용을 위한 솔루션은 부족합니다. 
 
 ### 1-2 창업 아이템의 목적 (필요성)
 공공데이터 개방정책과, 농산물 온라인 유통이 활발해 지고 있는 지금, 이를 개방적인 서비스와 간편한 UI를 활용하여 가정 및 중소식당을 위한 메뉴관리 서비스를 제공한다면, 다양한 식단을 구성하고 불필요한 식자재 구매를 줄일 수 있습니다. 또한 지역 내 다양한 농산물 유통업체를 활용할 계기가 될 것입니다.
