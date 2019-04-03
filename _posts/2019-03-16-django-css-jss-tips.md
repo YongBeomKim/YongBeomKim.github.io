@@ -2,7 +2,7 @@
 title : CSS, JS Tips  with  Django
 last_modified_at: 2019-03-16T10:45:06-05:00
 header:
-  overlay_image: /assets/images/photo/startup.jpg
+  overlay_image: /assets/images/code/htmlcssjs.jpg
 categories:
   - business
 tags: 
@@ -33,7 +33,7 @@ Base.html 등에서 활용할 CSS 스타일을 static 함수를 사용하면 작
 
 이를 위해서는 아래의 모듈을 모두 필요로 합니다.
 ```html
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
     <script src="bootstrap.min.js"></script>
     <script src="jquery-3.3.1.js"></script>
     <script src="popper.min.js"></script>
@@ -46,7 +46,8 @@ Form의 입력도구에서 사용자를 도와주기 위한 자동완성 기능�
 ```html
 <script src="jquery-3.3.1.js"></script>
 <script src="jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="jquery-ui.css">
+<link rel="stylesheet" href="jquery-ui.css">
+
 <div class="container">
     <h2>Form 에서 자동완성</h2>
     <input type="text" id="auto">
