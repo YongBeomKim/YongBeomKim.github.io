@@ -4,10 +4,11 @@ last_modified_at: 2019-03-16T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/htmlcssjs.jpg
 categories:
-  - business
+  - django
 tags: 
-    - startup
-    - business
+    - html
+    - css
+    - javascript
 ---
 
 # **web Tip들 모음**
@@ -27,7 +28,6 @@ Base.html 등에서 활용할 CSS 스타일을 static 함수를 사용하면 작
 }
 ```
 
-
 ## Hamberger Menu
 화면 사이즈가 줄어들면 자동으로 햄버거 메뉴로 변경하는 Bootstrap 코드가 **배프의 오지랍 Django** 에 구현이 되어 있는데, offline 실행을 위해선 필요한 모듈을 잘 적용해야 합니다.
 
@@ -41,7 +41,7 @@ Base.html 등에서 활용할 CSS 스타일을 static 함수를 사용하면 작
 
 ## AutoComplete Text
 
-Form의 입력도구에서 사용자를 도와주기 위한 자동완성 기능으로 **JQuery** 의 **JQuery UI** 를 활용합니다 [jquery](https://stackoverflow.com/questions/48563996/jquery-ui-autocomplete-doesnt-work-with-jquery-version-3-2-1)
+[YouTube](https://www.youtube.com/watch?v=Fq2gNPHjgdE) Form의 입력도구에서 사용자를 도와주기 위한 자동완성 기능으로 **JQuery** 의 **JQuery UI** 를 활용합니다 [jquery](https://stackoverflow.com/questions/48563996/jquery-ui-autocomplete-doesnt-work-with-jquery-version-3-2-1)
 
 ```html
 <script src="jquery-3.3.1.js"></script>
