@@ -55,6 +55,7 @@ def update_stock(sender, instance, **kwargs):
      instance.product.save()
 ```
 
+<br/>
 # SQLITE3 
 [(WEB)](https://stackoverflow.com/questions/48549068/django-db-utils-notsupportederror-in-sqlite-why-not-supported-in-sqlite)
 Django 2.1 에서 Migration 결과 `(automatically created in migrations directory after makemigrations command) and add atomic = False to the Migration class. Migration(migrations.Migration)` 를 출력하는 경우가 있습니다.
