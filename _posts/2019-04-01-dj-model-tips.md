@@ -59,7 +59,7 @@ def update_stock(sender, instance, **kwargs):
 [(WEB)](https://stackoverflow.com/questions/48549068/django-db-utils-notsupportederror-in-sqlite-why-not-supported-in-sqlite)
 Django 2.1 에서 Migration 결과 `(automatically created in migrations directory after makemigrations command) and add atomic = False to the Migration class. Migration(migrations.Migration)` 를 출력하는 경우가 있습니다.
 
-이 경우에는 **Migration** 폴더 내 작업 내용을 다음과 같이 수정합니다.
+이 경우에는 개별 app 에 종속되는 **Migration** 폴더 내 작업파일을 다음과 같이 수정합니다.
 
 ```python
 from django.db import migrations
