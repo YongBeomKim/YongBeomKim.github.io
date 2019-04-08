@@ -12,11 +12,13 @@ toc: true
 ---
 
 # Modeling
-
 프로젝트 모델을 작업하면서 부족했던 부분들을 정리하는 시간으로 삼겠습니다.
 
-## Property [(stackflow)](https://stackoverflow.com/questions/17682567/how-to-add-a-calculated-field-to-a-django-model)
-같은 튜플의 값을 재활용 하는 경우에는 `property` 데코레이터를 활용합니다.
+## 기능의 추가
+기본적 필드정의 이외에 추가할 내용들을 정리해 보겠습니다
+
+## Property 
+[(stackflow)](https://stackoverflow.com/questions/17682567/how-to-add-a-calculated-field-to-a-django-model) 테이블 내 같은 튜플의 값을 재활용 하는 경우에는 `property` 데코레이터를 활용합니다.
 
 ```python
 class Python(models.Model):
@@ -27,15 +29,12 @@ class Python(models.Model):
         return self.name + 'Python'
 ```
 
-# Signals
-
-## Django 의 Signals 기초 익히기
+## Signals 기초 익히기
 JustDjango 에서 소개된 Signals 내용을 살펴보도록 합니다 <strike>예제가 대부분 User 를 사용한 내용만 있는게 아쉽습니다</strike>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/T6PyDm79PFo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Signals 1 : Post_save
-
-Stack_over_flow 의 질문과 답 [(url)](https://stackoverflow.com/questions/13014411/django-post-save-signal-implementation) 은 다음과 같습니다
+## Signals & Post_save
+[(StackOverFlow)](https://stackoverflow.com/questions/13014411/django-post-save-signal-implementation) 내용 중 Signals 를 외래키를 활용한 내용 중 가장 추천이 많은 내용은 다음과 같습니다
 
 ```python
 from django.db.models.signals import post_save
@@ -56,10 +55,8 @@ def update_stock(sender, instance, **kwargs):
      instance.product.save()
 ```
 
-## https://stackoverflow.com/questions/13014411/django-post-save-signal-implementation
-
-
-## SQLITE3 [(WEB)](https://stackoverflow.com/questions/48549068/django-db-utils-notsupportederror-in-sqlite-why-not-supported-in-sqlite)
+# SQLITE3 
+[(WEB)](https://stackoverflow.com/questions/48549068/django-db-utils-notsupportederror-in-sqlite-why-not-supported-in-sqlite)
 Django 2.1 에서 Migration 결과 `(automatically created in migrations directory after makemigrations command) and add atomic = False to the Migration class. Migration(migrations.Migration)` 를 출력하는 경우가 있습니다.
 
 이 경우에는 **Migration** 폴더 내 작업 내용을 다음과 같이 수정합니다.
@@ -71,5 +68,5 @@ class Migration(migrations.Migration):
     atomic = False # <<<< 이 내용을 추가합니다
 ```
 
-## one to many 관계는 ForeignKey() 를 활용 [(Web)](https://stackoverflow.com/questions/6928692/how-to-express-a-one-to-many-relationship-in-django)
-관계용 모듈함수로는 `models.ForeignKey()`, `models.ManyToManyField()` 를 활용합니다.
+## one to many 관계는 ForeignKey() 를 활용 
+[(Web)](https://stackoverflow.com/questions/6928692/how-to-express-a-one-to-many-relationship-in-django) 관계용 모듈함수로는 `models.ForeignKey()`, `models.ManyToManyField()` 를 활용합니다.
