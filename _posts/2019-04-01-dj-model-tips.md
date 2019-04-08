@@ -15,7 +15,9 @@ toc: true
 프로젝트 모델을 작업하면서 부족했던 부분들을 정리하는 시간으로 삼겠습니다.
 
 ## 기능의 추가
-기본적 필드정의 이외에 추가할 내용들을 정리해 보겠습니다
+기본적 필드정의 이외에 추가할 내용들을 정리해 보겠습니다. 검색결과 `pre_save, post_save, save` 어떤게 좋은가 에 대한 답 [post_save vs pre_save vs override save method](https://www.codingforentrepreneurs.com/blog/post-save-vs-pre-save-vs-override-save-method/)
+
+결론은 `.save()` 를 추가하여 무겁게 실행하기 보다는, 초기 실행조건을 활용한 `post_save, pre_save, post_delete, pre_delete` 의 `Signals`를 활용하는 방법을 더 추천하고 있습니다.
 
 ## Property 
 [(stackflow)](https://stackoverflow.com/questions/17682567/how-to-add-a-calculated-field-to-a-django-model) 테이블 내 같은 튜플의 값을 재활용 하는 경우에는 `property` 데코레이터를 활용합니다.
@@ -51,9 +53,14 @@ class Detail(models.Model):
 # method for updating
 @receiver(post_save, sender=Detail, dispatch_uid="update_stock_count")
 def update_stock(sender, instance, **kwargs):
-     instance.product.stock -= instance.amount # 
-     instance.product.save()
+    if instance.product.stock == 0:
+        instance.product.stock += 1 # 
+        instance.save()
+    else:
+        pass
 ```
+주의할 점은 위의 `post_save` 를 실행할 때, **해당 필드의 값이 default 일 때**, 해당 연산이 실행하도록 특정을 해야 합니다. 그렇지 않으면 반복적이 실행으로 `RecursionError: maximum recursion depth exceeded while calling a Python object` 등의 오류를 출력합니다
+{: .notice--info} 
 
 ## save
 [Django ORM Cookbook](https://ko.aliexpress.com/item/Original-Xiaomi-Mi-Max-3-4GB-RAM-64GB-ROM-Mobile-Phone-Snapdragon-636-Octa-Core-6/32897993001.html?spm=a2g12.12010108.addToCart.24.151732281wnQTN&gps-id=pcDetailCartBuyAlsoBuy&scm=1007.12908.99722.0&scm_id=1007.12908.99722.0&scm-url=1007.12908.99722.0&pvid=41af5d8e-5685-4d61-adea-af084254e99b) 위의 복잡한 내용을 활용하기 보다는 Django 의 기본적인 **save()** 메소드를 활용합니다
