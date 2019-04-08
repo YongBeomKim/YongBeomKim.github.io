@@ -15,6 +15,49 @@ toc: true
 
 프로젝트 모델을 작업하면서 부족했던 부분들을 정리하는 시간으로 삼겠습니다.
 
+## Property [(stackflow)](https://stackoverflow.com/questions/17682567/how-to-add-a-calculated-field-to-a-django-model)
+같은 튜플의 값을 재활용 하는 경우에는 `property` 데코레이터를 활용합니다.
+
+```python
+class Python(models.Model):
+    name = models.CharField()
+
+    @property
+    def test(self):
+        return self.name + 'Python'
+```
+
+# Signals
+
+## Django 의 Signals 기초 익히기
+JustDjango 에서 소개된 Signals 내용을 살펴보도록 합니다 <strike>예제가 대부분 User 를 사용한 내용만 있는게 아쉽습니다</strike>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T6PyDm79PFo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Signals 1 : Post_save
+
+Stack_over_flow 의 질문과 답 [(url)](https://stackoverflow.com/questions/13014411/django-post-save-signal-implementation) 은 다음과 같습니다
+
+```python
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+class Product(models.Model):
+     name = models.CharField(max_length=255)
+     stock = models.IntegerField(default=0)
+
+class Detail(models.Model):
+    product = models.ForeignKey(Product)
+    amount = models.IntegerField(default=0)
+
+# method for updating
+@receiver(post_save, sender=Detail, dispatch_uid="update_stock_count")
+def update_stock(sender, instance, **kwargs):
+     instance.product.stock -= instance.amount
+     instance.product.save()
+```
+
+## https://stackoverflow.com/questions/13014411/django-post-save-signal-implementation
+
 
 ## SQLITE3 [(WEB)](https://stackoverflow.com/questions/48549068/django-db-utils-notsupportederror-in-sqlite-why-not-supported-in-sqlite)
 Django 2.1 에서 Migration 결과 `(automatically created in migrations directory after makemigrations command) and add atomic = False to the Migration class. Migration(migrations.Migration)` 를 출력하는 경우가 있습니다.
