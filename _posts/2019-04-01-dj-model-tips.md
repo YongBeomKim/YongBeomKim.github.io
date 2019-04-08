@@ -46,13 +46,37 @@ class Product(models.Model):
 
 class Detail(models.Model):
     product = models.ForeignKey(Product)
-    amount = models.IntegerField(default=0)
+    amount = models.IntegerField(default=0) # <== 값을 자동저장
 
 # method for updating
 @receiver(post_save, sender=Detail, dispatch_uid="update_stock_count")
 def update_stock(sender, instance, **kwargs):
-     instance.product.stock -= instance.amount
+     instance.product.stock -= instance.amount # 
      instance.product.save()
+```
+
+## save
+[Django ORM Cookbook](https://ko.aliexpress.com/item/Original-Xiaomi-Mi-Max-3-4GB-RAM-64GB-ROM-Mobile-Phone-Snapdragon-636-Octa-Core-6/32897993001.html?spm=a2g12.12010108.addToCart.24.151732281wnQTN&gps-id=pcDetailCartBuyAlsoBuy&scm=1007.12908.99722.0&scm_id=1007.12908.99722.0&scm-url=1007.12908.99722.0&pvid=41af5d8e-5685-4d61-adea-af084254e99b) 위의 복잡한 내용을 활용하기 보다는 Django 의 기본적인 **save()** 메소드를 활용합니다
+
+
+```python
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    hero_count = models.PositiveIntegerField()
+    villain_count = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+
+class Hero(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            Category.objects.filter(pk=self.category_id).update(hero_count=F('hero_count')+1)
+        super().save(*args, **kwargs)
 ```
 
 <br/>
