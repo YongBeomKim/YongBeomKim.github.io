@@ -24,6 +24,7 @@ filter, Signals, per_post, ordering..
 >> Books.objects.filter(name="장고", date="2019-04-01")
 >> Books.objects.filter(name__icontains="장고")
 >> Books.objects.filter(author__name__icontains="김")
+>> Books.objects.filter(author__name__isnull=True)
 
 >> a = Author.object.get(name="홍길동")
 >> a.books_set.all()
@@ -36,6 +37,8 @@ Author 기본키 테이블을 상속받는 Books 테이블을 조회시, `a.book
 `books_set` **역직렬화 메소드** 이름은, `models.ForeignKet(Author, related_name='call')` 와 같이, 사용자가 임의로 정의한 경우에는 `call_set` 을 사용하여 호출을 합니다.
 
 그리고 조회조건은 `(name="장고", date="2019-04-01")` 에서처럼 2가지 이상을 활용한 검색을 활용하면 훨씬 유용합니다.
+
+`__isnull=True` 을 사용하면, 누락된 데이터로 전체적인 오류 없이 **비어있는 값으로 처리를 합니다**
 
 <br/>
 # **Signals & Save**
