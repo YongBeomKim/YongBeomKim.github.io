@@ -111,6 +111,65 @@ class Hero(models.Model):
 ## **ordering**
 **ForeignKey()** 필드를 정렬하는 경우에는, **Primary Key Field** 의 정렬에 영향을 받기 때문에 주의를 해야 합니다. <small><strike>즉 배열의 순서까지 모두 상속 받습니다..</strike></small>
 
+## **GroupBy**
+**models.ForeignKey()** 객체에서 상속시 제한된 객체를 호출하는 방법으로는 다음과 같은 내용을 활용할 수 있습니다. 다음의 예제는 사용자 필터링 결과를 출력하는 예제 입니다 [stackoverflow](https://stackoverflow.com/questions/44036138/django-admin-limiting-foreignkey-fields-choices#)
+
+[ManytoMany](https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/) 내용을 활용하면 보다 다양한 예제를 구현할 수 있습니다
+```python
+ class RestrictedFormAdmin(admin.ModelAdmin):
+    def render_change_form(self, request, context, *args, **kwargs):
+        context['adminform'].form.fields['Form'].queryset = \
+            Form.objects.filter(user=request.user)
+        return super(RestrictedFormAdmin, self).render_change_form(
+            request, context, args, kwargs) 
+```
+
+<br/>
+# GenericView
+일반적인 결과물을 구현에 용이하도록 `GenericView` 를 제공합니다. 대표적인 것이 `ListView, DetailView` 를 자세히 알아보도록 합니다.
+
+## **ListView**
+```python
+from django.views.generic import ListView
+from .models import School
+
+class SchoolListView(ListView):
+    model = School
+    # queryset = School.objects.order_by('age')
+    # queryset = School.objects.filter(class__name='star')
+
+    paginate_by = 2
+    # context_object_name = 'school_list' 
+    # template_name = "menus/school_list.html"
+
+    # 추가로 전달할 내용 : 템플릿에서 {{student}} 호출
+    def get_context_data(self, **kwargs):
+        data = [
+            {"year": '2018', "student": 200},
+            {"year": '2019', "student": 150},
+        ]
+        context = super(SchoolListView, self).get_context_data(**kwargs)
+        context["student"] = json.dumps(data) 
+        return context
+```
+
+## **DetailView**
+`DetailView` 경우에는 `views.py` 에서 추가적인 설정을 필요로 합니다
+```python
+from django.views.generic import  DetailView
+class ClassListView(DetailView):
+    models = Student
+```
+
+그리고 개별 `pk` 값에 대응하는 `urls.py` 내용에 다음을 추가합니다.
+```python
+from .views import ClassListView
+
+urlpatterns = [
+    path('class/<int:pk>/', ClassListView.as_view(), name='detail'),
+]
+```
+
 <br/>
 # SQLITE3 
 [(WEB)](https://stackoverflow.com/questions/48549068/django-db-utils-notsupportederror-in-sqlite-why-not-supported-in-sqlite)
