@@ -28,11 +28,12 @@ filter, Signals, per_post, ordering..
 >> a = Author.object.get(name="홍길동")
 >> a.books_set.all()
 ```
+
 `Books.objects.filter(author__name__icontains="김")` 에서 **author** 와 **name** 은 테이블의 **필드 이름**을 활용합니다.
 
 Author 기본키 테이블을 상속받는 Books 테이블을 조회시, `a.books_set.all()` 에서 **books** 는 **테이블의 이름**을 활용하는 차이에 유의합니다.
 
-위의 `books_set` 역직렬화 메소드 이름은, `models.ForeignKet(Author, related_name='bookauthor') 와 같이, 사용자가 임의로 정의할 수 있습니다.
+`books_set` **역직렬화 메소드** 이름은, `models.ForeignKet(Author, related_name='call')` 와 같이, 사용자가 임의로 정의한 경우에는 `call_set` 을 사용하여 호출을 합니다.
 
 그리고 조회조건은 `(name="장고", date="2019-04-01")` 에서처럼 2가지 이상을 활용한 검색을 활용하면 훨씬 유용합니다.
 
@@ -78,7 +79,7 @@ from django.dispatch import receiver
 def update_stock(sender, instance, **kwargs):
     if instance.product.stock == 0:
         instance.product.stock += 1 
-        instance.save() # 인스턴스 객체를 저장합니다
+        instance.save() # 인스턴스를 저장
     else:
         pass
 ```
