@@ -123,8 +123,6 @@ Excel VBA 를 활용하여 제조매뉴얼 등 기본적인 모듈은 직접 구
 그래서 활성화된 곳이 [영양사 도우미](http://www.kdclub.com/) 와 같은 커뮤니티를 중심으로 개인별 정보를 교류하고 있습니다. 이러한 상황에서 착안해서 이번의 새로운 창업 아이템을 구체화를 진행하게 되었습니다
 
 
-
-
 이번 서비스에서 가장 중요한 부분이 메뉴의 추천 입니다. 기존의 서비스들을 살펴보면 [**농촌진흥청 의 메뉴젠**](http://koreanfood.rda.go.kr/kfi/mgnmenudiaKcalnnutri/list) 과 [**청정원의 건강식단**](http://www.jungonenutri.com/user/diet/dietSearch.do?dietOrdYn=Y&pageNum=16&rdoGender=&dietCd=&gender=&age=&kcal=&rowCount=10#none) 등이 있습니다. 
 
 이러한 서비스들은 일정 수준이상의 식자재 지식을 소유한 **영양사** 같은 분들을 대상으로 하고 있고, **삼성웰스스토리, 현대그린푸드** 등도 많은 지식을 갖는 사용자를 대상으로 하는 만큼, 사용자의 많은 자유도를 보장하기 위해 복잡한 인터페이스를 갖추고 있습니다.

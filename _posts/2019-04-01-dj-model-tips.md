@@ -11,8 +11,20 @@ tags:
 toc: true 
 ---
 
-filter, Signals, per_post, ordering..
+filter, Signals, per_post, ordering, sqlite3, GenericView..
 
+서비스를 구축하는 첫단계는 모델의 설계 입니다. 물론 머신러닝등을 활용할 수도 있지만, 기본적인 골격은 완성을 한 뒤, 그 위에 내용들을 덧붙여 나아갑니다.
+
+Django 에 대한 이해도가 판가름 되는 부분으로, 최대한 구현 가능한 내용들을 이곳에서 정의를 하면, 이후의 단계들은 GenericView, Plugin 등을 통해 빠르게 구현할 수 있습니다.
+
+이번 단계는 1. **models.py** 에서 모델의 정의, 2. **Django Shell** 을 활용한 모델의 검정, 3. **Admin 페이지를** 통한 내용의 확인 과정으로 진행 합니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/dj-admin.png">
+  <figcaption>Django 의 Admin 페이지</figcaption>
+</figure>
+
+<br/>
 # **Filter**
 
 내가 필요한 값을 호출하는 경우 기본적인 메소드가 **.filter** 입니다.
