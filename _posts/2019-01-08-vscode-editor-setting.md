@@ -15,6 +15,24 @@ Atom, Sublime Text 등 여러 편집기를 사용하게 되었습니다. 물론 
 `Django Core` 책을 다시 보면서 **visual Studio Code** 에 대한 이야기가 나왔고, ms 에서 **git** 도 인수한 만큼 사용해 보면 좋을거 같아서 설치를 하게 되었습니다. vs-code 의 설치 및 설정은 **Micro Soft** 에서 관리하는 만큼 공식문서를 참고하여 진행하도록 합니다 
 
 <br/>
+# Tips
+자주 찾거나, 추후에 보완된 부분을 정리해 보자면
+
+## Q1. BackSpace 키 오작동
+코딩에 자주 쓰는 **BackSpaceKey** 가 종종 안먹어서 하드위에 문제인줄 알았는데, 윈도우에선 아무 문제가 없었다. 찾아보니 리눅스 문제로 [GitIssue](https://github.com/Microsoft/vscode/issues/49051) 설정에서 변경을 해야 한다.
+
+File -> Preference -> settings -(드롭다운)-> Application -> KeyBoard -> Dispatch -> KeyCode
+
+default 는 **code** 로 되어 있는데, 이를 **KeyCode** 로 변경하면 된다고 한다.. <strike>잘 되는거 같긴한데 자세한건 더 지켜봐야... </strike>
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/vscode_key.jpg">
+  <figcaption>설정값 페이지</figcaption>
+</figure>
+
+
+
+<br/>
 # Install [(Doc)](https://code.visualstudio.com/docs/setup/linux)
 한번이라도 설치가 되어있는 경우에는 아래의 명령만으로 설치가 진행됩니다
 ```php
