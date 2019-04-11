@@ -1,6 +1,6 @@
 ---
-title : Tutorial / Django Filters
-last_modified_at: 2018-12-15T10:45:06-05:00
+title : Django Filter / django_filter 튜토리얼
+last_modified_at: 2018-01-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django-filter.png
 categories:

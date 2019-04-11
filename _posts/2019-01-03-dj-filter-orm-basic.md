@@ -1,5 +1,5 @@
 ---
-title : Tutorial / Django 내장 Filter
+title : Django Filter / Django 내장모듈
 last_modified_at: 2019-01-03T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/django-tutorial.png
