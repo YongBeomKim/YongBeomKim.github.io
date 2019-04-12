@@ -53,10 +53,30 @@ class MyView(ListView):
 ```
 {% endraw %}
 
+<br/>
+# **날짜의 표시**
+`DataTimeField` 에서 사용되는 데이터들은 Python 의 `datetime` 객체들로 출력이 된다. 이를 한글로 바꿔주는 지역화 내용은 못찾고, 개별 함수에서 바꿔주는 내용들을 정리해 보려고 합니다.[(한글 블로그)](https://oddly.tistory.com/64) [Django Doc](https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#date)
+
+```python
+# 날짜별 요일의 출력
+from calendar import day_abbr
+list(day_abbr) # ['Mon', 'Tue',..]
+
+@property
+def date_txt(self):
+    days = ["월","화","수","목","금","토","일"]
+    return days[self.date.weekday()]
+```
+
+{% raw %}
+```html
+<!-- 템플릿에서 출력형식의 변화 -->
+<p>{{menu.date|date:"m월.d일.Y"}}</p>
+```
+{% endraw %}
 
 <br/>
 # **Filter**
-
 내가 필요한 값을 호출하는 경우 기본적인 메소드가 **.filter** 입니다.
 모델 객체의 값을 가져오는 경우, 또는 상속받는 **부모의 값**을 가져오는 경우로 나뉠 수 있습니다. 주의할 점은 `.get()` 은 1개의 값을 가져오지만, `.filter()` 는 **배열 객체를 호출 (python [list])** 하는 점에 유의 합니다
 
