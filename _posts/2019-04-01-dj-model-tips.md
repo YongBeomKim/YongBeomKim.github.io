@@ -76,6 +76,31 @@ def date_txt(self):
 {% endraw %}
 
 <br/>
+# **튜플 데이터의 삭제**
+해당 객체를 삭제하기 위해선 **DeleteView**를 제공합니다. 다른 기능과 비교시 삭제자체는 간단하고, 오히려 GenericView 에서 **모델_confirm_view.html** 을 요구하는 등 더 까다롭게 삭제요건을 필요로 합니다. 다음을 추가하면 별도의 조건없이 바로 삭제를 진행합니다 [stackoverflow](https://stackoverflow.com/questions/17475324/django-deleteview-without-confirmation-template)
+
+```python
+class CafeListDeleteView(DeleteView):
+    model = 모델
+    success_url = reverse_lazy("url연결")
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+```
+
+템플릿에서 **Jquery** 를 활용하여 확인 메세지를 추가합니다. 이러면 별도의 template 없이 삭제작업을 진행합니다.
+
+```javascript
+$(document).ready(function(){
+  $("#delete").click(function(){
+    if (!confirm("데이터를 삭제합니다!")){
+      return false;
+    }
+  });
+});
+```
+
+<br/>
 # **Filter**
 내가 필요한 값을 호출하는 경우 기본적인 메소드가 **.filter** 입니다.
 모델 객체의 값을 가져오는 경우, 또는 상속받는 **부모의 값**을 가져오는 경우로 나뉠 수 있습니다. 주의할 점은 `.get()` 은 1개의 값을 가져오지만, `.filter()` 는 **배열 객체를 호출 (python [list])** 하는 점에 유의 합니다
