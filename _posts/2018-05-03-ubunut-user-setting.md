@@ -75,16 +75,17 @@ $ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/
 ```
 
 ## ZSH 테마 변경 
-[Theme](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes) 내용을 정리합니다
+다양한 테마목록중 원하는 내용을 찾아서 정의 후 새로 적용을 하면 됩니다 [Theme 목록](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes)
 
-```
-$ nano  .zshrc        # 설정파일을 열어서 Theme 를 변경한다
-ZSH_THEME="agnoster"  # 테마를 정의한다
-$ souce .zshrc        # 변경된 설정을 적용
+```s
+$ nano .zshrc             # 설정파일
+ZSH_THEME="agnoster"      # 테마를 정의한다
+export LANG="ko_KR.UTF-8" # 한글 인코딩을 해결
+$ souce .zshrc            # 변경된 설정을 적용
 ```
 
-## 설정 적용하기
-git의 다양한 기호들을 사용하려면 우분투 시스템에서는 폰트가 지원되지 않아 깨지는 모습을 볼 수 있습니다. 이를 보완하기 위해 개발된 것으로 **powerline** 폰트를 우분투 시스템에 설치합니다 (Mac 용 폰트를 개조해서 올림) [powerlines 모듈의 설치 방법](https://github.com/powerline/fonts) | [agnoster theme git](https://github.com/agnoster/agnoster-zsh-theme)
+## 기호폰트 추가하기
+터미널에서 한글이 깨지는 경우는 `.zshrc` 에서 `export LANG="ko_KR.UTF-8"` 내용을 추가하면 해결됩니다. 하지만 Theme 별로 git의 다양한 기호들은 깨지는 모습을 볼 수 있습니다. 이를 보완하기 위해 개발된 것으로 **powerline** 폰트를 우분투 시스템에 설치합니다 (Mac 용 폰트를 개조해서 올림) [powerlines 모듈의 설치 방법](https://github.com/powerline/fonts) | [agnoster theme git](https://github.com/agnoster/agnoster-zsh-theme)
 
 ```s
 $ git clone https://github.com/powerline/fonts.git --depth=1
