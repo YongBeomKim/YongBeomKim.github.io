@@ -27,6 +27,7 @@ GenericView 를 활용하면, 구조적 완결성이 높은 반면, 기능별 **
 ## 1. setting
 ```s
 $ pip install django-bootstrap-modal-forms
+$ pip install django-widget-tweaks
 ```
 ```python
 # settings.py
@@ -50,3 +51,75 @@ INSTALLED_APPS = [
 ## 2. Model Form
 일반 모델객체를 활용하는 방법을 정리해 보겠습니다.
 
+### models.py
+```python
+from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=50)
+    date  = models.DateField(null=True)
+```
+
+### forms.py
+Django 모델을 `bootstrap_modal_forms` 에서 지원하는 form 객체를 생성합니다.
+
+```python
+from bootstrap_modal_forms.forms import BSModalForm
+from .models import Book
+
+class BookForm(BSModalForm):
+    date = forms.DateField(
+        error_messages = {
+          'invalid': 'YYYY-MM-DD 입력'
+        })
+    class Meta:
+        model   = Book
+```
+
+### views.py
+`bootstrap_modal_forms` 에서 정의한 **Form** 객체를, `bootstrap_modal_forms.generic` 에서 정의된 **GenericView** 와 연결합니다. 해당객체는 `success_message` 에서 유추 가능하듯 **django messages** 객체를 활용함을 알 수 있습니다.
+
+```python
+from bootstrap_modal_forms.generic import BSModalLoginView,\
+    BSModalCreateView, BSModalUpdateView,\ 
+    BSModalReadView, BSModalDeleteView
+from django.views.generic import ListView
+from .forms import BookForm
+from .models import Book
+
+class Index(ListView):
+    model = Book
+
+class BookCreateView(BSModalCreateView):
+    form_class = BookForm
+    success_url = reverse_lazy('index')
+    success_message = '객체생성'
+
+class BookUpdateView(BSModalUpdateView):
+    model = Book
+    form_class = BookForm
+    success_url = reverse_lazy('index')
+    success_message = '변경완료'
+
+class BookReadView(BSModalReadView):
+    model = Book
+
+class BookDeleteView(BSModalDeleteView):
+    model = Book
+    success_url = reverse_lazy('index')
+    success_message = '삭제완료'
+```
+
+### urls.py
+```python
+from .views import Index, BookCreateView,\
+    BookUpdateView, BookReadView, BookDeleteView
+
+urlpatterns = [
+    path('', Index.as_view(), name='index'),
+    path('create/', BookCreateView.as_view(), name='create'),
+    path('update/<int:pk>', BookUpdateView.as_view(), name='update'),
+    path('read/<int:pk>', BookReadView.as_view(), name='read'),
+    path('delete/<int:pk>', BookDeleteView.as_view(), name='delete'),
+]
+```
