@@ -132,6 +132,24 @@ urlpatterns = [
 ## **2 HTML Templates**
 필요한 JavsScript, CSS 는 **Base.html** 에서 정의를 하고 개별 기능에 따른 템플릿 내용을 살펴보겠습니다.
 
+### _modal.html
+**기능을 구현할 페이지에** 꼭 이를 상속받도록 합니다. 기능을 구현하는데 중간다리 역활을 하는 페이지로써 아래의 내용이 해당 템플릿에 포함되어 있어야 Pop up 기능의 페이지들을 연결해주는 중간다리 역활로써 작동을 합니다
+
+```html
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+```
+
+이 내용을 아래의 ListView 페이지에서 상속을 받아야 기능이 제대로 작동됩니다.
+{% raw %}
+```html
+{% include "_modal.html" %}
+```
+{% endraw %}
+
 ### book_list.html
 일반 모델에서 **ListView** 로 구현하는 **Template** 입니다. 해당 모델의 내용을 보여주고, CRUD 기능 버튼 들을 모두 연결합니다.
 
