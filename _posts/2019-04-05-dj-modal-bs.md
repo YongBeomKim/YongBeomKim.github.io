@@ -14,7 +14,7 @@ toc: true
 GenericView 를 활용하면, 구조적 완결성이 높은 반면, 기능별 **url 과 template** 을 별도로 필요 합니다. 템플릿 구조가 단조로운 한계를 Ajax 를 활용하여 극복합니다. 하지만 로그인 보안등 기능추가가 어려운 한계가 있어서 방법을 찾던 중 [stackoverflow](https://stackoverflow.com/questions/52501470/i-want-to-create-django-popup-form-in-my-project) 에서 추천한 **[django-bootstrap-modal-forms](https://github.com/trco/django-bootstrap-modal-forms)** 의 내용을 보게 되었고, 작년 5월 처음 개발된 모듈로 업데이트도 잘 진행되어 활용도가 높아 보여서 정리를 하게 되었습니다.
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/modal-form.jpg">
+  <img src="{{site.baseurl}}/assets/images/code/modal-form.png">
 </figure>
 
 <br/>
