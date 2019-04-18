@@ -19,6 +19,12 @@ tags:
 
 위 내용에 대해 다른 사람들도 대부분 수긍이 가능한 내용이라는 평가였습니다. 최종판단이 1차와 발표를 합산을 하는 만큼 설령 1차가 됬더라도 최종에서는 어려움이 예상되는 내용이었습니다.
 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/photo/hanyang.jpg">
+  <figcaption>서울 한양대학교</figcaption>
+</figure>
+
+
 평가내용 마지막 줄에는 **4차 산업혁명 및 소셜벤처분야 지원가능** 이라는 문구가 안내되어 있어서 화요일 참석을 하였습니다. (참고로 작성은 4월 18일에 하고 있습니다)
 
 <br/>
@@ -50,12 +56,6 @@ tags:
 
 그리고 제품은 **사진찍기** 글씨인식(OpenCV), 또는 **바코드로** 인식[식품나라](http://www.foodsafetykorea.go.kr/portal/specialinfo/searchInfoProduct.do?menu_grp=MENU_NEW04&menu_no=2815) [HACCP 제품검색](https://www.data.go.kr/dataset/15033307/openapi.do) 하는 등 구체적인 기록의 과정을 최소화 하는 상태에서 다양한 조합의 추천을 제공합니다.
 
-
-
-<figure class="align-center">
-  <img src="https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2018/11/06/sagemaker-object2vec-1.gif">
-  <figcaption>나라와 도시의 관계를 분석하는 방식</figcaption>
-</figure>
 
 |    추진내용        | 추진기간   |                                 세부내용 |
 |:------------------:|:----------:|:----------------------------------------:|
