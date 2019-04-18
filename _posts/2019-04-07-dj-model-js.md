@@ -43,3 +43,19 @@ $( function() {
     source:orderdata });
 });
 ```
+
+# 추후에 보완할 내용들...
+
+to do  list..
+
+## **django-autocomplete-light**
+
+[django-autocomplete-light](https://django-autocomplete-light.readthedocs.io/en/master/tutorial.html#displaying-results-using-custom-html) 는 위에서 Jquery 등으로 작업하던 내용을 모듈로써 보다 안정적인 결과물 도출이 가능합니다. 이 내용을 참고하여 서버에서 작업을 도와줍니다 [github](https://github.com/yourlabs/django-autocomplete-light)
+
+## **django-todo**
+
+[GitHub](https://github.com/shacker/django-todo) todo 내용의 구조와 메일링, 파일다운 등 다양한 조합을 Package로 제공합니다. 이번처럼 세부작업이 필요한 과정에서는 오히려 번거로울 수 있지만, 참고하여 기본골격을 구축할때 추가할 내용들을 도움 받습니다 
+
+## **vue.js & Restful API**
+
+우선은 Json 과 Apex Chart 등으로 안정적인 구조물을 만듭니다. 추가적인 작업이 필요하면 위 내용을 바탕으로 보완합니다.
