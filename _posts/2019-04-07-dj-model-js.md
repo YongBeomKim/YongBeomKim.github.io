@@ -1,5 +1,5 @@
 ---
-title : Django Model - JavaScript
+title : Django JavaScript
 last_modified_at: 2019-04-07T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_pro.png
