@@ -106,6 +106,7 @@ urlpatterns = [
 
 ## Template
 
+{% raw %}
 ```html
 {% extends 'base.html' %}
 
@@ -121,3 +122,4 @@ urlpatterns = [
   </form>
 {% endblock %}
 ```
+{% endraw %}
