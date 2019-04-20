@@ -109,9 +109,11 @@ class ProductFilter(FilterSet):
 필터를 선언 할 때 발생하는 일반적인 문제들을 정리해 보겠습니다
 
 ## Filter name and lookup_expr not configured
+
 **name** 과 **lookup_expr** 는 선택사항 이지만 지정하는 것을 추천합니다. 
 1. **name** 의 기본값은 **filterset 클래스 이름** 입니다
 2. **lookup_expr** 의 기본값은 **exact** 입니다
+
 ```python
 # 아래 코드는 FieldError를 발생합니다.
 from .models import Produce
@@ -127,6 +129,7 @@ class ProductFilter(FilterSet):
 기본 검색 타입은 **exact** 이지만. 사용자가 **icontains** 조회를 원할 수 있습니다. 하지만 일치하는 값이 없는경우 **isnull, in** 및 **range 조회의 이슈** 가 있습니다. 다음의 product 모델을 살펴 봅니다.
 
 ### ./app/models.py
+
 ```python
 class Product(models.Model):
     category = models.ForeignKey(Category, null=True)
@@ -134,12 +137,15 @@ class Product(models.Model):
 
 ### ./app/filters.py
 분류되지 않은 제품에 대해서도 검색을 사용하는 것이 합리적입니다. 다음의 예시는 **잘못 구성된 isnull** 필터의 예시입니다.
+
 ```python
 from django_filters import FilterSet, NumberFilter
 class ProductFilter(FilterSet):
     uncategorized = NumberFilter(name='category', lookup_expr='isnull')
 ```
+
 **category** 의 컬럼타입이 **integer** 이지만 **isnull** 을 조회하면 **boolean** 을 출력합니다. (**NumberFilter** 는 오직 숫자만 확인 합니다.) 사용자는 필드와 동일한 모델필드를 사용하는 대신에 **조회 조건의 데이터 타입이 맞는 필터를** 사용합니다. 아래는 카테고리가 된 것과 카테고리가 되지 않는 제품에 대한 조회를 나타내는 예시입니다.
+
 ```python
 from django_filters import FilterSet, BooleanFilter,\
                            BaseInFilter, NumberFilter
@@ -154,6 +160,7 @@ class ProductFilter(FilterSet):
 
 ## Generating filters with Meta.fields
 FilterSet의 **메타 클래스는** 중요한 코드 중복 없이 쉽게 여러 개 필터를 지정할 수 있는 fields 속성을 제공합니다.
+
 ```python
 from django_filters import FilterSet
 
@@ -162,7 +169,9 @@ class ProductFilter(FilterSet):
         model = Product
         fields = ['price', 'release_date']
 ```
+
 위의 코드는 'price'와 'release_date'필드 모두에 대해 'exact' 조회를 발생시킵니다. 또한 dictionary는 각 필드에 대해 복수의 조회 조건을 구현할 수 있습니다.
+
 ```python
 from django_filters import FilterSet
 
@@ -174,18 +183,23 @@ class ProductFilter(FilterSet):
             'release_date': ['exact', 'year__gt'],
         }
 ```
+
 위 코드는 **'price_lt', 'price_gt', 'release_date'와 'release_date__year__gt'** 검색필터를 생성합니다. **exact** 를 사용하는 경우에는 기본 설정값이므로 **필터의 이름에 추가되지 않습니다.** 위의 예시에서 출시 날짜의 정확한 필터는 'release_date' 가 아닌 **release_date__exact** 를 사용합니다.
+
 ```python
 class ProductFilter(FilterSet):
     class Meta:
         model = Product
         fields = ['manufacturer__country']
 ```
+
 **class Meta:** 클래스의 fields 순서에 있는 항목은 관련 모델에 필드를 필터링하는 장고의 __ 구문을 사용하여 "relationship paths(관계 경로)"를 포함 할 수있습니다.
 {: .notice--info}
 
 ## 기본 필터의 내용을 Overriding
+
 `django.contrib.admin.ModelAdmin` 와 마찬가지로, `filter_overrides` 를 사용하면 `models.py` 에서 선언한 같은 종류의 모델필터를 `django-filters` 의 기본필터로 오버라이드 합니다. 즉 동일한 모델선언 객체들을 동일한 조건을 적용하는 용도로 활용합니다.
+
 ```python
 from django_filters import FilterSet, CharFilter,\
                              BooleanFilter 
@@ -216,6 +230,7 @@ class ProductFilter(FilterSet):
 
 ## Customize filtering with Filter.method
 사용자는 필터링을 수행하는 method을 지정하여 필터의 동작을 제어 할 수 있습니다. method reference에 자세한 내용을 확인할 수 있습니다.
+
 ```python
 class F(django_filters.FilterSet):
     username = CharFilter(method='my_custom_filter')
@@ -233,4 +248,3 @@ class F(django_filters.FilterSet):
 # 참조문서
 [django-filters 공식문서](https://django-filter.readthedocs.io/en/latest/usage.html#using-django-filter)<br/>
 [공식문서 번역 블로그](http://brownbears.tistory.com/96)<br/>
-
