@@ -49,6 +49,10 @@ $( function() {
 
 앞에서 **django-table2, django-filter, django-crispy-form** 등을 정리해 보았습니다. **GenericView** 와 **django-form** 로 구조화된 모듈을 최대한 활용하기 위해 필요한 Ajax 모듈을 모아보겠습니다
 
+## **django-filter**
+
+Django Filter Form 객체를 생성해주는 모듈입니다. 공식 문서를 한글로 번역한 자료등도 있어서 [번역문서](https://brownbears.tistory.com/96) 이를 참고합니다
+
 ## **django-autocomplete-light**
 
 앞에서 정의한 AutoComplete 내용을 도와주는 모듈입니다. [django-autocomplete-light](https://django-autocomplete-light.readthedocs.io/en/master/tutorial.html#displaying-results-using-custom-html) 는 위에서 Jquery 를 모듈로써 보다 안정적인 결과물 도출이 가능합니다. [github](https://github.com/yourlabs/django-autocomplete-light)
@@ -58,6 +62,6 @@ $( function() {
 
 django 의 GenericView 를 Ajax 로 활용하도록 도와주는 모듈로, 앞에서 1페이지에 걸쳐서 정리 하였습니다. [GitHub](https://github.com/trco/django-bootstrap-modal-forms)
 
-## **django-bootstrap-modal-forms**
+## **django-popup-view-field**
 
 위 예제는 GenericView 를 활용했다면, 보다 가볍게 활용가능한 내용이 무었이 있을지 확인하기 위해 사용가능한 모듈을 찾아보았습니다. [GitHub](https://github.com/djk2/django-popup-view-field) 앞의 내용을 세부적으로 잘 활용하면 이는 필요없을거 같은 모듈입니다.
