@@ -1,5 +1,5 @@
 ---
-title : Django JavaScript
+title : Django js Modules
 last_modified_at: 2019-04-07T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_pro.png
@@ -19,7 +19,7 @@ toc: true
  
 
 ## AutoComplete
-조건에 따른 Create, Update 등의 작업을 위해 html 의 `input` 태그를 활용합니다. 이때 어떤 내용이 오류가 없는지를 서버에서 확인하면 절차도 복잡하고 효율도 낮습니다. 이를 보다 쉽게 도와주는 **AutoComplete** 기능을 활용합니다. 기본 Jquery 이외에 `jquery-ui` 와 scroll 기능 위한 [jquery-ui-autocomplete-scroll](http://anseki.github.io/jquery-ui-autocomplete-scroll/) 기능을 추가합니다
+쉽게 도와주는 **AutoComplete** 기능을 사용하기 위해 기본 Jquery 이외에 `jquery-ui` 와 scroll 기능 위한 [jquery-ui-autocomplete-scroll](http://anseki.github.io/jquery-ui-autocomplete-scroll/) 기능을 추가하면 됩니다.
 
 ```html
 <link type="text/css" href="jquery-ui.css">    
@@ -44,18 +44,20 @@ $( function() {
 });
 ```
 
-# 추후에 보완할 내용들...
+<br/>
+# Django 에서 Ajax 모듈
 
-to do  list..
+앞에서 **django-table2, django-filter, django-crispy-form** 등을 정리해 보았습니다. **GenericView** 와 **django-form** 로 구조화된 모듈을 최대한 활용하기 위해 필요한 Ajax 모듈을 모아보겠습니다
 
 ## **django-autocomplete-light**
 
-[django-autocomplete-light](https://django-autocomplete-light.readthedocs.io/en/master/tutorial.html#displaying-results-using-custom-html) 는 위에서 Jquery 등으로 작업하던 내용을 모듈로써 보다 안정적인 결과물 도출이 가능합니다. 이 내용을 참고하여 서버에서 작업을 도와줍니다 [github](https://github.com/yourlabs/django-autocomplete-light)
+앞에서 정의한 AutoComplete 내용을 도와주는 모듈입니다. [django-autocomplete-light](https://django-autocomplete-light.readthedocs.io/en/master/tutorial.html#displaying-results-using-custom-html) 는 위에서 Jquery 를 모듈로써 보다 안정적인 결과물 도출이 가능합니다. [github](https://github.com/yourlabs/django-autocomplete-light)
 
-## **django-todo**
 
-[GitHub](https://github.com/shacker/django-todo) todo 내용의 구조와 메일링, 파일다운 등 다양한 조합을 Package로 제공합니다. 이번처럼 세부작업이 필요한 과정에서는 오히려 번거로울 수 있지만, 참고하여 기본골격을 구축할때 추가할 내용들을 도움 받습니다 
+## **django-bootstrap-modal-forms**
 
-## **vue.js & Restful API**
+django 의 GenericView 를 Ajax 로 활용하도록 도와주는 모듈로, 앞에서 1페이지에 걸쳐서 정리 하였습니다. [GitHub](https://github.com/trco/django-bootstrap-modal-forms)
 
-우선은 Json 과 Apex Chart 등으로 안정적인 구조물을 만듭니다. 추가적인 작업이 필요하면 위 내용을 바탕으로 보완합니다.
+## **django-bootstrap-modal-forms**
+
+위 예제는 GenericView 를 활용했다면, 보다 가볍게 활용가능한 내용이 무었이 있을지 확인하기 위해 사용가능한 모듈을 찾아보았습니다. [GitHub](https://github.com/djk2/django-popup-view-field) 앞의 내용을 세부적으로 잘 활용하면 이는 필요없을거 같은 모듈입니다.
