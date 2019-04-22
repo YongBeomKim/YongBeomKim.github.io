@@ -11,7 +11,9 @@ tags:
 toc: true 
 ---
 
-GenericView 를 활용하면, 구조적 완결성이 높은 반면, 기능별 **url 과 template** 을 별도로 필요 합니다. 템플릿 구조가 단조로운 한계를 Ajax 를 활용하여 극복합니다. 하지만 로그인 보안등 기능추가가 어려운 한계가 있어서 방법을 찾던 중 [stackoverflow](https://stackoverflow.com/questions/52501470/i-want-to-create-django-popup-form-in-my-project) 에서 추천한 **[django-bootstrap-modal-forms](https://github.com/trco/django-bootstrap-modal-forms)** 의 내용을 보게 되었고, 작년 5월 처음 개발된 모듈로 업데이트도 잘 진행되어 활용도가 높아 보여서 정리를 하게 되었습니다.
+GenericView 를 활용하면, 구조적 완결성이 높은 반면, 기능별 **url 과 template** 을 별도로 필요 합니다. 템플릿 구조가 단조로운 한계를 Ajax 를 활용하여 극복합니다. 
+
+하지만 로그인 보안등 기능추가가 어려운 한계가 있어서 방법을 찾던 중 [stackoverflow](https://stackoverflow.com/questions/52501470/i-want-to-create-django-popup-form-in-my-project) 에서 추천한 **[django-bootstrap-modal-forms](https://github.com/trco/django-bootstrap-modal-forms)** 의 내용을 보게 되었고, 작년 5월 처음 개발된 모듈로 업데이트도 잘 진행되어 활용도가 높아 보여서 정리를 하게 되었습니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/modal-form.png">
@@ -133,7 +135,7 @@ urlpatterns = [
 필요한 JavsScript, CSS 는 **Base.html** 에서 정의를 하고 개별 기능에 따른 템플릿 내용을 살펴보겠습니다.
 
 ### _modal.html
-**기능을 구현할 페이지에** 꼭 이를 상속받도록 합니다. 기능을 구현하는데 중간다리 역활을 하는 페이지로써 아래의 내용이 해당 템플릿에 포함되어 있어야 Pop up 기능의 페이지들을 연결해주는 중간다리 역활로써 작동을 합니다
+modal 기능을 구현하는 중간다리 역활을 하는 페이지로써 **기능을 구현할 페이지에서** 꼭 상속받아야 제대로 작동됩니다.
 
 ```html
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
@@ -145,7 +147,7 @@ urlpatterns = [
 
 이 내용을 아래의 ListView 페이지에서 상속을 받아야 기능이 제대로 작동됩니다.
 {% raw %}
-```html
+```php
 {% include "_modal.html" %}
 ```
 {% endraw %}
