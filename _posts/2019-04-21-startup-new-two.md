@@ -1,5 +1,5 @@
 ---
-title : 4차 산업분야 예비창업 설명회
+title : 4차 산업분야 예비창업 사업계획서 1차
 last_modified_at: 2019-04-10T10:45:06-05:00
 header:
   overlay_image: /assets/images/photo/startup.jpg
@@ -9,27 +9,6 @@ tags:
     - startup
     - business
 ---
-
-지난 1회차 신청의 평가는 다음과 같습니다
-
-- **창업아이템 개발동기** : 무난
-- **구체적인 사업화 전략과 개발(제작)** : 보완이 필요
-- **소요기간 및 방법(자체 또는 외부)의 적정성** : 보완이 필요
-- **실현가능성** : 보완이 필요
-
-위 내용에 대해 다른 사람들도 대부분 수긍이 가능한 내용이라는 평가였습니다. 최종판단이 1차와 발표를 합산을 하는 만큼 설령 1차가 됬더라도 최종에서는 어려움이 예상되는 내용이었습니다.
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/photo/hanyang.jpg">
-  <figcaption>서울 한양대학교</figcaption>
-</figure>
-
-
-평가내용 마지막 줄에는 **4차 산업혁명 및 소셜벤처분야 지원가능** 이라는 문구가 안내되어 있어서 화요일 참석을 하였습니다. (참고로 작성은 4월 18일에 하고 있습니다)
-
-<br/>
-# 새로운 전략의 보완
-아이템의 구체적인 사업화 목적을 명확하게 정리해야 합니다. 그날 소개받은 어플 중 **[저스트땡큐](https://www.rocketpunch.com/@stevencho)**, **의류 트랜드 추천 시스템** 등을 통해서, 그리고 **[식권대장](https://sikdae.com/)** , **[리드넘버](https://www.readnumber.com)** 등이 있었고 대부분이 1줄로 설명이 가능했습니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/busket.png">
