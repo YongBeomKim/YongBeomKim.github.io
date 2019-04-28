@@ -10,11 +10,6 @@ tags:
     - business
 ---
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/busket.png">
-  <figcaption>장바구니 어플의 예시</figcaption>
-</figure>
-
 ## 사업에 대한 핵심문장
 
 **똑똑한 식자재 장바구니 서비스**
@@ -53,3 +48,10 @@ tags:
 |:------------------:|:----------:|:----------------------------------------:|
 | 데이터 수집 전처리 | ~ 2019.07  | 단일 메뉴 데이터 수집 및 식자재별 전처리 |
 
+
+
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/busket.png">
+  <figcaption>장바구니 어플의 예시</figcaption>
+</figure>
