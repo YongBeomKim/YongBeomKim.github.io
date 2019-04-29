@@ -10,7 +10,7 @@ tags:
     - business
 ---
 
-# 
+[스마트 도시 협회](http://www.smartcity.or.kr/business/data_room.php?page=1&id=7420&mode=vw&code=10&board_name=uc_board_common) 서비스 신청하기 
 
 #  작성목차
 ## 1 일반현황
