@@ -12,6 +12,8 @@ tags:
 
 [스마트 도시 협회](http://www.smartcity.or.kr/business/data_room.php?page=1&id=7420&mode=vw&code=10&board_name=uc_board_common) 서비스 신청하기
 
+식품관련 콘텐츠 유통 플랫폼
+
 #  작성목차
 ## 1 일반현황
 ### 1-1 일반현황
