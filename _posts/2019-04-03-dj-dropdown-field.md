@@ -11,7 +11,7 @@ tags:
 toc: true 
 ---
 
-**CreateView** 에서 **[Chained Dropdown List](https://simpleisbetterthancomplex.com/tutorial/2018/01/29/how-to-implement-dependent-or-chained-dropdown-list-with-django.html)** 내용을 정리해 보겠습니다. [예제Site](dependent-dropdown-example.herokuapp.com) 
+**CreateView** 에서 **[Chained Dropdown List](https://simpleisbetterthancomplex.com/tutorial/2018/01/29/how-to-implement-dependent-or-chained-dropdown-list-with-django.html)** 내용을 정리해 보겠습니다. [예제Site](https://dependent-dropdown-example.herokuapp.com) 
 
 **models.CharField(choices=CHOICE)** 를 활용하면, 첫째로 실제 구현을 위해서는 JQuery 의 AutoComplete 등의 다양한 언어간의 혼합으로 복잡해 지는 점과, 둘째로는 모델이 변경되면 내부 소스코드를 수정해야 한다는 점에 있어서 완결성과 안정성을 해치게 됩니다.
 
