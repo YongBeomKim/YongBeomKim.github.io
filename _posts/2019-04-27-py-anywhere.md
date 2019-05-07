@@ -2,7 +2,7 @@
 title : python anywhere 설정
 last_modified_at: 2019-04-27T02:45:06-05:00
 header:
-  overlay_image: /assets/images/book/html.jpg
+  overlay_image: /assets/images/code/server.jpg
 categories:
   - python
 tags: 
