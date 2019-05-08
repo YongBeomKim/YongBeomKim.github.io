@@ -32,7 +32,7 @@ toc: true
 ```php
 $ sudo apt install chromium-browser chromium-codecs-ffmpeg
 ```
-ARM 환경에서 크로미움 브라우저를 설치합니다. 그러면 해당 환경에 적합한 브라우저를 설치하고 해당 브라우저는 `/usr/bin/chromium-browser` 의 경로를 갖습니다. 위 오류와 다르죠? 
+ARM 환경에서 크로미움 브라우저를 설치합니다. [GitIssue](https://github.com/GoogleChrome/puppeteer/issues/550) 그러면 해당 환경에 적합한 브라우저를 설치하고 해당 브라우저는 `/usr/bin/chromium-browser` 의 경로를 갖습니다. 위 오류와 다르죠? 
 
 ## pyppeteer
 
@@ -44,7 +44,8 @@ import pandas as pd
 from pyppeteer import launch
 
 async def main():
-    browser = await launch(executablePath='/usr/bin/chromium-browser')
+    browser = await launch(
+        executablePath='/usr/bin/chromium-browser')
     page = await browser.newPage()
     await page.goto('http://results.neptron.se/#/lundaloppet2018/?sortOrder=Place&raceId=99&page=0&pageSize=25')
     await page.waitForSelector('td.res-startNo')
@@ -64,7 +65,8 @@ async def main():
 ~/python/django/lib/python3.6/site-packages/requests_html.py in browser(self)
     712     async def browser(self):
     713         if not hasattr(self, "_browser"):
---> 714             self._browser = await pyppeteer.launch(ignoreHTTPSErrors=not(self.verify), headless=True, args=self.__browser_args)
+--> 714             self._browser = await pyppeteer.launch(
+    ignoreHTTPSErrors=not(self.verify), headless=True, args=self.__browser_args)
     715 
     716         return self._browser
 
@@ -82,7 +84,8 @@ class BaseSession(requests.Session):
     @property
     async def browser(self):
         if not hasattr(self, "_browser"):
-            self._browser = await pyppeteer.launch(ignoreHTTPSErrors=not(self.verify)..)
+            self._browser = await pyppeteer.launch(
+                ignoreHTTPSErrors=not(self.verify)..)
 
     return self._browser
 
@@ -99,6 +102,9 @@ class HTMLSession(BaseSession):
     @property
     async def browser(self):
         if not hasattr(self, "_browser"):
-            self._browser = await pyppeteer.launch(executablePath='/usr/bin/chromium-browser', ignoreHTTPSErrors=not(self.verify), headless=True, args=self.__browser_args)
+            self._browser = await pyppeteer.launch(
+                executablePath='/usr/bin/chromium-browser', 
+                ignoreHTTPSErrors=not(self.verify), 
+                headless=True, args=self.__browser_args)
         return self._browser
 ```
