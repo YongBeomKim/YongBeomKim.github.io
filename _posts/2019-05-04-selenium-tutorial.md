@@ -1,5 +1,5 @@
 ---
-title : Python Crawling - requests, requests-html, selenium 
+title : selenium 내용정리
 last_modified_at: 2019-05-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/python.jpg
