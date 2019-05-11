@@ -11,7 +11,7 @@ tags:
 toc: true 
 ---
 
-# Selenium & Chromdriver
+# Install Selenium & Chromdriver
 
 ## Intro
 
@@ -19,25 +19,72 @@ python 에서 selenium 작업을 하다 보면 headless 모듈로써 **PhantomJs
 
 ## chromium
 
-크롬 브라우저를 시스템 기본을 활용하면, 업데이트시 설정이 변경되는 등 안전성이 낮은 한계가 있습니다. 이를 극복하는 방법으로 별도의 파일을 사용하는 내용을 정리해 보겠습니다. [정리된 블로그](https://blog.softhints.com/python-headless/)
+기본 **chrome** 이 아닌 **chromium** 드라이버를 활용한 selenium 작동을 구현해 봅니다. 현재 서버로 동작중인 **ARM** 프로세서의 경우 설치와 운영을 위해 앞에서 **requests-html** 의 활용을 위한 **chromium** 을 설치 했었습니다.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BdppFIT_lIs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
+```php
+$ sudo apt install chromium-browser chromium-codecs-ffmpeg
+```
 
-크롬 웹브라우저 [chrome 74버젼](https://sites.google.com/a/chromium.org/chromedriver/downloads) 다운받아 설치 합니다. 작업 폴더 근처에 압축을 풀면 설치가 끝납니다. 별도 설치과정 없이 해당 파일만 있으면 됩니다.
+설치된 모듈의 내용과 버젼을 확인 합니다
 
-문서에는 최신을 받게 되어있지만 **selenium** 에서 chrome 74 까지만 지원해서, [다운](http://chromedriver.chromium.org/) 에서 받아서 실행하면 버젼 충돌 오류를 출력합니다
-{: .notice--danger}
+```php
+root :: ~ » dpkg -l | grep chromium  
+chromium-browser  73.0.3683.86-0ubuntu0.16.04.1  armhf Chromium web browser
+chromium-browser-l10n  73.0.3683.86-0ubuntu0.16.04.1  chromium-browser language packages
+chromium-chromedriver  73.0.3683.86-0ubuntu0.16.04.1  armhf  WebDriver driver
+chromium-codecs-ffmpeg  73.0.3683.86-0ubuntu0.16.04.1  armhf  Free ffmpeg codecs
+```
 
+실행시 [의존성 문제가](https://cinnamonapple.tistory.com/18) 생길 수 있으므로 다음의 모듈들을 추가로 설치합니다.
 
-https://sites.google.com/a/chromium.org/chromedriver/downloads
+```php
+$ sudo apt-get install xvfb
+$ pip3 install xvfbwrapper
+```
 
+라즈베리파이 [블로그](https://notejb.blogspot.com/2019/01/blog-post_2.html) 들은,  우분투 14용  **chromium 65** 를 사용하도록 설명되어 있는데, 2019-05 의존성 문제로 설치가 제대로 되지 않습니다. github 에서 검색한 결과 [gitIssue](https://github.com/heroku/heroku-buildpack-google-chrome/issues/46) 위 설치한 브라우저의 cromium driver 를 활용하여 **headless** 설정을 추가하면 잘 작동 되었습니다. [참고내용](https://github.com/timgrossmann/InstaPy/issues/4033)
 
-## chromium setting
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')  # Last I checked this was necessary.
+driver = webdriver.Chrome(executable_path='/usr/lib/chromium-browser/chromedriver', options=options)
+```
 
+## firefox
 
+64비트 환경에서는 기본 설치된 firefox를 활용해도 잘 작동됩니다. 대신 해당 Pop-up 이 다음의 내용 중 어떤것에 해당하는 지를 확인해서 적용합니다.
 
+```python
+# adapted from http://stackoverflow.com/a/25251803
+from selenium import webdriver
+profile = webdriver.FirefoxProfile()
+mime_types = [
+    'text/plain',
+    'text/vcard',
+    'application/vnd.ms-excel', 
+    'text/csv', 
+    'application/csv', 
+    'text/comma-separated-values', 
+    'application/download', 
+    'application/octet-stream', 
+    'binary/octet-stream', 
+    'application/binary', 
+    'application/x-unknown',
+    'application/x-msdownload',
+]
+profile.set_preference("browser.helperApps.neverAsk.saveToDisk", ",".join(mime_types))
 
+from selenium.webdriver.firefox.options import Options
+options = Options()
+options.headless = True
+browser = webdriver.Firefox(firefox_profile=profile, options=options)
+browser.get("http://www.daum.net")
+browser.find_element_by_xpath('//a[@title="javascript"]').click()
+browser.implicitly_wait(3)
+```
 
 
 <br/>
