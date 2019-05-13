@@ -21,6 +21,10 @@ toc: true
 
 ## 선물거래
 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/stock/future.png">
+</figure>
+
 선도거래의 단점을 보완하기 위해 **표준화된 계약, 다수의 거래당사자, 미래의 이행을 보장** 하는 장치들로 보완한 거래방법 입니다. 선물의 종류는 다음과 같습니다. 
 
 1. 주가지수 선물 (코스피200, 스타지수)
@@ -31,9 +35,6 @@ toc: true
 
 선물의 이행은 **차액현금결제(Cash Settlement) 와 실물인수(Physical Settlement)** 두가지 방법이 있습니다. 1, 2번은 **현금결제를** 3,4,5 번 거래는 **실물인수** 를 주로 이행해야 하는데, **현금결제는 만기일에 차근월물을 결제** 함으로써 이행이 가능하지만, **실물인수** 는 해당 현물을 꼭 납부해야 합니다.
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/stock/future.png">
-</figure>
 
 ## 옵션거래
 
@@ -54,6 +55,10 @@ toc: true
 ## 이론가격
 
 **옵션 가격** 을 **사용자가 계산한 이론가격** 과 비교 후 매매를 판단합니다. 이론가격 계산의 공식으로는 **블랙숄츠 머튼 공식** 등이 있습니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/stock/callput.jpg">
+</figure>
 
 1. 실제선물가격 < **이론가격** : 저렴한 선물을 구매 합니다.
 2. **실제선물가격** > 매매이론 가격 : 선물을 팔고 해당 권리를 포기 합니다. (차익거래)
