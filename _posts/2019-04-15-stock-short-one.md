@@ -1,6 +1,6 @@
 ---
 title : 주식투자 공매도와 숏커버링 (글모음)
-last_modified_at: 2019-01-15T10:45:06-05:00
+last_modified_at: 2019-04-15T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/stock.jpg
 categories:

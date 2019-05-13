@@ -23,6 +23,7 @@ python 에서 selenium 작업을 하다 보면 headless 모듈로써 **PhantomJs
 
 ```php
 $ sudo apt install chromium-browser chromium-codecs-ffmpeg
+$ sudo apt-get install chromium-chromedriver
 ```
 
 설치된 모듈의 내용과 버젼을 확인 합니다
