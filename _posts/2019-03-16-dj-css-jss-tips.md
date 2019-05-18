@@ -11,14 +11,15 @@ tags:
     - javascript
 ---
 
-# **web Tip들 모음**
-
 Fail Fast!!
 그동안 기능에 대한 호기심만 키웠다면 
 이제는 본격적으로  메뉴활용 Django 모듈을 이번주 내로 완성하자!!
 
 Django 에서 기본 지원되는 내용을 충분히 활용하고...
 나머지들에 대해서 HTML5, CSS, JavaScript, restful API 등으로 보완을 합니다
+
+<br/>
+# **web Tip들 모음**
 
 ## CSS Background image 삽입하기
 Base.html 등에서 활용할 CSS 스타일을 static 함수를 사용하면 작동이 잘 안됩니다. 조금 모양은 빠지지만 `/폴더명/파일명.jpg` 과 같은 절대경로를 적용합니다 [stackoverflow](https://stackoverflow.com/questions/39769469/the-way-to-use-background-image-in-css-files-with-django)

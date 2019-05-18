@@ -12,10 +12,15 @@ tags:
 toc: true 
 ---
 
+템플릿 예제에서 **tab, index bookmark** 등의 기능을 구현하기 위한 샘플을 보다보면, `<div role="menu" aria-*="" data-*="">` 등의 내용을 보는 경우가 많습니다. 이에 대해 잘 정리된 유투브 채널 [AoA](https://www.youtube.com/watch?v=YEja2DfAoKA&list=PLtaz5vK7MbK355QFGb4q8DfFPbh3NQDda&index=4) 을 참고하여 간단하게 정리를 해 보았습니다. 
+
+<br/>
 # WAI ARIA
 
 ## Web Accessibility Initialization
-템플릿 예제에서 **tab, index bookmark** 등의 기능을 구현하기 위한 샘플을 보다보면, `<div role="menu" aria-*="" data-*="">` 등의 내용을 보는 경우가 많습니다. 이에 대해 잘 정리된 유투브 채널 [AoA](https://www.youtube.com/watch?v=YEja2DfAoKA&list=PLtaz5vK7MbK355QFGb4q8DfFPbh3NQDda&index=4) 을 참고하여 간단하게 정리를 해 보았습니다. 이들의 본래 목적은 장애인들을 위한 디스플레이 기능에 활용하는 기능으로 개발 되었습니다. 
+
+
+이들의 본래 목적은 장애인들을 위한 디스플레이 기능에 활용하는 기능으로 개발 되었습니다. 
 
 <iframe width="560" height="315" 
     src="https://www.youtube.com/embed/08ha5EkByIo" 

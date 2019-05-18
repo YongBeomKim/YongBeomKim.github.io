@@ -12,9 +12,10 @@ tags:
 toc: true 
 ---
 
-# pythonanywhere.com
-
 예비창업프로그램에 시연하는 사이트를 제작하면서, 별도 도메인 없이 Django 배포가 쉬운 방법을 찾아보니 그나마 제일 잘 정리된 곳이 https://www.pythonanywhere.com 였습니다.
+
+<br/>
+# pythonanywhere.com
 
 ## pythonanywhere 설정 초기화 하기
 1일 접속량이 제한되어 있고 (차단이 아닌 속도가 늦게 접속됩니다), 3개월 마다 서버를 reboot 하는 점만 제외하면 간단하게 시연하는 용도로는 적합 합니다. 예전에 작업한 내용이 있는데 해당 내용을 잊어서 새로 작업을 하려다 보면 550mb 용량 제한으로 활용 가능한 공간이 부족합니다.

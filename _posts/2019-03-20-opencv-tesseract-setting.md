@@ -11,12 +11,13 @@ tags:
     - ocr
 ---
 
+Tesseract 를 Django 서버 또는 RaspberryPi 서버에서 구현을 목적으로 하고 있는 만큼, ubuntu 에서 설치하는 방법을 정리해 보겠습니다
+
+<br/>
 # Tesseract 를 Python 에서 구현하기
 
 ## Install
 윈도우에서 설치하는 내용도 있지만 [윈도우 설치](https://junyoung-jamong.github.io/computer/vision,/ocr/2019/01/30/Python%EC%97%90%EC%84%9C-Tesseract%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-OCR-%EC%88%98%ED%96%89%ED%95%98%EA%B8%B0) OpenCV와 연계하면 보다 다양한 활용이 가능합니다.
-
-Django 서버 또는 RaspberryPi 서버에서 구현을 목적으로 하고 있어서, ubuntu 에서 설치하는 방법을 정리해 보겠습니다
 
 ### Install in RaspberyPI
 [참고사이트](https://webnautes.tistory.com/947)

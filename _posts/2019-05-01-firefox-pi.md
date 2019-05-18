@@ -11,13 +11,12 @@ tags:
 toc: true 
 ---
 
+[StackOverFlow](https://stackoverflow.com/questions/52534658/webdriverexception-message-invalid-argument-cant-kill-an-exited-process-with) 를 참고로 요약 하자면 **geckodriver** 드라이버를 설치 후 (브라우저를 화면에 띄우는 용도) 버전에 맞는 **firefox** 를 설치 하면 됩니다.
+
+주의할 점은 개별 모듈의 버젼을 맞춰서 설치를 해야 합니다.
+
+<br/>
 # firefox in raspberry pi
-
-전반적인 내용은 [stackoverflow](https://stackoverflow.com/questions/52534658/webdriverexception-message-invalid-argument-cant-kill-an-exited-process-with) 를 참고 하였습니다.
-
-간단히 요약하면 **geckodriver** 드라이버를 설치하고 (이 모듈은 브라우저를 화면에 띄우는 용도입니다.) 해당 버전에 맞는 **firefox** 를 설치합니다.
-
-여기서 주의할 점은 개별 모듈의 버젼을 맞춰서 설치를 해야 합니다.
 
 ## **geckodriver**
 

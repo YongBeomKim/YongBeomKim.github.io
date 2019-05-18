@@ -11,12 +11,12 @@ tags:
 toc: true 
 ---
 
-# Django 에서 Session 의 활용
-
 **베프의 파이썬 웹 프로그래밍** 의 장바구니 부분에 서술된 **Session** 활용 예제 내용을 간단히 정리해 보겠습니다.
 
 Session 이라는 DataBase 에 필요한 내용을 저장 및 호출하는 방식으로 간단하게 활용이 가능합니다.
 
+<br/>
+# Django 에서 Session 의 활용
 
 ```python
 from django.shortcuts import render

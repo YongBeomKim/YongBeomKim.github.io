@@ -11,11 +11,9 @@ tags:
 toc: true 
 ---
 
+python 에서 **Selenium** 의 최근 경향은 Chrome 브라우저를 headless 로 사용하는 방법을 추천하고 있습니다. 이에대해 사용하는 방법을 정리해 보겠습니다.
+
 # Install Selenium & Chromdriver
-
-## Intro
-
-python 에서 selenium 작업을 하다 보면 headless 모듈로써 **PhantomJs** 는 일종의 한계가 존재합니다. 기능적인 한계로써 javascript 를 실행하다 보면 몇가지 실행이 안되는 문제가 있습니다. 이를 극복하기 위해서는 최근에는 Chrome 브라우저를 headless 를 추천하고 있어서 이를 사용하는 방법을 정리해 보겠습니다.
 
 ## chromium
 

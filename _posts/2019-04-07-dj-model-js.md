@@ -11,12 +11,13 @@ tags:
 toc: true 
 ---
 
-# Django 에서 JavaScript 적용하기
-
 기본적인 모델은 **Django** 의 구조를 활용하면 됩니다. 앞에서 정리한 GenericView 와 내부의 `get_context_data()` 와 `get_absolute_url()` 등의 메소드를 활용합니다.
 
 그리고도 부족한 부분은 Django 의 Plugin 을 활용할 수도 있지만, 서버의 부담이 커지게 됩니다. 부가적으로 필요한 부분은 **JavaScript**로 구현을 하고 배포시 WebPack 을 활용하는 방법으로 구조화를 진행합니다.
  
+<br/>
+# Django 에서 JavaScript 적용하기
+
 
 ## **popper.js**
 

@@ -11,9 +11,7 @@ tags:
 toc: true 
 ---
 
-# 파생상품의 기초
-
-**[CME 그룹](https://www.cmegroup.com/ko/education/learn-about-trading/courses/introduction-to-options/introduction-to-options.html)** 에서 설명하는 동영상이 길이도 짧고 직관적으로 설명이 잘 되어 있는 듯 합니다.
+파생상품에 대해서는 **[CME 그룹](https://www.cmegroup.com/ko/education/learn-about-trading/courses/introduction-to-options/introduction-to-options.html)** 에서 설명하는 동영상이 길이도 짧고 직관적으로 설명이 잘 되어 있는 듯 합니다.
 
 ## 선도거래
 

@@ -11,9 +11,10 @@ tags:
 toc: true 
 ---
 
-# **DataBase 자료 올리기**
-
 Celery 등을 구현할 때에도 필요로 하는 등 중요한 부분 입니다. 다른 JavaScript, CSS, HTML 등으로 허비하지 말고 중요한 부분들을 메워 나아갑니다
+
+<br/>
+# **DataBase 자료 올리기**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BppyfPye8eo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
