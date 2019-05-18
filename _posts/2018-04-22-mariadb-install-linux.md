@@ -29,7 +29,7 @@ $ sudo vi /etc/mysql/conf.d/mysql.cnf
 
 파일을 열면 `[Mysql]` 하나밖에 없는데, 한글을 사용하기 위해 아래의 내용으로 대체를 한다
 
-```r
+```sql
 # MariaDB-specific config file.
 # Read by /etc/mysql/my.cnf
  
@@ -69,7 +69,7 @@ $ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실
 ##  MariaDB 초기 비밀번호 재설정 [Blog](https://blog.naver.com/hyungjun212/221218211094)
 
 
-```r
+```sql
 $ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실행한다
 Enter current password for root (enter for none): 
 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
@@ -78,7 +78,7 @@ ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 **Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. google로도 잘 못찾는 문제중 의외로 Naver를 통하면 해결되는 경우가 종종 있는데, 이번이 그런 문제였다
 {: .notice--info}
 
-```r
+```sql
 # 이걸로 강제로 접속한다 (이것도 안되면 재설치를..)
 $ sudo mysql -u root mysql  
 

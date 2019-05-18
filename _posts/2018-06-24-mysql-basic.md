@@ -1,6 +1,6 @@
 ---
 title : MariaDB SQL Basic
-last_modified_at: 2018-06-25T12:45:06-05:00
+last_modified_at: 2018-06-24T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/sql.jpg
 categories:
@@ -16,7 +16,7 @@ toc: true
 
 <small>**모던 윕을 위한 JavaScript** 에 포함된 SQL 내용 정리</small>
 
-<br>
+<br/>
 ## DataBase 생성
 
 ```sql
@@ -33,7 +33,6 @@ MariaDB [(none)]>  USE Test;
 <br>
 ## **INSERT :** TABLE 생성
 
-<br>
 | 자료형       | 설명         |
 |:-----------: | :----------: |
 | VARCHAR      | 문자열       |
@@ -50,9 +49,8 @@ MariaDB [Test]> CREATE TABLE products(
 Query OK, 0 rows affected (0.02 sec)
 ```
 
-<br>
 | 필드속성       | 설명          |
-| :--------------:| :------------: |
+| :-------------:| :-----------: |
 | NOT NULL       | 반드시 입력   |
 | AUTO_INCREMENT | 자동증감      |
 | PRIMARY KEY    | 기본키 지정   |
@@ -70,7 +68,6 @@ MariaDB [Test]> DESCRIBE products;
 4 rows in set (0.01 sec)
 ```
 
-<br>
 ## **READ :** 데이터 저장 및 조회
 
 ```sql
@@ -99,10 +96,8 @@ MariaDB [Test]> SELECT  id, name  FROM products;
 ```
 
 
-<br>
 ## **FILTER :** 조건 검사
 
-<br>
 | 연산자         | 설명          |
 |:--------------:|:-------------:|
 | =              | 동등 조건     |
@@ -133,41 +128,34 @@ MariaDB [Test]> SELECT * FROM products
     -> WHERE modelnumber LIKE '010___'; //___ : 3글자 더 붙는 조건
 ```
 
-
-<br>
 ## **SORT :** 데이터 정렬
 
-<br>
-<small>**ORDER BY** 에 추가로 **ASC**는 **내림차순** 을, **DESC**는 **오름차순** 정렬을 한다</small>
+### **ORDER BY** 에 추가로 **ASC**는 **내림차순** 을, **DESC**는 **오름차순** 정렬을 한다
 
 ```sql
 MariaDB [Test]> SELECT id, name FROM products
     -> ORDER BY name ASC;
 ```
 
-<br>
-<small>**LIMIT 2(Number), 2(Step)**</small>
+### **LIMIT 2(Number), 2(Step)**
 
 ```sql
 MariaDB [Test]> SELECT * FROM products LIMIT 2, 2;
 ```
 
-<br>
-<small>**LIMIT 2(Number), 2(Step)**</small>
+### **LIMIT 2(Number), 2(Step)**
 
 ```sql
 MariaDB [Test]> SELECT * FROM products LIMIT 2, 2;
 ```
 
-<br>
-<small>**GROUP BY**</small>
+### **GROUP BY**
 
 ```sql
 MariaDB [Test]> SELECT * FROM products GROUP BY series;
 ```
 
-<br>
-<small>**응용예제**</small>
+### **응용예제**
 
 ```sql
 MariaDB [Test]> SELECT id, modelnumber FROM products 
@@ -176,7 +164,6 @@ MariaDB [Test]> SELECT id, modelnumber FROM products
     -> LIMIT 3;
 ```
 
-<br>
 ## **UPDATE :** 데이터 수정
 
 ```sql
@@ -208,11 +195,9 @@ Rows matched: 1  Changed: 1  Warnings: 0
 +----+---------------------+-------------+--------+
 ```
 
-<br>
 ## **DELETE :** 데이터 삭제
 
-<br>
-<small>id를 지정하지 않으면 TABLE 전체를 삭제한다</small>
+### id를 지정하지 않으면 TABLE 전체를 삭제한다
 
 ```sql
 MariaDB [Test]> DELETE FROM products WHERE id = 1;
@@ -222,8 +207,7 @@ MariaDB [Test]> DELETE FROM products;
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-<br>
-<small>빈 TABLE, DATABASE의 삭제</small>
+### 빈 TABLE, DATABASE의 삭제
 
 ```sql
 MariaDB [Test]> DROP TABLE products;

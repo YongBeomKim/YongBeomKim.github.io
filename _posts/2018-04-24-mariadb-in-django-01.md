@@ -20,7 +20,7 @@ toc: true
 
 ### 새로운 데이터베이스와 사용자를 추가한다
  
-```r
+```sql
 markbaum@markbaum:~$ mysql -u root -p
 Enter password: 
 
@@ -33,7 +33,7 @@ Enter password:
 
 ### 사용자만 추가
 
-```r
+```sql
 > create user '이름'@'%' identified by '비밀번호';
 > flush privileges;   # 전체 권한을 부여한다 
 > quit;
@@ -42,7 +42,7 @@ Bye
 
 위에서 설정한 이름과 비번으로 실행한다.
 
-```r
+```sql
 $ mysql -u 이름 -p
 Enter password: 비밀번호
 
