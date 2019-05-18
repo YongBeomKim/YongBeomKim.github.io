@@ -57,7 +57,7 @@ MySQL 의 전체적인 [명령어 요약](http://www.mysqltutorial.org/mysql-che
 3. **Table :** 표로써 **Column(열)** 과 **row,record(행)** 으로 구성 
 
 <br/>
-# **Table**
+# **Table & CRUD**
 
 ## **Table 의 생성**
 
@@ -74,8 +74,6 @@ CREATE TABLE topic(
     PRIMARY KEY(id));
 ```
 
-## **CRUD**
-
 지금까지 작업한 내용을 간단하게 복습 합니다.
 
 ```sql
@@ -90,14 +88,14 @@ mysql> SHOW TABLES;
 mysql> DESC 테이블_이름; 
 ```
 
-### **Create**
+## **Create : ** INSERT
 
 ```sql
 mysql> INSERT INTO 테이블_이름 (필드명1, 필드명2, 필드명3, ...) 
        VALUES ('1번필드 입력내용', '2번필드 입력내용', NOW(), ...); 
 ```
 
-### **READ**
+## **READ :** SELECT
 
 아래의 명령에서 * 는 모든 필드를 의미 합니다
 
@@ -105,10 +103,25 @@ mysql> INSERT INTO 테이블_이름 (필드명1, 필드명2, 필드명3, ...)
 mysql> SELECT * FROM 테이블_이름;
 ```
 
+조건을 추가하는 경우, **FROM** 뒤에 입력을 합니다. 이처럼 어떤 내용을 어디에 입력하는지 여부가 중요합니다.
+
+```sql
+mysql> SELECT id, title, created, author FROM 테이블_이름 
+       WHERE author='python'
+       ORDER BY id DESC
+       LIMIT 2;
+```
+
+## **Update :**
+
+다음의 내용을 실행하면 2번 ROW 에 해당 필드 값들이 변경 됩니다
+
+```sql
+mysql> UPDATE 테이블_이름 SET 필드='변경할 내용' 필드명='변경할 내용' WHERE id=2;
+```
 
 
-
-
+##--------------------------------------------------
 
 
 
