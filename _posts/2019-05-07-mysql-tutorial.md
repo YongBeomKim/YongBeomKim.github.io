@@ -78,9 +78,34 @@ CREATE TABLE topic(
 
 ## **CRUD**
 
+지금까지 작업한 내용을 간단하게 복습 합니다.
 
+```sql
+# 사용자가 원하는 데이터베이스로 전환
+mysql> SHOW DATABASES;
+mysql> USE 데이터베이스_이름;
 
-1.  그리고 **[MariaSQL ]
+# 테이블의 구조를 확인하고 컬럼을 추가합니다
+# NOW() 는 현재시간을 기록합니다
+# 입력은 Tuple 단위로 생성, 입력 됩니다
+mysql> SHOW TABLES;
+mysql> DESC 테이블_이름; 
+```
+
+### **Create**
+
+```sql
+mysql> INSERT INTO 테이블_이름 (필드명1, 필드명2, 필드명3, ...) 
+       VALUES ('1번필드 입력내용', '2번필드 입력내용', NOW(), ...); 
+```
+
+### **READ**
+
+아래의 명령에서 * 는 모든 필드를 의미 합니다
+
+```sql
+mysql> SELECT * FROM 테이블_이름;
+```
 
 
 
