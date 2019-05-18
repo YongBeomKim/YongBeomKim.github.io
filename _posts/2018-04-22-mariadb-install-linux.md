@@ -8,9 +8,8 @@ categories:
 tags: 
     - mariadb
     - mysql
-toc: true    
+toc: true     
 ---
-
 
 odroid xu4 에서 postgresql 설치 과정중[정식 설치방법](https://www.postgresql.org/download/linux/ubuntu/) armhf 미인식 문제로 계속 오류가 발생했다.
 
@@ -19,20 +18,18 @@ odroid xu4 에서 postgresql 설치 과정중[정식 설치방법](https://www.p
 
 ## MariaDB Installation [Document](https://mariadb.com/kb/en/library/installing-mariadb-deb-files/)[설치Blog](http://awesometic.tistory.com/14)
 
-```
+```r
 $ sudo apt-get update
 $ sudo apt-get install mariadb-server
 ```
 
-
-```
+```r
 $ sudo vi /etc/mysql/conf.d/mysql.cnf
 ```
 
-
 파일을 열면 `[Mysql]` 하나밖에 없는데, 한글을 사용하기 위해 아래의 내용으로 대체를 한다
 
-```
+```r
 # MariaDB-specific config file.
 # Read by /etc/mysql/my.cnf
  
@@ -41,53 +38,47 @@ $ sudo vi /etc/mysql/conf.d/mysql.cnf
 default-character-set = utf8mb4
  
 [mysqld]
-#
 # * Character sets
-#
 # Default is Latin1, if you need UTF-8 set all this (also in client section)
-#
 character-set-server = utf8mb4
 collation-server = utf8mb4_unicode_ci
 character_set_server = utf8mb4
 collation_server = utf8mb4_unicode_ci
 ```
 
-
-```
+```r
 $ sudo vi /etc/mysql/conf.d/mysql.cnf
 ```
 
-
 외부에서 접속을 위해 연결가능 Ip 주소 제한을 풀어준다
 
-```
+```r
 $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # 아래의 내용 앞에 #을 추가한다. (0.0.0.0 or * 도 가능해진다)
 # bind-address = 127.0.0.1 
 ```
 
-
 변경 내용을 적용 후 서버를 재실행 한다
 
-```
+```r
 $ sudo service mysql restart
 $ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실행한다
 ```
 
-
 ##  MariaDB 초기 비밀번호 재설정 [Blog](https://blog.naver.com/hyungjun212/221218211094)
 
-```
+
+```r
 $ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실행한다
 Enter current password for root (enter for none): 
 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 ```
 
+**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. google로도 잘 못찾는 문제중 의외로 Naver를 통하면 해결되는 경우가 종종 있는데, 이번이 그런 문제였다
+{: .notice--info}
 
-**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다.<strike>google로도 잘 못찾는 문제중 의외로 Naver를 통하면 해결되는 경우가 종종 있는데, 이번이 그런 문제였다</strike>{: .notice--info}
-
-```
+```r
 # 이걸로 강제로 접속한다 (이것도 안되면 재설치를..)
 $ sudo mysql -u root mysql  
 
@@ -101,11 +92,11 @@ MariaDB[mysql]> QUIT;
 
 원인은 Terminal plugin 이 설치되는 바람에 꼬여서 그렇다고 카더라...
 
-
 ##  MariaDB 초기 설정값 만들기 [Blog](https://suwoni-codelab.com/linux/2017/05/24/Linux-CentOS-MariaDB/)
 
 ### MariaDB 초기설정
-```
+
+```r
 $ mysql_secure_installation    # 설정을 재실행한다
 ```
 
@@ -114,11 +105,10 @@ $ mysql_secure_installation    # 설정을 재실행한다
 3. 원격지에서 root로그인 허용질문 : **N**
 4. 누구든지 access할수 있는 Test db 삭제질문 : **Y**
 5. 위의 변경 설정한 권한 리로드 적용 : **Y**
-
  
 ## MariaDB 완전 삭제방법
 
-```
+```r
 # 관련 프로그램들을 삭제한다
 $ sudo systemctl stop mariadb
 $ sudo apt-get purge mariadb-server

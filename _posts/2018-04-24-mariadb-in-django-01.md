@@ -11,18 +11,16 @@ tags:
 toc: true    
 ---
 
-
 ## mysql Workbench 설치하기
 
 **Please Note:** [https://dev.mysql.com/downloads/file/?id=474211](https://dev.mysql.com/downloads/file/?id=474211) 에서 deb 파일을 다운 후 설치한다 
 {: .notice--info}
 
-
 ## Django와 연결을 위한 DataBase 및 사용자 추가
 
 ### 새로운 데이터베이스와 사용자를 추가한다
  
-```
+```r
 markbaum@markbaum:~$ mysql -u root -p
 Enter password: 
 
@@ -33,10 +31,9 @@ Enter password:
 > exit; 
 ```
 
-
 ### 사용자만 추가
 
-```
+```r
 > create user '이름'@'%' identified by '비밀번호';
 > flush privileges;   # 전체 권한을 부여한다 
 > quit;
@@ -44,30 +41,27 @@ Bye
 ```
 
 위에서 설정한 이름과 비번으로 실행한다.
-```
+
+```r
 $ mysql -u 이름 -p
 Enter password: 비밀번호
 
 MariaDB [(none)]> 
 ```
 
-
 ## Django와 연결 [Blog](http://pope8.tistory.com/6)
 
 ### Mysql-client Python 설치하기 [github](https://github.com/PyMySQL/mysqlclient-python) | [mirror 사이트](https://packages.ubuntu.com/artful-updates/amd64/libmysqlclient-dev/download)
 
-```
+```r
 $ sudo apt-get install python-dev libmysqlclient-dev
-
 # 오류가 발생하면 이를 통해서 수정 후 재설치를 한다
 $ sudo apt-get install -f
 $ pip install mysqlclient
 ```
 
-
 ```python
 #settings.py
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -82,5 +76,3 @@ DATABASES = {
         }
 }
 ```
-
-
