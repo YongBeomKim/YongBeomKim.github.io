@@ -19,7 +19,7 @@ toc: true
 SQL 을 다룰 때, **Sqlite3** 를 쓰고는 있지만, 다중 연결에 취약한 만큼 웹 서비스를 본격적으로 진행할 예정인 만큼 이 부분에 대해서도 명확하게 정리를 하겠습니다. 다음은 DataBase 를 실행하는 방법 입니다.
 
 1. **[MariaDB 설치](https://yongbeomkim.github.io/sql/mariadb-install-linux/)**
-2. **[MariaDB 기본문법](https://yongbeomkim.github.io/sql/mysql-basic/)
+2. **[MariaDB 기본문법](https://yongbeomkim.github.io/sql/mysql-basic/)**
 3. **[MySQL 의 Django 연결](https://yongbeomkim.github.io/sql/mariadb-in-django-01/)**
 4. **[MySQL 의 PhP Admin 연결](https://yongbeomkim.github.io/mariadb/phpadmin-install-xu/)**
 

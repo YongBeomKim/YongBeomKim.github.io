@@ -42,3 +42,11 @@ Query OK, 0 rows affected (0.01 sec)
 
 <br/>
 # **관계형 데이터베이스**
+
+## **JOIN**
+
+```sql
+mysql> SELECT * FROM 데이터베이스 
+    LEFT JOIN author                 # 기본 Key 테이블
+    ON topic.author_id = author.id;  # 결합 기준
+```

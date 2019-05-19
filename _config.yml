@@ -5,7 +5,9 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-minimal_mistakes_skin    : "contrast" #"default" , "dark", "neon"
+# https://mmistakes.github.io/minimal-mistakes/docs/configuration/#skin
+# https://github.com/mmistakes/minimal-mistakes
+minimal_mistakes_skin    : "mint" # "air" #"contrast" #"default" , "dark", "neon"
 
 # Site Settings
 locale                   : "en-US"
