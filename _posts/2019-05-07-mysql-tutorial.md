@@ -18,14 +18,6 @@ toc: true
 
 SQL 을 다룰 때, **Sqlite3** 를 쓰고는 있지만, 다중 연결에 취약한 만큼 웹 서비스를 본격적으로 진행할 예정인 만큼 이 부분에 대해서도 명확하게 정리를 하겠습니다. 다음은 DataBase 를 실행하는 방법 입니다.
 
-```sql
-$ mysql -u 사용자이름 -p
-Enter password: 
-
-# 다음의 명령으로 비밀번호를 변경
-mysql> SET PASSWORD = PASSWORD('12345')
-```
-
 1. **[MariaDB 설치](https://yongbeomkim.github.io/sql/mariadb-install-linux/)**
 2. **[MariaDB 기본문법](https://yongbeomkim.github.io/sql/mysql-basic/)
 3. **[MySQL 의 Django 연결](https://yongbeomkim.github.io/sql/mariadb-in-django-01/)**
@@ -35,15 +27,34 @@ mysql> SET PASSWORD = PASSWORD('12345')
 # **DataBase 개념**
 
 ```sql
+$ mysql -u 사용자이름 -p
+Enter password: 
+
+# 사용자 비밀번호 변경
+mysql> SET PASSWORD = PASSWORD('12345')
+
 mysql> CREATE DATABASE [IF NOT EXISTS] 데이터베이스_이름;
+Query OK, 1 row affected (0.00 sec)
+
 mysql> SHOW DATABASES;
 +-------------------+
 | Database          |
 +-------------------+
 | 데이터베이스_이름 |
 +-------------------+
+
 mysql> USE 데이터베이스_이름
+
+mysql> DROP TABLE 테이블_이름;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DROP DATABASE 데이터베이스_이름;
+Query OK, 0 rows affected (0.01 sec)
 ```
+
+**개별 데이터베이스 환경으로 변경** 을 한 뒤, **작업할 테이블을 특정하며** 명령을 합니다, 위 처럼 데이터베이스를 생성 및 관리자 제어를 하는 경우에는 **Root 계정**을 사용 합니다.
+{: .notice--info}
+
 
 **[생활코딩 DataBase MySQL](https://www.youtube.com/playlist?list=PLuHgQVnccGMCgrP_9HL3dAcvdt8qOZxjW)** 의 개념과 용어들 부터 명확하게 정리를 하겠습니다.
 
@@ -74,6 +85,19 @@ CREATE TABLE topic(
     PRIMARY KEY(id));
 ```
 
+| **자료형**   | 설명         |
+|:-----------: | :----------: |
+| VARCHAR      | 문자열       |
+| INT          | 정수 숫자    |
+| DOUBLE       | 실수 숫자    |
+
+
+| **필드속성**   | 설명          |
+| :-------------:| :-----------: |
+| NOT NULL       | 반드시 입력   |
+| AUTO_INCREMENT | 자동증감      |
+| PRIMARY KEY    | 기본키 지정   |
+
 지금까지 작업한 내용을 간단하게 복습 합니다.
 
 ```sql
@@ -95,7 +119,7 @@ mysql> INSERT INTO 테이블_이름 (필드명1, 필드명2, 필드명3, ...)
        VALUES ('1번필드 입력내용', '2번필드 입력내용', NOW(), ...); 
 ```
 
-## **READ :** SELECT
+## **Read :** SELECT
 
 아래의 명령에서 * 는 모든 필드를 의미 합니다
 
@@ -112,105 +136,46 @@ mysql> SELECT id, title, created, author FROM 테이블_이름
        LIMIT 2;
 ```
 
-## **Update :**
+## **Update :** UPDATE
 
-다음의 내용을 실행하면 2번 ROW 에 해당 필드 값들이 변경 됩니다
+다음의 내용을 실행하면 2번 ROW 에 해당 필드 값들이 변경 됩니다. 주의할 점은 꼭 **WHERE** 와 같은 조건을 덧붙여야 합니다.
 
 ```sql
-mysql> UPDATE 테이블_이름 SET 필드='변경할 내용' 필드명='변경할 내용' WHERE id=2;
+mysql> UPDATE 테이블_이름 SET 
+    필드명1 = '변경내용1'
+    필드명2 = '변경내용2' 
+    WHERE id=2;
 ```
 
+## **Delete :** DELETE
 
-##--------------------------------------------------
-
-
-
-
-# MariaDB SQL 기본문법
-
-<small>**모던 윕을 위한 JavaScript** 에 포함된 SQL 내용 정리</small>
-
-<br/>
-## DataBase 생성
+여기에서도 **WHERE** 조건으로 **작업 대상을 특정하지 않으면** 전체가 변경 됩니다.
 
 ```sql
-MariaDB [(none)]>  CREATE BATABASE Test;
-Query OK, 1 row affected (0.00 sec)
-
-MariaDB [(none)]>  USE Test;
-```
-
-데이터베이스를 만들때에는 **Root 계정**을 사용한다. 다른 계정에서는 권한 문제로 작업에 제한요소가 생길 수 있다.
-{: .notice--info}
-
-
-<br>
-## **INSERT :** TABLE 생성
-
-| 자료형       | 설명         |
-|:-----------: | :----------: |
-| VARCHAR      | 문자열       |
-| INT          | 정수 숫자    |
-| DOUBLE       | 실수 숫자    |
-
-
-```sql
-MariaDB [Test]> CREATE TABLE products(
-    -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    -> name VARCHAR(50) NOT NULL,
-    -> modelnumber VARCHAR(15) NOT NULL,
-    -> series VARCHAR(30) NOT NULL);
-Query OK, 0 rows affected (0.02 sec)
-```
-
-| 필드속성       | 설명          |
-| :-------------:| :-----------: |
-| NOT NULL       | 반드시 입력   |
-| AUTO_INCREMENT | 자동증감      |
-| PRIMARY KEY    | 기본키 지정   |
-
-```sql
-MariaDB [Test]> DESCRIBE products;
-+-------------+-------------+------+-----+---------+----------------+
-| Field       | Type        | Null | Key | Default | Extra          |
-+-------------+-------------+------+-----+---------+----------------+
-| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
-| name        | varchar(50) | NO   |     | NULL    |                |
-| modelnumber | varchar(15) | NO   |     | NULL    |                |
-| series      | varchar(30) | NO   |     | NULL    |                |
-+-------------+-------------+------+-----+---------+----------------+
-4 rows in set (0.01 sec)
-```
-
-## **READ :** 데이터 저장 및 조회
-
-```sql
-MariaDB [Test]> INSERT INTO products (name, modelnumber, series) VALUES
-    -> ('Eric Clapton Stratocaster', '01078238412', 'Artist');
+mysql> DELETE FROM 테이블_이름 WHERE id=5;
 Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM 테이블_이름;
 ```
+
+## **Filter :** WHERE
+
+데이터베이스는 대상이 큰 만큼 **READ, UPDATE, DELETE** 작업의 진행시, 대상을 명확하게 지정해야 합니다. 이를 위해 사용하는 조건문이 **WHERE** 이고 이를 도와주는 다양한 필터들이 있습니다.
+
 
 ```sql
-MariaDB [Test]> SELECT * FROM products;
-+----+---------------------------+-------------+--------+
-| id | name                      | modelnumber | series |
-+----+---------------------------+-------------+--------+
-|  1 | Eric Clapton Stratocaster | 01078238412 | Artist |
-+----+---------------------------+-------------+--------+
-1 row in set (0.00 sec)
+# 문자와 일치하는 내용을 특정
+mysql> SELECT * FROM 테이블 이름
+    WHERE (필드명="문자내용") OR (필드명="문자내용");
 
+# 010 으로 시작
+mysql> SELECT * FROM products
+     WHERE modelnumber LIKE '010%';
 
-MariaDB [Test]> SELECT  id, name  FROM products;
-+----+---------------------------+
-| id | name                      |
-+----+---------------------------+
-|  1 | Eric Clapton Stratocaster |
-+----+---------------------------+
-1 row in set (0.00 sec)
+# ___ : 3글자 더 붙는 조건
+mysql> SELECT * FROM products
+    WHERE modelnumber LIKE '010___'; 
 ```
-
-
-## **FILTER :** 조건 검사
 
 | 연산자         | 설명          |
 |:--------------:|:-------------:|
@@ -221,112 +186,3 @@ MariaDB [Test]> SELECT  id, name  FROM products;
 | AND            | 논리곱        | 
 | % (LIKE)       | 시작값 조건   |
 | _              | _ 1개당 1글자 |
-
-```sql
-MariaDB [Test]> SELECT * FROM products
-    -> WHERE series="Artist";
-``` 
-
-```sql
-MariaDB [Test]> SELECT * FROM products
-    -> WHERE (series="Artist") OR (series="Road Worn");
-```
-
-```sql
-MariaDB [Test]> SELECT * FROM products
-    -> WHERE modelnumber LIKE '010%';
-```
-
-```sql
-MariaDB [Test]> SELECT * FROM products
-    -> WHERE modelnumber LIKE '010___'; //___ : 3글자 더 붙는 조건
-```
-
-## **SORT :** 데이터 정렬
-
-### **ORDER BY** 에 추가로 **ASC**는 **내림차순** 을, **DESC**는 **오름차순** 정렬을 한다
-
-```sql
-MariaDB [Test]> SELECT id, name FROM products
-    -> ORDER BY name ASC;
-```
-
-### **LIMIT 2(Number), 2(Step)**
-
-```sql
-MariaDB [Test]> SELECT * FROM products LIMIT 2, 2;
-```
-
-### **LIMIT 2(Number), 2(Step)**
-
-```sql
-MariaDB [Test]> SELECT * FROM products LIMIT 2, 2;
-```
-
-### **GROUP BY**
-
-```sql
-MariaDB [Test]> SELECT * FROM products GROUP BY series;
-```
-
-### **응용예제**
-
-```sql
-MariaDB [Test]> SELECT id, modelnumber FROM products 
-    -> WHERE (id<7) AND (modelnumber LIKE '010%')
-    -> ORDER BY name DESC
-    -> LIMIT 3;
-```
-
-## **UPDATE :** 데이터 수정
-
-```sql
-MariaDB [Test]> UPDATE products SET 
-    -> name = 'American Deluxe Telecaster' 
-    -> WHERE id = 1;
-Query OK, 1 row affected (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-+----+----------------------------+-------------+--------+
-| id | name                       | modelnumber | series |
-+----+----------------------------+-------------+--------+
-|  1 | American Deluxe Telecaster | 01078238412 | Artist |
-+----+----------------------------+-------------+--------+
-```
-
-```sql
-MariaDB [Test]> UPDATE products SET 
-    -> name = 'American Telecaster',
-    -> modelnumber = '01011112222'  
-    -> WHERE id = 1;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-+----+---------------------+-------------+--------+
-| id | name                | modelnumber | series |
-+----+---------------------+-------------+--------+
-|  1 | American Telecaster | 01011112222 | Artist |
-+----+---------------------+-------------+--------+
-```
-
-## **DELETE :** 데이터 삭제
-
-### id를 지정하지 않으면 TABLE 전체를 삭제한다
-
-```sql
-MariaDB [Test]> DELETE FROM products WHERE id = 1;
-Query OK, 1 row affected (0.01 sec)
-
-MariaDB [Test]> DELETE FROM products;
-Query OK, 0 rows affected (0.00 sec)
-```
-
-### 빈 TABLE, DATABASE의 삭제
-
-```sql
-MariaDB [Test]> DROP TABLE products;
-Query OK, 0 rows affected (0.01 sec)
-
-MariaDB [Test]> DROP DATABASE Test;
-Query OK, 0 rows affected (0.01 sec)
-```
