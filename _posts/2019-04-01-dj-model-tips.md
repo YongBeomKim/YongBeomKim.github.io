@@ -1,6 +1,6 @@
 ---
 title : Django Model - Model
-last_modified_at: 2019-04-01T10:45:06-05:00
+last_modified_at: 2019-05-03T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django_pro.png
 categories:
