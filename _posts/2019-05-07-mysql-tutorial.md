@@ -31,7 +31,7 @@ $ mysql -u 사용자이름 -p
 Enter password: 
 
 # 사용자 비밀번호 변경
-mysql> SET PASSWORD = PASSWORD('12345')
+mysql> SET PASSWORD = PASSWORD('12345');
 
 mysql> CREATE DATABASE [IF NOT EXISTS] 데이터베이스_이름;
 Query OK, 1 row affected (0.00 sec)
@@ -43,7 +43,7 @@ mysql> SHOW DATABASES;
 | 데이터베이스_이름 |
 +-------------------+
 
-mysql> USE 데이터베이스_이름
+mysql> USE 데이터베이스_이름;
 
 mysql> DROP TABLE 테이블_이름;
 Query OK, 0 rows affected (0.01 sec)

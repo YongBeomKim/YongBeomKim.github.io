@@ -23,17 +23,22 @@ toc: true
 3. **[MySQL 의 Django 연결](https://yongbeomkim.github.io/sql/mariadb-in-django-01/)**
 4. **[MySQL 의 PhP Admin 연결](https://yongbeomkim.github.io/mariadb/phpadmin-install-xu/)**
 
+```sql
+$ mysql -u 사용자이름 -p
+Enter password: 
+
+mysql> SET PASSWORD = PASSWORD('12345');
+
+mysql> CREATE DATABASE [IF NOT EXISTS] 데이터베이스_이름;
+
+mysql> USE 데이터베이스_이름;
+
+mysql> DROP TABLE 테이블_이름;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DROP DATABASE 데이터베이스_이름;
+Query OK, 0 rows affected (0.01 sec)
+```
+
 <br/>
 # **관계형 데이터베이스**
-
-
-```sql
-mysql> SHOW DATABASES;
-+-------------------+
-| Database          |
-+-------------------+
-| 데이터베이스_이름 |
-+-------------------+
-mysql> USE 데이터베이스_이름
-
-```
