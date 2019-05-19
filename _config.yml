@@ -7,7 +7,7 @@
 
 # https://mmistakes.github.io/minimal-mistakes/docs/configuration/#skin
 # https://github.com/mmistakes/minimal-mistakes
-minimal_mistakes_skin    : "neon" #"dark" #"mint" # "air" #"contrast" #"default" , "dark", "neon"
+minimal_mistakes_skin    : "air" # "neon", "dark", "mint" , "contrast", "default" 
 
 # Site Settings
 locale                   : "en-US"
