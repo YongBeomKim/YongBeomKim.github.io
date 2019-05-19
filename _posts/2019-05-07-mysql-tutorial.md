@@ -50,6 +50,9 @@ Query OK, 0 rows affected (0.01 sec)
 
 mysql> DROP DATABASE 데이터베이스_이름;
 Query OK, 0 rows affected (0.01 sec)
+
+# 테이블의 이름을 변경
+mysql> RENAME TABLE 테이블_이름 TO 테이블_이름
 ```
 
 **개별 데이터베이스 환경으로 변경** 을 한 뒤, **작업할 테이블을 특정하며** 명령을 합니다, 위 처럼 데이터베이스를 생성 및 관리자 제어를 하는 경우에는 **Root 계정**을 사용 합니다.
