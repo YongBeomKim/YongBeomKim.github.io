@@ -25,13 +25,13 @@ toc: true
 <br/>
 ## **get_queryset(self), get_context_data()**
 
-**get_queryset(self)** 은 해당 모델에 **Method를 추가하는** 내부함수,
+**GenericView** 를 잘 활용하면, 짧은 코드로도 명확한 기능의 구현이 가능합니다. 세부적인 설정변화를 위한 다양한 내부함수를 지원 합니다. 
 
-**get_context_data(self)** 은 모델에 **데이터를 추가하는** 내부함수,
+1. **get_queryset() :** 모델의 **Method를 추가**
+2. **get_context_data() :** 모델의 **[특정 데이터를 호출](https://kimdoky.github.io/django/2018/03/26/django-cbv-get-context-data.html)**
+3. **get_absolute_url() :** 모델의 Delete, Update **작업 종료시 연결되는 URL을 지정**
 
-**get_absolute_url(self)** 은 모델이 Delete, Update 등의 **작업 종료시 연결되는 URL을 지정하는** 내부함수 입니다.
-
-이들을 잘 활용하면 별도의 Jquery 의 Ajax 구조설계 없이도 다양한 기능을 덧붙일 수 있습니다. 이처럼 **GenericView** 를 잘 활용하면, 짧은 코드로도 명확한 기능의 구현이 가능합니다. 압축적으로 기능을 구현하는 대신 세부적인 설정변화에 대해서는 다양한 부가적인 설계가 필요 합니다. **[StackOverFlow (Master Django p336, p339)](https://stackoverflow.com/questions/33350362/django-listview-form-to-filter-and-sort)** 
+이들을 잘 활용하면 별도의 Jquery 의 Ajax 구조설계 없이도 다양한 기능을 덧붙일 수 있습니다. 이처럼 **[StackOverFlow (Master Django p336, p339)](https://stackoverflow.com/questions/33350362/django-listview-form-to-filter-and-sort)** 
 
 ```python
 class MyView(ListView):
