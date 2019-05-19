@@ -93,7 +93,7 @@ analytics:
 # Site Author
 author:
   name             : "Yong Beom Kim"
-  avatar           : "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/my-photo.jpg"
   bio              : "From Quant to Machine Learning"
   location         : "Suwom , Korea"
   email            : "saltman21@naver.com"
