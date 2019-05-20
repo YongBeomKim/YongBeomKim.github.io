@@ -19,7 +19,7 @@ toc: true
 # **Preview**
 
 1. **[MariaDB 설치](https://yongbeomkim.github.io/sql/mariadb-install-linux/)**
-2. **[MariaDB 기본문법](https://yongbeomkim.github.io/sql/mysql-basic/)
+2. **[MariaDB 기본문법](https://yongbeomkim.github.io/sql/mysql-basic/)**
 3. **[MySQL 의 Django 연결](https://yongbeomkim.github.io/sql/mariadb-in-django-01/)**
 4. **[MySQL 의 PhP Admin 연결](https://yongbeomkim.github.io/mariadb/phpadmin-install-xu/)**
 
