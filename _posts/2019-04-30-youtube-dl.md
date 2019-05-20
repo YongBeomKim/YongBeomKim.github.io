@@ -24,36 +24,34 @@ $ pip install --upgrade youtube-dl
 
 ## Download from PlayList
 
-개별 채널에 **PlayList** 에 묶여진 **모든 재생목록 보기** 내용을 가져오는 방법을 알아보겠습니다.
+개별 채널에 **PlayList** 에 묶여진 **모든 재생목록 보기** 내용을 가져오는 방법을 알아 보겠습니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/youtube-playlist.jpg">
   <figcaption>Pycon 2018 동계 세미나</figcaption>
 </figure>
 
-예제로 [Pycon Korea](https://www.youtube.com/playlist?list=PLZPhyNeJvHRlhgbIE8lg2uqkp71i3eCZu) 세미나 자료를 확인합니다. 해당 파일마다 인코딩 정보들이 출력됩니다
+**[Pycon Korea](https://www.youtube.com/playlist?list=PLZPhyNeJvHRlhgbIE8lg2uqkp71i3eCZu)** 세미나 자료를 예제로 확인해 보겠습니다. 해당 파일마다 인코딩 정보들이 출력됩니다
 
 ```r
 $ youtube-dl -F https://www.youtube.com/watch\?v\=RVH05S1qab8
 [download] Downloading playlist: 격월 세미나
 [download] Downloading video 1 of 11
 format code  extension  resolution note
-139 m4a        audio only DASH audio   51k , mp4a.40.5@ 48k (22050Hz)
-140 m4a        audio only DASH audio  131k , mp4a.40.2@128k (44100Hz)
-247 webm       1280x720   DASH video 1505k , vp9, 30fps, video only
-136 mp4        1280x720   DASH video 2310k , avc1.4d4016, 30fps, video only
-248 webm       1920x1080  DASH video 2646k , vp9, 30fps, video only
-137 mp4        1920x1080  DASH video 5079k , avc1.640028, 30fps, video only
-22  mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)
+139 m4a  audio only DASH   51k, mp4a  48k  (22050Hz)
+140 m4a  audio only DASH  131k, mp4a  128k (44100Hz)
+248 webm 1920x1080  DASH 2646k, vp9,  30fps, video only
+137 mp4  1920x1080  DASH 5079k, avc1, 30fps, video only
+22  mp4  1280x720   hd720, avc1, mp4a 192k (best)
 ```
 
 목록을 살펴본 결과, **22** 번 인덱스는 **hd720** 포맷으로 **(best)** 다운로드 추천 포맷 입니다. 이를 선택하면 해당 설정의 파일들이 자동으로 다운로드 됩니다. 
 
-화면 해상도를 1080p로 적용하고 싶은 경우에는 **audio only** 와 **video only** 포맷을 연결하여야 합니다. 즉 2번째와 같이 입력을 해야 합니다.
+**1080p** 응 적용할 경우 **audio only** 와 **video only** 포맷을 연결해야 합니다. 2번째와 같이 입력하면 됩니다.
 
 ```r
-$ youtube-dl -citw -f 22 https://www.youtube.com/watch\?v\=RVH05S1qab8
-$ youtube-dl -citw -f 137+140  https://www.youtube.com/watch\?v\=RVH05S1qab8
+$ youtube-dl -citw -f 22 https://www.youtube.com/주소
+$ youtube-dl -citw -f 137+140  https://www.youtube.com/주소
 ```
 
 ## Download Single File
@@ -62,30 +60,27 @@ $ youtube-dl -citw -f 137+140  https://www.youtube.com/watch\?v\=RVH05S1qab8
 
 ## Download Subtitle
 
-자동 완성된 자막 중 변역내용을 받고싶은 경우, 인터넷을 검색하면 **downsub.com** 을 추천 합니다. 하지만 해당 사이트는 광고가 많고 적용도 번거로운 대신, 이 모듈을 사용하면 보다 간단하게 활용 가능 합니다.
+자동 변역 자막을 활용할 경우, 인터넷을 검색하면 **[downsub.com](http://downsub.com/)** 을 추천 하지만 광고가 많고 적용도 번거롭습니다. 이번 모듈을 사용하면 보다 간단하게 활용이 가능 합니다.
 
-다음의 내용을 활용하면 다운 가능한 목록들이 출력 됩니다. 한글은 **ko** 로 표시 됩니다.
+`--list-subs` 을 활용하면 다운 가능한 목록이 출력 됩니다. 한글은 **ko** 로 표시 됩니다.
 
 ```r
-$ youtube-dl --list-subs  https://www.youtube.com/watch\?v\=RVH05S1qab8
+$ youtube-dl --list-subs  https://www.youtube.com/주소
 ```
 
-자동 생성된 자막도 번역된 내용을 받을 수 있습니다. 하지만 다음을 실행하면 **.vtt** 확장자로 다운을 받습니다
+`--write-auto-sub --sub-lang ko` 를 사용하면 자동 생성된 자막도 번역된 내용으로 받을 수 있습니다. 하지만 다음을 실행하면 **.vtt** 확장자로 다운을 받습니다
 
 ```r
-$ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtube.com/watch\?v\=RVH05S1qab8
-
+$ youtube-dl --write-auto-sub --sub-lang ko https://www.youtube.com/주소
 ```
 
-이를 srt 포맷으로 변경하기 위해 `--convert-subs srt` 를 추가합니다. 옵션에서 내용을 추가할 때에는 순서에 유의합니다.
+이를 srt 포맷으로 변경하기 위해 `--convert-subs srt` 를 추가합니다. 옵션 내용을 추가할 때에는 순서에 유의 합니다.
 
 ```r
-$ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtube.com/watch\?v\=RVH05S1qab8
-
+$ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtube.com/주소
 ```
 
 <br/>
 # 참고 사이트
 1. https://seulcode.tistory.com/259
 2. https://www.ostechnix.com/download-youtube-videos-with-subtitles-using-youtube-dl/
-  
