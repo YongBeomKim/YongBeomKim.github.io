@@ -56,7 +56,7 @@ $ youtube-dl -citw -f 137+140  https://www.youtube.com/주소
 
 ## Download Single File
 
-개별 파일을 다운로드 하는 경우에는 위의 옵션 중 **-citew** 를 제외하고 입력하면 됩니다.
+개별 파일을 다운로드 하는 경우에는 위의 옵션 중 `-citew` 를 제외하고 입력하면 됩니다.
 
 ## Download Subtitle
 
