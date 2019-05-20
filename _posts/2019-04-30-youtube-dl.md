@@ -2,7 +2,7 @@
 title : youtube-dl 사용법
 last_modified_at: 2019-04-30T10:45:06-05:00
 header:
-  overlay_image: /assets/images/code/youtube.jpg
+  overlay_image: /assets/images/code/youtube_banner.png
 categories:
   - youtube
 tags: 
