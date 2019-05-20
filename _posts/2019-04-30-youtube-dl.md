@@ -80,6 +80,12 @@ $ youtube-dl --write-auto-sub --sub-lang ko https://www.youtube.com/주소
 $ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtube.com/주소
 ```
 
+동영상 없이 자막만 필요로 하는 경우에는 `--skip-download` 를 붙이면 됩니다. 다만 포맷이 **vtt** 로 출력되어  srt 포맷으로 변경하는 별도의 작업을 필요로 합니다.
+
+```r
+$ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt --skip-download https://www.youtube.com/watch\?v\=A2vEazcfJ7U
+```
+
 <br/>
 # 참고 사이트
 1. https://seulcode.tistory.com/259
