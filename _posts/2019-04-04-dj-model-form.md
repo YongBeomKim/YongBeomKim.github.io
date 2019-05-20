@@ -19,10 +19,76 @@ toc: true
 # Form 객체의 생성
 Form 객체를 생성하는 방법으로는, 1) modelform_factory 을 활용한 **Form 객체** 그리고 2) **forms** 클래스를 활용한 **Form 클래스 객체** 가 있습니다
 
+## Form 객체 만들기
+
+기본적인 form 객체를 생성 합니다. 
+
+1. `required=False` 는 필수 항목들을 정의 합니다. 
+2. `widget=forms.Textarea` 은 필드별 맞춤형 위쳇을 정의 합니다.
+
+```python
+from django import forms
+
+class ContentForm(forms.Form):
+    subject = forms.CharField()
+    email   = forms.EmailField(required=False)
+    message = forms.CharField(widget=forms.Textarea)
+```
+
+
+## Form 객체 다루기
+
+터미널에서 `$ python manage.py shell` 을 실행하여 생성한 form 객체를 확인 합니다.
+
+```python
+>>> from .forms import ContentForm
+>>> f = ContentForm()
+>>> print(f)
+>>> print(f.as_ul())
+>>> print(f.as_p())
+>>> f.cleaned_data      # 데이터를 dict 으로 출력
+>>> f.is_bound          # form 객체 확인
+>>> f.errors            # form 객체 오류 확인
+>>> f.is_valid()        # form 유효성 확인
+>>> f['subject']        # 특정 필드 확인
+>>> f['subject'].errors # 필드별 오류 확인
+```
+
+## Form Template
+
+`f.errors` 로 객체를 활용하는 방식으로 템플릿을 작성 합니다.  **django** 에서 **form** 객체내 정의를 변경하면 템블릿에서 별도 작업 없이 적용 됩니다.
+
+{% raw %}
+```html
+<body>
+
+    {% if form.errors %}
+    <p style="color: red;">
+        form 객체에 오류가 있습니다.
+    </p>
+    {% endif }
+
+    <form action="" method="post">
+        <table>
+            {{form.as_table}}
+        </table>
+        {% csrf_token %}
+        <input type="submit" value="입력">
+    </form>
+</body>
+```
+{% endraw %}
+
+
+
+<br/>
+# FormSet의 활용
+
 ## modelform_factory
 Form 객체를 생성합니다
+
 ```python
-from django.forms.models import  modelform_factory
+from django.forms.models import modelform_factory
 from .models import Books
 
 # Form 객체를 생성
