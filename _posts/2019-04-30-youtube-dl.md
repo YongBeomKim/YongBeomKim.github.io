@@ -83,3 +83,7 @@ $ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtu
 $ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtube.com/watch\?v\=RVH05S1qab8
 
 ```
+
+<br/>
+# 참고 사이트
+https://seulcode.tistory.com/259
