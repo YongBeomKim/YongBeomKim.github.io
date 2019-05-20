@@ -86,4 +86,6 @@ $ youtube-dl --write-auto-sub --sub-lang ko --convert-subs srt https://www.youtu
 
 <br/>
 # 참고 사이트
-https://seulcode.tistory.com/259
+1. https://seulcode.tistory.com/259
+2. https://www.ostechnix.com/download-youtube-videos-with-subtitles-using-youtube-dl/
+  
