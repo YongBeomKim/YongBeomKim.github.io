@@ -38,9 +38,10 @@ PONG
 <br>
 ## celery 설치
 
-`$ pip install 'celery[redis]'` 를 사용하면 의존성 모듈을 자동으로 설치한다 <small> pip list로 확인하면 **amqp, billiard, celery, kombu, redis, vine** 등이 함께 설치된다 </small>
+`$ pip install -U "celery[redis]"` 를 사용하면 의존성 모듈을 자동으로 설치한다 <small> pip list로 확인하면 **amqp, billiard, celery, kombu, redis, vine** 등이 함께 설치된다 </small>
 
-```
+```r
+$ pip install -U "celery[redis]" 
 $ pip install celery
 $ pip install redis
 $ pip install django-celery-beat
