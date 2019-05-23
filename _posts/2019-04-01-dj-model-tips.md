@@ -29,7 +29,8 @@ toc: true
 
 1. **get_queryset() :** 모델의 **Method를 추가**
 2. **get_context_data() :** 모델의 **[특정 데이터를 호출](https://kimdoky.github.io/django/2018/03/26/django-cbv-get-context-data.html)**
-3. **get_absolute_url() :** 모델의 Delete, Update **작업 종료시 연결되는 URL을 지정**
+3. **get_absolute_url() :** 모델의 URL 처리와 관련된 **상위 레벨 이전코드**
+4. **get_object() :** 객체를 검사하는 메서드로 간단히 재정의 후 호출을 래핑
 
 이들을 잘 활용하면 별도의 Jquery 의 Ajax 구조설계 없이도 다양한 기능을 덧붙일 수 있습니다. 이처럼 **[StackOverFlow (Master Django p336, p339)](https://stackoverflow.com/questions/33350362/django-listview-form-to-filter-and-sort)** 
 

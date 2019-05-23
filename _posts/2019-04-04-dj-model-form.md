@@ -11,7 +11,7 @@ tags:
 toc: true 
 ---
 
-**CreateView** 에서 **[Chained Dropdown List](https://simpleisbetterthancomplex.com/tutorial/2018/01/29/how-to-implement-dependent-or-chained-dropdown-list-with-django.html)** 내용을 정리하던 중, Model Class 가 많이 필요해 추가기능을 살피던 중, **Formset**, **inlineFormSet** 등에 대해서 이해도가 떨어져서 이번 내용을 정리하게 되었습니다.
+**CreateView** 에서 **[Chained Dropdown List](https://simpleisbetterthancomplex.com/tutorial/2018/01/29/how-to-implement-dependent-or-chained-dropdown-list-with-django.html)** 내용을 정리하다가, Model Class 가 많이 필요해 추가기능을 알아보던 중에, **Formset**, **inlineFormSet** 등에 대해서 이해도가 떨어져서 이번 내용을 정리하게 되었습니다.
 
 위 내용은 [예제Site](dependent-dropdown-example.herokuapp.com) 에서 확인할 수 있습니다
 
@@ -61,7 +61,6 @@ class ContentForm(forms.Form):
 {% raw %}
 ```html
 <body>
-
     {% if form.errors %}
     <p style="color: red;">
         form 객체에 오류가 있습니다.
@@ -80,6 +79,38 @@ class ContentForm(forms.Form):
 {% endraw %}
 
 
+<br/>
+# FormView
+개별 form 을 정의한 뒤 일일히 연결 할 수도 있지만, GenericView 함수인 **FormView** 를 활용하면 보다 구조적인 작업이 용이 합니다.
+
+```python
+from django.views.generic.edit import FormView
+from .form import TempForm
+
+class SearchFormView(FormView):
+    form_class = TempForm   # 사용자 정의 form 객체
+    template_name = 'app/template.html'
+
+    def get_initial(self):
+        init_data = super(SearchFormView).get_initial()
+        init_data['name'] = 'Search'
+        return init_data
+
+    def get_success_url(self):
+        return reverse('home')
+
+    # form : 사용자 정의 form 객체를 의미
+    def form_valid(self, form):
+        search = '%s' % self.request.POST['search']
+        post_list = Model.objects.filter(field__icontains = search)
+
+        # 필터링 결과물 정의
+        context = {}
+        context['form'] = form # 
+        context['search'] = search
+        context['object_list']  = post_list
+        return render(self.request, self.template_name, context)
+```
 
 <br/>
 # FormSet의 활용
