@@ -81,7 +81,7 @@ class ContentForm(forms.Form):
 
 <br/>
 # FormView
-개별 form 을 정의한 뒤 일일히 연결 할 수도 있지만, GenericView 함수인 **FormView** 를 활용하면 보다 구조적인 작업이 용이 합니다.
+form 을 보여주기 위한 GenericView 입니다. 보다 구조적인 작업이 가능합니다. 속성값 중 `success_url` 은 form 처리가 성공한 뒤 **redirect URL** 을 정의 합니다. 해당 페이지에서 결과를 출력시에는 지정하지 않습니다.
 
 ```python
 from django.views.generic.edit import FormView
