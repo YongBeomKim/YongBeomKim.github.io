@@ -81,6 +81,42 @@ def date_txt(self):
 {% endraw %}
 
 <br/>
+# **데이터 입력하기**
+
+## CSV 를 활용한 데이터 입력
+
+로그인 사용자 입장에서 데이터를 입력하는 방법은 뒤에서 자세히 살펴 보았습니다. [admin csv upload](https://yongbeomkim.github.io/django/dj-admin-csv/) 하지만 해당 필드별 내용을 그대로 입력해서 **ORM** 구조를 사용하는 경우에는 부적합 합니다.
+
+```python
+    csv_file = request.FILES['file']
+    data_set = csv_file.read().decode('UTF-8')
+    io_string = StringIO(data_set)
+    next(io_string)
+
+    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+        Contact.objects.update_or_create(
+            first_name = column[0],
+            last_name = column[1],
+            email = column[2],
+        )
+```
+
+## Foreign Key 를 활용한 입력
+
+원하는 목록을 생성 또는 호출한 뒤, 객체 인스턴스를 활용하여 foreignKey 필드를 입력 합니다. 아래처럼 순차적으로 접근하여 데이터를 입력 및 호출하는 방식으로 접근을 합니다.
+
+```python
+# Key 테이블을 호출 합니다.
+from stock.models import Contact
+new_item = Contact(first_name='kim', last_name='ju sung', email='support@pooq.com')
+new_item.save()
+
+# Key 를 사용한 ForeignKey 필드를 입력 합니다.
+from stock.models import Board
+Board.objects.update_or_create(name=new_item, text='new one update')
+```
+
+<br/>
 # **튜플 데이터의 삭제**
 해당 객체를 삭제하기 위해선 **DeleteView**를 제공합니다. 다른 기능과 비교시 삭제자체는 간단하고, 오히려 GenericView 에서 **모델_confirm_view.html** 을 요구하는 등 더 까다롭게 삭제요건을 필요로 합니다. 다음을 추가하면 별도의 조건없이 바로 삭제를 진행합니다 [stackoverflow](https://stackoverflow.com/questions/17475324/django-deleteview-without-confirmation-template)
 
