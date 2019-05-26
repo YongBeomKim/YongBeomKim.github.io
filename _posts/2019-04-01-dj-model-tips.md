@@ -97,7 +97,6 @@ def date_txt(self):
         Contact.objects.update_or_create(
             first_name = column[0],
             last_name = column[1],
-            email = column[2],
         )
 ```
 
@@ -108,12 +107,14 @@ def date_txt(self):
 ```python
 # Key 테이블을 호출 합니다.
 from stock.models import Contact
-new_item = Contact(first_name='kim', last_name='ju sung', email='support@pooq.com')
-new_item.save()
+new = Contact(first_name='kim', last_name='ju')
+new.save()
 
 # Key 를 사용한 ForeignKey 필드를 입력 합니다.
 from stock.models import Board
-Board.objects.update_or_create(name=new_item, text='new one update')
+Board.objects.update_or_create(
+    name = new_item,\
+    text = 'new one update')
 ```
 
 <br/>
