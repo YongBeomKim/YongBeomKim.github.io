@@ -23,12 +23,52 @@ toc: true
 </figure>
 
 <br/>
-## **get_queryset(self), get_context_data()**
+# **속성 Over Writing**
+
+**GenericView** 내부에서 정의된 속성들을 개발자가 변경하여 사용할 수 있습니다. 아래에 설명되는 속성들은 **View, TemplateView, RedirectView** 를 제외한 모든 Genericview 에 포함된 속성 입니다.
+
+## **model, queryset**
+사용할 model 객체를 정의 합니다. 두 속성은 동일한 의미로 둘 중 한가지만 지정하면 됩니다. 모두 사용한 경우 **queryset** 이 우선 적용 됩니다. 
+
+```python
+def modelview(request):
+    model = Bookmark
+    queryset = Bookmark.objects.all()
+```
+
+## **context_object_name**
+템플릿에서 **object, object_list** 기본 객체를, 사용자가 직접 **context 변수 명** 을 지정 합니다.
+
+## **paginate_by**
+페이지 속성이 활성화된 경우, 한 페이지에 몇 개의 항목을 표시할 지를 정수로 지정 합니다.
+
+## **success url**
+**FormView, CreateView, UpdateView, DeleteView** 에서만 사용되는 속성으로 해당 기능이 성공한 뒤, **redirect** 되는 Url 을 지정 합니다.
+
+## **form 객체**
+**FormView, CreateView, UpdateView** 에서만 사용되는 속성들을 알아 보겠습니다.
+
+### **form_class**
+해당 기능에 활용할 **form 클래스 객체** 를 지정 합니다.
+
+### **initial**
+해당 form 초기값을 **initial** 에서 `{'필드명':'초기값'}` 와 같은 방식으로 지정 합니다.
+
+### **fields**
+해당 form 에서 사용할 필드 들을 지정 합니다. `class Meta: field=[]` 와 동일한 기능을 합니다.
+
+## **form_valid()**
+아래의 **get_success_url()** 메소드와 동일한 기능으로 URL redirect 경로를 정의 합니다.
+
+## **Method Overwriting**
+지금까지 살펴본 내용들은 속성으로, 해당되는 값을 지정만 하면 되지만, 다음의 **Method** 들은 개별 기능이 존재하기 때문에, 해당 내용에 대한 개별 변수들을 
+
+**get_queryset(self), get_context_data()**
 
 **GenericView** 를 잘 활용하면, 짧은 코드로도 명확한 기능의 구현이 가능합니다. 세부적인 설정변화를 위한 다양한 내부함수를 지원 합니다. 
 
-1. **get_queryset() :** 모델의 **Method를 추가**
-2. **get_context_data() :** 모델의 **[특정 데이터를 호출](https://kimdoky.github.io/django/2018/03/26/django-cbv-get-context-data.html)**
+1. **get_queryset() :** 기본 뷰 **View, TemplateView, RedirectView** 를 제외한 뷰에서 모델의 **Method를 추가**
+2. **get_context_data() :** 기본 뷰 **TemplateView** 를 포함한 모든 뷰에서 모델의 **[특정 데이터를 호출](https://kimdoky.github.io/django/2018/03/26/django-cbv-get-context-data.html)**
 3. **get_absolute_url() :** 모델의 URL 처리와 관련된 **상위 레벨 이전코드**
 4. **get_object() :** 객체를 검사하는 메서드로 간단히 재정의 후 호출을 래핑
 
