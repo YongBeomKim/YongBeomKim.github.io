@@ -64,28 +64,29 @@ def csv_upload(request):
     # 오류처리2 : CSV 파일이 아닌경우 오류처리
     csv_file = request.FILES['file']
     if not csv_file.name.endswith('.csv'):
-        messages.error(request, '파일 확장자가 CSV 가 아닙니다.')
+        messages.error(request, 'CSV 가 아닙니다.')
         return None
 
     # 오류처리1, 2를 통과한 경우 내용의 적용
     data_set = csv_file.read().decode('UTF-8')
     io_string = StringIO(data_set)
-    next(io_string) # io_string 에서 불러온 내용을 차례로 호출
+    next(io_string) # io_string 내용을 차례로 호출
 
     try:
-        for column in csv.reader(io_string, delimiter=',', quotechar="|"):
-            _, created = Contact.objects.update_or_create(
+        for column in csv.reader(io_string,\
+             delimiter=',', quotechar="|"):
+            _, c = Contact.objects.update_or_create(
                 first_name = column[0],
-                last_name = column[1],
-                email  = column[2],
+                last_name  = column[1],
+                email      = column[2],
                 ip_address = column[3],
-                msg = column[4]
+                msg        = column[4]
             )
     except:
-        messages.error(request, '데이터 입력시 오류가 발생하였습니다')
+        messages.error(request,'데이터 입력오류')
         return redirect(reverse("list"))
         
-    context = {} # content 내용이 없으면, 빈 {dict} 을 전달
+    context = {} # 빈 {dict} 이라도 채웁니다
     return render(request, template, context)
 ```
 
