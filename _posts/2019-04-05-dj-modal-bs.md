@@ -2,7 +2,7 @@
 title : Django bootstrap-modal-forms
 last_modified_at: 2019-04-05T10:45:06-05:00
 header:
-  overlay_image: /assets/images/code/django_pro.png
+  overlay_image: /assets/images/code/django.jpg
 categories:
   - django
 tags: 
