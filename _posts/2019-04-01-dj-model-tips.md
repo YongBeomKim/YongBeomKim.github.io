@@ -77,11 +77,13 @@ class MyView(ListView):
     model = Update
 
     def get_queryset(self):
-        filter_val = self.request.GET.get('filter', 'give-default-value')
+        filter_val = self.request.GET.get('filter',\
+             'give-default-value')
         return Update.objects.filter(state=filter_val)
 
     def get_context_data(self, **kwargs):
-        context = super(MyView, self).get_context_data(**kwargs)
+        context = super(MyView,\
+             self).get_context_data(**kwargs)
         context['filter'] = self.request.GET.get(
             'filter', 'give-default-value')
         return context
