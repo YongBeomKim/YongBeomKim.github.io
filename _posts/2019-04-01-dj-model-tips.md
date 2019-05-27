@@ -37,7 +37,7 @@ def modelview(ListView):
 ```
 
 ## **context_object_name**
-템플릿에서 **{ { object } }, { {object_list} }** 기본 객체명 대신에, 사용자가 **context 변수 명** 을 임의로 지정 합니다.
+템플릿에서 `{ { object } }, { {object_list} }` 기본 객체명 대신에, 사용자가 **context 변수 명** 을 임의로 지정 합니다.
 
 ## **paginate_by**
 페이지 속성이 활성화된 경우, 한 페이지에 몇 개의 항목을 표시할 지를 정수로 지정 합니다.
@@ -58,12 +58,10 @@ def modelview(ListView):
 해당 form 에서 사용할 필드 들을 지정 합니다. `class Meta: field=[]` 와 동일한 기능을 합니다.
 
 ## **form_valid()**
-아래의 **get_success_url()** 메소드와 동일한 기능으로 URL redirect 경로를 정의 합니다.
+Form 객체를 다루는 view 함수에서, 아래의 **get_success_url()** 메소드와 동일한 기능으로 URL redirect 경로를 정의 합니다.
 
-## **Method Overwriting**
+## **GenericView Function Method Overwriting**
 지금까지 살펴본 내용들은 속성으로, 해당되는 값을 지정만 하면 되지만, 다음의 **Method** 들은 개별 기능이 존재하기 때문에, 해당 내용에 대한 개별 변수들을 
-
-**get_queryset(self), get_context_data()**
 
 **GenericView** 를 잘 활용하면, 짧은 코드로도 명확한 기능의 구현이 가능합니다. 세부적인 설정변화를 위한 다양한 내부함수를 지원 합니다. 
 
@@ -91,9 +89,11 @@ class MyView(ListView):
 
 {% raw %}
 ```html
-<form method="get" action="{% url 'update-list' %}">
-    <p>필터링: <input type="text" value={{filter}} name="filter"/></p>
-    <p><input type="submit" name="submit" value="submit"/></p>
+<form method="get" action="{% url 'list' %}">
+    <p>필터링: <input type="text" 
+        value={{filter}} name="filter"/></p>
+    <p><input type="submit" 
+        name="submit" value="submit"/></p>
 </form>
 ```
 {% endraw %}
@@ -128,16 +128,17 @@ def date_txt(self):
 로그인 사용자 입장에서 데이터를 입력하는 방법은 뒤에서 자세히 살펴 보았습니다. [admin csv upload](https://yongbeomkim.github.io/django/dj-admin-csv/) 하지만 해당 필드별 내용을 그대로 입력해서 **ORM** 구조를 사용하는 경우에는 부적합 합니다.
 
 ```python
-    csv_file = request.FILES['file']
-    data_set = csv_file.read().decode('UTF-8')
-    io_string = StringIO(data_set)
-    next(io_string)
+ csv_file = request.FILES['file']
+ data_set = csv_file.read().decode('UTF-8')
+ io_string = StringIO(data_set)
+ next(io_string)
 
-    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
-        Contact.objects.update_or_create(
-            first_name = column[0],
-            last_name = column[1],
-        )
+ for column in csv.reader(io_string,\
+         delimiter=',', quotechar="|"):
+     Contact.objects.update_or_create(
+         first_name = column[0],
+         last_name = column[1],
+     )
 ```
 
 ## Foreign Key 를 활용한 입력
