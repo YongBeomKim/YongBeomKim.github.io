@@ -31,13 +31,13 @@ toc: true
 사용할 model 객체를 정의 합니다. 두 속성은 동일한 의미로 둘 중 한가지만 지정하면 됩니다. 모두 사용한 경우 **queryset** 이 우선 적용 됩니다. 
 
 ```python
-def modelview(request):
+def modelview(ListView):
     model = Bookmark
     queryset = Bookmark.objects.all()
 ```
 
 ## **context_object_name**
-템플릿에서 **object, object_list** 기본 객체를, 사용자가 직접 **context 변수 명** 을 지정 합니다.
+템플릿에서 **{ { object } }, { {object_list} }** 기본 객체명 대신에, 사용자가 **context 변수 명** 을 임의로 지정 합니다.
 
 ## **paginate_by**
 페이지 속성이 활성화된 경우, 한 페이지에 몇 개의 항목을 표시할 지를 정수로 지정 합니다.
