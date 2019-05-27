@@ -1,8 +1,8 @@
 ---
 title : Django Filter / Django 내장모듈
-last_modified_at: 2019-01-03T12:45:06-05:00
+last_modified_at: 2019-05-13T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django-tutorial.png
+  overlay_image: /assets/images/code/django_pro.png
 categories:
   - django
 tags: 
@@ -37,7 +37,7 @@ print(a.id, a.pk)
 # **2 Create**
 ## **objects.create() , .objects.bulk_create()**
 1. **.create() :** 1줄씩 정보를 입력
-2. **.bulk_create() :** 묶음으로 정보를 입력
+2. **.bulk_create() :** 묶음으로 정보를 입력 **[블로그](https://m.blog.naver.com/PostView.nhn?blogId=jung_kj&logNo=221002011537&proxyReferer=https%3A%2F%2Fwww.google.com%2F)**
 
 ```python
 a2 = Author.objects.create(name='jerry', email='jerry@mail.com')
@@ -49,10 +49,14 @@ Author.objects.bulk_create([
      Author(name='droopy', email='droopy@mail.com'), ])
 ```
 
+**create()** 는 개별 que 를 만들어 DataBase 에 접속과 해제를 반복하여 속도가 느립니다. 따라서 **bulk_create()** 를 사용하여 한번의 접속으로 데이터를 입력하면 보다 빠른 결과를 도출 가능합니다.
+{: .notice--info}
+
 <br/>
 # **3 Read**
 ## **.objects.count()**
 모델의 튜플 숫자를 카운트 합니다
+
 ```python
 Author.objects.count()
 [Out] 5
@@ -61,24 +65,25 @@ Author.objects.count()
 ## **.objects.all()**
 모델 내부의 모든 객체를 호출 합니다
 ```python
-l = Author.objects.all()
-type(l)
+[In] l = Author.objects.all()
+[In] type(l)
 [Out] class django.db.models.query.QuerySet
 
-l
+[In] l
 [Out] QuerySet [<Author: tommy : tommy@example.com>...]
 
-l[0]
+[In] l[0]
 [Out] Author: tommy : tommy@example.com
 
-for a in l:
-    print("Author: {0}".format(a.name))
+[In] for a in l:
+[In]     print("Author: {0}".format(a.name))
 [Out] Author: tommy
 Author: jerry...
 ```
 
 ## **.objects.filter()**
 특정조건에 True 인 튜플목록을 호출합니다
+
 ```python
 Author.objects.filter(name='tommy')
 [Out] QuerySet [<Author: tommy : tommy@example.com>]
@@ -92,8 +97,9 @@ Author.objects.filter(id=2)
 
 ## **.objects.exclude()**
 특정조건에 False 인 튜플목록을 호출합니다
+
 ```python
-Author.objects.exclude(name='spike', email='spike@mail.com')
+[In] Author.objects.exclude(name='spike', email='spike@mail.com')
 [Out] QuerySet [<Author: tommy : tommy@example.com>...]
 ```
 
@@ -105,68 +111,69 @@ Author.objects.exclude(name='spike', email='spike@mail.com')
 
 ## 1) contains lookup <small>**__contains**</small>
 **특정 문자열이 포함된** 튜플을 호출합니다
+
 ```python
-Author.objects.filter(name__contains="ke")
+[In] Author.objects.filter(name__contains="ke")
 [Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
 ## 2) icontains lookup <small>**__icontains**</small>
 case-**insensitive(무감각한)** 로써 **대소문자 구분없이** 판단합니다
 ```python
-Author.objects.filter(name__icontains="KE")
+[In] Author.objects.filter(name__icontains="KE")
 [Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
 ## 3) startswith lookup <small>**__startswith**</small>
 ```python
-Author.objects.filter(name__startswith="t")
+[In] Author.objects.filter(name__startswith="t")
 [Out] QuerySet [<Author: tommy : tommy@email.com>...]
 ```
 
 ## 4) endswith lookup <small>**__endswith**</small>
 ```python
-Author.objects.filter(email__endswith="com")
+[In] Author.objects.filter(email__endswith="com")
 [Out] QuerySet [<Author: tom : tom@email.com>...]
 ```
 
 ## 5) Greater than <small>**__gt**</small>
 특정 필드값이 **조건값 보다 큰** 튜플을 출력합니다 
 ```python
-Author.objects.filter(id__gt=3)
+[In] Author.objects.filter(id__gt=3)
 [Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
 ## 6) Less than <small>**__lt**</small>
 특정 필드값이 **조건값 보다 작은** 튜플을 출력합니다 
 ```python
-Author.objects.filter(id__lt=3)
+[In] Author.objects.filter(id__lt=3)
 [Out] QuerySet [<Author: tommy : tommy@example.com>...]
 ```
 
 ## 7) exact lookup <small>**__exact**</small>
 ```python
-Author.objects.filter(name__exact="spike")
+[In] Author.objects.filter(name__exact="spike")
 [Out] QuerySet [<Author: spike : spike@mail.com>]
 ```
 
 ## 8) iexact lookup <small>**__iexact**</small> 
 **대소문자 구분없이** 일치하는 튜플을 출력합니다
 ```python
-Author.objects.filter(name__iexact="SPIKE")
+[In] Author.objects.filter(name__iexact="SPIKE")
 [Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
 ## 9) isnull lookup <small>**__isnull**</small>
 해당 필드에 **유효한 값이 있는 모든 튜플들을** 출력합니다 
 ```python
-Author.objects.filter(name__isnull=False)
+[In] Author.objects.filter(name__isnull=False)
 [Out] QuerySet [<Author: tommy : tommy@example.com>...]
 ```
 
 ## 10) in lookup <small>**__in**</small>
 **필드 일치조건을 [List] 형식으로** 입력 합니다
 ```python
-Author.objects.filter(name__in=['spike', 'tyke'])
+[In] Author.objects.filter(name__in=['spike', 'tyke'])
 [Out] QuerySet [<Author: spike : spike@mail.com>...]
 ```
 
@@ -183,7 +190,7 @@ Author.objects.filter(created_on__day=24, created_on__month=3, created_on__year=
 ## 1) Chaining Methods
 위의 **단일 조건들을 연결하여** 쿼리문으로 사용할 수 있습니다
 ```python
-Author.objects.filter(id__gt=1).\
+[In] Author.objects.filter(id__gt=1).\
                exclude(name='spike').\
                filter(name__icontains="o")
 [Out] QuerySet [<Author: tommy : tommy@example.com>...]
@@ -199,36 +206,37 @@ Author.objects.filter(created_on__year=2018).last()
 # **5 복잡한 쿼리문과 Q**
 **AND, OR** 조건문을 Django 에서는 **Q**를 통해서 구현합니다
 ```python
-from django.db.models import Q
-Q(name__contains="tom")
+[In] from django.db.models import Q
+[In] Q(name__contains="tom")
 
-from django.db.models import Q
-Q(name__icontains="tom", email__icontains="example", created_on__year=2018)
+[In] from django.db.models import Q
+[In] Q(name__icontains="tom", email__icontains="example", created_on__year=2018)
 ```
 **filter(), exclude(), get(), Q()** 함수들은 **& (AND)** 그리고 **| (OR)** 필터를 혼용하여 활용 가능합니다.
 ```python
-Author.objects.filter(Q(name__iexact="tommy") | Q(name__iexact="jerry"))
-QuerySet [<Author: tommy : tommy@example.com>...]
+[In] Author.objects.filter(Q(name__iexact="tommy") | Q(name__iexact="jerry"))
+[Out] QuerySet [<Author: tommy : tommy@example.com>...]
 ```
 
 <br/>
 # **6 etcs**
 ## 1) .filter(), .get()
 ```python
-Author.objects.get(name="tommy")
-Author.objects.filter(name="tommy")
+[In] Author.objects.get(name="tommy")
+[In] Author.objects.filter(name="tommy")
 ```
 .get() 과 .filter() 는 결과적으로는 동일하지만 구조적인 차이가 있습니다. **.filter()**는 해당 조건에 일치하는 튜플들을 출력하는 반면에, **.get()** 은 특정한 **1개의 튜플 결과만** 출력합니다. 
 
 .get() 메소드 결과값이 2개 이상의 존재하는 경우 **djangobin.models.MultipleObjectsReturned**를 출력하고, 해당값이 없으면 **djangobin.models.DoesNotExist**를 출력합니다.
+
 ```python
-Author.objects.filter(name__contains="ke")
+[In] Author.objects.filter(name__contains="ke")
 [Out] QuerySet [<Author: spike : spike@mail.com>, <Author: tyke : tyke@mail.com>]
 
-Author.objects.get(name__contains="ke")
+[In] Author.objects.get(name__contains="ke")
 [Out] Traceback (most recent call last): djangobin.models.MultipleObjectsReturned: get() returned more than one Author--it returned 2!
 
-Author.objects.get(name__contains="captain planet")
+[In] Author.objects.get(name__contains="captain planet")
 [Out] Traceback (most recent call last): djangobin.models.DoesNotExist: Author matching query does not exist.
 ```
 
@@ -241,8 +249,8 @@ Author.objects.filter(id__gt=3).order_by("-name")
 
 ## 3) 출력할 필드를 특정합니다 <small>**.values_list()**</small>
 ```python
-Author.objects.values_list("id", "name")
-QuerySet [(2, 'tommy'), (3, 'jerry'), (4, 'spike'), (5, 'tyke'), (6, 'droopy')]
+[In] Author.objects.values_list("id", "name")
+[Out] QuerySet [(2, 'tommy'), (3, 'jerry'), (4, 'spike'), (5, 'tyke'), (6, 'droopy')]
 ```
 
 ## 4) 조건출력 활용하기<small>
@@ -254,81 +262,87 @@ Author.objects.filter(id__gt=3).values_list("id", "name")
 
 ## 5) 필터링 결과의 Indexing
 **.values_list(), .values()** 의 출력결과는 동일하지만, 전자는 **튜플 객체로 구성된 List** 후지는 **Dict 객체로 구성된 List** 를 출력합니다
+
 ```python
-r = Author.objects.filter(id__gt=3).values_list("id", "name")
-r
+[In] r = Author.objects.filter(id__gt=3).values_list("id", "name")
+[In] r
 [Out] QuerySet [(4, 'spike'), (5, 'tyke'), (6, 'droopy')]
 
-r[0]
+[In] r[0]
 [Out] (4, 'spike')
 
-r[0][0]
+[In] r[0][0]
 [Out] 4
 
-r[0][1]
+[In] r[0][1]
 [Out] 'spike'
 ```
+
 ```python
-r = Author.objects.filter(id__gt=3).values("id", "name")
-r
+[In] r = Author.objects.filter(id__gt=3).values("id", "name")
+[In] r
 [Out] QuerySet [{'name': 'spike', 'id': 4}, {'name': 'tyke', 'id': 5}]
 
-type(r[0])
+[In] type(r[0])
 [Out] class 'dict'
 
-r[0]
+[In] r[0]
 [Out] {'name': 'spike', 'id': 4}
 
-r[0]['name']
+[In] r[0]['name']
 [Out] 'spike'
 
-r[0]['id']
+[In] r[0]['id']
 [Out] 4
 ```
 
 ## 6) 필터링 결과의 Slicing
+
 ```python
-Author.objects.order_by("id")[1]
+[In] Author.objects.order_by("id")[1]
 [Out] Author: tyke : tyke@mail.com
 
-Author.objects.order_by("-id")[:3]
+[In] Author.objects.order_by("-id")[:3]
 [Out] QuerySet [<Author: droopy : droopy@mail.com>..]
 
-Author.objects.filter(id__gt=1).order_by("-id")[2:5]
+[In] Author.objects.filter(id__gt=1).order_by("-id")[2:5]
 [Out] QuerySet [<Author: spike : spike@mail.com>, ...]
 
-Author.objects.order_by("-id")[-1]
-AssertionError: Negative indexing is not supported.
+[In] Author.objects.order_by("-id")[-1]
+[Out] AssertionError: Negative indexing is not supported.
 ```
 
 <br/>
 # 7 Updating Multiple Objects
 2번 인덱스의 데이터를 새롭게 갱신합니다 
+
 ```python
-a = Author.objects.get(pk=2)
-a
+[In] a = Author.objects.get(pk=2)
+[In] a
 [Out] Author: tommy : tommy@email.com
 
-a.name  = 'tom'
-a.email = 'tom@mail.com'
-a.save()
-a
+[In] a.name  = 'tom'
+[In] a.email = 'tom@mail.com'
+[In] a.save()
+[In] a
 [Out] Author: tom : tom@mail.com
 ```
+
 ```python
 # 조건에 일치하는 컬럼 데이터를 갱신 (갱신된 컬럼값을 출력)
-Author.objects.filter(id__gt=3).update(active=True, name='x')
+[In] Author.objects.filter(id__gt=3).update(active=True, name='x')
 [Out] 3
 ```
 
 <br/>
 # 8 Delete
 특정조건의 QuerySet 을 호출하고 이를 삭제합니다 
+
 ```python
-a = Author.objects.get(pk=2)
-a
+[In] a = Author.objects.get(pk=2)
+[In] a
 [Out] Author: tom : tom@mail.com
 
-a.delete()
+[In] a.delete()
 [Out] (1, {'djangobin.Author': 1})
 ```
