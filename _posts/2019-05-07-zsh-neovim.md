@@ -54,6 +54,9 @@ let g:airline#extensions#tabline#formatter = 'default'
 let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ } 
+
+" 바탕화면을 투명하게 설정 합니다
+hi Normal guibg=NONE ctermbg=NONE
 ```
 
 위 내용을 실행하면 **onedark** 테마가 설치 적용 됩니다. 그리고 [배경을 투명하게 활용](https://github.com/vim/vim/issues/981) 하고 싶은 경우에는 `:hi! Normal ctermbg=NONE guibg=NONE` 를 nvim 에서 실행하면 됩니다.
