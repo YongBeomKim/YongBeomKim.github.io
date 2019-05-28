@@ -24,6 +24,9 @@ $ sudo apt-get update
 $ sudo apt-get install neovim
 ```
 
+## Python in NEOVIM
+[파이썬 설정](https://yufanlu.net/2018/09/03/neovim-python/) 은 블로그 내용을 활용하여 내용을 추가 합니다.
+
 ## Plug In 설정 및 설치
 [설정방법](https://jmyang.kr/2017/11/23/neovim/) 에 대해 정리한 내용을 참고 합니다. 
 
