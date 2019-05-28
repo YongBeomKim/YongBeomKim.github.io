@@ -56,6 +56,8 @@ let g:lightline = {
   \ } 
 ```
 
+위 내용을 실행하면 **onedark** 테마가 설치 적용 됩니다. 그리고 [배경을 투명하게 활용](https://github.com/vim/vim/issues/981) 하고 싶은 경우에는 `:hi! Normal ctermbg=NONE guibg=NONE` 를 nvim 에서 실행하면 됩니다.
+
 다음의 내용을 정의한 뒤, [neovim](https://github.com/vim-airline/vim-airline) 에서 **PlugInstall** 을 실행하면 정의된 플러그 인들이 설치 됩니다
 {: .notice--info}
 
