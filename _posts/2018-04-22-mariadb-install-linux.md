@@ -22,23 +22,25 @@ $ sudo apt-get update
 $ sudo apt-get install mariadb-server
 ```
 
+우분투에 MariaDB를 처음 설치하면 캐릭터셋이 기본으로 **Latin-1** 으로 설정되어 있습니다. 한글을 사용하려면 **euc-kr** 또는 **UTF-8** 으로 기본 설정을 변경해야 합니다. 이를 변경하기 위해 [/etc/mysql/conf.d/mysql.cnf](https://jm4488.tistory.com/23) 파일을 수정 합니다.
+
 ```r
 $ sudo vi /etc/mysql/conf.d/mysql.cnf
 ```
 
-파일을 열면 `[Mysql]` 하나밖에 없는데, 한글을 사용하기 위해 아래의 내용으로 대체를 한다
-
-```sql
-# MariaDB-specific config file.
+```r
+# MariaDB-specific config fil*e.
 # Read by /etc/mysql/my.cnf
  
 [client]
-# Default is Latin1, if you need UTF-8 set this (also in server section)
+# Default is Latin1, 
+# if you need UTF-8 (server section)
 default-character-set = utf8mb4
  
 [mysqld]
 # * Character sets
-# Default is Latin1, if you need UTF-8 set all this (also in client section)
+# Default is Latin1, 
+# if you need UTF-8 (server section)
 character-set-server = utf8mb4
 collation-server = utf8mb4_unicode_ci
 character_set_server = utf8mb4
@@ -49,7 +51,7 @@ collation_server = utf8mb4_unicode_ci
 $ sudo vi /etc/mysql/conf.d/mysql.cnf
 ```
 
-외부에서 접속을 위해 연결가능 Ip 주소 제한을 풀어준다
+외부에서 접속을 위해 연결가능 Ip 주소 제한을 풀어 줍니다
 
 ```r
 $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -67,14 +69,13 @@ $ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실
 
 ##  MariaDB 초기 비밀번호 재설정 [Blog](https://blog.naver.com/hyungjun212/221218211094)
 
-
 ```sql
 $ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실행한다
 Enter current password for root (enter for none): 
 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 ```
 
-**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. google로도 잘 못찾는 문제중 의외로 Naver를 통하면 해결되는 경우가 종종 있는데, 이번이 그런 문제였다
+**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. google 이 아닌 Naver 에서 해답을 찾을 수 있었다.
 {: .notice--info}
 
 ```sql
