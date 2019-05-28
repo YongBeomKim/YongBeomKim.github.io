@@ -2,7 +2,7 @@
 title : SQL MariaDB in Django
 last_modified_at: 2019-05-15T12:45:06-05:00
 header:
-  overlay_image: /assets/images/code/djangosql.jpg
+  overlay_image: /assets/images/code/sql.png
 categories:
   - django
 tags: 
@@ -55,9 +55,9 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 </figure>
 
 <br/>
-# Django와 연결을 위한 DataBase 및 사용자 추가
+# Django 와 DataBase 추가
 
-## 새로운 데이터베이스와 사용자를 추가한다
+## 데이터베이스 와 사용자 추가
  
 ```sql
 markbaum@markbaum:~$ mysql -u root -p
@@ -69,7 +69,7 @@ Enter password:
 > exit; 
 ```
 
-## 사용자만 추가
+## 사용자 추가
 
 ```sql
 > create user '이름'@'%' identified by '비밀번호';
