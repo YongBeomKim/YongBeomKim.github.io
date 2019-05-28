@@ -20,8 +20,6 @@ https://teamlab.github.io/jekyllDecent/blog/tutorials/Django-Admin-%EC%BB%A4%EC%
 [SB-admin-2](https://startbootstrap.com/themes/sb-admin-2/) 가 별도로 있고 이쪽이 더 가볍고 깔끔해 보입니다.
 
 
-
-
 # **금융 테이블 수집도구 만들기**
 우선 자동 자료 수집기 Django 모델 만들기
 

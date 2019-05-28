@@ -1,8 +1,8 @@
 ---
-title : ubuntu - Zsh & Vim 
-last_modified_at: 2018-05-03T12:45:06-05:00
+title : ubuntu - Vim & Zsh 
+last_modified_at: 2019-05-07T12:45:06-05:00
 header:
-  overlay_image: /assets/images/code/terminal.jpg
+  overlay_image: /assets/images/code/shell.png
 categories:
   - ubuntu
 ---
@@ -14,29 +14,44 @@ categories:
 
 <br/>
 # NEO VIM
-터미널에서 사용 가능한 편집기로 여러가지가 있어서 설치와 삭제를 반복해본 결과 (2019/04/13) 결국인 **Neo Vim** 이 가장 무난한 것으로 결론을 내렸습니다. **Space Vim**  이 가장 강력해 보이긴 했지만, 첫째로 생각보다 무겁고 우분투에서 fictx 폰트와 이유를 잘 모르는 충돌로 인해 터미널이 먹통이 되는 현상이 가장 큰 단점으로 지적할 수 있습니다
+**Neo Vim** 이 가장 무난했습니다. **Space Vim** 은 생각보다 무겁고 우분투에서 fictx 폰트와 충돌로 터미널이 먹통이 되는 등 한글 환경에서는 불안정한 모습을 보여 줬습니다. 그리고 **vim** 과 중복설치시 설정값을 공유하는 등의 문제가 발생하였습니다.
 
-vim 에 대해서는 뒤에서 자세히 설명했기 때문에, 여기서는 설치부분만 간단하게 언급하겠습니다. 다음의 내용을 설치한 뒤 `$nvim` 으로 해당 내용을 실행합니다
-
+## INSTALL
+다음의 내용을 설치한 뒤 `$nvim 파일.확장자` 로 내용을 실행합니다
 ```s
 $ sudo add-apt-repository ppa:neovim-ppa/unstable
 $ sudo apt-get update
 $ sudo apt-get install neovim
 ```
 
+## Theme 변경
+기본 문법 highlight 는 생각보다 어두워서 시의성이 좋지 않았습니다. 이를 극복하기 위해 [변경방법](https://askubuntu.com/questions/912404/how-to-change-syntax-color-in-vim) 을 사용합니다.
+
+```r
+$ ls /usr/share/vim/vim81/colors
+default.vim  elflord.vim   koehler.vim  pablo.vim
+shine.vim  torte.vim  blue.vim  delek.vim  evening.vim
+morning.vim  peachpuff.vim  slate.vim  zellner.vim
+darkblue.vim  desert.vim   industry.vim  murphy.vim
+ron.vim
+```
+
+## Plug in
+[설정방법](https://jmyang.kr/2017/11/23/neovim/) 에 대해 정리한 내용을 참고 합니다. 
+
+**vim** 에서는 `.vimrc` 파일을 사용하여 설정값을 변경하는데, **neovim** 에서는 [설정내용 예제](https://github.com/owais/dotfiles/blob/master/nvim/init.vim) 를 참고해 보면  `.convig/nvim/init.vim` 파일을 사용하여 내용을 추가 가능합니다. 이들 사이의 설정 중복될수 있어서 유의 합니다. 
+
 <br/>
 # Ubuntu 터미널 설정
 
-## root 사용자 변경하기 
+## root 사용자 변경
 간단해 보이지만 계속 까먹어서 찾게되는 내용 입니다
 
 ```s
 $ sudo su
 암호: 
 root:#
-```
 
-```s
 root:# su - markbaum
 markbaum@markbaum:
 ```
@@ -60,7 +75,6 @@ Password:
 
 기본 Bash 로 되돌리기 위해서 `$ sudo chsh -s /bin/bash` , `$chsh -s 'which bash'` 또는 `$ sudo chsh -s /bin/bash` 를 실행합니다
 {: .notice--success} 
-
 
 ## Oh-my-zsh 설치
 `Oh-my-zsh` 은 `zsh` 를 보다 편리하게 사용할 수 있는 설정관리 용 (configuration manager) 도구 입니다. 아래의 내용을 설치 완료하면 다음과 같은 화면이 변경됩니다.
@@ -110,7 +124,9 @@ $ sudo apt install fonts-powerline
 1. conky manger 를 연다
 2. 적용 테마를 선택한 뒤 'edit text editor' 로 설정파일을 연다
 3. 설정 text 중 아래의 내용에서 폰트명과 크기를 한글에 맞게 입력한다
-```s
+
+{% raw %}
+```r
 ${voffset 8}${font NanumBarunGothic:size=20}${color}${time %H %M %p}${font}${voffset -8}
 
 ${voffset 8}${font NanumBarunGothic:size=15}${color1}${time %A} ${time %e} ${time %B}${font}${voffset -8}
@@ -119,3 +135,4 @@ ${voffset 8}${font NanumBarunGothic:size=9}${color1}RM $mem/$memmax - HD ${fs_us
 
 ${voffset 8}${font NanumBarunGothic:size=9}${color1}CPU $freq_g GHz $cpu% - ${if_up wlp1s0}WIFI ${wireless_link_qual wlp1s0}${font}${voffset -8}${endif}
 ```
+{% endraw %}

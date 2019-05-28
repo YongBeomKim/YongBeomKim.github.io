@@ -1,15 +1,126 @@
 ---
-title : django Model MariaDB
-last_modified_at: 2018-04-27T12:45:06-05:00
+title : MariaDB in Django
+last_modified_at: 2019-05-15T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/django.jpg
+  overlay_image: /assets/images/book/djangosql.jpg
 categories:
   - django
 tags: 
     - django
-    - pyton
+    - mysql
+    - sql
 toc: true    
 ---
+
+**sqlite3** 는 **개별파일만** 연결하면 되지만, **SQL Server** 는 **고유주소와 id, Password** 를 입력해야 하는 번거로움 때문에 접근이 어렵습니다. 하지만 체계적이고 대형 시스템을 활용하기 위해선 이러한 작업이 안전성을 담보하는 등 익숙해 질 필요가 있습니다.
+
+<br/>
+# Tools
+`$ mysql -u root -p` 로 기본 터미널을 사용하거나 **workbench** 를 사용해도 되지만, 원활한 server 관리를 위해 터미널에서 유용한 도구들을 살펴 보겠습니다.
+
+## **MyCLI**
+[GitHub](https://github.com/dbcli/mycli) Python 으로 제작된 모듈로써 youtube-dl, neo-vim 등과 같이 파이썬 환경에서 설치를 한 뒤, 설치 환경의 터미널에서 `$ mycli -u root` 를 실행하면 **vim** 과 같은 작업 환경이 실행 됩니다.
+
+### 설치
+
+```r
+$ sudo pip3 install mycli
+```
+
+라즈베리파이 등에서 `$ sudo pip3` 를 실행하면 안되는 경우가 있습니다. 이 경우에는 `$ sudo apt-get remove python3-pip` 제거 후 `$ sudo apt-get install python3-pip` 로 재설치 하거나 `$python3 -m pip` 를 사용하여 필요한 명령을 실행하면 됩니다.
+{: .notice--info}
+
+### Syntex Color
+[공식 Site](https://www.mycli.net/syntax) 기본 설정값은 어두운 녹색으로 터미널에서 바로 실행하기엔 시의성이 나쁩니다. `~/.myclirc` 설정 파일의 내용을 변경하면 다양한 Syntex 파레트로 변경 가능합니다. 추천하는 테마로는 **monokai** 와 **bw** 등을 추천합니다. 
+
+```r
+# Syntax coloring style. Possible values (many support the "-dark" suffix):
+# Screenshots at http://mycli.net/syntax
+syntax_style = default
+```
+
+설정중 **rrt, vim** 등이 있는데 실습결과, **vim** 은 해당 명령을 실행하면 vim 환경으로 전환되어 다시 빠져나와야 하는 등의 번거로움이 있었습니다. 단순 theme 만이 아닌 해당 모듈을 활용하는 것으로 보이는 만큼 주의를 당부합니다.
+{: .notice--info}
+
+## **SQLITE** in vscode
+
+SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSpace 내부에 있는 **sqlite db** 파일을 자동으로 찾아준 뒤 이를 연결하면 바로 내용을 확인 가능합니다. 
+
+## **vscode-database** in vscode
+
+**SQLite** 를 설치하면 dependancy 로 설치되는 **[vs market](https://marketplace.visualstudio.com/items?itemName=bajdzis.vscode-database)** 모듈로써, mysql 등도 연결 가능 합니다.
+
+<figure class="align-center">
+  <img src="https://raw.githubusercontent.com/Bajdzis/vscode-database/master/readme/v2.0-result.gif">
+  <figcaption>vscode-database</figcaption>
+</figure>
+
+
+
+
+## Django와 연결을 위한 DataBase 및 사용자 추가
+
+### 새로운 데이터베이스와 사용자를 추가한다
+ 
+```sql
+markbaum@markbaum:~$ mysql -u root -p
+Enter password: 
+
+> CREATE DATABASE  DB이름 CHARACTER SET UTF8;
+> CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';
+> GRANT ALL PRIVILEGES ON DB이름.* TO 사용자@localhost;
+> FLUSH PRIVILEGES;
+> exit; 
+```
+
+### 사용자만 추가
+
+```sql
+> create user '이름'@'%' identified by '비밀번호';
+> flush privileges;   # 전체 권한을 부여한다 
+> quit;
+Bye
+```
+
+위에서 설정한 이름과 비번으로 실행한다.
+
+```sql
+$ mysql -u 이름 -p
+Enter password: 비밀번호
+
+MariaDB [(none)]> 
+```
+
+## Django와 연결 [Blog](http://pope8.tistory.com/6)
+
+### Mysql-client Python 설치하기 [github](https://github.com/PyMySQL/mysqlclient-python) | [mirror 사이트](https://packages.ubuntu.com/artful-updates/amd64/libmysqlclient-dev/download)
+
+```r
+$ sudo apt-get install python-dev libmysqlclient-dev
+# 오류가 발생하면 이를 통해서 수정 후 재설치를 한다
+$ sudo apt-get install -f
+$ pip install mysqlclient
+```
+
+```python
+#settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'DB 이름',
+        'USER': 'User 이름',
+        'PASSWORD': 'User 암호',
+        'HOST': 'localhost',
+        'PORT':  '3306', # mariaDB default 포트설정
+        'OPTIONS' :      # http://tibyte.kr/274 (Warning 경고시)
+            {'init_command': 
+            "SET sql_mode='STRICT_TRANS_TABLES'"},
+        }
+}
+```
+
+
+
 
 # Mastering Django Core
 

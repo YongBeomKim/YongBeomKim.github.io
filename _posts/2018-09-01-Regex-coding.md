@@ -2,7 +2,7 @@
 title : 생활코딩 - 정규식의 사용
 last_modified_at: 2018-09-01T02:45:06-05:00
 header:
-  overlay_image: /assets/images/book/regex.png
+  overlay_image: /assets/images/code/regex.png
 categories:
   - html
 tags: 
@@ -68,9 +68,6 @@ Out >> ['nd', 'esd', 'id']
 ## **Pattern (경계)**
 
 1. **\w** : 
-
-
-
 1. **낭비없이 빠르게** 구현한다
 
 <figure class="align-center">

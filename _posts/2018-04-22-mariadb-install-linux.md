@@ -63,20 +63,20 @@ $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 변경 내용을 적용 후 서버를 재실행 한다
 
 ```r
+# 새로운 설치 후 새로운 설정값을 실행
 $ sudo service mysql restart
-$ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실행한다
+$ mysql_secure_installation
 ```
 
 ##  MariaDB 초기 비밀번호 재설정 [Blog](https://blog.naver.com/hyungjun212/221218211094)
 
-```sql
-$ mysql_secure_installation    # 새로운 설치 후 새로운 설정값을 실행한다
+```r
+# 새로운 설치 후 새로운 설정값을 실행한다
+# 이번에는 아래 처럼 비밀번호 오류가 발생하였다.
+$ mysql_secure_installation    
 Enter current password for root (enter for none): 
 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 ```
-
-**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. google 이 아닌 Naver 에서 해답을 찾을 수 있었다.
-{: .notice--info}
 
 ```sql
 # 이걸로 강제로 접속한다 (이것도 안되면 재설치를..)
@@ -90,9 +90,11 @@ MariaDB[mysql]> FLUSH PRIVILEGES;
 MariaDB[mysql]> QUIT;
 ```
 
-원인은 Terminal plugin 이 설치되는 바람에 꼬여서 그렇다고 카더라...
+**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. Naver 에서 해답을 찾을 수 있었고 원인은 Terminal plugin 이 설치되는 바람에 꼬여서 그렇다고 카더라...
+{: .notice--info}
 
-##  MariaDB 초기 설정값 만들기 [Blog](https://suwoni-codelab.com/linux/2017/05/24/Linux-CentOS-MariaDB/)
+##  MariaDB 초기 설정값 만들기 
+[Blog](https://suwoni-codelab.com/linux/2017/05/24/Linux-CentOS-MariaDB/) 내용을 참고하여 정리를 하였습니다.
 
 ### MariaDB 초기설정
 
