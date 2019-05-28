@@ -47,7 +47,7 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 
 ## **vscode-database** in vscode
 
-**SQLite** 를 설치하면 dependancy 로 설치되는 **[vs market](https://marketplace.visualstudio.com/items?itemName=bajdzis.vscode-database)** 모듈로써, mysql 등도 연결 가능 합니다.
+**SQLite** 를 설치하면 dependancy 로 설치되는 **[vs market](https://marketplace.visualstudio.com/items?itemName=bajdzis.vscode-database)** 모듈을 활용하여 **mysql** 등의 연결이 가능 합니다.
 
 <figure class="align-center">
   <img src="https://raw.githubusercontent.com/Bajdzis/vscode-database/master/readme/v2.0-result.gif">
