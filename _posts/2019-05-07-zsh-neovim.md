@@ -29,7 +29,7 @@ $ sudo apt-get install neovim
 
 **vim** 에서는 `.vimrc` 파일을 사용하여 [theme 변경방법](https://askubuntu.com/questions/912404/how-to-change-syntax-color-in-vim) 을 활용 합니다. 하지만 **neovim** 에서는 [예제](https://github.com/owais/dotfiles/blob/master/nvim/init.vim) 를 참고하여  `.convig/nvim/init.vim` 파일로 설정값을 정의 합니다.
 
-다음의 내용은 **[onedark](https://github.com/joshdick/onedark.vim)** 테마와 [vim-airline](https://github.com/vim-airline/vim-airline) 하단 Bar 를 추가한 설정 내용 입니다. 
+다음의 내용은 **[onedark](https://github.com/joshdick/onedark.vim)** 테마와 [vim-airline](https://github.com/vim-airline/vim-airline) 하단 Bar 를 추가하는 내용 입니다. 보다 다양한 theme 들을 확인하고 싶은 경우에는 **[vimcolors](https://vimcolors.com/)** 를 확인합니다
 
 ```python
 " 기본 설정값
