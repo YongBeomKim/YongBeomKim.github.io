@@ -1,5 +1,5 @@
 ---
-title : ubuntu - Vim & Zsh 
+title : ubuntu - NeoVim & Zsh 
 last_modified_at: 2019-05-07T12:45:06-05:00
 header:
   overlay_image: /assets/images/code/shell.png
@@ -14,7 +14,7 @@ categories:
 
 <br/>
 # NEO VIM
-**Neo Vim** 이 가장 무난했습니다. **Space Vim** 은 생각보다 무겁고 우분투에서 fictx 폰트와 충돌로 터미널이 먹통이 되는 등 한글 환경에서는 불안정한 모습을 보여 줬습니다. 그리고 **vim** 과 중복설치시 설정값을 공유하는 등의 문제가 발생하였습니다.
+**Neo Vim** 이 가장 무난했습니다. **Space Vim** 무겁고 우분투에서 fictx 폰트와 충돌로 터미널이 먹통이 되는 등 불안정한 모습을 보여 줬습니다. **vim** 과 중복설치시 설정값을 공유하는 등의 문제가 발생하므로 **vim** 을 제거 후 설치 하도록 합니다.
 
 ## INSTALL
 다음의 내용을 설치한 뒤 `$nvim 파일.확장자` 로 내용을 실행합니다
@@ -24,22 +24,40 @@ $ sudo apt-get update
 $ sudo apt-get install neovim
 ```
 
-## Theme 변경
-기본 문법 highlight 는 생각보다 어두워서 시의성이 좋지 않았습니다. 이를 극복하기 위해 [변경방법](https://askubuntu.com/questions/912404/how-to-change-syntax-color-in-vim) 을 사용합니다.
-
-```r
-$ ls /usr/share/vim/vim81/colors
-default.vim  elflord.vim   koehler.vim  pablo.vim
-shine.vim  torte.vim  blue.vim  delek.vim  evening.vim
-morning.vim  peachpuff.vim  slate.vim  zellner.vim
-darkblue.vim  desert.vim   industry.vim  murphy.vim
-ron.vim
-```
-
-## Plug in
+## Plug In 설정 및 설치
 [설정방법](https://jmyang.kr/2017/11/23/neovim/) 에 대해 정리한 내용을 참고 합니다. 
 
-**vim** 에서는 `.vimrc` 파일을 사용하여 설정값을 변경하는데, **neovim** 에서는 [설정내용 예제](https://github.com/owais/dotfiles/blob/master/nvim/init.vim) 를 참고해 보면  `.convig/nvim/init.vim` 파일을 사용하여 내용을 추가 가능합니다. 이들 사이의 설정 중복될수 있어서 유의 합니다. 
+**vim** 에서는 `.vimrc` 파일을 사용하여 [theme 변경방법](https://askubuntu.com/questions/912404/how-to-change-syntax-color-in-vim) 을 활용 합니다. 하지만 **neovim** 에서는 [예제](https://github.com/owais/dotfiles/blob/master/nvim/init.vim) 를 참고하여  `.convig/nvim/init.vim` 파일로 설정값을 정의 합니다.
+
+다음의 내용은 **[onedark](https://github.com/joshdick/onedark.vim)** 테마와 [vim-airline](https://github.com/vim-airline/vim-airline) 하단 Bar 를 추가한 설정 내용 입니다. 
+
+```python
+" 기본 설정값
+syntax enable                                                                set encoding=utf-8                                                           set termguicolors
+
+" 플러그인 설치를 위한 설정                                 
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))                   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim      autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim     endif                                                                                                                      
+" 플러그인 설치
+" nvim 에서 :PlugInstall 을 실행하면 설치 됩니다
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
+" 설치된 플러그인 적용하기                          
+colorscheme onedark
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ } 
+```
+
+다음의 내용을 정의한 뒤, [neovim](https://github.com/vim-airline/vim-airline) 에서 **PlugInstall** 을 실행하면 정의된 플러그 인들이 설치 됩니다
+{: .notice--info}
 
 <br/>
 # Ubuntu 터미널 설정
