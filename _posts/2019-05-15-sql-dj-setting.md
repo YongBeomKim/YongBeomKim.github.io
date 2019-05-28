@@ -60,25 +60,42 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 ## 데이터베이스 와 사용자 추가
  
 ```sql
-markbaum@markbaum:~$ mysql -u root -p
+$ mysql -u root -p
 Enter password:
-> CREATE DATABASE  DB이름 CHARACTER SET UTF8;
-> CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';
-> GRANT ALL PRIVILEGES ON DB이름.* TO 사용자@localhost;
-> FLUSH PRIVILEGES;
-> exit; 
+sql> CREATE DATABASE myproject CHARACTER SET UTF8; 
+sql> CREATE USER 'myproject'@'%' IDENTIFIED by 'djangodb';
+sql> GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'localhost';
+sql> FLUSH PRIVILEGES;
+sql> exit; 
 ```
 
-## 사용자 추가
+## 사용자 관리
+작업을 하다보면 사용자 정보가 중복 저장되었고 비밀번호를 제대로 관리하지 못해 문제가 발생 하였습니다. 
 
 ```sql
-> create user '이름'@'%' identified by '비밀번호';
-> flush privileges;   # 전체 권한을 부여한다 
+sql> use mysql;
+sql> select host, user, password from user;
++-----------+-----------+----------------+
+| host      | user      | password       |
++-----------+-----------+----------------+
+| localhost | myproject | *5102147677551 |
+| %         | myproject | *0129F440BCA46 |
++-----------+-----------+----------------+
+```
+host 정보에 나타난 `localhost` 는 **내부** 에서의 접근, `%` 는 **외부** 접근용 설정 입니다.
+{: .notice--info}
+
+
+## 사용자만 추가
+
+```sql
+> create user '사용자이름'@'%' identified by '비밀번호';
+> flush privileges;   # 전체 권한을 부여 합니다 
 > quit;
 Bye
 ```
 
-위에서 설정한 이름과 비번으로 실행한다.
+위에서 설정한 이름과 비번으로 실행을 합니다.
 
 ```sql
 $ mysql -u 이름 -p
