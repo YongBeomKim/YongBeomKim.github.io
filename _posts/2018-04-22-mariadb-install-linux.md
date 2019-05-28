@@ -11,10 +11,9 @@ tags:
 toc: true     
 ---
 
-odroid xu4 에서 postgresql 설치 과정중[정식 설치방법](https://www.postgresql.org/download/linux/ubuntu/) armhf 미인식 문제로 계속 오류가 발생했다.
+odroid xu4 에서 postgresql 설치중 [정식 설치방법](https://www.postgresql.org/download/linux/ubuntu/) 을 보면 지원 가능한 시스템으로 **amd64, i386, ppc64el** 에서만 가능하여 **armhf 미인식 문제로** 계속 오류가 발생 했습니다.
 
 얼마전 특강에서 workbench를 조금 다뤄본 경험과 함께, mariaDB를 설치 한 결과 바로 설치가 되었다. (**Simple is The Best**가 구조 부분에선 정답임을 다시한번 느낄 수 있었다) 이번 기회에 설치방법과 간단한 사용법을 정리하면서 django에서 적용하는 계기로 삼아보려고 한다.
-
 
 ## MariaDB Installation [Document](https://mariadb.com/kb/en/library/installing-mariadb-deb-files/)[설치Blog](http://awesometic.tistory.com/14)
 
