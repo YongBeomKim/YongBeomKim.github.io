@@ -1,8 +1,8 @@
 ---
-title : MariaDB in Django
+title : SQL MariaDB in Django
 last_modified_at: 2019-05-15T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/djangosql.jpg
+  overlay_image: /assets/images/code/djangosql.jpg
 categories:
   - django
 tags: 
@@ -22,7 +22,6 @@ toc: true
 [GitHub](https://github.com/dbcli/mycli) Python 으로 제작된 모듈로써 youtube-dl, neo-vim 등과 같이 파이썬 환경에서 설치를 한 뒤, 설치 환경의 터미널에서 `$ mycli -u root` 를 실행하면 **vim** 과 같은 작업 환경이 실행 됩니다.
 
 ### 설치
-
 ```r
 $ sudo pip3 install mycli
 ```
@@ -31,7 +30,7 @@ $ sudo pip3 install mycli
 {: .notice--info}
 
 ### Syntex Color
-[공식 Site](https://www.mycli.net/syntax) 기본 설정값은 어두운 녹색으로 터미널에서 바로 실행하기엔 시의성이 나쁩니다. `~/.myclirc` 설정 파일의 내용을 변경하면 다양한 Syntex 파레트로 변경 가능합니다. 추천하는 테마로는 **monokai** 와 **bw** 등을 추천합니다. 
+[공식 Site](https://www.mycli.net/syntax) 기본 설정값은 어두운 녹색으로 시의성이 나쁩니다. `~/.myclirc` 설정 내용을 변경하여 다양한 Syntex 파레트로 변경 가능합니다. 추천하는 테마는 **monokai** 와 **bw** 등이 있습니다. 
 
 ```r
 # Syntax coloring style. Possible values (many support the "-dark" suffix):
@@ -39,7 +38,7 @@ $ sudo pip3 install mycli
 syntax_style = default
 ```
 
-설정중 **rrt, vim** 등이 있는데 실습결과, **vim** 은 해당 명령을 실행하면 vim 환경으로 전환되어 다시 빠져나와야 하는 등의 번거로움이 있었습니다. 단순 theme 만이 아닌 해당 모듈을 활용하는 것으로 보이는 만큼 주의를 당부합니다.
+설정 중 **rrt, vim** 등은 **vim** 환경으로 전환되어 실행 후 다시 빠져 나와야 하는 등의 번거로움이 있었습니다.
 {: .notice--info}
 
 ## **SQLITE** in vscode
@@ -55,17 +54,14 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
   <figcaption>vscode-database</figcaption>
 </figure>
 
+<br/>
+# Django와 연결을 위한 DataBase 및 사용자 추가
 
-
-
-## Django와 연결을 위한 DataBase 및 사용자 추가
-
-### 새로운 데이터베이스와 사용자를 추가한다
+## 새로운 데이터베이스와 사용자를 추가한다
  
 ```sql
 markbaum@markbaum:~$ mysql -u root -p
-Enter password: 
-
+Enter password:
 > CREATE DATABASE  DB이름 CHARACTER SET UTF8;
 > CREATE USER 사용자@localhost IDENTIFIED BY '비밀번호';
 > GRANT ALL PRIVILEGES ON DB이름.* TO 사용자@localhost;
@@ -73,7 +69,7 @@ Enter password:
 > exit; 
 ```
 
-### 사용자만 추가
+## 사용자만 추가
 
 ```sql
 > create user '이름'@'%' identified by '비밀번호';
@@ -93,7 +89,9 @@ MariaDB [(none)]>
 
 ## Django와 연결 [Blog](http://pope8.tistory.com/6)
 
-### Mysql-client Python 설치하기 [github](https://github.com/PyMySQL/mysqlclient-python) | [mirror 사이트](https://packages.ubuntu.com/artful-updates/amd64/libmysqlclient-dev/download)
+### Mysql-client Python 설치하기 
+1. [github](https://github.com/PyMySQL/mysqlclient-python)
+2. [mirror 사이트](https://packages.ubuntu.com/artful-updates/amd64/libmysqlclient-dev/download)
 
 ```r
 $ sudo apt-get install python-dev libmysqlclient-dev
@@ -119,27 +117,19 @@ DATABASES = {
 }
 ```
 
-
-
-
-# Mastering Django Core
-
 <br>
+# MariaDB 를 Django와 연결 
+Mastering Django Core 의 내용을 살펴 보겠습니다
 
-## MariaDB 를 Django와 연결 
-
-### Mysql-client Python 설치
-
-```
+## Mysql-client Python 설치
+```r
 $ sudo apt-get install python-dev libmysqlclient-dev
 $ sudo apt-get install -f
 $ pip install mysqlclient
 ```
 
-
 ```python
 # settings.py
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -153,9 +143,6 @@ DATABASES = {
             "SET sql_mode='STRICT_TRANS_TABLES'"},}}
 ```
 
-
-<br>
-
 ## Django 에서 Model 정의하기
 
 Python 코드로 직접 SQL 입력출력 가능하다. 하지만 Django의 Model Data Layout을 활용하는 이유를 열거하자면 
@@ -165,28 +152,26 @@ Python 코드로 직접 SQL 입력출력 가능하다. 하지만 Django의 Model
 3. DB의 OverHead를 효과적으로 관리 (Python 객체 재활용)
 4. 단, SQL결과와 100% 일치하진 않는다
 
-
-### models.py
+## models.py
 
 ```python
 # models.py
-
 # CREATE TABLE books_publisher ("id" serial NOT NULL PRIMARY KEY...)
 class Publisher(models.Model):
-    name           = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
 
 class Books(models.Model):
     # 기본키 Class 를 명확히 선언 및 관계를 정의한다 (django 2.0)
-    publisher        = models.ForeignKey('Publisher', on_delete=models.CASCADE)
+    publisher = models.ForeignKey('Publisher',\
+     on_delete = models.CASCADE)
 ```
 
 **Check in Django:** 터미널에서 `$ python manage.py check` 를 활용하면, 검사 프레임워크를 가동하여 **일반적인 모델의 문제를 잡아주고** 정상이면 `System check identified no issues (0 silenced).` 를 출력한다
 {: .notice--danger}
 
+## Model 을 SQL DataBase와 연결 
 
-### Model 을 SQL DataBase와 연결 
-
-```
+```r
 $ python manage.py makemigrations 앱이름
 Migrations for '앱이름':
   books/migrations/0001_initial.py
@@ -196,20 +181,18 @@ Migrations for '앱이름':
     - Add field publisher to books
 ```
 
-
 SQL 구문으로 내용을 출력
 
-```
+```r
 $ python manage.py sqlmigrate 앱이름 0001
 BEGIN;
 -- Create model Author
 CREATE TABLE `books_author` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY ..
 ```
 
-
 SQL에 해당 작업을 적용한다 
 
-```
+```r
 $ python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, books, contenttypes, sessions
@@ -217,19 +200,17 @@ Running migrations:
   Applying books.0001_initial... OK
 ```
 
-
-<br>
-## mariaDB (mySQL) 에서 확인 
-
+<br/>
+# mariaDB (mySQL) 에서 확인 
 mariaDB 접속
+
 ```sql
 $ sudo mysql -u사용자 -p
 Enter password: 
 ```
-
 DataBase 목록 확인 및 변경
-```sql
 
+```sql
 MariaDB [(none)]> show databases;
 +--------------------+
 | Database           |
@@ -243,6 +224,7 @@ Database changed
 ```
 
 Table 목록 확인 및 살펴보기
+
 ```sql
 MariaDB [myproject]> show tables;
 +----------------------------+
@@ -269,14 +251,12 @@ MariaDB [myproject]> desc books_books;
 **Check in mariaDB:** postgresql 보다 직관적이여서, 명령어를 익히기 용이하다 
 {: .notice--info}
 
-
-
-<br>
-## Test 접속시 1044 접속 오류가 발생하는 경우
+<br/>
+# Test 접속시 1044 접속 오류가 발생하는 경우
 
 [solution Blog](http://www.dlxedu.com/askdetail/3/d29001d0e92a66e4119cb3d696065569.html) 중국 사이트로 해결이 추가됨
 
-```
+```r
 $ python manage.py test 모델 
 Creating test database for alias 'default'...
 Got an error creating the test database: (1044, "Access denied for user 'myproject'@'localhost' to database 'test_myproject'")
@@ -286,16 +266,13 @@ Django의 **test** 실행시에는 권한이 없어서 `ERROR 1044 (42000): Acce
 {: .notice--danger}
 
 
-### 우선 root 계정으로 접속한다
-
-```
+## 우선 root 계정으로 접속한다
+```r
 $ mysql -uroot -p       # 01 root 계정으로 접속한다
 Enter password: 
 ```
 
-
-### myproject 계정의 권한 내용을 살펴본다
-
+## myproject 계정의 권한 내용을 살펴본다
 ```sql
 MariaDB [(none)]> show grants for myproject@localhost;
 +---------------------------------+
@@ -309,17 +286,13 @@ MariaDB [(none)]> show grants for myproject@localhost;
 +----------------------------------------------------------------------+
 ```
 
-
-### **_test_myproject.*_** 로 접속하는경우 모든 권한을 부여한다
-
+## **_test_myproject.*_** 로 접속하는경우 모든 권한을 부여한다
 ```sql
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON test_myproject.* TO 'myproject'@'localhost' IDENTIFIED BY '비밀번호';
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-
-### django Setting 에서 test 계정을 추가한다
-
+## django Setting 에서 test 계정을 추가한다
 ```python
 DATABASES = {
     'default': {
@@ -329,11 +302,10 @@ DATABASES = {
       }
 ```
 
+## 테스트를 실행한다
 
-### 테스트를 실행한다
-
-```
-$ python manage.py test 모델 
+```r
+$ python manage.py test 모델명
 
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
@@ -342,4 +314,4 @@ Ran 0 tests in 0.000s
 OK
 ```
 
-정상적으로 작동되는 걸 볼 수 있다
+정상적으로 작동되는 걸 볼 수 있습니다

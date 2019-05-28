@@ -1,5 +1,5 @@
 ---
-title : SQL Tutorial and JOIN by 생활코딩
+title : SQL and JOIN by 생활코딩
 last_modified_at: 2019-05-14T12:45:06-05:00
 header:
   overlay_image: /assets/images/code/sql.png

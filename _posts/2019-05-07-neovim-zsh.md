@@ -24,15 +24,13 @@ $ sudo apt-get update
 $ sudo apt-get install neovim
 ```
 
-## Python in NEOVIM
-[파이썬 설정](https://yufanlu.net/2018/09/03/neovim-python/) 은 블로그 내용을 활용하여 내용을 추가 합니다.
+## Python In NEOVIM
+**[파이썬 설정(영문)](https://yufanlu.net/2018/09/03/neovim-python/)** 은 **[블로그(한글)](https://blog2.lucent.me/vim/neovim#c3b)** 내용을 활용하여 **[설정방법](https://jmyang.kr/2017/11/23/neovim/)** 을 추가 합니다.
 
 ## Plug In 설정 및 설치
-[설정방법](https://jmyang.kr/2017/11/23/neovim/) 에 대해 정리한 내용을 참고 합니다. 
-
 **vim** 에서는 `.vimrc` 파일을 사용하여 [theme 변경방법](https://askubuntu.com/questions/912404/how-to-change-syntax-color-in-vim) 을 활용 합니다. 하지만 **neovim** 에서는 [예제](https://github.com/owais/dotfiles/blob/master/nvim/init.vim) 를 참고하여  `.convig/nvim/init.vim` 파일로 설정값을 정의 합니다.
 
-다음의 내용은 **[onedark](https://github.com/joshdick/onedark.vim)** 테마와 [vim-airline](https://github.com/vim-airline/vim-airline) 하단 Bar 를 추가하는 내용 입니다. 보다 다양한 theme 들을 확인하고 싶은 경우에는 **[vimcolors](https://vimcolors.com/)** 를 확인합니다
+다음의 내용은 **[onedark](https://github.com/joshdick/onedark.vim)** 테마와 **[vim-airline](https://github.com/vim-airline/vim-airline)** 하단 Bar 를 추가하는 내용 입니다. 보다 다양한 theme 들을 확인하고 싶은 경우에는 **[vimcolors](https://vimcolors.com/)** 를 확인합니다
 
 ```python
 " 기본 설정값
