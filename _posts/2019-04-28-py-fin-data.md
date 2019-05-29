@@ -1,6 +1,6 @@
 ---
 title : finance Data in Python
-last_modified_at: 2019-04-08T10:45:06-05:00
+last_modified_at: 2019-04-28T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/kensho.jpg
 categories:

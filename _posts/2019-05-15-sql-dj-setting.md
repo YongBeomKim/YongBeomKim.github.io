@@ -2,7 +2,7 @@
 title : SQL Mycli and In Django
 last_modified_at: 2019-05-15T12:45:06-05:00
 header:
-  overlay_image: /assets/images/code/sql.png
+  overlay_image: /assets/images/book/sql.png
 categories:
   - django
 tags: 
@@ -48,7 +48,7 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 
 ## **vscode-database** in vscode
 
-**SQLite** 를 설치하면 dependancy 로 설치되는 **[vs market](https://marketplace.visualstudio.com/items?itemName=bajdzis.vscode-database)** 모듈을 활용하여 **mysql** 등의 연결이 가능 합니다.
+**SQLite** 를 설치하면 dependancy 로 설치되는 **[vs market](https://marketplace.visualstudio.com/items?itemName=bajdzis.vscode-database)** 모듈을 활용하여 **mysql** 등의 연결이 가능 합니다. 보다 자세한 사용방법은 **[웹문서](https://vscode.tistory.com/entry/SQL-Server-mssql#recentEntries)** 의 내용을 참고 하면 됩니다.
 
 <figure class="align-center">
   <img src="https://raw.githubusercontent.com/Bajdzis/vscode-database/master/readme/v2.0-result.gif">
@@ -61,6 +61,25 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 <br/>
 # Django 와 DataBase 추가
 
+## 사용자 관리
+등록된 사용자 정보를 확인 합니다.
+
+```sql
+sql> use mysql;
+sql> select host, user, password from user;
++-----------+---------+----------------+
+| host      | user    | password       |
++-----------+---------+----------------+
+| localhost | root    | *5102147677551 |
+| %         | ironman | *0129F440BCA46 |
++-----------+---------+----------------+
+```
+host 정보에 나타난 `localhost` 는 **내부** 에서의 접근, `%` 는 **외부** 접근용 설정 입니다.
+{: .notice--info}
+
+
+
+
 ## 데이터베이스 와 사용자 추가
  
 ```sql
@@ -72,22 +91,6 @@ sql> GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'localhost';
 sql> FLUSH PRIVILEGES;
 sql> exit; 
 ```
-
-## 사용자 관리
-작업을 하다보면 사용자 정보가 중복 저장되었고 비밀번호를 제대로 관리하지 못해 문제가 발생 하였습니다. 
-
-```sql
-sql> use mysql;
-sql> select host, user, password from user;
-+-----------+-----------+----------------+
-| host      | user      | password       |
-+-----------+-----------+----------------+
-| localhost | myproject | *5102147677551 |
-| %         | myproject | *0129F440BCA46 |
-+-----------+-----------+----------------+
-```
-host 정보에 나타난 `localhost` 는 **내부** 에서의 접근, `%` 는 **외부** 접근용 설정 입니다.
-{: .notice--info}
 
 
 ## 사용자만 추가

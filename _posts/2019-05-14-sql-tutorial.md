@@ -2,7 +2,7 @@
 title : SQL and JOIN by 생활코딩
 last_modified_at: 2019-05-14T12:45:06-05:00
 header:
-  overlay_image: /assets/images/code/sql.png
+  overlay_image: /assets/images/book/sql.png
 categories:
   - sql
 tags: 
@@ -194,9 +194,9 @@ mysql> SELECT * FROM products
 | _              | _ 1개당 1글자 |
 
 <br/>
-# **관계형 데이터베이스**
+# **관계형 데이터베이스 (추상화)**
 
-**필드 내 데이터가 중복되지 않도록 구조화 작업을** 하면 성능이 향상 됩니다. **Foreign key** 테이블과 **Primary Key** 테이블로 저장한 뒤, **[JOIN](https://www.youtube.com/watch?v=U8FWvjaQBDs)** 명령으로 두 테이블을 합친 1개의 테이블 처럼 데이터를 활용 할 수 있습니다.
+필드 내 데이터가 중복되지 않도록 **모델의 추상화 작업을** 추가하면 성능이 향상 됩니다. **Foreign key** 테이블과 **Primary Key** 테이블로 저장한 뒤, **[JOIN](https://www.youtube.com/watch?v=U8FWvjaQBDs)** 명령으로 두 테이블을 합친 1개의 테이블 처럼 데이터를 활용 할 수 있습니다.
 
 ## **JOIN**
 

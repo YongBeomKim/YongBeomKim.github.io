@@ -1,6 +1,6 @@
 ---
 title : ubuntu - NeoVim & Zsh 
-last_modified_at: 2019-05-07T12:45:06-05:00
+last_modified_at: 2019-05-05T12:45:06-05:00
 header:
   overlay_image: /assets/images/code/shell.png
 categories:
