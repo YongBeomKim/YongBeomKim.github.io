@@ -1,5 +1,5 @@
 ---
-title : SQL Mycli and In Django
+title : SQL Mycli and Django
 last_modified_at: 2019-05-15T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/sql.png
