@@ -12,13 +12,12 @@ tags:
 toc: true    
 ---
 
-**sqlite3** 는 **개별파일만** 연결하면 되지만, **SQL Server** 는 **고유주소와 id, Password** 를 입력해야 하는 번거로움 때문에 접근이 어렵습니다. 하지만 체계적이고 대형 시스템을 활용하기 위해선 이러한 작업이 안전성을 담보하는 등 익숙해 질 필요가 있습니다.
-
+**sqlite3** 는 **개별파일만** 연결하여 사용성은 높지만 보안 및 사용자 관리가 어려운 반면, **MySQL** 등은  **고유주소, 사용자ID, Password** 등을 설정해야 하는 번거로움이 있지만, 시스템 및 작업의 안전성을 담보하는 만큼 익숙해 질 필요가 있습니다.
 
 <br/>
 # Django 와 DataBase 추가
 
-## 사용자 관리
+## MySQL 사용자 관리
 등록된 사용자 정보를 확인 합니다.
 
 ```sql
@@ -31,14 +30,19 @@ sql> select host, user, password from user;
 | %         | ironman | *0129F440BCA46 |
 +-----------+---------+----------------+
 ```
-host 정보에 나타난 `localhost` 는 **내부** 에서의 접근, `%` 는 **외부** 접근용 설정 입니다.
+host 에 표시된 `localhost` 는 **내부** 접근 전용, `%` 는 **외부** 접근 설정 입니다.
 {: .notice--info}
 
-
-
-
 ## 데이터베이스 와 사용자 추가
- 
+모든 권한을 갖는 외부에서 접속 가능한 `id:ceo` , `pw:ceopw` 사용자를 추가 합니다.
+
+```sql
+sql> CREATE USER ceo@'%' IDENTIFIED BY 'ceopw';
+sql> GRANT SELECT ON *.* TO ceo@'%';
+```
+
+
+
 ```sql
 $ mysql -u root -p
 Enter password:

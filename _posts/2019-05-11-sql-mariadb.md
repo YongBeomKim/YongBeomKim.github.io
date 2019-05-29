@@ -248,11 +248,11 @@ $ sudo systemctl reload apache2
 ```r
 $ sudo apt-get install phpmyadmin php-mbstring php-gettext
 
- | been installed and configured, /usr/share/doc/phpmyadmin. |
- | Configure database for phpmyadmin with dbconfig-common?   |
- |                                                           |
- |              <Yes>                   <No>                 |
- +-----------------------------------------------------------+
+|been installed and configured, /usr/share/doc/phpmyadmin.|
+|Configure database for phpmyadmin with dbconfig-common?  |
+|                                                         |
+|             <Yes>                   <No>                |
++---------------------------------------------------------+
 ```
 접속 서버프로그램은 **apache2**를 설정하고, 위와같이 자동설정 여부는 `<No>` 를 선택합니다.
 
