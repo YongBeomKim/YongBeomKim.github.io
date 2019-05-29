@@ -1,5 +1,5 @@
 ---
-title : SQL MariaDB in Django
+title : SQL Mycli and In Django
 last_modified_at: 2019-05-15T12:45:06-05:00
 header:
   overlay_image: /assets/images/code/sql.png
@@ -30,16 +30,17 @@ $ sudo pip3 install mycli
 {: .notice--info}
 
 ### Syntex Color
-[공식 Site](https://www.mycli.net/syntax) 기본 설정값은 어두운 녹색으로 시의성이 나쁩니다. `~/.myclirc` 설정 내용을 변경하여 다양한 Syntex 파레트로 변경 가능합니다. 추천하는 테마는 **monokai** 와 **bw** 등이 있습니다. 
+**[Syntex](https://www.mycli.net/syntax)** 기본 설정값은 어두운 녹색으로 시의성이 나쁩니다. `~/.myclirc` 설정 내용을 변경하여 다양한 Syntex 파레트로 변경 가능합니다. 추천하는 테마는 **monokai** 와 **bw** 등이 있습니다. 
+
+**[Pager](https://www.mycli.net/pager)** 기본값은 활성화로, 쿼리문을 실행하면 별도의 Page 에서 결과물이 출력됩니다. **mycli** 에서는 이를 장점으로 설명 하지만, 내용을 보기엔 불편하여 이 부분은 비 활성화 하였습니다
 
 ```r
-# Syntax coloring style. Possible values (many support the "-dark" suffix):
 # Screenshots at http://mycli.net/syntax
-syntax_style = default
-```
+syntax_style = monokai
 
-설정 중 **rrt, vim** 등은 **vim** 환경으로 전환되어 실행 후 다시 빠져 나와야 하는 등의 번거로움이 있었습니다.
-{: .notice--info}
+# disabled pager on startup
+enable_pager = True
+```
 
 ## **SQLITE** in vscode
 
@@ -54,6 +55,9 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
   <figcaption>vscode-database</figcaption>
 </figure>
 
+**Mysql** 설정 연결을 시도하면 **connect_to localhost port 52698: failed** [오류](https://github.com/Microsoft/vscode/issues/50172) 가 발생하는 경우에는 [Remote VSCode](https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode) 와 충돌로 발생하는 것으로 이를 제거 후 실행하면 됩니다.
+{: .notice--infos} 
+
 <br/>
 # Django 와 DataBase 추가
 
@@ -63,7 +67,7 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 $ mysql -u root -p
 Enter password:
 sql> CREATE DATABASE myproject CHARACTER SET UTF8; 
-sql> CREATE USER 'myproject'@'%' IDENTIFIED by 'djangodb';
+sql> CREATE USER djangodb@localhost IDENTIFIED by 'djangodb';
 sql> GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'localhost';
 sql> FLUSH PRIVILEGES;
 sql> exit; 
