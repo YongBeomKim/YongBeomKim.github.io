@@ -15,9 +15,30 @@ odroid xu4 에서 postgresql 설치중 [정식 설치방법](https://www.postgre
 
 얼마전 특강에서 workbench를 조금 다뤄본 경험과 함께, mariaDB를 설치 한 결과 바로 설치가 되었다. (**Simple is The Best**가 구조 부분에선 정답임을 다시한번 느낄 수 있었다) 이번 기회에 설치방법과 관련 도구들의 설치 및 사용법을 정리해 보겠습니다.
 
-## MariaDB Installation [Document](https://mariadb.com/kb/en/library/installing-mariadb-deb-files/)[설치Blog](http://awesometic.tistory.com/14)
+## MariaDB Installation 
+[Document](https://downloads.mariadb.org/mariadb/repositories) 에서 설치 목적에 부합하는 버젼을 선택한 뒤 설치를 합니다.
 
 ```r
+$ sudo apt-get update
+$ sudo apt-get install mariadb-server
+```
+
+>mariadb-server : 의존: mariadb-server-10.3 (>= 1:10.3.15+maria~xenial)E: 망가진 고정 패키지가 있습니다.
+
+**[설치Blog](http://awesometic.tistory.com/14)** 문제는 ARM CPU 에서는 지원이 제한되어 위 내용으로 설치하면 다음과 같은 오류가 발생합니다. 때문에 **[설정값을 수정](https://itsfoss.com/how-to-remove-or-delete-ppas-quick-tip/)** 하기 위해 `sudo ls /etc/apt/sources.list.d/` 에 저장된 불필요한 경로파일을 삭제하고  `sudo vim /etc/apt/sources.list` 내부의 문제가 되는 경로들을 제거한 뒤 재실행 합니다.
+{: .notice--info} 
+
+> Thread: Sub-process /usr/bin/dpkg returned an error code (1) trying to install mariaDB
+
+설치도중 문제가 생긴 경우 위와 같은 오류를 출력합니다. `$ sudo apt-get --purge remove "mariadb*"` 등 모든 내용을 제거한 뒤 다음 절차에 따라 **[재설치를](https://ubuntuforums.org/showthread.php?t=2302804)** 하면 해결 가능합니다.
+
+```r
+$ sudo service mysql stop
+$ sudo apt-get purge mariadb-server-10.0
+$ sudo apt-get --purge remove "mariadb*"
+$ sudo apt-get autoremove
+$ sudo apt-get clean
+
 $ sudo apt-get update
 $ sudo apt-get install mariadb-server
 ```
@@ -25,10 +46,8 @@ $ sudo apt-get install mariadb-server
 우분투에 MariaDB를 처음 설치하면 캐릭터셋이 기본으로 **Latin-1** 으로 설정되어 있습니다. 한글을 사용하려면 **euc-kr** 또는 **UTF-8** 으로 기본 설정을 변경해야 합니다. 이를 변경하기 위해 [/etc/mysql/conf.d/mysql.cnf](https://jm4488.tistory.com/23) 파일을 수정 합니다.
 
 ```r
-$ sudo vi /etc/mysql/conf.d/mysql.cnf
-```
+$ sudo nvim /etc/mysql/conf.d/mysql.cnf
 
-```r
 # MariaDB-specific config fil*e.
 # Read by /etc/mysql/my.cnf
  
@@ -47,51 +66,40 @@ character_set_server = utf8mb4
 collation_server = utf8mb4_unicode_ci
 ```
 
-```r
-$ sudo vi /etc/mysql/conf.d/mysql.cnf
-```
-
 외부에서 접속을 위해 연결가능 Ip 주소 제한을 풀어 줍니다
 
 ```r
-$ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+$ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # 아래의 내용 앞에 #을 추가한다. (0.0.0.0 or * 도 가능해진다)
 # bind-address = 127.0.0.1 
 ```
 
-변경 내용을 적용 후 서버를 재실행 한다
+변경 내용을 적용 후 서버를 재실행 합니다. CLI 모드에선 다음 내용을 실행해도 비밀번호를 입력하는 절차로 진행이 되지 않습니다.
 
 ```r
 # 새로운 설치 후 새로운 설정값을 실행
 $ sudo service mysql restart
+$ systemctl restart mariadb
 $ mysql_secure_installation
-```
-
-##  MariaDB 초기 비밀번호 재설정 [Blog](https://blog.naver.com/hyungjun212/221218211094)
-
-```r
-# 새로운 설치 후 새로운 설정값을 실행한다
-# 이번에는 아래 처럼 비밀번호 오류가 발생하였다.
-$ mysql_secure_installation    
 Enter current password for root (enter for none): 
 ERROR 1698 (28000): Access denied for user 'root'@'localhost'
 ```
+
+##  MariaDB 초기 비밀번호 재설정 
+[Blog](https://blog.naver.com/hyungjun212/221218211094) 다음의 내용대로 DataBase 내부의 값을 변경하는 방식으로 해결 가능합니다.
 
 ```sql
 # 이걸로 강제로 접속한다 (이것도 안되면 재설치를..)
 $ sudo mysql -u root mysql  
 
-MariaDB[(none)]> USE mysql;
-MariaDB[mysql]> SELECT user, plugin FROM user;
-MariaDB[mysql]> UPDATE user SET plugin='';
-MariaDB[mysql]> UPDATE user SET password=PASSWORD("설정 비밀번호") WHERE User='roor';
-MariaDB[mysql]> FLUSH PRIVILEGES;
-MariaDB[mysql]> QUIT;
+sql> USE mysql;
+sql> SELECT user, plugin FROM user;
+sql> UPDATE user SET plugin='';
+sql> UPDATE user SET password=PASSWORD("설정 비밀번호") WHERE User='roor';
+sql> FLUSH PRIVILEGES;
+sql> QUIT;
 ```
-
-**Note:** 초기 설정 후 비밀번호 때문에 계속 문제가 발생했다. Naver 에서 해답을 찾을 수 있었고 원인은 Terminal plugin 이 설치되는 바람에 꼬여서 그렇다고 카더라...
-{: .notice--info}
 
 ##  MariaDB 초기 설정값 만들기 
 [Blog](https://suwoni-codelab.com/linux/2017/05/24/Linux-CentOS-MariaDB/) 내용을 참고하여 정리를 하였습니다.
@@ -303,6 +311,6 @@ Alias /sql /usr/share/phpmyadmin
 
 <br/>
 # 참고사이트
-[Tutorial](https://websiteforstudents.com/install-apche2-php-phpmyadmin-ubuntu-17-04-17-10/)<br/>
-[apache Server Connect](https://askubuntu.com/questions/668734/the-requested-url-phpmyadmin-was-not-found-on-this-server)<br/>
-[phpMyAdmin 생활코딩](https://opentutorials.org/course/195/1469)<br/>
+**[Tutorial](https://websiteforstudents.com/install-apche2-php-phpmyadmin-ubuntu-17-04-17-10/)**<br/>
+**[Apache Server Connect](https://askubuntu.com/questions/668734/the-requested-url-phpmyadmin-was-not-found-on-this-server)**<br/>
+**[PhPMyAdmin 생활코딩](https://opentutorials.org/course/195/1469)**<br/>

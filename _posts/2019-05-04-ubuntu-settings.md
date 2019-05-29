@@ -1,6 +1,6 @@
 ---
 title : 우분투 Setting & Tips (2019.01)
-last_modified_at: 2019-01-18T10:45:06-05:00
+last_modified_at: 2019-05-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ubuntu.png
 categories:
@@ -10,6 +10,13 @@ tags:
 ---
 
 우분투에 대해 알게된 점들을 지속적으로 묶어서 정리를 해 보려고 합니다. 이번 페이지에서 정리하려는 내용은 Setting 파일들로써 각각의 파일과, 내용에 대해 정리하려고 합니다.
+
+<br/>
+# /etc/apt/sources.list.d
+관련 패키지를 설치하다 보면 지원되지 않는 설정값들이 남아 문제가 됩니다. 따라서 불필요한 설정값과 파일들을 삭제한 뒤 재설치를 합니다. `/etc/apt/sources.list` 파일내 문제되는 경로를 삭제하고 `/etc/apt/sources.list.d/` 폴더에 설치된 내용 중 문제가 되는 파일들을 삭제 합니다.
+
+[블로그](https://stackoverflow.com/questions/26020917/what-is-the-function-of-etc-apt-sources-list-d)
+
 
 <br/>
 # /etc/rc.local

@@ -132,15 +132,7 @@ DATABASES = {
             "SET sql_mode='STRICT_TRANS_TABLES'"},}}
 ```
 
-**Django Celery Beat** 의 경우 **makemigragtion** 을 실행하면 `"Error 1071: Specified key was too long; max key length is 767 bytes"` 오류를 출력합니다. 이를 수정하는 방법으로 [GitIssue](https://github.com/mattermost/mattermost-server/issues/10358) 내용을 참고하면 `/etc/mysql/my.cnf` 설정 파일에 다음의 내용을 추가 합니다.
-
-```r
-# django celery error fix
-innodb_default_row_format=dynamic
-innodb_file_format=barracuda
-innodb_file_per_table=true
-innodb_large_prefix=true
-```
+**Django Celery Beat** 의 경우 **makemigragtion** 을 실행하면 `"Error 1071: Specified key was too long; max key length is 767 bytes"` 오류를 출력합니다. 이를 수정하는 방법으로 [GitIssue](https://github.com/mattermost/mattermost-server/issues/10358) 내용과 함께, MariaDB 10.2 이상의 버젼을 설치하면 해결되는 것으로 알려져 있습니다.
 
 ## **models.py**
 

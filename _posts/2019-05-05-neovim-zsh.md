@@ -7,7 +7,7 @@ categories:
   - ubuntu
 ---
 
-우분투 시스템을 설치에 있어서 기본적인 **shell script** 환경 구축내용을 정리해 보겠습니다. 터미널 환경도 편집기 이상의 작업이 이루어지는 만큼 다양한 플러그인을 활용하면 능률이 높아집니다.
+우분투 시스템을 설치에 있어서 기본적인 **shell script** 환경 구축내용을 정리해 보겠습니다. 터미널 환경도 편집기 이상의 작업이 이루어지는 만큼 다양한 플러그인을 활용하면 능률이 높아 집니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4KBuPCeF9Gc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
