@@ -261,18 +261,14 @@ $ sudo apt-get install phpmyadmin php-mbstring php-gettext
 ```sql
 $ sudo mysql -u root -p mysql
 
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Server version: 10.0.36-MariaDB-0ubuntu0.16.04.1 Ubuntu 16.04
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
-
-MariaDB [mysql]> update user set plugin=' 'where user='root';
+sql> update user set plugin=' 'where user='root';
 Query OK, 0 rows affected (0.00 sec)
 Rows matched: 1  Changed: 0  Warnings: 0
 
-MariaDB [mysql]> flush privileges;
+sql> flush privileges;
 Query OK, 0 rows affected (0.00 sec)
 
-MariaDB [mysql]> exit
+sql> exit
 Bye
 ```
 
