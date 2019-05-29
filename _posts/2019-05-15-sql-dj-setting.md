@@ -44,7 +44,7 @@ host 에 표시된 `localhost` 는 **내부** 접근 전용, `%` 는 **외부** 
 
 ```sql
 sql> CREATE USER ceo@`%` IDENTIFIED BY `password`;
-sql> GRANT SELECT ON *.* TO ceo@`%`;
+sql> GRANT ALL ON *.* TO ceo@`%`;
 ```
 
 특정한 작업영역을 제한하는 `id:staff` , `pw:company`  사용자를 추가 합니다.
@@ -83,12 +83,26 @@ sql> DROP USER `staff`;
 <br/>
 # Django와 연결 
 
+GRANT ALL PRIVILEGES ON myproject.* TO 'myproject'@'%'; 
+
 Django의 Model Data Layout을 활용하면 다음과 같은 장점이 있습니다.
 
 1. 유지 관리보수가 간편하다
 2. DB 전환에 용이  (settings.py만 변경)
 3. DB의 OverHead를 효과적으로 관리 (Python 객체 재활용)
 4. 단, SQL결과와 100% 일치하진 않는다
+
+Django 에서 연결하여 사용할 DataBase 와 사용자를 추가합니다.
+
+```sql
+> CREATE DATABASE 데이터베이스;
+> CREATE USER '사용자ID'@'%' IDENTIFIED BY 'password';
+> GRANT ALL PRIVILEGES ON 데이터베이스.* TO '사용자ID'@'%';
+> SHOW GRANTS FOR '사용자ID';                                                                       +----------------------------------------------------------------+
+| Grants for 사용자ID@%                                          |+----------------------------------------------------------------+
+| GRANT USAGE ON *.* TO '사용자ID'@'%' IDENTIFIED BY PASSWORD '*'|
+| GRANT ALL PRIVILEGES ON `데이터베이스`.* TO 'myproject'@'%'    |+----------------------------------------------------------------+
+```
 
 ## Mysql-client Python 모듈의 설치
 
@@ -108,9 +122,9 @@ $ pip install mysqlclient
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DB 이름',
-        'USER': 'User 이름',
-        'PASSWORD': 'User 암호',
+        'NAME': '데이터베이스',
+        'USER': '사용자ID',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT':  '3306', # mariaDB default 포트설정
         'OPTIONS' :      # http://tibyte.kr/274 (Warning 경고시)
@@ -281,5 +295,5 @@ OK
 <br/>
 # 참고 Site 목록
 1. Django 에서 MySQL 사용법 [Blog](http://pope8.tistory.com/6)
-1. mysqlclient-python [GitHub](https://github.com/PyMySQL/mysqlclient-python)
-2. 1044 접속 오류가 발생한 경우 [Blog](http://www.dlxedu.com/askdetail/3/d29001d0e92a66e4119cb3d696065569.html)
+2. mysqlclient-python [GitHub](https://github.com/PyMySQL/mysqlclient-python)
+3. 1044 접속 오류가 발생한 경우 [Blog](http://www.dlxedu.com/askdetail/3/d29001d0e92a66e4119cb3d696065569.html)
