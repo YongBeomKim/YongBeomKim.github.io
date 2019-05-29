@@ -1,5 +1,5 @@
 ---
-title : SQL MariaDB and PHPAdmin
+title : SQL MariaDB MyCli & PHPAdmin
 last_modified_at: 2019-05-11T20:45:06-05:00
 header:
   overlay_image: /assets/images/book/sql.jpg
@@ -13,7 +13,7 @@ toc: true
 
 odroid xu4 에서 postgresql 설치중 [정식 설치방법](https://www.postgresql.org/download/linux/ubuntu/) 을 보면 지원 가능한 시스템으로 **amd64, i386, ppc64el** 에서만 가능하여 **armhf 미인식 문제로** 계속 오류가 발생 했습니다.
 
-얼마전 특강에서 workbench를 조금 다뤄본 경험과 함께, mariaDB를 설치 한 결과 바로 설치가 되었다. (**Simple is The Best**가 구조 부분에선 정답임을 다시한번 느낄 수 있었다) 이번 기회에 설치방법과 간단한 사용법을 정리하면서 django에서 적용하는 계기로 삼아보려고 한다.
+얼마전 특강에서 workbench를 조금 다뤄본 경험과 함께, mariaDB를 설치 한 결과 바로 설치가 되었다. (**Simple is The Best**가 구조 부분에선 정답임을 다시한번 느낄 수 있었다) 이번 기회에 설치방법과 관련 도구들의 설치 및 사용법을 정리해 보겠습니다.
 
 ## MariaDB Installation [Document](https://mariadb.com/kb/en/library/installing-mariadb-deb-files/)[설치Blog](http://awesometic.tistory.com/14)
 
@@ -126,6 +126,57 @@ $ sudo rm -rf /etc/mysql
 # sudo apt-get --purge remove 로 삭제한다
 $ dpkg -l | grep -i 'maria\|mysql'
 ```
+
+<br/>
+# **MyCLI**
+[GitHub](https://github.com/dbcli/mycli) Python 으로 제작된 모듈로써 youtube-dl, neo-vim 등과 같이 파이썬 환경에서 설치를 한 뒤, 설치 환경의 터미널에서 `$ mycli -u root` 를 실행하면 **vim** 과 같은 작업 환경이 실행 됩니다.
+
+<figure class="align-center">
+  <img src="https://i1.wp.com/wp.laravel-news.com/wp-content/uploads/2018/12/mycli-screenshot-1.png">
+  <figcaption>vscode-database</figcaption>
+</figure>
+
+## 설치
+```r
+$ sudo pip3 install mycli
+```
+
+라즈베리파이 등에서 `$ sudo pip3` 를 실행하면 안되는 경우가 있습니다. 이 경우에는 `$ sudo apt-get remove python3-pip` 제거 후 `$ sudo apt-get install python3-pip` 로 재설치 하거나 `$python3 -m pip` 를 사용하여 필요한 명령을 실행하면 됩니다.
+{: .notice--info}
+
+## Syntex Color
+**[Syntex](https://www.mycli.net/syntax)** 기본 설정값은 어두운 녹색으로 시의성이 나쁩니다. `~/.myclirc` 설정 내용을 변경하여 다양한 Syntex 파레트로 변경 가능합니다. 추천하는 테마는 **monokai** 와 **bw** 등이 있습니다. 
+
+**[Pager](https://www.mycli.net/pager)** 기본값은 활성화로, 쿼리문을 실행하면 별도의 Page 에서 결과물이 출력됩니다. **mycli** 에서는 이를 장점으로 설명 하지만, 내용을 보기엔 불편하여 이 부분은 비 활성화 하였습니다
+
+```r
+# Screenshots at http://mycli.net/syntax
+syntax_style = monokai
+
+# disabled pager on startup
+enable_pager = True
+```
+
+<br/>
+# MySQL in **VSCODE**
+vscode 에서도 SQL 접속에 유용한 도구들을 지원하고 있습니다. **vscode-database** 확장팩만 설치하면 되는 등 생각보다 간단한 장점이 있는 반면, **disconnect** 설정을 아직 찾지 못한 숙제가 남아있는 부분이기도 합니다.
+
+<figure class="align-center">
+  <img src="https://raw.githubusercontent.com/Bajdzis/vscode-database/master/readme/v2.0-result.gif">
+  <figcaption>vscode-database</figcaption>
+</figure>
+
+## **SQLITE** in vscode
+
+SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSpace 내부에 있는 **sqlite db** 파일을 자동으로 찾아준 뒤 이를 연결하면 바로 내용을 확인 가능합니다. 
+
+## **vscode-database** in vscode
+
+**SQLite** 를 설치하면 dependancy 로 설치되는 **[vs market](https://marketplace.visualstudio.com/items?itemName=bajdzis.vscode-database)** 모듈을 활용하여 **mysql** 등의 연결이 가능 합니다. 보다 자세한 사용방법은 **[웹문서](https://vscode.tistory.com/entry/SQL-Server-mssql#recentEntries)** 의 내용을 참고 하면 됩니다.
+
+
+**Mysql** 설정 연결을 시도하면 **connect_to localhost port 52698: failed** [오류](https://github.com/Microsoft/vscode/issues/50172) 가 발생하는 경우에는 [Remote VSCode](https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode) 와 충돌로 발생하는 것으로 이를 제거 후 실행하면 됩니다.
+{: .notice--infos} 
 
 <br/>
 # **PHP Admin**
