@@ -133,6 +133,11 @@ $ dpkg -l | grep -i 'maria\|mysql'
 
 우선 MariaDB를 설치하였고, 3306 Default Port Setting 으로 연결이 되어 있습니다. 이들을 연결하기 위하여 **Apache 설정을 수동으로** 입력하고, 설치된 MariaDB 와 PhpMyAdmin 에 필요한 **부수적인 프로그램들을** ex)php 설치 연결해 보겠습니다. 우선은 아무것도 설치되어 있지 않다는 가정에서 진행합니다.
 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/phpmyadmin.png">
+  <figcaption>해당 페이지를 찾을 수 없습니다</figcaption>
+</figure> 
+
 ## Apache2 Install
 
 ```python

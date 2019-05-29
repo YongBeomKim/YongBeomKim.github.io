@@ -16,7 +16,7 @@ toc: true
 
 <br/>
 # Tools
-`$ mysql -u root -p` 로 기본 터미널을 사용하거나 **workbench** 를 사용해도 되지만, 원활한 server 관리를 위해 터미널에서 유용한 도구들을 살펴 보겠습니다.
+`$ mysql -u root -p` 로 기본 터미널을 사용하거나 **workbench** 를 사용해도 되지만, 이번에는 터미널에서 유용한 도구를 살펴 보겠습니다.
 
 ## **MyCLI**
 [GitHub](https://github.com/dbcli/mycli) Python 으로 제작된 모듈로써 youtube-dl, neo-vim 등과 같이 파이썬 환경에서 설치를 한 뒤, 설치 환경의 터미널에서 `$ mycli -u root` 를 실행하면 **vim** 과 같은 작업 환경이 실행 됩니다.
