@@ -32,12 +32,19 @@ $ sudo apt-get install neovim
 
 다음의 내용은 **[onedark](https://github.com/joshdick/onedark.vim)** 테마와 **[vim-airline](https://github.com/vim-airline/vim-airline)** 하단 Bar 를 추가하는 내용 입니다. 보다 다양한 theme 들을 확인하고 싶은 경우에는 **[vimcolors](https://vimcolors.com/)** 를 확인합니다
 
-```python
+```javascript
 " 기본 설정값
-syntax enable                                                                set encoding=utf-8                                                           set termguicolors
+syntax enable
+set encoding=utf-8
+set termguicolors
 
-" 플러그인 설치를 위한 설정                                 
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))                   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim      autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim     endif                                                                                                                      
+" 플러그인 설치를 위한 설정
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+endif
+
 " 플러그인 설치
 " nvim 에서 :PlugInstall 을 실행하면 설치 됩니다
 call plug#begin('~/.local/share/nvim/plugged')
@@ -64,6 +71,22 @@ hi Normal guibg=NONE ctermbg=NONE
 
 다음의 내용을 정의한 뒤, [neovim](https://github.com/vim-airline/vim-airline) 에서 **PlugInstall** 을 실행하면 정의된 플러그 인들이 설치 됩니다
 {: .notice--info}
+
+## Installing NeoVim and jedi-vim
+
+위 내용을 바탕으로 가상환경에 설치된 파이썬을 활용하여 자동완성 기능을 추가해 보겠습니다. [jedi-vim](https://github.com/davidhalter/jedi-vim) 을 [플러그인](https://sk1u.com/blog/2018/04/16/pyenv-neovim) 으로 추가 합니다. `$ sudo nvim ~/.config/nvim/init.vim` 설정파일에 다음의 내용을 입력한 뒤 vim 을 실행하여 `:PlugInstall` 을 실행하면 해당 모듈이 설치 됩니다. nvim 모둘에서 `:CheckHealth` 을 실행하면 해당 모듈의 상태를 확인하실 수 있습니다.
+
+```javascript
+Plug 'davidhalter/jedi-vim'
+
+let g:python3_host_prog = '/home/pyenv/bin/python'
+```
+`/home/pyenv/bin/python` 는 파이선 실행 파일이 설치된 경로로써 사용자 정의한 내용에 따라 수정 입력하면 됩니다.
+{: .notice--info}
+
+
+https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/
+
 
 <br/>
 # Ubuntu 터미널 설정
