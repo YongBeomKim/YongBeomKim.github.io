@@ -1,5 +1,5 @@
 ---
-title : supervisord 모니터링
+title : Supervisord 모니터링
 last_modified_at: 2019-05-10T12:45:06-05:00
 header:
   overlay_image: /assets/images/code/supervisord.png
@@ -11,7 +11,7 @@ tags:
 toc: true 
 ---
 
-앞에서 Django 의 Celery 모듈의 진행과정을 확인하는 용도로써 **[SuperVisord](http://supervisord.org/)** 을 설치 및 활용하였습니다. 이러한 모니터링의 활용도는 많은 방법으로도 적용이 가능한 만큼 간단한 파이썬 모듈의 모니터링 연결 방법을 통해 보다 자세한 내용을 살펴보도록 하겠습니다.
+앞에서 **Django** 의 **Celery** 의 모니터링 용도로 **[SuperVisord](http://supervisord.org/)** 을 설치 및 활용하였습니다. 이러한 모니터링의 활용도는 많은 방법으로도 적용이 가능한 만큼 간단한 파이썬 모듈의 모니터링 연결 방법을 통해 보다 자세한 내용을 살펴보도록 하겠습니다.
 
 이번 작업을 통해 확인하고 싶은 내용들은 다음과 같습니다.
 1. **현재 실행중인 작업을** 확인
@@ -66,11 +66,11 @@ redirect_stderr=true
 
 실행 명령어를 살펴보면
 1. **reread** : conf 파일을 다시 불러 옵니다.
-2. **add <program>** : Adds a newly created conf file and starts the process
+2. **add** -program- : Adds a newly created conf file and starts the process
 3. **status** : 실행중인 모든 status 상태를 출력 합니다
-4. **start** <program> : 시작하는 명령
-5. **restart** <program> : 재시작 명령
-6. **tail** -f <program> : log file 내용을 출력 합니다
+4. **start** -program- : 시작하는 명령
+5. **restart** -program- : 재시작 명령
+6. **tail** -f -program- : log file 내용을 출력 합니다
 7. **exit** : supervisorctl 을 종료 합니다
 8. **help** : commands 목록을 출력 합니다
 
@@ -80,6 +80,46 @@ supervisor > reread
 supervisor > add test_process
 supervisor > status
 ```
+
+## 라즈베리파이에서 오류
+
+```r
+$ sudo supervisord 
+
+/usr/local/lib/python3.5/dist-packages/supervisor/options.py:471: 
+UserWarning: Supervisord is running as root and it is searching 
+for its configuration file in default locations (including its 
+current working directory);
+  'Supervisord is running as root and it is searching '
+Error: Another program is already listening on a port that 
+one of our HTTP servers is configured to use.  Shut this program 
+down first before starting supervisord.
+For help, use /usr/local/bin/supervisord -h
+```
+
+아래처럼 clt 을 실행하면 작업은 되지만 소켓파일이 없어서 오류가 계속 발생합니다. 위의 방법 대신 `sudo supervisorctl` 을 사용해도 계속 **socket** 파일을 찾지 못해서 오류를 출력합니다.
+
+```r
+$ sudo supervisorctl 
+[sudo] password: 
+unix:///var/run/supervisor.sock no such file
+supervisor> exit
+
+$ sudo supervisorctl                 
+unix:///var/run/supervisor.sock refused connection
+supervisor> exit
+```
+
+이를 고치기 위해 고생하기 보단 설치된 내용들을 모두 삭제한 뒤 
+
+```r
+$ sudo apt-get remove supervisor
+$ sudo apt-get remove --auto-remove supervisor
+$ sudo apt-get purge supervisor
+$ sudo apt-get purge --auto-remove supervisor
+```
+
+[재설치 방법](https://www.vultr.com/docs/installing-and-configuring-supervisor-on-ubuntu-16-04) 을 따라 작업을 진행합니다.
 
 ## Web Interface
 
@@ -92,12 +132,7 @@ username=testuser
 password=testpass
 ```
 
-https://medium.com/@jayden.chua/use-supervisor-to-run-your-python-tests-13e91171d6d3
-
-
-
-https://pinoylearnpython.com/supervisor-installation-and-configuration-on-ubuntu-18-04-lts/
-
-
-
-http://doc.okbase.net/doclist/archive/257866.html
+<br/>
+# **참고자료**
+[파이썬 파일의 연결](https://medium.com/@jayden.chua/use-supervisor-to-run-your-python-tests-13e91171d6d3)<br/>
+[우분투 18.04 설치방법](https://pinoylearnpython.com/supervisor-installation-and-configuration-on-ubuntu-18-04-lts/)<br/>

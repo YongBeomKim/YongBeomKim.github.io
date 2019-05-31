@@ -5,7 +5,7 @@ header:
   overlay_image: /assets/images/code/shell.png
 categories:
   - ubuntu
----
+---`
 
 우분투 시스템을 설치에 있어서 기본적인 **shell script** 환경 구축내용을 정리해 보겠습니다. 터미널 환경도 편집기 이상의 작업이 이루어지는 만큼 다양한 플러그인을 활용하면 능률이 높아 집니다.
 
@@ -122,6 +122,8 @@ Password:
 
 기본 Bash 로 되돌리기 위해서 `$ sudo chsh -s /bin/bash` , `$chsh -s 'which bash'` 또는 `$ sudo chsh -s /bin/bash` 를 실행합니다
 {: .notice--success} 
+
+zsh 에서 위의 `sudo su` 사용자 변경을 하는경우 `$ sudo passwd root` 를 사용하여 비밀번호가 지정되어 있는지를 확인합니다. 그래도 `chsh: PAM: Authentication failure` 오류가 출력되는 경우가 있는데 이때는 `sudo nvim /etc/pam.d/chsh` 파일에서 `auth       required   pam_shells.so` 부분을 주석처리 하면 됩니다. 이는 **zsh** 에서 **[쉘의 유효성을 확인](https://devanto.tistory.com/entry/%EC%9A%B0%EB%B6%84%ED%88%AC-1604-%EC%97%90-zsh-%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%98%EB%A9%B4%EC%84%9C)** 하는 부분 입니다.
 
 ## Oh-my-zsh 설치
 `Oh-my-zsh` 은 `zsh` 를 보다 편리하게 사용할 수 있는 설정관리 용 (configuration manager) 도구 입니다. 아래의 내용을 설치 완료하면 다음과 같은 화면이 변경됩니다.

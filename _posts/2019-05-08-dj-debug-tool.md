@@ -1,5 +1,5 @@
 ---
-title : Django Admin Suit
+title : Django Debug Tools
 last_modified_at: 2019-05-08T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/django.jpg
@@ -11,15 +11,95 @@ tags:
 toc: true 
 ---
 
-django-suit 을 활용하면 보다 깔끔하게 정리된 Admin 페이지를 활용하실 수 있습니다
+Django 기능을 위한 모듈들을 정리해 보았다면, 이번 페이지에서는 **DEBUG** 및 배포등에 유용한 도구들에 대해 살펴 보도록 하겠습니다. 살펴볼 내용으로는 **startbootstrap-sb-admin, django-debug-tool, whitenoise** 등을 살펴 보도록 하겠습니다.
 
-https://teamlab.github.io/jekyllDecent/blog/tutorials/Django-Admin-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95
+[django-suit](https://teamlab.github.io/jekyllDecent/blog/tutorials/Django-Admin-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95) 은 개인은 무료지만 상업적으로는 비용이 드는만큼 우선 MIT, BSD 라이센스를 중심으로 정리를 하겠습니다.
 
-하지만 이는 유로서비스로, 완전한 Open Source 인 [startbootstrap-sb-admin](https://github.com/BlackrockDigital/startbootstrap-sb-admin) 사용하도록 합니다.
+<br/>
+# **SB admin 2**
+[startbootstrap-sb-admin](https://github.com/BlackrockDigital/startbootstrap-sb-admin) 도 있지만[SB-admin-2](https://startbootstrap.com/themes/sb-admin-2/) 이쪽이 더 가볍고 깔끔해 보입니다.
 
-[SB-admin-2](https://startbootstrap.com/themes/sb-admin-2/) 가 별도로 있고 이쪽이 더 가볍고 깔끔해 보입니다.
+<br/>
+# **White Noise**
+`$ pip install whitenoise` 를 설치 합니다. 서버에서 배포시 실행은 되지만, **`Debug=False`** 로 설정을 바꾸면 Static 파일을 찾지 못하는 경우에 필요한 내용 입니다. <strike>배포 후 에는 그리 필요가 없을수도 있겠지만요</strike> static JS, CSS, Image 파일 등 다양한 내용을 단일한 경로에서 호출하다 보니 생긴 문제로 보입니다.
+
+## settings.py
+
+```python
+INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
+]
+
+MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+##specify static root
+STATIC_URL  = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+```
+
+1. **STATIC_URL** : Django 에서 URL 연결용 
+2. **STATIC_ROOT** : Django 배포시 기본연결용
+3. **STATICFILES_DIRS** : Django 디버깅시 우선 검색용
+
+위에서 발생한 문제를 정리하면, 디버그시에는 **STATICFILES_DIRS** 를 기준으로 설정하지만, `Debug=False` 를 설정하면 **STATIC_ROOT**를 대상으로 검색을 하고 이번의 작업은 서버로 파일을 전송한 뒤, **STATIC_ROOT** 를 기본폴더로 사용하도록 설정하는 작업을 할 것이다.
+{: .notice--infos}
+
+## wsgi.py
+
+```python
+from whitenoise.django import DjangoWhiteNoise
+application = DjangoWhiteNoise(application)
+```
+
+위의 작업을 완료한 뒤 `$ python manage.py collectstatic` 을 실행 합니다. 위 작업을 하면 정적 폴더의 모든 파일을 지정한 STATIC_ROOT 디렉토리로 복사하면 작업이 완료 됩니다.
+
+<br/>
+# **Django Debug Toolbar**
+
+`$ pip install django-debug-toolbar` 를 설치 합니다. **`Debug=False`** 로 설정값을 정의하면 별도의 **[debug 도구](https://django-debug-toolbar.readthedocs.io/en/latest/installation.html)** 들이 side popup 이 실행 됩니다. 그리고 해당 모듈은 [localhost](https://django-debug-toolbar.readthedocs.io/en/latest/installation.html) 에서 접속할 경우에만 활성화 됩니다.
+
+## settings.py
+```python
+INSTALLED_APPS = [
+    'debug_toolbar',
+]
+MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+INTERNAL_IPS = ["127.0.0.1", "::1"]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+```
+위에서 설정했던 `STATICFILES_DIRS` 설정 내용을 제거 합니다
+
+## urls.py
+
+```python
+from django.conf import settings
+from django.urls import include, path
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+```
+`__debug__/` 경로명은 기존의 App 과 충돌하지 않는 범위에서 사용자가 임의로 변경 가능합니다.
+{: .notice--info}
 
 
+<br/>
+# 참고사이트
+**[Django-debug](https://www.bedjango.com/blog/how-debug-django-useful-tips/)**<br/>
+**[debug-tool](https://teamtreehouse.com/community/debug-toolbar-djdt-is-not-a-registered-namespace)**<br/>
+
+
+
+<br/>
 # **금융 테이블 수집도구 만들기**
 우선 자동 자료 수집기 Django 모델 만들기
 
@@ -28,10 +108,10 @@ https://teamlab.github.io/jekyllDecent/blog/tutorials/Django-Admin-%EC%BB%A4%EC%
 - 시간별 자동수집 모델 만들기
 - 자료 수집 테이블 자동화 완성하기
     1. **기본가격 :** open, high, low, close, volume
-    1. **거래원별 순매매 :** 외인, 개인, 기관, 기타
-    1. **상위 거래원 :** 기관명, 순매수, 순매도
-    1. **대차거래 자료 :** thinkpool 과 공매도 포탈 활용
-    1. **Theme 분석 :** 네이버 카페별 **기업분석 테마** 수집
+    2. **거래원별 순매매 :** 외인, 개인, 기관, 기타
+    3. **상위 거래원 :** 기관명, 순매수, 순매도
+    4. **대차거래 자료 :** thinkpool 과 공매도 포탈 활용
+    5. **Theme 분석 :** 네이버 카페별 **기업분석 테마** 수집
 
 ## **01 상위 거래원 수집**
 
