@@ -132,7 +132,8 @@ if settings.DEBUG:
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
 ```
-`__debug__/` 경로명은 기존의 App 과 충돌하지 않는 범위에서 사용자가 임의로 변경 가능합니다.
+
+django 실행결과 `NoReverseMatch at /admin/login/ 'djdt' is not a registered namespace` 오류가 발생하는 경우는 대부분 **settings.py** 설정 이외에 **urls.py** 에서 위 내용을 추가하지 않아서 발생 하였습니다. 위 내용 중 `__debug__/` 경로는 기존의 App 과 충돌하지 않는 범위에서 사용자가 임의로 변경 가능합니다.
 {: .notice--info}
 
 
