@@ -1,6 +1,6 @@
 ---
 title : Django Filters (내장모듈)
-last_modified_at: 2019-05-07T12:45:06-05:00
+last_modified_at: 2019-05-06T12:45:06-05:00
 header:
   overlay_image: /assets/images/code/django.jpg
 categories:
