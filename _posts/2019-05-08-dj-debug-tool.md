@@ -142,8 +142,6 @@ django 실행결과 `NoReverseMatch at /admin/login/ 'djdt' is not a registered 
 **[Django-debug](https://www.bedjango.com/blog/how-debug-django-useful-tips/)**<br/>
 **[debug-tool](https://teamtreehouse.com/community/debug-toolbar-djdt-is-not-a-registered-namespace)**<br/>
 
-
-
 <br/>
 # **금융 테이블 수집도구 만들기**
 우선 자동 자료 수집기 Django 모델 만들기
