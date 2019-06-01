@@ -16,6 +16,50 @@ Django 기능을 위한 모듈들을 정리해 보았다면, 이번 페이지에
 [django-suit](https://teamlab.github.io/jekyllDecent/blog/tutorials/Django-Admin-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A7%95) 은 개인은 무료지만 상업적으로는 비용이 드는만큼 우선 MIT, BSD 라이센스를 중심으로 정리를 하겠습니다.
 
 <br/>
+# Managing Static Files
+
+Django Model ORM 등은 backhand 에서 일원화 관리를 해서 별다른 문제가 없지만, **Static** 은 fronthand 와 연결되는 만큼 설정에 있어서 [주의](https://cupjoo.tistory.com/116) 를 해야 합니다.
+
+1. **STATIC_URL :** 정적 파일의 최상위 URL로 `/` 로 끝나야 합니다 
+2. **STATICFILES_DIRS :** 개발단계 정적파일 경로 `[list],(tuple,)`
+3. **STATIC_ROOT :** 모든 정적 파일을 한 곳에 모은 경로입니다.
+
+## settings.py
+**settings.py** 에서 **STATIC_URL** 은 웹에서 표현되는 URL 경로를 의미하고, 실제 파일들이 존재하는 폴더는 **STATICFILES_DIRS** 에 등록 됩니다.
+
+```python
+DEBUG = True
+
+STATIC_URL = '/static/' 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+```
+설정값이 제대로 연결 되었는지를 확인하는 방법으로 터미널에서 `$ python manage.py findstatic js/jquery-2.1.3.min.js` 와 같은 방식으로 **findstatic** 명령을 활용합니다.
+{: .notice--info}
+
+## STATIC_ROOT
+정적 파일을 한 곳으로 모으는 기능으로 `$ python manage.py collectstatic` 을 실행하면 지정한 폴더로 정적파일들을 복사 합니다.
+
+단 개발과정 `DEBUG=True` 에서는, **STATIC_ROOT 설정은 작용하지 않고** 실 서비스 환경을 위한 설정 항목입니다. 요약 하자면 **Django** 의 `django.contrib.staticfiles` 에서 직접 다루는 설정은 **STATICFILES_DIRS** 이며, **STATIC_ROOT** 는 정적파일을 제공(serving)하는 웹 서버가 접근 합니다. 이때 주의할 점은 **STATIC_ROOT** 경로와 **STATICFILES_DIRS** 등록경로가 서로 달라져야 합니다.
+
+## DEBUG = False
+runserver 가 아닌 실제 서버에 배포시 **Nginx, Apache** 등의 서버를 활용하게 되고 추가적으로 설정할 사항들이 발생 합니다. 
+
+우선 **settings.py** 에서 `DEBUG = False` 로 설정내용을 변경을 하는 등 다음의 내용으로 수정 합니다.
+
+```python
+DEBUG = False
+
+STATIC_URL = '/static/' 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+```
+
+그리고 터미널에서 `$ python manage.py collectstatic` 을 실행하면, 기존의 `\myproject\static` 폴더 내 설정 내용들이 `\myproject\staticfiles` 에 사본이 생성됨을 알 수 있습니다. 보다 자세한 작동 내용은 다음에 정리된 [블로그](https://blog.hannal.com/2015/04/start_with_django_webframework_06/) 내용을 참고 합니다.
+
+apach, nginx 등의 서버 배포 내용은 모듈과 버젼별로 차이가 있으므로 [블로그](https://nachwon.github.io/django-deploy-3-nginx/) 등의 다양한 자료들을 참고 합니다.
+{: .notice--info}
+
+<br/>
 # **SB admin 2**
 [startbootstrap-sb-admin](https://github.com/BlackrockDigital/startbootstrap-sb-admin) 도 있지만[SB-admin-2](https://startbootstrap.com/themes/sb-admin-2/) 이쪽이 더 가볍고 깔끔해 보입니다.
 
