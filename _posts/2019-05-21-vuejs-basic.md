@@ -29,8 +29,7 @@ toc: true
 4. 배열객체는 `v-for` 로 **객체 수 만큼 반복** 하고, `v-if` 로 **제한** 합니다.
 5. **이벤트 핸들러** 인 `v-on`, **속성 바인더** 인 `v-bind` 를 활용하여 기능들을 추가 합니다.
 
-`폼 바인더(v-model)` **->** `vue 반복 조건문(v-for, v-if)` **->** `이벤트 핸들러(v-on)` **->** `속성 바인더(v-bind)` 순서로 태그에 정의 함으로써 작업의 내용을 명확하게 이해하면서 작업을 진행하도록 합니다.
-{: .notice--info}
+`폼 바인더(v-model)` **->** `vue 반복 조건문(v-for, v-if)` **->** `이벤트 핸들러(v-on)` **->** `속성 바인더(v-bind)` 순서로 입력하여, 가독성을 높여서 진행 합니다.
 
 {% raw %}
 ```html
@@ -224,7 +223,7 @@ var app = new Vue({
 
 ## v-on **(@) : 이벤트 핸들러**
 
-`v-on` 은 **[이벤트 핸들링](https://kr.vuejs.org/v2/guide/events.html)** 으로 **사용자의 Action** 에 Response 하는 객체를 생성하는 Directive 입니다. `v-on:click="alert('버튼의 클릭')"` 와 같이 JavaScript 내용을 바로 적용하면 `v-on` 에서 특정한 **Action** 결과로 해당 JavaSciprt** 를 실행 합니다.
+`v-on` 은 **[이벤트 핸들링](https://kr.vuejs.org/v2/guide/events.html)** 으로 **사용자의 Action** 에 Response 하는 객체를 생성하는 Directive 입니다. `v-on:click="alert('버튼의 클릭')"` 와 같이 JavaScript 내용을 바로 적용하면 `v-on` 에서 특정한 **Action** 결과로 해당 **JavaSciprt** 내용을 실행 합니다.
 
 ```html
 <div id='app'>
@@ -275,7 +274,7 @@ var app = new Vue({
 
 ## v-bind **(:) : 속성 바인더**
  
-**v-on** 은 **객체의 Event** 를 연결하고, **v-bind** 는 **객체의 속성** 을 연결하여 다양한 기능을 구현 합니다. `v-bind:class="{ 'active' : page == p }"` 처럼 내부에 조건문이 포함되어 **v-for** 와 같이 사용할 때는 **v-if** 를 추가할 필요가 없습니다.
+**v-on** 은 **객체의 Event** 를 연결하고, **v-bind** 는 **객체의 속성** 을 연결하여 다양한 기능을 구현 합니다. `v-bind:class="{ 'active' : page == p }"` 처럼 내부에 조건문이 포함되어 **v-if** 를 추가할 필요가 없습니다.
 
 {% raw %}
 ```html
@@ -347,4 +346,4 @@ Angular 등은 `<img v-bind:src="'img/{{ p }}.png'"/>` 을 지원하지만, Vue.
 {% endraw %}
 
 `폼 바인더(v-model)` **->** `vue 반복 조건문(v-for, v-if)` **->** `이벤트 핸들러(v-on)` **->** `속성 바인더(v-bind)` 순서로 태그에 정의 함으로써 작업의 내용을 명확하게 이해하면서 작업을 진행하도록 합니다.
-{: .notice--info}`
+{: .notice--info}
