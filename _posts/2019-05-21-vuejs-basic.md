@@ -13,7 +13,11 @@ toc: true
 
 **Vue.js** 를 공부하면서 새로운 JavaScript 개념의 관계들이 눈에 보이질  않아 어려워 하던 중, **Selenium** 으로 크롤링 내용을 익힌 뒤 **[아프리카도서관](https://www.youtube.com/playlist?list=PLtht1_et-35ArPa9sBozD9dEr1CPRIOMb)** 의 내용을 보면서 Python 의 **List, Dict** 객체의 조작과 **if, for, loop** 조건식 유사한 내용들로 정리를 진행 합니다.
 
-**vue 3.0** 이 나왔지만 최신 **[다운로드](https://github.com/vuejs/vue/releases)** 버젼은 v2.6.10 으로 **Vue 2** 내용을 기준으로 진행 합니다.
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/vue-vscode.jpg">
+</figure>
+
+**vue 3.0** 이 나왔지만 최신 **[다운로드](https://github.com/vuejs/vue/releases)** 버젼은 v2.6.10 으로 **Vue 2** 내용을 기준으로 진행 합니다. vue 작업을 하다보면 객체들을 정의할 때 'String' 객체를 활용하는 만큼 기존의 **html** 문법 검사로 template 틀을 완성한 뒤, **vue 문법 검사** 를 활용하여 문자열 객체들의 내용을 확인하여 작업의 효율성을 높입니다.
 
 <br/>
 # 객체와 Binding
@@ -216,7 +220,7 @@ var app = new Vue({
 
 ## v-bind
 
-**v-on** 은 Client 반응에 대한 판단 이라면, **v-bind** 는 Clinet 및 객체의 특정한 값에 반응하는 내용을 정의 합니다.
+**v-on** 은 **객체의 Event** 를 연결하고, **v-bind** 는 **객체의 속성** 을 연결하여 다양한 기능을 구현 합니다.
 
 {% raw %}
 ```html
@@ -239,15 +243,25 @@ var app_page = new Vue({
 ```
 {% endraw %}
 
+> **v-bind:class = "{ 'active' : page == p }"**
 
+위의 vue Directive 내용을 해석하면, **page == p** 조건이 **true** 일 때, 해당 tag 에 **class='active'** 내용을 추가 합니다. 구체적인 작업 내용이 'string' 으로 구성되어 작업할 때 오타에 주의 합니다.
 
+{% raw %}
+```html
+<div id="app_page">
+  <button v-for="p in pages" 
+    v-bind:class="{ 'active' : page == p }"
+    v-on:click="page = p"> {{ p }} 
+  </button>
+  <hr/>
+  
+  <div v-for="p in pages" v-if="page === p">
+    <p> {{ p }} 페이지 이동 </p>
+    <img v-bind:src=" 'img/' + p + '.png'"/>
+  </div>
 
-    <div id="app_page">
-        <button v-for="p in pages" v-bind:class="{ 'active' : page == p }"
-            v-on:click="page = p">{{ p }}</button>
-        <hr/>
-        <div v-for="p in pages" v-if="page === p">
-            <p> {{ p }} 페이지 이동 </p>
-            <img v-bind:src=" 'img/' + p + '.png'"/>
-        </div>
-    </div>
+</div>
+```
+{% endraw %}
+
