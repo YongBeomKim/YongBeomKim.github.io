@@ -13,7 +13,7 @@ toc: true
 
 **Vue.js** 를 공부하면서 새로운 JavaScript 개념의 관계들이 눈에 보이질  않아 어려워 하던 중, **Selenium** 으로 크롤링 내용을 익힌 뒤 **[아프리카도서관](https://www.youtube.com/playlist?list=PLtht1_et-35ArPa9sBozD9dEr1CPRIOMb)** 의 내용을 보면서 Python 의 **List, Dict** 객체의 조작과 **if, for, loop** 조건식 유사한 내용들로 정리를 진행 합니다.
 
-**vue 3.0** 이 나왔지만 소스코드를 받으려고 알아보니 [](https://github.com/vuejs/vue/releases)
+**vue 3.0** 이 나왔지만 최신 **[다운로드](https://github.com/vuejs/vue/releases)** 버젼은 v2.6.10 으로 **Vue 2** 내용을 기준으로 진행 합니다.
 
 <br/>
 # 객체와 Binding
@@ -56,8 +56,8 @@ toc: true
 {% raw %}
 ```html
 <div id="app">
-    <div>{{ message }}</div>
-    <input type="text" v-model="message" />
+  <div>{{ message }}</div>
+  <input type="text" v-model="message" />
 </div>
 ```
 {% endraw %}
@@ -106,7 +106,7 @@ var firstApp = new Vue({
 
 아래의 예제는 `app` vue.js 객체로 1) **배열객체** `numbers: [1,2,3,4,5,6,7]` 또는  2) **key/value 객체** `people: [{name: '홍길동',age: 41,}]` 를 **v-for** 에서 활용하는 방법의 예제 입니다.
 
-
+{% raw %}
 ```html
 <div id="app_for">
 
@@ -142,11 +142,13 @@ var app = new Vue({
 })
 </script>
 ```
+{% endraw %}
 
 ## v-if
 
 위의 `v-for` Directive 에서 특정한 객체들만 활용하고 싶은경우, 예를들어 `age` 객체 값이 40 이상인 경우만 출력하고 싶을 때에는 아래의 내용과 같이 `v-if` 내용을 `v-for` Directive 뒤에 붙여 주기만 하면 됩니다.
 
+{% raw %}
 ```html
 <tbody>
   <tr v-for="p in people" v-if="p.age >= 30"> 
@@ -155,6 +157,7 @@ var app = new Vue({
   </tr>
 </tbody>
 ```
+{% endraw %}
 
 ## v-on
 
@@ -168,15 +171,18 @@ var app = new Vue({
 
 **객체의 값** 을 변경할 수 있습니다. `"visible = !visible"` 에서 **not 연산자(!)** 를 활용하면 **true, false** 값이 반복적으로 변경 됩니다.
 
+{% raw %}
 ```html
 <div id="app">
   <div v-if="visible">{{ message }}</div>
   <button v-on:click="visible = !visible">메세지</button>
 </div>
 ```
+{% endraw %}
 
 사용자 정의 **vue method 함수** 를 이벤트 메서드로 활용할 수 있습니다. 
 
+{% raw %}
 ```html
 <div id="app_for">
   <input type="text" v-model="animal" 
@@ -190,15 +196,16 @@ var app = new Vue({
 var app = new Vue({
   el: '#app_for',
   data:{
-    animal: null,
+    animal: null, // input 초기값
     animals: ['lion', 'tiger', 'cat'],
   },
   methods: {
     capture: function() {
       if(this.animal){
-          this.animals.push(this.animal);
+        this.animals.push(this.animal);
       }
     }
   }
 });
 ```
+{% endraw %}
