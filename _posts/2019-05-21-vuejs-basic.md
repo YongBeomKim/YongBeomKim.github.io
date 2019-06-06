@@ -49,7 +49,9 @@ toc: true
 ```
 {% endraw %}
 
-## 양방향 Binding 과 Directive 
+## 양방향 Binding 과 v-model
+
+**v-model** 을 **[폼 입력 바인딩 또는 양방향 데이터 바인딩](https://kr.vuejs.org/v2/guide/forms.html)** 이라고 합니다. 
 
 **Directive (지시문)** 은 **Vue.JS** 객체로 선언된 **템플릿 DOM** 에서만 작동하는 **템플릿 속성** 으로, 아래 예시는  **[v-model (폼 입력 바인딩)](https://kr.vuejs.org/v2/guide/forms.html)** Directive 속성에 **data 메서드** 를 연결하면 자동으로 **양방향 Binding** 이 동작 합니다.
 
@@ -101,6 +103,8 @@ var firstApp = new Vue({
 {% endraw %}
 
 ## v-for
+
+> **\< li v-for="n in numbers" \> \{\{ n \}\} \</li\>
 
 **Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬에서  `a = [txt  for txt in texts if len(a)>10]` 과 같은 원리로 접근하면 이해가 쉽습니다. 
 
@@ -180,13 +184,13 @@ var app = new Vue({
 ```
 {% endraw %}
 
-사용자 정의 **vue method 함수** 를 이벤트 메서드로 활용할 수 있습니다. 
+사용자 정의 **vue method 함수** 를 이벤트 메서드로 활용할 수 있습니다. `v-on:keyup.enter` 에서 처럼 `v-on` Directive 에 **keyup** 메서드와 **enter** 를 **chain reaction** 연결 함으로써 조건을 추가할 수 있습니다.
 
 {% raw %}
 ```html
 <div id="app_for">
   <input type="text" v-model="animal" 
-         v-on:keyup.enter="capture()">
+      v-on:keyup.enter="capture()">
   <ul>
     <li v-for="a in animals">{{ a }}</li>
   </ul>
@@ -207,5 +211,30 @@ var app = new Vue({
     }
   }
 });
+```
+{% endraw %}
+
+## v-bind
+
+**객체를 동적으로 연결** 하는 Directive 입니다.
+
+{% raw %}
+```html
+<div id="app">
+  <button v-for="p in pages" 
+    v-on:click="page = p">{{ p }}</button>
+  <div v-for="p in pages" v-if="page === p">
+    <p> {{ p }} 페이지 이동 </p>
+  </div>
+</div>
+<script>
+var app_page = new Vue({
+  el: '#app',
+  data:{
+    page: 'page1', // 초기값 객체
+    pages: ['page1','page2','page3','page4']
+  }
+})
+</script>
 ```
 {% endraw %}
