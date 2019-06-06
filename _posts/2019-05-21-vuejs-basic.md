@@ -18,7 +18,7 @@ toc: true
 <br/>
 # 객체와 Binding
 
-**Vue** 에서 사용되는 **data 메소드 객체** 를 확일할 때에는, 브라우저의  
+**Vue** 에서 사용되는 **data 메소드 객체** 와 내용을 확일할 때에는, 브라우저의 **console** 에서 아래의 예제를 실행한 뒤, **firstApp.message** 를 실행하면 다음과 같이 객체와 내용을 확일 할 수 있습니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/vue-console.jpg">
