@@ -393,7 +393,6 @@ Angular 등은 `<img v-bind:src="'img/{{ p }}.png'"/>` 을 지원하지만, Vue.
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script src="src/vue.min.js"></script>
 <script>
   var app_page = new Vue({
       el: '#app_page',
