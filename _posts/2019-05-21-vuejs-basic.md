@@ -175,7 +175,7 @@ var app = new Vue({
 ```
 {% endraw %}
 
-## v-on
+## v-on **(@)**
 
 `v-on` 은 **[이벤트 핸들링](https://kr.vuejs.org/v2/guide/events.html)** 으로 **사용자의 Action** 에 Response 하는 객체를 생성하는 Directive 입니다. `v-on:click="alert('버튼의 클릭')"` 와 같이 JavaScript 내용을 바로 적용하면 `v-on` 에서 특정한 **Action** 결과로 해당 JavaSciprt** 를 실행 합니다.
 
@@ -226,8 +226,8 @@ var app = new Vue({
 ```
 {% endraw %}
 
-## v-bind
-
+## v-bind **(:)**
+ 
 **v-on** 은 **객체의 Event** 를 연결하고, **v-bind** 는 **객체의 속성** 을 연결하여 다양한 기능을 구현 합니다.
 
 {% raw %}
