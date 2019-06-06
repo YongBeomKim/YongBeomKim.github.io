@@ -12,6 +12,17 @@ tags:
 우분투에 대해 알게된 점들을 지속적으로 묶어서 정리를 해 보려고 합니다. 이번 페이지에서 정리하려는 내용은 Setting 파일들로써 각각의 파일과, 내용에 대해 정리하려고 합니다.
 
 <br/>
+# manage.py
+
+```r
+# containing the script use Command
+$ chmod u+rwx filename.py
+# Read and Execute but not alter the shell script use
+$ chmod go+rx filename.py
+```
+Git 소스파일을 다운받아 `manage.py` 를 보다 쉽게 실행 가능하도록 `$chmod u+rwx manage.py` 를 실행하면 보다 잘 작동 합니다. 
+
+<br/>
 # **/etc/apt/sources.list.d**
 관련 패키지를 설치하다 보면 지원되지 않는 설정값들이 남아 문제가 됩니다. 따라서 불필요한 설정값과 파일들을 삭제한 뒤 재설치를 합니다. `/etc/apt/sources.list` 파일내 문제되는 경로를 삭제하고 `/etc/apt/sources.list.d/` 폴더에 설치된 내용 중 문제가 되는 파일들을 삭제 합니다.
 
