@@ -23,9 +23,53 @@ toc: true
 # Vue.js Structure
 아래의 내용을 간단하게 정리 해 보겠습니다.
 
+1. `new Vue({})` 에서는 **el(element mount), data, method** 3가지 속성을 추가할 수 있습니다.
+2. vue.js 모듈을 활용할 **HTML Tag** 를 **el:** 선언으로 **Mount** 합니다.
+3. **폼 입력 바인더** 인 `v-model` 로 **data: 변수명** 을 연결하면 **양방향 binding** 을 지원 합니다.
+4. 배열객체는 `v-for` 로 **객체 수 만큼 반복** 하고, `v-if` 로 **제한** 합니다.
+5. **이벤트 핸들러** 인 `v-on`, **속성 바인더** 인 `v-bind` 를 활용하여 기능들을 추가 합니다.
 
+{% raw %}
+```html
+<div id="app">
+  
+  <button v-for="p in pages" 
+    v-bind:class="{ 'active' : page == p }"
+    v-on:click="page = p">{{ p }}
+  </button>
+  
+  <div v-for="p in pages" 
+    v-if = "page === p"> <p>{{p}} 페이지</p>
+    <img v-bind:src=" 'img/' + p + '.png'"/>
+  </div>
 
+  <input type="text" v-model="animal" 
+    v-on:keyup.enter="capture()">
+  <ul>
+    <li v-for="a in animals">{{ a }}</li>
+  </ul>
+</div>
 
+<script>
+var app = new Vue({
+  el: '#app',
+  data:{
+    page: 'page1', // 입력 form 초기값
+    pages: ['page1','page2','page3'],
+    animal: null,  // 입력 form 초기값
+    animals: ['lion', 'tiger'],
+  },
+  methods: {
+    capture: function() {
+      if(this.animal){
+        this.animals.push(this.animal);
+      }
+    }
+  }
+});
+</script>
+```
+{% endraw %}
 
 <br/>
 # 객체와 Binding
@@ -36,7 +80,7 @@ toc: true
   <img src="{{site.baseurl}}/assets/images/code/vue-console.jpg">
 </figure>
 
-## 단방향 Binding App
+## 단방향 Binding
 
 **script** 태그는, **모듈을 불러오는 태그** 와 **내용을 적용하는 태그** 가 구분 됩니다. 이들의 구분없이 작업을 하면 문제가 발생 합니다.
 
@@ -61,7 +105,7 @@ toc: true
 ```
 {% endraw %}
 
-## 양방향 Binding 과 v-model
+## 양방향 Binding 과 **v-model**
 
 **v-model** 을 **[폼 입력 바인딩 또는 양방향 데이터 바인딩](https://kr.vuejs.org/v2/guide/forms.html)** 이라고 합니다. 
 
@@ -271,3 +315,49 @@ var app_page = new Vue({
 ```
 {% endraw %}
 
+Angular 등은 `<img v-bind:src="'img/{{ p }}.png'"/>` 을 지원하지만, Vue.js 에서는 작동이 되질 않아, Hard Coding 방법인 `<img v-bind:src="'img/'+p+'.png'"/>` 으로 문자열 완성 방법을 활용해야 제대로 작동 합니다.
+{: .notice--info}
+
+그리고 맨 위의 예시 내용을 축약형을 활용하여, 이벤트 핸들러인 **v-on** 을 **@**, **속성 바인더** 인 **v-bind** 는 **:** 를 사용하면 보다 간결하게 작업이 가능합니다. <strike>하지만 그만큼 헷갈릴 수 도 있는만큼 처음에는 개념들을 이해하면서 full name 으로 작업을 하고, 마무리 단계에서 해당 내용을 축약형으로 변경하는 식으로 점진적인 접근으로 작업을 진행합니다.</strike>
+
+{% raw %}
+```html
+<div id="app">
+  
+  <button v-for="p in pages" 
+    v-bind:class="{ 'active' : page == p }"
+    v-on:click="page = p">{{ p }}
+  </button>
+  
+  <div v-for="p in pages" 
+    v-if = "page === p"> <p>{{p}} 페이지</p>
+    <img v-bind:src=" 'img/' + p + '.png'"/>
+  </div>
+
+  <input type="text" v-model="animal" 
+    v-on:keyup.enter="capture()">
+  <ul>
+    <li v-for="a in animals">{{ a }}</li>
+  </ul>
+</div>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data:{
+    page: 'page1', // 입력 form 초기값
+    pages: ['page1','page2','page3'],
+    animal: null,  // 입력 form 초기값
+    animals: ['lion', 'tiger'],
+  },
+  methods: {
+    capture: function() {
+      if(this.animal){
+        this.animals.push(this.animal);
+      }
+    }
+  }
+});
+</script>
+```
+{% endraw %}
