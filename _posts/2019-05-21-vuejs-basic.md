@@ -216,7 +216,7 @@ var app = new Vue({
 
 ## v-bind
 
-**객체를 동적으로 연결** 하는 Directive 입니다.
+**v-on** 은 Client 반응에 대한 판단 이라면, **v-bind** 는 Clinet 및 객체의 특정한 값에 반응하는 내용을 정의 합니다.
 
 {% raw %}
 ```html
@@ -238,3 +238,16 @@ var app_page = new Vue({
 </script>
 ```
 {% endraw %}
+
+
+
+
+    <div id="app_page">
+        <button v-for="p in pages" v-bind:class="{ 'active' : page == p }"
+            v-on:click="page = p">{{ p }}</button>
+        <hr/>
+        <div v-for="p in pages" v-if="page === p">
+            <p> {{ p }} 페이지 이동 </p>
+            <img v-bind:src=" 'img/' + p + '.png'"/>
+        </div>
+    </div>
