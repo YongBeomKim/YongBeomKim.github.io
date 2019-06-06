@@ -20,6 +20,14 @@ toc: true
 **vue 3.0** 이 나왔지만 최신 **[다운로드](https://github.com/vuejs/vue/releases)** 버젼은 v2.6.10 으로 **Vue 2** 내용을 기준으로 진행 합니다. vue 작업을 하다보면 객체들을 정의할 때 'String' 객체를 활용하는 만큼 기존의 **html** 문법 검사로 template 틀을 완성한 뒤, **vue 문법 검사** 를 활용하여 문자열 객체들의 내용을 확인하여 작업의 효율성을 높입니다.
 
 <br/>
+# Vue.js Structure
+아래의 내용을 간단하게 정리 해 보겠습니다.
+
+
+
+
+
+<br/>
 # 객체와 Binding
 
 **Vue** 에서 사용되는 **data 메소드 객체** 와 내용을 확일할 때에는, 브라우저의 **console** 에서 아래의 예제를 실행한 뒤, **firstApp.message** 를 실행하면 다음과 같이 객체와 내용을 확일 할 수 있습니다.
@@ -245,7 +253,7 @@ var app_page = new Vue({
 
 > **v-bind:class = "{ 'active' : page == p }"**
 
-위의 vue Directive 내용을 해석하면, **page == p** 조건이 **true** 일 때, 해당 tag 에 **class='active'** 내용을 추가 합니다. 구체적인 작업 내용이 'string' 으로 구성되어 작업할 때 오타에 주의 합니다.
+위의 vue Directive 내용을 해석하면, **page == p** 조건이 **true** 일 때, 해당 tag 에 **class='active'** 내용을 추가 합니다. 구체적인 작업 내용이 'string' 으로 구성되는 만큼 오타에 주의 합니다.
 
 {% raw %}
 ```html
@@ -255,12 +263,10 @@ var app_page = new Vue({
     v-on:click="page = p"> {{ p }} 
   </button>
   <hr/>
-  
   <div v-for="p in pages" v-if="page === p">
     <p> {{ p }} 페이지 이동 </p>
     <img v-bind:src=" 'img/' + p + '.png'"/>
   </div>
-
 </div>
 ```
 {% endraw %}
