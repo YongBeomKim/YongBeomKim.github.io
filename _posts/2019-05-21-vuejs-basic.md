@@ -104,7 +104,7 @@ var firstApp = new Vue({
 
 ## v-for
 
-> **\< li v-for="n in numbers" \> \{\{ n \}\} \</li\>
+> \< li v-for = **"n in numbers"** \> \{\{ **n** \}\} \</li\>
 
 **Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬에서  `a = [txt  for txt in texts if len(a)>10]` 과 같은 원리로 접근하면 이해가 쉽습니다. 
 
