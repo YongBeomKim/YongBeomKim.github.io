@@ -102,4 +102,103 @@ var firstApp = new Vue({
 
 ## v-for
 
-**Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬에서  `a = [txt  for txt in texts if len(a)>10]` 과 같은 원리로 접근하면 이해가 쉽습니다.
+**Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬에서  `a = [txt  for txt in texts if len(a)>10]` 과 같은 원리로 접근하면 이해가 쉽습니다. 
+
+아래의 예제는 `app` vue.js 객체로 1) **배열객체** `numbers: [1,2,3,4,5,6,7]` 또는  2) **key/value 객체** `people: [{name: '홍길동',age: 41,}]` 를 **v-for** 에서 활용하는 방법의 예제 입니다.
+
+
+```html
+<div id="app_for">
+
+  <ul>
+    <li v-for="n in numbers">{{ n }}</li>
+  </ul>
+
+  <table>
+    <thead>
+      <tr> <th>이름</th> <th>나이</th> </tr>
+    </thead>
+    <tbody>
+      <tr v-for="p in people">
+        <th>{{ p.name }}</th>
+        <th>{{ p.age }}</th>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script src="src/vue.min.js"></script>
+<script>
+var app = new Vue({
+  el: '#app_for',
+  data:{
+    numbers: [1,2,3,4,5,6,7],
+    people: [
+        {name: '홍길동',age: 41,},
+        {name: '걸캅스',age: 33,}
+    ]
+  }
+})
+</script>
+```
+
+## v-if
+
+위의 `v-for` Directive 에서 특정한 객체들만 활용하고 싶은경우, 예를들어 `age` 객체 값이 40 이상인 경우만 출력하고 싶을 때에는 아래의 내용과 같이 `v-if` 내용을 `v-for` Directive 뒤에 붙여 주기만 하면 됩니다.
+
+```html
+<tbody>
+  <tr v-for="p in people" v-if="p.age >= 30"> 
+    <th>{{ p.name }}</th>
+    <th>{{ p.age }}</th>
+  </tr>
+</tbody>
+```
+
+## v-on
+
+`v-on` 은 **[이벤트 핸들링](https://kr.vuejs.org/v2/guide/events.html)** 으로 **사용자의 Action** 에 Response 하는 객체를 생성하는 Directive 입니다. `v-on:click="alert('버튼의 클릭')"` 와 같이 JavaScript 내용을 바로 적용하면 `v-on` 에서 특정한 **Action** 결과로 해당 JavaSciprt** 를 실행 합니다.
+
+```html
+<div id='app'>
+  <button v-on:click="alert('버튼의 클릭')">버튼</button>
+</div>
+```
+
+**객체의 값** 을 변경할 수 있습니다. `"visible = !visible"` 에서 **not 연산자(!)** 를 활용하면 **true, false** 값이 반복적으로 변경 됩니다.
+
+```html
+<div id="app">
+  <div v-if="visible">{{ message }}</div>
+  <button v-on:click="visible = !visible">메세지</button>
+</div>
+```
+
+사용자 정의 **vue method 함수** 를 이벤트 메서드로 활용할 수 있습니다. 
+
+```html
+<div id="app_for">
+  <input type="text" v-model="animal" 
+         v-on:keyup.enter="capture()">
+  <ul>
+    <li v-for="a in animals">{{ a }}</li>
+  </ul>
+</div>
+
+<script>
+var app = new Vue({
+  el: '#app_for',
+  data:{
+    animal: null,
+    animals: ['lion', 'tiger', 'cat'],
+  },
+  methods: {
+    capture: function() {
+      if(this.animal){
+          this.animals.push(this.animal);
+      }
+    }
+  }
+});
+```
