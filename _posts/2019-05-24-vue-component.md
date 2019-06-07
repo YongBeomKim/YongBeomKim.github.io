@@ -166,18 +166,14 @@ Vue.component('c-comp', {
   methods: {
     showLog: function() {
       eventBus.$emit('trigger', 100);
-    }
-  }
-});
+} } });
 
 var app = new Vue({
   el: '#app',
   created: function() {
     eventBus.$on('trigger', function(value){
       console.log("이벤트 전달 : ", value);
-    });
-  }
-});
+}) } });
 </script>
 ```
 {% endraw %}
@@ -233,7 +229,6 @@ Named View 인 `<router-view>` 태그는 개별 컴포넌트를 선택하여 렌
 var Body   = { template: '<div>This is Body</div>' };
 var Header = { template: '<div>This is Header</div>' };
 var Footer = { template: '<div>This is Footer</div>' };
-
 var router = new VueRouter({
   routes: [
     { path: '/',
@@ -242,11 +237,7 @@ var router = new VueRouter({
         default: Body,
         header: Header,
         footer: Footer
-      }
-    }
-  ]
-});
-
+} } ] });
 var app = new Vue({router}).$mount('#app');
 </script>
 ```
@@ -258,8 +249,8 @@ var app = new Vue({router}).$mount('#app');
 ```html
 <script>
 // 3. Main. Login 컴포넌트 내용 정의
-var Main  = { template: '<div>main  페이지 출력</div>' };
-var Login = { template: '<div>login 페이지 출력</div>' };
+var Main  = { template: '<div>main  페이지</div>' };
+var Login = { template: '<div>login 페이지</div>' };
 
 // 4. 개별 url 컴포넌트 등록
 var routes = [

@@ -18,10 +18,6 @@ toc: true
 3. `이벤트 핸들러(v-on)`
 4. `속성 바인더(v-bind)` 
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/vue-vscode.jpg">
-</figure>
-
 <br/>
 # Directive (지시문)
 
