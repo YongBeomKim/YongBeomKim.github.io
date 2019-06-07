@@ -316,5 +316,3 @@ var app = new Vue({
 }).$mount('#app');
 </script>
 ```
-
-
