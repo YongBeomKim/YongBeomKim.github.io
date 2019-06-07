@@ -189,6 +189,8 @@ var app = new Vue({
 
 ## router-view
 
+> \<**router-view name**="header"\> \</**router-view**\>
+
 `router-link` 에서 정의한 **개별 라우터** 에 해당하는 컴포넌트를 렌더링 합니다.
 
 ## script
