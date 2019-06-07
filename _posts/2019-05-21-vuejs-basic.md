@@ -24,10 +24,11 @@ toc: true
 아래의 내용을 간단하게 정리 해 보겠습니다.
 
 1. **Vue 인스턴스 생성자** 인 `new Vue({})` 에서는 **el(element mount), data, method** 3가지 속성을 추가할 수 있습니다.
-2. vue.js 모듈을 활용할 **HTML Tag** 를 **el(선택자) :** 선언으로 **Mount** 합니다.
-3. **폼 입력 바인더** 인 `v-model` 로 **data: 변수명** 을 연결하면 **양방향 binding** 을 지원 합니다.
-4. 배열객체는 `v-for` 로 **객체 수 만큼 반복** 하고, `v-if` 로 **제한** 합니다.
-5. **이벤트 핸들러** 인 `v-on`, **속성 바인더** 인 `v-bind` 를 활용하여 기능들을 추가 합니다.
+2. vue.js 모듈을 활용할 **HTML Tag** 를 **el(선택자) :** 선언으로 **Mount**
+3. **폼 입력 바인더** 인 `v-model` 로 **data: 변수명** 을 연결하면 즉시 **양방향 binding** 이 가능
+4. 배열객체는 `v-for` 로 **객체 수 만큼 반복** 하고, `v-if` 로 **제한조건** 을 추가
+5. **이벤트 핸들러** 인 `v-on` 로 특정한 **Client Action** 에 반응 합니다
+6. **속성 바인더** 인 `v-bind` 로 **함수형 Method** 를 연결 합니다.
 
 `폼 바인더(v-model)` **->** `vue 반복 조건문(v-for, v-if)` **->** `이벤트 핸들러(v-on)` **->** `속성 바인더(v-bind)` 순서로 입력하여, 가독성을 높여 진행 합니다.
 
@@ -170,7 +171,7 @@ var firstApp = new Vue({
 ```
 {% endraw %}
 
-**false** 인 경우 **v-if** 는 해당 DOM 을 **Skip** 하고, **v-show** 는 `display=None` 속성으로 rendering 되어 서버 부담이 증가 합니다. 따라서 동일한 기능이 필요한 경우 **v-if** 를 활용 합니다.
+**false** 인 경우 **v-if** 는 해당 DOM 을 **Skip** 하고, **v-show** 는 CSS 속성을 `display:none` 속성으로 rendering 되어 서버 부담이 증가 합니다. 따라서 동일한 기능이 필요한 경우 **v-if** 를 활용 합니다.
 
 {% raw %}
 ```html
