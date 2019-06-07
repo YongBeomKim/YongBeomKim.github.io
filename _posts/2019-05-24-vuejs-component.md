@@ -50,24 +50,108 @@ var app = new Vue({
 <br/>
 # Vue.js Component
 
-vue.js 를 조합하여 화면을 구성하는 블록 입니다.
+vue.js 를 조합하여 화면을 구성하는 블록 입니다. 컴포넌트 이름을 `my-tag` 와 같은 **케밥기법(kebab-case)** 으로 작업을 해야 합니다. 이와 같은 **[Vue 스타일 가이드](https://kr.vuejs.org/v2/style-guide/index.html)** 를 참고하여 작업을 진행 합니다.
 
-```javascript 
-Vue.component('planet', { // 컴포넌트 Tag
-  template: '#planet-template',
-  props: ['planet'],      // Tag 내부의 Method
-  methods: {
-    visit: function() {
-      this.planet.visits++; },
-  },
-  computed: {
-    canBeVisited: function() {
-      return this.planet.visits < 3 }
- }
+## 전역 컴포넌트
+
+해당 컴포넌트를 **다양한 vue 인스턴스** 에서 재활용이 가능합니다.
+
+```html 
+<div id="app">
+  <my-tag></my-tag>
+</div>
+
+<script>
+Vue.component('my-tag', {
+  template: '<div>컴포넌트 등록</div>',
 });
 new Vue({ 
   el: '#app',
-  data: { 
-    planets: [..] }
-})
+});
+</script>
 ```
+
+## 지역 컴포넌트
+
+**특정 vue 인스턴스** 에서만 작동하는 컴포넌트를 정의 합니다.
+
+```html 
+<div id="app">
+  <my-tag></my-tag>
+</div>
+
+<script>
+var cmp = {
+  template: '<div>컴포넌트 등록</div>',
+};
+new Vue({ 
+  el: '#app',
+  components: {'my-tag': cmp}
+});
+</script>
+```
+
+<br/>
+# Vue 컴포넌트 통신
+
+개별 컴포넌트는 유효범위로 인해 서로 참조가 불가능 합니다. 
+
+## props : 아래로 전달
+
+상위 컴포넌트가 하위 컴포넌트에 데이터를 전달하는 속성 입니다. 따라서 **하위 컴포넌트** 내부에 정의를 합니다. 그 뒤 상위 컴포넌트에 `v-bind:props객체` 속성으로 연결 합니다.
+
+{% raw %}
+```html
+<div id="app">
+  <c-comp v-bind:pdata="msg"></c-comp>
+</div>
+
+<script>
+Vue.components('c-comp', {
+  props: ['pdata'], // props 객체명
+  template: '<p>{{ pdata }}</p>',
+});
+new Vue({
+  el: '#app',
+  data: {
+    msg: "부모 컴포넌트 입니다",
+  }
+});
+</script>
+```
+{% endraw %}
+
+## event Bus : 하위서 상위로 전달
+
+기본적으로 단방향 통신을 하는 vue.js 특성상 정식문서에는 없는 내용 입니다. 예외적인 양방향 바인더인 **폼 바인더(v-model)** 와 별도로 복잡한 작업에서 필요시 구현하는 기능 입니다.
+
+{% raw %}
+```html
+<div id="app">
+  <c-comp v-on:showlog="pTxt"></c-comp>
+</div>
+
+<script>
+Vue.components('c-comp', {
+  template: '<button v-on:click="showlog">보이기</button>',
+  methods: {
+    showlog: function() {
+      this.$emit('show-log');
+    }
+  }
+});
+
+var app = new Vue({
+  el: '#app
+  data: {
+    msg: "부모 컴포넌트 입니다",
+  },
+  methods: {
+    pTxt: function() {
+      console.log("receive an event");
+    }
+  }
+});
+</script>
+```
+{% endraw %}
