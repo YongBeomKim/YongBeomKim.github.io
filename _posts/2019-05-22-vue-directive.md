@@ -60,9 +60,9 @@ var firstApp = new Vue({
 
 > \< li **v-for** = "**n** in numbers" \> \{\{ **n** \}\} \</li\>
 
-**Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬에서  `a = [txt  for txt in texts if len(a)>10]` 과 같은 원리로 접근하면 이해가 쉽습니다. 
+**Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬의  `a = [txt  for txt in texts if len(a)>10]` 와 같은 원리로 이해하면 쉽습니다. 
 
-아래의 예제는 `app` vue.js 객체로 1) **배열객체** `numbers: [1,2,3,4,5,6,7]` 또는  2) **key/value 객체** `people: [{name: '홍길동',age: 41,}]` 를 **v-for** 에서 활용하는 방법의 예제 입니다.
+아래 예제는 `app` vue.js 객체로 1) **배열객체** `numbers: [1,2,3,4,5,6,7]` 또는  2) **key/value 객체** `people: [{name: '홍길동',age: 41,}]` 를 **v-for** 에서 활용하는 방법의 예제 입니다.
 
 {% raw %}
 ```html
@@ -277,4 +277,14 @@ new Vue({
     styleA: 'color : blue',
 } });
 </script>
+```
+
+반복문인 **v-for** Directive 를 사용할 때에는 **v-bind:key="n"** 과 같이 반복 객체를 특정해 주는 것이 좋습니다. 이를 활용하면 전체 DOM 이 아닌, Vue.js 프레임 워크에서 직접 제어를 하면서 **조작시 소요되는 시간을 최소화** 합니다.
+
+```html
+<div id="app">
+   <li v-for="(toItem, index) in data" 
+     v-bind:key="toItem" class="shadow">
+   </li>
+</div>
 ```
