@@ -183,13 +183,13 @@ var app = new Vue({
 
 ## router-link
 
-> \<**router-link to**="/foo"\> foo 경로 이동 \</**router-link**\>
+> \< router-link **to**="/foo"\> foo 경로 이동 \</ router-link \>
 
 `Vue-router` 의 `router-link` **Tag** 를 활용하고, 속성인 `to` prop 에서 **url** 경로를 추가 합니다. 해당 tag의 내용은 `<a></a>` 내용으로 화면에 출력 합니다. 
 
 ## router-view **(Named View)**
 
-> \<**router-view name**="header"\> \</**router-view**\>
+> \< router-view **name**="header"\> \</ router-view \>
 
 Named View 의 특정 페이지 이동으`router-link` 에서 정의한 **개별 라우터** 에 해당하는 컴포넌트를 렌더링 합니다.
 
