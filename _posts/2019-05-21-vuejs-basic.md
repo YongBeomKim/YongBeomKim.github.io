@@ -23,8 +23,8 @@ toc: true
 # Vue.js Structure
 아래의 내용을 간단하게 정리 해 보겠습니다.
 
-1. `new Vue({})` 에서는 **el(element mount), data, method** 3가지 속성을 추가할 수 있습니다.
-2. vue.js 모듈을 활용할 **HTML Tag** 를 **el:** 선언으로 **Mount** 합니다.
+1. **Vue 인스턴스 생성자** 인 `new Vue({})` 에서는 **el(element mount), data, method** 3가지 속성을 추가할 수 있습니다.
+2. vue.js 모듈을 활용할 **HTML Tag** 를 **el(선택자) :** 선언으로 **Mount** 합니다.
 3. **폼 입력 바인더** 인 `v-model` 로 **data: 변수명** 을 연결하면 **양방향 binding** 을 지원 합니다.
 4. 배열객체는 `v-for` 로 **객체 수 만큼 반복** 하고, `v-if` 로 **제한** 합니다.
 5. **이벤트 핸들러** 인 `v-on`, **속성 바인더** 인 `v-bind` 를 활용하여 기능들을 추가 합니다.
@@ -76,7 +76,7 @@ var app = new Vue({
 <br/>
 # 객체와 Binding
 
-**Vue** 에서 사용되는 **data 메소드 객체** 와 내용을 확일할 때에는, 브라우저의 **console** 에서 아래의 예제를 실행한 뒤, **firstApp.message** 를 실행하면 다음과 같이 객체와 내용을 확일 할 수 있습니다.
+**Angular** 의 양방향 바인딩(Two way Data Binding) 기능을 **Vue** 에서도 **data 메소드 객체** 로 구현 및 확인 가능합니다. 브라우저 **console** 에서 아래와 같이 바인딩 객체와 메서드를 **firstApp.message** 입력하면 내용의 확인이 가능합니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/vue-console.jpg">
@@ -86,7 +86,7 @@ var app = new Vue({
 
 **script** 태그는, **모듈을 불러오는 태그** 와 **내용을 적용하는 태그** 가 구분 됩니다. 이들의 구분없이 작업을 하면 문제가 발생 합니다.
 
-**단방향 binding** 예시로 **템플릿 DOM 엘리먼트** 들 중에 `#app` 인 DOM 만을 **vue.js 규칙에 따르는 DOM** 으로 선언을 합니다. 명령 script 는 작동할 구체적인 내용을 입력 합니다.
+**단방향 binding** 예시로 **템플릿 DOM 엘리먼트** 중 `#app` 인 DOM 을 **Vue 인스턴스 유효범위** 로 선언 합니다. 내부의 script 에서는 작동할 구체적인 내용을 입력 합니다.
 
 {% raw %}
 ```html
@@ -139,11 +139,11 @@ var app = new Vue({
 <script src="src/vue.min.js"></script>
 <script>
 var firstApp = new Vue({
-    el: '#app',  //vue.js 규칙에 따르는 DOM
+  el: '#app',  //vue.js 규칙에 따르는 DOM
     data: {
-        message: '처음 시작하는 Vue.js@!@',
-        visible: false
-    }
+      message: '처음 시작하는 Vue.js@!@',
+      visible: false
+  }
 });
 </script>
 ```
