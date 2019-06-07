@@ -121,37 +121,43 @@ new Vue({
 ```
 {% endraw %}
 
-## event Bus : 하위서 상위로 전달
+## event Bus : 위로 전달
 
-기본적으로 단방향 통신을 하는 vue.js 특성상 정식문서에는 없는 내용 입니다. 예외적인 양방향 바인더인 **폼 바인더(v-model)** 와 별도로 복잡한 작업에서 필요시 구현하는 기능 입니다.
+단방향 통신을 기본으로 하는 vue.js 의 정식문서에는 없는 내용 입니다. 양방향 바인더인 **폼 바인더(v-model)** 와 별도로 이를 구현하기 위해 **강제로 상위 컴포넌트** 생성 및 활용 합니다.
+
+`.$emit()` 를 활용하여 이벤트를 보내고, `.$on()` 에서 이벤트를 수신 합니다. 
 
 {% raw %}
 ```html
 <div id="app">
-  <c-comp v-on:showlog="pTxt"></c-comp>
+  <c-comp></c-comp>
 </div>
 
 <script>
-Vue.components('c-comp', {
-  template: '<button v-on:click="showlog">보이기</button>',
+var eventBus = new Vue();
+
+Vue.component('c-comp', {
+  template: '<div>컴포넌트<button v-on:click="showLog">보이기</button></div>',
   methods: {
-    showlog: function() {
-      this.$emit('show-log');
+    showLog: function() {
+      eventBus.$emit('trigger', 100);
     }
   }
 });
 
 var app = new Vue({
-  el: '#app
-  data: {
-    msg: "부모 컴포넌트 입니다",
-  },
-  methods: {
-    pTxt: function() {
-      console.log("receive an event");
-    }
+  el: '#app',
+  created: function() {
+    eventBus.$on('trigger', function(value){
+      console.log("이벤트 전달 : ", value);
+    });
   }
 });
 </script>
 ```
 {% endraw %}
+
+<br/>
+# Vue 라우터 (Routing)
+
+
