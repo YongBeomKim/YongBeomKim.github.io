@@ -76,11 +76,24 @@ var app = new Vue({
 <br/>
 # 객체와 Binding
 
-**Angular** 의 양방향 바인딩(Two way Data Binding) 기능을 **Vue** 에서도 **data 메소드 객체** 로 구현 및 확인 가능합니다. 브라우저 **console** 에서 아래와 같이 바인딩 객체와 메서드를 **firstApp.message** 입력하면 내용의 확인이 가능합니다.
+데이터를 vue.js 와 바인딩(연결) 하는 문법으로 `{ { } }` 와 `v-bind` 속성을 사용합니다. 
+
+vuejs 는 단방향 바인딩을 원칙으로 하지만, **Angular** 의 양방향 바인딩(Two way Data Binding) 기능을 **Vue** 에서도 **data 메소드 객체** 로 구현 및 확인 가능합니다. 브라우저 **console** 에서 아래와 같이 바인딩 객체와 메서드를 **firstApp.message** 입력하면 내용의 확인이 가능합니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/vue-console.jpg">
 </figure>
+
+참고로 `{ { } }`  내부에 **자바스크립트 표현식** 을 넣으면 제대로 동작 합니다. 간단한 연산을 필요로 하는 경우에 활용하면 좋습니다. 한계로는 간단한 연산만 가능할 뿐 **자바스크립트 선언문 및 분구 구문** 등은 작동하지 않습니다.
+
+{% raw %}
+```html
+<div id="app">
+  <p>{{ message.split('').reverse().join('') }}</p>
+  <p>{{ true ? 100 : 0 }}</p> 
+</div>
+```
+{% endraw %}
 
 ## 단방향 Binding
 
@@ -104,6 +117,14 @@ var app = new Vue({
         }
     });
 </script>
+```
+{% endraw %}
+
+만약 데이터가 변경되더라고 template 에서는 바꾸고 싶지 않은 정보에 대해선 `v-once` 속성을 추가 합니다.
+
+{% raw %}
+```html
+<div id="app" v-once>{{ message }}</div>
 ```
 {% endraw %}
 
@@ -344,5 +365,25 @@ Angular 등은 `<img v-bind:src="'img/{{ p }}.png'"/>` 을 지원하지만, Vue.
 </div>
 ```
 {% endraw %}
+
+`v-bind` 에서 HTML 속성값을 vue.js 에 연결할 때, 어느 객체의 값을 연결할지 결정할 수 있습니다.
+
+```html
+<div id="app">
+  <p v-bind:id="idA"> id 와 바인딩</p>
+  <p v-bind:class="classA"> class 와 바인딩</p>
+  <p v-bind:style="styleA"> style 와 바인딩</p>
+</div>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    idA: 10,
+    classA: 'container',
+    styleA: 'color : blue',
+  }
+});
+</script>
+```
 
 `폼 바인더(v-model)` **->** `vue 반복 조건문(v-for, v-if)` **->** `이벤트 핸들러(v-on)` **->** `속성 바인더(v-bind)` 순서로 태그에 정의 함으로써 작업의 내용을 명확하게 이해하면서 작업을 진행하도록 합니다.

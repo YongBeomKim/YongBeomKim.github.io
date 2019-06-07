@@ -1,6 +1,6 @@
 ---
-title : Vue.js 응용
-last_modified_at: 2019-05-21T10:45:06-05:00
+title : Vue.js Component, Router
+last_modified_at: 2019-05-24T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/vue_logo.jpeg
 categories:
@@ -16,22 +16,33 @@ toc: true
 <br/>
 # Vue.js LifeCycle
 
-앞에서 살펴본 **Vue 인스턴스** 속성은 다음과 같았습니다. 1번의 request 에 모든 작업 내용을 지정했기 때문에 가능했습니다. 하지만 다양한 모듈과 연결된 작업을 진행하다 보면 단계별 필요한 작업을 특정해야 합니다. 
+앞에서 살펴본 **Vue 인스턴스** 속성은 다음과 같았습니다. 1번의 request 에 모든 작업 내용을 지정했기 때문에 가능했습니다. 하지만 다양한 모듈과 연결된 작업을 진행하다 보면 단계별 필요한 작업을 특정 합니다. 
 
+{% raw %}
 ```javascript
-var app = new Vue({
+<div id="app">{{ message }}</div>
+<script>
+new Vue({
   el: '#app',
-  data:{
-    number:null,
-    numbers: [1,5,3,6,7],
+  data: {
+    message: 'Hello Vue.js!'
   },
-  methods: {
-    add: function() {
-      this.numbers.push(this.number);
-      }
-    }
-  });
+  beforeCreate: function() {
+    console.log("beforeCreate");
+  },
+  created: function() {
+    console.log("created");
+  },
+  mounted: function() {
+    console.log("mounted");
+  },
+  updated: function() {
+    console.log("updated");
+  }
+});
+</script>
 ```
+{% endraw %}
 
 이를 위해 Vue.js 에서 제공하는 **[Life Cycle(생명주기)](https://blog.martinwork.co.kr/vuejs/2018/02/05/vue-lifecycle-hooks.html)** 을 활용합니다. 
 
@@ -97,6 +108,14 @@ new Vue({
 # Vue 컴포넌트 통신
 
 개별 컴포넌트는 유효범위로 인해 서로 참조가 불가능 합니다. 
+
+```javascript
+Vue.component('컴포넌트 태그', {
+  props: ['props 객체명'], 
+  template: '<h1></h1>',
+  methods: { 함수명: function() { } }
+});
+```
 
 ## props : 아래로 전달
 
@@ -169,16 +188,26 @@ var app = new Vue({
 라우팅이란 웹페이지 간의 이동 방법을 의미 합니다. **[Vue Router 공식 한글문서](https://router.vuejs.org/kr/guide/)** 의 내용을 참고하여 내용을 익히도록 합니다.
 
 ```html
-<div id="app">
-  <h1>Hello App!</h1>
-  <p>
-    <router-link to="/foo">Go to Foo</router-link>
-    <router-link to="/bar">Go to Bar</router-link>
-  </p>
-  <!-- 현재 라우트에 맞는 컴포넌트가 렌더링됩니다. -->
-  <router-view></router-view>
-</div>
-<script src="vue-router.js"></script>
+<script>
+var User = {
+  template:  `<div> User Component
+                <router-view></router-view>
+              </div>`
+};
+var UserPost = {
+  template: '<p>Post 컴포넌트</p>'
+};
+var routes = [
+  { path: '/user',
+    component: User,
+    children: [
+      { path: 'posts', component: UserPost },
+    ]
+  }
+];
+var router = new VueRouter({ routes });
+var app = new Vue({ router }).$mount('#app');
+</script>
 ```
 
 ## router-link
@@ -191,7 +220,7 @@ var app = new Vue({
 
 > \< router-view **name**="header"\> \</ router-view \>
 
-Named View 의 특정 페이지 이동으`router-link` 에서 정의한 **개별 라우터** 에 해당하는 컴포넌트를 렌더링 합니다.
+Named View 인 `<router-view>` 태그는 개별 컴포넌트를 선택하여 렌더링 합니다.
 
 ```html
 <div id="app">
@@ -208,7 +237,8 @@ var Footer = { template: '<div>This is Footer</div>' };
 var router = new VueRouter({
   routes: [
     { path: '/',
-      components: {
+      components: { 
+        // 라우터 name : 객체
         default: Body,
         header: Header,
         footer: Footer
@@ -220,10 +250,6 @@ var router = new VueRouter({
 var app = new Vue({router}).$mount('#app');
 </script>
 ```
-
-
-
-
 
 ## script
 
@@ -282,14 +308,13 @@ var routes = [
 ];
 
 var router = new VueRouter({
-  routes
+  routes // 라우터 인스턴스 생성
 });
 
 var app = new Vue({
-  router
+  router // Vue 인스턴스에 라우터 연결
 }).$mount('#app');
 </script>
 ```
 
-## Named View
 
