@@ -23,7 +23,7 @@ toc: true
 # Vue.js Structure
 아래의 내용을 간단하게 정리 해 보겠습니다.
 
-1. **Vue 인스턴스** 인 `new Vue({})` 에는 **el, data, method, computed**  
+1. **Vue 인스턴스** 인 `new Vue({})` 에는 **el, data, method, computed**
 2. **HTML Tag** 중 **el(선택자) :** 와 연결된 DOM 과 **Mount**
 3. **폼 입력 바인더** 인 `v-model` 로 **data: 변수명** 을 **양방향 binding**
 4. 배열객체는 `v-for` 로 **갯수 만큼 반복** 하고
