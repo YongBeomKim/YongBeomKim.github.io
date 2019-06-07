@@ -13,10 +13,10 @@ toc: true
 
 **vue.js Directive** 를 작업하는 경우, 아래의 순서대로 태그에 정의 함으로써 작업의 내용을 명확하게 이해하며 작업을 합니다.
 
-1. `폼 바인더(v-model)`
-2. `vue 반복 조건문(v-for, v-if)`
-3. `이벤트 핸들러(v-on)`
-4. `속성 바인더(v-bind)` 
+1. **v-model :** 폼 바인더
+2. **v-for, v-if :** vue 반복, 조*건문
+3. **v-on :** 이벤트 핸들러
+4. **v-bind :** 속성 바인더
 
 <br/>
 # Directive (지시문)
@@ -30,7 +30,7 @@ toc: true
 {% raw %}
 ```html
 <div id="app">
-    <div v-if="visible">{{ message }}</div>
+  <div v-if="visible">{{ message }}</div>
 </div>
 <script src="src/vue.min.js"></script>
 <script>
@@ -58,7 +58,7 @@ var firstApp = new Vue({
 
 ## v-for
 
-> \< li v-for = **"n in numbers"** \> \{\{ **n** \}\} \</li\>
+> \< li **v-for** = "**n** in numbers" \> \{\{ **n** \}\} \</li\>
 
 **Array** 객체를 다루는 Method 로 **v-if** 와 함께 활용 합니다. 파이썬에서  `a = [txt  for txt in texts if len(a)>10]` 과 같은 원리로 접근하면 이해가 쉽습니다. 
 
@@ -140,7 +140,7 @@ var app = new Vue({
 ```html
 <div id="app_for">
   <input type="text" v-model="animal" 
-      v-on:keyup.enter="capture()">
+    v-on:keyup.enter="capture()">
   <ul>
     <li v-for="a in animals">{{ a }}</li>
   </ul>
