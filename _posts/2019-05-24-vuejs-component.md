@@ -187,11 +187,43 @@ var app = new Vue({
 
 `Vue-router` 의 `router-link` **Tag** 를 활용하고, 속성인 `to` prop 에서 **url** 경로를 추가 합니다. 해당 tag의 내용은 `<a></a>` 내용으로 화면에 출력 합니다. 
 
-## router-view
+## router-view **(Named View)**
 
 > \<**router-view name**="header"\> \</**router-view**\>
 
-`router-link` 에서 정의한 **개별 라우터** 에 해당하는 컴포넌트를 렌더링 합니다.
+Named View 의 특정 페이지 이동으`router-link` 에서 정의한 **개별 라우터** 에 해당하는 컴포넌트를 렌더링 합니다.
+
+```html
+<div id="app">
+   <router-view name="header"></router-view>
+   <router-view></router-view>
+   <router-view name="footer"></router-view>
+</div>
+
+<script>
+var Body   = { template: '<div>This is Body</div>' };
+var Header = { template: '<div>This is Header</div>' };
+var Footer = { template: '<div>This is Footer</div>' };
+
+var router = new VueRouter({
+  routes: [
+    { path: '/',
+      components: {
+        default: Body,
+        header: Header,
+        footer: Footer
+      }
+    }
+  ]
+});
+
+var app = new Vue({router}).$mount('#app');
+</script>
+```
+
+
+
+
 
 ## script
 
@@ -233,10 +265,9 @@ var app = new Vue({
 
 <script>
 var User = {
-  template: `
-    <div> User Component
-      <router-view></router-view>
-    </div>`
+  template:  `<div> User Component
+                <router-view></router-view>
+              </div>`
 };
 var UserProfile = {template: '<p>Profile 컴포넌트</p>'};
 var UserPost = {template: '<p>Post 컴포넌트</p>'};
@@ -259,3 +290,6 @@ var app = new Vue({
 }).$mount('#app');
 </script>
 ```
+
+## Named View
+
