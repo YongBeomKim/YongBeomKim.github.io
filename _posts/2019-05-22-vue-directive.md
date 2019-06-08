@@ -11,12 +11,13 @@ tags:
 toc: true 
 ---
 
-**vue.js Directive** 를 작업하는 경우, 아래의 순서대로 태그에 정의 함으로써 작업의 내용을 명확하게 이해하며 작업을 합니다.
+**vue.js Directive** 를 작업하는 경우, 아래의 순서대로 태그에 정의 함으로써 작업의 내용을 명확하게 이해하며 작업을 합니다. 앞으로 다룰 Direct 내용으로는 **v-model, v-for, v-if, v-else, v-else-if, v-on, v-bind** 등이 있습니다.
 
-1. **v-model :** 폼 바인더
-2. **v-for, v-if :** vue 반복, 조*건문
-3. **v-on :** 이벤트 핸들러
-4. **v-bind :** 속성 바인더
+4. **v-model :** 폼 바인더
+5. **v-for :** 반복문
+6. **v-if, v-else, v-else-if :** 조건부 랜더링
+7. **v-on :** 이벤트 핸들러
+8.  **v-bind :** 속성 바인더
 
 <br/>
 # Directive (지시문)
@@ -25,7 +26,14 @@ toc: true
 
 ## v-if & v-show
 
-자바스크립트에서 boolean 객체는 **true, false** 소문자를 활용 합니다. 위에서 선안한 객체의 메서드를 활성화 할 것인지 판단 합니다.
+**v-if, v-else, v-else-if** 등의 **조건부 랜더링** 내용을 [공식문서](https://kr.vuejs.org/v2/guide/conditional.html) 를 참고하여 정리를 해 보겠습니다
+
+자바스크립트에서 판단을 하는 경우 boolean 객체의 **true, false** 소문자 내용을 활용 합니다. 위에서 선언한 객체의 메서드를 활성화 할 것인지를 판단 합니다.
+
+**v-if** 를 활용하는 방법으로는 대표적으로 아래 2가지가 있습니다.
+
+1. 반복문의 실행 조건 `<div v-for="p in pages" v-if = "page === p">`
+2. 객체의 true, false 의 판단 `<h1 v-if ="!message">`
 
 {% raw %}
 ```html
@@ -45,7 +53,7 @@ var firstApp = new Vue({
 ```
 {% endraw %}
 
-**false** 인 경우 **v-if** 는 해당 DOM 을 **Skip** 하고, **v-show** 는 CSS 속성을 `display:none` 속성으로 rendering 되어 서버 부담이 증가 합니다. 따라서 동일한 기능이 필요한 경우 **v-if** 를 활용 합니다.
+**false** 인 경우 **v-if** 는 해당 DOM 을 **Skip** 하고, **v-show** 는 CSS 속성을 `display:none` 속성으로 rendering 되어 서버 부담이 증가 하고 **vue component 에서 사용할 수 없는** 한계가 있습니다. 따라서 동일한 기능이 필요한 경우 **v-if** 를 사용 합니다.
 
 {% raw %}
 ```html
@@ -55,6 +63,32 @@ var firstApp = new Vue({
 </script>
 ```
 {% endraw %}
+
+## v-else, v-else-if
+
+**v-if** 에 대한 **else** 블록을 지정하여 예외적인 실행을 정의할 수 있습니다.
+
+```html
+<h1 v-if="!message"> 입력된 메세지가 없습니다</h1>
+<h2 v-else> 메세지 전송이 완료 되었습니다</h2>
+```
+
+단조로운 예외문이 아닌 다양한 상황에 따른 예외를 지정할 수 있습니다.
+
+```html
+<div v-if="type === 'A'">
+  A 내용의 출력
+</div>
+<div v-else-if="type === 'B'">
+  B 내용의 출력
+</div>
+<div v-else-if="type === 'C'">
+  C 내용의 출력
+</div>
+<div v-else>
+  Not A/B/C 내용의 출력
+</div>
+```
 
 ## v-for
 
@@ -256,7 +290,7 @@ Angular 등은 `<img v-bind:src="'img/{{ p }}.png'"/>` 을 지원하지만, Vue.
   <ul>
     <li v-for="a in animals">{{ a }}</li>
   </ul>
-</div>
+</h1>
 ```
 {% endraw %}
 
