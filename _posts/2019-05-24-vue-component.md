@@ -61,7 +61,19 @@ new Vue({
 <br/>
 # Vue.js Component
 
-vue.js 를 조합하여 화면을 구성하는 블록 입니다. 컴포넌트 이름을 `my-tag` 와 같은 **케밥기법(kebab-case)** 으로 작업을 해야 합니다. 이와 같은 **[Vue 스타일 가이드](https://kr.vuejs.org/v2/style-guide/index.html)** 를 참고하여 작업을 진행 합니다.
+vue.js 를 조합하여 화면을 구성하는 블록 입니다. **[Vue 스타일 가이드](https://kr.vuejs.org/v2/style-guide/index.html)** 를 참고하여 작업을 진행 합니다.
+
+HTML 은 **대소문자를 구분하지 못합니다.** 때문에 변수 이름을 **CamelCase** 로 구분하고 싶은 경우에는, 대소문자가 구분되지 않아서, 이름을 `my-tag` 와 같은 **케밥기법(kebab-case)** 으로 작업을 하면 JavaScript 등에서 **CamelCase** 로 인식 및 구분이 가능 합니다.
+
+{% raw %}
+```html
+<story is-user="true"></story>
+<script>
+new Vue({
+  props: ['isUser'],
+})
+```
+{% endraw %}
 
 ## 전역 컴포넌트
 

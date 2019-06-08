@@ -134,9 +134,7 @@ var app = new Vue({
 ```
 {% endraw %}
 
-## v-if
-
-위의 `v-for` Directive 에서 특정한 객체들만 활용하고 싶은경우, 예를들어 `age` 객체 값이 40 이상인 경우만 출력하고 싶을 때에는 아래의 내용과 같이 `v-if` 내용을 `v-for` Directive 뒤에 붙여 주기만 하면 됩니다.
+`v-if` 내용을 `v-for` Directive 뒤에 붙여 주기만 하면, 반복시 특정 조건일 때에만 해당 내용일 적용 됩니다.
 
 {% raw %}
 ```html
@@ -223,6 +221,47 @@ var app = new Vue({
 } } });
 </script>
 ```
+
+해당 객체의 값의 연산을 활용한 이벤트 핸들링도 가능 합니다.
+
+{% raw %}
+```html
+<div id="app">
+  <button v-on:click="upvotes++">추천 {{ votes }}</button>
+</div>
+
+<script>
+new Vue({
+  el: "#app",
+  data:{ votes : 0, },
+});
+</script>
+```
+{% endraw %}
+
+위와 동일한 내용을 **함수 메서드** 로 구현 가능합니다.
+
+{% raw %}
+```html
+<div id="app">
+  <button v-on:click="upvote">추천 {{ votes }}</button>
+</div>
+
+<script>
+new Vue({
+  el: "#app",
+  data:{ votes : 0, },
+  methods:{
+    upvote: function(){ this.votes++; }
+  }
+});
+</script>
+```
+{% endraw %}
+
+이러한 이벤트를 한정하는 방법으로 **이벤트 한정자 (.prevent, .stop)** 또는 **Key 한정자 ex)v-on.keyup.13** 가 있습니다. 이들 중 **Key 한정자** 를 자세히 알아 보겠습니다.
+
+아래의 예시 중 `<input v-on:keyup.enter="capture()">` 에서 그 내용을 볼 수 있고 일반적인 **Key 별칭** 을 정리하면 **enter, tab, delete, esc, space, up, down, left, right** 등이 있습니다.
 
 ## v-bind **(:) : 속성 바인더**
  
