@@ -53,7 +53,7 @@ var firstApp = new Vue({
 ```
 {% endraw %}
 
-**false** 인 경우 **v-if** 는 해당 DOM 을 **Skip** 하고, **v-show** 는 CSS 속성을 `display:none` 속성으로 rendering 되어 서버 부담이 증가 하고 **vue component 에서 사용할 수 없는** 한계가 있습니다. 따라서 동일한 기능이 필요한 경우 **v-if** 를 사용 합니다.
+**false** 인 경우 **v-if** 는 해당 DOM 을 **Skip** 하고, **v-show** 는 CSS 속성을 `display:none` 속성으로 rendering 되어 서버 부담이 증가 하고 **v-else 와 함께, vue component 내부에서 사용할 수 없는** 한계가 있습니다. 따라서 동일한 기능이 필요한 경우 **v-if** 를 사용 합니다.
 
 {% raw %}
 ```html
@@ -63,6 +63,8 @@ var firstApp = new Vue({
 </script>
 ```
 {% endraw %}
+
+그럼에도 **v-show** 를 사용하는 이유는 **v-if** 는 랜더링 비용이 낮은대신 Toggle 비용이 높습니다. 반대로 **v-show** 는 토글비용이 낮아 매우 자주 Toggle 하는 경우 (ex> 실시간 주가출력) 등에 유용 합니다.
 
 ## v-else, v-else-if
 
