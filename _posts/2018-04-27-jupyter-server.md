@@ -7,12 +7,11 @@ tags:
     - server
 ---
 
-
-[참고사이트01](https://dymaxionkim.github.io/beautiful-jekyll/2017-01-23-Jupyter/)
+Python 에서 Jupyter 를 설치하면 localhost 에서만 실행 가능합니다. 별도 서버에 설치를 하고 원격으로 실행하기 위해선 몇가지 작업을 추가 하면 되고 아래의 내용은 **[참고사이트](https://dymaxionkim.github.io/beautiful-jekyll/2017-01-23-Jupyter/)** 의 내용을 정리해 보도록 하겠습니다.
 
 ## Jupyter Theme 설정
 
-```
+```s
 # install jupyterthemes
 $pip install jupyterthemes
 

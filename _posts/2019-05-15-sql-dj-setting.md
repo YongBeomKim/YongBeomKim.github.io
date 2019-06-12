@@ -4,12 +4,11 @@ last_modified_at: 2019-05-15T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/sql.png
 categories:
-  - django
+  - sql
 tags: 
-    - django
-    - mysql
     - sql
-toc: true    
+    - mysql
+toc: true
 ---
 
 **sqlite3** 는 **개별파일만** 연결하여 사용성은 높지만 보안 및 사용자 관리가 어려운 반면, **MySQL** 등은  **고유주소, 사용자ID, Password** 등을 설정해야 하는 번거로움이 있지만, 시스템 및 작업의 안전성을 담보하는 만큼 익숙해 질 필요가 있습니다.

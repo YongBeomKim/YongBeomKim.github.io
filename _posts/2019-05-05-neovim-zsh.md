@@ -17,7 +17,7 @@ categories:
 **Neo Vim** 이 가장 무난했습니다. **Space Vim** 무겁고 우분투에서 fictx 폰트와 충돌로 터미널이 먹통이 되는 등 불안정한 모습을 보여 줬습니다. **vim** 과 중복설치시 설정값을 공유하는 등의 문제가 발생하므로 **vim** 을 제거 후 설치 하도록 합니다.
 
 ## INSTALL
-다음의 내용을 설치한 뒤 `$nvim 파일.확장자` 로 내용을 실행합니다
+다음의 내용을 설치한 뒤 `$ nvim 파일.확장자` 로 실행을 합니다
 ```s
 $ sudo add-apt-repository ppa:neovim-ppa/unstable
 $ sudo apt-get update
@@ -145,6 +145,42 @@ $ nano .zshrc             # 설정파일
 ZSH_THEME="agnoster"      # 테마를 정의한다
 export LANG="ko_KR.UTF-8" # 한글 인코딩을 해결
 $ souce .zshrc            # 변경된 설정을 적용
+```
+
+## Theme 추가
+이번에 작업하면서 **[dracular](https://draculatheme.com/zsh/)** 테마를 추가해 보겠습니다.
+
+```s
+$ git clone https://github.com/dracula/zsh.git
+$ cp zsh/dracula.zsh-theme $OH_MY_ZSH/themes/dracula.zsh-theme
+$ rm -rf zsh 
+```
+
+실행파일을 복사했으면 설정에 내용을 추가한 뒤 재실행을 하면 바로 적용 됩니다.
+
+```s
+$ nano .zshrc             # 설정파일
+ZSH_THEME="dracula"
+
+$ souce .zshrc            # 변경된 설정을 적용
+```
+
+## PlugIn 의 추가
+
+전체적인 Theme 를 설치했다면, 이번에는 필요한 기능을 추가해 보겠습니다. 개별 PlugIn Git 소스에 안내한 대로 플러그인 git 데이터를 설치한 뒤, 설정폴더로 파일을 이동한 뒤 `$ nvim ~/.zshrc` 에서 `plugin=()` 에 필요한 내용들을 추가 합니다.
+
+```s
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+$ nvim ~/.zshrc
+
+plugins=(
+  git
+  zsh-autosuggestions
+  #zsh-syntax-highlighting
+  history-substring-search
+)
+
+$ souce .zshrc   # 변경된 설정을 적용
 ```
 
 ## 기호폰트 추가하기
