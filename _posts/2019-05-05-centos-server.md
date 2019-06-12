@@ -1,6 +1,6 @@
 ---
 title : CentOS 활용 및 도구설치
-last_modified_at: 2019-06-06T15:45:06-05:00
+last_modified_at: 2019-05-05T15:45:06-05:00
 header:
   overlay_image: /assets/images/book/centos.jpg
 categories:
