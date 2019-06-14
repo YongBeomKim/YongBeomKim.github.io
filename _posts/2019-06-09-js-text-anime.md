@@ -1,5 +1,5 @@
 ---
-title : WEB Animation by JS
+title : WEB Animation CSS & JS
 last_modified_at: 2019-06-09T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/js.jpg
