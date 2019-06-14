@@ -80,14 +80,18 @@ const element =  document.querySelector('#위치')
 element.classList.add('animated', 'bounceOutLeft')
 ```
 
-https://codepen.io/michaeldoyle/pen/Bhsif/
+<br/>
+# 기능의 구현
 
-https://codepen.io/marguerite/pen/aOjKEo
+현재 필요한 기능으로는
 
-https://codepen.io/sonorangirl/pen/XmRBjq
+1. 메뉴 스크롤로 인한 **[Nav 투명도](https://codepen.io/michaeldoyle/pen/Bhsif/)** 변화
+2. **[velocity.js ](https://codepen.io/zeasts/pen/mPLEQe)** 기능별 버튼 Hover 시 Pop-Up 내용 설명 
+3. **[letter move](https://tobiasahlin.com/moving-letters/)** 페이지 이동시 전체 화면적인 리액션
 
-
+## Bootstrap 
+Bootstrap Popover with velocity.js 
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/font-awesome.png">
+  <img src="{{site.baseurl}}/assets/images/code/font.png">
 </figure>
