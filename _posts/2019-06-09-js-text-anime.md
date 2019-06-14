@@ -1,5 +1,5 @@
 ---
-title : WEB Text Animation by JavaScript
+title : WEB Animation by JS
 last_modified_at: 2019-06-09T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/js.jpg
@@ -7,13 +7,14 @@ categories:
   - js
 tags: 
     - js
+    - css
     - javascript
 toc: true    
 ---
 
-앞에서 기본적인 CSS 문법과 유용한 도구들에 대해 알아보았습니다. 일반적으로 HTML5 와 CSS 를 활용하는 방법이 JavaScript 보다 가볍고 호환이 좋은 것으로 알려져 있습니다.
+**TypewriterJS** 와 같은 도구들이 일반 환경에서는 잘 작동하지만, 사양이 낮은 환경에서는 **Chrome** 이 아닌 경우에는 튕기는 등 문제가 발생하는 상황이 발생합니다. 
 
-**TypewriterJS** 와 같은 도구들이 일반 환경에서는 잘 작동하지만, 사양이 낮은 환경에서는 **Chrome** 이 아닌 경우에는 튕기는 등 문제가 발생하는 상황이 발생합니다. 이를 대비하기 위해 다양한 효과보단 필요한 효과들을 몇가지로 한정을 하고, 이에 대응 가능한 여러가지 방법들을 정리하여 보완하는 방법이 생산성 향상에 도움이 됩니다.
+작업을 진행하면서 다양한 효과를 사용하기 보다는 **필요한 효과를 몇가지로 한정** 하고, 이에 **대응 가능한 여러가지 방법들을 정리** 하여 생산성을 높이도록 합니다.
 
 <br/>
 # Typing Text
@@ -78,6 +79,14 @@ speed 설정 값으로는 **slow :** 2sec,  **slower :** 3sec, **fast :** 800ms,
 const element =  document.querySelector('#위치')
 element.classList.add('animated', 'bounceOutLeft')
 ```
+
+https://codepen.io/michaeldoyle/pen/Bhsif/
+
+https://codepen.io/marguerite/pen/aOjKEo
+
+https://codepen.io/sonorangirl/pen/XmRBjq
+
+
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/font-awesome.png">
