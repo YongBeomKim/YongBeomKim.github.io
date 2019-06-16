@@ -91,7 +91,3 @@ element.classList.add('animated', 'bounceOutLeft')
 
 ## Bootstrap 
 Bootstrap Popover with velocity.js 
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/code/font.png">
-</figure>
