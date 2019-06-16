@@ -13,7 +13,7 @@ tags:
 **외부 데이터를 정기적** 으로 **수집 및 분석** 하고, 결과를 **아이템별/ 사용자별 맞춤형** 으로 제공하는 서비스를 제작하는 것이 이번 Project 의 목적 입니다.
 
 1. **User Simple Interface**
-2. **Fun and Beautiful Design**
+2. **Fun and Beautiful Design** (꼼꼼한 Interactive)
 3. **Machine Learning Analysis**
 
 데이터를 수집하고 분석결과를 알려 주었다면, 자료들이 축적될 수록 **예측 데이터의 생성** 이 가능해 집니다.
