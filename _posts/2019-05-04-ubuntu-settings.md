@@ -1,5 +1,5 @@
 ---
-title : 우분투 Setting & Tips (2019.01)
+title : 우분투 Setting & Tips Win10
 last_modified_at: 2019-05-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ubuntu.png
@@ -10,6 +10,9 @@ tags:
 ---
 
 우분투에 대해 알게된 점들을 지속적으로 묶어서 정리를 해 보려고 합니다. 이번 페이지에서 정리하려는 내용은 Setting 파일들로써 각각의 파일과, 내용에 대해 정리하려고 합니다.
+
+또한 윈도우 10 의 Bash 터미널에서 사용자 변경 및 zsh 설치방법을 정리해 보겠습니다. 자세한 초기설정 방법은 [](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/) 를 참고합니다.
+
 
 <br/>
 # manage.py
@@ -87,4 +90,60 @@ sudo iptables -I INPUT 2 -p tcp --dport 8080 -j ACCEPT
 cd python/Source/
 jupyter lab &
 cd ~
+```
+
+<br/>
+# 윈도우에서 sudo
+
+초기에는 관리자 계정으로 로그인 됩니다. 맨 처음에는 관리가 관련 정보를 생성합니다.
+
+## su passwd
+
+관련 프로그램 설치등을 위해서도 관리자 계정이 필요한 만큼 암호를 생성합니다
+
+```s
+root@DESKTOP-UOGF7U8:~#
+root@DESKTOP-UOGF7U8:~# passwd
+Enter new UNIX password:
+Retype new UNIX password:
+root@DESKTOP-UOGF7U8:~#
+```
+
+## useradd, userdel
+
+관리자 계정이 있어도 실제 사용하기엔 문제가 많습니다. 사용자 설정을 진행하다가 문제가 생긴경우에는 모든 시스템을 재설치 해야 하지만, 별도의 사용자권한을 생성한 뒤에 작업을 진행하게 되면 꼭 필요한 내용만 **sudo** 에 설치하고, 기타 프로그램 및 설정은 **사용자 계정** 에 설치를 하는등 작업관리가 용이한 장점이 있습니다.
+
+```s
+root@DESKTOP-UOGF7U8:~# useradd python
+root@DESKTOP-UOGF7U8:~# passwd python
+사용자의 비밀 번호 변경 중
+새  암호: 
+새  암호 재입력:
+passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
+
+root@DESKTOP-UOGF7U8:~# userdel python
+root@DESKTOP-UOGF7U8:~# rm -rf /etc/pythonroot@DESKTOP-UOGF7U8:~#
+```
+
+## 사용자 변경
+
+우분투를 사용하면서 `sudo` 를 자주 사용했지만, CentOS 와 같이 윈도우 에서는 `su` 와 `su 사용자` 를 활용하여 계정을 변경한 뒤 필요한 작업들을 한꺼번에 진행하도록 합니다.
+
+```s
+root@DESKTOP-UOGF7U8:~# su python
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+python@DESKTOP-UOGF7U8:/root$
+python@DESKTOP-UOGF7U8:/root$ su
+Password:
+root@DESKTOP-UOGF7U8:~#
+```
+
+## default user
+
+우분투 shell 을 실행하면 기본 사용자가 **root** 로 로그인 됩니다. 때문에 매번 사용자 로그인/ 로그아웃을 반복해야 하는 번거로움이 있고 기본 사용자를 변경 설정하면 이러한 번거로운 부분의 해결이 가능합니다. 이번에는 윈도우 터미널을 실행한 뒤 `C:\>` 로 이동하여 **[기본 로그인 사용자](https://docs.microsoft.com/en-us/windows/wsl/user-support)** 를 변경하면 됩니다. 아래의 작업 뒤 우분투 터미널을 실행하면 기본 로그인 사용자정보가 변경된 것을 확인할 수 있습니다.
+
+```s
+C:\> lxrun /setdefaultuser python
 ```
