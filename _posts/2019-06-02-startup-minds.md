@@ -95,12 +95,7 @@ tags:
 ## 11월 : 서비스 고도화 진행 및 중간결과의 발표
 
 <figure class="align-center">
-  <img src="">
-  <figcaption></figcaption>
-</figure>
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/photo/h.jpg">
+  <img src="{{site.baseurl}}/assets/images/photo/">
   <figcaption></figcaption>
 </figure>
 
