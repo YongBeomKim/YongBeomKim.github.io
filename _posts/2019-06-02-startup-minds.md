@@ -34,14 +34,20 @@ tags:
 
 ## App Service
 
-어플 서비스를 제작하기 위해 샘플들을 살펴보던 중 **<span style="color:white;">SSG</span> <span style="color:red;">PAY</span>** 서비스가 모델로 삼기에 충분해 보입니다. **[Plus Ex](http://www.plus-ex.com/portfolio/ssgpay.html)** 
+어플 서비스를 제작하기 위해 샘플들을 살펴보던 중 **<span style="color:white;">SSG</span><span style="color:red;">PAY</span>** 서비스가 모델로 삼기에 충분해 보입니다. **[Plus Ex](http://www.plus-ex.com/portfolio/ssgpay.html)** 디자인 회사에서 제작한 서비스로 **L Point** 와 **G9** 등 다양한 결제 서비스도 포트폴리오에 있지만 **<span style="color:white;">SSG</span><span style="color:red;">PAY</span>** 가 가장 알차게 구성되어 있었습니다.
 
-이유는 다양한 서비스 내용을 
+이 부분은 디자인 회사의 능력도 있겠지만, 주문을 의뢰한 업체가 서비스에 대한 구체적인 설계도가 명확하게 제시를 했고, 명확한 아이템들을 구조화 하는데 최대한의 능력을 구현한 결과로 보입니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/project/ssgpay.jpg">
   <figcaption></figcaption>
 </figure>
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/project/ssgpay-color.jpg">
+  <figcaption></figcaption>
+</figure>
+
 
 
 <br/>
