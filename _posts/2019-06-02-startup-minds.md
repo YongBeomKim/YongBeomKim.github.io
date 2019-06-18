@@ -32,6 +32,18 @@ tags:
 
 **SSGPAY** 는 다양한 메뉴들을 구성하는데 있어서 좋은 예제로 **프런트엔드 웹디자인** 에서 **Flat 디자인을 활용한  MaterializeCSS** 의 응용사례로 제시되어 있었고, 실제로 사용해본 결과 **깔끔하면서 체계적으로 잘 정돈된 구성요소들이 맘에들어서** 이를 참고하여 서비스를 제공하도록 하겠습니다.
 
+## App Service
+
+어플 서비스를 제작하기 위해 샘플들을 살펴보던 중 **SSG <span style="color:red">PAY</span>** 서비스가 모델로 삼기에 충분해 보입니다. **[Plus Ex](http://www.plus-ex.com/portfolio/ssgpay.html)** 
+
+이유는 다양한 서비스 내용을 
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/project/ssgpay.jpg">
+  <figcaption></figcaption>
+</figure>
+
+
 <br/>
 # 예산의 배정
 
