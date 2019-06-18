@@ -34,7 +34,7 @@ tags:
 
 ## App Service
 
-어플 서비스를 제작하기 위해 샘플들을 살펴보던 중 **SSG <span style="color:red">PAY</span>** 서비스가 모델로 삼기에 충분해 보입니다. **[Plus Ex](http://www.plus-ex.com/portfolio/ssgpay.html)** 
+어플 서비스를 제작하기 위해 샘플들을 살펴보던 중 **<span style="color:white;">SSG</span> <span style="color:red;">PAY</span>** 서비스가 모델로 삼기에 충분해 보입니다. **[Plus Ex](http://www.plus-ex.com/portfolio/ssgpay.html)** 
 
 이유는 다양한 서비스 내용을 
 
