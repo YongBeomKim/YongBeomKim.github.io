@@ -2,7 +2,7 @@
 title : 예비창업 Project
 last_modified_at: 2019-06-02T10:45:06-05:00
 header:
-  overlay_image: /assets/images/book/Startup.png
+  overlay_image: /assets/images/book/facebook_inno.jpg
 categories:
   - business
 tags: 
@@ -47,8 +47,6 @@ tags:
   <img src="{{site.baseurl}}/assets/images/project/ssgpay-color.jpg">
   <figcaption></figcaption>
 </figure>
-
-
 
 <br/>
 # 예산의 배정
@@ -112,15 +110,17 @@ tags:
 
 ## 11월 : 서비스 고도화 진행 및 중간결과의 발표
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/photo/">
-  <figcaption></figcaption>
-</figure>
+내용의 추가..
 
 <br/>
 # 스타트업에서 기획자
 
 2019년 6월 20일 **판교 페이스북 이노베이션랩** 에서 **thinkflow** 의 UI 디자이너의 강연이 있었습니다. 당연한 이야기 이지만 정답은 없고, 전달된 내용을 어떻게 적용할 것인지는 청중 각자들의 몫입니다. 간단히 내용을 정리해 보겠습니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/book/face.jpeg">
+  <figcaption></figcaption>
+</figure>
 
 ## Attitude
 
