@@ -1,13 +1,14 @@
 ---
-title : CSS Style Tips
+title : CSS Menu Style Tips
 last_modified_at: 2019-06-17T12:45:06-05:00
 header:
-  overlay_image: /assets/images/book/css.jpg
+  overlay_image: /assets/images/book/responsive-nav.png
 categories:
   - css
 tags: 
     - css
-    - flexible
+    - response
+    - menu
 toc: true    
 ---
 
@@ -119,3 +120,5 @@ for (i = 0; i < acc.length; i++) {
 페이지별 내용을 출력하고 결과를 볼 수 있어서 공간적인 측면에선 유용하지만 1개를 활성화 하면 다른 페이지를 닫으면 보다 집중도가 높아서 효과가 높을 것으로 기대 됩니다. 이번 **[예제내용](https://codepen.io/jerica/pen/XYzmQx)** 을 참고로 하여 본문을 디자인 하도록 하겠습니다.
 
 <!-- 메뉴 예제사이트 https://codepen.io/jerica/pen/XYzmQx -->
+
+##
