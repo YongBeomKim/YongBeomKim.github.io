@@ -23,6 +23,35 @@ HTML 에서 다양한 효과를 추가할 때, **Vue.js React.js** 나 **Javascr
 
 
 <br/>
+# 알아야 할 개념들
+
+## Holy Grail Template
+
+Django 에서도 Model View Template 로 구성요소를 나눠서 설계 및 적용을 하는 만큼, Template 작업을 진행하는 경우에도, 전체를 부분으로 나눈 뒤 개별 요소에 맞는 내용을 적용 합니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/book/holigrail.gif">
+</figure>
+
+1. 상단의 Navigation
+2. 본문인 Article, Section, div 태그의 구분
+3. 중간 메뉴인 Aside
+4. 밑에 적용하는 Footer
+
+로 나눠서 작업을 진행하면 효과적 입니다.
+
+## Article, Section, Div
+
+위 3가지 태그는 상하 종속관계가 정해져 있지 않고, 용도에 따라 다양한 조합으로 활용할수 있습니다.
+
+**Section :** 은 신문의 섹션과 같이 **같은 묶음으로 엮일 수 있는 것들** 을 의미 합니다. 반면 **Article :** 은 신문의 개별 기사처럼 독립적인 요소로써 동작합니다. 즉 자신이 구현하려는 대상의 성격에 따라 달라집니다.
+
+1. **독립적인 개별 구분** 내부에 유사한 여러개가 묶이는가? `Article > Section`
+2. **유사한 묶음 내부에** 개별 요소들이 분포 되는가? `Section > Article` 
+
+등 위에 정리된 내용 이외에도 다양한 조합이 가능합니다.
+
+<br/>
 # **농림축산식품 창업경진대회**
 
 **7월 10일** 까지 **웹 서비스를** 구성하여 **[농림축산식품 창업경진대회](http://data.mafra.go.kr/contest/introduction/introduction/screen.do)** 를 신청해 보도록 하겠습니다. **CASCADE 작업방식** 으로 **2019.4.10 ~ 2019.7.10** 까지 2주내 틀과 웹 서비스를 완성한 뒤, 필요한 서류들을 작성해 제출까지 진행해 보도록 하겠습니다.
@@ -157,7 +186,7 @@ for (i = 0; i < acc.length; i++) {
 
   </div>
 </div>
-```
+  ```
 
 ## JavaScript
 
@@ -172,4 +201,39 @@ $(".material-card").click(function () {
     $('.material-card').removeClass('full', 'start', 'visible', 'next')
     $(this).addClass('full')
 })
+```
+
+## CSS 
+
+위에서 정의한 스타일 내용들을 살펴보면 다음과 같습니다.
+
+```css
+.file-card,
+.notes-card,
+.kanban-card,
+.chat-card {
+  text-align: center;
+  overflow-y: auto;
+  height: 800px;
+  float: left;
+  transition: all 0.5s ease;
+}
+
+.file-card:hover,
+.notes-card:hover,
+.kanban-card:hover,
+.chat-card:hover {
+  text-align: center;
+  overflow-y: auto;
+  height: 800px;
+  float: left;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.material-card-container {
+  background: rgba(242, 242, 242, 0.1);
+  width: 100%;
+  padding: 0px;
+  height: auto;
+}
 ```
