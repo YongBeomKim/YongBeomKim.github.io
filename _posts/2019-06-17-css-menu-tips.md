@@ -7,14 +7,20 @@ categories:
   - css
 tags: 
     - css
-    - response
     - menu
+    - response
 toc: true    
 ---
 
 HTML 에서 다양한 효과를 추가할 때, **Vue.js React.js** 나 **Javascript** 를 활용한 **Jquery** 효과도 가능하지만 내용이 분리되어 유지보수가 어렵습니다. 이번 프로젝트의 작업을 진행하면서는 **HTML5** 와 **CSS3** 의 기능을 활용하여 다양한 효과들을 적용하겠습니다.
 
 이번 페이지에서는 CSS3 의 `::before` 와 `::after` 그리고 다양한 `transform` 등의 기능을 활용하여 다양한 효과들을 추가합니다. 그리고 필요한 라이브러리는 여러군데 찾기보단 **[Codepen](https://codepen.io/)** 에서 검색한 뒤 최대한 간결한 내용들을 활용 및 정리해 보겠습니다.
+
+1. 기본적인 아코디언 메뉴
+2. 접이식 카드메뉴
+3. 버튼 클릭시 전환 슬라이드 https://codepen.io/mtabaszewski/pen/YXENqw
+4. 자연배경 메뉴 https://codepen.io/EMEDESIGN/pen/PWvGbx  
+
 
 <br/>
 # **농림축산식품 창업경진대회**
@@ -63,7 +69,9 @@ var i;
 for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function () {
     this.classList.toggle("active");
+
     var panel = this.nextElementSibling;
+
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
     } else {
@@ -121,4 +129,47 @@ for (i = 0; i < acc.length; i++) {
 
 <!-- 메뉴 예제사이트 https://codepen.io/jerica/pen/XYzmQx -->
 
-##
+## Body HTML
+
+```html
+<div>
+  <div class="material-card-container">
+
+    <div class="file-card dark-purple light-purple-text material-card">
+      <h4>Files</h4>
+      <p>I am an inordinate amount going.</p>
+    </div>
+
+    <div class="notes-card dark-cyan light-cyan-text material-card">
+      <h4>Notes+</h4>
+      <p>I am an inordinate amount going.</p>
+    </div>
+
+    <div class="kanban-card dark-aqua light-aqua-text material-card">
+      <h4>Kanban</h4>
+      <p>I am an inordinate amount going.</p>
+    </div>
+
+    <div class="chat-card dark-navy light-navy-text material-card">
+      <h4>Chat</h4>
+      <p>I am an inordinate amount going.</p>
+    </div>
+
+  </div>
+</div>
+```
+
+## JavaScript
+
+이들을 연결하는 **Jquery** 함수를 작성합니다
+
+```javascript
+$(".material-card").addClass('start')
+
+$(".material-card").click(function () {
+    $('.material-card').addClass('collapsed')
+    $(this).removeClass('collapsed')
+    $('.material-card').removeClass('full', 'start', 'visible', 'next')
+    $(this).addClass('full')
+})
+```
