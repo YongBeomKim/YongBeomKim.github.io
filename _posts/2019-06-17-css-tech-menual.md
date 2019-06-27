@@ -14,7 +14,7 @@ toc: true
 
 앞에서 CSS 와 관련된 내용들을 정리하긴 했었지만, 수업의 내용을 수동적으로 나열한 결과 작업을 진행하면서 수정이 필요한 부분이 어디인지를 알기가 어려운 한계가 있습니다. 이를 보완하기 위해 작업 부분별로 내용을 정리해 보도록 하겠습니다.
 
-내용의 이해를 돕는 동영상으로 추천할 내용들은 다음과 같습니다.
+CSS 관련 내용을 잘 정리한 곳으로 **[w3schools.com](https://www.w3schools.com/cssref/)** 내용을 참고하면 좋습니다. 그리고 CSS 관련 이해를 돕는 동영상으로 추천할 내용은 다음과 같습니다.
 
 1. **[코딩하는 남자](https://www.youtube.com/channel/UCEV0Mv07slTliSXBlV-lG2w)**
 2. **[생활코딩 CSS 2016](https://www.youtube.com/playlist?list=PLuHgQVnccGMDaVaBmkX0qfB45R_bYrV62)**
@@ -76,36 +76,74 @@ toc: true
 
 객체를 정렬하는 방법으로 **1줄에 동등한 위치 객체들을 함께 나열하는 inline** 방식과 **객체별 줄바꿈을 실행하는 block** 방식이 있습니다.
 
-CSS3 부터 지원하는 **inline-block** 도 있지만, **IE 9** 이후만 지원해서 윈도우XP 는 사용이 어렵고, **inline 속성** 을 기본으로 갖고 있어서 폰트의 기본여백이 생기고, 이를 **font-size: 0;** 으로 강제로 줄여야 하는 등 작업이 필요합니다.
-
-작업을 하면서 **부모** 인 **.container** 와 **개별 자식들** 인 **.item** 을 구분해서 작업을 합니다
+**inline-block** 도 있지만, **IE 9** 이후 버젼만 지원해서 윈도우XP 는 사용이 어렵고, **inline 속성** 이  기본으로 포함되어 기본여백 등이 생기고, **font-size: 0;** 등 강제로 여백을 줄이는 작업이 필요합니다.
 
 ## .container **부모 배열객체**
 
+아래의 속성에 따라 **.items** 이 재배치 됩니다. 즉 **.container** 자신이 아닌 내부 **.items** 이 재배치 됩니다.
+
 ```css
 .container {
-  display: flex;
-  flex-wrep: wrap;
-  flex-direction: row | column-reverse;
-  align-items: center;
-  align-content: center; 
-  justify-content: center | flex-end | flex-start; 
+  display: flex|inline|block|inline-block;
+  /*flex-wrap : 아이템이 100% 넘을 때 정렬방법*/
+  flex-wrap: wrap|wrap-reverse|nowrap|initial|inherit;
+  /*flex-direction : .items 배열방향 기준 */
+  flex-direction: row|row-reverse|column|column-reverse|initial|inherit;
+  /*align-items : .items 수평정렬로 위아래는 늘리지 않습니다*/
+  align-items: center|stretch|flex-start|flex-end|baseline|initial|inherit;
+  /*align-content : .items 각 줄단위 정렬 입니다*/
+  align-content: center|stretch|flex-start|flex-end|space-between|space-around|initial|inherit; 
+  /*justify-content : .items 의 수평정렬로 위아래 꽉 채웁니다*/
+  justify-content: center|flex-start|flex-end|space-between|space-around|initial|inherit; 
 }
 ```
 
 ## .items **자식객체**
 
+**.container** 에서 정의된 배치규칙에 따라 개별 item 에 따라 default 값이 지정 됩니다. 아래의 설정 방법으로 사용자가 개별 item 내용을 변경 가능합니다.
+
 ```css
-.container {
+.items:nth-child(2n) {
+  order: 3;       /* 배치 순서를 지정 */
+  flex-grow: 1;   /* 확장 여백의 분포비율값 n */
+  flex-shrink: 1; /* 축소시 고통분담 분포비율 값 n */
   flex-basis: 300px;
-  flex-grow: 1;
-  flex-shrink: 1;
-  order: 3;
+
+  /* flex: flex-grow, flex-shrink, flex-basis;*/
+  flex: 1 0 300px;
 }
 ```
 
+## content : 개별 객체들
 
+위에서는 **flex 배치 기준** 과 **개별 객체의 flex 값** 의 설정방법을 알아 보았습니다. 부모와 자식 객체간 설정방법과 내용이 다름에 주의를 해야 되는 내용들 이었지만, 이번에 설명할 내용을 개별 아이템별 설정 가능한 내용 입니다.
 
+```css
+div {
+  border-radious: 10px;
+  color: 색|inherit|currentColor;
+  float: none|left|right|initial|inherit;
+  display: block|inline|inline-block;
+  overflow: hidden|visible|scroll|auto|initial|inherit;
+  margin: top 간격| auto(좌우)| bottom 간격;
+  margin-left: length|auto|initial|inherit;
+  vertical-align: length|top|middle|bottom|baseline|sub|super|text-top|text-bottom|initial|inherit;
+}
+```
+
+## font 설정
+
+폰트에서 객체는 **content** 로 **line-height** 는 개별 font 에서 초기값으로 설정되는 내용 입니다. 이들의 여백을 관리하는 방법은 개별 폰트의 설정을 바꿀수는 없기 때문에 이와 적합한 방법을 사용자가 임의로 다양한 값을 입력하며 여백을 줄이는 방법을 활용합니다.
+
+개별 값을 **px** 로 정의를 하면 유지보수가 어렵기 때문에, 폰트관련 내용은 **em** 단위를 사용하여 작업을 진행합니다.
+
+```css
+a {
+  font-size: 30px;
+  line-height: 1.4em|normal|initial|inherit;
+  margin-top: 0.8em;
+}
+```
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/book/holigrail.gif">
