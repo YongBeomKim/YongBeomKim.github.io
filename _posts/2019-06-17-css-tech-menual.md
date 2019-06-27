@@ -31,21 +31,52 @@ toc: true
 4. **+ :** 인접 선택자
 5. **~ :** 형제 선택자
 6. **element[ attr ="값"] {} :** 속성 선택자
+7. **:nth-child(), :hover, :target ::before ::after :** 다양한 가상 선택자
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/15P163Q724I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 
 ## 기본 선택자
 
-> #id .class tag 
-
-위와 같이 대상의 조건을 나열하여 정의 합니다.
+`#id .class tag { }` 와 같이 대상의 조건을 나열하여 대상을 특정 합니다.
 
 ## 자식 선택자
 
-> div \> li
+`div > li { }` 는 `<div>` **부모와 바로 연결된 1촌 자식인** `<li>` 까지만 특정 됩니다.
 
-## 
+## 자손 선택자
+
+`div li { }` 는 `<div> <li>` 이후로도 연결된 **모든 자손들** 을 특정 합니다.
+
+## 인접 선택자
+
+`input + label { }` 와 같이 **같은 부모들** 이지만 **인접한 태그들을** 특정합니다. **input 태그** 와 **연관된 label** 이 그 예로써, 메뉴효과 등 다양한 작업에 널리 활용 됩니다.
+
+## 형제 선택자
+
+`h3 ~ p { }` 와 같이 **같은 부모들** 이고 **인접한 태그들** 중 **처음으로 조건을 충족하는 1개의 객체만 특정** 하는 방식 입니다. 위 **인접하는 부모들** 중 바로 붙어있는 1개를 형제사이와 동일하게 취급 합니다.
+
+## 속성 선택자
+
+`div[class="home"] {}` 내에 대해서는, **lxml** 에서 객체특정 문법과 상당히 유사한 내용으로 이해하면 됩니다. 약간식 차이는 `class="home"` 에서 특정하는 방식으로 **정규식의 문법을 활용** 하며 다음과 같습니다.
+
+1. `class = "home"` **등가** 규칙
+2. `href ^= "https://"` **시작값** 규칙
+3. `href $= ".pdf"` **종료값** 규칙
+4. `href *= "naver"` **일부 포함값** 규칙
+
+## 가상 선택자
+
+**:hover  :target  :checked  :active  :visited  :link  ::before  ::after** 등과 같이 **Tag 별 지원하는 이벤트 효과 전/후** 를 특정하는 방법이 있습니다.
+
+**:first-child :last-child :nth-child(2n)** 와 같이 **동일한 조건의 다수의 (List) 객체들** 중 **특정한 하나 또는 여럿** 을 특정하는 선택자가 있습니다. 예제중 `2n` 은 다른 정수로 바꿔서 적용 가능 합니다.
+
+### 효과 전/후 특정
+
+
+
+
+
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/book/holigrail.gif">
