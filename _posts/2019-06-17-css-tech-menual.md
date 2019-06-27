@@ -71,9 +71,38 @@ toc: true
 
 **:first-child :last-child :nth-child(2n)** 와 같이 **동일한 조건의 다수의 (List) 객체들** 중 **특정한 하나 또는 여럿** 을 특정하는 선택자가 있습니다. 예제중 `2n` 은 다른 정수로 바꿔서 적용 가능 합니다.
 
-### 효과 전/후 특정
+<br/>
+# flex
 
+객체를 정렬하는 방법으로 **1줄에 동등한 위치 객체들을 함께 나열하는 inline** 방식과 **객체별 줄바꿈을 실행하는 block** 방식이 있습니다.
 
+CSS3 부터 지원하는 **inline-block** 도 있지만, **IE 9** 이후만 지원해서 윈도우XP 는 사용이 어렵고, **inline 속성** 을 기본으로 갖고 있어서 폰트의 기본여백이 생기고, 이를 **font-size: 0;** 으로 강제로 줄여야 하는 등 작업이 필요합니다.
+
+작업을 하면서 **부모** 인 **.container** 와 **개별 자식들** 인 **.item** 을 구분해서 작업을 합니다
+
+## .container **부모 배열객체**
+
+```css
+.container {
+  display: flex;
+  flex-wrep: wrap;
+  flex-direction: row | column-reverse;
+  align-items: center;
+  align-content: center; 
+  justify-content: center | flex-end | flex-start; 
+}
+```
+
+## .items **자식객체**
+
+```css
+.container {
+  flex-basis: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  order: 3;
+}
+```
 
 
 
