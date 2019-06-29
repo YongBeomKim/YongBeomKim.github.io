@@ -12,14 +12,222 @@ tags:
 toc: true    
 ---
 
-**TypewriterJS** 와 같은 도구들이 일반 환경에서는 잘 작동하지만, 사양이 낮은 환경에서는 **Chrome** 이 아닌 경우에는 튕기는 등 문제가 발생하는 상황이 발생합니다. 
-
-작업을 진행하면서 다양한 효과를 사용하기 보다는 **필요한 효과를 몇가지로 한정** 하고, 이에 **대응 가능한 여러가지 방법들을 정리** 하여 생산성을 높이도록 합니다.
+**자바스크립트 프로젝트북** 의 앞부분에 정리된 JavaScript 내용을 정리해 보겠습니다. 실제 작업을 하면서 PWA 및 다양한 모듈을 사용하지만 기본적인 **CSS3** 와 **Vanilla JS** 내용을 토대로 접근을 해야 작업이 용이합니다.
 
 <br/>
-# Typing Text
+# **JavaScript 의 Element**
 
-앞에서 정리한 **TypewriterJS** 도 있지만, 상황적인 제약과 텍스트는 기본 구성요소인 만큼 다양한 효과 방법들을 정리해 보도록 하겠습니다.
+**문자, 숫자, [배열], {객체}, boolean(true/false)** 타입을 갖고, 객체에 **특정 값을 입력하면** 자동으로 객체가 선언되는 **동적 타임의 변수선언 방식** 으로 활용됩니다. 그래서 연산 과정에서 객체내용이 달라지면 내용을 확인하기 어려질 수 있는 단점이 존재합니다.
+
+## 배열
+
+배열은 인덱스로 특정이 가능해서 지원되는 메서드로 **.reverse(), .sort(), .slice(), .concat(), .shift(), .unshift(), .pop(), join()** 이 있습니다.
+
+```javascript
+var names = ['이순신', '홍범도', '녹두장군']
+console.log(names.length);
+
+var score = [90, 55, 32, 82, 99, 12]
+score.sort(function(a, b){ return a - b; } );
+```
+**.sort()** 와 같은 경우는 `a-b` 는 번호순 (**오름차순** | **기본값**) 으로, `b-a` 는 역순으로 (**내림차순**) 정렬 합니다.
+
+## 객체
+
+인덱스로 구분가능한 배열과 다르게 키값을 사용하여 객체값을 확인 합니다.
+
+```javascript
+var book = {
+  title : '피케티경제학',
+  author : '피케티',
+}
+book.title
+
+var books = [
+  { title : '피케티경제학', author : '피케티'},
+  { title : '채식주의자', author :'한강'}
+];
+books[0].title
+```
+
+<br/>
+# 제어문
+
+```javascript
+if {} else {}; // if 판단문
+```
+
+```javascript
+for (var i=1; i<10; i++) {
+  document.write( );
+}  // for 반복문
+```
+
+```javascript
+switch(answer) {
+  case 1: break;
+}  // switch 조건 판단문
+```
+
+```javascript
+function () {
+  var result = a + b;
+  return result;
+}  // 함수값의 반환, 지역변수
+```
+
+```javascript
+var caR = 'matiz';
+function car() {
+  document.writer(caR);
+}  // 전역변수
+```
+
+```javascript
+function sum(a, b callback){
+  var result = a + b;
+  callback();
+  return result;
+}  // 콜백함수
+```
+
+<br/>
+# **JavaScript 의 DOM 조작하기**
+
+## 요소 선택자
+
+웹문서를 조작하는 방법으로 **window** 또는 **document** 를 활용 합니다. **단일한 객체를** 선택하는 방법은 다음과 같습니다.
+
+```javascript
+document.getElementById(#id);
+document.querySelector(CSS 선택자);
+```
+
+그리고 해당 조건에 해당되는 **여러객체를 선택하는 방법은** 다음과 같습니다.
+
+```javascript
+document.getElementsByTagName(요소명);
+document.getElementsByClassName(요소명);
+document.querySelectorAll(CSS 선택자);
+```
+
+위의 내용 중 **CSS 선택자** 는 `#id, .class, tag` 내용을 활용하는 것으로 이를 활용하면 동일한 규칙을 활용할 수 있어서 유지보수에 유용합니다
+{: .notice-info}
+
+## 텍스트 조작
+
+문서 객체내 정보를 변경하는 방법으로 **1. 텍스트 내용만 변경 2. 해당 template 내용을 변경** 하는 2가지 방식이 존재합니다.
+
+```javascript
+var content = document.querySelector('#text');
+content.innerText = '내용의 추가';
+content.innerHTML += '<h1>제목의 추가</h1>';
+```
+
+## Style 조작
+
+객체 선택자로 특정된 한 뒤 **.style** 메서드를 활용 합니다.
+
+```javascript
+var text = document.querySelector('#text');
+text.style.color = 'red';
+text.style.backgroundColor =  "orange";
+```
+
+## 속성의 조작
+
+```javascript
+var box = document.getElementById('box')
+box.setAtteribute('class', 'colorBox') // 클래스 추가
+
+box.removeAttribute('colorBox') // 해당 속성값 삭제
+```
+
+<br/>
+# Event 제어
+
+## **인라인 이벤트**
+
+이벤트 내용을 **인라인 방식으로** 추가 합니다. 별도의 자바스크립트가 아닌 **속성값인 이벤트로** 바로 추가 합니다. 방식이 간단한 대신 **활용가능한 메서드가 한정적인** 단점이 있습니다.
+
+```html
+<a href="https://" onclick="alert('구글로 이동')"> Google </a>
+```
+
+1. **onclick :** 마우스 클릭
+2. **onmouseover :** hover 1단계
+3. **onmouseout :** hover 2단계
+4. **onkeydown :** 키보드입력
+5. **onkeyup :** 키보드 눌렀다 놓을 때
+6. **onfocus, onblur :** 요소 선택 및 해제시
+7. **onsubmit :** form 이벤트 전송시
+
+## **이벤트 핸들러**
+
+javascript 로 처리하는 방식으로 **이벤트 핸들러** 와 **이벤트 리스너** 2가지 방법이 있습니다. 
+
+이벤트 핸들러는 **함수형 방식** 으로 **이벤트를 직접 정의** 를 한 뒤 **.onload** 메서드로 내용을 조작 합니다. **먼저 문서를 로딩한 뒤** 스크립트를 추가해야 작동 합니다. 
+
+```javascript
+window.onload = function () {
+  var txt = document.querySelector('h1');
+  txt.innerHTML = "문서내용의 확인";
+}
+```
+
+세부설정이 가능한 반면 **해당 요소에 한개의 이벤트만** 적용 가능하고 작업이 번거롭게 느껴지는 부분이 있습니다. 때문에 다음처럼 입력하는 경우, 마지막 **event 2** 만 동작 합니다.
+
+```javascript
+var btn = document.getElementById('btn');
+btn.onclick = function() { alert('event 1'); }
+btn.onclick = function() { alert('event 2'); }
+```
+
+## **이벤트 리스너**
+
+핸들러 보다 수동적인 **메서드 방식** 으로 **객체 속성방식** 으로 **.addEventListener(타입, 리스너)** 메서드를 활용하여 **이벤트를 정의** 합니다. 아래처럼 작업을 하면 2개의 함수가 순차적으로 적용 됩니다.
+
+```javascript
+var btn = document.getElementById('btn');
+btn.addEventListener('click', function() { alert('event 1'); });
+btn.addEventListener('click', function() { alert('event 2'); });
+```
+
+이벤트 내용을 위의 **inline** 방식에서 사용된 내용에서 **on** 을 제거한, **click, mouseover, mouseout,keydown, keyup, focus, blur, submit** 을 사용 합니다.
+
+모바일 방식이 확대되면서 **터치 이벤트** 속성으로 **touchstart(화면 터치), touchend(화면 손띨때), touchmove(터치 후 드래그)** 를 추가로 활용할 수 있습니다.
+
+```javascript
+var touchevent = {
+  start: function () {},
+  end:   function () {},
+  move:  function () {},  
+}
+
+box.addEventListener('touchstart', touchevent.start);
+box.addEventListener('touchend', touchevent.end);
+```
+
+## 이벤트 바인딩
+
+위의 예제에서 사용되는 함수를 외부에서 작성한 뒤 내부에서는 **함수명** 만 작성 합니다. 이는 **이벤트 리스너** 에서 전역변수로 함수를 정의한 뒤, **콜백 함수** 로 활용 합니다.
+
+## **submit**
+
+**Form** 객체에서 버튼을 누르면, 기본으로 **submit** 이벤트를 실행합니다. 하지만 서버로 전송하지 않는 경우에는 해당 작어븡로 인해 제대로 작동이 안되는 경우가 발생합니다. 이런 **기본 이벤트** 를 차단하는 방법의 메서드를 필요로 합니다.
+
+```javascript
+var q = document.getElementbyId('form');
+function addr_search (event) { .. }
+
+q.addEventListener('submit', function(event){
+  event.preventDefault(); // 기본 이벤트를 해제
+  addr_search();          // 사용자 정의 작업을 실행
+}
+```
+
+<br/>
+# Text 효과모듈
 
 ## css-tricks.com
 
@@ -33,15 +241,8 @@ toc: true
 
 [justinaguilar.com](http://www.justinaguilar.com/animations/) 에서 예제관련 CSS 내용을 볼 수 있습니다. 하지만 이를 HTML 에서 어떻게 구현하는지는 자세히 나와 있지 않아서 조금 더 확인이 필요 합니다.
 
-
-<br/>
-# 기능의 구현
-
-현재 작업에 필요한 기능 들로는
+## 기타 기능의 구현
 
 1. 메뉴 스크롤로 인한 **[Nav 투명도](https://codepen.io/michaeldoyle/pen/Bhsif/)** 변화
 2. **[velocity.js ](https://codepen.io/zeasts/pen/mPLEQe)** 기능별 버튼 Hover 시 Pop-Up 내용 설명 
 3. **[letter move](https://tobiasahlin.com/moving-letters/)** 페이지 이동시 전체 화면적인 리액션
-
-## Bootstrap 
-Bootstrap Popover with velocity.js 
