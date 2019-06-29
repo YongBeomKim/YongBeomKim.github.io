@@ -92,7 +92,7 @@ callTimes(function() {  //callback() 함수의 내용
 2. **parseFloat() :** 문자열을 실수로 변환
 3. **setTimeout(함수, 시간) :** 특정시간 후 함수실행
 4. **setInterval(함수, 시간) :** 특정시간 마다 함수실행
-5. **clearInterval(<함수명>) :** 특정시간 실행함수 정지  
+5. **clearInterval( 함수명 ) :** 특정시간 실행함수 정지  
 
 
 <br>
