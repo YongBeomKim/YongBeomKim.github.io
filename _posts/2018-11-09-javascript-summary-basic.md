@@ -18,8 +18,7 @@ toc: true
 **method(메소드) :** 객체중 자료의 type이 함수인 속성을 갖는 것으로, 함수 내부값을 외부로 호출시 **this 키워드**를 사용합니다.
 {: .notice--info}
 
-% 나머지, || 논리합, && 논리곱, typeof() 자료형 
-
+`%` : 나머지, `||` : 논리합, `&&` : 논리곱, `typeof()` : 자료형 확인 
 
 # Basic
 
@@ -94,8 +93,7 @@ callTimes(function() {  //callback() 함수의 내용
 4. **setInterval(함수, 시간) :** 특정시간 마다 함수실행
 5. **clearInterval( 함수명 ) :** 특정시간 실행함수 정지  
 
-
-<br>
+<br/>
 # Element (객체)
 
 ## 객체 
