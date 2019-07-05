@@ -105,10 +105,11 @@ CSS 관련 내용을 잘 정리한 곳으로 **[w3schools.com](https://www.w3sch
 ```css
 .items:nth-child(2n) {
   order: 3;       /* 배치 순서를 지정 */
-  flex-grow: 1;   /* 확장 여백의 분포비율값 n */
-  flex-shrink: 1; /* 축소시 고통분담 분포비율 값 n */
-  flex-basis: 300px;
+  flex-grow: 1;   /* 확장시(grow) 여백비율 n */
+  flex-shrink: 1; /* 축소시(shrink) 고통분담 비율 n */
+  flex-basis: 300px; /* 객체의 기본 값 */
 
+  /* 위 내용을 1줄로 처리 */
   /* flex: flex-grow, flex-shrink, flex-basis;*/
   flex: 1 0 300px;
 }
@@ -120,37 +121,33 @@ CSS 관련 내용을 잘 정리한 곳으로 **[w3schools.com](https://www.w3sch
 
 ```css
 div {
+  color: 색 |inherit |currentColor;
+  float: none |left |right |initial |inherit;
+  display: block |inline |inline-block;
+  overflow: hidden |visible |scroll |auto |initial |inherit;
   border-radious: 10px;
-  color: 색|inherit|currentColor;
-  float: none|left|right|initial|inherit;
-  display: block|inline|inline-block;
-  overflow: hidden|visible|scroll|auto|initial|inherit;
-  margin: top 간격| auto(좌우)| bottom 간격;
-  margin-left: length|auto|initial|inherit;
   vertical-align: length|top|middle|bottom|baseline|sub|super|text-top|text-bottom|initial|inherit;
+
+  margin: top 간격값| auto(기본 설정값)| bottom 간격값;
+  margin-left: length |auto |initial |inherit;
+  padding: top 간격값| auto(기본 설정값)| bottom 간격값;
 }
 ```
 
 ## font 설정
 
-폰트에서 객체는 **content** 로 **line-height** 는 개별 font 에서 초기값으로 설정되는 내용 입니다. 이들의 여백을 관리하는 방법은 개별 폰트의 설정을 바꿀수는 없기 때문에 이와 적합한 방법을 사용자가 임의로 다양한 값을 입력하며 여백을 줄이는 방법을 활용합니다.
+폰트에서 객체는 **content** 로 **line-height** 는 **개별 font 에서 초기값으로 설정되는 내용** 입니다. **이들의 여백을 관리하는 방법은 개별 폰트의 설정을 바꿀수는 없기 때문에** 이와 적합한 방법을 사용자가 임의로 다양한 값을 입력하며 여백을 줄이는 방법을 활용합니다.
 
 개별 값을 **px** 로 정의를 하면 유지보수가 어렵기 때문에, 폰트관련 내용은 **em** 단위를 사용하여 작업을 진행합니다.
 
 ```css
 a {
   font-size: 30px;
-  line-height: 1.4em|normal|initial|inherit;
+  line-height: 1.4em| normal| initial| inherit;
   margin-top: 0.8em;
 }
 ```
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/book/holigrail.gif">
-</figure>
-
-
-<figure class="align-center">
-  <img src="http://c.incru.it/newjobpost/2019/05_mafra/mafra.jpg">
-  <!--<img src="{{site.baseurl}}/assets/images/code/">-->
 </figure>
