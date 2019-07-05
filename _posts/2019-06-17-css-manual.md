@@ -31,7 +31,9 @@ CSS 관련 내용을 잘 정리한 곳으로 **[w3schools.com](https://www.w3sch
 4. **+ :** 인접 선택자 (동등가족)
 5. **~ :** 형제 선택자 (동등가족 첫번째 객체)
 6. **element[ attr ="값"] {} :** 속성 선택자
-7. **:nth-child(), :hover, :target ::before ::after :** 다양한 가상 선택자
+7. **:nth-child(), :checked, :text, :hover, :target ::before ::after :** 다양한 가상 선택자
+
+**:checked** 는 상태에 관한 선택자, **:text** 는 Form 과 관련된 선택자등 다양한 가상선택자를 활용하면 보다 다양한 기능을 구현할 수 있습니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/15P163Q724I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
