@@ -26,10 +26,10 @@ CSS 관련 내용을 잘 정리한 곳으로 **[w3schools.com](https://www.w3sch
 효과를 추가하기 위해선 대상을 특정할 수 있어야 합니다. 어떤 대상에게 효과를 주느냐에 따라 효과의 결과 및 대상과 적용범위등 모든것이 달라 집니다. 대상자 종류는 다음과 같습니다.
 
 1. id, class, Tag 기본 선택자
-2. **> :** 자식 선택자
-3.   **:** 자손 선택자
-4. **+ :** 인접 선택자
-5. **~ :** 형제 선택자
+2. **> :** 자식 선택자 (1가족까지)
+3.   **:** 자손 선택자 (후손까지)
+4. **+ :** 인접 선택자 (동등가족)
+5. **~ :** 형제 선택자 (동등가족 첫번째 객체)
 6. **element[ attr ="값"] {} :** 속성 선택자
 7. **:nth-child(), :hover, :target ::before ::after :** 다양한 가상 선택자
 
@@ -84,17 +84,17 @@ CSS 관련 내용을 잘 정리한 곳으로 **[w3schools.com](https://www.w3sch
 
 ```css
 .container {
-  display: flex|inline|block|inline-block;
-  /*flex-wrap : 아이템이 100% 넘을 때 정렬방법*/
-  flex-wrap: wrap|wrap-reverse|nowrap|initial|inherit;
-  /*flex-direction : .items 배열방향 기준 */
-  flex-direction: row|row-reverse|column|column-reverse|initial|inherit;
-  /*align-items : .items 수평정렬로 위아래는 늘리지 않습니다*/
-  align-items: center|stretch|flex-start|flex-end|baseline|initial|inherit;
-  /*align-content : .items 각 줄단위 정렬 입니다*/
-  align-content: center|stretch|flex-start|flex-end|space-between|space-around|initial|inherit; 
-  /*justify-content : .items 의 수평정렬로 위아래 꽉 채웁니다*/
-  justify-content: center|flex-start|flex-end|space-between|space-around|initial|inherit; 
+     display: flex|inline|block|inline-block;
+     /* flex-wrap : 아이템이 100% 넘을 때 정렬방법 */
+     flex-wrap: wrap|wrap-reverse|nowrap|initial|inherit;
+     /* flex-direction : .items 배열방향 기준 */
+     flex-direction: row|row-reverse|column|column-reverse|initial|inherit;
+     /* align-items : .items 수평정렬로 위아래는 늘리지 않습니다 */
+     align-items: center|stretch|flex-start|flex-end|baseline|initial|inherit;
+     /* align-content : .items 각 줄단위 정렬 입니다 */
+     align-content: center|stretch|flex-start|flex-end|space-between|space-around|initial|inherit; 
+     /* justify-content : .items 의 수평정렬로 위아래 꽉 채웁니다 */
+     justify-content: center|flex-start|flex-end|space-between|space-around|initial|inherit; 
 }
 ```
 
