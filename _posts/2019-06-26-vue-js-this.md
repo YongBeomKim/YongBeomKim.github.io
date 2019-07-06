@@ -1,5 +1,5 @@
 ---
-title : Vue.js 이정도는 알아야지
+title : Vue.js 이정도는 알아야지 상편
 last_modified_at: 2019-06-24T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/vuejs.png
@@ -36,6 +36,16 @@ new Vue({
   methods: {
     showAlert: function() {
       alert('메세지 출력!!');
+    }
+  },
+  computed: {
+    showAlert: function() {
+      alert('메세지 출력!!');
+    }
+  },
+  filters: {
+    number: function(value) {
+      return new Intl.NumberFormat().format(value);
     }
   }
 });
@@ -384,7 +394,82 @@ new Vue({
 ```
 {% endraw %}
 
+Radio 버튼을 활용하는 예제는 다음과 같습니다.
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/book/holigrail.gif">
-</figure>
+{% raw %}
+```html
+<input type="radio" v-model="Meal" v-bind:value="foods[0]">
+<input type="radio" v-model="Meal" v-bind:value="foods[1]">
+<input type="radio" v-model="Meal" v-bind:value="foods[2]">
+{{ Meal }}
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    Meal: 'Hambergur',  // 초기값 설정
+    foods: ['Ramen','Hamburger','chicken'], // 데이터 List
+  }
+});
+</script>
+```
+{% endraw %}
+
+처음 헷갈리던 부분이 **data** 에서 **Meal, foods** 왜 2개를 사용해야 하는가? 였습니다. 간단하게 정리를 하면 1. **v-bind** 로 연결되는 **데이터 목록변수** 와 2. **v-model** 에 연결되는 **서버와 통신하는 변수** 2개를 사용합니다.
+{: .notice--info}
+
+select 버튼을 활용하는 예제 입니다.
+
+{% raw %}
+```html
+<select v-model="selectModel">
+<option v-for="artist in artists" 
+  v-bind:value="artist">{{ artist }}</option>
+</select>
+{{ selectModel }}
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    selectModel:'Sarah McLachlan',
+    artists:["Sarah McLachlan","Coldplay","Tori Kelly"]
+ }
+});
+</script>
+```
+{% endraw %}
+
+지금까지 다양한 데이터 활용법을 알아보았다면, 마지막으로 **v-model** 에 활용하는 수식어 내용을 정리해 보겠습니다.
+
+수식어로는 **.lazy** 는 key 작업에 따른 변화가 아닌 객체내용이 모두 변경된 뒤 실행 됩니다. 보다 안정적인 서버전송이 가능합니다.
+
+**.trim** 은 **String** 데이터의 앞뒤 공백들을 제거 합니다. 단 **초기값** 에 대해서는 해당 내용이 적용되지 않습니다.
+
+마지막으로 **.number** 메서드는 숫자객체들을 모두 **float, integer** 로 변경을 합니다. 모든 내용이 변경되진 않고, 객체 처음부터 숫자로 변경 가능한 부분에 대해서만 결과값을 출력 합니다.
+
+<br/>
+# Filter 필터
+
+일반 텍스트를 서식화 할 때 유용합니다. 예를들어 숫자를 thousand Comma 등의 표현을 필요로 하는 경우에 사용 됩니다.
+
+{% raw %}
+```html
+<p>필터 미적용: {{ price }}</p>
+<p>필터 적용: {{ price | number }}</p>
+
+<script>
+new Vue({
+  el: '#app',
+  data: { price: 24380 },
+  filters: {
+    number: function (value) {
+      return new Intl.NumberFormat().format(value);
+    }
+  }
+});
+</script>
+```
+{% endraw %}
+
+주의할 점으로는 **| 필터** 의 내용은 **v-bind** 또는 **{ { } }** 에서만 적용되므로, 다른 대상에서 적용을 할 때에는 별도의 **계산된 속성** 의 내용을 활용 합니다.
