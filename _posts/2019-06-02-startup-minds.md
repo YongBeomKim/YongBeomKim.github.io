@@ -1,5 +1,5 @@
 ---
-title : 예비창업 Project
+title : 예비창업 Project IN 페북랩
 last_modified_at: 2019-06-02T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/facebook_inno.jpg
