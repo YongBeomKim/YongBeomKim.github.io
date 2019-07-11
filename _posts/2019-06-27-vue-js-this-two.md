@@ -127,7 +127,7 @@ new Vue({
 
 ## 부모-자식 컴포넌트 관계
 
-컴포넌트는 자식에게만 전달이 가능합니다. 이유는 **컴포넌트 자체 독립적인 완전성** 을 갖춰야 합니다. 하지만 데이터 교환은 충분히 발생 가능한 상황이기 때문에, 자식에게 전달은 **props** 를 사용하고, 부모에게 전달하는 경우에는 **이벤트를 emit** 합니다. 이런 방식으로 컴포넌트간 간접적인 의존성만 유지합니다.
+컴포넌트는 **Props** 속성을 활용하여 자식에게만 전달을 합니다. **컴포넌트 자체 독립적인 완전성** 을 갖춰야 하기 때문입니다. 하지만 반대적인 상황도 충분히 가능한 상황이므로 부모에게 전달하는 경우에는 **이벤트를 emit** 을 활용 합니다.
 
 ## props 데이터 전달
 
@@ -149,13 +149,11 @@ new Vue({
 
 ## 네이밍 규칙
 
-컴포넌트 이름을 지을때 소문자 알파벳을 활용하면 가장 확실합니다. 하지만 연관성 있는 여러객체를 생성하는 경우에는 구분자를 필요로 하게 됩니다. 
-
-이때 주의할 점은 **HTML5 템플릿** 에서는 **대소문자를 구분하지 못합니다.** 때문에 탬플릿에서 기호를 사용하는 경우 **kebab-case** 인 **하이픈** 을 사용하여 객체들을 구분하고, **스크립트 내부** 에서는 대소문자를 구분하는 만큼**camelCase** 를 사용합니다.
+컴포넌트 이름을 지을때 주의할 점은 **HTML5 템플릿** 에서는 **대소문자를 구분하지 못합니다.** 때문에 탬플릿에서는 **kebab-case** 인 **하이픈** 을 사용하고, **스크립트 내부** 에서는 대소문자를 구분하는 만큼**camelCase** 를 사용 합니다.
 
 ## 동적 Props
 
-앞에서 사용된 Props 는 **정적 Props** 로 **String** 데이터만 사용 가능합니다. 때문에 **Number, Object, List** 데이터는 전달할 수 없습니다. 이들을 사용하는 경우에는 **v-bind** 를 사용하여 데이터를 전달해야 합니다.
+앞에서 사용된 Props 는 **정적 Props** 로 **String** 데이터만 사용 가능하고 **Number, Object, List** 는 전달할 수 없습니다. 이를 사용하는 경우에는 **v-bind** 로 데이터를 전달 합니다.
 
 {% raw %}
 ```html
@@ -178,10 +176,79 @@ new Vue({
 ```
 {% endraw %}
 
+## Props 주의할 점
+
+### Props 초기값을 로컬 데이터로 정의
+
+부모 컴포넌트가 전달한 **Props** 를 수정하는 경우는 다음과 같이 진행합니다.
+
+{% raw %}
+```html
+<div id="app">
+  <simple-component :initial-counter="counter"></simple-component>
+</div>
+
+<script>
+var simpleComponent = {       // 하위 컴포넌트 객체를 정의
+  props: ['initialCounter'],  // 하위 컴포넌트 에서 Props 지정 : 템플릿서 사용
+  template: '<button @click="addCounter">{{ counter }}</button>',
+  data: function () {
+    return { 
+      counter: this.initialCounter 
+    } 
+  },
+  methods: {
+    addCounter: function () { 
+      this.counter += 1;
+    }
+  }, // 자식 컴포넌트에서, 부모 { counter : 0 } 호출 
+};
+
+new Vue({  // 부모 인스턴스
+  el: '#app',
+  data: { counter: 0 },
+  components: { 'simple-component' : simpleComponent }
+});
+</script>
+```
+{% endraw %}
+
+### Props 로 부터 계산된 속성을 정의
+
+계산 작업이 가능한 객체를 활용하는 예제 입니다.
+
+```html
+<div id="app">
+  <simple-component :price="price"></simple-component>
+</div>
+
+<script>
+var simpleComponent = {
+  props: ['price'],
+  template: '<p>가격: {{ price }} 할인: {{ discountPrice }}</p>',
+  computed: {
+    discountPrice: function () { 
+      return  this.price * 0.7; 
+    }
+  }
+};
+
+new Vue({
+  el: '#app',
+  data: { price: 125000 },
+  components: { 'simple-component': simpleComponent }
+});
+</script>
+
+```
+
+## Props 검증하기
+
+데이터 Type 이 중요한 경우에는, Props 속성을 사용하여 데이터 타입을 강제할 수 있습니다. 이는 다른 데이터와 연결시 유용합니다.
 
 
-
-
+```html
+```
 
 
 <figure class="align-center">
