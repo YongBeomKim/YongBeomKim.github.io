@@ -1,5 +1,5 @@
 ---
-title : Vue.js 이정도는 알아야지 하편
+title : Vue.js 컴포넌트의 고급기능
 last_modified_at: 2019-06-24T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/vuejs.png
@@ -320,3 +320,170 @@ new Vue({
 </script>
 ```
 {% endraw %}
+
+<br/>
+# Vue.js 고급기능
+
+## 트랜지션
+
+CSS3 의 Transition 등 다양한 기능을 vue.js 에서도 구현할 수 있습니다.
+
+## **전환용 Class** 활용
+
+**[transition](https://kr.vuejs.org/v2/guide/transitions.html)** 태그 내부에서는 특정한 사용 규칙이 있습니다. ** .전환이름-enter** 와 같이 **name** 뒤에 전환이름 수식어를 활용하고 활용가능한 **전환클래스** 는 총 6개가 있습니다.
+
+1. **.이름-enter :** 엘리먼트가 삽입 전 적용, 한 프레임 후 자동삭제 됩니다
+2. **.이름-enter-active :** 엘리먼트 삽입 전 적용, 완료 후 자동삭제 됩니다
+3. **.이름-enter-to :** 엘리먼트가 삽입 후, 전환 애니메이션 완료 프레임에 자동삭제 됩니다
+4. **.이름-leave :** 엘리먼트 삭제 전 적용되며, 한 프레임 적용 후 제거 됩니다
+5. **.이름-leave-active :** 엘리먼트 삭제 전 적용되고, 전환 애니메이션 완료 후 자동제거
+6. **.이름-leave-to :** 엘리먼트 제거 후 전환 에니메이션 완료되는 프레임 후에 자동제거
+
+아래의 예제는 `<transition name="fade">` 에서 **name="fade"** 의 **fade** 이름을 사용한 예제 입니다.
+
+{% raw %}
+```html
+<style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-to { opacity: 0 }
+</style>
+
+<div id="app">
+  <button @click="show = !show"> Toggle render </button>
+  <transition name="fade"> <p v-if="show">hello</p>
+  </transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: { show: true }
+})
+</script>
+```
+{% endraw %}
+
+## Animate.css 활용시 **전환용 속성의** 활용
+
+오픈소스를 활용하여 구현하는 경우에는 위의 예처럼 Class 가 아닌 **transition** 태그내 속성으로 연결을 합니다.
+
+내용은 위의 것들과 동일하고, 적용시 템플릿 속성으로 연결을 합니다.
+
+1. **enter-class**
+2. **enter-active-class**
+3. **enter-to-class** (2.1.8+ 버전 이상)
+4. **leave-class**
+5. **leave-active-class**
+6. **leave-to-class** (2.1.8+)
+
+{% raw %}
+```html
+<link href="animate.css" rel="stylesheet" type="text/css">
+
+<div id="app">
+  <button @click="show = !show"> Toggle render </button>
+
+<!-- HTML5 속성으로 외부 CSS 클래스를 직접 연결합니다 -->
+<transition name="custom-classes-transition"
+  enter-active-class="animated bounceInLeft"
+  leave-active-class="animated bounceOutRight">
+  <p v-if="show">hello</p>
+</transition>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: { show: true }
+})
+</script>
+```
+{% raw %}
+
+
+## 사용자 정의 Directive
+
+v-if, v-for 와 같은 Directive를 사용자가 직접 정의할 수 있습니다. 아래는 **focus** Diective 를 사용자가 정의를 하고, 템플릿에서 **v-focus** 이름으로  활용하는 예제 입니다.
+
+{% raw %}
+```html
+<div id="app">
+  <input type="text" v-focus>
+</div>
+
+<script>
+Vue.directive('focus', {
+  inserted: function (element) { // DOM 엘리먼트 삽입시
+    element.focus(); // 엘리먼트 포커스
+  }
+});
+new Vue({ el: '#app' });
+</script>
+```
+
+## MixIn
+
+컴포넌트에서 재사용한 메서드를 적용할 때 사용합니다.
+
+{% raw %}
+```html
+<div id="app"> Hello, Vue! </div>
+
+<script>
+var mixin = {
+  created: function () { this.alert() },
+  methods: { alert: function () { alert('Hello, Vue!');} }
+}
+
+new Vue({
+  mixins: [mixin],
+  el: '#app'
+});
+</script>
+```
+{% endraw %}
+
+## PluIn
+
+Vue.js 의 **외부 라이브러리** 를 쉽게 불러오는 표준 플러그인을 제공합니다 **vuex, vue-router** 와 같은 공식 라이브러리도 이러한 플러그인을 활용하여 제작 합니다.
+
+이를 사용할 때에는 **script** 태그가 아닌 **.vue** 객체 내부에서 활용합니다.
+
+```html
+<!-- alert-modal-template.vue -->
+<template>
+    <transition name="modal">
+        <div class="modal-mask" v-if="isShowModal">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+                    <div class="modal-header">{{title}}</div>
+                    <div class="modal-body">{{message}}</div>
+                    <div class="modal-footer">
+                        <button class="modal-default-button" @click="close">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</template>
+
+<script>
+export default {
+  methods: {
+      show: function(title, message) {
+          this.isShowModal = true;
+          this.title = title;
+          this.message = message;
+      }, close: function() { this.isShowModal = false;}
+  }, data() {
+       return {
+         isShowModal: false,
+         title: '알림',
+         message: ''
+    }
+  }
+}
+</script>
+```

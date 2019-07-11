@@ -1,5 +1,5 @@
 ---
-title : Vue.js 이정도는 알아야지 상편
+title : Vue.js 객체 기본개념
 last_modified_at: 2019-06-24T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/vuejs.png
