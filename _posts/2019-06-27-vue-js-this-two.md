@@ -129,6 +129,8 @@ new Vue({
 
 컴포넌트는 **Props** 속성을 활용하여 자식에게만 전달을 합니다. **컴포넌트 자체 독립적인 완전성** 을 갖춰야 하기 때문입니다. 하지만 반대적인 상황도 충분히 가능한 상황이므로 부모에게 전달하는 경우에는 **이벤트를 emit** 을 활용 합니다.
 
+부모에서 **data** 를 자식에서 받을때, **Props** 를 사용하여 받습니다. 주의할 점은 Props 변수에서 `[ list ]` 형태로만 받을 수 있습니다. 여러 데이터 속성을 다르게 정의할 때에는 **Object** 형식으로 **Props** 를 사용하면 됩니다.
+
 ## props 데이터 전달
 
 **자식 컴포넌트는 부모의 데이터를 참고** 가능하고 **props** 옵션을 사용합니다. 하지만 반대로 자식 컴포넌트는 부모 데이터를 참조할 수 없습니다.
@@ -227,9 +229,7 @@ var simpleComponent = {
   props: ['price'],
   template: '<p>가격: {{ price }} 할인: {{ discountPrice }}</p>',
   computed: {
-    discountPrice: function () { 
-      return  this.price * 0.7; 
-    }
+    discountPrice: function () { return  this.price * 0.7; }
   }
 };
 
@@ -246,11 +246,77 @@ new Vue({
 
 데이터 Type 이 중요한 경우에는, Props 속성을 사용하여 데이터 타입을 강제할 수 있습니다. 이는 다른 데이터와 연결시 유용합니다.
 
+데이터 타입을 지정하는 이름으로는 **String, Number, Boolean, Function, Object, Array** 객체 정의를 사용합니다.
 
-```html`
+{% raw %}
+```html
+<div id="app">
+  <simple-component :name="name" :price="price" :message="message">
+  </simple-component>
+</div>
+
+<script>
+var simpleComponent = {
+  template: '<p>{{ name }},{{ price }}원,{{ message }}</p>'
+  props: {
+    name: String,             // String 타입의 정의
+    price: Number,            // Number 타입의 정의
+    message: [String, Number] // 리스트 타입의 정의
+  },
+};
+new Vue({
+  el: '#app',
+  components: { 'simple-component': simpleComponent }
+  data: {
+    name: '스마트폰',
+    price: 897000,
+    message: '싸게 팝니다!'
+  },
+});
+</script>
 ```
+{% endraw %}
 
+<br/>
+# 사용자 정의 이벤트
 
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/book/holigrail.gif">
-</figure>
+**Props** 를 사용하면 부모가 자식에게 데이터를 전달할 수 있습니다. 자식이 부모객체를 전달받는 경우 사용 가능한 **사용자 정의 이벤트** 를 활용 가능합니다.
+
+## **v-on** 을 활용한 사용자 지정 이벤트
+
+**v-on** 을 사용하여 **사용자 지정 이벤트** 를 만들고, 자식 컴포넌트 에서는 **$emit** 로 이벤트를 실행 합니다.
+
+{% raw %}
+```html
+<div id="app">
+  <counter-component v-on:increment="incrementTotal">
+  </counter-component> <p>Total: {{ total }}</p>
+</div>
+
+<script>
+var counterComponent = {
+  template: '<button @click="increment">{{ counter }}</button>',
+  data: function () { 
+    return { counter: 0 }; 
+  },
+  methods: {
+    increment: function () {
+      this.counter += 1;
+      this.$emit('increment'); // 부모객체 호출 이벤트 실행
+    }
+  }
+};
+
+new Vue({
+  el: '#app',
+  data: { total: 0 },
+  components: { 'counter-component': counterComponent },
+  methods: { 
+    incrementTotal: function () { 
+      this.total += 1;
+    } 
+  }
+});
+</script>
+```
+{% endraw %}
