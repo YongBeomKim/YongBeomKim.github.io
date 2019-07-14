@@ -4,7 +4,7 @@ last_modified_at: 2018-12-19T10:45:06-05:00
 header:
   overlay_image: /assets/images/photo/lgbt-flag.jpg
 categories:
-  - suwon
+  - art
 tags: 
     - suwon
     - art

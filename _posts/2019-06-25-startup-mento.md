@@ -223,15 +223,3 @@ tags:
 과일 아이템만 저장된 사용자게에
 
 물론 일조
-
-
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/book/ssgpay.jpg">
-  <figcaption></figcaption>
-</figure>
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/project/ssgpay-color.jpg">
-  <figcaption></figcaption>
-</figure>
