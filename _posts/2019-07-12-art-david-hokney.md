@@ -95,12 +95,7 @@ tags:
 
 <br/>
 # 결론
-한번쯤 볼만 하다, 상대적으로 깊이감은 얕을 수 있어도 공부하고 느끼는 양은 적지않은 전시 였다.
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/art/Hockney-mid.jpg">
-  <figcaption></figcaption>
-</figure>
+한번쯤 볼만 하다, 상대적으로 깊이감은 얕을 수 있어도 공부하고 느끼는 양은 풍부한 전시였습니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/art/Hockney-fin.jpg">
