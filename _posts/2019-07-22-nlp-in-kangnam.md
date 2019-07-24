@@ -153,3 +153,39 @@ CSS Selector 를 사용하여 DOM 내용을 특정 합니다.
 XML 또는 Json 형식으로 통신하는 데이터를 찾아서 작업을 하면 가장 원활하다
 
 크롬 Network > XHR (Http 통신내용을 확인 가능)
+
+<br/>
+# Word Piece Modeling (3일차)
+
+AI 는?
+1. Statistic NLP (검색이 주요 구성요소)
+2. Machine Learning
+3. Deep Learning
+4. Natural Language Processing
+5. 인지 심리학
+
+자연어 분석 의 기초 구성요소
+1. 형태소 분석 (문법상 최소조각) tokenizing, POS Tagger, Index Term, Vecorizaion
+2. 구문분석 (문장경계, 개체명 사전(PLOT, 수치, 한글표기), 개체명 인식)
+3. 의미분석 (대용어 해소(대명사, 두문자, 약어, 수치명), 의미 중의성 해걸(동명이인))
+4. 담화분석 (분류(비지도), 군집(지도:주제찾기), 중복, 요약, 가중치, 순위화, 토픽모델링, 이슈트레킹, 평판분석(LDA), 감성분석, 복합논증분석)
+5. 중의성 해소
+
+Ontology 대신 Word2Vec 관계를 활용하는 모델링이 대부분
+
+Q. 색인은 태그가 아닌 뭔가? (사용자가 추가적인 인덱스를 추가한다)
+Q. 감정분석은 긍부정 아닌 호감도 정도 측정인가?   감성 과 감정의 차이를 구분 (희노애락의 다양한 단계들을 구분하는 분석으로 Text 분석에서 Vision 분석으로 넘어간 상태
+Q. Tagging 은 개별 단어들의 내용으로 Tagging 을 할 뿐, 문장구성 요소로써 다르게 차이를 구분하진 않는다 (Mecab 은 조금 되는 듯..)
+
+Statistic NLP 응용기술
+1. 검색 (통계가 주요하다)
+2. 온라인 광고
+3. 자동번역 (BERT : Byte Pare Embading 을 활용한 Stemming)
+4. 감정분석 (긍부정이 아니라 희노애락의 다양한 단계들을 구분)
+5. 음성인식 
+6. 맞춤법검사
+
+담화 : 문단과 문단이 이어지며 형성되는 내용 (Sentence 별로 Token 을 생성해야 한다)
+어절 : 개별 문장을 구성하는 단위로 **어절(간)** 단위로 구분 및 색인이 필요하다 (Word Tokenizing)
+
+N-gram 모델 : 마르코프 모델링과 밀접
