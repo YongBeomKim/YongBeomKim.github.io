@@ -135,3 +135,21 @@ Opt-Out **검색엔진** 및 **가격비교** 는 합법적이다. (사용자가
 3. Term of use : 사이트 이용방침
 4. Public content (지적 재산권 침해여부)
 5. Authentication-based sites (민감한 정보 수집 주의)
+
+<br/>
+# Selenium
+
+xml 문법을 사용하여 필요한 DOM 내용을 조작
+
+CSS Selector 를 사용하여 DOM 내용을 특정 합니다.
+
+
+### Ajax 비동기 부분을 크롤링 할 필요가 있는 경우..
+
+1. JavaScript 를 해석하거나
+2. 해석한 DOM 을 해석
+3. Ajax 통신 내용을 InterCept 한다
+
+XML 또는 Json 형식으로 통신하는 데이터를 찾아서 작업을 하면 가장 원활하다
+
+크롬 Network > XHR (Http 통신내용을 확인 가능)
