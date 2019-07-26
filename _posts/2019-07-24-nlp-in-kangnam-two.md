@@ -89,7 +89,7 @@ Sorting Based Inverted Index Construction
 </figure>
 
 
-## Ranking 
+# Ranking 
 
 문서별 가중치를 할당하여 관계를 검색합니다
 
@@ -100,4 +100,75 @@ Sorting Based Inverted Index Construction
   <figcaption>한국어 분석방법</figcaption>
 </figure>
 
+<br/>
+# Vector space model
 
+[수업용 슬라이드](https://slideplayer.com/slide/14059584/)
+
+Vocabluary 갯수만큼의 차원의 공간에 nlp를 배치한다
+
+Document 와 Query 를 차원 내부에 자료들을 정렬 합니다.
+
+Cosin Angle 을 활용하여 문장간의 유사도(similarity) 등을 측정 합니다.
+
+Orthogonal : Bag of Word 모델과 표현하기 용이성이 높다.
+
+빈도를 기반으로 확률(Liklihood, Conditional Probability) 데이터를 활용
+ex) Naive Bayse 방식으로 Graphical Modeling (LDA 모델링)
+
+## How to assign Weight
+
+Token 들의 중요도 측정방법 : Weight  ex) Zif's Law (고빈도와 Rare 빈도는 제거함이 용이하다)
+
+Vector 를 구성하는 Concept 을 추출하는 방법에 용이
+
+Heuristics (ex> Tf-IDF : 안정적인 모델링이 가능) : 사람의 경험을 바당으로 만들어지는 만큼 다양한 변종이 가능하다
+
+## Orthogonal (상호 독립적 : 내적의 결과가 0)
+
+Ambiguity 하지 않은 결과를 도출 가능하다 (Bag of Word 개념과 밀접한 관계)
+
+Bag of Word : 모든 단어들은 Indipendent 하다는 전제에서 모델을 생성
+
+King - Queen
+
+## Word Embadding (주변 단어를 활용하여 중심 단어를 찾는다 : Topic Modeling)
+
+단어간 Relevality(연관성) 이 높은 경우가 있다.
+
+ex) N-gram, Topic Modeling 이 대부분의 분석방법에 활용
+
+## Tf weight (Tf-IDF)
+
+TF : 문서 내 중요도를 판단 (빈도수 기준)
+
+한계가 있다
+
+Tf Normalization 
+1. SubLinear TF Scaling (Log 를 활용한 방법으로 Base 미만의 값은 보정을 한다)
+2. Maximun TF Scaling (1번을 보완한 모델로 Max() 값을 활용) alpha 는 보정값 (초기값이 너무 작은 단어들을 Smoothing 보정값 ex)0.5)
+
+## Document Frequency
+
+Zif's Law 에서 중빈도 Token 을 특정하는 방법
+
+때문에 불필요한 단어들이 반복될 떄 (ex> 기자) 지워주는 방법으로 활용 가능하다
+
+## IDF weight
+
+엔트로피가 작을수록, Targeting 이 용이해 식별력이 높은 단어로 중요도가 높아진다.. (잘 알아들었제??)
+
+## Euclidean Distance 
+
+Query 값이 문서에서 참고 목록
+
+문서가 길면 길수록 거리가 멀어진다
+
+dist(q,d) = 
+
+## Question
+
+Q. Page Rank 란?
+Q. Log TF : DOC1, 2 ,3 내부에서 t,d 는?
+
+IDF : 
