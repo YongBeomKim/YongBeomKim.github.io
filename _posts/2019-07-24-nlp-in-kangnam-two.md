@@ -154,21 +154,53 @@ Zif's Law 에서 중빈도 Token 을 특정하는 방법
 
 때문에 불필요한 단어들이 반복될 떄 (ex> 기자) 지워주는 방법으로 활용 가능하다
 
-## IDF weight
+## IDF weight 
+
+max (토근을 무관하고)
 
 엔트로피가 작을수록, Targeting 이 용이해 식별력이 높은 단어로 중요도가 높아진다.. (잘 알아들었제??)
+
+Normalization : 문서내 빈도가 가장 많은 숫자로 정규화를 진행합니다. (문서별 tf 값을 바로 적용하지 않고 전처리 작업을 진행합니다)
+
+Zif's Law 를 근거로 IDF 보정결과가 중요도 높은 자료를 추출하는데 효과적임이 증명된다.
+
 
 ## Euclidean Distance 
 
 Query 값이 문서에서 참고 목록
 
+값이 작을수록 유사도가 높은 문서들로 분류가 가능하다
+
+하지만 Document 의 단어들이 많을수록 유사도 측정시 패널티가 생겨서 실제로 유사도 결과에 문제가 생긴다
+
 문서가 길면 길수록 거리가 멀어진다
 
 dist(q,d) = 
+
+<figure class="align-center">
+  <img src="https://images.slideplayer.com/25/7590328/slides/slide_8.jpg">
+  <figcaption>Document Vector</figcaption>
+</figure>
+
+## Inversed Index Model
+
+Posting (file / on disk)
+
+Vocabulary
+
+Token1  prt
+Token2  prt
+Token3  prt
+
+## 
+
+
 
 ## Question
 
 Q. Page Rank 란?
 Q. Log TF : DOC1, 2 ,3 내부에서 t,d 는?
+Q. Document Vector 는?
+Q. 유클리드 거리 유사도 측정시 TOken 갯수로 인한 패널티는?
 
 IDF : 
