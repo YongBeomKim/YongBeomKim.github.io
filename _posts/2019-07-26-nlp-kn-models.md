@@ -59,6 +59,8 @@ Probably Approximate Correct (허용 가능한 오류율 범위내 모델을 생
 
 ## MAP (Maximum A Posterior Estimation)
 
+[베이즈 정리를 바탕으로 MLE 와 MLP](https://m.blog.naver.com/PostView.nhn?blogId=ynca333&logNo=221314899811&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+
 MLE 는 관찰결과를 바탕으로 결과를 도출한 결과인 만큼, Posteriori(사전지식들) 를 활용하여 측정된 모델을 보정해 주는 방식이 도출하게 됩니다.
 
 ## Bayes Theorem
