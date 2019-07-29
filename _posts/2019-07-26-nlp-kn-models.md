@@ -105,7 +105,13 @@ f(x) = 1 / 1 + e^(-x)
 
 ## Gradient Descent
 
-Taylor Expansion 의 공식을 활용하여 
+Taylor Expansion 의 공식을 활용하여 BackPropaget 을 도출 합니다
+
+## RosenBrock Function
+
+3차원 공간에서 최적의 점을 찾는다
+
+
 
 Question!!
 셉타^ : 조건부 확률의 최대값 (몇번쨰 셉타값) 확률값인가? 아님 횟수값인가?
