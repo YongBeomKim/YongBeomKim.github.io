@@ -40,10 +40,7 @@ P(D|셉터) = 셉타^(aH) (1-셉타)^((n-a)H)
 
 셉타^ = argmax P(D|셉타)  # 원래의 셉타 와 셉타^ 이 유사하도록 모델을 만든다
 
-<figure class="align-center">
-  <img src="https://banner2.kisspng.com/20180704/zcs/kisspng-apache-lucene-inverted-index-search-engine-indexin-apache-lucenenet-5b3d8dd9780238.2919637215307606654916.jpg">
-  <figcaption>한국어 분석방법</figcaption>
-</figure>
+미분을 사용하여 개별 theta 값을 활용하여 미분을 합니다
 
 ## PCA Learning
 
@@ -69,6 +66,48 @@ MLE 는 관찰결과를 바탕으로 결과를 도출한 결과인 만큼, Poste
 
 경험확률값이 없어도 CDF 모델에서 확률값을 만들어서 계산을 할 수 있다.
 
+## Logistic Regression
+
+Linear Regression 의 활용
+
+f^  측정한 확률값을 활용하여, 모델의 결과값을 추정
+
+h:f^(x;셉터) = Sigma ^n _(i=0) 
+
+Squared Error (Sum/ Meam Squared Error 를 최소로 하는 함수를 활용하여 회귀 모델을 추정합니다.)
+
+## Optimal Classification and Bayer Risk
+
+비선형이 정확도는 높일 수 있지만 Dicision Binary 를 경게로 차이를 오히려 더 벌릴 수 있는 한계도 함께 존재한다.
+
+Bayse Risk : 잠재적인 위험도를 측적해야 한다
+
+Logistic Regression Classifire
+
+### Sigmoid Function
+
+-1~1 사이의 값으로 확률 함수와는 무관하다
+
+<figure class="align-center">
+  <img src="https://en.wikipedia.org/wiki/Sigmoid_function#/media/File:Gjl-t(x).svg">
+  <figcaption></figcaption>
+</figure>
+
+### Logistic Function
+f(x) = 1 / 1 + e^(-x)
+
+### Logistic Regression
+
+베르누이 분포 확률을 활용하여 확률값을 활용하여 회귀모델을 도출 합니다
+
+### Maximum Conditional Likelihood Estimation (MCLE)
+
+
+## Gradient Descent
+
+Taylor Expansion 의 공식을 활용하여 
+
 Question!!
 셉타^ : 조건부 확률의 최대값 (몇번쨰 셉타값) 확률값인가? 아님 횟수값인가?
 aH, aT : 관찰확률
+Sigmoid 가 확률과 무관한 이유는?
