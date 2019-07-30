@@ -122,8 +122,61 @@ Taylor Expansion 의 공식을 활용하여 BackPropaget 을 도출 합니다
 3차원 공간에서 최적의 점을 찾는다
 
 
+<br/>
+# Supervised Learning
 
-Question!!
+## Super Vised
+
+### SuperVised 
+1. 분류모델 (불연속모델) 손글씨 인식, 약분류
+2. 회귀모델 (연속모델) Object Detection, Linear/ Logistic Regression (값을 찾는 모델링)
+
+### unSuperVised 
+1. 클러스터링 (불연속모델) K-means, Mean-shift, GMM(가오시안믹스드 모델), LDA, 
+2. 차원의 축소(연속모델) PCA, LDA (KERNEL)
+
+## Naive Bayse Classifier
+
+https://images.slideplayer.com/39/10998954/slides/slide_11.jpg
+
+MLE : argmax() 값을 찾음
+MLP : 사전지식을 활용하여 모델을 추정
+
+argmin : 오차가 작은 값을 찾는다
+argmax : 최대 성능을 갖는 값을 찾는다
+
+argmin_{f}P (f(x) =/= Y) = f^* (옵티멀한 분류기)
+argmax_(y=x)P(Y=y|X=x) = f^*(x) (Naive Bayse 모델링)
+
+## MLE & MAP
+
+argmax_{theta}P(D|theta)
+
+**MLE** 는 **Likelihood** 를 활용하여 데이터가 많으면 성능이 좋지만, **MAP 는 **데이터가 적어도** (특정 확률분포 데이터) 효과적인 모델을 추정할 수 있어서 모델링에 폭넓게 활용 가능합니다.
+
+### Example
+
+https://www.saedsayad.com/images/naive_bayes_example_2.png
+
+Positive/ Negative Sampling 방법으로 Machine Learning 이전에 분류 방식으로 Naive Bayse 기법을 활용하였고, 현재에도 Pre Processing 과정에서 위 내용을 활용하고 있습니다.
+
+### Assumption, Conditional Independence
+
+Conditional Independence : Naive Bayse 모델링 구현시 Token 간은 모두 독립으로 가정하면, 개별 단어token 의 확률 곱으로도 전체적인 모델의 확률을 구현할 수 있다
+
+물론 Token 간의 
+
+P(스팸| 관련token, token, token..) = P(token, token|스팸)P(스팸)
+
+$ \nabla_\boldsymbol{x} J(\boldsymbol{x}) $
+
+
+## Question!!
+
 셉타^ : 조건부 확률의 최대값 (몇번쨰 셉타값) 확률값인가? 아님 횟수값인가?
 aH, aT : 관찰확률
 Sigmoid 가 확률과 무관한 이유는?
+
+Q. Sigmoid 함수를 활용하여 모델을 예측하는게 좋은 이유는 Taylor 급수처럼 최적화가 유용해서 인가?
+Q. "대출" 키워드 문서가 스팸일 확률의 계산을 어떻게 바꿨다고?
+Q. conditional Independence 관계에서 개별 독립을 전제시 Token 갯수를 어떻게 줄이나?
