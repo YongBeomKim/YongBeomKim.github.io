@@ -86,12 +86,15 @@ Logistic Regression Classifire
 
 ### Sigmoid Function
 
--1~1 사이의 값으로 확률 함수와는 무관하다
+-1~1 사이의 값으로 확률 함수와는 무관하게 활용되고, weight 를 변경 **할 것인지/ 아닌지** 를 판단하는 **활성화 여부 판단함수** 로 주로 활용 됩니다.
+
+참고로 weight 값은 **역전파를** 활용한 **BackPropagate 편미분을** 활용하여 전체적인 weight 값이 훈련 과정마다 보정 됩니다.
 
 <figure class="align-center">
-  <img src="https://en.wikipedia.org/wiki/Sigmoid_function#/media/File:Gjl-t(x).svg">
+  <img src="{{site.baseurl}}/assets/images/book/sigmoid.png">
   <figcaption></figcaption>
 </figure>
+
 
 ### Logistic Function
 f(x) = 1 / 1 + e^(-x)
