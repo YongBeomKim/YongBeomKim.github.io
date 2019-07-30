@@ -170,6 +170,17 @@ P(스팸| 관련token, token, token..) = P(token, token|스팸)P(스팸)
 
 $ \nabla_\boldsymbol{x} J(\boldsymbol{x}) $
 
+## Conditional vs Marginal
+
+1. Conditional Indepandent  : 조건이 주어질 때, 조건부 확률에 영향이 없을 때
+2. Marginal Independence : 상대방의 행동이 자신에게도 영향을 준다 P(a|b<given>) = P(a)
+
+## Naive Bayse Classifier
+
+문제점으로는 
+1. Naive Assumption (상관성이 높은 단어들의 처리가 어렵다) = > 우선은 넘어가자
+2. Probability Estimations (MLE 는 데이터가 부족하면 불충족, MAP 는 애매한 모델이 생성)
+
 
 ## Question!!
 
