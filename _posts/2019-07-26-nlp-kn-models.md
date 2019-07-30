@@ -97,7 +97,14 @@ Logistic Regression Classifire
 
 
 ### Logistic Function
+
 f(x) = 1 / 1 + e^(-x)
+
+<figure class="align-center">
+  <img src="https://s3.amazonaws.com/ck12bg.ck12.org/curriculum/108070/thumb_540_50.jpg">
+  <figcaption></figcaption>
+</figure>
+
 
 ### Logistic Regression
 
