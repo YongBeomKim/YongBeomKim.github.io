@@ -1,6 +1,6 @@
 ---
 title : 자연어 강의 3일 - 통계적 NLP
-last_modified_at: 2019-07-24T10:45:06-05:00
+last_modified_at: 2019-07-26T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/nlp_master.jpg
 categories:
