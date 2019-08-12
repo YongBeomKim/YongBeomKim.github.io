@@ -11,7 +11,7 @@ tags:
 
 우분투에 대해 알게된 점들을 지속적으로 묶어서 정리를 해 보려고 합니다. 이번 페이지에서 정리하려는 내용은 Setting 파일들로써 각각의 파일과, 내용에 대해 정리하려고 합니다.
 
-또한 윈도우 10 의 Bash 터미널에서 사용자 변경 및 zsh 설치방법을 정리해 보겠습니다. 자세한 초기설정 방법은 [](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/) 를 참고합니다.
+또한 윈도우 10 의 Bash 터미널에서 사용자 변경 및 zsh 설치방법을 정리해 보겠습니다. 자세한 초기설정 방법은 **[Ubuntu Setting](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/)** 을 참고합니다.
 
 
 <br/>
