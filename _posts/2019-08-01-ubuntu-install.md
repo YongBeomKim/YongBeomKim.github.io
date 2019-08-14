@@ -11,3 +11,10 @@ tags:
 ---
 
 우분투 설치 후 관련 자세한 초기설정 방법은 **[Ubuntu Setting](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/)** 와 앞에서 정리한 [우분투 Setting & Tips](https://yongbeomkim.github.io/ubuntu/ubuntu-settings/) 내용을 참고합니다.
+
+# 파일찾기
+
+내용을 확이나고 나면 별도 어려움은 업슨ㄴ 내용니다
+
+> find ./ -name "*.xls"
+
