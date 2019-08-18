@@ -11,6 +11,8 @@ tags:
     - bs4
 ---
 
+문서의 원본 내용을 확인하기 위해선 [문서 원문 Site](https://web.archive.org/web/20150319200824/http://coreapython.hosting.paran.com/etc/beautifulsoup4.html) 를 참고하면 됩니다
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
