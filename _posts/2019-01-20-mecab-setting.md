@@ -97,6 +97,26 @@ In [3]: mecab.morphs(u'영등포구 여의도동 맛집을 알려주세요')
 Out[3]: ['영등포구', '여의도동', '맛집', '을', '알려', '주', '세요']
 ```
 
+## **Jpype** 버젼의 확인
+
+2019년 7월 JPype 는 0.7 버젼으로 업데이트 되었고, 이를 바탕으로 실행을 하는 경우 특히 **한나눔** 이나 **코모란** 의 실행시 다음과 같은 메세지 오류를 출력합니다. 실행에는 문제가 없을 수 도 있지만, 많은 데이터를 처리하는 경우는 멈추는 경우가 발생하기도 합니다.
+
+```
+/home/markbaum/Python/nltk/lib/python3.6/site-packages/jpype/_core.py:210: UserWarning: 
+-------------------------------------------------------------------------------
+Deprecated: convertStrings was not specified when starting the JVM. The default
+behavior in JPype will be False starting in JPype 0.8. The recommended setting
+for new code is convertStrings=False.  The legacy value of True was assumed for
+this session. If you are a user of an application that reported this warning,
+please file a ticket with the developer.
+-------------------------------------------------------------------------------
+```
+
+이와 관련된 오류는 [Ellun's Library](https://ellun.tistory.com/46) 에 자세하게 설명이 되어 있고 이를 참고하면 `pip install JPype==0.6.3` 으로 버젼을 낮춰서 설치를 하면 다음과 같은 오류가 더이상 발생하지 않습니다.
+
+
+
+
 
 <br/>
 # Khaiii 설치
