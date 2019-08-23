@@ -38,6 +38,10 @@ tags:
 
 
 
+
+
+
+
 # 참고자료
 1. [Spacy](https://spacy.io/usage/linguistic-features#entity-types)
 2. []()
