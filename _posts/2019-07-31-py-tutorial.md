@@ -1,5 +1,5 @@
 ---
-title : python 외부 파리미터 사용
+title : Python 사용 Tips
 last_modified_at: 2019-07-31T12:45:06-05:00
 header:
   overlay_image: /assets/images/book/python.jpg
@@ -10,6 +10,22 @@ tags:
 ---
 
 Python 의 기본 내용을 작업하면서 추가된 내용들을 확인 저장하는 페이지 입니다.
+
+<br/>
+# xls
+파이썬에서 데이터를 호출하는 경우, 특히 **Excel** 에 익숙한 사용자들로 인해 데이터를 호출 및 생성할 경우가 많이 있는데, 이를 위한 모듈과 내용을 정리해 보겠습니다. Excel 모듈에는 **xlrd** 와 **xlwings** 2가지가 있는데, 리눅스는 **xlrd** 만 가능하다.. <strike>하지만 vba 관련 기능은 **xlwings** 가 더 강력하고 윈도우나 Mac 으로 서버를 변경해야 하는건 함은정... </strike>
+
+```python
+# Excel 파일의 Sheet 이름들 호출
+import xlrd
+xls_file = xlrd.open_workbook(r'data/sample.xls', on_demand=True)
+sheets   = xls_file.sheet_names()
+
+# DataFrame 활용도가 높은만큼 Pandas로 호출
+import pandas as pd
+pd.read_excel('data/sample.xls', sheetName=sheets[0])
+```
+
 
 <br/>
 # 객체의 저장
