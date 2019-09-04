@@ -13,23 +13,181 @@ tags:
 
 문서의 원본 내용을 확인하기 위해선 [문서 원문 Site](https://web.archive.org/web/20150319200824/http://coreapython.hosting.paran.com/etc/beautifulsoup4.html) 를 참고하면 됩니다
 
+<br></br>
+# 뷰티플수프 문서 
+
+[뷰티플수프 4.0.0 문서](http://www.crummy.com/software/BeautifulSoup/bs4/doc/#)
+
+뷰티플수프는 HTML과 XML 파일로부터 데이터를 뽑아내기 위한 파이썬 라이브러리이다. 여러분이 선호하는 해석기와 함께 사용하여 일반적인 방식으로 해석 트리를 항해, 검색, 변경할 수 있다. 주로 프로그래머의 수고를 덜어준다.
+
+이 지도서에서는 뷰티플수프 4의 중요한 특징들을 예제와 함께 모두 보여준다. 이 라이브러리가 어느 곳에 유용한지, 어떻게 작동하는지, 또 어떻게 사용하는지, 어떻게 원하는대로 바꿀 수 있는지, 예상을 빗나갔을 때 어떻게 해야 하는지를 보여준다.
+
+이 문서의 예제들은 파이썬 2.7과 Python 3.2에서 똑 같이 작동한다.
+
+혹시 뷰티플수프 3에 관한 문서를 찾고 계신다면 뷰티플수프 3는 더 이상 개발되지 않는다는 사실을 꼭 아셔야겠다. 새로 프로젝트를 시작한다면 뷰티플수프 4를 적극 추천한다. 뷰티플수프 3와 뷰티플수프 4의 차이점은 BS4 코드 이식하기를 참조하자.
+
+## 도움 얻기
+
+뷰피플수프에 의문이 있거나, 문제에 봉착하면 [토론그룹](https://web.archive.org/web/20150319200824/http://groups.google.com/group/beautifulsoup/) 에 메일을 보내자.
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<br></br>
+## 바로 시작
 
-<head>
-    <script type="text/javascript">
-    window.addEventListener('DOMContentLoaded', function() { var v = archive_analytics.values;
-        v.service = 'wb';
-        v.server_name = 'wwwb-app57.us.archive.org';
-        v.server_ms = 467;
-        archive_analytics.send_pageview({}); });
-    </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>뷰티플수프 문서 — 뷰티플수프 4.0.0 문서</title>
-    <link rel="top" title="뷰티플수프 4.0.0 documentation" href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#">
-</head>
+다음은 이 문서에서 예제로 사용할 HTML 문서이다. 이상한 나라의 앨리스 이야기의 일부이다
+
+```python
+html_doc = """
+<html><head><title>The Dormouse's story</title></head>
+<p class="title"><b>The Dormouse's story</b></p>
+<p class="story">Once upon a time there were three little sisters; and their names were
+<a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>,
+<a href="http://example.com/lacie" class="sister" id="link2">Lacie</a> and
+<a href="http://example.com/tillie" class="sister" id="link3">Tillie</a>;
+and they lived at the bottom of a well.</p>
+<p class="story">...</p>
+"""
+```
+
+“three sisters” 문서를 뷰피플수프에 넣으면 BeautifulSoup 객체가 나오는데, 이 객체는 문서를 내포된 데이터 구조로 나타낸다.
+
+```python
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(html_doc)
+print(soup.prettify())
+
+# <html>
+#  <head>
+#   <title>
+#    ....
+#   <p class="story"> ...... </p>
+#  </body>
+# </html>
+```
+
+다음은 간단하게 데이터 구조를 항해하는 몇 가지 방법이다
+
+```python
+soup.title
+# <title>The Dormouse's story</title>
+
+soup.title.name
+# u'title'
+
+soup.title.string
+# u'The Dormouse's story'
+
+soup.title.parent.name
+# u'head'
+
+soup.p
+# <p class="title"><b>The Dormouse's story</b></p>
+
+soup.p['class']
+# u'title'
+
+soup.a
+# <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
+
+soup.find_all('a')
+# [<a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>,
+#  <a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
+#  <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>]
+
+soup.find(id="link3")
+# <a class="sister" href="http://example.com/tillie" id="link3">Tillie</a>
+```
+
+일반적인 과업으로 한 페이지에서 <a> 태그에 존재하는 모든 URL을 뽑아 낼 일이 많다:
+
+```python
+for link in soup.find_all('a'):
+    print(link.get('href'))
+# http://example.com/elsie
+# http://example.com/lacie
+# http://example.com/tillie
+```
+
+또 다른 과업으로 페이지에서 텍스트를 모두 뽑아낼 일이 많다
+
+```python
+print(soup.get_text())
+# The Dormouse's story
+# The Dormouse's story
+# Once upon a time there were three little sisters; and their names were
+# Elsie,
+# Lacie and
+# Tillie;
+# and they lived at the bottom of a well ...
+```
+
+<br></br>
+## 뷰티플 수프 설치하기
+
+데비안이나 우분투 리눅스 최신 버전을 사용중이라면, 시스템 꾸러미 관리자로 뷰티플수프를 설치하자:
+
+```r
+$ apt-get install python-bs4
+```
+
+뷰티블수프 4는 PyPi를 통하여도 출간되어 있으므로, 시스템 꾸러미 관리자로 설치할 수 없을 경우, easy_install로 설치하거나 pip로 설치할 수 있다. 꾸러미 이름은 beautifulsoup4이며, 같은 꾸러미로 파이썬 2 그리고 파이썬 3에 작동한다.
+
+```r
+$ easy_install beautifulsoup4
+$ pip install beautifulsoup4
+```
+
+(이 BeautifulSoup 꾸러미가 혹시 원하는 것이 아니라면. 이전 버전으로 뷰티플수프 3가 있다. 많은 소프트웨에서 BS3를 사용하고 있으므로, 여전히 사용할 수 있다. 그러나 새로 코드를 작성할 생각이라면 beautifulsoup4를 설치하시기 바란다.)
+
+easy_install도 pip도 설치되어 있지 않다면, 뷰티플수프 4 소스를 내려 받아 setup.py로 설치하실 수 있다.
+
+```r
+$ python setup.py install
+```
+
+다른 모든 것이 실패하더라도, 뷰티플수프 라이센스는 여러분의 어플리케이션에 통채로 꾸려 넣는 것을 허용하므로 전혀 설치할 필요없이 소스를 내려받아 bs4 디렉토리를 통채로 코드베이스에 복사해서 사용하셔도 된다.
+
+본인은 파이썬 2.7과 파이썬 3.2에서 뷰티플수프를 개발하였지만, 다른 최신 버전에도 작동하리라 믿는 바이다.
+설치 이후의 문제로 뷰티플 수프는 파이썬 2 코드로 꾸려 넣어져 있다. 파이썬 3에 사용하기 위해 설치하면, 파이썬 3 코드로 자동으로 변환된다. 꾸러미가 설치되어 있지 않다면, 당연히 변환되지 않는다. 또한 윈도우즈 머신이라면 잘못된 버전이 설치되어 있다고 보고된다.
+
+“No module named HTMLParser”와 같은 ImportError 에러가 일어나면, 파이썬 3 아래에서 파이썬 2 버전의 코드를 실행하고 있기 때문이다.
+
+“No module named html.parser”와 같은 ImportError 에러라면, 파이썬 3 버전의 코드를 파이썬 2 아래에서 실행하고 있기 때문이다.
+
+두 경우 모두 최선의 선택은 시스템에서 (압축파일을 풀 때 만들어진 디렉토리를 모두 포함하여) 뷰티플수프를 제거하고 다시 설치하는 것이다.
+
+다음 ROOT_TAG_NAME = u'[document]' 줄에서 SyntaxError “Invalid syntax”를 맞이한다면, 파이썬 2 코드를 파이썬 3 코드로 변환할 필요가 있다. 이렇게 하려면 다음과 같이 패키지를 설치하거나:
+
+```r
+$ python3 setup.py install
+```
+
+아니면 직접 파이썬의 2to3 변환 스크립트를 bs4 디렉토리에 실행하면 된다:
+
+```
+$ 2to3-3.2 -w bs4
+```
+
+## 해석기 설치하기
+
+뷰티플수프는 파이썬 표준 라이브러리에 포함된 HTML 해석기를 지원하지만, 또 수 많은 제-삼자 파이썬 해석기도 지원한다. 그 중 하나는 lxml 해석기이다. 설정에 따라, 다음 명령어들 중 하나로 lxml을 설치하는 편이 좋을 경우가 있다:
+
+```r
+$ apt-get install python-lxml
+$ easy_install lxml
+$ pip install lxml
+```
+
+파이썬 2를 사용중이라면, 또다른 대안은 순수-파이썬 html5lib 해석기를 사용하는 것인데, 이 해석기는 HTML을 웹 브라우저가 해석하는 방식으로 해석한다. 설정에 따라 다음 명령어중 하나로 html5lib를 설치하는 것이 좋을 때가 있다:
+
+$ apt-get install python-html5lib
+
+$ easy_install html5lib
+
+$ pip install html5lib
+
+다음 표에 각 해석 라이브러리의 장점과 단점을 요약해 놓았다:
+
 
 <body>
     <!-- BEGIN WAYBACK TOOLBAR INSERT -->
