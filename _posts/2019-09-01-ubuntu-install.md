@@ -1,6 +1,6 @@
 ---
 title : 우분투 듀얼부팅, 설치 and Tips
-last_modified_at: 2019-08-01T10:45:06-05:00
+last_modified_at: 2019-09-01T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ubuntu.png
 categories:
@@ -73,5 +73,23 @@ should recreate it in Rufus using the following setting:
 
 데스크탑에 기존 설치 성공한 리눅스 구버젼이 있으면 이를 활용하여 설치를 시도해 보겠습니다.
 
+**2019년 9월 5일 MSI U200** 작업시, 우분투 설치 중 꺼지는 현상은 반복 되었고, 내부를 전체 뜯어서 확인하고 Mulit Slot 의 전원 부분을 제거하는 작업 도중에, 모니터가 사망하는 부작용으로 작업을 중단..
+{: .notice--danger}
 
+<br>
 
+# **Plan**
+
+우선 msi U200 은 잘 보내드리도록 하자, 결합해서 다시 살아나면 좋고.. :) 어찌되었든 집에서 Desktop 제거하기 프로젝트 시작하기..
+
+1. **Teclast x98 3G Air** 에는 **[우분투 16.04 LST](https://salda.ws/video.php?id=hZLv6q38icw)** 설치
+2. Dell venu 8 note 를 windows 10 머신(서버) 로 활용
+3. **Odroid HC1** 구매 후, Nas 서버로 운영하기 (SSD 장착)
+4. **Odrid Xu4** 를 집에서 파일 등 복사용 DeskTop 활용
+5. 남는 SSD 는 **USB 외장하드** 처럼 활용하기
+
+**Chuwi VI10 (Intel Atom Z3736F)** 에서 테스트를 마친 내용 입니다.
+
+1. **[Touch screen driver](https://github.com/onitake/gslx680-acpi)**
+2. **[WIFI+BT driver RTL8723BS](https://github.com/hadess/rtl8723bs)**
+3. **[Kernel v4.5-rc1](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.5-rc1-wily/)**
