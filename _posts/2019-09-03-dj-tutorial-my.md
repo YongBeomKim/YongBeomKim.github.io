@@ -37,7 +37,7 @@ tags:
 3. Rest API
 4. wsgi & Gunicorn Server Setting
 
-template 에서 javascript 호출은 cdn 호출이 효과적입니다. 서버 부담을 최소가 되고 사용자에게 전달 되기 때문입니다. 호출 내용은 Base.html 를 재활용 하는 방식으로 효율을 높입도록 합니다. [Django Girls 템플릿 확장하기](https://tutorial.djangogirls.org/ko/template_extending/)
+template 에서 javascript 는 **cdn 외부 호출** 방식이 효과적입니다. 서버 부담을 최소가 되고 사용자에게 전달 되기 때문입니다. 그리고 호출 내용을 Base.html 에 모아서  재활용 방식으로 효율을 높이도록 합니다. [Django Girls 템플릿 확장하기](https://tutorial.djangogirls.org/ko/template_extending/)
 {: .notice--info}
 
 1. Model & ORM 
