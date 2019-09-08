@@ -93,3 +93,5 @@ should recreate it in Rufus using the following setting:
 1. **[Touch screen driver](https://github.com/onitake/gslx680-acpi)**
 2. **[WIFI+BT driver RTL8723BS](https://github.com/hadess/rtl8723bs)**
 3. **[Kernel v4.5-rc1](http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.5-rc1-wily/)**
+
+중고 노트북 중엔 [레노버 아이디어패드 S145-15IWL CEP (SSD 128GB)](http://prod.danawa.com/info/?pcode=7485370&cate=1131320) 33만원 짜리도 있어라.. 우선은 있는걸로 돈을 벌고 나중에 사자 ㅠㅠ..
