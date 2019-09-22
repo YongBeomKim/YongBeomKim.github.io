@@ -1,5 +1,5 @@
 ---
-title : 예비창업 - 비지니스 모델링
+title : 페북이노랩 - 스타트업 투자 A to Z
 last_modified_at: 2019-09-04T10:45:06-05:00
 header:
   overlay_image: /assets/images/photo/facebook-office.jpg

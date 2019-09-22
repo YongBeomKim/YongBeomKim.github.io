@@ -12,6 +12,9 @@ tags:
 
 우분투 설치 후 관련 자세한 초기설정 방법은 **[Ubuntu Setting in Win10](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/)** 와 앞에서 정리한 [우분투 Setting & Tips](https://yongbeomkim.github.io/ubuntu/ubuntu-settings/) 내용을 참고합니다.
 
+
+
+
 <br>
 
 # **Tips**
@@ -54,6 +57,32 @@ should recreate it in Rufus using the following setting:
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/project/dual_boot.jpg">
 </figure>
+
+## **SSD 파티션 오류문제**
+
+SSD 를 포맷 후 설치하는 경우, 종종 **이 디스크에는 Windows 를 설치할 수 없습니다** 메세지가 출력 됩니다. 이유는 SSD 하드 디스크가 **MBR** 방식으로 되어 있는데, 이를 **GPT** 방식으로 [파티션을 변경](https://blog.naver.com/PostView.nhn?blogId=bk32167&logNo=221524850658&from=search&redirect=Log&widgetTypeCall=true&directAccess=false) 해야 해결이 됩니다
+
+```
+# Shift + F10 를 눌러서 Terminal 실행
+$ diskpart
+$ DISKPART> disk
+$ DISKPART> select disk 0
+$ DISKPART> clean
+$ DISKPART> convert gpt
+
+# exit 를 눌러서 빠져 나옵니다.
+```
+
+## **최대 절전모드 실행**
+
+SSD 는 물리디스크가 아니여서 켜고 끄는데 별다른 물리적인 문제가 발생하지 않습니다. (하지만 시스템과 리소스는 조금 차지하지만 소음이 관리되는 만큼 좋다고 생각한다 ...) SSD 하드디스크를 활용하는 경우는 이를 활성화 합니다.
+
+## **기타 필요한 내용들**
+
+필요한 유틸리티 설치와 인증 프로그램의 실행, 그리고 **One Driver 삭제** 와 **Windows Update 수동/ 해제** 를 실행 합니다. 수시로 업데이트 문제로 종료시 대기시간이 길어지는 문제가 있는데, 중요한 보안이슈등은 언론에 나오기도 하고, 업데이트 중에는 오히려 불안정한 내용들이 포함되어 문제가 되기도 하는 등 개인적으로는 장점보단 단점이 더 많다고 생각합니다.
+
+재설치로 작업한 뒤에는 최신 업데이트로 모두 적용을 하고 난 뒤에 **[업데이트](https://mastmanban.tistory.com/972)** 를 **수동 및 정지** 로 변경합니다.
+
 
 ## **Windows 10 설치 후**
 
