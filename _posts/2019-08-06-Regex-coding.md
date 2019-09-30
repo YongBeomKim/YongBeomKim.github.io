@@ -2,7 +2,7 @@
 title : 정규표현식 - 손에 잡히는 Ben Forter
 last_modified_at: 2019-08-06T02:45:06-05:00
 header:
-  overlay_image: /assets/images/code/regex.png
+  overlay_image: /assets/images/code/regex.jpg
 categories:
   - regex
 tags: 
