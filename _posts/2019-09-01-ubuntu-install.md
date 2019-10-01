@@ -14,14 +14,42 @@ tags:
 
 
 
-
 <br>
 
 # **Tips**
 
 내용을 확인하면 별거 없지만, 자주 사용하지 않아서 잊어버린 Linux 터미널 명령들을 정리 합니다.
 
+## Ubuntu Terminal 명령어 모음
+
 > find ./ -name "*.xls"
+
+## SSH-Key 생성 및 등록
+
+우분투에서 ssk-key 생성 및 등록은 여러가지 자료들이 많이 나와있어서 문제가 안된다.. 문제는 windows10 에서 어떻게 생성하고 활용할 것인가???? 윈도우에 우분투가 포함되어 장점도 있지만, 2개의 Operation System 을 연결하는 방법에서 개념이 명확하게 정리되어 있지 않으면 작업에 있어서 어려움이 생기고 그러한 부분을 정리해 보도록 하겠습니다.
+
+### SSH-key 생성
+
+**윈도우 내부의 우분투** 를 실행하고 해당 터미널에서 인증키를 생성합니다. 생성된 파일은 **~/.ssh** 폴더에 저장되고 이를 활용하여 검증이 실행 됩니다.
+
+```r
+UserName@DESKTOP-A1BCDEF:~$ ssh-key
+UserName@DESKTOP-A1BCDEF:~$ cd .ssh/
+UserName@DESKTOP-A1BCDEF:~/.ssh$ ls
+id_rsa   id_rsa.pub    known_hosts
+```
+
+### SSH-key 생성키 복사
+
+**윈도우 내부의 우분투** 에서 생성한 인증파일을 **윈도우 시스템으로 복사** 합니다. 윈도우 경로는 `/mnt/c/` 를 지정하면 **윈도우 root** 경로와 연결됩니다. 인증키 파일을 붙여놓는 장소로는 `/users/사용자id/.ssh` 와   `/Program File/Git/.ssh` 두가지 폴더를 설명한 내용들이 있었는데, 작업해본 결과 `/users/사용자id/.ssh` 폴더 붙여놓으면 제대로 작동하는 것을 볼 수 있습니다.
+
+```r
+UserName@DESKTOP-A1BCDEF:~/.ssh$ cp * /mnt/c/Python/
+```
+
+### Git 에 SSH 등록
+
+ssh 값을 Git 서비스에 등록하면 자동으로 로그인 됩니다. 사용자 설정메뉴에서 SSH 값으로 `id_rsa.pub` 파일의 내용을 추가 한 뒤, Git 을 SSh 값으로 지정하면 자동으로 업로드 실행내용을 확인 합니다.
 
 <br>
 
