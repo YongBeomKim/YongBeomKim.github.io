@@ -12,8 +12,6 @@ tags:
 
 우분투 설치 후 관련 자세한 초기설정 방법은 **[Ubuntu Setting in Win10](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/)** 와 앞에서 정리한 [우분투 Setting & Tips](https://yongbeomkim.github.io/ubuntu/ubuntu-settings/) 내용을 참고합니다.
 
-
-
 <br>
 
 # **Tips**
@@ -24,7 +22,32 @@ tags:
 
 > find ./ -name "*.xls"
 
-## SSH-Key 생성 및 등록
+## unable **"cinnamon-session-cinnamon"** X session
+
+우분투 Mint 가 장점이 많으면서도 위 에러로 인하여 갑자기 시스템이 먹통이 되버리는 문제가 있습니다. 그나마 휴일에 발생하였기에 다행이지 평일 업무 중 해당 상황을 처음 격게된 경우라면 상당히 곤란한 오류 입니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/code/x-session-error.jpg">
+</figure>
+
+이를 해결하기 위해 검색해 본 결과, **우분투 재설치** 내용이 가장 많았습니다. 이는 기존의 설정 내용과 저장된 파일을 삭제하는 등의 문제가 있고, USB 로 부팅 후 접근하려고 했지만 **Permission Error** 로 인하여 작업에도 곤란한 부분이 많았습니다.
+
+다행히 검색 중 **[Mint 리눅스 포럼](https://forums.linuxmint.com/viewtopic.php?t=273579)** 내용을 확인해서 적용해본 결과 문제가 바로 해결 되었습니다.
+
+1. 리눅스 재부팅
+2. 로그인 실행
+3. 위 오류가 출력되면 **Click OK** 를 누릅니다.
+4. 검은 화면에서 **Ctrl + Alt + F1** 을 누릅니다
+5. **Id** 와 **Password** 로 Terminal 접속 후 다음 내용을 입력 합니다.
+
+```r
+$ sudo apt-get update
+$ sudo apt-get install nemo
+$ sudo apt-get install cinnamon
+$ reboot
+```
+
+## 윈도우10 Bash **SSH-Key** 생성 및 등록
 
 우분투에서 ssk-key 생성 및 등록은 여러가지 자료들이 많이 나와있어서 문제가 안된다.. 문제는 windows10 에서 어떻게 생성하고 활용할 것인가???? 윈도우에 우분투가 포함되어 장점도 있지만, 2개의 Operation System 을 연결하는 방법에서 개념이 명확하게 정리되어 있지 않으면 작업에 있어서 어려움이 생기고 그러한 부분을 정리해 보도록 하겠습니다.
 
