@@ -123,7 +123,7 @@ tags:
 **핵심 역량의 분석 및 전략수립** 방법으로, 현재의 상태와 문제점 그리고 극복방법에 대해 **명확하게 파악** 할 수 있습니다.
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/business/swot-ban.png">
+  <img src="{{site.baseurl}}/assets/images/business/swot-ban.jpg">
 </figure>
 
 <br/>
@@ -223,11 +223,6 @@ New York 신문의 Suprima 광고를 예시로 들 수 있는데, **서비스를
 기술적인 경쟁력을 바탕으로 서비스 내용의 고도화를 홍보 및 활용하기
 
 ## Objective (목표) , Key Result (핵심기술)
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/business/swot-ban.png">
-</figure>
-
 
 <br>
 
