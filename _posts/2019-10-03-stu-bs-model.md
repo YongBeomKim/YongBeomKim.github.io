@@ -229,3 +229,16 @@ New York 신문의 Suprima 광고를 예시로 들 수 있는데, **서비스를
 </figure>
 
 
+<br>
+
+# **Logo Design**
+
+뭐먹지 연구소 Logo 와 회사 Title 에 사용할 폰트들을 정리해 보았습니다.
+1. 첫번째는 **야놀자** 디자인을 그대로 차용 하였습니다.
+2. 두번쨰는 **It 회사의 느낌** 으로 색상 추가가 가능합니다.
+3. 세번째는 Nolan 스타일이지만 가장 낮은 선호도 결과 입니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/momukji-logo.png">
+</figure>
+
