@@ -237,3 +237,8 @@ New York 신문의 Suprima 광고를 예시로 들 수 있는데, **서비스를
   <img src="{{site.baseurl}}/assets/images/business/momukji-logo.png">
 </figure>
 
+title 폰트를 적용한 Logo 예제 입니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/logos.jpg">
+</figure>
