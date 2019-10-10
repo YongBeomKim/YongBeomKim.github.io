@@ -242,3 +242,9 @@ title 폰트를 적용한 Logo 예제 입니다.
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/business/logos.jpg">
 </figure>
+
+식판의 이미지를 활용한 텍스트 로고를 적용한 모델링 예제 입니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/logos2.jpg">
+</figure>
