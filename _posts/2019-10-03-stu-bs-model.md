@@ -252,3 +252,9 @@ title 폰트를 적용한 Logo 예제 입니다.
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/business/logos2.jpg">
 </figure>
+
+다양한 Color 를 적용한 예제 입니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/logos3.jpg">
+</figure>
