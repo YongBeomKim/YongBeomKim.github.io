@@ -123,7 +123,7 @@ tags:
 **핵심 역량의 분석 및 전략수립** 방법으로, 현재의 상태와 문제점 그리고 극복방법에 대해 **명확하게 파악** 할 수 있습니다.
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/business/swot-ban.png">
+  <img src="{{site.baseurl}}/assets/images/business/swot-ban.jpg">
 </figure>
 
 <br/>
@@ -224,8 +224,37 @@ New York 신문의 Suprima 광고를 예시로 들 수 있는데, **서비스를
 
 ## Objective (목표) , Key Result (핵심기술)
 
+<br>
+
+# **Logo Design**
+
+**[Logo 사용 칼라 MAP](https://www.designmantic.com/how-to/how-to-select-color-for-your-logo-design)**
+
+**[컬러 Hex 맵 데이터](https://www.color-hex.com/color/000000)**
+
+뭐먹지 연구소 Logo 와 회사 Title 에 사용할 폰트들을 정리해 보았습니다.
+1. 첫번째는 **야놀자** 디자인을 그대로 차용 하였습니다.
+2. 두번쨰는 **It 회사의 느낌** 으로 색상 추가가 가능합니다.
+3. 세번째는 Nolan 스타일이지만 가장 낮은 선호도 결과 입니다.
+
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/business/swot-ban.png">
+  <img src="{{site.baseurl}}/assets/images/business/momukji-logo.png">
 </figure>
 
+title 폰트를 적용한 Logo 예제 입니다.
 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/logos.jpg">
+</figure>
+
+식판의 이미지를 활용한 텍스트 로고를 적용한 모델링 예제 입니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/logos2.jpg">
+</figure>
+
+다양한 Color 를 적용한 예제 입니다
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/business/logos3.jpg">
+</figure>
