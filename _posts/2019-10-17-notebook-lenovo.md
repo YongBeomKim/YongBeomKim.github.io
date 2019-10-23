@@ -1,6 +1,6 @@
 ---
-title : lenovo 노트북 Setting
-last_modified_at: 2019-10-14T10:45:06-05:00
+title : lenovo 듀얼부팅 Setting
+last_modified_at: 2019-10-17T10:45:06-05:00
 header:
   overlay_image: /assets/images/project/lenovo.jpg
 categories:
