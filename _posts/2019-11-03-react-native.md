@@ -15,7 +15,9 @@ tags:
 
 Render 내부 View Component 
 
-<Text style> || 'TITLE' : top bar Property 를 정의한다.
+`<Text style> || 'TITLE' : top bar`
+
+위와 같이 ㄴ Property 를 정의한다.
 
 <br/>
 
