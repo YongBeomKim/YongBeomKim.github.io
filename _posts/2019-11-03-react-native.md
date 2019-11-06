@@ -11,7 +11,7 @@ tags:
     - reactnative
 ---
 
-리액트 네이티브 수업내용 요약 및 정리 페이지 입니다. **안드로이드** 개발은 **Kotlin**, **IOS** 개발은 **Swift** 로 대세가 넘어가 있습니다. 이들은 **Native 를 바로 컨트롤** 하는 장점이 있기 때문입니다. 반면 **React Native** 는 둘을 모두 작업할 수 있지만, 단점으로는 **Javascript, Android Bridge** 를 사용하여 내용들을 변환하는 과정을 거쳐야 하기 때문에, 작업 내용의 호환성 등 충돌이 발생할 부분들이 많은 단점이 존재 합니다.
+**안드로이드** 개발은 **Kotlin**, **IOS** 는 **Swift** 로 대세가 넘어갔습니다. **Native 를 바로 컨트롤** 하는 장점이 있는 반면, **React Native** 는 **Javascript Bridge, Android Bridge** 모두 지원해서 작업 후 활용도가 높은 반면, 충돌이 발생하는 부분이 많다는 단점이 있습니다.
 
 <br/>
 
@@ -23,14 +23,14 @@ tags:
 
 ## **Install SDK Manager**
 
-안드로이드 스튜디오를 실행한 뒤, **"Configure"** 를 선택하고 **"SDK Manager"** 모듈을 설치 합니다. **[react native Quick Start](https://facebook.github.io/react-native/docs/getting-started)** 에서는 **Android Pie** 를 권장하고 있습니다.
+안드로이드 스튜디오를 실행한 뒤, **"Configure"** 를 선택하고 **"SDK Manager"** 에서 **SDK 모듈** 을 설치 합니다. **[React Native Quick Start](https://facebook.github.io/react-native/docs/getting-started)** 내용을 참고하여 **Android Pie** 를 권장하고 있습니다.
 
 ```r
 Android SDK Platform 28
 Intel x86 Atom_64 System Image or Google APIs Intel x86 Atom System Image
 ```
 
-SDK 를 설치 후 실행하다 보면 `/dev/kvm Permission denied` 의 오류가 출력됩니다. 이는 해당 부분의 권한이 추가되지 않아서 실행시 문제가 될 수 있기 때문에 이 부분을 해결합니다.
+SDK 를 설치하다 보면  `/dev/kvm Permission denied` 의 오류가 출력됩니다. 이를 해결하기 위해 **kvm** 사용자  권한을 추가 합니다.
 
 ```r
 $ sudo apt install qemu-kvm
@@ -41,7 +41,7 @@ $ grep kvm /etc/group
 kvm:x:131:사용자ID
 ```
 
-위처럼 kvm 을 실행한 결과 `사용자ID` 가 함께 출력되면 설치가 완료 됩니다.
+위처럼 `$ grep kvm /etc/group` 을 실행한 결과 `사용자ID` 내용이 함께 출력되면 설치가 완료 됩니다.
 
 마지막으로 에뮬레이터가 **다른 프로그램과 제대로 연동** 될 수 있도록 `$HOME/.bash_profile` 또는 `$HOME/.bashrc` 내용을 **에뮬레이터 실행 내용을 환경변수 관리파일에** 추가 합니다.
 
@@ -55,7 +55,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 ## **Install Yarn**
 
-페이스북 관련 모듈을 설치하는 경우에는 **[yarn 설치](https://linuxize.com/post/how-to-install-yarn-on-ubuntu-18-04/)** 을 사용하여 **실행 및 설치** 합니다.
+페이스북 관련 모듈을 설치하는 경우에는 **[yarn 설치](https://linuxize.com/post/how-to-install-yarn-on-ubuntu-18-04/)** 을 사용하여 **실행 및 설치** 합니다. 아래 `-sS` 는 오타가 아님에 주의 합니다.
 
 ```r
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -77,7 +77,7 @@ $ react-native run-android
 $ react-native run
 ```
 
-위 내용으로 실행한 결과 오류가 출력 되었고, `$ sudo chown -R 1000:1000 "/home/사용자ID/.npm"` 를 실행하면 작동이 되었습니다. 하지만 문제는 **Android Emulator** 와 연결이 안되는 문제가 있었는데, 실행을 react 가 아닌 yarn 을 사용하면 해당 내용이 수정 후 작동함을 알 수 있습니다.
+위 내용으로 실행한 결과 오류가 출력 되었고, 메세지에 포함된 대로 `$ sudo chown -R 1000:1000 "/home/사용자ID/.npm"` 를 실행한 뒤 작동이 되었습니다. 하지만 문제는 **Android Emulator** 와 연결이 안되는 문제가 있었는데, 실행을 react 가 아닌 yarn 을 사용하면 해당 내용이 수정 후 작동함을 알 수 있습니다.
 
 ```r
 $ cd ~/React
