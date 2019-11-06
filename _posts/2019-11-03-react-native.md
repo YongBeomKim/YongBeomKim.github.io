@@ -56,6 +56,41 @@ this.setState
 
 **JSX** 문법을 사용하면 **간단한 코딩** 만으로도 JavaScript 를 자동으로 완성 한다
 
+https://babeljs.io/repl
+
+```jsx
+function A() {
+  return <div className="sidebar"/>
+}
+
+function AB() {
+	return (
+      <MyButton color="blue" shadowSize={2}>
+        Click Me //children Property
+      </MyButton>
+    )
+}
+```
+
+을 입력하면 다음과 같이 출력 됩니다.
+
+```javascript
+"use strict";
+
+function A() {
+  return React.createElement("div", {
+    className: "sidebar"
+  });
+}
+
+function AB() {
+  return React.createElement(MyButton, {
+    color: "blue",
+    shadowSize: 2
+  }, "Click Me //children Property");
+}
+```
+
 ## React 컴포넌트
 
 컴포넌트를 제작할 때에는 **Carmel Case** 로 **때문자를 섞어서** 만듭니다. 파일에 컴포넌트를 담는 경우에도 **파일 이름도 대문자로 시작하는 Carmel Case** 를 사용 합니다.
