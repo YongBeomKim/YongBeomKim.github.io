@@ -39,3 +39,12 @@ Render 내부 View Component
 this.setState
 ```
  
+<br/>
+
+# React Native 브릿지
+
+구현되는 브라우저에 따라 브릿지가 다르게 작동하고, 이로인한 문제점이 발생할 수 있다. 따라서 작업시 구형되는 환경에 해당 함수 및 모듈이 제대로 작동하는지 관련 Issue 들을 잘 정리 및 작업을 해야 한다.
+
+ <figure class="align-center">
+  <img src="https://www.simform.com/wp-content/uploads/2018/02/React-Native-tech-stack-1024x667.png">
+</figure>
