@@ -2,7 +2,7 @@
 title : React Native 페북랩
 last_modified_at: 2019-11-03T10:45:06-05:00
 header:
-  overlay_image: /assets/images/project/lenovo.jpg
+  overlay_image: /assets/images/project/react_native_banner.jpg
 categories:
   - javascript
 tags: 
@@ -17,7 +17,7 @@ Render 내부 View Component
 
 `<Text style> || 'TITLE' : top bar`
 
-위와 같이 ㄴ Property 를 정의한다.
+위와 같이 **Property** 를 정의한다.
 
 <br/>
 
