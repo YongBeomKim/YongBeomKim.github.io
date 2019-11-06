@@ -21,6 +21,8 @@ Render 내부 View Component 에서 아래와 같이 **Property** 를 정의 합
 
 # React 기본 개념들
 
+[수업 슬라이드](https://www.slideshare.net/secret/HFQOqlOjVJ4pgp)
+
 ## Property
 
 변수가 아닌 Property 라는 개념을 사용하는데, 이는 **화면 Render 에 영향을 주는 요소들** 을 의미한다. 때문에 변수가 아닌 **Property** 라는 이름을 사용 한다.
