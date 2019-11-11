@@ -20,7 +20,11 @@ tags:
 
 ## Ubuntu Terminal 명령어 모음
 
+파일 이름으로 위치 찾기
 > find ./ -name "*.xls"
+
+기본설정 브라우저 설정값 확인 및 변경
+> sudo update-alternatives –-config x-www-browser
 
 ## unable **"cinnamon-session-cinnamon"** X session
 

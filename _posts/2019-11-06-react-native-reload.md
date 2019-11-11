@@ -1,8 +1,8 @@
 ---
-title : React Native 리로드
+title : React Native 설치하기
 last_modified_at: 2019-11-06T10:45:06-05:00
 header:
-  overlay_image: /assets/images/project/react_native_banner.jpg
+  overlay_image: /assets/images/project/react-native.png
 categories:
   - javascript
 tags: 
@@ -105,6 +105,18 @@ $ ./studio.sh
 
 1. **Create Desktop Entry** 를 실행해야 **설치 아이콘** 이 추가 됩니다.
 2. **SDK mamager** 에서 **Android Pie** 를 추가 합니다.
+3. **ADV Manager** 에서 **[가상기기](https://suyou.tistory.com/154)** 를 추가 합니다.
+
+3번의 가상 추가하지 않고 **React Native** 를 실행하면 다음과 같은 오류를 출력 합니다.
+
+```r
+$ yarn android
+$ react-native run-android
+error Failed to launch emulator. Reason: No emulators found as an output of `emulator -list-avds`.
+warn Please launch an emulator manually or connect a device. Otherwise app may fail to launch.
+info Installing the app...
+> Task :app:installDebug FAILED
+```
 
 ## **.bashrc .zshrc**
 
@@ -137,17 +149,14 @@ $ yarn -v
 1.19.1
 ```
 
-## **Android Virtual Device Manager**
+## **React Native Init**
 
-**ADV Manager**
-
-https://suyou.tistory.com/154
+아래의 내용을 실행하면 **React native** 프로젝트를 자동으로 생성하고 실행을 합니다. `yarn` 내용은 `package.json` 의 스크립트를 실행 합니다.
 
 ```r
+$ npx react-native init 프로젝트
+$ cd 프로젝트
+$ yarn start
 $ yarn android
-$ react-native run-android
-error Failed to launch emulator. Reason: No emulators found as an output of `emulator -list-avds`.
-warn Please launch an emulator manually or connect a device. Otherwise app may fail to launch.
-info Installing the app...
-> Task :app:installDebug FAILED
 ```
+
