@@ -18,7 +18,7 @@ Jupyter 를 설치하면 localhost 만이 아닌 별도 서버에서 설치 및 
 
 ## **Jupyter Config**
 
-`generate-config` 를 실행하면 jupyter 설정 파일을 생성 합니다. 우분투 터미널에서 `sudo update-alternatives --config x-www-browser` 를 실행하면 **브라우저 우선순위** 경로명과 우선순서를 확인하고 변경하지만 이대로 실행되진 않습니다. 대신 해당 브라우저 실행파일 목록을 확인할 수 있는데, 위에서 생성한 설정파일에 우선 실행할 브라우저를 `c.NotebookApp.browser =` 뒤에 붙여 줍니다.
+`generate-config` 를 실행하면 [jupyter 설정](https://stackoverflow.com/questions/47772157/how-to-change-the-default-browser-used-by-jupyter-notebook-in-windows) 파일을 생성 합니다. 우분투 터미널에서 `sudo update-alternatives --config x-www-browser` 를 실행하면 **브라우저 우선순위** 경로명과 우선순서를 확인하고 변경하지만 이대로 실행되진 않습니다. 대신 해당 브라우저 실행파일 목록을 확인할 수 있는데, 위에서 생성한 설정파일에 우선 실행할 브라우저를 `c.NotebookApp.browser =` 뒤에 붙여 줍니다.
 
 ```r
 $ jupyter lab --generate-config
