@@ -107,6 +107,10 @@ mycli 등 의존성 문제로 3.7 에서 실행되지 않는 모듈이 아직도
 
 ZSH 플러그인도 추가 가능합니다. [zsh Theme](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 는 여기서 내용을 확인 합니다. 아래 내용으로 기본 설치를 한뒤, 추가 Theme 및 PlugIn 설치는 앞에서 정리한 **[우분투 에서 neovim-zsh 설치방법](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 내용을 참고 하여 정리를 했습니다.
 
+Node.js 는 React.js 등을 개발하는 경우에는 **NVM** 을 사용하는 측면이 유용하지만, 서비스 서버 등에서는 **Node.js** [직접 설치하여](https://linuxize.com/post/how-to-install-node-js-on-centos-7/) 작업의 안정성을 높이도록 합니다.
+
+참고로 **[PostgreSQL](https://www.lesstif.com/pages/viewpage.action?pageId=31850584)** 을 설치하는 방법은 다음의 링크를 참고 합니다.
+
 ```r
 $ vi install_utils.sh
 

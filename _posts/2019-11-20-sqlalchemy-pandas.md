@@ -81,7 +81,8 @@ data.head()
 ```
 
 
-<br>
+<br/>
+
 ## DataFrame 객체를 Pandas로 갱신
 
 작업의 용이성을 위해서 테이블 전체를 Update 하는 `if_exist='replace'` 설정에는 계속 오류가 발생한다. 지금 가능한건 인덱스를 추가한다
