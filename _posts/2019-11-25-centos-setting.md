@@ -101,12 +101,52 @@ CentOS 는 **apt-get** 대신에 **yum** 을 사용합니다. **[YUM](http://www
 * yum search 키워드 : 키워드로 패키지 검색
 ```
 
-## Git
+## Python 3.6, ZSH, Git, Node.js (v10.17.1)
 
-**yum** 모듈을  사용하면 다음과 같이 쉽게 설치 가능합니다.
+mycli 등 의존성 문제로 3.7 에서 실행되지 않는 모듈이 아직도 많습니다. 서버의 안정적인 운영을 위해서 **[Python 3.6](https://victorydntmd.tistory.com/256)** 를 설치하는 것을 추천 합니다. 안정적인 설치를 위해 **CentOS** 에서는 **yum** 모듈을 사용 합니다.
 
-```s
-$ yum install git
+ZSH 플러그인도 추가 가능합니다. [zsh Theme](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 는 여기서 내용을 확인 합니다. 아래 내용으로 기본 설치를 한뒤, 추가 Theme 및 PlugIn 설치는 앞에서 정리한 **[우분투 에서 neovim-zsh 설치방법](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 내용을 참고 하여 정리를 했습니다.
+
+```r
+$ vi install_utils.sh
+
+  yum install git
+
+  curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+  yum install nodejs
+
+  yum install -y python36u
+  yum install -y python36u-pip
+
+  #sqlite3.8 추가설치
+  wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
+  yum localinstall atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
+  mv /lib64/libsqlite3.so.0.8.6{,-3.17}
+  cp /opt/atomic/atomic-sqlite/root/usr/lib64/libsqlite3.so.0.8.6 /lib64
+
+  yum -y install zsh
+  cd ~
+  chsh -s /bin/zsh root
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  
+  cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+  source ~/.zshrc
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+$ vi /root/.bashrc
+  alias python3="/usr/bin/python3.6"		
+
+$ nvim ~/.zshrc
+  ZSH_THEME="agnoster"      # 테마를 정의한다
+  export LANG="ko_KR.UTF-8" # 한글 인코딩을 해결
+  plugins=(
+    git
+    zsh-autosuggestions
+    #zsh-syntax-highlighting
+    history-substring-search
+  )
+
+$ souce .zshrc            # 변경된 설정을 적용
 ```
 
 ## Python 3.7.5
@@ -127,70 +167,21 @@ $ vi install.sh
   python3.7 --version
 ```
 
-## Python 3.6
-
-mycli 등 의존성 문제로 3.7 에서 실행되지 않는 모듈들이 여럿 있어서, 안정적인 운영을 위해 **[Python 3.6](https://victorydntmd.tistory.com/256)** 버젼을 추가로 설치 합니다.
-
-```r
-$ vi install_python.sh
-  yum install -y python36u
-  yum install -y python36u-pip
-
-  wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
-  yum localinstall atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
-  mv /lib64/libsqlite3.so.0.8.6{,-3.17}
-  cp /opt/atomic/atomic-sqlite/root/usr/lib64/libsqlite3.so.0.8.6 /lib64
-
-$ vi /root/.bashrc
-  alias python3="/usr/bin/python3.6"		
-```
-
 ## MyCLI, NEOVIM
 
-```r
-$ pip3.6 install mycli
-$ nvim ~/.myclirc
+**Python 3.6** 을 설치한 뒤 사용 가능한 모듈을 설치 합니다.
 
+```r
+$ vi install_pytutil.sh
+  pip3.6 install mycli
+  yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  yum install -y neovim python3.6-neovim
+
+$ nvim ~/.myclirc
   # Screenshots at http://mycli.net/syntax
   syntax_style = monokai
   # disabled pager on startup
   enable_pager = False
-  
-$ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-$ yum install -y neovim python3.6-neovim
-```
-
-## ZSH
-
-아래 내용으로 기본 설치를 한뒤, 추가 Theme 및 PlugIn 설치는 앞에서 정리한 **[우분투 에서 neovim-zsh 설치방법](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 내용을 참고 합니다.
-
-```r
-$ yum -y install zsh
-$ cd ~
-$ chsh -s /bin/zsh root
-$ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-$ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-$ source ~/.zshrc
-```
-
-추가로 플러그인 등의 설정값을 추가 합니다. [zsh Theme](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 는 여기서 내용을 확인 합니다.
-
-```r
-$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-$ nvim ~/.zshrc
-
-  ZSH_THEME="agnoster"      # 테마를 정의한다
-  export LANG="ko_KR.UTF-8" # 한글 인코딩을 해결
-
-  plugins=(
-    git
-    zsh-autosuggestions
-    #zsh-syntax-highlighting
-    history-substring-search
-  )
-
-$ souce .zshrc            # 변경된 설정을 적용
 ```
 
 <br/>
@@ -272,13 +263,22 @@ $ pip3.6 install jupyterlab
 $ jupyter lab --generate-config
    Writing default config to: /root/.jupyter/jupyter_notebook_config.py
 
-$ nvim ~/.jupyter/jupyter_notebook_config.py
-c = get_config()
-c.NotebookApp.password = u'sha1:283....'
-c.NotebookApp.certfile = u'/home/사용자/mycert.pem'
-c.NotebookApp.open_browser = False
-c.NotebookApp.notebook_dir = u'/home/사용자/자료폴더/'
-c.NotebookApp.ip = '*'
-c.NotebookApp.port_retries = 8888
-```
+$ ipython
+Python 3.6.8 (default, Aug 10 2019, 06:54:07) 
+IPython 7.9.0 -- An enhanced Interactive Python.
 
+In [1]: from notebook.auth import passwd
+In [2]: passwd()
+  Enter password:
+  Verify password:
+  'sha1:283....'
+
+$ nvim ~/.jupyter/jupyter_notebook_config.py
+  c = get_config()
+  c.NotebookApp.password = u'sha1:283....'
+  c.NotebookApp.certfile = u'/home/사용자/mycert.pem'
+  c.NotebookApp.open_browser = False
+  c.NotebookApp.notebook_dir = u'/home/사용자/자료폴더/'
+  c.NotebookApp.ip = '*'
+  c.NotebookApp.port_retries = 8080
+```
