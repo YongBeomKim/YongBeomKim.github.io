@@ -46,15 +46,15 @@ root@server ~ getconf LONG_BIT
 **추가 사용자** 정보를 입력 및 수정 합니다.
 
 ```r
-root@server ~ useradd pythonserver
-root@server ~ passwd pythonserver
+$ useradd pythonserver
+$ passwd pythonserver
 pythonserver 사용자의 비밀 번호 변경 중
 새  암호: 
 새  암호 재입력:
 passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
 
-root@server ~ userdel pythonserver
-root@server ~ rm -rf /etc/pythonserver
+$ userdel pythonserver
+$ rm -rf /etc/pythonserver
 ```
 
 사용자를 추가 후 비밀번호를 입력해야 작업이 완료 됩니다. 사용자 폴더는 위 작업과 별도로 `/home/python` 폴더를 수동으로 삭제 하면 됩니다.
@@ -116,7 +116,6 @@ $ yum install git
 ```r
 $ mkdir temp
 $ cd temp
-$ touch install.sh
 $ vi install.sh
 
   yum groupinstall -y "Developent Tools"
@@ -126,6 +125,72 @@ $ vi install.sh
   ./configure --enable-optimizations
   make altinstall
   python3.7 --version
+```
+
+## Python 3.6
+
+mycli 등 의존성 문제로 3.7 에서 실행되지 않는 모듈들이 여럿 있어서, 안정적인 운영을 위해 **[Python 3.6](https://victorydntmd.tistory.com/256)** 버젼을 추가로 설치 합니다.
+
+```r
+$ vi install_python.sh
+  yum install -y python36u
+  yum install -y python36u-pip
+
+  wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
+  yum localinstall atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
+  mv /lib64/libsqlite3.so.0.8.6{,-3.17}
+  cp /opt/atomic/atomic-sqlite/root/usr/lib64/libsqlite3.so.0.8.6 /lib64
+
+$ vi /root/.bashrc
+  alias python3="/usr/bin/python3.6"		
+```
+
+## MyCLI, NEOVIM
+
+```r
+$ pip3.6 install mycli
+$ nvim ~/.myclirc
+
+  # Screenshots at http://mycli.net/syntax
+  syntax_style = monokai
+  # disabled pager on startup
+  enable_pager = False
+  
+$ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ yum install -y neovim python3.6-neovim
+```
+
+## ZSH
+
+아래 내용으로 기본 설치를 한뒤, 추가 Theme 및 PlugIn 설치는 앞에서 정리한 **[우분투 에서 neovim-zsh 설치방법](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 내용을 참고 합니다.
+
+```r
+$ yum -y install zsh
+$ cd ~
+$ chsh -s /bin/zsh root
+$ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+$ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+$ source ~/.zshrc
+```
+
+추가로 플러그인 등의 설정값을 추가 합니다. [zsh Theme](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 는 여기서 내용을 확인 합니다.
+
+```r
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+$ nvim ~/.zshrc
+
+  ZSH_THEME="agnoster"      # 테마를 정의한다
+  export LANG="ko_KR.UTF-8" # 한글 인코딩을 해결
+
+  plugins=(
+    git
+    zsh-autosuggestions
+    #zsh-syntax-highlighting
+    history-substring-search
+  )
+
+$ souce .zshrc            # 변경된 설정을 적용
 ```
 
 <br/>
@@ -145,8 +210,8 @@ $ vi install_mysql.sh
   systemctl start mysqld              # 서버 활성화
   systemctl enable mysqld             # 시스템 부팅시 시작 활성화
   systemctl restart mysqld
-  # echo 'validate_password_policy=LOW' >> /etc/my.cnf # 보안 정책의 추가
-  # echo 'default_password_lifetime=0' >> /etc/my.cnf
+  echo 'validate_password_policy=LOW' >> /etc/my.cnf # 보안정책 완화
+  echo 'default_password_lifetime=0' >> /etc/my.cnf
   grep 'password' /var/log/mysqld.log # 초기 암호 내용의 확인
 
 $ mysql -uroot -p
@@ -154,99 +219,49 @@ Welcome to the MySQL monitor.
 Your MySQL connection id is 5
 Server version: 5.7.28 MySQL Community Server (GPL)
 
+# 암호변경
 mysql> SET PASSWORD = PASSWORD('mysql1234');
 mysql> flush privileges;
 ```
 
-## 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```s
-$ mycli -h 210.114.91.91 -u username 
-(2003, "Can't connect to MySQL server on '210.114.91.91' (timed out)")
-```
-
-<br/>
-
-# 리눅스 확인
-
-## 리눅스 정보 확인
-
-여러가지 방법이 있지만 가장 보편적인 접근방법으로 터미널에서 `cat /etc/*release*` 를 입력 합니다. 그리고 우분투 bit 를 확인하는 명령은 `getconf LONG_BIT` 입니다. 
-
-```php
-[user@localhost ~]$ sudo passwd root
-암호:
-
-[root@localhost ~]# cat /etc/*release*
-CentOS Linux release 7.3.1611 (Core) 
-Derived from Red Hat Enterprise Linux 7.3 (Source)
-
-[root@localhost ~]# getconf LONG_BIT
-64
-
-[root@localhost ~]# exit
-[user@localhost ~]$ su
-```
-
-**$ su** 를 입력하면 관리자 계정으로 로그인 됩니다. 별도의 **sudo** 입력이 없어도 관리자 내용을 입력 및 실행 가능합니다. 관리자 계정 변경이 성공하면 터미널 앞의 표시가 **$** 에서 **#** 로 변경 됩니다.
-{: .notice--info}
-
-
-## **scp** 파일 이동
-
-기본 Port 가 아닌 제공하는 포트를 사용하는 경우 작업 방법 입니다.
-
-```php
-$ scp -P 포트번호 *.mp4  /home/user/Download/
-```
-
-<br/>
-# 사용자 추가
-
-## 터미널에서 추가, 삭제
-
-```javascript
-[root]# useradd python
-[root]# passwd python
-erdos 사용자의 비밀 번호 변경 중
-새  암호: 
-새  암호 재입력:
-passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.
-
-[root]# userdel python
-[root]# rm -rf /etc/python
-```
-사용자를 추가 후 비밀번호를 입력해야 작업이 완료 됩니다. 사용자 폴더는 위 작업과 별도로 `/home/python` 폴더를 수동으로 삭제 해야 합니다.
-
-<br/>
-
-# Python
-
-제공받은 CentOS 서버에서는 **Pytho2** 만 실행되고 **Python3** 는 실행되지 않는 환경 이었습니다. 필요한 도구들을 설치해 보도록 하겠습니다. 뒤에서 설치할 **NeoVim, MyCLI** 등 도구의 실행을 위해서도 **Python3.6** 등이 먼저 설치 되어야 합니다.
-
-## Python 3.6
-
-우선 기본적인 실행에 필요한 **Python 3.6** 을 설치해 보도록 하겠습니다. **[CentOS 에서 Python](https://snowdeer.github.io/python/2018/02/20/install-python3-on-centos/)** 설치하는 방법을 참고하여 Python 3.6 을 추가 합니다. 
+## 외부 접속자 추가 및 설정
 
 ```r
-$ yum install -y https://centos7.iuscommunity.org/ius-release.rpm
-$ yum install -y python36u python36u-libs python36u-devel python36u-pip
-$ yum search python3.6
+mysql > use mysql; 
+mysql > SELECT Host,User,plugin,authentication_string FROM mysql.user;
++-----------+------+-----------------------+-------------------------+
+| Host      | User | plugin                | authentication_string   |
++-----------+------+-----------------------+-------------------------+
+| localhost | root | mysql_native_password | *8024A6913C57B924E6803A |
++-----------+------+-----------------------+-------------------------+
 ```
+MySQL 버전이 5.7 이하에선 **authentication_string** 대신 **password** 를 사용 합니다.
+{: .notice--info}
+
+위 내용에서 보이는 것처럼, **localhost** 계정만 등록되어 있음을 알 수 있습니다. 외부에서 접속 가능한 `사용자id@%` 계정을 추가 합니다. **%** 은 외부 IP 접속 계정을 의미 합니다.
+
+```r
+mysql > grant all privileges on *.* to '계정'@'%' identified by '비밀번호'; 
+# 외부에서 접속 가능한 '%' 계정을 추가 합니다
+mysql > flush privileges;
+mysql > SELECT host, user, authentication_string FROM user;
++-----------+------+-----------------------+-------------------------+
+| Host      | User | plugin                | authentication_string   |
++-----------+------+-----------------------+-------------------------+
+| localhost | root | mysql_native_password | *8024A6913C57B924E6803A |
+| %         | root | mysql_native_password | *8024A6913C57B924E6803A |
++-----------+------+-----------------------+-------------------------+
+# '%' 가 등록되어 있는지를 확인 합니다
+mysql > exit;
+
+$ systemctl restart mysqld
+```
+
+`echo 'validate_password_policy=LOW' >> /etc/my.cnf` 내용을 실행하지 않으면 비밀번호 설정시 [보안정책](https://kamang-it.tistory.com/entry/MySQL%ED%8C%A8%EC%8A%A4%EC%9B%8C%EB%93%9C-%EC%A0%95%EC%B1%85-%ED%99%95%EC%9D%B8-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0) 의 문제로 암호설정에 신중해야 합니다. 자세한 내용을 링크를 참고 합니다.
+{: .notice--info}
+
+위 내용처럼 설정을 적용하고 나면 외부에서 접속이 가능함을 알 수 있습니다.
+
 
 ## Jupyter Lab
 
@@ -267,91 +282,3 @@ c.NotebookApp.ip = '*'
 c.NotebookApp.port_retries = 8888
 ```
 
-
-<br/>
-
-# Install Tools
-
-## Git
-
-```s
-$ yum install git
-```
-
-## MySQL
-
-현재 작업서버는 Mysql 이 설치되어 있는 환경입니다. 새로 설치를 필요로 하는 경우에는 **[MariaDB 설치](https://yongbeomkim.github.io/sql/sql-mariadb/)** 내용을 참고 합니다. 실행을 하면 다음과 같은 오류가 발생하였습니다. **[아래의 내용을](https://superuser.com/questions/603026/mysql-how-to-fix-access-denied-for-user-rootlocalhost)** 따라 하면서 MySQL 관리용 서버에 암호등 사용자 정보를 추가하면 됩니다. 작업을 완료 한 뒤 관리용 도구인 **[MyCLI](https://yongbeomkim.github.io/sql/sql-mariadb/)** 등을 설치 합니다.
-
-```s
-$ mysql -r root                           
-ERROR 2002 (HY000): MySQL socket '/var/lib/mysql/mysql.sock' (2)
-
-$ service mysqld start
-Starting mysqld : = AUTHENTICATING systemd1.manage-units =
-Password: 
-==== AUTHENTICATION COMPLETE ===
-
-$ mysql -r root
-ERROR 1044 (42000): Access denied ''@'localhost' to 'root'
-```
-
-root 사용자 까지 실행 되어도 **MySQL** 에서 password 설정이 없어서 접근이 불가능 합니다.  모든 권한을 무시한 채 관리자 DataBase 에 점근하여 사용자 정보를 추가한 뒤 재실행을 하면 됩니다.
-
-```s
-$ mysqld --skip-grant-tables
-[Warning] One can only use the --user switch if running as root
-
-$ mysql -u root mysql
-Server version: 5.6.31 MySQL Community Server (GPL)
-
-sql> UPDATE user SET Password=PASSWORD('암호내용') where USER='root';
-sql> FLUSH PRIVILEGES;
-sql> \q
-
-$ service mysqld start
-```
-
-## MyCLI
-
-MySQL 터미널에서 실행시 자동완성을 도와주는 모듈 입니다. 자세한 내용은 앞에 **[정리한 내용](https://yongbeomkim.github.io/sql/sql-mariadb/)** 을 참고 합니다. 여기선 설치에 필요한 내용들을 요약해 보겠습니다.
-
-```s
-$ su
-$ pip3.6 install mycli
-$ nvim ~/.myclirc
-
-# Screenshots at http://mycli.net/syntax
-syntax_style = monokai
-# disabled pager on startup
-enable_pager = False
-```
-
-## NeoVim
-
-**[NeoVim 정식설치](https://github.com/neovim/neovim/wiki/Installing-Neovim)** 문서를 참고하여 내용을 추가 합니다.
-
-```python
-$ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-$ yum install -y neovim python3.6-neovim
-```
-
-설정을 위한 `init.vim` 파일이 보이지 않습니다. **[참고 사이트](https://medium.com/@akila1001/easy-steps-to-install-neovim-in-centos-b90599164379)** 
-
-```
-$ nvim .config/nvim/init.vim 
-```
-
-관련 설정파일을 생성한 뒤, **[우분투](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 설정 내용을 그대로 붙여 넣은 뒤 실행을 합니다. 실행을 하면 새로운 플러그 인들이 설치된 모습을 볼 수 있습니다.
-
-## Zsh
-
-아래 내용으로 기본 설치를 한뒤, 추가 Theme 및 PlugIn 설치는 앞에서 정리한 **[우분투 에서 neovim-zsh 설치방법](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 내용을 참고 합니다.
-
-```r
-$ yum -y install zsh
-$ cd ~
-$ chsh -s /bin/zsh root
-$ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-$ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-$ source ~/.zshrc
-```

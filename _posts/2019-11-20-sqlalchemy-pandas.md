@@ -28,7 +28,7 @@ sudo mysql -u 계정 -P 비밀번호
 
 mysql > use mysql; 
 mysql > grant all privileges on *.* to '계정'@'%' identified by '비밀번호'; 
-# 외부에서 접속 가능한 '%' 계정을 추가 합니다
+# '%' 은 모든 IP 계정을 의미 합니다
 mysql > flush privileges;
 
 mysql > SELECT host, user, password FROM user;

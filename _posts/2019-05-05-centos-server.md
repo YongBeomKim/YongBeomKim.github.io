@@ -20,7 +20,6 @@ $ mycli -h 210.114.91.91 -u username
 (2003, "Can't connect to MySQL server on '210.114.91.91' (timed out)")
 ```
 
-
 <br/>
 # 리눅스 확인
 
@@ -109,6 +108,7 @@ c.NotebookApp.port_retries = 8888
 
 
 <br/>
+
 # Install Tools
 
 ## Git
