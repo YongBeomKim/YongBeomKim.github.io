@@ -1,5 +1,5 @@
 ---
-title : React Native 페북랩 Day 1
+title : React Native 페북랩 요약
 last_modified_at: 2019-11-03T10:45:06-05:00
 header:
   overlay_image: /assets/images/project/react_native_banner.jpg

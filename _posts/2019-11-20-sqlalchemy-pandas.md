@@ -1,6 +1,6 @@
 ---
-title : sqlalchemy 와 Pandas 
-last_modified_at: 2018-06-20T18:45:06-05:00
+title : MySQL Setting & Python 
+last_modified_at: 2019-11-20T18:45:06-05:00
 header:
   overlay_image: /assets/images/book/sqlal.png
 categories:
@@ -8,10 +8,54 @@ categories:
   - sql
 tags: 
     - sql
+    - mysql
+    - mariadb
     - python
 toc: true 
 ---
 
+서비스 서버를 구매하는 과정에서 설정관련 내용을 정리해 보려고 합니다. 
+
+[참고자료](https://edu.kosslab.kr/pluginfile.php/963/mod_resource/content/0/%EA%B0%95%EC%9D%98%202.pdf)
+
+# MySQL 설치 및 설정
+
+```r
+sudo apt-get update 
+sudo apt-get install mysql-server 
+sudo mysql_secure_installation 
+sudo mysql -u 계정 -P 비밀번호
+
+mysql > use mysql; 
+mysql > grant all privileges on *.* to '계정'@'%' identified by '비밀번호'; 
+# 외부에서 접속 가능한 '%' 계정을 추가 합니다
+mysql > flush privileges;
+
+mysql > SELECT host, user, password FROM user;
+# '%' 가 등록되어 있는지를 확인 합니다
+mysql> exit;
+
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf 
+# bind-address = 0.0.0.0 
+
+sudo /etc/init.d/mysql restart
+```
+
+# MariaDB 설치 및 설정
+
+https://kyeoneee.tistory.com/5
+
+https://yongbeomkim.github.io/sql/sql-mariadb/
+
+```r
+nvim /etc/my.cnf
+```
+
+
+
+https://jackerlab.com/python-pymysql/
+
+https://kyome.tistory.com/73
 
 
 SQL은 아직도 익숙치 않아서 어렵게 생각하는 부분이다.

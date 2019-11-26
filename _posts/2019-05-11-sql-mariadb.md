@@ -187,6 +187,7 @@ SQlite3 를 사용하는 도구로 이를 설치한 뒤, 실행을 하면 WorkSp
 {: .notice--infos} 
 
 <br/>
+
 # **PHP Admin**
 작년 DataBase 강의를 들으면서 **Mysql WorkBench로** 설치 및 연결을 했지만 접근성이 떨어지다 보니 모니터링도 게을리 하게 되는 등의 문제가 있었습니다. 이번에는 mariaDB의 접근성을 높여서 작업의 용이성을 높이기 위해서 **PhpMyAdmin** 를 설치하고 사용하는 내용을 정리하기 위한 페이지로 진행해 보겠습니다.
 
@@ -310,7 +311,8 @@ Alias /sql /usr/share/phpmyadmin
 수정을 완료한 뒤 `$ sudo systemctl reload apache2` 로 아파치 서버를 재실행 하면 새로운 Url로 접속이 됨을 보실 수 있습니다.
 
 <br/>
+
 # 참고사이트
 **[Tutorial](https://websiteforstudents.com/install-apche2-php-phpmyadmin-ubuntu-17-04-17-10/)**<br/>
 **[Apache Server Connect](https://askubuntu.com/questions/668734/the-requested-url-phpmyadmin-was-not-found-on-this-server)**<br/>
-**[PhPMyAdmin 생활코딩](https://opentutorials.org/course/195/1469)**<br/>
+**[PhPMyAdmin 생활코딩](https://opentutorials.org/course/195/1469)**
