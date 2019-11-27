@@ -1,8 +1,8 @@
 ---
-title : Django Tutorial - mine
+title : Django 서버배포
 last_modified_at: 2019-11-25T10:45:06-05:00
 header:
-  overlay_image: /assets/images/code/django.jpg
+  overlay_image: /assets/images/code/Django_SetUp.png
 categories:
   - django
 tags: 
@@ -10,6 +10,16 @@ tags:
     - gunicorn
 ---
 
+**Django 배포** 를 정리해 보겠습니다. 이번 사례는 앞에서 설정한 **CentOS** 에서 **Django** 로 작업한 내용을 **gunicorn** 미들웨어를 활용하여 **Nginx** 서버로 배포하는 내용을 정리 합니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/react/nginx_gunicorn.jpg">
+  <figcaption>https://villoro.com/post/nginx_gunicorn</figcaption>
+</figure>
+
+
+
+nginx_gunicorn.jpg
 
 Django 를 서버에서 설정하는 방법을 정리해 보겠습니다.
 
@@ -23,6 +33,13 @@ Django 를 서버에서 설정하는 방법을 정리해 보겠습니다.
 Django 서버 => Gunicorn => Nginx => 외부포트 연결
 
 을 사용 합니다.
+
+
+yum install gcc gcc-c++ 
+yum install zlib-devel
+yum install openssl openssl-devel
+yum install sqlite sqlite-devel
+yum install wget tree
 
 
 

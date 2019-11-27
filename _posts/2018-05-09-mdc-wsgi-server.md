@@ -26,15 +26,15 @@ toc: true
 [참고 Blog](https://jwkcp.github.io/2018/05/21/deployment-mod-wsgi/) 
 [구글검색](https://www.google.com/search?client=ubuntu&channel=fs&q=apache+mod++DJango+%EC%84%A4%EC%A0%95&ie=utf-8&oe=utf-8)
 [정식 Document](http://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
-[설정 blog](http://covenant.tistory.com/22)
-[설정 blog](http://www.hides.kr/868)
+[설정 Blog](http://covenant.tistory.com/22)
+[설정 Blog](http://www.hides.kr/868)
 [설정 Blog](http://yujuwon.tistory.com/entry/Django-Django%EC%99%80-apache-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0-%EC%9A%B0%EB%B6%84%ED%88%AC)
 [nginx 와 Django](https://twpower.github.io/41-connect-nginx-uwsgi-django)
 
 
 ### Apache 의 mod_wsgi 서버를 설치한다
 
-```
+```r
 $ sudo apt-get install apache2                  # apache2 설치
 $ sudo apt-get install libapache2-mod-wsgi      # wsgi 모듈
 $ sudo apt-get install libapache2-mod-wsgi-py3  # 파이썬 연결 모듈
@@ -57,7 +57,8 @@ $ sudo apt-get install libapache2-mod-wsgi-py3  # 파이썬 연결 모듈
 3. **`$ python manage.py runserver 0.0.0.0:8000`** 로 해당포트가 열린걸 확인한다
 
 
-<br>
+<br/>
+
 ## apache2에서 설정을 추가한다
 
 ### **/etc/apache2/ports.conf** 설정변경
@@ -73,8 +74,6 @@ Listen 80
 Listen 8000
 ```
 
-
-
 ### **/etc/apache2/sites-available/000-default.conf** 설정변경
 
 **`$ sudo nano /etc/apache2/sites-available/000-default.conf`** 여기도 포트 80번은 기본값이므로, django 포트 주소를 추가한다.
@@ -85,7 +84,7 @@ Listen 8000
 
 > WSGIScriptAlias &nbsp; / &nbsp; /home/wsgi.py가 있는 경로/wsgi.py <br>
 
-```
+```xml
 <VirtualHost *:8000>
     ServerName www.example.com
     <Directory /home/markbaum/Python/Source/Django/project/server>
@@ -105,12 +104,11 @@ Listen 8000
 **WSGIDaemonProcess :** 비 윈도우 환경에서 **데몬모드**(백그라운드 실행하면서 별도 인터페이스를 필요로 하지 않는 실행) 설정을 할때에는 **외부도메인**과 **python 외부 경로**를 추가적으로 설정해야 한다
 {: .notice--info}
 
-
 ### Alias 로 외부 경로를 url에 추가하기
 
 [Alias 경로추가 설명 Blog](http://skylit.tistory.com/89)
 
-```
+```r
 # 리눅스의 경우
 Alias    /aliastest/    "/home/bhshin/exp/testbed/aodvtest/"
 
@@ -132,7 +130,7 @@ Alias    /aliastest/    "C:/exp/testbed/aodvtest/"
 > < / Files > <br>
 > </Directory> <br>
 
-```
+```xml
 Alias /static /home/markbaum/django/lib/python3.6/site-packages/rest_framework/static
 
 <Directory /home/markbaum/django/lib/python3.6/site-packages/rest_framework/static>
@@ -140,12 +138,9 @@ Alias /static /home/markbaum/django/lib/python3.6/site-packages/rest_framework/s
 </Directory>  
 ```
 
-
 ### 서버를 재가동 한다 
 
 `$ systemctl restart apache2.service` 로 새로운 설정값이 적용된 서버를 재가동한다
-
-
 
 ### test.py 로 서버실행을 test 하기
 
@@ -161,30 +156,27 @@ def application(env, start_response):
 
 실행명령을 입력한 뒤 브라우저에서 결과를 확인한다
 
-```
+```r
 $ uwsgi --http :8000 --wsgi-file test.py
 *** Starting uWSGI 2.0.17 (64bit) on [Wed May  9 21:09:04 2018] ***
 compiled with version: 7.2.0 on 09 May 2018 05:52:4...  
 ```
 
+<br/>
 
-
-<br>
 ## Django Server 시작하기
 
 wsgi.py 가 있는 폴더를 지정해서 uwsgi 로 서버를 실행한다. 결과가 출력되면 이제부터는 apache2 를 통해서 서버가 실행되는걸 확인할 수 있다.
 
-```
+```r
 $ uwsgi --http :8000  --module  server.wsgi
 *** Starting uWSGI 2.0.17 (64bit) on [Wed May  9 21:13:01 2018] ***
 compiled with version: 7.2.0 on 09 May 2018 05:52:45....
 ```
 
-
 ### 여러 웹사이트 실행시 중복을 방지 
 
 기존의 설정만으로는 여러 서버를 실행하면 최초의 서버값만 인식 가능하다. 이를 방지하기 위해서 **wsgi.py** 의 환경설정 정보를 **{dict} 데이터 형식**으로 변환해야 한다
-
 
 ```python
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
