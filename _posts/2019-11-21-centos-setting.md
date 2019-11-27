@@ -1,6 +1,6 @@
 ---
 title : CentOS 활용 및 도구설치
-last_modified_at: 2019-05-05T15:45:06-05:00
+last_modified_at: 2019-11-21T15:45:06-05:00
 header:
   overlay_image: /assets/images/book/centos.jpg
 categories:
@@ -101,9 +101,9 @@ CentOS 는 **apt-get** 대신에 **yum** 을 사용합니다. **[YUM](http://www
 * yum search 키워드 : 키워드로 패키지 검색
 ```
 
-## Python 3.6, ZSH, Git, Node.js (v10.17.1)
+## Python 3.6, ZSH, Git, Nginx, Node.js (v10.17.1)
 
-mycli 등 의존성 문제로 3.7 에서 실행되지 않는 모듈이 아직도 많습니다. 서버의 안정적인 운영을 위해서 **[Python 3.6](https://victorydntmd.tistory.com/256)** 를 설치하는 것을 추천 합니다. 안정적인 설치를 위해 **CentOS** 에서는 **yum** 모듈을 사용 합니다.
+mycli 등 의존성 문제로 3.7 에서 실행되지 않는 모듈이 아직도 많습니다. 서버의 안정적인 운영을 위해서 **[Python 3.6.3](https://bugzilla.redhat.com/show_bug.cgi?id=1739804)** 또는 **[Python 3.6.8](https://victorydntmd.tistory.com/256)** 를 설치하는 것을 추천 합니다. 안정적인 설치를 위해 **CentOS** 에서는 **yum** 모듈을 사용 합니다.
 
 ZSH 플러그인도 추가 가능합니다. [zsh Theme](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes) 는 여기서 내용을 확인 합니다. 아래 내용으로 기본 설치를 한뒤, 추가 Theme 및 PlugIn 설치는 앞에서 정리한 **[우분투 에서 neovim-zsh 설치방법](https://yongbeomkim.github.io/ubuntu/neovim-zsh/)** 내용을 참고 하여 정리를 했습니다.
 
@@ -117,12 +117,17 @@ Django 최신버젼 업데이트를 하면서 **SQlite3** 버젼이 낮음으로
 $ vi install_utils.sh
 
   yum install git
+  yum install nginx
 
   curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
   yum install nodejs
 
-  yum install -y python36u
-  yum install -y python36u-pip
+  # Python 3.6
+  yum -y install centos-release-scl
+  yum -y install rh-python36
+  . /opt/rh/rh-python36/enable # or scl enable rh-python36 bash [if interactive]
+  # yum install -y python36u
+  # yum install -y python36u-pip
 
   #sqlite3.8 추가설치
   wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
@@ -156,6 +161,23 @@ $ souce .zshrc            # 변경된 설정을 적용
 ```
 
 ## Python 3.7.5
+
+설치된 Python3.6 내용들을 확인한 뒤, 연관된 내용들을 [삭제](https://www.quora.com/How-do-I-completely-uninstall-Python-3-5) 합니다.
+
+```r
+yum list installed | grep -i python36
+yum autoremove '*python36*'
+```
+
+그리고 Python 3.6 을 안전하게 설치하는 경우는 다음을 입력 합니다.`
+
+```r
+$ yum install gcc openssl-devel bzip2-devel sqlite-devel
+$ yum install https://centos7.iuscommunity.org/ius-release.rpm
+$ python3.6 -v
+$ yum install python36u-pip
+$ yum install python36u-devel
+```
 
 **[Python](https://www.python.org/downloads/)** 사이트 접속결과 **최신버젼이 3.7.5** 을 제공하고 있음을 알 수 있었습니다. 아래의 내용을 script 파일로 저장한 뒤 `$ source 스크립트파일` 을 실행하면 자동으로 설치 됩니다.
 
@@ -288,3 +310,9 @@ $ nvim ~/.jupyter/jupyter_notebook_config.py
   c.NotebookApp.ip = '*'
   c.NotebookApp.port_retries = 8080
 ```
+
+<br/>
+
+# Appendix
+
+[Mail 서버 구축](https://y0c.github.io/2018/09/28/centos7-mail-server/)
