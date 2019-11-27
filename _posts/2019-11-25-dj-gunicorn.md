@@ -10,37 +10,61 @@ tags:
     - gunicorn
 ---
 
-**Django 배포** 를 정리해 보겠습니다. 이번 사례는 앞에서 설정한 **CentOS** 에서 **Django** 로 작업한 내용을 **gunicorn** 미들웨어를 활용하여 **Nginx** 서버로 배포하는 내용을 정리 합니다.
+**Django 배포** 를 정리해 보겠습니다. 이번 사례는 앞에서 설정한 **CentOS** 에서 **Django (8000번 Port)** 로 작업한 내용을 **gunicorn (8000번 Port)** 미들웨어를 활용하여 **Nginx (80번 Port)** 서버로 배포하는 내용을 정리 합니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/react/nginx_gunicorn.jpg">
   <figcaption>https://villoro.com/post/nginx_gunicorn</figcaption>
 </figure>
 
+<br/>
 
+# CentOS Setting
 
-nginx_gunicorn.jpg
+## 필요한 기본모듈 설치
 
-Django 를 서버에서 설정하는 방법을 정리해 보겠습니다.
-
-
-해당 IP 의 도메인은 80번 포트를 기본으로 연결 합니다. 
-
-하지만 80번 포트는 시스템 포트로 바로 연결이 되지 않아서, 8000 번 포트등을 경유하여 접속하는 방식으로 시스템이 구성 됩니다.
-
-방식은 
-
-Django 서버 => Gunicorn => Nginx => 외부포트 연결
-
-을 사용 합니다.
-
-
+```r
 yum install gcc gcc-c++ 
 yum install zlib-devel
 yum install openssl openssl-devel
 yum install sqlite sqlite-devel
 yum install wget tree
+```
 
+<br/>
+
+# Nginx
+
+[Nginx 서버](http://dveamer.github.io/backend/PythonWAS.html) 를 설정하는 내용에 대해 알아보겠습니다.
+
+## Nginx 설치 및 활성화
+
+아래처럼 Nginx 를 설치하고 실행하면, `http://localhost:80` 내용으로 특정한 페이지가 활성화 됨을 알 수 있습니다.
+
+```r
+$ yum install epel-release
+$ yum install nginx
+
+$ service nginx start
+$ curl -i http://localhost
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Content-Type: text/html
+Accept-Ranges: bytes
+
+$ nginx -s stop
+$ curl -i http://localhost
+curl: (7) Failed connect to localhost:80; 연결이 거부됨
+```
+
+## Nginx 설정
+
+Nginx 설정은 `/etc/nginx/ngnix.conf` 에 저장 됩니다. 작업을 위해 설정파일을 백업 합니다.
+
+```r
+$ cd /etc/nginx
+$ cp ngnix.conf nginx.conf_bak
+```
 
 
 참고사이트
