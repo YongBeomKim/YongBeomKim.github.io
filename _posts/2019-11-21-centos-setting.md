@@ -116,25 +116,32 @@ Django 최신버젼 업데이트를 하면서 **SQlite3** 버젼이 낮음으로
 ```r
 $ vi install_utils.sh
 
+  # Install Git
   yum install git
-  yum install nginx
 
+  # Install Nginx
+  yum install -y libxml2-devel libxml2-static libxslt libxslt-devel gd gd-devel
+  wget http://nginx.org/packages/mainline/centos/7/x86_64/RPMS/nginx-1.17.6-1.el7.ngx.x86_64.rpm
+  yum localinstall nginx-1.17.6-1.el7.ngx.x86_64.rpm
+
+  # Install Node.js
   curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
   yum install nodejs
 
-  # Python 3.6
+  # Install Python 3.6
   yum -y install centos-release-scl
   yum -y install rh-python36
   . /opt/rh/rh-python36/enable # or scl enable rh-python36 bash [if interactive]
   # yum install -y python36u
   # yum install -y python36u-pip
 
-  #sqlite3.8 추가설치
+  # Install SQlite 3.8
   wget http://www6.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
   yum localinstall atomic-sqlite-sqlite-3.8.5-3.el7.art.x86_64.rpm
   mv /lib64/libsqlite3.so.0.8.6{,-3.17}
   cp /opt/atomic/atomic-sqlite/root/usr/lib64/libsqlite3.so.0.8.6 /lib64
 
+  # Install ZSH
   yum -y install zsh
   cd ~
   chsh -s /bin/zsh root
