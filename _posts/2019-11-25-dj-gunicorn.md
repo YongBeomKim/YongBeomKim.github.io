@@ -1,5 +1,5 @@
 ---
-title : Django 서버배포
+title : Django Nginx Gunicorn on CentOS 7.6
 last_modified_at: 2019-11-25T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/Django_SetUp.png
@@ -60,13 +60,13 @@ $ vi install_django.sh
 
 # Nginx
 
-[Nginx 서버](http://dveamer.github.io/backend/PythonWAS.html) 를 설정하는 내용에 대해 알아보겠습니다.
+**8000 번** 으로 실행되는 Gunicorn 을 **80번** [Nginx 서버](http://dveamer.github.io/backend/PythonWAS.html) 로 연결 및 설정하는 방법을 알아 보겠습니다.
 
-## CentOS 7.6 
+## Install on CentOS 7.6 
 
-**[Nginx](https://idchowto.com/?p=47122)** 에서 필요한 모듈을 설치 합니다. 해당 페이지 내용을 확인시, Browser 의 **Cache** 를 지우면서 내용을 확인을 해야 합니다.
+**[Nginx](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/)** 공식 사이트에서 설치방법을 참고하여 `/etc/yum.repos.d/nginx.repo` 설치용 레포지터리를 저장하며 설치를 합니다. **[수동 Nginx 설치파일](http://nginx.org/packages/mainline/centos/7/x86_64/RPMS/)** 에 맞는 wget 을 찾아서 설치 합니다. 주의할 점으로는 내용을 변경시 **Web Browser** 의 **Cache** 를 주기적으로 지워주면서 확인을 합니다.
 
-[nginx 유투브](https://www.youtube.com/watch?time_continue=60&v=PymIIQ_JSPc&feature=emb_title) 내용을 바탕으로 정리를 해보겠습니다. **[Nginx](http://nginx.org/packages/mainline/centos/7/x86_64/RPMS/)** 다운로드 사이트, **[Nginx](https://www.linuxhelp.com/how-to-install-nginx-1-17-0-v-on-centos-7-6)** 강의 관련 사이트
+작업에 참고하는 사이트로는 **[Nginx 추가모듈](https://idchowto.com/?p=47122) , [Nginx 설치관련 유투브](https://www.youtube.com/watch?time_continue=60&v=PymIIQ_JSPc&feature=emb_title), [Nginx 강의 유투브](https://www.linuxhelp.com/how-to-install-nginx-1-17-0-v-on-centos-7-6)** 등이 있습니다.
 
 ```r
 $ yum install -y libxml2-devel libxml2-static libxslt libxslt-devel gd gd-devel
@@ -77,6 +77,8 @@ $ yum install nginx -y
 $ wget http://nginx.org/packages/mainline/centos/7/x86_64/RPMS/nginx-1.17.6-1.el7.ngx.x86_64.rpm
 $ yum localinstall nginx-1.17.6-1.el7.ngx.x86_64.rpm
 ```
+
+## Setting
 
 설치된 경우, Nginx 실행내용을 확인 합니다.
 
@@ -109,135 +111,69 @@ $ journalctl -xn
 -- Subject: Unit session-4.scope has finished start-u
 ```
 
-이번에 CentOS 기본페이지가 떠서 Nginx 내용이 보이지 않는 문제가 발생하였습니다. 임시 서버인 만큼 우선은 **81번** 포트로 변경해서 서비스를 실행해 보겠습니다.
+## Checking Status
+
+Nginx 를 실행한 뒤, `curl -i http://localhost` 에서 Nginx 기본 페이지가 출력되는 경우에는 제대로 서버는 작동한다고 생각해도 무관 합니다. 그럼에도 불구하고 실행 내용이 브라우저에 보이지 않는 경우에는, 꼭 **브라우저의 캐시와 쿠키** 를 삭제를 한 뒤 접속 합니다.
 
 ```r
-$ nvim /etc/nginx/conf.d/default.conf
-
-  server {
-    listen 81;
-  }
-
-$ systemctl stop nginx
-$ systemctl start nginx
-$ netstat -tulpn | grep nginx  # 실행어로 검색    
-   tcp 0   0 0.0.0.0:81   0.0.0.0:*  LISTEN  6459/nginx: master  
-```
-
-## Nginx 설치 및 활성화
-
-https://ko.stealthsettings.com/fix-nginx-start-failed-centos-7-nginx-emerg-open-path-failed-13-permission-denied.html
-
-https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7
-
-아래처럼 Nginx 를 설치하고 실행하면, `http://localhost:80` 내용으로 특정한 페이지가 활성화 됨을 알 수 있습니다.
-
-```r
-$ yum install epel-release
-$ yum install nginx
-
 $ service nginx start
 $ curl -i http://localhost
     HTTP/1.1 200 OK
     Server: nginx/1.16.1
     Content-Type: text/html
-    Accept-Ranges: bytes
 
 $ nginx -s stop
 $ curl -i http://localhost
     curl: (7) Failed connect to localhost:80; 연결이 거부됨
+$ service nginx start
 ```
 
-## Nginx 설정
+## Gunicorn to Nginx
 
-Nginx 설정은 `/etc/nginx/ngnix.conf` 에 저장 됩니다. 작업을 위해 설정파일을 백업 합니다.
+앞에서 8000 번 포트를 80번과 연결하는 방법을 알아 보겠습니다. 다음부터 설명할 내용은 **파이썬 웹 프로그래밍(기초|김석훈)** 의 내용을 바탕으로 진행하였습니다. 우선 **Nginx** 기본 명령어를 정리해 보겠습니다
 
 ```r
-$ cd /etc/nginx
-$ cp ngnix.conf nginx.conf_bak
-$ cd ~
-$ nvim /etc/nginx/ngnix.conf
+$ nginx            # 활성화
+$ nginx -s stop    # 정지
+$ nginx -s reload  # 재기동
+$ nginx -t         # Nginx 설정파일 유효성 검사
+$ nginx -h         # Nginx 도움말
+```
 
-  http {
-    include             /etc/nginx/mime.types;
-    default_type        application/octet-stream;
+**Node.js** 의 **package.json** 과 같이 **Nginx** 기본 설정파일은 `nvim /etc/nginx/nginx.conf` 입니다. 내용을 살펴보면 다음과 같습니다.
 
-    # Load modular configuration from /etc/nginx/conf.d
-    # http://nginx.org/en/docs/ngx_core_module.html#include
+```r
+http {
+    ...
     include /etc/nginx/conf.d/*.conf;
+}
+```
+
+내용을 보면 사용자가 추가 가능한 부분은 `/etc/nginx/conf.d/` 폴더 내에 저장된 파일을 사용합니다. `/etc/nginx/conf.d/default.conf` 이라는 기본 파일이 저장되어 있고, 이번에는 Gunicorn 을 바로 연결하는 방식으로 빠르게 진행을 했습니다.
+
+```r
+$ vi  /etc/nginx/conf.d/default.conf
+
+  server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+      proxy_pass http://0.0.0.0:8000;
+    }
+
+    location /static/ {
+      alias /home/아이디ID/web/static/;
+    }
+
+    location /media/ {
+      alias /home/아이디ID/web/media/;
+    }
   }
 ```
 
-실제로 설정파일은 `/etc/nginx/conf.d/*.conf` 에서 사용 됩니다. 
+추가로 서버를 활성화 하는 방법은 다음과 같은 내용을 정리할 수 있습니다.
 
-**[블로그](https://dailyheumsi.tistory.com/19)** 에는 별도 폴더를 만들고 `ln -s /etc/nginx/temp.d/django.conf /etc/nginx/conf.d/django.conf` 와 같이 연결하는 방식을 추천 합니다.
-
-이번에는 1개의 사이트만 운영하는 만큼, 설정파일을 작성해 보겠습니다.
-
-```r
-$ nvim /etc/nginx/conf.d/project.conf
-
-```
-
-
-참고사이트
-
-https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-centos-7
-
-http://dveamer.github.io/backend/PythonWAS.html
-
-https://narito.ninja/blog/detail/21/
-
-https://cjh5414.github.io/nginx/
-
-https://www.codns.com/b/B10-42
-
-https://dailyheumsi.tistory.com/19
-
-https://support.dnsever.com/hc/ko/articles/219445328-80
-
-https://wikidocs.net/10304
-
-
-**금융분석** 과 **머신러닝** 및 **자연어 분석** 등의 작업은 input 데이터와 Output 내용이 명확해서 작업 flow 찾기에 용이하지만, **Django** 작업은 결과물 최종형태가 불분명 하고, 작업들 과정에도 겹치거나 불필요한 부분이 상이해서 작업 계획이 막연한 단점이 있습니다.
-
-그동안 정리한 여러 내용을 바탕으로, 단일한 작업 flow 목차 위에서 내용들을 정리 해 보겠습니다.
-
-<figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/project/dual_boot.jpg">
-</figure>
-
-<br>
-
-# 간단정리
-
-전체 작업내용을 간단하게 서술해 보면.
-
-1. Model
-2. Model & Views.py
-3. urls.py
-4. HTML Template (extend, include)
-5. Admin Filters
-6. Generic View & requests Form
-7. message
-
-8. Static Files & Media Folder
-9. javascript WebPack
-10. Rest API
-11. wsgi & Gunicorn Server Setting
-
-template 에서 javascript 는 **cdn 외부 호출** 방식이 효과적입니다. 서버 부담을 최소가 되고 사용자에게 전달 되기 때문입니다. 그리고 호출 내용을 Base.html 에 모아서  재활용 방식으로 효율을 높이도록 합니다. [Django Girls 템플릿 확장하기](https://tutorial.djangogirls.org/ko/template_extending/)
-{: .notice--info}
-
-1. Model & ORM 
-2. Model Manager & filters
-3. [Signal](https://yongbeomkim.github.io/django/dj-model-tips/)
-
-1. web Site 01 : WEB Blog
-2. web Site 02 : Heriacle Blog
-
-<br>
-
-# 참고 사이트
-
-[Real Python](https://realpython.com/tutorials/django/)
+1. **[Supervisor](https://villoro.com/post/nginx_gunicorn)** 를 활용한 활성화
+2. **[Systemd 을 활용한 등록 1](https://www.alibabacloud.com/blog/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04_594319)**
+3. **[Systemd 을 활용한 등록 2](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-centos-7)**
