@@ -10,7 +10,7 @@ tags:
     - gunicorn
 ---
 
-**Django 배포** 를 정리해 보겠습니다. 이번 사례는 앞에서 설정한 **CentOS** 에서 **Django (8000번 Port)** 로 작업한 내용을 **gunicorn (8000번 Port)** 미들웨어를 활용하여 **Nginx (80번 Port)** 서버로 배포하는 내용을 정리 합니다.
+**Django 배포** 를 정리해 보겠습니다. 이번 사례는 앞에서 설정한 **CentOS** 에서 **Django (8000번 Port)** 로 작업한 내용을 **gunicorn (8000번 Port)** 미들웨어를 활용하여 **Nginx (80번 Port)** 서버로 배포하는 내용을 정리 합니다. [대표참고 블로그](https://nachwon.github.io/django-deploy-3-nginx/)
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/react/nginx_gunicorn.jpg">
@@ -58,8 +58,6 @@ $ vi install_django.sh
 ```
 `--daemon:` 데몬 프로세스로 실행, `--reload:` 소스 변경시 재구동
 {: .notice--info}
-
-
 
 <br/>
 
@@ -159,30 +157,89 @@ http {
 ```r
 $ vi  /etc/nginx/conf.d/default.conf
 
-  server {
+server {
     listen       80;
-    server_name  localhost;
-
+    server_name  사이트.com;
     location / {
-      proxy_pass http://0.0.0.0:8000;
+        proxy_pass http://0.0.0.0:8000;
     }
 
     location /static/ {
-      alias /home/아이디ID/web/static/;
+        alias /home/erdos/web/static/;
     }
 
     location /media/ {
-      alias /home/아이디ID/web/media/;
+        alias /home/erdos/web/media/;
     }
-  }
+}
 ```
 
-## Gunicorn to Nginx
+<br/>
+
+# Nginx 13:Permisson denied
+
+Django 의 Admin 페이지를 로딩하면 CSS 등의 Static 파일을 찾지 못한 결과값을 보여 줍니다. **Nginx** 의 log 내용을 살펴 보면 다음과 같은 오류를 출력하고 있습니다.
+
+```java
+$ tail -30 /var/log/nginx/error.log
+
+2019/12/01 [error] *5 open() "/home/web/static/admin/css/responsive.css" failed (13: Permission denied), client:, server:, request: "GET /static/admin/css/responsive.css HTTP/1.1", host:, referrer:
+```
+
+## SElinux
+
+CentOS 의 보안설정 문제로 인한 해결책 중 하나로 제시된 내용 입니다. 아쉽게도 이번 서버에서는 이로써 해결되진 않았습니다.
+
+```r
+# To check if SELinux is running:
+$ getenforce
+
+# To disable SELinux until next reboot:
+$ setenforce Permissive
+
+$ setsebool -P httpd_can_network_connect true
+```
 
 
+## semanage
 
-추가로 서버를 활성화 하는 방법은 다음과 같은 내용을 정리할 수 있습니다.
+다음의 [policycoreutils-phtyon](http://homaki.tistory.com/94) 을 설치하면 semanage, audit2allow 등의 명령어를 사용할 수 있다.
+
+```r
+$ yum install policycoreutils-python
+```
+
+## /etc/nginx/nginx.conf
+
+위 설정대로 실행하면 `static` 폴더들이 연결되지 않는 결과를 보여줍니다. 원인을 파악하기 위해 **Nginx** 실행 Log 내용을 확인 합니다.
+
+```r
+$ tail -30 /var/log/nginx/error.log
+2019/12/01 17:32:09 [error] "fonts.css" failed 
+(13: Permission denied), ...
+
+2019/12/01 17:32:11 [error] "base.css" failed 
+(13: Permission denied), ...
+```
+
+원인을 요약하면 **[**Nginx** 사용자와 Django 소유자가 일치하지 않아서](https://nachwon.github.io/django-deploy-3-nginx/)** 연결 실패하는 오류 입니다. 이를 수정하기 위해서는 **Nginx** 소유자를 `user nginx;` 에서 `user 사용자ID;` 로 변경 합니다.
+
+```r
+$ vi /etc/nginx/nginx.conf
+user  사용자ID;
+worker_processes  1;
+...
+```
+
+이를 수정 후, **Nginx** 를 재가동 한 뒤 접속하면 제대로 연결됨을 확인할 수 있습니다.
 
 1. **[Supervisor](https://villoro.com/post/nginx_gunicorn)** 를 활용한 활성화
 2. **[Systemd 을 활용한 등록 1](https://www.alibabacloud.com/blog/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04_594319)**
 3. **[Systemd 을 활용한 등록 2](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-centos-7)**
+4. **[RedHot 8 Django Setting](https://www.redhat.com/en/blog/setting-django-application-rhel-8-beta)**
+5. **[CentOS 7 Django Setting](https://simpleisbetterthancomplex.com/tutorial/2017/05/23/how-to-deploy-a-django-application-on-rhel.html)**
+
+
+
+
+
