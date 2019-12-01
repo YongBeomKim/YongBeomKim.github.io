@@ -53,8 +53,13 @@ $ vi install_django.sh
   cd web
   echo "STATIC_ROOT = os.path.join(BASE_DIR, 'static/')" >> mysite/settings.py
   python3 manage.py collectstatic
-  gunicorn server.wsgi:application --bind 0:8000 
+  #gunicorn server.wsgi:application --bind=127.0.0.1:8000
+  gunicorn server.wsgi:application --bind  0:8000 --daemon --reload
 ```
+`--daemon:` 데몬 프로세스로 실행, `--reload:` 소스 변경시 재구동
+{: .notice--info}
+
+
 
 <br/>
 
@@ -171,6 +176,10 @@ $ vi  /etc/nginx/conf.d/default.conf
     }
   }
 ```
+
+## Gunicorn to Nginx
+
+
 
 추가로 서버를 활성화 하는 방법은 다음과 같은 내용을 정리할 수 있습니다.
 

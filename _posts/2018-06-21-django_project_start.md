@@ -60,7 +60,8 @@ else:
 {: .notice--warning} 
 
 
-<br>
+<br/>
+
 ## STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 [참고 사이트](https://blog.hannal.com/2015/04/start_with_django_webframework_06/)
@@ -76,6 +77,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 <br>
+
 ## CELERY
 
 ```python
