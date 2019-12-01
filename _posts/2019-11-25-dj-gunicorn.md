@@ -225,6 +225,10 @@ $ tail -30 /var/log/nginx/error.log
 원인을 요약하면 **[**Nginx** 사용자와 Django 소유자가 일치하지 않아서](https://nachwon.github.io/django-deploy-3-nginx/)** 연결 실패하는 오류 입니다. 이를 수정하기 위해서는 **Nginx** 소유자를 `user nginx;` 에서 `user 사용자ID;` 로 변경 합니다.
 
 ```r
+$ chmod g+x /home/사용자ID/web
+$ chmod g+r /home/사용자ID/web
+$ chmod +x /home/사용자ID/web
+$ chmod +x /home/사용자ID/web/static
 $ vi /etc/nginx/nginx.conf
 user  사용자ID;
 worker_processes  1;
@@ -238,8 +242,3 @@ worker_processes  1;
 3. **[Systemd 을 활용한 등록 2](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-centos-7)**
 4. **[RedHot 8 Django Setting](https://www.redhat.com/en/blog/setting-django-application-rhel-8-beta)**
 5. **[CentOS 7 Django Setting](https://simpleisbetterthancomplex.com/tutorial/2017/05/23/how-to-deploy-a-django-application-on-rhel.html)**
-
-
-
-
-
