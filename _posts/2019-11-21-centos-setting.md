@@ -318,6 +318,13 @@ $ nvim ~/.jupyter/jupyter_notebook_config.py
   c.NotebookApp.port_retries = 8080
 ```
 
+기본 Theme 가 있지만, 무광의 검정으로 구성된 **[Material Darker](https://github.com/oriolmirosa/jupyterlab_materialdarker)** 테마를 추가 합니다. 참고로 **Node.js** 가 먼저 설치되어 있어야 합니다.
+
+```r
+$ jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
+```
+
+
 <br/>
 
 # Appendix

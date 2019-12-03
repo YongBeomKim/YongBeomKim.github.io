@@ -242,3 +242,4 @@ worker_processes  1;
 3. **[Systemd 을 활용한 등록 2](https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-centos-7)**
 4. **[RedHot 8 Django Setting](https://www.redhat.com/en/blog/setting-django-application-rhel-8-beta)**
 5. **[CentOS 7 Django Setting](https://simpleisbetterthancomplex.com/tutorial/2017/05/23/how-to-deploy-a-django-application-on-rhel.html)**
+6. **[Ubuntu 19.04 Django Setting](https://www.techsupportpk.com/2019/08/how-to-set-up-django-with-postgres-nginx-gunicorn-ubuntu-1904.html)**
