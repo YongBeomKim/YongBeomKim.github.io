@@ -11,7 +11,20 @@ tags:
 ---
 
 
-**Sklearn** 등의 학습데이터를 활용한 **[Restful API Server](https://honeyteacs.tistory.com/6)** 실습 내용을 정리해 보겠습니다.
+**Sklearn** 등의 학습데이터를 활용한 **[Restful API Server](https://honeyteacs.tistory.com/6)** 실습 내용을 정리해 보겠습니다. 작업방법은 **1. JQuery API 활용한 Ajax 2. Django restful API** 로 나뉘어 집니다. 
+
+작업에서 구현할 내용으로는 
+1. **sklearn** 학습 내용은 **form.post** 로 받은 값을 바탕으로 출력
+2. **Django REST framework** 프레임 워크의 활용
+
+React 관련 내용을 찾아보니 **[Django REST framework](https://this-programmer.com/entry/%EA%B0%84%EB%8B%A8%ED%95%9C-react-JS-Django-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%A7%8C%EB%93%A4%EA%B8%B0)** 을 [활용한 내용](https://medium.com/wasd/restful-api-in-django-16fc3fb1a238) 이 많았습니다. 사용자도 많고 commit 수도 많은만큼 협력작업을 진행하는데 있어서 큰 도움이 될 것으로 생각되어 정리해 보겠습니다.
+
+<br/>
+
+# **참고 사이트**
+
+**[Django restful api](https://medium.com/wasd/restful-api-in-django-16fc3fb1a238)**
+
 
 <br/>
 
@@ -19,6 +32,7 @@ tags:
 
 ```r
 $ pip install djangorestframework markdown django-filter
+$ pip install django-cors-headers
 ```
 
 
