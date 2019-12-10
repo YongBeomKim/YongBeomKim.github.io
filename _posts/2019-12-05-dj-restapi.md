@@ -2,12 +2,12 @@
 title : Django 3.0 Release
 last_modified_at: 2019-12-03T10:45:06-05:00
 header:
-  overlay_image: /assets/images/django/django-3.0.png
+  overlay_image: /assets/images/django/django-rest-3.jpg
 categories:
   - django
 tags: 
     - django
-    - restapi
+    - rest
 ---
 
 
@@ -18,6 +18,15 @@ tags:
 2. **Django REST framework** 프레임 워크의 활용
 
 React 관련 내용을 찾아보니 **[Django REST framework](https://this-programmer.com/entry/%EA%B0%84%EB%8B%A8%ED%95%9C-react-JS-Django-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%A7%8C%EB%93%A4%EA%B8%B0)** 을 [활용한 내용](https://medium.com/wasd/restful-api-in-django-16fc3fb1a238) 이 많았습니다. 사용자도 많고 commit 수도 많은만큼 협력작업을 진행하는데 있어서 큰 도움이 될 것으로 생각되어 정리해 보겠습니다.
+
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/images/django/django-rest.jpg">
+  <figcaption>Build Django REST Framework</figcaption>
+</figure>
+
+
+
+
 
 <br/>
 
