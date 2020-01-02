@@ -24,11 +24,6 @@ Identify 를 보다 선명하게 정의하고, 이를 바탕으로 구체적인 
 
 # **Logo Design**
 
-**[Logo 사용 칼라 MAP](https://www.designmantic.com/how-to/how-to-select-color-for-your-logo-design)**
-
-**[컬러 Hex 맵 데이터](https://www.color-hex.com/color/000000)**
-
-뭐먹지 연구소 Logo 와 회사 Title 에 사용할 폰트들을 정리해 보았습니다.
 1. 첫번째는 **야놀자** 디자인을 그대로 차용 하였습니다.
 2. 두번쨰는 **It 회사의 느낌** 으로 색상 추가가 가능합니다.
 3. 세번째는 Nolan 스타일이지만 가장 낮은 선호도 결과 입니다.
