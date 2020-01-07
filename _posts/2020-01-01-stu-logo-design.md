@@ -1,20 +1,18 @@
 ---
-title : 뭐먹지 연구소 - Brand Design
-last_modified_at: 2019-10-03T10:45:06-05:00
+title : Django 2.2 Setting
+last_modified_at: 2019-12-21T12:45:06-05:00
 header:
-  overlay_image: /assets/images/photo/facebook-office.jpg
+  overlay_image: /assets/images/django/django-rest-3.jpg
 categories:
-  - business
+  - django
 tags: 
-    - startup
-    - business
-    - logo
+    - django
+    - start
 ---
 
 Identify 를 보다 선명하게 정의하고, 이를 바탕으로 구체적인 Design 을 이제는 확립하기!!
 
 20~30 대 여성들의 취향을 저격하는 Identify Design..
-
 1. 산뜻하면서 귀여우면서, IT 느낌이 나는
 2. 칼라풀, 산만하지 않으면서 느낌이 나는 (ex Google)
 
