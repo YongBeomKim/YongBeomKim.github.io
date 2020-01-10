@@ -14,4 +14,6 @@ tags:
 
 <br>
 
-# **디지털 마케팅**
+# **Contents**
+
+이번 내용은 **디지털 마케팅** 을 중점적으로 다루고, 해당 사업의 이해를 돕는 내용들로 구성되어 있습니다. 주된 내용은 <strong><span style="color: green">Naver</span></strong>
