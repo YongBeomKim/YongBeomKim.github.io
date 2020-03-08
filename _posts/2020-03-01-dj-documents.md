@@ -14,6 +14,7 @@ Django 와 React 의 장단점을 내용과 목적에 따라 필요한 부분들
 
 참고할 내용들의 목록만을 이번 기회에 정리해 보도록 합니다.
 
+<br/>
 
 # Django
 
@@ -21,6 +22,17 @@ Django 와 React 의 장단점을 내용과 목적에 따라 필요한 부분들
 
 **[예제로 배우는 Django](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)**
 
+<br/>
+
+# React.js
+
+## React.js in HTML Templates
+
+**[HTML 에서 React.js 추가](https://ko.reactjs.org/docs/add-react-to-a-website.html)**
+
+<br/>
+
+# Reactify Django
 
 ## (한글) Django ORM Query
 
