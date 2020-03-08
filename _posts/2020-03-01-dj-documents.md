@@ -1,5 +1,5 @@
 ---
-title : Django 3.0 Release
+title : Reactify Django Documents
 last_modified_at: 2020-03-01T10:45:06-05:00
 header:
   overlay_image: /assets/images/react/dj_react.png
@@ -18,35 +18,23 @@ Django 와 React 의 장단점을 내용과 목적에 따라 필요한 부분들
 
 # Django
 
-## Django ORM 기초
-
-**[예제로 배우는 Django](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)**
+## Django ORM 기초 : **[예제로 배우는 Django](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)**
 
 <br/>
 
 # React.js
 
-## React.js in HTML Templates
-
-**[HTML 에서 React.js 추가](https://ko.reactjs.org/docs/add-react-to-a-website.html)**
+## React.js in HTML Templates : **[HTML 에서 React.js 추가](https://ko.reactjs.org/docs/add-react-to-a-website.html)**
 
 <br/>
 
 # Reactify Django
 
-## (한글) Django ORM Query
-
-**[Django ORM CookBook 한글판](https://django-orm-cookbook-ko.readthedocs.io/en/latest/index.html)**
-
-**[반드시 알아야 할 ORM 5가지](https://medium.com/@chrisjune_13837/django-%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EB%AA%B0%EB%9E%90%EB%8D%98-orm-%EA%B8%B0%EC%B4%88%EC%99%80-%EC%8B%AC%ED%99%94-592a6017b5f5)**
+## (한글) Django ORM **[Django ORM Cookbook 한글](https://django-orm-cookbook-ko.readthedocs.io/en/latest/index.html)**  **[반드시 알아야 할 ORM 5가지](https://medium.com/@chrisjune_13837/django-%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EB%AA%B0%EB%9E%90%EB%8D%98-orm-%EA%B8%B0%EC%B4%88%EC%99%80-%EC%8B%AC%ED%99%94-592a6017b5f5)**
 
 
 <br/>
 
 # Progressive Web App
 
-## (한글) **Django 와 React 를 활용한 Progressive Web App**
-
-**[SlideShare](https://www.slideshare.net/jayjin0427/progressive-web-app-feat-react-django-82499585)**
-
-**[Github Source (Dj1.1)](https://github.com/milooy/react-django-pwa-kit)**
+## (한글) **Django 와 React 를 활용한 Progressive Web App**  **[SlideShare](https://www.slideshare.net/jayjin0427/progressive-web-app-feat-react-django-82499585)**  **[Github Source (Dj1.1)](https://github.com/milooy/react-django-pwa-kit)**
