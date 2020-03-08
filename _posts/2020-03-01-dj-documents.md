@@ -17,6 +17,11 @@ Django 와 React 의 장단점을 내용과 목적에 따라 필요한 부분들
 
 # Django
 
+## Django ORM 기초
+
+**[예제로 배우는 Django](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)**
+
+
 ## (한글) Django ORM Query
 
 **[Django ORM CookBook 한글판](https://django-orm-cookbook-ko.readthedocs.io/en/latest/index.html)**
