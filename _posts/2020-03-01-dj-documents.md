@@ -42,4 +42,6 @@ Django 와 React 의 장단점을 내용과 목적에 따라 필요한 부분들
 
 # Progressive Web App
 
+## **[React and Django play well together ](https://fractalideas.com/blog/making-react-and-django-play-well-together-hybrid-app-model/)**
+
 ## **[Django 와 React 활용 Progressive Web App](https://www.slideshare.net/jayjin0427/progressive-web-app-feat-react-django-82499585)**  **[Github Source (Dj1.1)](https://github.com/milooy/react-django-pwa-kit)**
