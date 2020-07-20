@@ -10,9 +10,6 @@ tags:
     - cleancode
 ---
 
-https://www.youtube.com/watch?v=EHNleXa_3LM
-
-
 **클린코드, 리팩토링, Design Pattern** 의 내용을 잘 모르고 지내던 중, 스터디에서 **클린코드** 내용이 언급 되고 나서 도서 내용 직접 읽어보니 중요성을 알 수 있었습니다.
 
 추가로 추천하는 **[참고 유트브](https://www.youtube.com/watch?v=EHNleXa_3LM)** 책들로는 **[클린코드 - 로버트 C. 마틴](https://book.naver.com/bookdb/book_detail.nhn?bid=7390287)** 와 **[리팩토링(2판) -  마틴 파울러](https://book.naver.com/bookdb/book_detail.nhn?bid=16311029)** 그리고 **[켄트백의 구현패턴](https://book.naver.com/bookdb/book_detail.nhn?bid=4392142)** 또는 **[GoF의 디자인 패턴](https://book.naver.com/bookdb/book_detail.nhn?bid=8942623)** 마지막으로 **[클린 소프트웨어 - 로버트 C. 마틴](https://book.naver.com/bookdb/book_detail.nhn?bid=12035385)** 이 있습니다.
