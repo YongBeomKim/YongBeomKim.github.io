@@ -12,6 +12,8 @@ tags:
 
 **Clean Code, Refectoring** 에 관심을 갖으면서 **작업의 내용을 명확히 하는 것** 가장 중요한 부분임을 확인하게 되었습니다. 이 부분은 React.js 를 **[리액트를 다루는 기술(개정판)](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791160508796&orderClick=LEa&Kc=)** 의 **목차** 와 **도서 내용** 을 스터디 하면서 보다 명확하게 할 수 있었습니다. <strike>**작업을 계속 하면서 이 부분은 계속 보완할 필요가 있습니다.**</strike>
 
+<br />
+
 # Django 의 View 구분
 
 ## **1 Model View Controller**
@@ -27,16 +29,21 @@ tags:
 	2. state View : 값이 변화하는 View 
 		- Form : 선택적 반응 
 
+<br />
+
 # Django 의 View 변수값
 
 View 에서 **변수 내용** 에 따라서 다른 결과값을 연산하는 경우, 값을 받는 경로 2가지가 있습니다.
 
 ## **1 URL Parametor**
 
-**URL** 로 입력된 값은, **함수의 파라미터** 로 **직접** 받아서 함수를 실행합니다. 
+정규식의 Named Capturing Group (`?P<그룹명>정규식`) 을 활용하여  **URL** 입력값을 활용하면, **함수의 파라미터** 로 **직접** 받아서 함수를 실행합니다. 
 
 ```python
 {% raw %}
+
+# Regex 의 Named Capturing Group 을 사용 합니다
+
 urlpatterns = [
 	re_path('calender/month/(?P<month>[0-9]{1,2})/$', views.calender),
 ]
@@ -52,7 +59,7 @@ def calender(request, month="1"):
 **Client** 의 Input, TextArea 등으로 입력된 값은 **간접적** 으로 `request` 객체를 거쳐서 활용 가능합니다.
 
 ```python
-# GET Parametor 를 활용한 연산
+# URL GET Parametor 를 활용한 연산
 def search(request):
     if 'q' in request.GET:
         query = request.GET['q']
@@ -60,7 +67,7 @@ def search(request):
     return render(request, 'search.html', content)
 
 
-# POST Parametor 를 활용한 연산
+# Field POST Parametor 를 활용한 연산
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
