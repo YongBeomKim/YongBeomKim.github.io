@@ -76,9 +76,16 @@ def contact(request):
     return render(request, 'contact.html', {'form':form})
 ```
 
+이름을 정하는 작업이 어려운 과정 중 하나인데, 코딩에서는 `_` 를 많이 활용하고 URL 에서는 `-` 을 사용하면 구분이 더 용이 합니다.
+{: .notice--success}
 
+<br />
 
+# Django Documents
 
+## **1 Template Builtin Functions**
+
+**[Django 공식문서 Template Tag](https://docs.djangoproject.com/ko/3.0/ref/templates/builtins/)**
 
 
 
