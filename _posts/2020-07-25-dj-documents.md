@@ -41,7 +41,6 @@ View 에서 **변수 내용** 에 따라서 다른 결과값을 연산하는 경
 
 ```python
 {% raw %}
-
 # Regex 의 Named Capturing Group 을 사용 합니다
 
 urlpatterns = [
