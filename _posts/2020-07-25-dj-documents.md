@@ -57,7 +57,7 @@ def calender(request, month="1"):
 ## **2 Form GET, POST Parametor**
 
 **Client** 의 Input, TextArea 등으로 입력된 값은 **간접적** 으로 `request` 객체를 거쳐서 활용 가능합니다. React.js 와 Django Template 에서 구분자로 **중괄호 `{}` (curly braces)** 를 사용한 부분을 중심으로 이해 하도록 합니다.
-
+~
 ```python
 # URL GET Parametor 를 활용한 연산
 def search(request):
@@ -81,44 +81,14 @@ def contact(request):
 
 <br />
 
-# Django Documents
+## 참고문서들
 
-## **1 Template Builtin Functions**
-
-**[Django 공식문서 Template Tag](https://docs.djangoproject.com/ko/3.0/ref/templates/builtins/)**
-
-
-
-<br/>
-
-## Django
-
-### **[Django 맛보기](https://swarf00.github.io/2018/11/23/get-started.html)**
-
-### **[예제로 배우는 Django](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)**
-
-
-<br/>
-
-## React.js
-
-### **[HTML 에서 React.js 추가](https://ko.reactjs.org/docs/add-react-to-a-website.html)**
-
-<br/>
-
-## Reactify Django
-
-### **[Django ORM Cookbook 한글](https://django-orm-cookbook-ko.readthedocs.io/en/latest/index.html)**  
-
-### **[반드시 알아야 할 ORM 5가지](https://medium.com/@chrisjune_13837/django-%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EB%AA%B0%EB%9E%90%EB%8D%98-orm-%EA%B8%B0%EC%B4%88%EC%99%80-%EC%8B%AC%ED%99%94-592a6017b5f5)**
-
-
-<br/>
-
-## Progressive Web App
-
-### **[Convert Django Website to a Progressive Web App (Part 1/2)](https://medium.com/beginners-guide-to-mobile-web-development/convert-django-website-to-a-progressive-web-app-3536bc4f2862)**
-
-### **[React and Django play well together ](https://fractalideas.com/blog/making-react-and-django-play-well-together-hybrid-app-model/)**
-
-### **[Django 와 React 활용 Progressive Web App](https://www.slideshare.net/jayjin0427/progressive-web-app-feat-react-django-82499585)**  **[Github Source (Dj1.1)](https://github.com/milooy/react-django-pwa-kit)**
+1. **[Django 공식문서 Template Tag](https://docs.djangoproject.com/ko/3.0/ref/templates/builtins/)**
+2. **[Django 맛보기](https://swarf00.github.io/2018/11/23/get-started.html)**
+3. **[예제로 배우는 Django](http://pythonstudy.xyz/python/article/310-Django-%EB%AA%A8%EB%8D%B8-API)**
+4. **[HTML 에서 React.js 추가](https://ko.reactjs.org/docs/add-react-to-a-website.html)**
+5. **[Django ORM Cookbook 한글](https://django-orm-cookbook-ko.readthedocs.io/en/latest/index.html)**
+6. **[반드시 알아야 할 ORM 5가지](https://medium.com/@chrisjune_13837/django-%EB%8B%B9%EC%8B%A0%EC%9D%B4-%EB%AA%B0%EB%9E%90%EB%8D%98-orm-%EA%B8%B0%EC%B4%88%EC%99%80-%EC%8B%AC%ED%99%94-592a6017b5f5)**\
+7. **[Convert Django Website to a Progressive Web App (Part 1/2)](https://medium.com/beginners-guide-to-mobile-web-development/convert-django-website-to-a-progressive-web-app-3536bc4f2862)**
+8. **[React and Django play well together ](https://fractalideas.com/blog/making-react-and-django-play-well-together-hybrid-app-model/)**
+9. **[Django 와 React 활용 Progressive Web App](https://www.slideshare.net/jayjin0427/progressive-web-app-feat-react-django-82499585)**  **[Github Source (Dj1.1)](https://github.com/milooy/react-django-pwa-kit)**
