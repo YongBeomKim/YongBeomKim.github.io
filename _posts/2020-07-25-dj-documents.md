@@ -37,7 +37,7 @@ View 에서 **변수 내용** 에 따라서 다른 결과값을 연산하는 경
 
 ## **1 URL Parametor**
 
-정규식의 Named Capturing Group (`?P<그룹명>정규식`) 을 활용하여  **URL** 입력값을 활용하면, **함수의 파라미터** 로 **직접** 받아서 함수를 실행합니다. 
+정규식의 **Named Capturing Group (`?P<그룹명>정규식`)** 을 활용하여  **URL** 입력값을 활용하면, **함수의 파라미터** 로 **직접** 받아서 함수를 실행합니다. 
 
 ```python
 {% raw %}
@@ -56,7 +56,7 @@ def calender(request, month="1"):
 
 ## **2 Form GET, POST Parametor**
 
-**Client** 의 Input, TextArea 등으로 입력된 값은 **간접적** 으로 `request` 객체를 거쳐서 활용 가능합니다.
+**Client** 의 Input, TextArea 등으로 입력된 값은 **간접적** 으로 `request` 객체를 거쳐서 활용 가능합니다. React.js 와 Django Template 에서 구분자로 **중괄호 `{}` (curly braces)** 를 사용한 부분을 중심으로 이해 하도록 합니다.
 
 ```python
 # URL GET Parametor 를 활용한 연산
