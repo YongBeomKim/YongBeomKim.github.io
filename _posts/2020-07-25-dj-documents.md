@@ -84,7 +84,7 @@ def contact(request):
 
 ## **1 Passing the Data to JavaScript ([GeeksforGeeks](https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/))**
 
-Python 에서 Dict 객체를 Template 로 넘길 때에는 **Json** 객체로 변환을 먼저 해야 합니다.
+Python 에서 **JavaScript/JSON** 객체를 생성하고, Template 에서 받아서 적용하는 예제 입니다.
 
 ```python
 from django.shortcuts import render 
@@ -105,7 +105,7 @@ def send_dictionary(request):
     return render(request, 'landing.html', content) 
 ```
 
-Json 데이터를 Template 에서 **[escapejs](https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#escapejs)** 필터로 변환하면 안전하게 호출 됩니다. 
+JavaScript/JSON 객체를 Django Template 에서 받을 때에는 <b style="color:red">[escapejs](https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#escapejs)</b> 필터를 사용 합니다. 
 
 Escapes characters for use in JavaScript strings. This does not make the string safe for use in HTML or JavaScript template literals, but does protect you from syntax errors when using templates to generate JavaScript/JSON.
 {: .notice--info}
