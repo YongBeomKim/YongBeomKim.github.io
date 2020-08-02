@@ -14,7 +14,7 @@ tags:
 
 <br />
 
-# Django 의 View 구분
+# **Django 의 View 구분**
 
 ## **1 Model View Controller**
 
@@ -31,7 +31,7 @@ tags:
 
 <br />
 
-# Django 의 View 변수값
+# **Django 의 View 변수값**
 
 View 에서 **변수 내용** 에 따라서 다른 결과값을 연산하는 경우, 값을 받는 경로 2가지가 있습니다.
 
@@ -77,6 +77,52 @@ def contact(request):
 
 이름을 정하는 작업이 어려운 과정 중 하나인데, 코딩에서는 `_` 를 많이 활용하고 URL 에서는 `-` 을 사용하면 구분이 더 용이 합니다.
 {: .notice--success}
+
+<br />
+
+# **Passing Data Python to Template**
+
+## **1 Passing the Data to JavaScript ([GeeksforGeeks](https://www.geeksforgeeks.org/how-to-pass-data-to-javascript-in-django-framework/))**
+
+Python 에서 Dict 객체를 Template 로 넘길 때에는 **Json** 객체로 변환을 먼저 해야 합니다.
+
+```python
+from django.shortcuts import render 
+import json
+
+def send_dictionary(request): 
+    dataDictionary = { 
+        'hello': 'World', 
+        'ABC': 123, 
+        456: 'abc', 
+        14000605: 1, 
+        'list': ['geeks', 4, 'geeks'], 
+        'dictionary': {'you': 'can', 'send': 'anything', 3: 1} 
+    }  
+    content = {
+        'data': json.dumps(dataDictionary) # dump data
+    }
+    return render(request, 'landing.html', content) 
+```
+
+Json 데이터를 Template 에서 `escapejs` 필터로 변환하면 안전하게 호출 됩니다. 
+
+객체의 Key 값은 숫자와 문자인 경우 모두 "" 를 사용해서 호출 합니다.
+
+```javascript
+const data = JSON.parse("{{data|escapejs}}"); 
+console.log(data);
+console.log(data["ABC"]);
+console.log(data["456"]);
+console.log(data["dictionary"]);
+
+var dataNode = document.getElementById('alldata'); 
+dataNode.innerHTML += "{{data|escapejs}}"; 
+dataNode = document.getElementById('neatdata'); 
+for(var x in data){ 
+    dataNode.innerHTML += x+' : '+data[x]+'<br><br>'; 
+} 
+```
 
 <br />
 
