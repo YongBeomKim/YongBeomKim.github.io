@@ -108,7 +108,7 @@ def send_dictionary(request):
 Json 데이터를 Template 에서 **[escapejs](https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#escapejs)** 필터로 변환하면 안전하게 호출 됩니다. 
 
 Escapes characters for use in JavaScript strings. This does not make the string safe for use in HTML or JavaScript template literals, but does protect you from syntax errors when using templates to generate JavaScript/JSON.
-{: .notice-info}
+{: .notice--info}
 
 객체의 Key 값은 숫자와 문자인 경우 모두 "" 를 사용해서 호출 합니다.
 
