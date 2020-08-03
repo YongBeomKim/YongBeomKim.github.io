@@ -1,6 +1,6 @@
 ---
 title : 작업 Process 의 계획력과 실천력
-last_modified_at: 2020-07-22T10:45:06-05:00
+last_modified_at: 2020-07-15T10:45:06-05:00
 header:
   overlay_image: /assets/images/business/meeting.jpg
 categories:
