@@ -1,6 +1,6 @@
 ---
 title : BOOK 리액트 스타일 가이드
-last_modified_at: 2020-07-26T10:45:06-05:00
+last_modified_at: 2020-07-23T10:45:06-05:00
 header:
   overlay_image: /assets/images/code/react-banner.png
 categories:
