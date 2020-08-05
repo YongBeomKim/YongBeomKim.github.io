@@ -412,4 +412,35 @@ function sum(numbers) {
 sum(['1',2,3,4,5,6,7,8,9])
 ```
 
-`.map()` 에서 반복적인 결과를 
+`.map()` 에서 반복적인 객체를 생성된 데이터 Type 을 합치는 용도로써 `.reduce()` 메서드를 유용하게 활용할 수 있습니다.
+
+```javascript
+function parse(qs) {
+  const queryString = qs.substr(1);
+  const chunks = queryString.split('&');
+  const result = chunks.map((chunk) => {
+    const [ key, value ] = chunk.split('='); // key = 'banana', value = '10'
+    return { key: key, value: value }; // { key: 'banana', value: '10' }
+  });
+
+  // reduce() 배열 함수를 활용하여 객체 합치기
+  var result2 = result.reduce(function(result, item){
+    result[item.key] = item.value;
+    return result;
+  } , {});
+  return result;
+}
+```
+
+객체 구조화 할당을 활용하면 result2 의 수식을 보다 간단하게 정리할 수 있습니다.
+
+```javascript
+function parse(qs) {
+  ...
+  var result2 = result.reduce(function(result, {key, value}){
+    result[key] = value;
+    return result;
+  } , {});
+  return result;
+}
+```
