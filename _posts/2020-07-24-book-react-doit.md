@@ -2,11 +2,11 @@
 title : BOOK do it! 리액트 정석 ES6
 last_modified_at: 2020-07-27T10:45:06-05:00
 header:
-  overlay_image: /assets/images/react/dj_react.png
+  overlay_image: /assets/images/code/react-banner.png
 categories:
-  - django
+  - react
 tags: 
-    - django
+    - javascript
     - react
 ---
 
@@ -443,4 +443,61 @@ function parse(qs) {
   } , {});
   return result;
 }
+```
+
+## 2-9 비동기 함수
+
+### urgentWork()
+
+프로그램은 순서대로 실행하는게 원칙 이지만, 이러한 순서에 얽매이지 않고 실행 가능한 방법이 **비동기 실행** 입니다. JavaScript 에서는 비동기 실행 함수를 `urgentWork()` 를 사용하면 구현 가능합니다.
+
+```javascript
+// ES5의 예제
+function work1(onDone) {
+  setTimeout(() => onDone('작업1 완료!'), 100);
+}
+function work2(onDone) {
+  setTimeout(() => onDone('작업1 완료!'), 200);
+}
+
+// 앞서 실행된 명령과 별개로 작동
+function urgentWork() {
+  console.log('긴급 작업');
+}
+
+work1(function(msg1) {
+  console.log('done after 100ms:' + msg1);
+  work2(function(msg2) {
+    console.log('done after 300ms:' + msg2);
+  });
+});
+urgentWork(); // 비동기 함수를 실행
+```
+
+## Promise
+
+위 방식은 CallBack 형식으로 작업 내용을 알아보기 어려운 단점이 있습니다. 이를 간단하게 작업이 가능한 **클래스 객체** 로 **Promise** 클래스를 제공 합니다.
+
+**Promise** 객체는 `then(), catch(), finally()` 메서드를 활용하여, CallBack 방식을 Currying 방식으로 구현이 가능 합니다.
+
+```javascript
+// 1. Producer
+// New Promise is Created, the Excutor runs automatically.
+const promise = new Promise( (resolve, reject) => {
+  console.log('doing something...');
+  setTimeout( ()=> {
+    reject(new Error('no network'));
+  }, 2000);
+  
+  // 2. Consumer : then, catch, finally
+  promise
+    .then(value => {   // 정상 처리된 경우
+      console.log(value);
+    })
+    .catch(error => {  // 비정상 처리된 경우
+      console.log(error);
+    })
+    .finally( () => {  // 정상/비정상 처리된 후
+      console.log('finally')
+    });
 ```
