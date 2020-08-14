@@ -70,3 +70,17 @@ const value = obj && obj.key1;
 true : -1, '0', 'false'(문자열), `{}`, `[]`
 false : undefined, null, 0, NaN
 ```
+
+### Component Condition : `||`
+
+**조건이 false** 일 때, **지정된 값을 할당** 하고, 유효한 값이 전달된 경우에는 해당 값을 적용 합니다.
+
+{% raw %}
+```javascript
+const Box = styled.div`
+  background: ${props => props.color || 'blue'};
+  padding: 1rem;
+  display: flex;
+`;
+```
+{% endraw %}
