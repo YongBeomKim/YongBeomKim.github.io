@@ -37,7 +37,7 @@ $ sudo apt-get install build-essential libssl-dev
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | zsh
 ```
 
-**nvm** 이 설치된 경우 **설치 가능한 버젼들을** 확인 합니다. 이미 설치된 Node.js 가 있는 경우에도 추가 삭제작업 없이도 사용이 가능합니다. 아래 내용은 **Node.js v10** 의 마지막 버젼인 `node.js 10.17.0` 을 설치하는 내용 입니다. 보다 자세한 내용은 **[Node Version Manager](https://dgkim5360.tistory.com/entry/node-version-manager-introduction)** ㄴ등을 참고합니다.
+**nvm** 이 설치된 경우 **설치 가능한 버젼들을** 확인 합니다. 이미 설치된 Node.js 가 있는 경우에도 추가 삭제작업 없이도 사용이 가능합니다. 아래 내용은 **Node.js v10** 의 마지막 버젼인 `node.js 10.17.0` 을 설치하는 내용 입니다. 보다 자세한 내용은 **[Node Version Manager](https://dgkim5360.tistory.com/entry/node-version-manager-introduction)** 등을 참고합니다.
 
 ```r
 $ source .zshrc
