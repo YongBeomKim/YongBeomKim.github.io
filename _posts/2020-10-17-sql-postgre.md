@@ -163,6 +163,7 @@ python@15:arterior>
 ## 참고사이트
 
 - [PGCLI Github](https://github.com/dbcli/pgcli)
+- [PostgreSQL 9.2.4 문서](https://postgresql.kr/docs/9.2/index.html)
 - [PostgreSQL 설치](https://dejavuqa.tistory.com/363?category=257816)
 - [PostgreSQL 외부접속](https://dejavuqa.tistory.com/32?category=257816)
 - [PostgreSQL 기본명령어 in My Gitblog](https://yongbeomkim.github.io/sql/psql-01-startup/)
