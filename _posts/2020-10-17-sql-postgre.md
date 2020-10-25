@@ -61,9 +61,9 @@ tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      
 
 ```r
 $ sudo vi /etc/postgresql/12/main/pg_hba.conf
-host all all 0.0.0.0/0 trust          # 모든 IP 접근을 허용
-host all all 172.27.00.00/0 trust     # case 1. 특정 IP만 접근을 허용  
-host all all 172.27.00.000/32 reject  # case 2. 특정 IP만 접근을 막음
+host all all 0.0.0.0/0 trust          # 모든 IP 허용
+host all all 172.27.00.00/0 trust     # cf) 특정 IP 허용  
+host all all 172.27.00.000/32 reject  # cf) 특정 IP 차단
 ```
 
 그리고 `postgresql.conf` 에서는 CONNECTIONS AND AUTHENTICATION 부분의`listen_address = localhost` 내용을 `listen_address = '*'` 로 바꿔줍니다.
@@ -80,9 +80,9 @@ port = 7879             # (change requires restart)
 $ service postgresql restart
 $ netstat -ntlp 
 Active Internet connections (only servers)
-Proto Recv-Q Send-Q Local Address Foreign   Address  State  PID/Program name    
-tcp        0      0 0.0.0.0:22    0.0.0.0:*          LISTEN 898/sshd            
-tcp        0      0 0.0.0.0:7879  0.0.0.0:*          LISTEN 11662/postgres      
+Proto Local         Address   State  PID/Program name    
+tcp   0.0.0.0:22    0.0.0.0:* LISTEN 898/sshd            
+tcp   0.0.0.0:7879  0.0.0.0:* LISTEN 11662/postgres      
 ```
 
 ## **3 사용자 설정**
@@ -141,7 +141,7 @@ $ sudo pip3 install pgsql
 
 ## **2 Connection**
 
-아래의 명령만 실행하면 
+PGCLI 를 활용하여 접속하는 방법은 다음과 같습니다. 
 
 ```r
 # pgcli -h <접속주소> -p <접속포트> -U <사용자명> <대상Database>
@@ -152,10 +152,11 @@ Chat: https://gitter.im/dbcli/pgcli
 Home: http://pgcli.com
 python@15:arterior>
  
-[F2] Smart Completion: ON  [F3] Multiline: OFF  [F4] Emacs-mode     Refreshing completions...   
+[F2]Smart Completion:ON  [F3]Multiline:OFF  
+[F4]Emacs-mode Refreshing completions...   
 ```
 
-지금까지 설치 및 설정과 관련한 내용들을 살펴 보았습니다. `pqcli` 를 활용하면 관련된 명령어들이 자동으로 나와서 편리합니다. 다음 페이지에서는 기본적인 명령어 들을 살펴보도록 하겠습니다.
+지금까지 설치 및 설정과 관련한 내용들을 살펴 보았습니다. `pqcli` 를 활용하면 관련된 명령어들이 자동으로 나와서 편리합니다. 다음 페이지 에서는 기본적인 명령어 들을 살펴보도록 하겠습니다.
 
 <br/>
 
