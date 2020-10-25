@@ -162,12 +162,10 @@ python@15:arterior>
 
 ## 참고사이트
 
+- [PGCLI Github](https://github.com/dbcli/pgcli)
 - [PostgreSQL 설치](https://dejavuqa.tistory.com/363?category=257816)
-- [PostgreSQL 외부접속]()
-
+- [PostgreSQL 외부접속](https://dejavuqa.tistory.com/32?category=257816)
+- [PostgreSQL 기본명령어 in My Gitblog](https://yongbeomkim.github.io/sql/psql-01-startup/)
 - [알아두면 유용한 PSQL](https://browndwarf.tistory.com/51)
 - [Python 과 PostgreSQL 연동](https://jinmay.github.io/2018/01/11/python/python-with-postgresql)
 - [PostgreSQL 외부접속 허용하기](https://racoonlotty.tistory.com/entry/PostgreSQL-%EC%99%B8%EB%B6%80-%EC%A0%91%EA%B7%BC-%ED%97%88%EC%9A%A9)
-- [pgcli Github](https://github.com/dbcli/pgcli)
-
-https://yongbeomkim.github.io/sql/psql-01-startup/
