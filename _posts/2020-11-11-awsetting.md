@@ -1,6 +1,6 @@
 ---
 title : AWS Server Instance
-last_modified_at: 2020-10-15T10:45:06-05:00
+last_modified_at: 2020-11-11T10:45:06-05:00
 header:
    overlay_image: /assets/images/project/amazon_ec2.jpg
 categories:
@@ -10,8 +10,6 @@ tags:
     - server
     - linux
 ---
-
-이번에 새롭게 AWS 서버를 개설 하게 되면서 기본적인 절차 및 내용들을 살펴 보겠습니다. 
 
 AWS 에서의 서버 인스턴스 생성절차와 관련된 내용들로. 가입절차 및 **EC2** 서버의 실행은 다음의 동영상을 따라서 진행하면 됩니다.
 
@@ -202,71 +200,6 @@ cd Python-3.8.6/
 ./configure --enable-optimizations
 make altinstall
 ```
-
-<br/>
-
-# Nginx with Django
-
-다음의 내용은 [EC2 + Nginx + gunicorn + Django 배포하기](https://velog.io/@y1andyu/Nginx-gunicorn-Django-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0) 내용을 정리한 것입니다.
-
-## Django Gunicorn
-
-초간단 버젼을 살펴보면 다음과 같습니다.
-
-```python
-$ vi settings.py
-
-   from pathlib import Path
-   # Build paths inside the project like this: BASE_DIR / 'subdir'.
-   BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
-   ALLOWED_HOSTS = ['0.0.0.0','domain.com']
-
-   # https://docs.djangoproject.com/en/3.1/howto/static-files/
-   MEDIA_URL = "/media/"
-   MEDIA_ROOT = BASE_DIR / "static/media"
-
-   # Static & Media folder is Merged.
-   STATIC_URL = "/static/"
-   STATICFILES_DIRS = [
-     (BASE_DIR / "static"),
-   ]
-   STATIC_ROOT = BASE_DIR / "statistic"
-
-$ ./manage.py collectstatic
-$ gunicorn server.wsgi &!
-$ vi /etc/nginx/sites-enabled/default
-
-   server {
-      listen 80;
-      listen [::]:80;
-
-      server_name domain.com www.domain.com;
-
-      location / {
-         proxy_pass http://0.0.0.0:8000;
-      }
-   }
-```
-
-
-Django 프로젝트와 `settings.py` 에서 설정 내용을 추가한 뒤 `gunicorn` 을 활용하여 서버를 실행하면, 해당 주소의 `8000` 번 포트로 실행된 모습을 볼 수 있습니다. 이를 확인 했으면 `/etc/systemd/system/gunicorn.service` 설정 파일을 생성 합니다. **[gunicorn document](https://docs.gunicorn.org/en/stable/deploy.html)** 를 참고하여 작성하였습니다
-
-
-```r
-$ gunicorn --bind 0:8000 config.wsgi:application
-$ sudo nvim /etc/systemd/system/gunicorn.service
-
-```
-
-
-
-
-##
-
-nvim /etc/nginx/sites-enabled/default 
-
-`https://wave1994.tistory.com/88`
 
 
 ## 참고사이트
