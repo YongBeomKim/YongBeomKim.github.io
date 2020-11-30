@@ -1,14 +1,14 @@
 ---
-title : AWS Server Instance
+title: AWS Server Instance
 last_modified_at: 2020-11-11T10:45:06-05:00
 header:
-   overlay_image: /assets/images/project/amazon_ec2.jpg
+  overlay_image: /assets/images/project/amazon_ec2.jpg
 categories:
   - server
-tags: 
-    - aws
-    - server
-    - linux
+tags:
+  - aws
+  - server
+  - linux
 ---
 
 AWS 에서의 서버 인스턴스 생성절차와 관련된 내용들로. 가입절차 및 **EC2** 서버의 실행은 다음의 동영상을 따라서 진행하면 됩니다.
@@ -21,7 +21,8 @@ AWS 에서의 서버 인스턴스 생성절차와 관련된 내용들로. 가입
 
 # **AWS INSTANCE USER SETTING**
 
-동영상에서 진행한 내용을 요약하면 다음과 같습니다. 
+동영상에서 진행한 내용을 요약하면 다음과 같습니다.
+
 1. AWS 가입하기
 2. AWS Console 로그인 및 EC2 인스턴스 생성
 3. **사용자 pem** 키파일을 활용한 접속 설정
@@ -37,14 +38,15 @@ AWS 에서의 서버 인스턴스 생성절차와 관련된 내용들로. 가입
 
 ## **Root 계정의 활성화**
 
-다음의 내용은 **[EC2 root 계정 활성화](https://goddaehee.tistory.com/193)** 를 간단하게 요약하였습니다.
+다음의 내용은 **[EC2 root 계정 활성화](https://goddaehee.tistory.com/193)** 내용을 요약 하였습니다.
 
 1. **pem** 로 서버에 접속 합니다.
 2. `$sudo passwd root` 로 root 의 비밀번호를 설정 합니다.
 3. `$sudo vi /etc/ssh/sshd_config` 에서 **PermitRootLogin yes** 변경 후 저장 합니다.
-4. `$sudo cp /home/ubuntu/.ssh/authorized_keys /root/.ssh` EC2 유저의 인증키를 root 에게 복사 합니다.
-5. `$sudo systemctl restart sshd` ssh 를 재실행 합니다.
-6. `$ssh -i 'C:\키페어경로\키페어.pem' root@접속IP` 로 접속을 확인 합니다.
+4. `$ sudo vi /etc/ssh/sshd_config` 에서 **PasswordAuthentication yes** 변경 후 저장 합니다.
+5. `$sudo cp /home/ubuntu/.ssh/authorized_keys /root/.ssh` EC2 유저의 인증키를 root 에게 복사 합니다.
+6. `$sudo systemctl restart sshd` ssh 를 재실행 합니다.
+7. `$ssh -i 'C:\키페어경로\키페어.pem' root@접속IP` 로 접속을 확인 합니다.
 
 ## **pem 인증키 파일없이 별도 사용자 로그인 활성화**
 
@@ -55,13 +57,35 @@ EC2 유저 및 root 는 pem 키파일을 활용하는 방법을 추천합니다.
 3. `$ sudo useradd -s /bin/bash -m -d /home/USERNAME -g root USERNAME` 새로운 유저를 생성합니다.
 4. `$ sudo passwd USERNAME` 유저 비밀번호를 설정 합니다.
 5. 패스워드를 입력 합니다
-6. `$ sudo chmod u+w /etc/sudoers` sudoers 파일 권한 변경 
+6. `$ sudo chmod u+w /etc/sudoers` sudoers 파일 권한 변경
 7. sudoers 파일 열고, username 추가 합니다.
    ```r
    $ sudo vi /etc/sudoers
    USERNAME ALL=(ALL:ALL) ALL
    ```
 8. `$ sudo service ssh restart` ssh를 재시작
+
+## **pem 인증키 손상 및 분실시**
+
+pem 파일을 복사하는 경우 아래의 메세지가 출력되는 경우가 있습니다.
+
+```r
+$ ssh -i testkey.pem root@10.4.128.132
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'testkey.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: testkey.pem
+Permission denied (publickey).
+```
+
+대처하는 방법으로 2가지가 있는데
+1. pem 파일의 내용을 수정하는 방법
+2. 새로운 pem 파일을 발급한 뒤 재 연결하는 방법
+
+1번은 `chmod 600 testkey.pem` 방법으로 파일의 권한을 수정하면 됩니다. 반면 2번 방법은 Key 내용을 새롭게 발급한 뒤, 인스턴스 내용을 새롭게 적용해야 합니다. 
 
 <br/>
 
@@ -126,7 +150,7 @@ $ souce .zshrc                # 변경된 설정을 적용
   <img src="{{site.baseurl}}/assets/images/react/nodejs-banner.png">
 </figure>
 
-Node.js 버젼을 쉽게 환경설정을 변경 가능한 Virtual Manger 를 활용할 수 있습니다. **[NVM github](https://github.com/nvm-sh/nvm)** 내용을 참고하여 **[우분투내 설치를](https://trustyoo86.github.io/nodejs/2019/02/18/ubuntu-nvm.html)** 합니다. 
+Node.js 버젼을 쉽게 환경설정을 변경 가능한 Virtual Manger 를 활용할 수 있습니다. **[NVM github](https://github.com/nvm-sh/nvm)** 내용을 참고하여 **[우분투내 설치를](https://trustyoo86.github.io/nodejs/2019/02/18/ubuntu-nvm.html)** 합니다.
 
 **curl** 이 설치되지 않은 경우에는 `$ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | zsh` 을 입력합니다. 기본 **bash** 를 사용하는 경우는 `bash` 로 변경하여 설치 합니다. 보다 자세한 내용은 **[Node Version Manager](https://dgkim5360.tistory.com/entry/node-version-manager-introduction)** 등을 참고합니다.
 
@@ -136,7 +160,7 @@ $ sudo apt-get install build-essential libssl-dev
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | zsh
 ```
 
-**nvm** 이 설치된 경우 **설치 가능한 버젼들을** 확인 합니다. 이미 설치된 Node.js 가 있는 경우에도 추가 삭제작업 없이도 사용이 가능합니다. 아래 내용은 **Node.js v10** 의 마지막 버젼인 `node.js 12.19.0` 을 설치하는 내용 입니다. 
+**nvm** 이 설치된 경우 **설치 가능한 버젼들을** 확인 합니다. 이미 설치된 Node.js 가 있는 경우에도 추가 삭제작업 없이도 사용이 가능합니다. 아래 내용은 **Node.js v10** 의 마지막 버젼인 `node.js 12.19.0` 을 설치하는 내용 입니다.
 
 ```r
 $ source .zshrc
@@ -148,7 +172,7 @@ $ nvm ls-remote | grep "v12.*LTS"
    v12.19.0   (Latest LTS: Erbium)
 
 $ nvm install 12.19.0
-$ node -v            
+$ node -v
 v12.19.0
 ```
 
@@ -200,7 +224,6 @@ cd Python-3.8.6/
 ./configure --enable-optimizations
 make altinstall
 ```
-
 
 ## 참고사이트
 
