@@ -104,7 +104,7 @@ Database 를 만들때 한가지 주의할 점은 encoding 입니다. 기본 enc
 
 ```sql
 postgres=# \l
-                              List of databases
+List of databases
    Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   
 -----------+----------+----------+---------+---------+-----------------------
  arterior  | cobalt   | UTF8     | C.UTF-8 | C.UTF-8 | 
