@@ -12,6 +12,57 @@ tags:
 
 설치 완료된 Server 에서 POSTGRESQL 서버를 사용하는 방법을 정리해 보겠습니다. 간단하게 요약하면, 1.AWS 서버에 POSTGRESQL 설치 2.POSTGRESQL 환경설정 3.Client 에서 pgcli 설치 및 연결 확인 입니다.
 
+
+```css
+.artist__container{
+	grid-template-columns: repeat(4, minmax(20px, 250px));
+}
+
+
+/* === DeskTop Artist Screen Layout === */
+@media screen and (max-width: 1200px) {
+	.artist__container{
+		grid-template-columns: repeat(3, minmax(20px, 250px));
+	}
+}
+
+
+@media screen and (max-width: 960px) {
+	.artist__container{
+		grid-template-columns: repeat(2, minmax(20px, 250px));
+	}
+}
+
+
+/* Tablet and Big Mobile Screen */
+@media screen and (max-width: 768px) {
+	main, .footer {
+		margin: 0px;
+	}
+	.footer__content {
+		justify-content: center;
+	}
+}
+
+
+/* === 모바일 Media Query  === */
+@media screen and (max-width: 480px) {
+	.artist__container{
+		grid-template-columns: repeat(1, minmax(20px, 250px));
+	}	
+}
+
+
+/* === SECTION for DeskTop PC === */
+@media screen and (min-width: 768px) {
+	.gallery__container, 
+	.app__container {
+    height: 100%;
+  }
+}
+```
+
+
 ## INSTALL POSTGRESQL
 
 ```r
