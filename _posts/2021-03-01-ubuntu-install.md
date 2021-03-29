@@ -1,6 +1,6 @@
 ---
 title : 우분투 듀얼부팅, 설치 and Tips
-last_modified_at: 2019-09-01T10:45:06-05:00
+last_modified_at: 2021-03-01T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ubuntu.png
 categories:
@@ -17,6 +17,35 @@ tags:
 # **Tips**
 
 내용을 확인하면 별거 없지만, 자주 사용하지 않아서 잊어버린 Linux 터미널 명령들을 정리 합니다.
+
+## **[ssh 접속 연결시 Warning 메세지 출력하는 경우](https://hoyoung2.tistory.com/106)**
+
+Domain 의 Ip 값을 변경한 경우 **서버의 공개키가 변경된 경우로**, ssh 접속시 위 메세지가 출력되면서 해당 Ip 가 저장되지 않고 계속 오류를 출려하는 문제가 있습니다. 해결 방법으로는 접속이 문제 된 도메인의 정보를 삭제 후 재실행하면 해결 됩니다.
+
+공격(man-in-the-middle attack)일 가능성이 있어서 1) $HOME/.ssh/known_hosts 파일에 해당 호스트에 대한 키를 삭제한다. 2) $HOME/.ssh/known_hosts 파일을 삭제한다. 방법을 선택하여 실행 합니다.
+
+```r
+# ssh localhost
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+@ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @ 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY! 
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is 
+00:f3:19:ee:36:f3:1f:fe:5c:ec:23:e0:c3:ba:3f:26. 
+Please contact your system administrator. 
+
+Add correct host key in /root/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /root/.ssh/known_hosts:1
+RSA host key for localhost has changed and you have requested strict checking.
+Host key verification failed. 
+
+$ cd .ssh
+$ rm -f known_hosts   # 공개키가 담겨있는 파일을 삭제하고 접속한다. 
+ Permanently added 'localhost' (ECDSA) to the list of known hosts.
+```
+
 
 ## Ubuntu Terminal 명령어 모음
 
