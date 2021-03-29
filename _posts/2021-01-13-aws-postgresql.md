@@ -13,56 +13,6 @@ tags:
 설치 완료된 Server 에서 POSTGRESQL 서버를 사용하는 방법을 정리해 보겠습니다. 간단하게 요약하면, 1.AWS 서버에 POSTGRESQL 설치 2.POSTGRESQL 환경설정 3.Client 에서 pgcli 설치 및 연결 확인 입니다.
 
 
-```css
-.artist__container{
-	grid-template-columns: repeat(4, minmax(20px, 250px));
-}
-
-
-/* === DeskTop Artist Screen Layout === */
-@media screen and (max-width: 1200px) {
-	.artist__container{
-		grid-template-columns: repeat(3, minmax(20px, 250px));
-	}
-}
-
-
-@media screen and (max-width: 960px) {
-	.artist__container{
-		grid-template-columns: repeat(2, minmax(20px, 250px));
-	}
-}
-
-
-/* Tablet and Big Mobile Screen */
-@media screen and (max-width: 768px) {
-	main, .footer {
-		margin: 0px;
-	}
-	.footer__content {
-		justify-content: center;
-	}
-}
-
-
-/* === 모바일 Media Query  === */
-@media screen and (max-width: 480px) {
-	.artist__container{
-		grid-template-columns: repeat(1, minmax(20px, 250px));
-	}	
-}
-
-
-/* === SECTION for DeskTop PC === */
-@media screen and (min-width: 768px) {
-	.gallery__container, 
-	.app__container {
-    height: 100%;
-  }
-}
-```
-
-
 ## INSTALL POSTGRESQL
 
 ```r
@@ -85,4 +35,26 @@ postgres@ip-111-22-33-44:~$ exit
 logout
 ```
 
-## SETTING POSTGRESQL
+## PGCLI
+
+위 터미널에서 작업을 하게되면, 모든 명령어를 익혀서 작업을 해야 만 하고 오류가 발생하는 경우 도움을 얻기 힘든 단점이 있습니다. 이러한 불편함을 도와주는 도구로써 Pgcli 를 사용하면 필요한 명령어 및 오류가 발생하는 경우 많은 도움을 받을 수 있습니다.
+
+### Install
+
+**[공식 설치 가이드](https://www.pgcli.com/install)** 에서 따르는 내용 그대로 진행하면 됩니다.
+
+설치 후 기본 설정값을 활용하는 방법은 다음과 같습니다.
+
+```sql
+$ sudo su - postgres    
+postgres@momukji:~$ pgcli
+Server: PostgreSQL 10.15 (Ubuntu 10.15-0ubuntu0.18.04.1)
+Version: 3.1.0
+Chat: https://gitter.im/dbcli/pgcli
+Home: http://pgcli.com
+postgres>  
+
+
+[F2] Smart Completion: ON  [F3] Multiline: OFF  [F4] Emacs-mode
+```
+
