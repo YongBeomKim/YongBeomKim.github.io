@@ -66,7 +66,7 @@ $ sudo update-alternatives –-config x-www-browser
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/images/code/x-session-error.jpg">
 </figure>
-
+21
 이를 해결하기 위해 검색해 본 결과, **우분투 재설치** 내용이 가장 많았습니다. 이는 기존의 설정 내용과 저장된 파일을 삭제하는 등의 문제가 있고, USB 로 부팅 후 접근하려고 했지만 **Permission Error** 로 인하여 작업에도 곤란한 부분이 많았습니다.
 
 다행히 검색 중 **[Mint 리눅스 포럼](https://forums.linuxmint.com/viewtopic.php?t=273579)** 내용을 확인해서 적용해본 결과 문제가 바로 해결 되었습니다.
