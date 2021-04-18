@@ -1,5 +1,5 @@
 ---
-title : 우분투 듀얼부팅, 설치 and Tips
+title : 우분투 설치 and Tips
 last_modified_at: 2021-03-01T10:45:06-05:00
 header:
   overlay_image: /assets/images/book/ubuntu.png
@@ -15,6 +15,13 @@ tags:
 <br>
 
 # **Tips**
+
+## **PDF 수정 및 변경**
+
+[ubuntu PDFTK 설치 및 사용법](https://linuxhint.com/install_pdftk_ubuntu/)
+
+[PDF 페이지 분할](https://askubuntu.com/questions/56853/splitting-a-pdf-page-in-two)
+
 
 내용을 확인하면 별거 없지만, 자주 사용하지 않아서 잊어버린 Linux 터미널 명령들을 정리 합니다.
 
