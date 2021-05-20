@@ -113,7 +113,7 @@ local  all   postgres                peer
 local  all   all                     peer
 # IPv4 local connections:
 host   all   all       127.0.0.1/32  trust
-host   all   all          0.0.0.0/0  md5   # Password 묻지않음
+host   all   all          0.0.0.0/0  md5   # 외부 접속을 위해 추가필요
 # IPv6 local connections:
 host   all   all            ::1/128  md5
 host   all   all   172.27.00.000/32 reject # 특정 IP 차단
