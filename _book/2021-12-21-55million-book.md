@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: [스윙트레이더] 개미5년 세후 55년
+title: 개미5년 세후 55년 (스윙트레이더)
 tags:
 - swing
 ---
