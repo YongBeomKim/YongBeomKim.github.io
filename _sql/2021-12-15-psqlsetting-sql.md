@@ -1,13 +1,12 @@
 ---
-layout: sql
-title: PostgreSQL Settings
+layout: post
+title: Example Of A News Article
 tags:
-- sql
+- text
+- news
 ---
 
 POSTGRESQL DataBase 의 설치 및 기본 Setting 및 명령어 들을 정리해 보겠습니다.
-
-<br />
 
 # **POSTGRESQL**
 
