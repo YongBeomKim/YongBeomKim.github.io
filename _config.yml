@@ -1,6 +1,6 @@
-title : Elementary - Jekyll Blog Theme
-name: 'Elementary Jekyll Theme'
-description: 'Simple, light weight, responsive jekyll theme for hackers'
+title : YongBeom Kim
+name: 'Quant Programmer'
+description: 'Pytorch Django and TypeScript'
 
 markdown: kramdown
 highlighter: rouge
@@ -16,16 +16,61 @@ featured_posts:
     title: 'Featured post #3'
 
 collections:
+  book:
+    title: Book
+    default_open: false
+    output: true
+  javascript:
+    title: JS
+    default_open: false
+    output: true
+  python:
+    title: Python
+    default_open: false
+    output: true
+  sql:
+    title: SQL
+    default_open: false
+    output: true
+  ubuntu:
+    title: Ubuntu
+    default_open: false
+    output: true
   news:
     title: News
     default_open: false
     output: true
   posts:
     title: Essays
-    default_open: true
+    default_open: false
     output: true
 
 defaults:
+  - scope:
+      type: book
+    values:
+      title: Book Review
+      permalink: /book/:title
+  - scope:
+      type: js
+    values:
+      title: JavaScript & TypeScript
+      permalink: /js/:title
+  - scope:
+      type: python
+    values:
+      title: Machine Learning of Python
+      permalink: /python/:title
+  - scope:
+      type: sql
+    values:
+      title: SQL
+      permalink: /sql/:title
+  - scope:
+      type: ubuntu
+    values:
+      title: Ubuntu
+      permalink: /ubuntu/:title
   - scope:
       type: posts
     values:
