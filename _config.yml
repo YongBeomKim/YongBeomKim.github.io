@@ -28,16 +28,12 @@ collections:
     title: Python
     default_open: false
     output: true
-  sql:
-    title: SQL
-    default_open: false
-    output: true
   ubuntu:
     title: Ubuntu
     default_open: false
     output: true
   news:
-    title: News
+    title: Stock
     default_open: false
     output: true
   posts:
@@ -67,20 +63,15 @@ defaults:
       title: SQL
       permalink: /sql/:title
   - scope:
-      type: ubuntu
-    values:
-      title: Ubuntu
-      permalink: /ubuntu/:title
-  - scope:
       type: posts
     values:
       title: Essays
       permalink: /post/:title
   - scope:
-      type: news
+      type: stock
     values:
-      title: News
-      permalink: /news/:title
+      title: Stock
+      permalink: /stock/:title
 
 plugins:
   - jekyll-sitemap
