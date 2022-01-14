@@ -32,7 +32,7 @@ collections:
     title: Ubuntu
     default_open: false
     output: true
-  news:
+  stock:
     title: Stock
     default_open: false
     output: true
@@ -57,11 +57,6 @@ defaults:
     values:
       title: Machine Learning of Python
       permalink: /python/:title
-  - scope:
-      type: sql
-    values:
-      title: SQL
-      permalink: /sql/:title
   - scope:
       type: posts
     values:
