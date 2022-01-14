@@ -1,0 +1,146 @@
+---
+title: AWS 인스턴스 설정하기
+last_modified_at: 2021-12-11T10:45:06-05:00
+header:
+  overlay_image: /assets/images/project/amazon_ec2.jpg
+categories:
+  - server
+tags:
+  - aws
+  - server
+  - linux
+---
+
+AWS 에서의 서버 **EC2** 실행 및 설정에 관련된 내용을 정리해 보겠습니다. 2020년 11월 정리된 내용에서 변경된 내용들을 확인해 보겠습니다.
+
+<br/>
+
+# AWS 설정
+## **Aws 인스턴스 생성**
+
+우선 인스턴스는 생성합니다.
+1. 운영체계를 선택 합니다 (ubuntu 20.04)
+2. 인스턴스 스펙을 설정 합니다 (x86, xlarge, 24Gb)
+3. 보안설정과 탄력적 IP를 적용 합니다 (미리 보안설정된 내용을 이름으로 찾아서 적용 합니다)
+
+연결이 완료되면 최초 접속을 테스트 합니다. [StackOverFlow](https://askubuntu.com/questions/1156830/please-login-as-the-user-ubuntu-rather-than-the-user-root) 내용을 참고하면 뒤에 `-l ubuntu` 를 추가 합니다. 추가하지 않으면 자동으로 `root` 사용자가 정의되어 연결되지 않습니다.
+
+```r
+# 퍼블릭 IPv4 DNS
+$ sudo ssh -i "key.pem" ec2-xxx.amazonaws.com -l ubuntu
+```
+
+## **pem 인증키 손상 및 분실시**
+
+pem 파일을 복사하는 경우 아래의 메세지가 출력되는 경우가 있습니다.
+
+```r
+$ ssh -i testkey.pem root@10.4.128.132
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'testkey.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: testkey.pem
+```
+
+대처하는 방법으로 2가지가 있는데
+1. pem 파일의 내용을 수정하는 방법
+2. 새로운 pem 파일을 발급한 뒤 재 연결하는 방법
+
+1번은 `chmod 600 key.pem` 방법으로 파일의 권한을 수정하면 됩니다. 반면 2번 방법은 Key 내용을 새롭게 발급한 뒤, 인스턴스 내용을 새롭게 적용해야 합니다. 
+
+<br/>
+
+# Ubuntu User 추가 및 부가설정
+## **Root 사용자 추가 및 생성**
+
+매번 접속할 때마다 **key.pem** 파일을 필요로 한다면 접속이 어렵거나, 키파일을 공유함으로써 발생가능한 위험들이 있어서 root 사용자와 새로운 비밀번호를 추가해 보겠습니다. 다음의 내용은 **[EC2 root 계정 활성화](https://goddaehee.tistory.com/193)** 내용을 요약 하였습니다.
+
+1. **pem** 로 서버에 접속 합니다.
+2. `$sudo passwd root` 로 root 의 비밀번호를 설정 합니다.
+3. `$sudo vi /etc/ssh/sshd_config` 에서 **PermitRootLogin yes** 변경 후 저장 합니다.
+4. `$sudo vi /etc/ssh/sshd_config` 에서 **PasswordAuthentication yes** 변경 후 저장 합니다.
+5. `$sudo cp /home/ubuntu/.ssh/authorized_keys /root/.ssh` EC2 인증키를 root 로 복사 합니다.
+6. `$sudo systemctl restart sshd` ssh 를 재실행 합니다.
+7. `$ssh -i 'C:\키페어경로\키페어.pem' root@접속IP` 로 접속을 확인 합니다.
+8. `$ssh root@접속IP` 로 최종 접속을 확인 합니다.
+
+```r
+# 탄력적 IP로 접속하기
+$ ssh root@탄력적ip주소
+```
+
+## **Root 시간대 설정변경**
+
+시간대를 확인하면 미국 시간대로 설정 되어 있습니다. 이를 한국 시간대에 맞게 변경 합니다. 이후 필요한 도구들을 설치 합니다. (우분투 20.04 기본설정 내용을 참고 합니다)
+
+```r
+root@ip:~# date
+Sun 26 Dec 2021 05:05:36 AM UTC
+root@ip:~# sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+root@ip:~# date
+Sun 26 Dec 2021 02:05:51 PM KST
+```
+
+## 사용자 추가
+
+이제부터는 Ubuntu 20.04 의 기본적인 설정내용 입니다. **[추가 사용자](https://ithub.tistory.com/215)** 의 내용을 참고 하였습니다.
+
+1. `$ sudo useradd -s /bin/bash -m -d /home/USERNAME -g root USERNAME` 새로운 유저 추가
+1. `$ sudo passwd USERNAME` 유저 비밀번호를 설정 합니다.
+2. `$ sudo chmod u+w /etc/sudoers` sudoers 파일 권한 변경
+3. sudoers 파일 열고, username 추가 합니다.
+   ```r
+   $ sudo vi /etc/sudoers
+   USERNAME ALL=(ALL:ALL) ALL
+   ```
+4. `$ sudo service ssh restart` ssh를 재시작 합니다
+
+<br/>
+
+# Install Modules
+
+EC2 에서 작업을 진행하기 위해서는, 앞서서 만든 계정들 중, **root** 계정을 활용하여 접속을 하고 진행하는게 가장 편리합니다. <strike>별도의 인증 과정없이 설치가 진행 가능하니까요</strike>
+
+## Oh My Zshell Setting
+
+서버에서 실행을 위해 필요한 모듈의 설치 및 설정과 관련된 내용을 살펴보도록 하겠습니다. 아래의 명령을 실행하면 바로 적용 됩니다. `NeoVim` 의 **[Theme](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)** 내용은 링크를 참고 합니다
+
+## Oh My Zshell
+
+```r
+$ apt-get install zsh
+$ zsh
+$ chsh -s $(which zsh)
+$ wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+$ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+$ nano .zshrc                # 설정파일
+   export LANG="ko_KR.UTF-8" # 한글 인코딩을 해결
+   ZSH_THEME="agnoster"      # 테마를 정의한다
+   plugins=(
+     git
+     zsh-autosuggestions
+     history-substring-search
+   )
+
+$ souce .zshrc
+```
+
+## Node.js Version Manager
+
+Node.js 버젼을 쉽게 환경설정을 변경 가능한 Virtual Manger 를 활용할 수 있습니다. **[NVM github](https://github.com/nvm-sh/nvm)** 내용을 참고하여 **[우분투내 설치를](https://trustyoo86.github.io/nodejs/2019/02/18/ubuntu-nvm.html)** 합니다.
+
+```r
+$ sudo apt install curl
+$ sudo apt-get install build-essential libssl-dev
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
+$ source .zshrc
+
+$ nvm ls-remote | grep "v16.*LTS"
+   v16.13.1   (Latest LTS: Erbium)
+$ nvm install 16.13.1
+```

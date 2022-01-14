@@ -1,0 +1,95 @@
+---
+title : 웹 크롤링 - requests, lxml
+last_modified_at: 2019-02-12T10:45:06-05:00
+header:
+  overlay_image: /assets/images/code/crawling.png
+categories:
+  - crawling
+tags: 
+    - lxml
+    - crawling
+---
+
+크롤링에 대해선 앞에서 간단하게 다뤄본 적이 있습니다. [Requests-HTML](https://yongbeomkim.github.io/python/python-crawling/) 앞에서 확인했던 내용은 **JavaScript 로 구현한 데이터를** 수집하는 방법에 대해서 requests, selenium, Requests-HTML 로 접근하는 내용을 다뤄보았습니다 <strike>Requests-HTML 짱!!</strike>
+
+이번에는 가장 보편적으로 활용하는 방법인 **requests, lxml** 을 사용하는 방법을 정리해 보려고 합니다. <strike>할 때마다 헷갈려서 찾느라 허비하는 내용이 많더라구요, 실은 이 부분을 잘 정리한 YouTube 자료가 있어서 가는건 비밀..</strike>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5N066ISH8og" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+[An Intro to Web Scraping With lxml and Python](https://pythontips.com/2018/06/20/an-intro-to-web-scraping-with-lxml-and-python/) 그러면 위 내용을 간단하게 정리해 보겠습니다. <strike>모든 정리내용은 5분안에 복습 가능하도록 합니다</strike>
+
+## HTML 소스코드를 lxml 객체로 변환하기
+원하는 Target 문서의 HTML 소스코드를 불러온 뒤, 분석가능한 객체로 변환을 합니다. 
+
+```python
+import requests
+from lxml.html import fromstring
+headers    = {'User-Agent': 'Mozilla/5.0 (Macintosh)...'}
+url        = 'https://store.steampowered.com/explore/new/'
+response   = requests.get(url, headers=headers)
+response.encoding = 'euc-kr'     # 한글 인코딩 변환
+doc  = fromstring(response.text)
+```
+**response.text :** response 객체내 한글이 제대로 인코딩 되었는지를 확인해야 합니다 이를 지원하는 메소드로 **.content, .text** 2가지가 있는데 **1).content** 는 Raw 출력을 하고, **2) 한글 인코딩 변환을 위해서는 .text** 사용해야만 내용을 알 수 있습니다
+{: .notice--info}
+response.text
+
+## lxml 객체에서 원하는 목록들 추출하기
+생성된 lxml 객체에서 최종적으로 원하는 요소들 추출하는 방법으로는 [xpath](http://twinbraid.blogspot.com/2015/02/xpath.html) 문법을 활용하는 방법이 가장 강력합니다. xpath 문법을 사용하여 해당 조건을 충족하는 객체들을 추출합니다.
+
+```python
+result = doc.xpath('//태그[@속성명="속성값"]')
+result
+
+[<Element table at 0x7ff142dee958>,
+ <Element table at 0x7ff142dee9f8>,
+ <Element table at 0x7ff142deea48>]
+```
+
+하지만 위의 결과로써, 몇개의 객체가 발견되었는지를 알 수 있을 뿐, 최종적인 모습과는 차이가 있습니다. 이를 해결하기 위해 추가적인 작업을 필요로 합니다.
+
+## **/text()** xpath 문법을 활용한 Text 추출
+위에서 추출에 사용했던 **xpath 문법** 에서, 뒤에 **/text()** 를 덧붙이면 해당 Tag 에서 연결된 text 레이블을 추출할 수 있습니다. <strike>참 쉽죠?</strike>
+```python
+titles = result[0].xpath('.//태그[@속성명="속성값"]/text()')
+```
+
+## **.text_content()** 메소드를 활용한 Text 추출
+파이썬 lxml method 에서 **.text_content()** 를 사용하면 보다 쉽게 추출할 수 있습니다.
+```python
+tags = new_releases.xpath('.//태그[@속성명="속성값"]')
+total_tags = []
+for tag in tags:
+    total_tags.append(tag.text_content())
+```
+
+위의 내용을 List 내부 함수로 작성하면 보다 간결합니다.
+```python
+tags = [tag.text_content() 
+        for tag in new_releases.xpath('.//태그[@속성명="속성값"]')]
+```
+
+## 속성값이 여러개인 경우, 특정 조건을 필터링
+지금까지는 lxml 객체에서 원하는 내용을 추출하는 방법을 알아보았습니다. 하지만 해당 조건의 결과중에도 원하지 않는 내용이 포함되는 경우도 많이 발생합니다. 이를 제외한 별도의 규칙을 세우기 곤란한 경우에는 발생하므로, **특정 조건의 값들은 제거한 결과만 추출** 하는 방법을 사용하면 보다 정제된 결과를 얻을 수 있습니다.
+
+xpath 문법중 `.//태그[contains(@속성명, "속성값")]` 을 사용합니다. 이 방법은 class 속성값이 여럿일 때 우선 공통된 속성으로 대상을 추출한 뒤, 불필요한 특정한 조건의 값들은 ('hmd_separator' 클래스 값을 갖는 정보들) 제외한 나머지만 추출합니다
+
+```python
+platforms_div = new_releases.xpath('.//태그[@속성명="속성값"]')
+total_platforms = []
+
+for game in platforms_div:
+    temp = game.xpath('.//태그[contains(@속성명, "속성값")]')
+    platforms = [t.get('class').split(' ')[-1] 
+                    for t in temp]
+    if 'hmd_separator' in platforms:
+        platforms.remove('hmd_separator')
+    total_platforms.append(platforms)
+```
+**contains(@속성명 , "속성값") :** 의 xpath 문법에서 계속적인 오류가 발생했습니다. 1번째 이유는 contain 을 단수로 적용했던 이유가 가장 컸고, 기타 정확하게 지정한 경우에도 오류를 출력하는 경우가 발생하였습니다.
+{: .notice--info}
+
+**lxml 추출객체** 에서 한번 더 **xpath** 문법을 활용하면 분리하였음에도 원본에서 검색하는 여러번의 경우를 겪었습니다. 이 문제는 **xpath를 절대경로** 로 적용하면 해결 가능합니다.
+{: .notice--danger}

@@ -1,0 +1,57 @@
+---
+title : FFMPEG Tutorials
+last_modified_at: 2021-03-11T10:45:06-05:00
+header:
+  overlay_image: /assets/images/book/ubuntu.png
+categories:
+  - ubuntu
+tags: 
+    - ubuntu
+    - ffmpeg
+---
+
+동영상의 편집 및 인코딩 작업을 위해서 ffmpeg 사용 예제들을 정리 합니다.
+
+아래의 과정은 원본 동영상에서 음성을 추출한 뒤, 1초의 차이를 확인하고 [임시 파일을 만든 뒤 합쳐서](https://stackoverflow.com/questions/5276253/create-a-silent-mp3-from-the-command-line) 보정을 합니다. 그리고 대상 동영상에서 정보들을 추출한 뒤, 음성들을 합쳐서 1개의 파일로 만들고, 해당 파일의 [Meta 정보](https://superuser.com/questions/834244/how-do-i-name-an-audio-track-with-ffmpeg)를 입력하면 완성되는 Process 로 진행 하였습니다.
+
+```java
+$ ffmpeg -i X-Files.1993.2AUDIO.WAF.avi -map 0:a:1 -c copy test.m4a
+$ ffmpeg -i test.m4a -c:v copy -c:a libmp3lame -q:a 4 audioKor.mp3
+$ ffmpeg -f lavfi -i anullsrc=r=48000:cl=stereo -t 1 -q:a 9 -acodec libmp3lame audioFix.mp3
+$ ffmpeg -i "concat:audioFix.mp3|audioKor.mp3" -acodec copy audiokor.mp3
+
+$ ffmpeg -i The.x-files.s01e01.mkv
+Input #0, matroska,webm, from 'The.x-files.s01e01.mkv':
+  Metadata:
+    ENCODER         : Lavf55.12.0
+  Duration: 00:48:13.22, start: 0.062000, bitrate: 1538 kb/s
+    Stream #0:0: Video: h264 (High), yuv420p(tv, bt709, progressive), 1280x720, SAR 1:1 DAR 16:9, 23.98 fps, 23.98 tbr, 1k tbn, 47.95 tbc (default)
+    Stream #0:1(eng): Audio: aac (LC), 48000 Hz, 5.1, fltp (default)
+    Metadata:
+      title           : Surround
+      LANGUAGE        : eng
+    Stream #0:2(eng): Subtitle: ass
+
+$ ffmpeg -i The.x-files.s01e01.mkv -codec copy The.x-files.s01e01.mp4
+$ ffmpeg -i The.x-files.s01e01.mkv -b:a 48k -vn audio.mp3
+
+$ ffmpeg -i The.x-files.s01e01.mkv -i audiokor.mp3 -i audio.mp3 -vcodec copy -acodec copy -copyinkf -map 0:v:0 -map 1:a:0 -map 2:a:0 -shortest The.x-files.s01e01.2audio.mp4
+
+$ ffmpeg -i The.x-files.s01e01.2audio.mp4 -map 0 -c copy -metadata:s:a:0 title="One" -metafata:s:a:1 title="Two" -metadata:s:a:0 language=kor -metadata:s:a:1 language=eng The.x-files.s01e01.2audio.mp4
+```
+
+다음은 동영상 폰트를 추가 및 화면크기 조정하는 내용 입니다.
+
+```java
+$ ffmpeg -hwaccel cuda  -i The\ Countryside\ There\ Is\ No\ Riding.mp4 -vf "subtitles=Riding.srt:force_style='D2Coding,Fontsize=30'" -c:v libx264 -c:a aac test.mp4
+
+$ ffmpeg -hwaccel cuda  -i Continuing\ The\ Development.mp4 -vcodec copy -acodec copy -ss "01:59:17" -to "02:30:13" test.mp4
+
+$ ffmpeg -i sbscnbc.mp4 -filter:v "crop=1150:646:65:36" -c:v libx264 -acodec copy test.mp4
+$ ffmpeg -i sbsnbc.mp4 -filter:v "crop=1920:1138:0:62" -c:v libx264 -acodec copy test.mp4
+$ ffmpeg -i sbsnbc.mp4 -filter:v "crop=1920:1074:0:62" -c:v libx264 -acodec copy test.mp4
+$ ffmpeg -i test.mp4 -vcodec copy -acodec copy -ss "00:00:00" -to "00:03:07" test2.mp4
+$ ffmpeg -i test.mp4 -vcodec copy -acodec copy -ss "00:00:00" -to "00:03:07" test2.mp4
+$ ffmpeg -i sbscnbc.mp4 -filter:v "crop=1920:1074:0:62" -c:v libx264 -acodec copy test.mp4
+```
+
