@@ -17,7 +17,7 @@ featured_posts:
 
 collections:
   book:
-    title: Book
+    title: 도서리뷰
     default_open: false
     output: true
   javascript:
@@ -33,7 +33,7 @@ collections:
     default_open: false
     output: true
   stock:
-    title: Stock
+    title: 금융투자
     default_open: false
     output: true
   posts:
