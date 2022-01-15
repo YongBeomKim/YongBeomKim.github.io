@@ -1,18 +1,13 @@
 ---
-title : Valuation and 투자의 본질 by Quant
-last_modified_at: 2021-07-25T10:45:06-05:00
-header:
-   overlay_image: /assets/images/quant/quant_banner.jpg
-categories:
-  - quant
-tags: 
-    - quant
-    - valuation
+layout: blog
+title: 투자의 본질
+tags:
+- valuation
 ---
 
 박세익 전무의 `투자의 본질` 과 `현명한 초보 투자자` 의 기업의 가치분석
 
-<br/>
+![book cover]({{ site.url }}{{ site.baseurl }}/assets/book/valuation.jpg)
 
 # 5분에 기업가치 계산하기
 

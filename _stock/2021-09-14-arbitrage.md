@@ -1,13 +1,8 @@
 ---
-title : Arbitrage 차익거래
-last_modified_at: 2021-07-25T10:45:06-05:00
-header:
-   overlay_image: /assets/images/quant/quant_banner.jpg
-categories:
-  - quant
-tags: 
-    - quant
-    - arbitrage
+layout: blog
+title: 차익거래 (Arbitrage) 
+tags:
+- arbitrage
 ---
 
 차익거래 선물의 거래내용에 대해서 정리를 해보겠습니다. 이 내용은 "삼프로Tv" 에서 박세익 전무의 설명 내용을 정리한 것입니다.

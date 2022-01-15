@@ -1,14 +1,11 @@
 ---
-title : Django Query Set Tips
-last_modified_at: 2021-10-14T12:45:06-05:00
-header:
-  overlay_image: /assets/images/django/django-rest-3.jpg
-categories:
-  - django
-tags: 
-    - django
-    - start
+layout: blog
+title: Django ORM Query
+tags:
+- django
+- orm
 ---
+
 
 Django 에서 유용한 tip 들을 [gaussian37.github.io](https://gaussian37.github.io/) 에서 추출한 내용들로 정해 봅니다. 정리한 내용은 다음과 같습니다.
 
