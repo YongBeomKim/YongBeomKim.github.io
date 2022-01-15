@@ -21,15 +21,15 @@ collections:
     default_open: false
     output: true
   javascript:
-    title: JS
+    title: 자바스크립트
     default_open: false
     output: true
   python:
-    title: Python
+    title: 파이썬
     default_open: false
     output: true
   ubuntu:
-    title: Ubuntu
+    title: 우분투 DB
     default_open: false
     output: true
   stock:
@@ -37,7 +37,7 @@ collections:
     default_open: false
     output: true
   posts:
-    title: Essays
+    title: 일상기록
     default_open: false
     output: true
 
