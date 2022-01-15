@@ -1,18 +1,13 @@
 ---
-title : PostgreSQL Tutorial
-last_modified_at: 2021-06-07T10:45:06-05:00
-header:
-   overlay_image: /assets/images/project/postgresql.png
-categories:
-  - psql
-tags: 
-    - sql
-    - psql
+layout: blog
+title: PostgreSQL 기초 명령어
+tags:
+- psql
 ---
 
 Python 으로 수집 정리한 자료를 저장 및 관리하는 PipeLine 으로 Python 의 `apscheduler` 과 `Postgresql shell` 를 활용 합니다.
 
-<br/>
+![book cover]({{ site.url }}{{ site.baseurl }}/assets/book/psql.jpg)
 
 # 모두를 위한 PostgreSQL (psql shell)
 

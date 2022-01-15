@@ -1,16 +1,12 @@
 ---
-title : Reactify Django Documents
-last_modified_at: 2020-07-28T10:45:06-05:00
-header:
-  overlay_image: /assets/images/react/dj_react.png
-categories:
-  - django
-tags: 
-    - django
-    - react
+layout: blog
+title: Django for React.js
+tags:
+- django
+- json
 ---
 
-**Clean Code, Refectoring** 에 관심을 갖으면서 **작업의 내용을 명확히 하는 것** 가장 중요한 부분임을 확인하게 되었습니다. 이 부분은 React.js 를 **[리액트를 다루는 기술(개정판)](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791160508796&orderClick=LEa&Kc=)** 의 **목차** 와 **도서 내용** 을 스터디 하면서 보다 명확하게 할 수 있었습니다. <strike>**작업을 계속 하면서 이 부분은 계속 보완할 필요가 있습니다.**</strike>
+Django 의 Template 문법을 HTML 이 아닌 JavaScript 와 상호작용을 위한 내용을 살펴보겠습니다.
 
 <br />
 

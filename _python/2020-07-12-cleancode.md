@@ -1,13 +1,9 @@
 ---
-title : 클린코드 with Python
-last_modified_at: 2020-07-11T10:45:06-05:00
-header:
-  overlay_image: /assets/images/code/clean_code.jpg
-categories:
-  - cleancode
-tags: 
-    - javascript
-    - cleancode
+layout: blog
+title: Django for React.js
+tags:
+- django
+- json
 ---
 
 JavaScript 내용으로 정리된 Clean Code 내용을 Python 에 맞게 작성된 내용 입니다. [원본 내용](https://github.com/zedr/clean-code-python) 은 2k Star 를 받을만큼 추천이 많은 내용 입니다.

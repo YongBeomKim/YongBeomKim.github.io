@@ -6,7 +6,6 @@ tags:
 - orm
 ---
 
-
 Django 에서 유용한 tip 들을 [gaussian37.github.io](https://gaussian37.github.io/) 에서 추출한 내용들로 정해 봅니다. 정리한 내용은 다음과 같습니다.
 
 1. Django ORM QuerySet Filter

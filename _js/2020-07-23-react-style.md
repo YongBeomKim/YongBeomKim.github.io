@@ -1,13 +1,8 @@
 ---
-title : BOOK 리액트 스타일 가이드
-last_modified_at: 2020-07-23T10:45:06-05:00
-header:
-  overlay_image: /assets/images/code/react-banner.png
-categories:
-  - react
-tags: 
-    - javascript
-    - react
+layout: blog
+title: 리액트 스타일 가이드
+tags:
+- react
 ---
 
 **더 괜찮은 개발자가 되기 위한 리액트 스타일 가이드** 도서를 빠르게 복습하면서 이 책에서만 볼 수 있었던 내용을 정리 합니다. 이 내용은 **리액트 서울 스터디** github 에서도 내용을 확인하실 수 있습니다.
