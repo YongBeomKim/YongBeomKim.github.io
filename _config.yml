@@ -37,7 +37,7 @@ collections:
     default_open: false
     output: true
   posts:
-    title: 일상기록
+    title: 블로그
     default_open: false
     output: true
 
