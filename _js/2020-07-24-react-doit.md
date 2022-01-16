@@ -26,8 +26,8 @@ const string1 = '안녕하세요';
 const string2 = '반갑습니다';
 const greeting = `${string1} & ${string2}`;
 const product = {
-    name: '리액트 정석',
-    price: '32,000원'
+  name: '리액트 정석',
+  price: '32,000원'
 };
 const price = 10000;
 const number = 15;

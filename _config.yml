@@ -25,24 +25,24 @@ collections:
     title: 도서리뷰
     default_open: false
     output: true
-  js:
-    title: 자바스크립트
+  stock:
+    title: 금융투자
     default_open: false
     output: true
-  python:
-    title: 파이썬
+  posts:
+    title: 취미,일상
     default_open: false
     output: true
   ubuntu:
     title: 우분투 DB
     default_open: false
     output: true
-  stock:
-    title: 금융투자
+  python:
+    title: 파이썬
     default_open: false
     output: true
-  posts:
-    title: 취미 & 일상
+  js:
+    title: 자바스크립트
     default_open: false
     output: true
 
