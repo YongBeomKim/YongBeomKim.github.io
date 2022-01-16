@@ -6,6 +6,11 @@ markdown: kramdown
 highlighter: rouge
 javascript_enabled: true
 
+# Markdown Processing
+kramdown:
+  input: GFM
+  math_engine: mathjax
+
 featured_posts_title: Unrelated
 featured_posts:
   - url: '#'
@@ -70,3 +75,6 @@ defaults:
 
 plugins:
   - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
