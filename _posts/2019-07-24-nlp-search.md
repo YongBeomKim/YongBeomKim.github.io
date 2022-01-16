@@ -1,6 +1,6 @@
 ---
-layout: post
-title: 자연어수업 (개론 및 크롤링)
+layout: blog
+title: 자연어수업 (자료검색)
 tags: 
 - nlp
 ---

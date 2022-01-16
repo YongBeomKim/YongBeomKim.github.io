@@ -1,9 +1,8 @@
 ---
 layout: blog
-title: Django for React.js
+title: Clean Code
 tags:
-- django
-- json
+- cleancode
 ---
 
 JavaScript 내용으로 정리된 Clean Code 내용을 Python 에 맞게 작성된 내용 입니다. [원본 내용](https://github.com/zedr/clean-code-python) 은 2k Star 를 받을만큼 추천이 많은 내용 입니다.

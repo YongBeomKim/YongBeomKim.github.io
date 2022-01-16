@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Django for React.js
+title: Django for Json
 tags:
 - django
 - json

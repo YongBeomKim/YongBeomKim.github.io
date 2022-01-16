@@ -13,7 +13,7 @@ tags:
 
 ## 기업가치 분석 Process
 
-![valueation](/assets/images/quant/valuation_basic.jpeg)
+![valueation](/assets/book/valuation_basic.jpeg)
 
 - 기업이 벌어들인 돈과, 기업 내부 축적된 자산을 활용하여 가치를 분석
 - (1) 재무제표 **영업이익 $\times 10$** (멀티플, 기업평균 PER 비교)

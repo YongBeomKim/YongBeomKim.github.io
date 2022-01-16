@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blog
 title: 자연어수업 (통계적 NLP)
 tags: 
 - nlp
