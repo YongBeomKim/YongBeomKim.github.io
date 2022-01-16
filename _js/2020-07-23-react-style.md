@@ -107,14 +107,14 @@ props.data.map((data) => {
 src
  ------ index.js
  ------ components
-          -------- container
-                      ------ ...jsx
-          -------- presentational
-                      ------ ...jsx
+    -------- container
+                  ------ ...jsx
+    -------- presentational
+                  ------ ...jsx
  ------ presentational
-          -------- ...jsx
+    -------- ...jsx
  ------ modules
-          ---- ...jsx
+    ---- ...jsx
 ```
 
 ## 6 Component & CSS

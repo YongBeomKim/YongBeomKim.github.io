@@ -42,7 +42,7 @@ collections:
     default_open: false
     output: true
   posts:
-    title: 블로그
+    title: 일상 & 미술
     default_open: false
     output: true
 
@@ -53,7 +53,7 @@ defaults:
       title: Book Review
       permalink: /book/:title
   - scope:
-      type: js
+      type: javascript
     values:
       title: JavaScript & TypeScript
       permalink: /js/:title
