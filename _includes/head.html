@@ -26,6 +26,33 @@
     gtag('config', 'G-6CP3TK6L54');
   </script>
 
+  <!-- latex module 
+  https://joddong.github.io/develop/Jekyll_with_latex/
+  -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+          equationNumbers: {
+          autoNumber: "AMS"
+        }
+      },
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\\(","\\)"]  ],
+        displayMath: [ ['$$', '$$'], ["\\[","\\]"]  ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+      alert("Math Processing Error: "+message[1]);
+    });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+      alert("Math Processing Error: "+message[1]);
+    });
+  </script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+
   <title>{% if page.title == "Home" %}{{ site.title }}{% else %}{{ page.title }} &middot; {{ site.title }}{% endif %}</title>
   {% if page.layout == 'post' %}
     <script type="application/ld+json">
