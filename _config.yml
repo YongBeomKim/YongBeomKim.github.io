@@ -42,7 +42,7 @@ collections:
     default_open: false
     output: true
   posts:
-    title: 일상 & 미술
+    title: 취미 & 일상
     default_open: false
     output: true
 
