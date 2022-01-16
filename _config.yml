@@ -25,7 +25,7 @@ collections:
     title: 도서리뷰
     default_open: false
     output: true
-  javascript:
+  js:
     title: 자바스크립트
     default_open: false
     output: true
@@ -53,7 +53,7 @@ defaults:
       title: Book Review
       permalink: /book/:title
   - scope:
-      type: javascript
+      type: js
     values:
       title: JavaScript & TypeScript
       permalink: /js/:title
