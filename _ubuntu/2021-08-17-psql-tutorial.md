@@ -205,3 +205,20 @@ user@localhost:db> INSERT INTO book_order
 | 2  | {"name":"Yang", "book":{"name":"mongodb","q":3}}|
 +----+-------------------------------------------------+
 ```
+
+## PostgreSQL DataBase [용량 확인하기](https://codereader37.tistory.com/108)
+
+- SELECT pg_size_pretty(('mydb')) : mydb 데이터베이스 용량 
+- SELECT pg_size_pretty(pg_relation_size('mytable')) : mytable 테이블 사이즈 
+- SELECT pg_size_pretty(pg_index_size('mytable')) : mytable 인덱스 크기
+- SELECT pg_size_pretty(pg_total_relation_size('mytable')) : mytable 연관인덱스 합산
+
+```sql
+SELECT pg_size_pretty(pg_database_size('news'))
++------------------+
+| pg_size_pretty   |
+|------------------|
+| 137 MB           |
++------------------+
+SELECT 1
+```
