@@ -17,7 +17,7 @@ Statistic NLP 를 앞으로 다룹니다. 이는 통계를 기반으로 하는 N
 
 확률값을 계산하는 경우
 
-```json
+```
 P(H) = 셉타
 P(T) = 1 - 셉타 (P>=0)
 P(HHTHT) = 셉타 * 셉타 * (1-셉타) * 셉타 * (1-셉타)
@@ -32,9 +32,9 @@ P(D|셉터) = 셉타^(aH) (1-셉타)^((n-a)H)
 
 ## MLE (Maximum Likelihood Estimation)
 
-셉타^ : Best Candidate 
+셉타^ : Best Candidate
 
-셉타^ = argmax P(D|셉타)  # 원래의 셉타 와 셉타^ 이 유사하도록 모델을 만든다
+$$셉타^ = argmax P(D|셉타)$$  # 원래의 셉타 와 셉타^ 이 유사하도록 모델을 만든다
 
 미분을 사용하여 개별 theta 값을 활용하여 미분을 합니다
 
@@ -66,9 +66,9 @@ MLE 는 관찰결과를 바탕으로 결과를 도출한 결과인 만큼, Poste
 
 Linear Regression 의 활용
 
-f^  측정한 확률값을 활용하여, 모델의 결과값을 추정
+`f^`  측정한 확률값을 활용하여, 모델의 결과값을 추정
 
-h:f^(x;셉터) = Sigma ^n _(i=0) 
+$$ h:f^(x;셉터) = Sigma ^n _(i=0) $$
 
 Squared Error (Sum/ Meam Squared Error 를 최소로 하는 함수를 활용하여 회귀 모델을 추정합니다.)
 
@@ -87,20 +87,19 @@ Logistic Regression Classifire
 참고로 weight 값은 **역전파를** 활용한 **BackPropagate 편미분을** 활용하여 전체적인 weight 값이 훈련 과정마다 보정 됩니다.
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/images/book/sigmoid.png">
+  <img src="{{site.baseurl}}/assets/code/sigmoid.png">
   <figcaption></figcaption>
 </figure>
 
 
 ### Logistic Function
 
-f(x) = 1 / 1 + e^(-x)
+$$f(x) = 1 / 1 + e^(-x)$$
 
 <figure class="align-center">
-  <img src="https://s3.amazonaws.com/ck12bg.ck12.org/curriculum/108070/thumb_540_50.jpg">
+  <img src="{{site.baseurl}}/assets/code/logistic-growth.jpg">
   <figcaption></figcaption>
 </figure>
-
 
 ### Logistic Regression
 
@@ -142,12 +141,12 @@ MLP : 사전지식을 활용하여 모델을 추정
 argmin : 오차가 작은 값을 찾는다
 argmax : 최대 성능을 갖는 값을 찾는다
 
-argmin_{f}P (f(x) =/= Y) = f^* (옵티멀한 분류기)
-argmax_(y=x)P(Y=y|X=x) = f^*(x) (Naive Bayse 모델링)
+$$argmin_{f}P (f(x) =/= Y) = f^*$$ (옵티멀한 분류기)
+$$argmax_(y=x)P(Y=y|X=x) = f^*(x)$$ (Naive Bayse 모델링)
 
 ## MLE & MAP
 
-argmax_{theta}P(D|theta)
+$$argmax_{theta}P(D|theta)$$
 
 **MLE** 는 **Likelihood** 를 활용하여 데이터가 많으면 성능이 좋지만, **MAP 는 **데이터가 적어도** (특정 확률분포 데이터) 효과적인 모델을 추정할 수 있어서 모델링에 폭넓게 활용 가능합니다.
 
@@ -165,7 +164,7 @@ Conditional Independence : Naive Bayse 모델링 구현시 Token 간은 모두 �
 
 P(스팸| 관련token, token, token..) = P(token, token|스팸)P(스팸)
 
-$ \nabla_\boldsymbol{x} J(\boldsymbol{x}) $
+$$ \nabla_\boldsymbol{x} J(\boldsymbol{x}) $$
 
 ## Conditional vs Marginal
 
