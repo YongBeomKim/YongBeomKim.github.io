@@ -41,6 +41,10 @@ collections:
     title: 파이썬
     default_open: false
     output: true
+  django:
+    title: 장고 & React
+    default_open: false
+    output: true
   js:
     title: 자바스크립트
     default_open: false
@@ -62,6 +66,11 @@ defaults:
     values:
       title: Machine Learning of Python
       permalink: /python/:title
+  - scope:
+      type: django
+    values:
+      title: Machine Learning of Python
+      permalink: /django/:title
   - scope:
       type: posts
     values:
