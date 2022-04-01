@@ -46,3 +46,14 @@ for code in tqdm(codes_df):
 def get_project(request, project_id:int):
     return get_object_or_404(Project, id=project_id)
 ```
+
+# Python Error
+## 'str' object is not callable
+
+```python
+TypeError: 'str' object is not callable
+```
+
+변수와 함수 이름이 정리되지 않고 작업한 경우 발견하게 됩니다. **<span style="color:var(--strong);">호출한 함수</span>** 가 **<span style="color:var(--accent);">str</span>** 로 선언이 되서 **<span style="color:var(--accent);">호출 (callable)</span>** 을 할 수 없다는 의미 입니다.
+
+즉 사용자가 호출한 함수의 이름과, 동일한 객체가 있는지를 확인하면 바로 해결 가능한 문제 였습니다.
