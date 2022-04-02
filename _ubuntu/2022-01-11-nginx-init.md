@@ -12,7 +12,7 @@ tags:
 [Django 공식문서](https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/uvicorn/) 에서  실행을 위한 미들웨어로 [Uvicorn](https://www.uvicorn.org/) 를 언급하고 있습니다. 별도 설정없이 자동으로 `127.0.0.1:8000` 주소로 실행됨을 로그로써 확인 가능합니다.
 
 ```r
-$ gunicorn myproject.asgi:application -k uvicorn.workers.UvicornWorker
+$ gunicorn mysite.asgi:application -w 2 -k uvicorn.workers.UvicornWorker
 ```
 
 <br/>
@@ -56,6 +56,14 @@ $ find / -name nginx.conf
 $ tree .
 ├── conf.d
 │   └── default.conf
+└── nginx.conf
+
+$ tree -L 2
+├── sites-available
+│   ├── default
+│   └── default_bak
+├── sites-enabled
+│   └── default -> /etc/nginx/sites-available/default
 └── nginx.conf
 ```
 
