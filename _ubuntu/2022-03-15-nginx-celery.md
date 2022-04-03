@@ -1,8 +1,9 @@
 ---
 layout: blog
-title: NGINX & Service 등록
+title: NGINX Celery Flower 등록
 tags:
 - nginx
+- celery
 ---
 
 # Nginx Gunicorn & Celery
@@ -55,9 +56,10 @@ $ sudo systemctl enable gunicorn
   /etc/systemd/system/multi-user.target.wants/gunicorn.service → 
   /etc/systemd/system/gunicorn.service.
 
-$ sudo systemctl start gunicorn
-$ sudo systemctl status gunicorn
-$ sudo systemctl -f stop gunicorn
+$ sudo systemctl start gunicorn   # 서비스 시작
+$ sudo systemctl status gunicorn  # 상태확인
+$ sudo systemctl -f stop gunicorn # 멈춤 (재부팅시 재실행 된다)
+$ sudo systemctl disable gunicorn # 재부팅시 실행 안함
 ```
 
 <br/>
@@ -150,7 +152,7 @@ WantedBy=multi-user.target
 $ sudo vi /etc/systemd/system/celerybeat.service
 
 [Unit]
-Description=MarketSearch
+Description=DjangoSite
 After=network.target
 
 [Service]
@@ -166,17 +168,71 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
+## flower.service
+
+[Flower] 는 Celery 동작 내용을 모니터링 GUI를 생성하는 모듈 입니다. [daemon 등록예제](https://stackoverflow.com/questions/13579047/celery-flower-as-daemon) 를 참고하여 본인의 시스템에 맞게 내용을 보완 합니다.
+
+```r
+$ sudo vi /etc/systemd/system/flower.service
+
+[Unit]
+Description=Flower Celery Service
+
+[Service]
+User=USERNAME
+Group=www-data
+WorkingDirectory=/home/USERNAME/Source
+Environment=/home/USERNAME/Python/venv/bin/celery -A server --broker=redis://localhost:6379 flower
+Restart=on-failure
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+```
+
 ## SystemCTL
 앞에 작성한 2개의 파일을 시스템 파일로 등록을 하고 재부팅하면, Nginx 와 Django 에 잘 연동되어 작동되는 모습을 확일 할 수 있습니다.
 
 ```r
 $ sudo systemctl enable celery.service                 
   Created symlink 
-  /etc/systemd/system/multi-user.target.wants/celery.service → 
-  /etc/systemd/system/celery.service.
+  /etc/systemd/system/multi-user.target.wants/celery.service
+  → /etc/systemd/system/celery.service.
 
 $ sudo systemctl enable celerybeat.service
   Created symlink 
-  /etc/systemd/system/multi-user.target.wants/celerybeat.service →
-  /etc/systemd/system/celerybeat.service.
+  /etc/systemd/system/multi-user.target.wants/celerybeat.service 
+  → /etc/systemd/system/celerybeat.service.
+
+$ sudo systemctl enable flower.service        
+  Created symlink 
+  /etc/systemd/system/multi-user.target.wants/flower.service
+  → /etc/systemd/system/flower.service.
 ```
+
+## Nginx for Flower
+
+Flower 는 Django 서비스와 별도로 5555번 포트에서 동작을 합니다. 따라서 Nginx 에서도 접속할 수 있도록 아래의 설정내용을 추가한 뒤 재실행 해야 합니다. [Stackoverflow 자료출처](https://stackoverflow.com/questions/41241048/django-how-can-i-access-celery-flower-page-in-production-mode)
+
+```r
+location ~ ^/flower/? {
+    rewrite ^/flower/?(.*)$ /$1 break;
+
+    sub_filter '="/' '="/flower/';
+    sub_filter_last_modified on;
+    sub_filter_once off;
+
+    # proxy_pass http://unix:/tmp/flower.sock:/;
+    proxy_pass http://localhost:5555;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_http_version 1.1;
+}
+```
+
+# 참고사이트
+- [Celery Document](https://django.fun/docs/celery/en/5.1/userguide/daemonizing/)
+- [Deploy celery and celery beat in production with Django (Ubuntu)](https://medium.com/clean-slate-technologies/deploy-celery-and-celery-beat-in-production-with-django-ubuntu-de71ccb24907)
+- [Daemonizing Celery Beat with systemd](https://ahmadalsajid.medium.com/daemonizing-celery-beat-with-systemd-97f1203e7b32)
