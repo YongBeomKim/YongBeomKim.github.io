@@ -127,6 +127,8 @@ Celery 는 [`celery.service`](https://docs.celeryq.dev/en/latest/userguide/daemo
 
 ## Celery Worker
 공식문서를 참고하여 초간단 버젼으로 서비스 파일을 작성해 보겠습니다. 기본 골격은 앞의 `gunicorn` 데몬 파일을 재활용 하였고 추가적인 옵션들만 덧붙여 보았습니다.
+
+[2022-04추가](https://flower.readthedocs.io/en/latest/prometheus-integration.html#set-up-your-celery-application) 이벤트 로그 확인을 용이하도록 `-E` 옵션을 추가 합니다.
 ```r
 $ sudo vi /etc/systemd/system/celery.service
 
@@ -140,7 +142,7 @@ User=USERNAME
 Group=www-data
 WorkingDirectory=/home/USERNAME/Source
 Environment="PATH=/home/USERNAME/Python/venv/bin"
-ExecStart=/home/USERNAME/Python/venv/bin/celery -A server worker -l info
+ExecStart=/home/USERNAME/Python/venv/bin/celery -A server worker -l info -E
 Restart=always
 
 [Install]
@@ -182,12 +184,19 @@ Description=Flower Celery Service
 User=USERNAME
 Group=www-data
 WorkingDirectory=/home/USERNAME/Source
-Environment=/home/USERNAME/Python/venv/bin/celery -A server --broker=redis://localhost:6379 flower
+Environment=/home/USERNAME/Python/venv/bin/celery flower -A server --broker=redis://localhost:6379/0 
 Restart=on-failure
 Type=simple
 
 [Install]
 WantedBy=multi-user.target
+```
+
+[2022-04추가](https://flower.readthedocs.io/en/latest/prometheus-integration.html#start-flower-monitoring) 위 내용대로 적용하면 Localhost 에서는 잘 동작을 하는 모습을 보였지만, Server 에서는 Flower 의 `status` 와 연결이 되지않아서 동작의 상세 내용을 확인할 수 없었습니다.
+
+임시 방법으로 아래의 명령을 사용하면 터미널에서 직접 이벤트 실행 내용을 확인할 수 있습니다.
+```r
+$ celery -A server events --dump
 ```
 
 ## SystemCTL
