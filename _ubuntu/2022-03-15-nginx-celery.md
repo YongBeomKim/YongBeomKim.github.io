@@ -6,14 +6,62 @@ tags:
 - celery
 ---
 
-# Nginx Gunicorn & Celery
-이번 페이지에서는 Celery 를 함께 등록하는 과정 까지 진행을 해보겠습니다.
+Django 서비스를 Uvicorn, Celery, Flower 설정 및 서버설정 과정 내용을 정리해 보겠습니다.
+- [Celery 공식문서](https://docs.celeryq.dev/en/latest/)
+- [Celery Fork 문서 Python.fum](https://django.fun/docs/celery/en/5.1/)
+- [Flower 모니터링](https://flower.readthedocs.io/en/latest/)
 
 <br/>
 
 # Content
+- [Content](#content)
 - [Uvicorn](#uvicorn)
-- [Running with Gunicorn](#running-with-gunicorn)
+  - [Running with Gunicorn](#running-with-gunicorn)
+  - [gunicorn service](#gunicorn-service)
+  - [daemon service](#daemon-service)
+- [Nginx](#nginx)
+  - [Install](#install)
+  - [파일의 구성](#파일의-구성)
+  - [nginx.conf](#nginxconf)
+  - [default.conf (default)](#defaultconf-default)
+  - [Reload](#reload)
+- [Celery](#celery)
+  - [Setting Files](#setting-files)
+  - [Celery Worker](#celery-worker)
+  - [Celery Beat](#celery-beat)
+  - [flower.service](#flowerservice)
+  - [SystemCTL](#systemctl)
+  - [Nginx for Flower](#nginx-for-flower)
+- [참고사이트](#참고사이트)
+
+- [Nginx](#nginx)
+  - [Install](#install)
+  - [파일의 구성](#파일의-구성)
+  - [nginx.conf](#nginxconf)
+  - [default.conf (default)](#defaultconf-default)
+  - [Reload](#reload)
+
+- [Content](#content)
+- [Uvicorn](#uvicorn)
+  - [Running with Gunicorn](#running-with-gunicorn)
+  - [gunicorn service](#gunicorn-service)
+  - [daemon service](#daemon-service)
+- [Nginx](#nginx)
+  - [Install](#install)
+  - [파일의 구성](#파일의-구성)
+  - [nginx.conf](#nginxconf)
+  - [default.conf (default)](#defaultconf-default)
+  - [Reload](#reload)
+- [Celery](#celery)
+  - [Setting Files](#setting-files)
+  - [Celery Worker](#celery-worker)
+  - [Celery Beat](#celery-beat)
+  - [flower.service](#flowerservice)
+  - [SystemCTL](#systemctl)
+  - [Nginx for Flower](#nginx-for-flower)
+- [참고사이트](#참고사이트)
+
+- [참고사이트](#참고사이트)
 
 <br/>
 
@@ -24,7 +72,7 @@ tags:
 $ gunicorn mysite.asgi:application -w 2 -k uvicorn.workers.UvicornWorker
 ```
 
-## gunicorn.service
+## gunicorn service
 위 스크립트를 자동으로 실행하도록 `service deamon` 을 등록 합니다. 
 1. `User` 는 스크립트를 실행하는 **<span style="color:var(--strong);">우분투 User</span>** 의 이름을 입력합니다. 
 2. `Group` 은 `nginx.conf` 의 **<span style="color:var(--strong);">user</span>** 이름을 입력 합니다.
@@ -45,7 +93,7 @@ ExecStart=/home/USERNAME/Python/venv/bin/gunicorn myproject.asgi:application -k 
 WantedBy=multi-user.target
 ```
 
-## daemon service 등록 및 실행
+## daemon service
 1. daemon 과 연결작업을 먼저 한 뒤
 2. System 자동실행 등록 절차를 진행 합니다
 3. 재설정 하는 경우, 서비스를 종료를 한 뒤 새로 연결작업을 진행 해야 합니다.
