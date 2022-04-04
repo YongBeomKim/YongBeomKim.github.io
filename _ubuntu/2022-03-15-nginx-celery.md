@@ -10,6 +10,7 @@ Django 서비스를 Uvicorn, Celery, Flower 설정 및 서버설정 과정 내�
 - [Celery 공식문서](https://docs.celeryq.dev/en/latest/)
 - [Celery Fork 문서 Python.fum](https://django.fun/docs/celery/en/5.1/)
 - [Flower 모니터링](https://flower.readthedocs.io/en/latest/)
+- [우분투 Service 설정내용](https://potatogim.net/wiki/Systemctl)
 
 <br/>
 
@@ -213,10 +214,23 @@ WorkingDirectory=/home/USERNAME/Source
 Environment="PATH=/home/USERNAME/Python/venv/bin"
 ExecStart=/home/erdos/USERNAME/venv/bin/celery -A server beat -l info
 Restart=always
+StartLimitBurst=0
 
 [Install]
 WantedBy=multi-user.target
 ```
+
+> [2022-04-04 추가](https://www.suse.com/support/kb/doc/?id=000019750)
+```r
+2020-10-22 systemd[1]: celerybeat.service: Start request repeated too quickly.
+```
+재부팅한 경우 위 오류가 나타나 제대로 실행되지 않는 경우가 빈번하게 발생하였습니다. 동일한 문제가 발생하는 경우에는 아래의 명령을 추가 적용 합니다.
+```r
+$ systemctl show -p FragmentPath celerybeat.service
+  FragmentPath=/usr/lib/systemd/system/celerybeat.service
+$ systemctl daemon-reload
+```
+
 
 ## flower.service
 
