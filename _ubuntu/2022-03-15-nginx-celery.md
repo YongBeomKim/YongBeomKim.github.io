@@ -31,9 +31,11 @@ Celery, Flower 의 서버설정 과정을 정리해 보았습니다.
   - [Celery Worker](#celery-worker)
   - [Celery Beat](#celery-beat)
   - [SystemCTL](#systemctl)
+  - [내용의 추가](#내용의-추가)
 - [Flower](#flower)
   - [Nginx for Flower](#nginx-for-flower)
   - [flower.service](#flowerservice)
+  - [flower service 내용추가](#flower-service-내용추가)
 - [Supervisor](#supervisor)
 - [참고사이트](#참고사이트)
 
@@ -60,9 +62,11 @@ Celery, Flower 의 서버설정 과정을 정리해 보았습니다.
   - [Celery Worker](#celery-worker)
   - [Celery Beat](#celery-beat)
   - [SystemCTL](#systemctl)
+  - [내용의 추가](#내용의-추가)
 - [Flower](#flower)
   - [Nginx for Flower](#nginx-for-flower)
   - [flower.service](#flowerservice)
+  - [flower service 내용추가](#flower-service-내용추가)
 - [Supervisor](#supervisor)
 - [참고사이트](#참고사이트)
 
@@ -81,6 +85,7 @@ $ gunicorn mysite.asgi:application -w 2 -k uvicorn.workers.UvicornWorker
 위 스크립트를 자동으로 실행하도록 `service deamon` 을 등록 합니다. 
 1. `User` 는 스크립트를 실행하는 **<span style="color:var(--strong);">우분투 User</span>** 의 이름을 입력합니다. 
 2. `Group` 은 `nginx.conf` 의 **<span style="color:var(--strong);">user</span>** 이름을 입력 합니다.
+
 ```r
 $ sudo vi /etc/systemd/system/gunicorn.service
 [Unit]
@@ -175,6 +180,7 @@ $ nginx -s [ stop | quit | reopen | reload ]
 
 ## Setting Files
 Celery 는 [`celery.service`](https://docs.celeryq.dev/en/latest/userguide/daemonizing.html#service-file-celery-service) 와 [`celerybeat.service`](https://docs.celeryq.dev/en/latest/userguide/daemonizing.html#service-file-celerybeat-service) 2개의 서비스를 필요로 합니다. 2개의 서비스 파일은 공식문서의 내용을 그대로 사용하면 됩니다. 사용자 변수 내용은 `/etc/conf.d/celery` 파일을 호출하는 방식으로 운영 됩니다.
+
 1. /etc/systemd/system/celery.service
 2. /etc/systemd/system/celerybeat.service
 3. /etc/conf.d/celery
@@ -182,7 +188,8 @@ Celery 는 [`celery.service`](https://docs.celeryq.dev/en/latest/userguide/daemo
 ## Celery Worker
 공식문서를 참고하여 초간단 버젼으로 서비스 파일을 작성해 보겠습니다. 기본 골격은 앞의 `gunicorn` 데몬 파일을 재활용 하였고 추가적인 옵션들만 덧붙여 보았습니다.
 
-[2022-04추가](https://flower.readthedocs.io/en/latest/prometheus-integration.html#set-up-your-celery-application) 이벤트 로그 확인을 용이하도록 `-E` 옵션을 추가 합니다.
+**<span style="color:var(--accent);">[2022-04추가](https://flower.readthedocs.io/en/latest/prometheus-integration.html#set-up-your-celery-application)</span>** 이벤트 로그 확인을 용이하도록 `-E` 옵션을 추가 합니다.
+
 ```r
 $ sudo vi /etc/systemd/system/celery.service
 
@@ -195,7 +202,6 @@ Type=forking
 User=USERNAME
 Group=www-data
 WorkingDirectory=/home/USERNAME/Source
-Environment="PATH=/home/USERNAME/Python/venv/bin"
 ExecStart=/home/USERNAME/Python/venv/bin/celery -A server worker -l info -E
 Restart=always
 
@@ -224,21 +230,6 @@ StartLimitBurst=0
 WantedBy=multi-user.target
 ```
 
-> [2022-04-04 추가](https://www.suse.com/support/kb/doc/?id=000019750)
-```r
-2020-10-22 systemd[1]: celerybeat.service: Start request repeated too quickly.
-```
-재부팅한 경우 위 오류가 나타나 제대로 실행되지 않는 경우가 빈번하게 발생하였습니다. 동일한 문제가 발생하는 경우에는 아래의 명령을 추가 적용 합니다.
-```r
-$ systemctl show -p FragmentPath celerybeat.service
-  FragmentPath=/usr/lib/systemd/system/celerybeat.service
-$ systemctl daemon-reload
-```
-
-> [2022-04-05 추가](https://stackoverflow.com/questions/32785720/celery-beat-not-starting-eoferrorran-out-of-input)
-
-Celery Beat 의 log 를 확인해보니, status 는 정상작동을 했는데, log 에서 `Celery beat not starting EOFError('Ran out of input')` 오류를 계속 반복해서 출려하고 있었습니다. Nginx 설정값을 변경해준 뒤 링크 내용을 적용하니 해결 되었습니다.
-
 ## SystemCTL
 앞에 작성한 2개의 파일을 시스템 파일로 등록을 한 뒤 재부팅과 함께 정상작동 하는지 확인 합니다.
 
@@ -254,6 +245,26 @@ $ sudo systemctl enable celerybeat.service
   → /etc/systemd/system/celerybeat.service.
 ```
 
+## 내용의 추가
+
+- **<span style="color:var(--accent);">[2022-04-04 추가](https://www.suse.com/support/kb/doc/?id=000019750)</span>**
+
+```r
+2020-10-22 systemd[1]: celerybeat.service: Start request repeated too quickly.
+```
+
+재부팅한 경우 위 오류가 나타나 제대로 실행되지 않는 경우가 빈번하게 발생하였습니다. 동일한 문제가 발생하는 경우에는 아래의 명령을 추가 적용 합니다.
+
+```r
+$ systemctl show -p FragmentPath celerybeat.service
+  FragmentPath=/usr/lib/systemd/system/celerybeat.service
+$ systemctl daemon-reload
+```
+
+- **<span style="color:var(--accent);">[2022-04-05 추가](https://stackoverflow.com/questions/32785720/celery-beat-not-starting-eoferrorran-out-of-input)</span>**
+
+`Celery Beat` 의 log 를 확인해보니, status 는 정상작동을 했는데, log 에서 `Celery beat not starting EOFError('Ran out of input')` 오류를 계속 반복해서 출려하고 있었습니다. Nginx 설정값을 변경해준 뒤 링크 내용을 적용하니 해결 되었습니다.
+
 <br/>
 
 # Flower
@@ -264,19 +275,19 @@ Flower 는 Django 와 별개의포트에서 동작 합니다. Nginx 에서 외�
 
 ```r
 location ~ ^/flower/? {
-    rewrite ^/flower/?(.*)$ /$1 break;
+  rewrite ^/flower/?(.*)$ /$1 break;
 
-    sub_filter '="/' '="/flower/';
-    sub_filter_last_modified on;
-    sub_filter_once off;
+  sub_filter '="/' '="/flower/';
+  sub_filter_last_modified on;
+  sub_filter_once off;
 
-    # proxy_pass http://unix:/tmp/flower.sock:/;
-    proxy_pass http://localhost:5555;
-    proxy_redirect off;
-    proxy_set_header Host $host;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
-    proxy_http_version 1.1;
+  # proxy_pass http://unix:/tmp/flower.sock:/;
+  proxy_pass http://localhost:5555;
+  proxy_redirect off;
+  proxy_set_header Host $host;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "upgrade";
+  proxy_http_version 1.1;
 }
 ```
 
@@ -313,7 +324,9 @@ $ sudo systemctl enable flower.service
   → /etc/systemd/system/flower.service.
 ```
 
-> [2022-04-04](https://flower.readthedocs.io/en/latest/prometheus-integration.html#start-flower-monitoring)
+## flower service 내용추가
+
+- [2022-04-04](https://flower.readthedocs.io/en/latest/prometheus-integration.html#start-flower-monitoring)
 
 위 내용대로 적용하면 Localhost 에서는 잘 동작을 하는 모습을 보였지만, Server 에서는 Flower 의 `status` 와 연결이 되지않아서 동작의 상세 내용을 확인할 수 없었습니다.
 
@@ -323,7 +336,7 @@ $ sudo systemctl enable flower.service
 $ celery -A server events --dump
 ```
 
-> [2022-04-05](https://github.com/mher/flower/issues/895#issuecomment-516027096)
+- [2022-04-05](https://github.com/mher/flower/issues/895#issuecomment-516027096)
 
 flower 가 `localhost` 에서 잘 작동했지만, `Django` 와 `flower` 가 `Nginx` 에 의해 다른 경로로 동작 하는 경우 `Celery task` 를 찾지 못해서 `status` 가 **online 으로 연결되지 않는** 문제가 있었습니다.
 
@@ -364,4 +377,4 @@ function   {
 - [Deploy celery and celery beat in production with Django (Ubuntu)](https://medium.com/clean-slate-technologies/deploy-celery-and-celery-beat-in-production-with-django-ubuntu-de71ccb24907)
 - [Daemonizing Celery Beat with systemd](https://ahmadalsajid.medium.com/daemonizing-celery-beat-with-systemd-97f1203e7b32)
 - [Asynchronous Task with Django Celery Redis and Production using Supervisor](https://medium.com/swlh/asynchronous-task-with-django-celery-redis-and-production-using-supervisor-ef920725da03)
-- 
+
