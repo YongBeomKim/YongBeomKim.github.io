@@ -57,3 +57,24 @@ TypeError: 'str' object is not callable
 변수와 함수 이름이 정리되지 않고 작업한 경우 발견하게 됩니다. **<span style="color:var(--strong);">호출한 함수</span>** 가 **<span style="color:var(--accent);">str</span>** 로 선언이 되서 **<span style="color:var(--accent);">호출 (callable)</span>** 을 할 수 없다는 의미 입니다.
 
 즉 사용자가 호출한 함수의 이름과, 동일한 객체가 있는지를 확인하면 바로 해결 가능한 문제 였습니다.
+
+> 22-04-05
+
+# Celery
+## Celery Args
+Celery 서비스 내용을 등록할 때, `args` 에서 `dict()` 객체로 파라미터 이름을 정의하여 실행을 한 경우
+```python
+'daily':{
+    'args': {"start": datetime.date.today().strftime('%Y-%m-%d')}
+},
+```
+
+해당 파라미터가 아닌 맨 처음 변수에 할당되어 오류가 발생 하였습니다.
+```python
+df = get(slice=slice, start=start, end=end)
+  File "/home/erdos/Source/django/krx/utils/tasks.py", line 76, in get
+    codes = codes[:slice]
+TypeError: slice indices must be integers or None or have an __index__ method
+```
+
+해결방법은 [args 는 list 로 인식하고 적용하고, kwargs 를 사용해야 dict() 객체로 인식](https://stackoverflow.com/questions/53821197/is-it-possible-to-pass-an-argument-to-a-celery-task-in-django-settings) 한다고 합니다.
