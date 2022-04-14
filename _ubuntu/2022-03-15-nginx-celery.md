@@ -26,6 +26,7 @@ Celery, Flower 의 서버설정 과정을 정리해 보았습니다.
   - [nginx.conf](#nginxconf)
   - [default.conf (default)](#defaultconf-default)
   - [Reload](#reload)
+  - [무료 SSL 설치 및 자동 업데이트 설정](#무료-ssl-설치-및-자동-업데이트-설정)
 - [Celery](#celery)
   - [Setting Files](#setting-files)
   - [Celery Worker](#celery-worker)
@@ -57,6 +58,7 @@ Celery, Flower 의 서버설정 과정을 정리해 보았습니다.
   - [nginx.conf](#nginxconf)
   - [default.conf (default)](#defaultconf-default)
   - [Reload](#reload)
+  - [무료 SSL 설치 및 자동 업데이트 설정](#무료-ssl-설치-및-자동-업데이트-설정)
 - [Celery](#celery)
   - [Setting Files](#setting-files)
   - [Celery Worker](#celery-worker)
@@ -169,6 +171,10 @@ server {
 ```r
 $ nginx -s [ stop | quit | reopen | reload ]
 ```
+
+## 무료 SSL 설치 및 자동 업데이트 설정
+
+[Update: Using Free Let’s Encrypt SSL/TLS Certificates with NGINX](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/)
 
 <br/>
 
