@@ -32,15 +32,25 @@ Home: http://pgcli.com
 user@localhost:db>
 ```
 
+## Universal Commands
+
+화면을 깨끗하게 바꿀 때 명령어가 따로 없습니다.
+
+이런 경우에는 **<span style="color:var(--strong);">[우분투 기본 명령어](https://stackoverflow.com/questions/26065426/keystroke-to-clear-screen-in-psql)</span>** 를 활용하는 방법이 있습니다.
+
+```sql
+user@localhost:db>\! clear
+```
+
 ### CREATE
-- 데이터베이스 이름은 <b style="color:orange">소문자로 변경</b>되어 저장 된다.
+- 데이터베이스 이름은 <b style="color:orange">소문자로 변경</b> 한 뒤 저장 됩니다.
 
 ```sql
 user@localhost:db> CREATE DATABASE db;
 user@localhost:db> CREATE TABLE kospi (
- id INTEGER,
- date DATE,
- bank INTEGER,
+   id INTEGER,
+   date DATE,
+   bank INTEGER,
 )
 user@localhost:db> INSERT 
    INTO kospi (id, date, bank) 
@@ -49,7 +59,7 @@ INSERT 0 1
 Time: 0.031s
 ```
 
-### READ
+### RETURN
 ```sql
 user@localhost:db> \l
 +-----------+--------+----------+---------+
@@ -90,7 +100,7 @@ user@localhost:db> SELECT * FROM kospi ORDER BY bank DESC;
 +------+------------+--------+
 
 user@localhost:db> SELECT * FROM kospi 
- WHERE bank >0;
+   WHERE bank >0;
 +------+------------+--------+
 | id   | date       | bank   |
 |------+------------+--------|
@@ -98,8 +108,8 @@ user@localhost:db> SELECT * FROM kospi
 +------+------------+--------+
 
 user@localhost:db> SELECT * FROM kospi 
- WHERE bank > (
- SELECT bank FROM kospi WHERE bank = -2000
+   WHERE bank > (
+   SELECT bank FROM kospi WHERE bank = -2000
 );
 +------+------------+--------+
 | id   | date       | bank   |
@@ -111,9 +121,9 @@ user@localhost:db> SELECT * FROM kospi
 ### UPDATE
 ```sql
 user@localhost:db> UPDATE kospi
- set bank = -1000  (컬럼 = 바뀔 데이터)
- WHERE id = 1        (수정할 ROW 조건)
- RETURNING *;     (수정한 내용 바로조회)
+   set bank = -1000  (컬럼 = 바뀔 데이터)
+   WHERE id = 1        (수정할 ROW 조건)
+   RETURNING *;     (수정한 내용 바로조회)
 +------+------------+--------+
 | id   | date       | bank   |
 |------+------------+--------|
@@ -122,7 +132,7 @@ user@localhost:db> UPDATE kospi
 
 (컬럼 이름의 변경)
 user@localhost:db> SELECT 
- bank AS foreign FROM kospi;
+   bank AS foreign FROM kospi;
 +-----------+
 | foreign   |
 |-----------|
@@ -134,9 +144,9 @@ user@localhost:db> SELECT
 ### DELETE
 ```sql
 user@localhost:db> DELETE 
- FROM kospi
- WHERE id = 1;
- 
+   FROM kospi
+   WHERE id = 1;
+
 user@localhost:db> DROP TABLE kospi;
 user@localhost:db> DROP DATABASE dbname;
 ```
@@ -157,20 +167,20 @@ user@localhost:db> SHOW TIMEZONE;
 
 user@localhost:db> CREATE TABLE 
  datetime_stock (
-  type_ts TIMESTAMP,
-  type_tstz TIMESTAMPTZ, (TimeZone 설정)
-  type_date DATE,
-  type_time TIME
+   type_ts TIMESTAMP,
+   type_tstz TIMESTAMPTZ, (TimeZone 설정)
+   type_date DATE,
+   type_time TIME
  );
 
 user@localhost:db> INSERT INTO 
  datetime_stock (
-  type_ts, type_tstz, type_date, type_time)
+   type_ts, type_tstz, type_date, type_time)
  VALUES (
-  '2020-07-26 20:00:25+08:28',
-  '2020-07-26 20:00:25+08:28',
-  '2020-07-26',
-  '18:00:00'
+   '2020-07-26 20:00:25+08:28',
+   '2020-07-26 20:00:25+08:28',
+   '2020-07-26',
+   '18:00:00'
  );
 
 user@localhost:db> select * from datetime_stock;
@@ -194,9 +204,9 @@ user@localhost:db> CREATE TABLE
 
 user@localhost:db> INSERT INTO book_order
  VALUES 
-  (001, '{"name":"Jam", "book":{"name":"맛있는","q":2}}'),
-  (002, '{"name":"Yang", "book":{"name":"mongodb","q":3}}')
-  RETURNING *;
+   (001, '{"name":"Jam", "book":{"name":"맛있는","q":2}}'),
+   (002, '{"name":"Yang", "book":{"name":"mongodb","q":3}}')
+ RETURNING *;
 
 +----+-------------------------------------------------+
 | id | order_info                                      |
