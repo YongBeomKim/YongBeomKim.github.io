@@ -53,3 +53,14 @@ SELECT
 - `foo = f%` 는 f로 시작하기 때문에 true
 - `foo = _o_` 는 3자리이며 2번째 자리가 "o" 일때 true
 - `bar = b_` 에서 bar는 3자리 이지만 b_ 는 2자리 여서 false
+
+## `ILIKE` 는 LowerCase 를 UpperCase 로 바꿔서 검색
+
+소문자 조건 내용을 대문자로 검색할 수 있도록 해주는 명령 입니다.
+
+## `WHERE` 의 사용
+
+```sql
+> SELECT `datetime`, price, change_rate, code_id FROM krx_pricekrxdaum WHERE datetime BETWEEN '2022-04-19 15:30:00+0
+ 9' AND '2022-04-19 15:30:00+09';
+```
