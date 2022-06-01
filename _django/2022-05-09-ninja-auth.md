@@ -1,0 +1,31 @@
+---
+layout: blog
+title: Django Ninja Auth
+tags:
+- ninja
+---
+
+Django 에서 React 와 보안을 위해 사용하는 방법중에 PyJWT 를 활용한 Token 을 검증하는 방법이 있습니다. 이를 알아보도록 하겠습니다.
+
+# PyJWT
+
+아래 코드는 `{"some":"payload"}` 객체를 `HS256` 로 암화화된 방법을 사용해서 전달하는 내용 입니다.
+
+암호를 생성하고, 해석하는데 필요한 Key 객체로써, 아래의 예시에서는 `key` 데이터를 사용하여 확인 합니다.
+
+```python
+import jwt
+key = "secret"
+encoded = jwt.encode({"name": "payload", "password":"secret1234"}, key, algorithm="HS256")
+print(encoded)
+#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.4twFt5NiznN84AWoo1d7KO1T_yoc0Z6XOpOVswacPZg
+
+jwt.decode(encoded, key, algorithms="HS256")
+#{'some': 'payload'}
+```
+
+# Django
+
+## Django Ninja
+[Reddit](https://www.reddit.com/r/django/comments/r2tti8/django_ninja_auth_example/) 에 설명한 예시 내용을 이해 해보겠습니다.
+
