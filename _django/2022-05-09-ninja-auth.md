@@ -5,7 +5,9 @@ tags:
 - ninja
 ---
 
-Django 에서 React 와 보안을 위해 사용하는 방법중에 PyJWT 를 활용한 Token 을 검증하는 방법이 있습니다. 이를 알아보도록 하겠습니다.
+Django 에서 React 와 보안을 위해 사용하는 방법중에 PyJWT 를 활용한 Token 을 검증하는 방법부터, SNS 소셜 미디어를 활용한 로그인 방법까지 알아 보도록 하겠습니다.
+
+로그인 관련 개념 내용들은 [DRF JWT 인증방식 로그인, 회원가입](https://korinkorin.tistory.com/57) 페이지에 잘 정리가 되어 있습니다.
 
 # PyJWT
 
