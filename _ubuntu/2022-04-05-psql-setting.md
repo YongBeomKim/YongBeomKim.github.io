@@ -59,6 +59,25 @@ host   all   all       127.0.0.1/32  trust  # 내부접속
 host   all   all   172.27.00.000/32  reject # 차단 IP
 ```
 
+포트 설정 작업을 진행하던중 로컬에서 접속시 다음과 같은 오류를 출력하는 상황이 발생 하였습니다. [StackOverFlow](https://stackoverflow.com/questions/69676009/psql-error-connection-to-server-on-socket-var-run-postgresql-s-pgsql-5432) 참고하여 다음과 같이 변경 및 실행을 하니 제대로 잘 작동하는 모습을 볼 수 있었습니다.
+
+```r
+$ sudo -i -u postgres psql
+psql:server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: 
+No such file or directory Is the server running locally and 
+accepting connections on that socket?
+
+$ nvim /etc/postgresql/14/main/pg_hba.conf
+# Database administrative login by Unix domain socket
+(-) local   all             postgres            peer
+(+) local   all             postgres            trust
+
+$ systemctl restart postgresql@14-main.service
+$ sudo -i -u postgres psql                    
+psql (14.3 (Ubuntu 14.3-1.pgdg20.04+1))
+Type "help" for help.
+```
+
 ## **데이터베이스 & 사용자 추가**
 
 1) `postgres` 초기 사용자의 Password 설정
@@ -152,9 +171,6 @@ postgres=# SHOW data_directory;
 
 ```r
 $ apt install libpq-dev   # psycopg2 Python 연결용
-$ apt install postgresql postgresql-contrib
-$ service postgresql status
-   ● postgresql.service - PostgreSQL RDBMS
 $ sudo pip3 install pgsql
 ```
 
