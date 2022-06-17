@@ -208,3 +208,12 @@ python@15:arterior>
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HHbIPi43HE4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+https://askubuntu.com/questions/50621/can-not-connect-to-postgresql-listening-on-port-5432
+
+https://stackoverflow.com/questions/69676009/psql-error-connection-to-server-on-socket-var-run-postgresql-s-pgsql-5432
+
+https://gist.github.com/GabLeRoux/0c60f9be0c28b6b41f64cb55474b0ccb
+
+https://kb.objectrocket.com/postgresql/how-to-completely-uninstall-postgresql-757
