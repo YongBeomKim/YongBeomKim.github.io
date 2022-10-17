@@ -165,7 +165,7 @@ postgres=# SHOW data_directory;
 
 # **PGCLI**
 
-## **Install**
+## **1 Install**
 
 **[공식 설치 가이드](https://www.pgcli.com/install)** 를 확인합니다. 설치가 완료된 뒤, `pip3 install pgcli` 를 오류없이 설치가 되었으면 모든 내용은 완료가 됩니다
 
@@ -189,7 +189,21 @@ python@15:arterior>
 [F4]Emacs-mode Refreshing completions...   
 ```
 
+## **[3 KDE Wallet Service](https://github.com/dbcli/pgcli/issues/920)**
+
+pg-cli 가 업데이트 되면서 터미널에서 접속시 추가 보안설정을 요구 합니다. KDE 설정을 비활성화 하는 방법으로는 pg-cli 설정 파일에서 터미널에서 설명하는 다음의 내용을 추가 해주면 됩니다.
+
+```r
+$ nvim ~/.config/pgcli/config
+[main]
+(+) keyring = False
+```
+
 지금까지 설치 및 설정과 관련한 내용들을 살펴 보았습니다. `pqcli` 를 활용하면 관련된 명령어들이 자동으로 나와서 편리합니다. 다음 페이지 에서는 기본적인 명령어 들을 살펴보도록 하겠습니다.
+
+
+https://github.com/dbcli/pgcli/issues/920#issue-344083184
+
 
 <br/>
 
@@ -208,12 +222,3 @@ python@15:arterior>
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HHbIPi43HE4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-https://askubuntu.com/questions/50621/can-not-connect-to-postgresql-listening-on-port-5432
-
-https://stackoverflow.com/questions/69676009/psql-error-connection-to-server-on-socket-var-run-postgresql-s-pgsql-5432
-
-https://gist.github.com/GabLeRoux/0c60f9be0c28b6b41f64cb55474b0ccb
-
-https://kb.objectrocket.com/postgresql/how-to-completely-uninstall-postgresql-757
