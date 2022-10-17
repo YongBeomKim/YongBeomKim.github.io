@@ -191,7 +191,19 @@ python@15:arterior>
 
 ## **[3 KDE Wallet Service](https://github.com/dbcli/pgcli/issues/920)**
 
-pg-cli 가 업데이트 되면서 터미널에서 접속시 추가 보안설정을 요구 합니다. KDE 설정을 비활성화 하는 방법으로는 pg-cli 설정 파일에서 터미널에서 설명하는 다음의 내용을 추가 해주면 됩니다.
+pg-cli 가 업데이트 되면서 터미널에서 접속시 `KDE Wallet` 활성화와 함께, 다음과 같은 추가 보안설정을 요구하는 메세지가 출력 됩니다. 
+
+```
+Load your password from keyring returned:
+Failed to open keyring: org.freedesktop.DBus.Error.NoReply
+To remove this message do one of the following:
+- prepare keyring as described at: https://keyring.readthedocs.io/en/stable/
+- uninstall keyring: pip uninstall keyring
+- disable keyring in our configuration: add keyring = False to [main]
+```
+
+
+KDE 설정을 비활성화 하는 방법으로는 pg-cli 설정 파일에서 터미널에서 설명하는 다음의 내용을 추가 해주면 됩니다.
 
 ```r
 $ nvim ~/.config/pgcli/config
