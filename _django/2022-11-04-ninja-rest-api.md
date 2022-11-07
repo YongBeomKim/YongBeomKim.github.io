@@ -9,6 +9,21 @@ tags:
 
 [Sneaky REST APIs With Django Ninja](https://realpython.com/courses/rest-apis-with-django-ninja/) 에서 1회당 20분을 넘기지 않는 분량의 전체 10회 강의이었습니다. 대신 동영상 대부분이 `terminal` 에서 진행되는 만큼 Django Project 의 structure 이해가 필요 합니다. 아래의 내용은 이번에 새롭게 이해한 부분을 중심으로 정리해 보겠습니다. <strike>이해하기 쉽게 잘 다듬어서 강의 동영상을 직접 만들어도 좋을 듯..</strike> 
 
+# **Ninja Contents**
+## Introduction
+Type hints + pydantic + Django
+
+## Python Type Hints (Ninja)
+
+## Complex Payloads (Schema)
+
+## More Example
+- Filtering Querys
+- Header, Cookie
+- Upload Files
+
+## Responses
+- 
 
 <br/>
 
@@ -62,7 +77,7 @@ def food(request, item:str):
 
 ### **01 Http Response**
 
-Django 서버와 통신하는 `Response` 객체를 다룰 수 있습니다. 아래의 예제는 `response cookie` 값을 추가하는 예제 입니다.
+Ninja 의 `Response` 객체를 활용하여 Django 의 `request` 객체에 직접 접근하여 조작하는 방법이 있습니다.
 
 ```python
 from django.http import HttpResponse
@@ -71,6 +86,21 @@ from django.http import HttpResponse
 def swords(request, response: HttpResponse):
     response.set_cookie("curve", "bendy")
     return f"Swords are pointy"
+```
+
+Ninja 에서는 이보다 더 간편한 방법으로 `Header, Cookie` 클래스를 활용하여 조작할 수 있습니다. 
+
+```python
+from ninja import Header, Cookie
+
+@router.get('/header')
+def web_header(request, 
+        cookie_name: str = Cookie(...),
+        authorization: str = Header(...),
+    ):
+    cookie_data = cookie_name.dict()
+    authorized = authorization.dict()
+    return cookie_data + " " + authorized
 ```
 
 ### **02 Schema**
@@ -195,3 +225,18 @@ def delete_gift(request, id):
     item.delete()
     return  {"success":True}
 ```
+
+<br>
+<hr>
+<br>
+
+## **Part 3 CRUD**
+
+<br>
+<hr>
+<br>
+
+# 기타 참고할 내용 
+- [Building HTTP APIs with DRF](https://realpython.com/courses/django-rest-framework/)
+- [REST APIs: Interacting With Web Services](https://realpython.com/api-integration-in-python/)
+- [Test Driven Development of Django Restful API](https://realpython.com/test-driven-development-of-a-django-restful-api/)errr
