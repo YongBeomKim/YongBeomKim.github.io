@@ -1,74 +1,23 @@
 ---
 layout: blog
-title: ScummVm Tips
+title: [영화리뷰] 고속도로 가족 - 나 자신을 버린다는 것
 tags: 
 - work
-- plan
 ---
 
-[말랑찹쌀의 유투브](https://youtu.be/-ZVCGJZweb4) 에서 `원숭이섬의 비밀` 을 참 재미있게 플레이 하는 방송을 보게 되었습니다. 7시간을 쉬지않고 플레이 하면서 엔딩까지 보여주었는데 예전 생각과 함께 11인치 태블릿 활용 용도로 깔려있는 ScummVm 을 만지작 하면서 찾게된 내용들을 정리해 보려고 합니다.
+오늘 `고속도로 가족` 3차 서프라이즈 쿠폰 행사가 진행 되었습니다. 영화가 끝나고 바로 드는 생각은 `홍상수로 시작해서 김기덕 영화로 끝나는` 조금은 찝찝한 영화였습니다. 그럼에도 불구하고 영화가 전달하려는 핵심 메세지가 좋아서 후기를 남기게 되었습니다.
 
-# ScummVm 
+<figure class="align-center">
+  <img src="{{site.baseurl}}/assets/movie/road-family.jpg">
+  <figcaption>고속도로 가족 포스터</figcaption>
+</figure>
 
-## Downloads
+`고속도로 가족` 의 모습은 어렵지만 밝게 지내는 모습 자체가 비현실 적으로 느껴 졌습니다. 남편은 구걸을 하면서도 가족들에게는 다정 다감하게 살피는 모습을 주로 그려 졌습니다. 불안한 생활 속에서 위태로운 남편의 모습은 전반부를 지나서 몰아치게 됩니다. 그리고 남편과 나머지 가족이 분리된 이후 부터, 나머지 가족들은 각자 치유의 시간을 갖게 됩니다.
 
-[ScummVm](https://github.com/scummvm/scummvm) 은 2001년 부터 시작된 MIT 라이센스를 갖은 오픈소스 프로젝트로, DOSBOX 와 같이 고전프로그래밍 에뮬레이터 역활을 한다. 널리 사용된 계기는 루카스아츠, 시에라 등의 1990년대 어드벤쳐 게임을 즐기는 용도로써 주로 사용되기 시작하였고, 한국에서는 [ScummVM KOR](https://github.com/nuridol/scummvm-kor/releases/tag/2.1.0) 을 사용하면 한글판 고전 게임들도 손쉽게 즐길 수 있는 도구 입니다.
+한편 남편을 극한으로 몰아 가면서 부터 불편함을 느끼게 되는데, 마지막 분기점 직전인 남편과 아내가 서로 마주보며 지난 삶을 뒤돌아 보면서 `아내가 남편에게 빌면서 우는 장면` 은 김슬기 배우의 역량이 많이 좋아졌구나 하는 생각과 함께 영화가 매력적으로 보이는 순간이었습니다. 이 장면에서 이제부터 이 가족들에게 새로운 미래를 그려 주려는 감독의 연출이 참 세심하게 준비 했구나 하는 생각이 들면서 아름다운 결말을 기대하게 되었습니다. `고레타 히로카스` 식의 전개로 끝나길 바라며 마무리를 기대 했었습니다.
 
-`윈도우`, `리눅스` 환경과 함께 `안드로이드`, 그리고 `닌텐도 스위치` 에서도 실행이 가능 합니다. 이번 페이지 에서는 안드로이드 버젼과 관련한 내용들을 정리해 보겠습니다.
+영화는 지금까지의 톤과 매너에서 바뀌면서 남편을 더욱 극한의 한계로 몰아가는 방식으로 문제를 해결하는 부분이 불편했고 결국 `김기덕` 스타일로 마무리가 되었습니다. 덕분인지 `지금까지 편안 하다고 느꼈던 내 자신을 바꾸는 것은 몸을 불사르는 노력이 필요하다` 라는 주제가 지금의 나에게 인상적으로 느껴지는 내용이었습니다.
 
-프로그램 설치방법은 위 링크에 연결된 파일들을 다운로드 한 뒤, 해당 기기에서 설치를 하고 실행하면 됩니다
+참고로 수원 CGV 7관은 스크린이 고전 스크린처럼 약간 휘어지는 느낌이 들었습니다.
 
-## Sound Setting
-
-ScummVM 포럼등의 자료를 찾아보면 v2.0 이상의 버젼부터는 `MT-32` [에뮬레이터가 포함](https://docs.scummvm.org/en/latest/advanced_topics/understand_audio.html) 되어 있다는 내용을 보고 설정에서 활성화를 했지만 `MT-32 cannnot use` 오류 메세지를 반복적으로 출력하였습니다.
-
-그러던 중 [트위터](https://twitter.com/angbffff/status/1326013787791523840) 에서 사운드 설정과 관련한 내용을 찾게 되었고, 이를 바탕으로 실행 직후 `Option` 에서 아래의 사진들 내용과 같이 설정을 한 뒤 실행을 하면 잘 작동 하는걸 볼 수 있었습니다.
-
-<hr>
-
-![Setting1]({{ site.url }}{{ site.baseurl }}/assets/game/scumm01.png)
-
-<hr>
-
-![Setting2]({{ site.url }}{{ site.baseurl }}/assets/game/scumm02.png)
-
-<hr>
-
-![Setting3]({{ site.url }}{{ site.baseurl }}/assets/game/scumm03.png)
-
-<hr>
-
-![Setting4]({{ site.url }}{{ site.baseurl }}/assets/game/scumm04.png)
-
-<hr>
-
-![Setting5]({{ site.url }}{{ site.baseurl }}/assets/game/scumm05.png)
-
-<hr>
-
-# Games
-
-## Monkey Island Talkative
-
-[Archive.org](https://archive.org/details/monkeyisland1and2ute) 은 원숭이섬의 비밀 1, 2 가 2010년 리마스터링을 거치면서 그래픽과 음성이 개선된 내용으로 재출시 되었고, 1992년 고전게임 본체에 리마스터링 버젼에서 음성 데이터를 추출하여 결합시킨 버젼 입니다.
-
-[한글로 어드벤처 게임을 즐기자](https://cafe.naver.com/koreaadv/1534) 네이버 카페가 고전게임과 관련된 한글자막 작업을 주로 진행하는 곳 입니다. 위 유투브에서 볼 수 있는 `원숭이섬의 비밀 SE` 버젼의 한글 자막은 기존의 한글을 보다 충실하게 번역하여 적용한 내용으로 한글 내용이 잘 되어 있지만, 위에서 다운받은 Talkative 버젼에 적용 가능한 한글 파일은 기존의 번역 내용으로 뉘앙스 등이 좀 엉성한 부분이 있는게 차이점 으로 볼 수 있습니다.
-
-만약 처음 즐기시는 분들이라면 스팀에서 정식 게임을 설치 한뒤, SE 버젼의 한글로 플레이 하는 것을 추천 합니다.
-
-## Blade Runner 1997
-
-[Blade Runner 1997](https://abandonwaregames.net/game/blade-runner) 게임은 CD4 장의 파일형식을 갖고 있어서, 안드로이드에서 실행을 하려면 ISO 파일을 데몬으로 실행을 할 수 없었습니다. 
-
-이와 관련하여 [ScummVM 포럼](https://forums.scummvm.org/viewtopic.php?t=14900) 에서 CD 파일들을 압축을 푼 뒤, 중복되는 파일의 이름만 약간 바꿔서 실행하면 된다는 내용이 있었고, 추가로 예전의 CD 어드벤처 게임들은 음성이 나오면 자막이 안나오는 문제가 있었는데 이와 관련해서도 해당 게시물에 연결된 [Scumm 자막 자료실](https://www.scummvm.org/games/#addons-bladerunner) 파일을 다운받아서, 게임 본체폴더에 저장한 뒤 실행을 하면 자동으로 자막이 함께 출력이 되는것을 볼 수 있습니다.
-
-## Scummvm 2.5
-
-[ScummVM 2.5](https://gamingretro.co.uk/scummvm-celebrates-20-years-with-big-update/) 에서는 [GLI Interactive](https://wiki.scummvm.org/index.php?title=Glk/Glulxe) 게임과 [AGS/GAMES](https://wiki.scummvm.org/index.php?title=AGS/Games) 인디게임들도 작동이 가능하도록 개선이 되었습니다. 상세 목록들은 위 링크에서 확인 가능 합니다.
-
-## Download Links
-- [CdRomance 사이트 ScummVm 목록](https://cdromance.com/scummvm/)
-
-# 마무리..
-
-실제로 게임을 즐기기 보단, 관련 설정과 자료들을 찾고 정리하는데 소소한 성취감에 취해있는데, 이런 모습은 이젠 버리고 큰 성장과 변화를 추구할 수 있도록, 관련한 내용들을 이런 자료료써 정리를 하면서 떨쳐 버리고 꼭 즐길 1가지 씩만 남기고 활용하도록 바꿔 나아가야 하겠습니다.
+ps 오늘 Ninja API 를 공부하는데 뼈대가 되는 내용 없어서 정리가 잘 되지 않았습니다. 이 부분을 보완하도록 하겠습니다. 그리고 이번에도 느낀점이 글을 쓸 때 마무리가 잘 안되고 중간이 중언 부언 하는 느낌이 많이 들었습니다. 문장을 깔끔하게 정리하고 다듬는 모습을 훈련하도록 하겠습니다.
