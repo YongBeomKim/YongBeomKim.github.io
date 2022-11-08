@@ -7,22 +7,22 @@ tags:
 
 이번 내용은 Ninja 기본 제작자가 설명하는 [DjangoCon 2022 ｜ Introducing Django Ninja](https://youtu.be/zpR1QCLBpIA) 을 요약한 문서 입니다. Ninja 모듈의 제작 의도 및 중심을 구성하는 개념들이 어떤 것인지를 이해할 수 있는 내용이었습니다.
 
-- [**Ninja Contents**](#ninja-contents)
-  - [Introduction](#introduction)
-  - [Complex Payloads (Schema)](#complex-payloads-schema)
-  - [Async 지원](#async-지원)
-  - [Example : Filter](#example--filter)
-  - [Response Header & Cookie](#response-header--cookie)
-  - [Uploading Files](#uploading-files)
-  - [중첩된 객체 (Nested Object)](#중첩된-객체-nested-object)
-  - [Pagination](#pagination)
-  - [Creating Schemas From Model](#creating-schemas-from-model)
-  - [Large Project](#large-project)
+- [**10 Steps of Django Ninja**](#10-steps-of-django-ninja)
+  - [1 Introduction](#1-introduction)
+  - [2 Complex Payloads (Schema)](#2-complex-payloads-schema)
+  - [3 Async 지원](#3-async-지원)
+  - [4 Example : Filter](#4-example--filter)
+  - [5 Response Header & Cookie](#5-response-header--cookie)
+  - [6 Uploading Files](#6-uploading-files)
+  - [7 중첩된 객체 (Nested Object)](#7-중첩된-객체-nested-object)
+  - [8 Pagination](#8-pagination)
+  - [9 Creating Schemas From Model](#9-creating-schemas-from-model)
+  - [10 Large Project](#10-large-project)
 
 <br>
 <br>
 
-# **Ninja Contents**
+# **10 Steps of Django Ninja**
 
 Ninja 의 핵심 구성요소를 Schema 와 API 함수 2가지로 나눌 수 있습니다. 이 중 API 함수의 구성요소 이름을 간단하게 살펴보면 다음과 같습니다. `URL_PATH` 즉 **url 경로의 내용** 을 함수 내부에서도 사용하려면 `QUERY_PARAMS` 내부에 **동일한 변수 이름** 을 선언하면 자동으로 둘을 연결 합니다.
 
@@ -33,10 +33,11 @@ def function(request, QUERY_PARAMS):
     return API_END_POINTS
 ```
 
-## Introduction
+## 1 Introduction
 pydantic + Type hints + Django
 
 > pydantic (for Complex Payloads)
+
 ```python
 class PersonSchema(Schema):
     name:str
@@ -44,6 +45,7 @@ class PersonSchema(Schema):
 ```
 
 > Type hints
+
 ```python
 @api.get("/person/{person_id}", response=PersonSchema)
 def person(request, person_id: int):
@@ -51,6 +53,7 @@ def person(request, person_id: int):
 ```
 
 > Django
+
 ```python
 # urls.py
 urlpatterns = [
@@ -58,7 +61,7 @@ urlpatterns = [
 ]
 ```
 
-## Complex Payloads (Schema)
+## 2 Complex Payloads (Schema)
 
 API 연산에 필요한 변수들을 선언할 때, Ninja 의 `Schema` 클래스를 상속하여 선언할 수 있습니다. 
 
@@ -79,7 +82,7 @@ def create_day(request, payload:NewPost):
     return payload.timestamp.day
 ```
 
-## Async 지원
+## 3 Async 지원
 
 Async 내용일 전부, 또는 일부만 추가하여 구현 할 수 있습니다.
 
@@ -92,7 +95,7 @@ async def say_after(request, delay: int, word: str):
     return {"saying": word}
 ```
 
-## Example : Filter
+## 4 Example : Filter
 
 Django ORM 필터링 명령 내용을 `Schema` 클래스를 활용하여 미리 정의 합니다.
 
@@ -121,7 +124,7 @@ def post_filter(
     return query_set
 ```
 
-## Response Header & Cookie
+## 5 Response Header & Cookie
 
 Django 의 `HttpResponse` 기능을 활용하는 방법으로 Header 와 Cookie 값을 추가 할 수 있습니다. 이는 JWT 의 내용을 최소화 한 뒤 필요한 내용들을 추가하는데 적절한 방법 입니다.
 
@@ -149,7 +152,7 @@ def web_header(request,
     return cookie_data + " " + authorized
 ```
 
-## Uploading Files
+## 6 Uploading Files
 
 Rest ARI 를 활요하여, 1개 또는 여러개의 파일을 다루는 예제 입니다
 
@@ -173,7 +176,7 @@ def upload(request,
     ...
 ```
 
-## 중첩된 객체 (Nested Object)
+## 7 중첩된 객체 (Nested Object)
 
 Foreign Key 로 연관된 테이블은 `Schema` 클래스 객체를 필드에 연결하는 방법으로 구현할 수 있습니다.
 
@@ -188,7 +191,7 @@ class PostSchema(Schema):
     title: str
 ```
 
-## Pagination
+## 8 Pagination
 
 Ninja 에서 제공하는 Decorator 를 추가하면 쉽게 활용할 수 있습니다.
 
@@ -201,7 +204,7 @@ def list_post(request):
     return Post.objects.all()
 ```
 
-## Creating Schemas From Model
+## 9 Creating Schemas From Model
 
 DataBase 의 필드 고유한 값이 아닌, 사용자가 정의한 End Point 를 API 로 구현하고 싶은 경우에는 `ModelSchema` 클래스를 상속받아 활용합니다.
 
@@ -223,7 +226,7 @@ class PostSchema(ModelSchema):
         return age
 ```
 
-## Large Project
+## 10 Large Project
 
 다수의 App 과 각각의 모델들이 유기적인 관계를 갖을 때, 1개의 api를 상속받아 모두 연결하기 보다는 필요에 따라 분리하여 관리하는 방법을 필요로 합니다. `Router` 기능을 지원하는데 개별 `router` 객체를 작성한 뒤, 1개의 `api` 에 이들을 연결하는 방법으로 구현이 가능 합니다.
 
