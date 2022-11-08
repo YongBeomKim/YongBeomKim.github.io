@@ -34,6 +34,8 @@ def function(request, QUERY_PARAMS):
     return API_END_POINTS
 ```
 
+<br>
+
 ## 1 Introduction
 pydantic + Type hints + Django
 
@@ -62,6 +64,8 @@ urlpatterns = [
 ]
 ```
 
+<br>
+
 ## 2 Complex Payloads (Schema)
 
 API 연산에 필요한 변수들을 선언할 때, Ninja 의 `Schema` 클래스를 상속하여 선언할 수 있습니다. 
@@ -83,6 +87,8 @@ def create_day(request, payload:NewPost):
     return payload.timestamp.day
 ```
 
+<br>
+
 ## 3 Async 지원
 
 Async 내용일 전부, 또는 일부만 추가하여 구현 할 수 있습니다.
@@ -95,6 +101,8 @@ async def say_after(request, delay: int, word: str):
     await asyncio.sleep(delay)
     return {"saying": word}
 ```
+
+<br>
 
 ## 4 Example : Filter
 
@@ -125,6 +133,8 @@ def post_filter(
     return query_set
 ```
 
+<br>
+
 ## 5 Response Header & Cookie
 
 Django 의 `HttpResponse` 기능을 활용하는 방법으로 Header 와 Cookie 값을 추가 할 수 있습니다. 이는 JWT 의 내용을 최소화 한 뒤 필요한 내용들을 추가하는데 적절한 방법 입니다.
@@ -153,6 +163,8 @@ def web_header(request,
     return cookie_data + " " + authorized
 ```
 
+<br>
+
 ## 6 Uploading Files
 
 Rest ARI 를 활요하여, 1개 또는 여러개의 파일을 다루는 예제 입니다
@@ -177,6 +189,8 @@ def upload(request,
     ...
 ```
 
+<br>
+
 ## 7 중첩된 객체 (Nested Object)
 
 Foreign Key 로 연관된 테이블은 `Schema` 클래스 객체를 필드에 연결하는 방법으로 구현할 수 있습니다.
@@ -192,6 +206,8 @@ class PostSchema(Schema):
     title: str
 ```
 
+<br>
+
 ## 8 Pagination
 
 Ninja 에서 제공하는 Decorator 를 추가하면 쉽게 활용할 수 있습니다.
@@ -204,6 +220,8 @@ from ninja.pagination import paginate
 def list_post(request):
     return Post.objects.all()
 ```
+
+<br>
 
 ## 9 Creating Schemas From Model
 
@@ -226,6 +244,8 @@ class PostSchema(ModelSchema):
         age = datetime.now.year - obj.birth
         return age
 ```
+
+<br>
 
 ## 10 Large Project
 
