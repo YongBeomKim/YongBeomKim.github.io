@@ -1,8 +1,9 @@
 ---
 layout: blog
-title: Django Ninja 로 몰래 배우는 Rest API
+title: Django Ninja 를 10 단계로 이해하기
 tags:
 - ninja
+- django
 ---
 
 이번 내용은 Ninja 기본 제작자가 설명하는 [DjangoCon 2022 ｜ Introducing Django Ninja](https://youtu.be/zpR1QCLBpIA) 을 요약한 문서 입니다. Ninja 모듈의 제작 의도 및 중심을 구성하는 개념들이 어떤 것인지를 이해할 수 있는 내용이었습니다.
