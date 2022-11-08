@@ -7,24 +7,21 @@ tags:
 
 `PyCharm by JetBrains` 채널에서 지난 9월 [Writing REST With Django and Ninja](https://youtu.be/Gry6rlZYpzw) 세미나가 온라인으로 진행되었습니다. `Django Ninja` 를 소개하는 내용으로 1시간 10분의 짧은 시간속에 기대했던 것 보다 더 알찬 내용을 배울 수 있었습니다.
 
-[Sneaky REST APIs With Django Ninja](https://realpython.com/courses/rest-apis-with-django-ninja/) 에서 1회당 20분을 넘기지 않는 분량의 전체 10회 강의이었습니다. 대신 동영상 대부분이 `terminal` 에서 진행되는 만큼 Django Project 의 structure 이해가 필요 합니다. 아래의 내용은 이번에 새롭게 이해한 부분을 중심으로 정리해 보겠습니다. <strike>이해하기 쉽게 잘 다듬어서 강의 동영상을 직접 만들어도 좋을 듯..</strike> 
+[Sneaky REST APIs With Django Ninja](https://realpython.com/courses/rest-apis-with-django-ninja/) 에서 1회당 20분을 넘기지 않는 분량의 전체 10회 강의이었습니다. 대신 동영상 대부분이 `terminal` 에서 진행되는 만큼 Django Project 의 structure 이해가 필요 합니다. 아래의 내용은 이번에 새롭게 이해한 부분을 중심으로 정리해 보겠습니다. <strike>이해하기 쉽게 잘 다듬어서 강의 동영상을 직접 만들어도 좋을 듯 합니다...</strike> 
 
-# **Ninja Contents**
-## Introduction
-Type hints + pydantic + Django
+- [**Django Ninja 로 몰래 배우는 Rest API**](#django-ninja-로-몰래-배우는-rest-api)
+  - [**Part 1 URL Params**](#part-1-url-params)
+    - [**01 Query String**](#01-query-string)
+    - [**02 Url Params**](#02-url-params)
+  - [**Part 2 Schema**](#part-2-schema)
+    - [**01 Http Response**](#01-http-response)
+    - [**02 Schema**](#02-schema)
+    - [**3 resolve End Point**](#3-resolve-end-point)
+  - [**Part 3 CRUD**](#part-3-crud)
+- [기타 참고할 내용](#기타-참고할-내용)
 
-## Python Type Hints (Ninja)
 
-## Complex Payloads (Schema)
-
-## More Example
-- Filtering Querys
-- Header, Cookie
-- Upload Files
-
-## Responses
-- 
-
+<br/>
 <br/>
 
 # **[Django Ninja 로 몰래 배우는 Rest API](https://realpython.com/courses/rest-apis-with-django-ninja/)**
@@ -225,12 +222,6 @@ def delete_gift(request, id):
     item.delete()
     return  {"success":True}
 ```
-
-<br>
-<hr>
-<br>
-
-## **Part 3 CRUD**
 
 <br>
 <hr>
