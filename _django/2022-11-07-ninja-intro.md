@@ -37,9 +37,10 @@ def function(request, QUERY_PARAMS):
 <br>
 
 ## 1 Introduction
+
 pydantic + Type hints + Django
 
-> pydantic (for Complex Payloads)
+- Step 1 : **pydantic (for Complex Payloads)**
 
 ```python
 class PersonSchema(Schema):
@@ -47,7 +48,7 @@ class PersonSchema(Schema):
     age:int
 ```
 
-> Type hints
+- Step 2 : **Type hints**
 
 ```python
 @api.get("/person/{person_id}", response=PersonSchema)
@@ -55,7 +56,7 @@ def person(request, person_id: int):
     return get_object_or_404(Person, id=person_id)
 ```
 
-> Django
+- Step 3 : **Django**
 
 ```python
 # urls.py
