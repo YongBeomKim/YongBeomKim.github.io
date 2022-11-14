@@ -30,7 +30,7 @@ collections:
     default_open: false
     output: true
   posts:
-    title: 학습,취미 & 일상
+    title: 학습,취미
     default_open: false
     output: true
   ubuntu:
