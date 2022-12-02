@@ -193,3 +193,7 @@ worker(3)
 
 >>> worker function running time : 3 sec
 ```
+
+## 참고문서들
+
+1. **[파이썬의 데코레이터](https://www.scaler.com/topics/python/python-decorators/)**
