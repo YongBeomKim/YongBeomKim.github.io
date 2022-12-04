@@ -19,5 +19,5 @@ tags:
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/movie/winter.jpg">
-  <figcaption>동감 2022 김혜윤</figcaption>
+  <figcaption>경기인디시네마 7번째굿즈 "창밖은 겨울"</figcaption>
 </figure>
