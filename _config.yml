@@ -21,8 +21,20 @@ featured_posts:
     title: 'Featured post #3'
 
 collections:
-  book:
-    title: 도서리뷰
+  contents:
+    title: 영화 도서리뷰
+    default_open: false
+    output: true
+  ubuntu:
+    title: 우분투 서버
+    default_open: false
+    output: true
+  python:
+    title: 파이썬
+    default_open: false
+    output: true
+  js:
+    title: 프론트엔드
     default_open: false
     output: true
   stock:
@@ -30,47 +42,31 @@ collections:
     default_open: false
     output: true
   posts:
-    title: 학습,취미
-    default_open: false
-    output: true
-  ubuntu:
-    title: 우분투 DB
-    default_open: false
-    output: true
-  python:
-    title: 파이썬
-    default_open: false
-    output: true
-  django:
-    title: 장고 & React
-    default_open: false
-    output: true
-  js:
-    title: 자바스크립트
+    title: 취미 및 기타
     default_open: false
     output: true
 
 defaults:
   - scope:
-      type: book
+      type: contents
     values:
-      title: Book Review
-      permalink: /book/:title
+      title: Movie Book Review
+      permalink: /contents/:title
+  - scope:
+      type: ubuntu
+    values:
+      title: ubuntu server and db
+      permalink: /ubuntu/:title
+  - scope:
+      type: python
+    values:
+      title: Django, Machine Learning of Python
+      permalink: /python/:title
   - scope:
       type: js
     values:
       title: JavaScript & TypeScript
       permalink: /js/:title
-  - scope:
-      type: python
-    values:
-      title: Machine Learning of Python
-      permalink: /python/:title
-  - scope:
-      type: django
-    values:
-      title: Machine Learning of Python
-      permalink: /django/:title
   - scope:
       type: posts
     values:
