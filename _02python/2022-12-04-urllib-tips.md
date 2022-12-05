@@ -1,9 +1,9 @@
 ---
 layout: blog
-title: 파이썬으로 URL 갖고 놀기 by urllib  version 2
+title: 파이썬으로 URL 갖고 놀기 by urllib 
 tags:
-- python
 - urllib
+- python
 ---
 
 크롤링 작업을 정리할 때, 동일한 Host 주소에 파라미터만 다르게 적용하는 경우가 많습니다. 이 때마다 하드코딩으로 입력하기 보다는, 모듈을 활용하여 보다 체계적인 방법으로 작업을 할 수 있도록 도울 수 있도록 파이썬 기본 모듈인 `urllib` 에 대해서 정리를 해 보겠습니다. 내용은 [파이썬으로 URL 가지고 놀기](https://velog.io/@city7310/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-URL-%EA%B0%80%EC%A7%80%EA%B3%A0-%EB%86%80%EA%B8%B0) 를 참고 하였습니다.
