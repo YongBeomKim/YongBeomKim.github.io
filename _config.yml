@@ -21,62 +21,62 @@ featured_posts:
     title: 'Featured post #3'
 
 collections:
-  item01js:
+  01js:
     title: 프론트엔드
     default_open: false
     output: true
-  item02python:
+  02python:
     title: 파이썬
     default_open: false
     output: true
-  item03ubuntu:
+  03ubuntu:
     title: 우분투 서버
     default_open: false
     output: true
-  item04stock:
+  04stock:
     title: 금융투자
     default_open: false
     output: true
-  item05contents:
+  05contents:
     title: 영화 도서리뷰
     default_open: false
     output: true
-  item06posts:
+  06posts:
     title: 취미 및 기타
     default_open: false
     output: true
 
 defaults:
   - scope:
-      type: item01js
+      type: 01js
     values:
       title: JavaScript & TypeScript
-      permalink: /item01js/:title
+      permalink: /js/:title
   - scope:
-      type: item02python
+      type: 02python
     values:
       title: Django, Machine Learning of Python
-      permalink: /item02python/:title
+      permalink: /python/:title
   - scope:
-      type: item03ubuntu
+      type: 03ubuntu
     values:
       title: ubuntu server and db
-      permalink: /item03ubuntu/:title
+      permalink: /ubuntu/:title
   - scope:
-      type: item04stock
+      type: 04stock
     values:
       title: Kospi Kosdaq Market
-      permalink: /item04stock/:title
+      permalink: /stock/:title
   - scope:
-      type: item05contents
+      type: 05contents
     values:
       title: Movie Book Review
-      permalink: /item05contents/:title
+      permalink: /contents/:title
   - scope:
-      type: item06posts
+      type: 06posts
     values:
       title: Essays
-      permalink: /item06posts/:title
+      permalink: /posts/:title
 
 plugins:
   - jekyll-sitemap
