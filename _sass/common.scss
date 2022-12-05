@@ -14,7 +14,8 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1024px;
-  margin: 8px auto;
+  // margin: 8px auto;
+  margin: 8px 1.3rem;
 }
 
 .container {
@@ -299,8 +300,7 @@ table {
 // media queries
 @media screen and (max-width: 700px) {
   body {
-    // margin: 8px;
-    margin: 0 2rem
+    margin: 8px 1rem;
   }
 }
 
