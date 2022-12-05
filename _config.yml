@@ -21,62 +21,62 @@ featured_posts:
     title: 'Featured post #3'
 
 collections:
-  contents:
-    title: 영화 도서리뷰
-    default_open: false
-    output: true
-  ubuntu:
-    title: 우분투 서버
-    default_open: false
-    output: true
-  python:
-    title: 파이썬
-    default_open: false
-    output: true
-  js:
+  item01js:
     title: 프론트엔드
     default_open: false
     output: true
-  stock:
+  item02python:
+    title: 파이썬
+    default_open: false
+    output: true
+  item03ubuntu:
+    title: 우분투 서버
+    default_open: false
+    output: true
+  item04stock:
     title: 금융투자
     default_open: false
     output: true
-  posts:
+  item05contents:
+    title: 영화 도서리뷰
+    default_open: false
+    output: true
+  item06posts:
     title: 취미 및 기타
     default_open: false
     output: true
 
 defaults:
   - scope:
-      type: contents
-    values:
-      title: Movie Book Review
-      permalink: /contents/:title
-  - scope:
-      type: ubuntu
-    values:
-      title: ubuntu server and db
-      permalink: /ubuntu/:title
-  - scope:
-      type: python
-    values:
-      title: Django, Machine Learning of Python
-      permalink: /python/:title
-  - scope:
-      type: js
+      type: item01js
     values:
       title: JavaScript & TypeScript
-      permalink: /js/:title
+      permalink: /item01js/:title
   - scope:
-      type: posts
+      type: item02python
+    values:
+      title: Django, Machine Learning of Python
+      permalink: /item02python/:title
+  - scope:
+      type: item03ubuntu
+    values:
+      title: ubuntu server and db
+      permalink: /item03ubuntu/:title
+  - scope:
+      type: item04stock
+    values:
+      title: Kospi Kosdaq Market
+      permalink: /item04stock/:title
+  - scope:
+      type: item05contents
+    values:
+      title: Movie Book Review
+      permalink: /item05contents/:title
+  - scope:
+      type: item06posts
     values:
       title: Essays
-      permalink: /post/:title
-  - scope:
-      type: stock
-    values:
-      title: Stock
-      permalink: /stock/:title
+      permalink: /item06posts/:title
 
 plugins:
   - jekyll-sitemap
