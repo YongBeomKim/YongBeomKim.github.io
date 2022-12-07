@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 22년 12월 1주 마켓분석
+title: 마켓분석 기준 및 세부내용
 tags:
 - krx
 - stock
