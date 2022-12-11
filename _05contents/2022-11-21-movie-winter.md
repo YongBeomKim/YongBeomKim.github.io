@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 창밖은 겨울 - 후회 와 한숨 그사이..
+title: (영화) `창밖은 겨울` - 후회 와 한숨 그사이..
 tags: 
 - movie
 ---
