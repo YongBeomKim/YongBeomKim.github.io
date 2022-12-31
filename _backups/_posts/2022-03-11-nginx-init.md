@@ -187,14 +187,3 @@ $ sudo systemctl status gunicorn
 $ sudo systemctl -f stop gunicorn
 $ sudo systemctl status gunicorn
 ```
-
-<br/>
-
-# Naver Cloud
-
-네이버 클라우드는 Ubuntu 18.04 까지만 현재 지원하고 있습니다. 때문에 Python 은 3.6 버젼이고, Nginx 은 설정값을 추가해야만 정상적인 설치 작업이 진행 됩니다.
-
-- [Naver Cloud 콘솔 메뉴얼](https://www.ncloud.com/)
-- [Naver Cloud AAG(보안설정) 등 기초설정 방법](https://m.blog.naver.com/nieah914/221609709142)
-- [Naver Cloud Nginx 설치 및 포트포워딩](https://prohannah.tistory.com/84)
-- [Naver Cloud 서버 반납하기](https://growingsaja.tistory.com/325)
