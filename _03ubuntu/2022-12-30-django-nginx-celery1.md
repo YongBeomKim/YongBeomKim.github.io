@@ -43,7 +43,7 @@ Nginx 에서 우리가 작업할 파일 및 폴더들은 다음과 같습니다.
 
 `nginx.conf` 파일에서는 `user` 이름값이 중요한데 `root` 가 아닌 다른 사용자 이름을 추가 합니다.  nginx 가 [최고권리자에 접근하지 못하도록 설정값을 지정](https://opentutorials.org/module/384/4530) 해야 합니다. 개별 설정 값들에 대한 설명은 [nginx 환경 설정 conf](https://m.blog.naver.com/youngchanmm/221905488244) 을 참고 합니다. 
 
-## Nginx 의 가상 호스트 등록 `/nginx/sites-available/default`
+## Nginx 의 가상 호스트 등록 `sites-available/default`
 
 localhost 인 `http://127.0.0.1` 내부 url 주소와 Python Django, Celery, Flower 의 기본 포트 값을 참고하여 다음과 같이 작성하였습니다. [flower](https://stackoverflow.com/questions/41241048/django-how-can-i-access-celery-flower-page-in-production-mode) 설정과 관련된 내용은 링크를 참고 합니다.
 
@@ -81,6 +81,8 @@ server {
   }
 }
 ```
+
+<br/>
 
 ## 403 Error
 
