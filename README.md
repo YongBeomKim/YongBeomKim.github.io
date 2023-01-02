@@ -1,3 +1,7 @@
+# GitBlog Themes
+- https://github.com/cotes2020/jekyll-theme-chirpy
+- https://github.com/sharu725/online-cv
+
 # Unmaintained - Blog moved to Wordpress
 I've moved my blog to wordpress and ported this theme to Wordpress - [https://github.com/abhn/Elementary-Wordpress](https://github.com/abhn/Elementary-Wordpress).
 

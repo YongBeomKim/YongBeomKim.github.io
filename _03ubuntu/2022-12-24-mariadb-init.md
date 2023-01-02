@@ -9,7 +9,6 @@ tags:
 
 다음의 내용은 [How to Install and Set Up MariaDB on Ubuntu 22.04](https://www.makeuseof.com/install-set-up-mariadb-on-ubuntu/) 을 따라 진행한 내용을 정리해 보겠습니다.
 
-
 <br />
 
 # **설치하기**
@@ -32,12 +31,13 @@ mariadb --version
 sudo systemctl status mariadb
 ```
 
-## **한글 및 포트 설정값 추가하기**
-MariaDB 는 MySQL 과 동일한 [한글 깨짐현상](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95) 이 발생합니다. 아래의 예제내용 대로 변경을 하면 접속 Port 도 사용자가 바꿀 수 있습니다 <strike>Access IP 를 변경하여 외부에서도 접속 가능하도록 변경할 수 있습니다.</strike>
+## **한글설정 및 포트값 추가**
+- [MySQL default encoding UTF8로 바꾸기](https://sitos-dev.tistory.com/18)
+- [Docker MySQL, MariaDB 한글 깨짐 현상 관련 설정](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95)
 
 ```r
-# mysql encoding Setting
-sudo nvim /etc/mysql/conf.d/mysql.cnf
+# 한글 사용을 위한 `unicode` 기본값 추가하기 
+$ sudo nvim /etc/mysql/my.cnf
   [mysql]
   default-character-set=utf8mb4
   [Client]
@@ -49,14 +49,11 @@ sudo nvim /etc/mysql/conf.d/mysql.cnf
   [mysqldump]
   default-character-set=utf8mb4
 
-# MariaDB Server Connection Setting
-sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf
+# Server Connection Setting
+$ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf 
   # * Basic Settings
   port = 3306
-  # Instead of skip-networking the default is now to listen only on
-  # localhost which is more compatible and is not less secure.
   bind-address = 127.0.0.1
-  # bind-address = 0.0.0.0
 ```
 
 <br/>
@@ -67,7 +64,7 @@ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf
 
 root 초기 사용자 암호를 추가해야 합니다. 작업이 원할하게 진행되지 않는다면 `mysql.user` 테이블의 plugin 컬럼에서 `unix_socket` 값을 `mysql_native_password` 로 [변경](https://oziguyo.tistory.com/36) 하면 됩니다.
 
-```r
+```sql
 $ sudo mysql -u root
 
 MariaDB [(none)]> use mysql;
@@ -87,12 +84,24 @@ MariaDB []> CREATE USER '<사용자ID>'@'localhost' IDENTIFIED BY '<비밀번호
 MariaDB []> CREATE USER '<사용자ID>'@'%' IDENTIFIED BY '<비밀번호>';
 MariaDB []> CREATE DATABASE '<데이터베이스이름>';
 MariaDB []> USE '<데이터베이스이름>';
+MariaDB ['<데이터베이스이름>']> FLUSH PRIVILEGES;
 ```
 
-<br/>
+## **데이터베이스 추가 및 권한설정**
 
-# Django Setting
+아래의 스크립트는 `root` 계정으로 접속한 뒤, 새로운 사용자와 데이터베이스를 생성하고, 추가한 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다.
 
+```r
+$ sudo mariadb -u root -p
+$ sudo mycli -u root -h localhost mysql
+```
+```sql
+mysql> CREATE DATABASE <DB이름>;
+mysql> CREATE USER '<사용자이름>'@'localhost' IDENTIFIED BY '<비밀번호>';
+mysql> GRANT ALL PRIVILEGES ON <DB이름>.*  to  '<사용자이름>'@'localhost';
+mysql> SHOW GRANTS FOR '<사용자이름>'@'localhost';
+mysql> FLUSH PRIVILEGES;
+```
 
 <br/>
 
