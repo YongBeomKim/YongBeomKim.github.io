@@ -79,6 +79,7 @@ WantedBy=multi-user.target
 - [Flower Github](https://github.com/mher/flower)
 - [Document](https://flower.readthedocs.io/en/latest/reverse-proxy.html?highlight=nginx#running-behind-reverse-proxy)
 - [Celery Flower Security](https://www.appsloveworld.com/django/100/3/celery-flower-security-in-production)
-
+- [Configuring Celery + Redis + Supervisor with Django](https://gist.github.com/hamzaakhtar953/2197681306bf8417c4d1a5e2b8e4eaef)
+- [Configure Celery + Supervisor With Django](https://gist.github.com/mau21mau/9371a95b7c14ddf7000c1827b7693801)
 
 현재 `flower 1.2.0` 으로 업데이트 되면서 수정 및 변경이 조금  
