@@ -74,6 +74,15 @@ Type=simple
 WantedBy=multi-user.target
 ```
 
+<br/>
+
+# Nginx 와 Multiple Domain
+- [Serving multiple Django applications with Nginx and Gunicorn](https://www.youtube.com/watch?v=koo3bF2EPqk)
+- [nginx를 사용하여 멀티 도메인 연결하는 방법](https://webisfree.com/2018-01-06/nginx%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%A9%80%ED%8B%B0-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95)
+- [Serving multiple Django applications with Nginx and Gunicorn](https://michal.karzynski.pl/blog/2013/10/29/serving-multiple-django-applications-with-nginx-gunicorn-supervisor/)
+
+<br/>
+
 ## 참고사이트
 - [Celery 무작정 시작하기 (5) - Monitoring](https://heodolf.tistory.com/73)
 - [Flower Github](https://github.com/mher/flower)
