@@ -73,6 +73,18 @@ mysql> SHOW CREATE DATABASE newsite;
 +------------------------------------------------------------------------+
 ```
 
+<br/>
+
+# 추가정보
+
+## (2023-01-09) DataError : Out of range value for column `컬럼명`
+[MySQL](https://install-django.tistory.com/21) 에서 발생하는 오류 메세지로, 데이터 타입이 Django 모델 설정과 다를 때 발생하는 오류 입니다. 이번에는 `IntegerField()` 에서 발생 하는데, 자체적인 해결 방법은 `integer` 로 입력할 데이터 타입이 `int64` 로 설정된 내용을, `int32` 로 변환 후 `Migration` 작업을 진행 하는 방법으로 해결 했습니다..
+
+```python
+import numpy
+df['column'] = df['column'].astype(numpy.int32)
+```
+
 # 참고 사이트
 - [Django MySQL](https://django-mysql.readthedocs.io/en/latest/cache.html)
 - [Django에 MySQL 연동하기](https://daphne-dev.github.io/2020/10/01/django-mysql/)
