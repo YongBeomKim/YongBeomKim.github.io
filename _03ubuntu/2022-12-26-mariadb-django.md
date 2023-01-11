@@ -8,58 +8,6 @@ tags:
 
 앞선 과정을 모두 마쳤으면 `MariaDB` 에서 정상적인 작업들이 가능할 것입니다. 이제부터 `Django` 와 연결과 관련한 내용들을 정리해 보겠습니다.
 
-<br />
-
-# MariaDB & Django [TimeZone Setting](https://extsdd.tistory.com/262)
-
-## Time Zone 내용 확인하기
-
-MariaDB 내부에도 `Timezone` 설정값이 존재 합니다. 이를 확인하는 쿼리문은 아래와 같습니다. 출력된 내용들을 정리하면 `SYSTEM` 으로 정의된 다른 값이 없음을 알 수 있고, 두번째 쿼리를 통해 `Asia/Seoul` 값으로 변경을 하려고 해도 해당 값을 찾을 수 없음을 알 수 있습니다.
-
-```sql
-mysql> select @@global.time_zone, @@session.time_zone;
-+--------------------+---------------------+
-| @@global.time_zone | @@session.time_zone |
-+--------------------+---------------------+
-| SYSTEM             | SYSTEM              |
-+--------------------+---------------------+
-1 row in set (0.000 sec)
-
-mysql> SELECT b.name, a.time_zone_id 
-    -> FROM mysql.time_zone a, mysql.time_zone_name b 
-    -> WHERE a.time_zone_id = b.time_zone_id AND b.name LIKE '%Seoul';
-Empty set (0.015 sec)
-```
-
-## Asia / Seoul 시간대 추가하기
-
-`mysql_tzinfo_to_sql /usr/share/zoneinfo` 내용은 `/usr/share/zoneinfo` 의 우분투 시스템에 등록된 시간대 값을 `mariaDB` 에서 활용할 수 있도록 자동으로 스크립트를 생성 및 입력하는 내용 입니다. 정상적으로 입력을 완료한 후 `Maria DB` 에서 아래의 내용들을 차례로 입력하여 위의 시간대 값이 변경됨과 함께, 현재 시간값을 제대로 출력하는지를 함께 확인하면 작업이 완료 됩니다.
-
-```sql
-$ mysql_tzinfo_to_sql /usr/share/zoneinfo | sudo mysql -u root -p mysql
-$ sudo mycli -u root -h localhost mysql
-MariaDB 10.6.11
-
-mysql> SET GLOBAL time_zone='Asia/Seoul';
-Query OK, 0 rows affected; Time: 0.000s
-
-mysql> SET time_zone='Asia/Seoul';
-Query OK, 0 rows affected; Time: 0.000s
-
-mysql> SELECT @@system_time_zone, @@global.time_zone, @@session.time_zone;
-+------------------+------------------+-------------------+
-|@@system_time_zone|@@global.time_zone|@@session.time_zone|
-+------------------+------------------+-------------------+
-| KST              | Asia/Seoul       |Asia/Seoul         |
-+------------------+------------------+-------------------+
-
-mysql> SELECT NOW();
-+---------------------+
-| NOW()               |
-+---------------------+
-| 2023-01-01 15:00:00 |
-+---------------------+
-```
 
 <br />
 
@@ -137,6 +85,7 @@ mysql> SHOW CREATE DATABASE newsite;
 import numpy
 df['column'] = df['column'].astype(numpy.int32)
 ```
+
 
 # 참고 사이트
 - [Django MySQL](https://django-mysql.readthedocs.io/en/latest/cache.html)
