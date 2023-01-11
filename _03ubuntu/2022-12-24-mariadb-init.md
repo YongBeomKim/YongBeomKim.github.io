@@ -36,20 +36,12 @@ sudo systemctl status mariadb
 - [Docker MySQL, MariaDB 한글 깨짐 현상 관련 설정](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95)
 
 ```r
-# 한글 사용을 위한 `unicode` 기본값 추가하기 
-$ sudo nvim /etc/mysql/my.cnf
-  [mysql]
-  default-character-set=utf8mb4
-  [Client]
-  default-character-set=utf8mb4
+# 한글 사용을 위한 `unicode` 추가 
+$ sudo nvim /etc/mysql/conf.d/charset.cnf
   [mysqld]
   character-set-server=utf8mb4
-  collation-server=utf8mb4_unicode_ci
-  skip-character-set-client-handshake
-  [mysqldump]
-  default-character-set=utf8mb4
 
-# Server Connection Setting
+# MariaDB 서버 내부설정
 $ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf 
   # * Basic Settings
   port = 3306
