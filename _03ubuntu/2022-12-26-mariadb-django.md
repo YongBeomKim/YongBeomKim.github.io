@@ -36,7 +36,7 @@ mysql> SHOW GRANTS FOR '<사용자이름>'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
 
-## Django 에서 언결하기
+## Django 와 연결하기
 
 `settings.py` 설정 파일에서 앞선 설정 내용을 바탕으로 입력을 한 뒤 `migration` 을 실행하면 됩니다.
 
@@ -49,11 +49,15 @@ DATABASES = {
         'PASSWORD': 'DB 계정의 패스워드',
         'HOST': '접속 IP',
         'PORT': '포트 번호(3306)',
+        'OPTIONS': {
+            'charset':'utf8mb4',
+            'compress': True,
+        }   
     }
 }
 ```
 
-실행을 하면 다음과 같은 메세지를 출력하는 경우가 있습니다. 한글과 같은 문자를 활용하는 경우에는 `utf-8` 포맷은 오류를 발생하기 때문 입니다. 
+한글과 같은 문자를 활용하는 경우에는 `utf-8` 포맷의 DataBase 에서는 오류가 발생합니다. 즉 위의 `charset':'utf8mb4` 설정값 없이 작업을 진행하면 다음과 같은 오류 메세지를 발생 합니다. 
 
 ```r
 WARNINGS:
@@ -74,6 +78,18 @@ mysql> SHOW CREATE DATABASE newsite;
 +------------------------------------------------------------------------+
 ```
 
+`compress: True,` 설정은 [How can I use a compressed connection between Django and MySQL?](https://stackoverflow.com/questions/14909565/how-can-i-use-a-compressed-connection-between-django-and-mysql) 의 설정값을 활용한 것으로 응용한 결과, 압축을 하기 이전과 상당히 큰 데이터 크기 차이가 발생 했습니다. 이것은 테이블 생성시  `ROW_FORMAT=COMPRESSED` 옵션을 추가해주는 설정으로 `MySQL 8` 이후 버젼부터는 안정적으로 잘 작동합니다.
+
+
+보다 자세한 내용은 [이것이 MySQL 이다](https://books.google.co.kr/books?id=17MCEAAAQBAJ&pg=PA337&dq=ROW_FORMAT%3DCOMPRESSED&hl=ko&sa=X&ved=2ahUKEwiTzLOLn8H8AhUEs1YBHVG9DwcQ6AF6BAgFEAI#v=onepage&q=ROW_FORMAT%3DCOMPRESSED&f=false) 등의 내용을 참고하면, 테이블 압축 기능을 지원하는 방법으로 다음과 같습니다.
+
+```sql
+CREATE DATABASE IF NOT EXISTS compressDB;
+USE compressDB;
+CREATE TABLE compressTBL (emp_no int, first_name VARCHAR(14))
+    ROW_FORMAT=COMPRESSED ;
+```
+
 <br/>
 
 # 추가정보
@@ -84,6 +100,14 @@ mysql> SHOW CREATE DATABASE newsite;
 ```python
 import numpy
 df['column'] = df['column'].astype(numpy.int32)
+```
+
+## (2023-01-12) ID 숫자 초기화 하기
+
+`delete()` 메서드로 삭제 후, 새로 데이터를 입력하면, 기존의 ID 마지막 숫자에서 부터 작업을 시작 합니다.
+
+```sql
+ALTER TABLE `테이블_이름` AUTO_INCREMENT = 1;
 ```
 
 
