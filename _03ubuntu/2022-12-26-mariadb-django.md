@@ -104,7 +104,7 @@ df['column'] = df['column'].astype(numpy.int32)
 
 ## (2023-01-12) ID 숫자 초기화 하기
 
-`delete()` 메서드로 삭제 후, 새로 데이터를 입력하면, 기존의 ID 마지막 숫자에서 부터 작업을 시작 합니다.
+ `delete()` 메서드로 삭제 후, 새로 데이터를 입력하면, 기존의 ID 마지막 숫자에서 부터 작업을 시작 합니다. 새로운 1번부터 인데스를 시작하려면 [초기화 설정](https://velog.io/@sjy5386/SQL-AUTOINCREMENT-%EA%B0%92-%EC%B4%88%EA%B8%B0%ED%99%94%EC%9E%AC%EC%A0%95%EB%A0%AC) 을 해야 합니다.
 
 ```sql
 ALTER TABLE `테이블_이름` AUTO_INCREMENT = 1;
