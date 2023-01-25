@@ -29,17 +29,15 @@ tags:
 
 # Flower
 
-`flower 1.0.0` 일때 성공한 내용 입니다.
-
-
 ## flower.js
+
+`flower` 앱이 업데이트 되면서 `celery flower --url_prefix=flower` 옵션을 활용하면, Nginx 의 `redirect` 설정과 `flower.js` 파일의 수정이 불필요해 졌습니다. [2023-01-23 Changed the url_prefix to rewrite the handlers regex patterns](https://github.com/mher/flower/pull/766#issuecomment-703741612)
 
 ## NGINX
 ```r
   location ~ ^/flower/? {
-    rewrite ^/flower/?(.*)$ /$1 break;
-
-    sub_filter '="/' '="/flower/';
+    #rewrite ^/flower/?(.*)$ /$1 break;
+    #sub_filter '="/' '="/flower/';
     sub_filter_last_modified on;
     sub_filter_once off;
 
@@ -66,7 +64,9 @@ User=erdos
 Group=www-data
 WorkingDirectory=/home/erdos/Source/django
 Environment="PATH=/home/erdos/Source/venv/bin"
-ExecStart=/home/erdos/Source/venv/bin/celery -A server flower --address=127.0.0.1 --broker=redis://localhost:6379/0 --basic_auth=pi:saltman21
+ExecStart=/home/erdos/Source/venv/bin/celery -A 
+  server flower --url_prefix=flower --address=127.0.0.1 
+  --broker=redis://localhost:6379/0 --basic_auth=username:password
 Restart=on-failure
 Type=simple
 
@@ -90,5 +90,3 @@ WantedBy=multi-user.target
 - [Celery Flower Security](https://www.appsloveworld.com/django/100/3/celery-flower-security-in-production)
 - [Configuring Celery + Redis + Supervisor with Django](https://gist.github.com/hamzaakhtar953/2197681306bf8417c4d1a5e2b8e4eaef)
 - [Configure Celery + Supervisor With Django](https://gist.github.com/mau21mau/9371a95b7c14ddf7000c1827b7693801)
-
-현재 `flower 1.2.0` 으로 업데이트 되면서 수정 및 변경이 조금  

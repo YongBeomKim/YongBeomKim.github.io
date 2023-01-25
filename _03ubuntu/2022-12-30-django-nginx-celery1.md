@@ -45,7 +45,7 @@ Nginx 에서 우리가 작업할 파일 및 폴더들은 다음과 같습니다.
 
 ## Nginx 의 가상 호스트 등록 `sites-available/default`
 
-localhost 인 `http://127.0.0.1` 내부 url 주소와 Python Django, Celery, Flower 의 기본 포트 값을 참고하여 다음과 같이 작성하였습니다. [flower](https://stackoverflow.com/questions/41241048/django-how-can-i-access-celery-flower-page-in-production-mode) 설정과 관련된 내용은 링크를 참고 합니다.
+localhost 인 `http://127.0.0.1` 내부 url 주소와 Python Django, Celery, Flower 의 기본 포트 값을 참고하여 다음과 같이 작성하였습니다. [flower](https://stackoverflow.com/questions/41241048/django-how-can-i-access-celery-flower-page-in-production-mode) 설정과 관련된 내용은 링크를 참고 합니다. `flower` 앱이 업데이트 되면서 `celery flower --url_prefix=flower` 옵션을 활용하면, Nginx 의 `redirect` 설정과 `flower.js` 파일의 수정이 불필요해 졌습니다. [2023-01-23 Changed the url_prefix to rewrite the handlers regex patterns](https://github.com/mher/flower/pull/766#issuecomment-703741612)
 
 ```r
 server {
@@ -65,9 +65,8 @@ server {
   }
 
   location ~ ^/flower/? {
-    rewrite ^/flower/?(.*)$ /$1 break;
-
-    sub_filter '="/' '="/flower/';
+    # rewrite ^/flower/?(.*)$ /$1 break;
+    # sub_filter '="/' '="/flower/';
     sub_filter_last_modified on;
     sub_filter_once off;
 
@@ -81,6 +80,8 @@ server {
   }
 }
 ```
+
+
 
 <br/>
 
