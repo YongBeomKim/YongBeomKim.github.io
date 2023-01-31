@@ -20,3 +20,26 @@ tags:
 ## Nvidia Power Setting
 
 `POP-OS` 를 지금까지 사용하는 가장 큰 이유는, Thinkpad 의 전원관리를 잘 하는 시스템으로 추천받아서 였습니다. 다른 시스템에서는 해당 옵션을 찾기 힘들었는데 [Ubuntu Jammy and Nvidia](https://www.lorenzobettini.it/2022/08/ubuntu-jammy-and-nvidia/) 내용을 따라서 잘 설치를 하면 다른 OS 에서도 전원관리 내용을 활용하실 수 있습니다.
+
+## MacOS Theme
+
+[Make Linux Look Like macOS With These Easy Tweaks](https://www.makeuseof.com/tag/make-linux-look-like-macos/) 등을 참고하여 GUI Theme 를 변경할 수 있습니다.
+
+<br/>
+
+# Media Server
+
+## PLEX vs Emby vs Jellyfin - What is the Best Media Server?
+
+[다양한 미디어 서버에 대한 설명](https://ko.linux-console.net/?p=2421#gsc.tab=0) 을 참고한 결과, `Jellyfin` 을 선택 했습니다.
+
+<figure class="align-center">
+  <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/lgY97D5nCek" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+  </iframe>
+</figure>
+
+
+
