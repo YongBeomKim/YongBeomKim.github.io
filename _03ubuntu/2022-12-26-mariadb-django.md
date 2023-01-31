@@ -110,6 +110,12 @@ df['column'] = df['column'].astype(numpy.int32)
 ALTER TABLE `테이블_이름` AUTO_INCREMENT = 1;
 ```
 
+## InnoDB
+
+[MySQL InnoDB 테이블의 압축 조정](http://www.innodbcluster.com/?depth=140703) 및 [영문 원본 사이트](https://dev.mysql.com/doc/refman/5.6/en/innodb-compression.html) 등을 참고하면, 데이터 압축과 관련하여 `InnoDB` 의 [설정값](https://estenpark.tistory.com/377) 을 통해서 [구현](https://myinfrabox.tistory.com/58) 할 수 있다. 
+
+[Django Project](https://docs.djangoproject.com/en/4.1/ref/databases/) 문서에서도 [Django 의 설정](https://stackoverflow.com/questions/12165534/how-can-i-specify-multiple-init-commands-in-djangos-setup-file) 을 통해서 이를 조정할 수 있는데, 우선은 이 부분은 직접 MariaDB 콘솔을 활용하여 설정 및 확인등을 하는 과정을 통해 테스트를 하고, 기본 서비스는 우선 현재 설정내용으로 진행을 하자.
+
 
 # 참고 사이트
 - [Django MySQL](https://django-mysql.readthedocs.io/en/latest/cache.html)
