@@ -15,7 +15,11 @@ tags:
 
 ## MX Linux
 
-`Mx Linux` 에 대해서 [etoland](https://www.etoland.co.kr/plugin/mobile/board.php?bo_table=com&wr_id=839146) 에서 자세한 내용이 설명되어 있었습니다. [Mirro Site](http://ftp.kaist.ac.kr/mxlinux-iso/MX/Final/) 에서 다운받기 위해서 내용을 보면 `FluxBox, KDE, Xfce` 3가지 버젼이 있습니다. MX 는 `Xfce` 버젼이 주력인 만큼 위 Mirror 링크에서 `Xfce` 를 다운받아 보겠습ㄴ디ㅏ.
+`Mx Linux` 에 대해서 [etoland](https://www.etoland.co.kr/plugin/mobile/board.php?bo_table=com&wr_id=839146) 에서 자세한 내용이 설명되어 있었습니다. [Mirro Site](http://ftp.kaist.ac.kr/mxlinux-iso/MX/Final/) 에서 다운받기 위해서 내용을 보면 `FluxBox, KDE, Xfce` 3가지 버젼이 있습니다. MX 는 `Xfce` 버젼이 주력인 만큼 위 Mirror 링크에서 `Xfce` 를 다운받아 보겠습니다.
+
+## MX Login Screen Change
+
+[Change login screen background in XFCE LMDE](https://www.linuxquestions.org/questions/linux-newbie-8/%5Bsolved%5D-how-to-change-login-screen-background-in-xfce-lmde-941907/) 내용을 참고 합니다.
 
 ## Nvidia Power Setting
 
