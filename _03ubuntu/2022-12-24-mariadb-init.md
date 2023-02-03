@@ -15,7 +15,7 @@ tags:
 
 ## **데이터베이스 설치하기**
 
-우분투 22.04 에서 부가적으로 필요한 모듈과, MariaDB 모듈을 설치하는 명령어는 다음과 같습니다. 
+우분투 22.04 에서 부가적으로 필요한 모듈과, MariaDB 모듈을 설치하는 명령어는 다음과 같습니다. MadiaDB 는 10.06 LTS 버젼이 설치 됩니다 (2023.1.31)
 
 ```r
 sudo apt update && sudo apt upgrade
@@ -36,17 +36,30 @@ sudo systemctl status mariadb
 - [Docker MySQL, MariaDB 한글 깨짐 현상 관련 설정](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95)
 
 ```r
-# 한글 사용을 위한 `unicode` 추가 
-$ sudo nvim /etc/mysql/conf.d/charset.cnf
-  [mysqld]
-  character-set-server=utf8mb4
+# MariaDB 포트값 변경
+$ sudo nvim /etc/mysql/my.cnf
+[mysqld]
+port=15501
 
-# MariaDB 서버 내부설정
+# 외부 포트열기
 $ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf 
-  # * Basic Settings
-  port = 3306
-  bind-address = 127.0.0.1
+#  bind-address = 127.0.0.1
 ```
+
+## 포트내용 확인하기
+[Ubuntu) 포트, 방화벽 확인 및 포트 열기](https://archijude.tistory.com/392) 내용을 바탕으로 위의 포트를 변경한 뒤, 내용을 확인하는 명령 방법은 다음과 같습니다.
+
+```r
+$ netstat -nap | grep LISTEN
+tcp        0   0 0.0.0.0:15501   0.0.0.0:*   LISTEN      -                   
+
+$ sudo netstat -tulpen | grep db
+tcp        0   0 0.0.0.0:15501   0.0.0.0:*   2853/mariadbd       
+tcp6       0   0 :::15501        :::*        2853/mariadbd    
+```
+
+## 포트 포워드
+공유기를 거치는 경우, 외부에서 접속이 안되면 `포트 포워드` 내용을 확인합니다.
 
 <br/>
 
@@ -60,8 +73,6 @@ root 초기 사용자 암호를 추가해야 합니다. 작업이 원할하게 �
 $ sudo mysql -u root
 
 MariaDB [(none)]> use mysql;
-MariaDB [mysql]> update user set 
-  password=password('<비밀번호>') where user='root';
 MariaDB [mysql]> FLUSH PRIVILEGES;
 MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
 
@@ -79,6 +90,14 @@ MariaDB []> USE '<데이터베이스이름>';
 MariaDB ['<데이터베이스이름>']> FLUSH PRIVILEGES;
 ```
 
+mariadb 10.5 이전 버젼에서는 다음의 명령을 사용합니다. 이 명령을 10.5 이후의 버젼에서 사용하면 mysql의 user테이블이 뷰테이블 속성을 갖게되어 함수를 이용해서 변경을 해야되어서 아래의 오류를 출력 합니다.
+
+```sql
+MariaDB [mysql]> update user set 
+  password=password('<비밀번호>') where user='root';
+  (1356, "View 'mysql.user' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them")
+```
+
 ## **데이터베이스 추가 및 권한설정**
 
 아래의 스크립트는 `root` 계정으로 접속한 뒤, 새로운 사용자와 데이터베이스를 생성하고, 추가한 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다.
@@ -94,6 +113,13 @@ mysql> GRANT ALL PRIVILEGES ON <DB이름>.*  to  '<사용자이름>'@'localhost'
 mysql> SHOW GRANTS FOR '<사용자이름>'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
+
+## REMOVE
+
+```r
+$ sudo apt-get purge "mariadb-*"
+```
+
 
 <br/>
 
@@ -119,6 +145,9 @@ ARM Cpu 환경에서 `MariaDB` 를 설치하는 경우에 발생한 상황으로
 $ sudo apt-get install build-essential libssl-dev libffi-dev \
     python3-dev cargo pkg-config
 ```
+
+
+
 
 <br/>
 

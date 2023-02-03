@@ -116,6 +116,25 @@ ALTER TABLE `테이블_이름` AUTO_INCREMENT = 1;
 
 [Django Project](https://docs.djangoproject.com/en/4.1/ref/databases/) 문서에서도 [Django 의 설정](https://stackoverflow.com/questions/12165534/how-can-i-specify-multiple-init-commands-in-djangos-setup-file) 을 통해서 이를 조정할 수 있는데, 우선은 이 부분은 직접 MariaDB 콘솔을 활용하여 설정 및 확인등을 하는 과정을 통해 테스트를 하고, 기본 서비스는 우선 현재 설정내용으로 진행을 하자.
 
+## [Django RAW SQL](https://docs.djangoproject.com/en/4.1/topics/db/sql/)
+
+`READ` 명령을 사용할 때에는 [Performing raw SQL queries](https://docs.djangoproject.com/en/4.1/topics/db/sql/#performing-raw-queries) 의 내용은 데이터를 참조할 때 사용합니다.
+
+```python
+for p in Person.objects.raw('SELECT * FROM myapp_person'):
+    print(p)
+```
+
+`CREATE`,`UPDATE`,`DELETE` 내용은 [Executing custom SQL directly](https://docs.djangoproject.com/en/4.1/topics/db/sql/#executing-custom-sql-directly) 를 참고하여 다음의 명령을 사용하면 됩니다.  `ALTER TABLE market_krxpriceohlc AUTO_INCREMENT = 1` 와 같이 속성을 변경하는 명령을 사용할 수 있습니다.
+
+```python
+from django.db import connection
+with connection.cursor() as cursor:
+    cursor.execute("ALTER TABLE market_krxpriceohlc AUTO_INCREMENT = 1")
+    # row = cursor.fetchone()
+```
+
+
 
 # 참고 사이트
 - [Django MySQL](https://django-mysql.readthedocs.io/en/latest/cache.html)
