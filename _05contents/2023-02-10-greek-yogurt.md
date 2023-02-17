@@ -13,7 +13,7 @@ tags:
 - 요구르트 100ml (농후 발효유) : 비피더스 등
 - 우유 1l (X 저지방 우유) : 
 
-# 만드는 법
+# [만드는 법](https://m.blog.naver.com/goeuni128/222094810741)
 - 우유 1L 단위 요구르트 100ml 1개를 풀어서 섞는다.
 - 1l 는 40분, 2l 는 1시간 반 밥솥을 보온으로 설정하며 덥히기
 - 이후, 끈 상태로 8~9시간 발효를 진행한다 (보온 시간이 길면 유산균이 죽는다)
@@ -22,3 +22,8 @@ tags:
 - 채반 위에 면보를 깔고, 냉장 보관했던 요거트를 담은 뒤 면보로 감싼 후 무거운 물체를 올려서 유청분리 작업을 진행 합니다.
 - 분리 작업은 2 3회 반복합니다.
 - 걸러진 유청을 보관함에 담고, 위의 그릭 요거트를 용기에 담으면 작업은 끝이 납니다.
+
+<figure class="align-center">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/1a2s8HfqslM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <figcaption>초간단 4L 대용량 그릭요거트 만들기</figcaption>
+</figure>
