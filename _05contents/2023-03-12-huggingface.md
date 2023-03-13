@@ -96,7 +96,7 @@ emotions_local = load_dataset(
 ※ 본 리뷰는 IT 현업개발자가, 한빛미디어 책을 제공받아 작성한 서평입니다.
 
 <figure class="align-center">
-  <img src="{{site.baseurl}}/assets/book/hugging.jpeg">
-  <figcaption>Hugging Face 에서 한글관련 모델</figcaption>
+  <img src="{{site.baseurl}}/assets/book/hugging.jpeg" width="50%">
+  <figcaption>리뷰도서 Cover</figcaption>
 </figure>
 
