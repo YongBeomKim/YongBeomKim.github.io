@@ -13,7 +13,7 @@ tags:
 
 # **설치하기**
 
-## **데이터베이스 설치하기**
+## **MariaDB 설치하기**
 
 우분투 22.04 에서 부가적으로 필요한 모듈과, MariaDB 모듈을 설치하는 명령어는 다음과 같습니다. MadiaDB 는 10.06 LTS 버젼이 설치 됩니다 (2023.1.31)
 
@@ -63,72 +63,67 @@ tcp6       0   0 :::15501        :::*        2853/mariadbd
 
 <br/>
 
-# **[Create User & Password](https://www.codingfactory.net/11336)**
+# 사용자 설정
 
 ## **Root 사용자 비밀번호 추가**
 
-root 초기 사용자 암호를 추가해야 합니다. 작업이 원할하게 진행되지 않는다면 `mysql.user` 테이블의 plugin 컬럼에서 `unix_socket` 값을 `mysql_native_password` 로 [변경](https://oziguyo.tistory.com/36) 하면 됩니다.
+root 초기 사용자 암호를 추가해야 합니다. 작업이 원할하게 진행되지 않는다면 `mysql.user` 테이블의 plugin 컬럼에서 `unix_socket` 값을 `mysql_native_password` 로 [변경](https://oziguyo.tistory.com/36) 하면 됩니다. 추가적인 내용은 [Create User & Password](https://www.codingfactory.net/11336) 를 참고 합니다.
+
+[2023년 3월 31일 추가](https://oneboard.tistory.com/21) 설치 후 `sudo mysql -u root` 를 입력하면 보안명령 없이 접속할 수 있습니다. 예전의 `root` 사용자 변경 쿼리를 실행하면 `ERROR 1356` 을 출력하는데, 이유는 `user` 테이블에 `@localhost` 내용이 추가되는 방식으로 변경되어 있어서 두번째 방식으로 변경을 해야 합니다. `sudo mysql -u root` 를 사용하면 비밀번호 없이도 접속이 가능하기 때문에 `root` 사용자 정보를 따로 변경할 실익은 거의 없습니다.
 
 ```sql
 $ sudo mysql -u root
+$ sudo mariadb -u root
 
 MariaDB [(none)]> use mysql;
+MariaDB [mysql]> UPDATE user set password=password('password@@') where user='root';
+ERROR 1356 (HY000): View 'mysql.user' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+
+MariaDB [mysql]> set password for 'root'@'localhost' = PASSWORD('password@@');
+Query OK, 0 rows affected (0.002 sec)
 MariaDB [mysql]> FLUSH PRIVILEGES;
-MariaDB [mysql]> SELECT User, Host, plugin FROM mysql.user;
+Query OK, 0 rows affected (0.001 sec)
+```
 
-$ sudo mysql -u root -p
-password:
+## **사용자 추가**
+추가적인 사용자 입력 방법은 다음과 같습니다.
 
+```sql
+$ sudo mariadb -u root -p
 $ sudo mycli -u root -h localhost mysql
-password:
 
 # @'localhost' : 내부만 접속, $'%' : 외부접속 가능
 MariaDB []> CREATE USER '<사용자ID>'@'localhost' IDENTIFIED BY '<비밀번호>';
 MariaDB []> CREATE USER '<사용자ID>'@'%' IDENTIFIED BY '<비밀번호>';
-MariaDB []> CREATE DATABASE '<데이터베이스이름>';
-MariaDB []> USE '<데이터베이스이름>';
-MariaDB ['<데이터베이스이름>']> FLUSH PRIVILEGES;
-```
-
-mariadb 10.5 이전 버젼에서는 다음의 명령을 사용합니다. 이 명령을 10.5 이후의 버젼에서 사용하면 mysql의 user테이블이 뷰테이블 속성을 갖게되어 함수를 이용해서 변경을 해야되어서 아래의 오류를 출력 합니다.
-
-```sql
-MariaDB [mysql]> update user set 
-  password=password('<비밀번호>') where user='root';
-  (1356, "View 'mysql.user' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them")
+MariaDB []> FLUSH PRIVILEGES;
 ```
 
 ## **데이터베이스 추가 및 권한설정**
+새로운 데이터베이스를 생성하고, 추가 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다.
 
-아래의 스크립트는 `root` 계정으로 접속한 뒤, 새로운 사용자와 데이터베이스를 생성하고, 추가한 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다.
-
-```r
-$ sudo mariadb -u root -p
-$ sudo mycli -u root -h localhost mysql
-```
 ```sql
-mysql> CREATE DATABASE <DB이름>;
-mysql> CREATE USER '<사용자이름>'@'localhost' IDENTIFIED BY '<비밀번호>';
-mysql> GRANT ALL PRIVILEGES ON <DB이름>.*  to  '<사용자이름>'@'localhost';
-mysql> SHOW GRANTS FOR '<사용자이름>'@'localhost';
-mysql> FLUSH PRIVILEGES;
+MariaDB> CREATE DATABASE <DB이름>;
+MariaDB> GRANT ALL PRIVILEGES ON <DB이름>.*  to  '<사용자이름>'@'%';
+MariaDB> SHOW GRANTS FOR '<사용자이름>'@'%';
+MariaDB> FLUSH PRIVILEGES;
 ```
 
-## REMOVE
+<br/>
 
+# REMOVE
+설치한 DB를 삭제하는 명령은 다음과 같습니다.
 ```r
 $ sudo apt-get purge "mariadb-*"
 ```
 
-
 <br/>
 
-# [MyCli](https://www.mycli.net/)
+# Appendix
 
+## [MyCli](https://www.mycli.net/)
 MySQL, madiadb 를 터미널에서 접속할 때, 자동완성 기능을 돕는 CLI 입니다. 설치시 몇가지 주의할 점들이 있어서 정리를 해 보았습니다.
 
 ## Python: OSError: mariadb_config not found
-
 파이썬 [mysqlclient](https://pypi.org/project/mysqlclient/) 모듈을 설치하다 보면 위의 오류가 발생하는 경우가 있습니다. [mariadb 패키지 요구사항](https://int-i.github.io/python/2021-03-01/mariadb-config-not-found/) 을 충족하지 못해서 발생하는 문제점으로 이를 해결하면 정상적인 진행이 가능합니다.
 
 - C 컴파일러
@@ -137,7 +132,6 @@ MySQL, madiadb 를 터미널에서 접속할 때, 자동완성 기능을 돕는 
 - TLS 라이브러리 (ex. OpenSSL 등)
 
 ## [Building cryptography on Linux](https://github.com/pyca/cryptography/blob/main/docs/installation.rst#building-cryptography-on-linux)
-
 ARM Cpu 환경에서 `MariaDB` 를 설치하는 경우에 발생한 상황으로, `$ pip install cryptography` 설치 진행과정 중에 `Rust installed and available<installation:Rust>` 오류가 발생하여 더이상 진행되지 않았습니다.
 
 이런 경우에는 아래의 모듈을 설치한 뒤에 진행을 하면 해결 가능합니다.
@@ -145,11 +139,6 @@ ARM Cpu 환경에서 `MariaDB` 를 설치하는 경우에 발생한 상황으로
 $ sudo apt-get install build-essential libssl-dev libffi-dev \
     python3-dev cargo pkg-config
 ```
-
-
-
-
-<br/>
 
 ## 참고사이트
 
