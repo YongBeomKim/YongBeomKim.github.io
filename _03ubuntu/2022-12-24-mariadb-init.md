@@ -31,6 +31,11 @@ mariadb --version
 sudo systemctl status mariadb
 ```
 
+## GCP 에서 방화벽 개방하기
+[2023-03-31 추가](https://llighter.github.io/hugo_blog/2018/04/compute-engine%EC%97%90-mariadb-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0/) VM 머신 내부에 Mariadb 등을 설치한 경우에는 외부에서 연결 가능하도록 해당 포트를 열어줘여 합니다. 
+
+`VPC 네트워크 >> 방화벽 규칙 세부정보` 에서 `tcp 3306` 포트를 사용할 수 있도록 설정내용을 추가 합니다.
+
 ## **한글설정 및 포트값 추가**
 - [MySQL default encoding UTF8로 바꾸기](https://sitos-dev.tistory.com/18)
 - [Docker MySQL, MariaDB 한글 깨짐 현상 관련 설정](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95)
