@@ -74,7 +74,7 @@ tcp6       0   0 :::15501        :::*        2853/mariadbd
 
 root 초기 사용자 암호를 추가해야 합니다. 작업이 원할하게 진행되지 않는다면 `mysql.user` 테이블의 plugin 컬럼에서 `unix_socket` 값을 `mysql_native_password` 로 [변경](https://oziguyo.tistory.com/36) 하면 됩니다. 추가적인 내용은 [Create User & Password](https://www.codingfactory.net/11336) 를 참고 합니다.
 
-[2023년 3월 31일 추가](https://oneboard.tistory.com/21) 설치 후 `sudo mysql -u root` 를 입력하면 보안명령 없이 접속할 수 있습니다. 예전의 `root` 사용자 변경 쿼리를 실행하면 `ERROR 1356` 을 출력하는데, 이유는 `user` 테이블에 `@localhost` 내용이 추가되는 방식으로 변경되어 있어서 두번째 방식으로 변경을 해야 합니다. `sudo mysql -u root` 를 사용하면 비밀번호 없이도 접속이 가능하기 때문에 `root` 사용자 정보를 따로 변경할 실익은 거의 없습니다.
+[**2023년 3월 31일 추가 내용**](https://oneboard.tistory.com/21) 설치 후 `sudo mysql -u root` 를 입력하면 보안명령 없이 접속할 수 있습니다. 예전의 `root` 사용자 변경 쿼리를 실행하면 `ERROR 1356` 을 출력하는데, 이유는 `user` 테이블에 `@localhost` 내용이 추가되는 방식으로 변경되어 있어서 두번째 방식으로 변경을 해야 합니다. `sudo mysql -u root` 를 사용하면 비밀번호 없이도 접속이 가능하기 때문에 `root` 사용자 정보를 따로 변경할 실익은 거의 없습니다.
 
 ```sql
 $ sudo mysql -u root
@@ -96,6 +96,10 @@ Query OK, 0 rows affected (0.001 sec)
 ```sql
 $ sudo mariadb -u root -p
 $ sudo mycli -u root -h localhost mysql
+
+# 현재 등록된 사용자정보 확인
+MariaDB []> use mysql;
+MariaDB [mysql]> SELECT host, user FROM user;
 
 # @'localhost' : 내부만 접속, $'%' : 외부접속 가능
 MariaDB []> CREATE USER '<사용자ID>'@'localhost' IDENTIFIED BY '<비밀번호>';
@@ -146,7 +150,7 @@ $ sudo apt-get install build-essential libssl-dev libffi-dev \
 ```
 
 ## 참고사이트
-
+- [사용자 추가, 권한 부여하기, 원격접속 허용 설정하기](https://kig6022.tistory.com/14)
 - [ERROR mysql ERROR 1698 (28000): Access denied](https://velog.io/@yhe228/ERRORmysql-ERROR-1698-28000-Access-denied-for-user-rootlocalhost)
 - [AWS MariaDB 원격접속 하기](https://conkjh032.tistory.com/28)
 - [MariaDB 초기 접속암호 분실시](https://funfunit.tistory.com/104)
