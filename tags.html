@@ -7,7 +7,7 @@ title: Tags
 {% assign alltags =  alldocs | map: 'tags' | join: ','  | split: ','  | group_by_exp: "tag","tag" %}
 
 <p>
-  Articles on similar topics are grouped together by tags. Click on any tag to find all the articles 'tagged' with that tag.
+  동일한 Tag를 갖는 문서의 갯수를 출력합니다. 해당 Tag 를 클릭하면 동일한 이름으로 Tagged 된 문서 목록으로 이동 합니다.
 </p>
 <ul class="tag-box">
     {% for tag in alltags %}

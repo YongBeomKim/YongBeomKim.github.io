@@ -10,7 +10,7 @@ tags:
 # DarkMode Contents
 - [Easy Dark Mode in React TS](https://css-tricks.com/easy-dark-mode-and-multiple-color-themes-in-react/)
 - [CSS Dark Mode Toggle Button](https://youtu.be/l8aC7BsKhTI)
-- [Light and Dark Theme in React JS | 5min](https://youtu.be/77oLB53txEk)
+- [Light and Dark Theme in React JS, 5min](https://youtu.be/77oLB53txEk)
 - [React Dark Theme Toggle With Styled Components](https://youtu.be/zgd-z3R1o2k)
 - [React js Dark Mode With localStorage](https://youtu.be/5zeuW802NLg)
 
