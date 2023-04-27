@@ -2,7 +2,7 @@
 layout: blog
 title: PostgreSQL 기초 명령어2
 tags:
-- psql
+- sql
 ---
 
 PostgreSQL 에서 추가적인 명령어들을 정리해 보겠습니다. 보다 자세한 내용은 [PostgreSQL Tutorial](https://www.tutorialspoint.com/postgresql/index.html) 사이트에서 확인 가능합니다.

@@ -3,7 +3,6 @@ layout: blog
 title: Django for Json
 tags:
 - django
-- json
 ---
 
 Django 의 Template 문법을 HTML 이 아닌 JavaScript 와 상호작용을 위한 내용을 살펴보겠습니다.

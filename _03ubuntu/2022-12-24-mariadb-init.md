@@ -2,7 +2,7 @@
 layout: blog
 title: MariaDB on Ubuntu 22.04
 tags:
-- mariadb
+- sql
 ---
 
 `PostgreSQL` 에서 `16Gb` 데이터를 추출 후 압축을 진행해 보니 `1Gb` 로 줄어 들었습니다. 내용을 찾아보면 `PostgreSQL` 은 용량과 속도를 내주는 대신에, 활용성을 높인 데이터베이스로 간단한 반복작업을 하는 서비스 에서는 부적합 하다는 의견이 보였습니다. 대안으로 'MySQL', 'MariaDB' 를 활용하는 것이 속도와 용량등 모든 측면에서 유리하다는 의견들을 볼 수 있었습니다.

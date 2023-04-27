@@ -2,8 +2,7 @@
 layout: blog
 title: 에코프로BM 가치분석
 tags:
-- krx
-- valuation
+- quant
 ---
 
 2022년 12월 1주를 기준으로 시장을 분석해 보겠습니다.

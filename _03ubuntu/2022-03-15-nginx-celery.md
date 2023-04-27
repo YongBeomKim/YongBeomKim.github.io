@@ -3,7 +3,6 @@ layout: blog
 title: Celery Flower on Nginx
 tags:
 - nginx
-- celery
 ---
 
 Celery, Flower 의 서버설정 과정을 정리해 보았습니다.
@@ -38,40 +37,6 @@ Celery, Flower 의 서버설정 과정을 정리해 보았습니다.
   - [flower.service](#flowerservice)
   - [flower service 내용추가](#flower-service-내용추가)
 - [Supervisor](#supervisor)
-- [참고사이트](#참고사이트)
-
-- [Nginx](#nginx)
-  - [Install](#install)
-  - [파일의 구성](#파일의-구성)
-  - [nginx.conf](#nginxconf)
-  - [default.conf (default)](#defaultconf-default)
-  - [Reload](#reload)
-
-- [Content](#content)
-- [Uvicorn](#uvicorn)
-  - [Running with Gunicorn](#running-with-gunicorn)
-  - [gunicorn service](#gunicorn-service)
-  - [daemon service](#daemon-service)
-- [Nginx](#nginx)
-  - [Install](#install)
-  - [파일의 구성](#파일의-구성)
-  - [nginx.conf](#nginxconf)
-  - [default.conf (default)](#defaultconf-default)
-  - [Reload](#reload)
-  - [무료 SSL 설치 및 자동 업데이트 설정](#무료-ssl-설치-및-자동-업데이트-설정)
-- [Celery](#celery)
-  - [Setting Files](#setting-files)
-  - [Celery Worker](#celery-worker)
-  - [Celery Beat](#celery-beat)
-  - [SystemCTL](#systemctl)
-  - [내용의 추가](#내용의-추가)
-- [Flower](#flower)
-  - [Nginx for Flower](#nginx-for-flower)
-  - [flower.service](#flowerservice)
-  - [flower service 내용추가](#flower-service-내용추가)
-- [Supervisor](#supervisor)
-- [참고사이트](#참고사이트)
-
 - [참고사이트](#참고사이트)
 
 <br/>

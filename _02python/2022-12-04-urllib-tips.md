@@ -2,7 +2,6 @@
 layout: blog
 title: 파이썬으로 URL 갖고 놀기 by urllib 
 tags:
-- urllib
 - python
 ---
 

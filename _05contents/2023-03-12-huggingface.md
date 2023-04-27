@@ -2,8 +2,7 @@
 layout: blog
 title: (도서) 트랜스포머를 활용한 자연어 처리
 tags:
-- huggingface
-- data
+- book
 ---
 
 `Pytorch` 모듈을 활용하는 **머신러닝 유 경험자** 에게 가장 쉽게 고급 자연어 원리를 학습하는데 도움이 많이 되는 책 입니다.

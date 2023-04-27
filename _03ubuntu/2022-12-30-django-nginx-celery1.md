@@ -3,8 +3,6 @@ layout: blog
 title: Deploy Django with Nginx, Celery, Flower (Part 1)
 tags:
 - django
-- celery
-- flower
 - nginx
 ---
 

@@ -2,7 +2,7 @@
 layout: blog
 title: 투자의 본질
 tags:
-- valuation
+- book
 ---
 
 박세익 전무의 `투자의 본질` 과 `현명한 초보 투자자` 의 기업의 가치분석

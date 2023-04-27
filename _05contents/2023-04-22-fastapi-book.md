@@ -2,8 +2,7 @@
 layout: blog
 title: (도서) FASTAPI를 사용한 파이썬 웹개발
 tags:
-- fastapi
-- python
+- book
 ---
 
 파이썬으로 `간단한 API 서버` 작업을 하려면, `Flask` 또는 `Django` 와 같은 프레임 워크와 `Django Rest FrameWork` 같은 모듈에 대해서 모두 알고난 뒤 작업이 가능 했었습니다. 이러한 허들을 낮춰준 모듈이 `FastAPI` 로 1개의 모듈에 대해서만 알고 나면 동일한 결과물을 뽑아낼 수 있었고, 부수적으로 서버 응답속도도 비약적으로 빨라져서 안쓸 이유가 없는 모듈이 되었습니다.

@@ -1,11 +1,12 @@
 ---
 layout: blog
-title: CSS Navigation 만들기
+title: Dark Theme with Styled Component
 tags:
 - css
+- styledcomponent
 ---
 
-사이트 CSS 작업을 하면서, 단계별 이해를 필요로 하는 개념들을 하나씩 정리 해 보겠습니다. (처음부터 매 번 다시 시작하는 듯 해서 정리를 시작하게 되었습니다.) [HTML Semantic Elements](https://dotnettutorials.net/lesson/semantic-elements-html/)
+앞에서 기본적인 Navigation 을 알아보았다면, 이번에는 Theme를 적용하는 내용에 대해서 알아보도록 하겠습니다.
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/web/semantic.png">

@@ -2,7 +2,7 @@
 layout: blog
 title: Django Ninja Auth
 tags:
-- ninja
+- pydantic
 ---
 
 Django 에서 React 와 보안을 위해 사용하는 방법중에 PyJWT 를 활용한 Token 을 검증하는 방법부터, SNS 소셜 미디어를 활용한 로그인 방법까지 알아 보도록 하겠습니다.

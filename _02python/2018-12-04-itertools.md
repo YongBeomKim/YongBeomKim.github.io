@@ -2,7 +2,7 @@
 layout: blog
 title: itertools
 tags:
-- itertools
+- python
 ---
 
 간단한 작업들은 **if/ for** 조건문을 과 List, Dict 객체만 잘 조합하면 구성이 가능하다. 하지만 대용량의 데이터 분석 작업을 진행할수록 **class, __init__, lambda** 등의 내용을 사용하면 보다 효과적인 처리가 가능합니다.

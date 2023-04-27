@@ -3,7 +3,6 @@ layout: blog
 title: Django Error Notes
 tags:
 - django
-- react
 ---
 
 작업을 하면서 실수한 내용들을 정리 합니다

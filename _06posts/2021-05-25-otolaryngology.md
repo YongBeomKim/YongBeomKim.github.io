@@ -1,13 +1,8 @@
 ---
-title : 돌발성 난청의 치료기
-last_modified_at: 2021-05-25T10:45:06-05:00
-header:
-   overlay_image: /assets/images/project/hearning.jpg
-categories:
-  - hearing
+layout: blog
+title: 돌발성 난청의 치료기
 tags: 
-    - hospital
-    - oriental
+- health
 ---
 
 2010년 메니메르 증상을 경험하였다. 아무증상 없이 발생한 경우보다 치료예휴가 좋다고 하는 만큼 긍정적인 사고를 활용하여 치료를 진행해보자.

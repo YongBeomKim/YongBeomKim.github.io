@@ -2,8 +2,8 @@
 layout: blog
 title: TimeZone of MariaDB & Django 
 tags:
+- sql
 - django
-- mariadb
 ---
 
 일반적인 작업들은 앞의 과정을 모두 마치면 정상적으로 작동합니다. `datetime` 객체를 저장하고 호출하는 과정에서 다음과 같은 오류가 발생합니다. 아래와 같은 오류는 `SQLite` 를 사용할 때는 발생하지 않고, 다른 DataBase 를 사용할 때 발생합니다.

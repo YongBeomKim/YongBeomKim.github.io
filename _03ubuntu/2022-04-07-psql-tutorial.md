@@ -2,7 +2,7 @@
 layout: blog
 title: PostgreSQL 기초 명령어
 tags:
-- psql
+- sql
 ---
 
 Python 으로 수집 정리한 자료를 저장 및 관리하는 PipeLine 으로 Python 의 `apscheduler` 과 `Postgresql shell` 를 활용 합니다.

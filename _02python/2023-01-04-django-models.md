@@ -3,7 +3,6 @@ layout: blog
 title: Django Models & Migrations
 tags:
 - django
-- model
 ---
 
 [Django Model Fiels Reference](https://docs.djangoproject.com/ko/4.1/ref/models/fields/) 공식문서의 내용을 정리한 [블로그](https://velog.io/@qlgks1/Django-Model-%ED%95%84%EB%93%9Cfiled-%EB%AA%A8%EC%9D%8C%EC%A7%91) 입니다.

@@ -2,7 +2,7 @@
 layout: blog
 title: Django Ninja 로 몰래 배우는 Rest API
 tags:
-- ninja
+- pydantic
 ---
 
 `PyCharm by JetBrains` 채널에서 지난 9월 [Writing REST With Django and Ninja](https://youtu.be/Gry6rlZYpzw) 세미나가 온라인으로 진행되었습니다. `Django Ninja` 를 소개하는 내용으로 1시간 10분의 짧은 시간속에 기대했던 것 보다 더 알찬 내용을 배울 수 있었습니다.

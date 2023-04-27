@@ -2,7 +2,7 @@
 layout: blog
 title: Decorator
 tags:
-- decorator
+- python
 ---
 
 # wrapper 

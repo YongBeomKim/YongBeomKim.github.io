@@ -2,7 +2,7 @@
 layout: blog
 title: 차익거래 (Arbitrage) 
 tags:
-- arbitrage
+- quant
 ---
 
 차익거래 선물의 거래내용에 대해서 정리를 해보겠습니다. 이 내용은 "삼프로Tv" 에서 박세익 전무의 설명 내용을 정리한 것입니다.

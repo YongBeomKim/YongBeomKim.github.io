@@ -1,13 +1,8 @@
 ---
-title : 우분투 설치 and Tips
-last_modified_at: 2021-03-01T10:45:06-05:00
-header:
-  overlay_image: /assets/images/book/ubuntu.png
-categories:
-  - ubuntu
-tags: 
-    - ubuntu
-    - settings
+layout: blog
+title: 우분투 설치 and Tips
+tags:
+- ubuntu
 ---
 
 우분투 설치 후 관련 자세한 초기설정 방법은 **[Ubuntu Setting in Win10](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/)** 와 앞에서 정리한 [우분투 Setting & Tips](https://yongbeomkim.github.io/ubuntu/ubuntu-settings/) 내용을 참고합니다.

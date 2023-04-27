@@ -2,7 +2,7 @@
 layout: blog
 title: sqlalchemy
 tags:
-- sqlalchemy
+- sql
 ---
 
 서비스 서버를 구매하는 과정에서 설정관련 내용을 정리해 보려고 합니다. 

@@ -2,8 +2,7 @@
 layout: blog
 title: Django Ninja 를 10 단계로 이해하기
 tags:
-- ninja
-- django
+- pydantic
 ---
 
 이번 내용은 Ninja 기본 제작자가 설명하는 [DjangoCon 2022 ｜ Introducing Django Ninja](https://youtu.be/zpR1QCLBpIA) 을 요약한 문서 입니다. Ninja 모듈의 제작 의도 및 중심을 구성하는 개념들이 어떤 것인지를 이해할 수 있는 내용이었습니다.
@@ -13,7 +12,7 @@ tags:
   - [2 Complex Payloads (Schema)](#2-complex-payloads-schema)
   - [3 Async 지원](#3-async-지원)
   - [4 Example : Filter](#4-example--filter)
-  - [5 Response Header & Cookie](#5-response-header--cookie)
+  - [5 Response Header \& Cookie](#5-response-header--cookie)
   - [6 Uploading Files](#6-uploading-files)
   - [7 중첩된 객체 (Nested Object)](#7-중첩된-객체-nested-object)
   - [8 Pagination](#8-pagination)
