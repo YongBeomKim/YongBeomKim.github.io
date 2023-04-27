@@ -3,10 +3,19 @@ layout: blog
 title: Dark Theme with Styled Component
 tags:
 - css
-- styledcomponent
 ---
 
-앞에서 기본적인 Navigation 을 알아보았다면, 이번에는 Theme를 적용하는 내용에 대해서 알아보도록 하겠습니다.
+사이트 전체적인 스타일을 변경하는 `Dark Theme` 를 적용하는 내용에 대해서 알아보도록 하겠습니다. `React.js` 와 `styled component` 를 사용해 보겠습니다. 
+
+# DarkMode Contents
+- [Easy Dark Mode in React TS](https://css-tricks.com/easy-dark-mode-and-multiple-color-themes-in-react/)
+- [CSS Dark Mode Toggle Button](https://youtu.be/l8aC7BsKhTI)
+- [Light and Dark Theme in React JS | 5min](https://youtu.be/77oLB53txEk)
+- [React Dark Theme Toggle With Styled Components](https://youtu.be/zgd-z3R1o2k)
+- [React js Dark Mode With localStorage](https://youtu.be/5zeuW802NLg)
+
+# Styled Component
+사이트 전체의 `배경`, `글자 색` 을 사용자 선택에 따라 변경하는 것이 목적 입니다. 이를 위해서 
 
 <figure class="align-center">
   <img src="{{site.baseurl}}/assets/web/semantic.png">

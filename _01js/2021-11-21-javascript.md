@@ -2,7 +2,6 @@
 layout: blog
 title: Typescript Js & Falsy(!)
 tags:
-- javascrpit
 - typescript
 ---
 
