@@ -5,14 +5,33 @@ tags:
 - css
 ---
 
-사이트 전체적인 스타일을 변경하는 `Dark Theme` 를 적용하는 내용에 대해서 알아보도록 하겠습니다. `React.js` 와 `styled component` 를 사용해 보겠습니다. 
+사이트의 전체 스타일을 변경하는 `Dark Theme` 를 작성하는 내용에 대해서 알아보도록 하겠습니다. `React.js` 와 `styled component` 등을 종합적으로 사용해 보겠습니다.
+
+<br/>
+
+# Button : `input` & `label`
+## label
+`form` 을 컨트롤 할 때, 별도의 `Caption` 기능을 하는 요소를 추가로 필요로 합니다. 이번 예제에서는 `check` 태그를 활용하기 위해서 사용자 클릭 영역을 보다 넓게 사용하도록 `label` 태그를 추가 했습니다. `input` 태그의 `id` 값을 `label` 태그의 `htmlFor` 속성에 입력하면 연결이 완료 됩니다.
+
+```html
+<label htmlFor="theme">
+  <input id="theme" type="checkbox" />
+</label>
+```
+
+
+[![React Dark Theme Toggle With Styled Components Tutorial](https://i.ytimg.com/vi/zgd-z3R1o2k/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDE8bJzfYWuyz-PgY85bRByJsnHqg)](https://youtu.be/zgd-z3R1o2k)
+
 
 # DarkMode Contents
+- [Toggle Switch CSS](https://youtu.be/l8aC7BsKhTI)
+- [Toggle Switch CodePen](https://codesandbox.io/s/6v7n1vr8yn?file=/src/index.js:307-1130)
 - [Easy Dark Mode in React TS](https://css-tricks.com/easy-dark-mode-and-multiple-color-themes-in-react/)
 - [CSS Dark Mode Toggle Button](https://youtu.be/l8aC7BsKhTI)
 - [Light and Dark Theme in React JS, 5min](https://youtu.be/77oLB53txEk)
 - [React Dark Theme Toggle With Styled Components](https://youtu.be/zgd-z3R1o2k)
 - [React js Dark Mode With localStorage](https://youtu.be/5zeuW802NLg)
+- [styled-component 설정 및 GlobalStyle](https://velog.io/@dngur9801/styled-component-%EC%84%A4%EC%A0%95-%EB%B0%8FGlobalStyle%EA%B3%BC-ThemeProvider-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-with-typescript)
 
 # Styled Component
 사이트 전체의 `배경`, `글자 색` 을 사용자 선택에 따라 변경하는 것이 목적 입니다. 이를 위해서 
@@ -23,6 +42,12 @@ tags:
 </figure>
 
 <br/>
+
+# Hover Style
+- [Underline Text Hover Effect](https://youtu.be/JEVOi1LEYGg)
+- [Create a CSS Upper & underline hover](https://youtu.be/4eh2r-C5hqE)
+- [Button Hover Effect Using HTML And CSS](https://youtu.be/Pmo6y5b2Uec)
+
 
 # Header
 `Header` 는 맨 처음 보여지는 페이지로, 로고나 메인 이미지 또는 알림내용을 보여지는 용도로써 활용 됩니다. 최근은 모바일 기능이 강조되면서 `모바일 상태창` 및 `알림창` 등에서 동일한 정보를 제공하고 있어서 별도로 정의하지 않는 추세로 보입니다.

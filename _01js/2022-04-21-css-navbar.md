@@ -15,7 +15,30 @@ tags:
 <br/>
 
 # Header
-`Header` 는 맨 처음 보여지는 페이지로, 로고나 메인 이미지 또는 알림내용을 보여지는 용도로써 활용 됩니다. 최근은 모바일 기능이 강조되면서 `모바일 상태창` 및 `알림창` 등에서 동일한 정보를 제공하고 있어서 별도로 정의하지 않는 추세로 보입니다.
+`Header` 태그는 영화의 `로고` 또는 `메인 타이틀` 처럼 화면을 꽉 채우는 특정 이미지를 배경으로 활용을 할 때 주로사용 합니다. 때문에 태그 내부에 구성요소가 많으면 모바일 등으로 화면이 전환될 때 요소들이 엉킬 수 있는 단점이 있습니다. 따라서 화면을 꽉 채우지 않는 `서비스의 대표 이미지`를 전달하는 목적으로 페이지를 구성할 때 사용 합니다.
+```css
+header{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+```
+
+<br/>
+
+# Section, Div
+최근은 모바일 기능이 강조 되면서 `웹툰`과 같이 구성요소들이 화면의 폭 길이에 따라 구성요소들을 채운 높이 길이가 천차만별로 달라진 구성을 갖게 됩니다. `flex-box`를 활용하여 객체들을 차례로 쌓아올리는 방식으로 화면을 구성 합니다. `Scroll` 기능을 통해서 내용을 얼마나 바로 보여줄 것인가 결정하게 되는데, `Infinite Scroll` 등의 부가 기능을 주로 활용 합니다.
+
+<figure class="align-center">
+  <img width="600px" src="{{site.baseurl}}/assets/web/food-menu-pc.png">
+  <figcaption>데스크탑 모드</figcaption>
+</figure>
+
+<figure class="align-center">
+  <img width="450px" src="{{site.baseurl}}/assets/web/food-menu-mobile.png">
+  <figcaption>모바일 모드</figcaption>
+</figure>
 
 <br/>
 
@@ -34,8 +57,6 @@ tags:
 페이지 단위로 화면구성을 정의하기 위한 기본 틀로써 Canvas 를 먼저 정의 합니다. 담길 내용은 다음과 같습니다.
 ```typescript
 export const Container = styled.div<{url:string}>`
-  width: 100vw;
-  height: 100vh;
   background: url(${props => props.url});
   background-size: cover;
   background-position: center;
