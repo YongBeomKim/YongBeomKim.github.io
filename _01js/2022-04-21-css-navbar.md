@@ -25,10 +25,15 @@ header{
 }
 ```
 
+<figure class="align-center">
+  <img width="200px" src="{{site.baseurl}}/assets/web/html-template-536788.jpg">
+  <figcaption>페이지로 이미지 활용예시</figcaption>
+</figure>
+
 <br/>
 
 # Section, Div
-최근은 모바일 기능이 강조 되면서 `웹툰`과 같이 구성요소들이 화면의 폭 길이에 따라 구성요소들을 채운 높이 길이가 천차만별로 달라진 구성을 갖게 됩니다. `flex-box`를 활용하여 객체들을 차례로 쌓아올리는 방식으로 화면을 구성 합니다. `Scroll` 기능을 통해서 내용을 얼마나 바로 보여줄 것인가 결정하게 되는데, `Infinite Scroll` 등의 부가 기능을 주로 활용 합니다.
+최근은 모바일 기능이 강조 되면서 `웹툰`과 같이 구성요소들이 화면의 폭 길이에 따라 구성요소들을 채운 높이 길이가 천차만별로 달라진 구성을 갖게 됩니다. [아침식사 메뉴 예시 사이트](https://nicepage.com/templates/preview/breakfast-menu-1672524?device=desktop) `flex-box`를 활용하여 객체들을 차례로 쌓아올리는 방식으로 화면을 구성 합니다. `Scroll` 기능을 통해서 내용을 얼마나 바로 보여줄 것인가 결정하게 되는데, `Infinite Scroll` 등의 부가 기능을 주로 활용 합니다.
 
 <figure class="align-center">
   <img width="600px" src="{{site.baseurl}}/assets/web/food-menu-pc.png">
@@ -36,7 +41,7 @@ header{
 </figure>
 
 <figure class="align-center">
-  <img width="450px" src="{{site.baseurl}}/assets/web/food-menu-mobile.png">
+  <img width="250px" src="{{site.baseurl}}/assets/web/food-menu-mobile.png">
   <figcaption>모바일 모드</figcaption>
 </figure>
 
