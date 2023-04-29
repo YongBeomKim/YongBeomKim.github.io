@@ -27,7 +27,7 @@ header{
 
 <figure class="align-center">
   <img width="200px" src="{{site.baseurl}}/assets/web/html-template-536788.jpg">
-  <figcaption>페이지로 이미지 활용예시</figcaption>
+  <figcaption>[페이지로 이미지 활용예시](https://nicepage.com/css-templates/preview/healthy-organic-food-536788?device=desktop)</figcaption>
 </figure>
 
 <br/>
