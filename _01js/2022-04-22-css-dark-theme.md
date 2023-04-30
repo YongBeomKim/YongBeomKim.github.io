@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Dark Theme with Styled Component
+title: Css Theme with Styled Component
 tags:
 - css
 ---
@@ -18,7 +18,6 @@ tags:
   <input id="theme" type="checkbox" />
 </label>
 ```
-
 
 [![React Dark Theme Toggle With Styled Components Tutorial](https://i.ytimg.com/vi/zgd-z3R1o2k/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDE8bJzfYWuyz-PgY85bRByJsnHqg)](https://youtu.be/zgd-z3R1o2k)
 
