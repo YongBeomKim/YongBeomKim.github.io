@@ -32,6 +32,9 @@ tags:
 - [React js Dark Mode With localStorage](https://youtu.be/5zeuW802NLg)
 - [styled-component 설정 및 GlobalStyle](https://velog.io/@dngur9801/styled-component-%EC%84%A4%EC%A0%95-%EB%B0%8FGlobalStyle%EA%B3%BC-ThemeProvider-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-with-typescript)
 
+# TypeScript
+- [Dark mode toggle using the Context API](https://www.youtube.com/watch?v=fvc9vumPNAA)
+
 # Styled Component
 사이트 전체의 `배경`, `글자 색` 을 사용자 선택에 따라 변경하는 것이 목적 입니다. 이를 위해서 
 
