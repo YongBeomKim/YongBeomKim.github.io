@@ -30,11 +30,11 @@ collections:
     default_open: false
     output: true
   03python:
-    title: 파이썬
+    title: Python
     default_open: false
     output: true
   04ubuntu:
-    title: 우분투
+    title: Ubuntu
     default_open: false
     output: true
   05stock:
