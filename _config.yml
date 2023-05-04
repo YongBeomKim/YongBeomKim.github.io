@@ -22,27 +22,31 @@ featured_posts:
 
 collections:
   01js:
-    title: 프론트엔드
+    title: FrontEnd (Ts)
     default_open: false
     output: true
-  02python:
+  02django:
+    title: BackEnd (Django,Nginx)
+    default_open: false
+    output: true
+  03python:
     title: 파이썬
     default_open: false
     output: true
-  03ubuntu:
-    title: 우분투 서버
+  04ubuntu:
+    title: 우분투
     default_open: false
     output: true
-  04stock:
+  05stock:
     title: 금융투자
     default_open: false
     output: true
-  05contents:
-    title: 영화 도서리뷰
+  06contents:
+    title: 리뷰 및 후기
     default_open: false
     output: true
-  06posts:
-    title: 취미 및 기타
+  07posts:
+    title: 기타
     default_open: false
     output: true
 
@@ -53,27 +57,32 @@ defaults:
       title: JavaScript & TypeScript
       permalink: /js/:title
   - scope:
-      type: 02python
+      type: 02django
+    values:
+      title: Fullstack with Django
+      permalink: /django/:title
+  - scope:
+      type: 03python
     values:
       title: Django, Machine Learning of Python
       permalink: /python/:title
   - scope:
-      type: 03ubuntu
+      type: 04ubuntu
     values:
       title: ubuntu server and db
       permalink: /ubuntu/:title
   - scope:
-      type: 04stock
+      type: 05stock
     values:
       title: Kospi Kosdaq Market
       permalink: /stock/:title
   - scope:
-      type: 05contents
+      type: 06contents
     values:
       title: Movie Book Review
       permalink: /contents/:title
   - scope:
-      type: 06posts
+      type: 07posts
     values:
       title: Essays
       permalink: /posts/:title

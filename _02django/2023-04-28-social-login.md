@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Social Login with Django
+title: Django Social Login 
 tags:
 - django
 ---
@@ -9,7 +9,7 @@ Django 에서 `사용자정보` 모델을 Customize 부터, `소셜 로그인` A
 
 <br/>
 
-# Django BaseUserManager
+# **Django BaseUserManager**
 `이메일` 기준으로 인증절차를 진행하도록 사용자 모델 내용을 수정 합니다. Django 사용자 기본 파라미터는 `Username` 과 `Password` 입니다. 하지만 최근의 서비스들은 `email` 을 기준으로 작동하고 있어서, 이에 맞도록 내용을 수정 보완 합니다.
 
 ## [Django 인증 및 사용자 모델 커스터마이징](https://docs.djangoproject.com/ko/4.2/topics/auth/customizing/)
@@ -38,8 +38,8 @@ class UserAuth(BaseBackend):
 
 <br/>
 
-# [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/creating_tokens_manually.html)
-DataBase 에 저장된 사용자의 `JWT Token` 의 생성,인증,갱신 등을 위한 `Django Model & Table` 을 생성하고  `API 함수` 까지 자동으로 생성하는 패키지 입니다. [pyjwt](https://pyjwt.readthedocs.io/en/latest/) 와 [Django-rest-framework](https://www.django-rest-framework.org/) 를 기반으로 작성 되었습니다
+# **Simple JWT**
+[Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/creating_tokens_manually.html) 패키지는 DataBase 에 저장된 사용자의 `JWT Token` 의 생성,인증,갱신 등을 위한 `Django Model & Table` 을 생성하고  `API 함수` 까지 자동으로 생성하는 패키지 입니다. [pyjwt](https://pyjwt.readthedocs.io/en/latest/) 와 [django-rest-framework](https://www.django-rest-framework.org/) 를 기반으로 작성 되었습니다
 
 ```python
 name="djangorestframework_simplejwt",
@@ -62,7 +62,6 @@ Django 패키지와 연동을 위한 [기본설정](https://django-rest-framewor
 from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 
-# User Model Manager
 class UserManager(BaseUserManager): 
 
   def create_user(self, email, username, password):
@@ -73,8 +72,7 @@ class UserManager(BaseUserManager):
     (+) token_jwt = RefreshToken.for_user(user=user) # Refresh
     (+) token_jwt = {
     (+)   "refresh": str(token_jwt),
-    (+)   "access":str(token_jwt.access_token)
-    (+) }
+    (+)   "access":str(token_jwt.access_token) }
 ```
 
 ## [JWT Urls](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#installation)
@@ -114,7 +112,7 @@ pandas.DataFrame(data)
 
 <br/>
 
-# DRF에서 소셜 로그인 구현하기
+# **DRF에서 소셜 로그인 구현하기**
 소셜 서비스와 연동을 위해서 추가로 `django_allauth` 패키지와 로그인 인터페이스를 제공하는 `dj-rest-auth` 패키지를 활용 합니다. 소셜 로그인 과정은 `서비스 서버` 에서 사용자 인증을 `인증서버` 의 `OAuth`를 활용하는 방식으로, 전체적인 프로세스는 다음과 같습니다.
 1. `인증서버 ex>Google` 에게 **<span style="color:var(--strong);">OAuth 인증요청</span>** 을 합니다.
 2. **OAuth 인증요청** 에 포함된 `파라미터` 가 `서비스 서버` 정보와 일치하는지 확인 합니다.
@@ -123,7 +121,7 @@ pandas.DataFrame(data)
 5. **<span style="color:var(--strong);">CallBack 함수</span>** 에서 추가 검증절차를 진행하여 마무리 합니다.
 
 <figure class="align-center">
-  <img width="600px" src="{{site.baseurl}}/assets/fullstack/oauth-process.png">
+  <img width="540px" src="{{site.baseurl}}/assets/fullstack/oauth-process.png">
   <figcaption>OAuth Connection Process</figcaption>
 </figure>
 
@@ -140,34 +138,52 @@ allauth.socialaccount.providers.oauth2.\
 
 <br/>
 
-# [Google Social Login](https://velog.io/@kkh2742/TIL221121)
-구체적으로 Google OAuth 인증 작업을 진행해 보겠습니다. 작업을 시작하기 위해서는 [Google Cloud Platform](https://console.cloud.google.com/apis/credentials) 에서 `OAuth 2.0 클라이언트 ID` 를 발급 받아야 합니다.
+# Google OAuth
+## google-auth-library-python-oauthlib
+[Google OAuth Authoriztion](https://developers.google.com/identity/protocols/oauth2/web-server?hl=ko#python_1) 공식 문서에서는 [google-auth-oauthlib.flow 패키지](https://github.com/googleapis/google-auth-library-python-oauthlib) 로 OAuth 인증하는 법을 안내하고 있습니다.
+- [Google OpenID(Oauth) 로그인 구현하기 with django](https://velog.io/@maintain0404/Google-OpenIDOauth-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-with-django) 
+- [Google APIs OAuth in Django](https://www.nishantwrp.com/posts/google-apis-oauth-in-django)
 
-파라미터를 입력해야 하는데, 승인 후 서버에서 앞으로 작성할 `Callback 함수의 URI` 정보를 입력하고, 그 내용대로 작업에 적용해야 합니다. 등록이 완료되면 `client_id` 와 `secret` 값을 저장 합니다.
+## Google OAuth
+[Google Cloud Platform](https://console.cloud.google.com/apis/credentials) 에서 `OAuth 2.0 클라이언트 ID` 를 발급 받아야 합니다. 발급을 위한 입력 값에는 `Callback URI` 가 중요한데, 뒤 이어서 작업할 내용과 연결되어서 작업이 되야 합니다. 발급이 완료되면 `client_id` 와 `secret` 값 받게 되고 서비스 서버에 해당 값을 저장 합니다.
 
 <figure class="align-center">
-  <img width="600px" src="{{site.baseurl}}/assets/fullstack/oauth-gcp.png">
+  <img width="350px" src="{{site.baseurl}}/assets/fullstack/oauth-gcp.png">
   <figcaption>입력 파라미터 정보</figcaption>
 </figure>
 
+<br/>
+
+# Django All Auth
+`django-allauth` 패키지로 작업을 진행 하겠습니다. 
+- [DRF에서 소셜 로그인(Google) 기능 구현하기](https://velog.io/@kkh2742/TIL221121) 
+- [django에서 kakao 로그인 api 사용하기 +(allauth 사용)](https://applepick.tistory.com/27)
+- [DRF 소셜 로그인 API 구현하기(Google, KaKao, Github)](https://medium.com/chanjongs-programming-diary/django-rest-framework%EB%A1%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-api-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0-google-kakao-github-2ccc4d49a781)
+- [Google OAuth Using `dj-auth` and `django-allauth`](https://medium.com/@aaron-ak/django-rest-framework-drf-with-google-oauth-server-side-flow-using-dj-auth-and-django-allauth-126dcd20374b)
 
 ## `settings.py`
-OAuth 인증을 위해서, 해당 서비스 인증 파라미터를 추가해야 합니다. 
+앞에서 발급받은 고유값을 Django 와 연결하는 방법이 2가지가 있는데 하나는 `Django Admin` 페이지에 접속해서 `Home > Social Account > Social Application` 에서 직접입력하는 방법과, 두번째 [서비스 파라미터](https://django-allauth.readthedocs.io/en/latest/providers.html#django-configuration) 값을 설정파일에 추가하는 방법 이 있습니다.
 ```python
-# Provider specific settings
-## https://django-allauth.readthedocs.io/en/latest/providers.html#django-configuration
 SOCIALACCOUNT_PROVIDERS = {
   'google': {
     'APP': {
-      'client_id': SETTING_JSON.get('GOOGLE_CLIENT_ID'),
-      'secret': SETTING_JSON.get('GOOGLE_SECRET'),
-      'key': ''},
-    'OAUTH_PKCE_ENABLED': True,
-    'AUTH_PARAMS': {'access_type': 'offline',}
- },
+      'client_id': "*!@&$^!@&!$........",
+      'secret': "adg234s!@&$^!$......",
+    }, ...
+  },
 }
 ```
 
+<figure class="align-center">
+  <img width="350px" src="{{site.baseurl}}/assets/fullstack/django-social-app.png">
+  <figcaption>Django Admin 에서 APP 인증정보 추가</figcaption>
+</figure>
+
+
+<br/>
+
+# React.js
+프론트엔트는 SocialLogin 을 위한 URL 로 Redirect 후, 전달받은 API 값을 활용하여 rendering 결과를 활용하는 방식으로 구성을 하면 됩니다. 이는 Django React Blog 예제에서 사용자 페이지 로그인 후, 해당내용을 어떻게 받아서 처리를 했는지 이 부분을 그대로 적용하면 될 것으로 보입니다.
 
 
 
@@ -180,3 +196,4 @@ SOCIALACCOUNT_PROVIDERS = {
 - [Django, React JWT Auth & Pagination GITHUB](https://github.com/timurbakibayev/crud_django_react)
 - [Blogify Example GITHUB](https://github.com/Amir-Mohamad/Blogify)
 - [Blogify Example with Ninja GITHUB](https://bitbucket.org/momukjilab/ninja-blog/src/master/)
+- [OAuth Flowchart (draft)](https://github.com/deu-meta/metaland-accounts/issues/43)
