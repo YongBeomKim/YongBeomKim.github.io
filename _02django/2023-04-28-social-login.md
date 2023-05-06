@@ -7,15 +7,41 @@ tags:
 
 Django 에서 `사용자정보` 모델을 Customize 부터, `소셜 로그인` API 구축까지 정리를 시작 해 보겠습니다. 이 내용들을 실제 정리한 저장소로는 [bitbucket - Article](https://bitbucket.org/momukjilab/article/src/master/) 가 있습니다. 하지만 해당 결과물에는 서비스 Key 값이 포함되어 있어서 비공개로 변환 하였습니다.
 
+앞으로 `URI` 개념이 나오는데, `URI` 는 특정 리소스를 식별하는 통합 자원 식별자(Uniform Resource Identifier)를 의미 합니다. `URL` 은 `URI` 의 서브셋 개념 입니다.
+
+<div style="text-align: center;">
+  <figure class="align-center">
+    <img src="{{site.baseurl}}/assets/linux/uri-url.jpg">
+    <figcaption>URI 와 URL</figcaption>
+  </figure>
+</div>
+
+<br/>
+
+# **OAuth**
+[OAuth 개념 및 동작의 이해](https://tecoble.techcourse.co.kr/post/2021-07-10-understanding-oauth/)
+
+## **Resources**
+- Resource Server : Client 가 제어하려는 자원을 보유하는 서버 `ex)Google`
+- Resource Owner : 위 서비스를 통해 로그인을 하려는 User
+- Client : 앞의 Resource 를 활용하려는 서비스
+
+## **OAuth Flow**
+- Client 등록 : OAuth Resource 를 활용하려는 Client 서버의 사전승인
+- Resource Owner 요청 : `GET Resource Server URI` 로, 사용자 확인 파라미터 전송
+- Client 검사 : 앞의 파라미터를 확인하여 로그인이 완료 후, 전송된 파라미터를 검사 및 확인
+- Resource Owner 승인 : 승인 후 `Redirect URI` 클라이언트 전환으로 Access Token 발급을 위한 임시 `Authorization Code` 를 발급
+- Refresh Token : Access Token 만료로 401 오류가 발생하면 재발급 절차를 진행 합니다.
+
 <br/>
 
 # **Django BaseUserManager**
 `이메일` 기준으로 인증절차를 진행하도록 사용자 모델 내용을 수정 합니다. Django 사용자 기본 파라미터는 `Username` 과 `Password` 입니다. 하지만 최근의 서비스들은 `email` 을 기준으로 작동하고 있어서, 이에 맞도록 내용을 수정 보완 합니다.
 
-## [Django 인증 및 사용자 모델 커스터마이징](https://docs.djangoproject.com/ko/4.2/topics/auth/customizing/)
-제목의 링크는 [DjangoProject](https://docs.djangoproject.com/ko/4.2/topics/auth/customizing/) 사이트 내용으로 해당 내용을 적용하는 방법을 가장 잘 성명하고 있고, 버전이 변경됨에 따라 수정 보완된 내용도 바로 알 수 있습니다. 하지만 `Tutorial` 이 아닌 `Manual` 사이트인 관계로 작업의 순서대로 정리는 되어있지 않습니다. 해당 작업이 처음이신 분은 [Tutorial 순서대로 정리한 블로그](https://blog.ppuing.me/30) 등을 우선 참고하면 됩니다.
+## **Django 인증 및 사용자 모델 커스터마이징**
+[DjangoProject](https://docs.djangoproject.com/ko/4.2/topics/auth/customizing/) 사이트 내용으로 해당 내용을 적용하는 방법을 가장 잘 성명하고 있고, 버전이 변경됨에 따라 수정 보완된 내용도 바로 알 수 있습니다. 하지만 `Tutorial` 이 아닌 `Manual` 사이트인 관계로 작업의 순서대로 정리는 되어있지 않습니다. 해당 작업이 처음이신 분은 [Tutorial 순서대로 정리한 블로그](https://blog.ppuing.me/30) 등을 우선 참고하면 됩니다.
 
-## Django 인증
+## **Django 인증**
 **사용자 정보 클래스** 를 `email` 기준으로 변경 하면서, `사용자정보` 와 `프로필` 2개의 테이블을 작성 하였습니다. 이를 근거로 사용자 인증 과정도 `email` 을 기준으로 작동하도록 아래의 내용들을 추가 합니다.
 
 ```python
@@ -29,9 +55,9 @@ class UserAuth(BaseBackend):
     try:
       user = get_user_model().objects.get(email=email)
       if user.check_password(password):
-          return user
+        return user
       else:
-          return None
+        return None
     except:
       return None
 ```
@@ -51,12 +77,11 @@ install_requires=[
 ],
 ```
 
-## [Django Setting](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html)
+## **Django Setting**
 Django 패키지와 연동을 위한 [기본설정](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#installation) 을 작업하고, 추가로 Jwt 인증 API 에서 설정관련 내용들은 [Settings](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html) 페이지를 참고 합니다.
 
-## Django User Model
+## **Django User Model**
 `Django` 에서 `Email` 인증 내용을 추가한 만큼, 사용자 모델에서도 [Token 관리](https://stackoverflow.com/questions/72966364/jwt-auth-using-python-social-auth-and-django-rest-framework) 할 수 있도록 내용을 추가 합니다.
-
 ```python
 # /core/models.py
 from rest_framework.authtoken.models import Token
@@ -68,15 +93,15 @@ class UserManager(BaseUserManager):
     user = self.model(email = email, username = username)
     user.set_password(password)
     user.save(using = self._db)
-    (+) token     = Token.objects.create(user=user) # Create, Access
+    (+) token     = Token.objects.create(user=user)  # Create, Access
     (+) token_jwt = RefreshToken.for_user(user=user) # Refresh
     (+) token_jwt = {
     (+)   "refresh": str(token_jwt),
     (+)   "access":str(token_jwt.access_token) }
 ```
 
-## [JWT Urls](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#installation)
-API작업을 윈활하게 도와주는 `URL` 내용을 추가 합니다.
+## **JWT Urls**
+API 작업을 윈활하게 도와주는 [Django URL](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html#installation) 내용을 추가 합니다.
 
 ```python
 from rest_framework_simplejwt.views import (
@@ -94,8 +119,8 @@ urlpatterns += [
 ]
 ```
 
-## [Manage JWT Tokens](https://stackoverflow.com/questions/73153174/delete-expired-tokens-from-database-django-jwt)
-앞의 이메일 인증 작업을 완료한 뒤 테스트를 진행하다 보면, Access Token 을 호출하면 기존의 Token 의 유효기간이 완료되지 않았어도 계속 새로운 Token 값을 생성합니다. 사용자 숫자에 비해 계속 Token 값이 누적되면 이를 청소를 해주게 되는데, 앞에서 언급했듯이 `Simple JWT` 에서 Token 테이블을 직접 관리하고 있어서 아래의 내용처럼 `Simple JWt` 에서 호출 및 관리를 하면 됩니다.
+## **Manage JWT Tokens**
+앞의 이메일 인증 작업을 완료한 뒤 테스트를 진행하다 보면, Access Token 을 호출하면 기존의 Token 의 유효기간이 완료되지 않았어도 계속 새로운 Token 값을 생성합니다. 사용자 숫자에 비해 계속 Token 값이 누적되면 이를 청소를 해주게 되는데, 앞에서 언급했듯이 `Simple JWT` 에서 Token 테이블을 직접 관리하고 있어서 아래의 내용처럼 `Simple JWt` 에서 호출 및 관리를 하면 됩니다. [Manage JWT Tokens](https://stackoverflow.com/questions/73153174/delete-expired-tokens-from-database-django-jwt) 내용을 참고 합니다.
 
 ```python
 import pandas
@@ -121,7 +146,7 @@ pandas.DataFrame(data)
 5. **<span style="color:var(--strong);">CallBack 함수</span>** 에서 추가 검증절차를 진행하여 마무리 합니다.
 
 <figure class="align-center">
-  <img width="540px" src="{{site.baseurl}}/assets/fullstack/oauth-process.png">
+  <img width="610px" src="{{site.baseurl}}/assets/fullstack/oauth-process.png">
   <figcaption>OAuth Connection Process</figcaption>
 </figure>
 
@@ -130,11 +155,11 @@ pandas.DataFrame(data)
 ```python
 raise OAuth2Error("Invalid id_token") from e
 allauth.socialaccount.providers.oauth2.\
-    client.OAuth2Error: Invalid id_token
+  client.OAuth2Error: Invalid id_token
 ```
 
 ## `dj-rest-auth`
-인증에 필요한 인터페이스를 제공하는 모듈 입니다.
+Django 에서 인증에 필요한 인터페이스를 제공하는 모듈 입니다.
 
 <br/>
 
@@ -163,6 +188,7 @@ allauth.socialaccount.providers.oauth2.\
 
 ## `settings.py`
 앞에서 발급받은 고유값을 Django 와 연결하는 방법이 2가지가 있는데 하나는 `Django Admin` 페이지에 접속해서 `Home > Social Account > Social Application` 에서 직접입력하는 방법과, 두번째 [서비스 파라미터](https://django-allauth.readthedocs.io/en/latest/providers.html#django-configuration) 값을 설정파일에 추가하는 방법 이 있습니다.
+
 ```python
 SOCIALACCOUNT_PROVIDERS = {
   'google': {
@@ -178,7 +204,6 @@ SOCIALACCOUNT_PROVIDERS = {
   <img width="350px" src="{{site.baseurl}}/assets/fullstack/django-social-app.png">
   <figcaption>Django Admin 에서 APP 인증정보 추가</figcaption>
 </figure>
-
 
 <br/>
 
@@ -197,3 +222,8 @@ SOCIALACCOUNT_PROVIDERS = {
 - [Blogify Example GITHUB](https://github.com/Amir-Mohamad/Blogify)
 - [Blogify Example with Ninja GITHUB](https://bitbucket.org/momukjilab/ninja-blog/src/master/)
 - [OAuth Flowchart (draft)](https://github.com/deu-meta/metaland-accounts/issues/43)
+- https://www.geeksforgeeks.org/email-social-logins-in-django-step-by-step-guide/
+- https://medium.com/chanjongs-programming-diary/django-rest-framework%EB%A1%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-api-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0-google-kakao-github-2ccc4d49a781
+- https://velog.io/@leehk77789/%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EA%B5%AC%EA%B8%80-%ED%95%99%EC%8A%B5
+- https://velog.io/@kjyeon1101/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%EA%B8%80
+- https://medium.com/@aaron-ak/django-rest-framework-drf-with-google-oauth-server-side-flow-using-dj-auth-and-django-allauth-126dcd20374b
