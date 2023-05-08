@@ -23,6 +23,8 @@ tags:
 <br/>
 
 ## 참고사이트
+- [Social Authentication Using Django and React](https://medium.com/@ronakchitlangya1997/social-authentication-email-using-django-and-react-js-e1cc8456262d)
+- [Social Auth using Django and React](https://medium.com/@ronakchitlangya1997/social-authentication-email-using-django-and-react-js-e1cc8456262d)
 - [Social Logins in React.js & Django – Step by Step](https://www.geeksforgeeks.org/email-social-logins-in-django-step-by-step-guide/)
 - [Google Login with Django & React — Part 3](https://iamashutoshpanda.medium.com/google-login-with-django-react-part-3-6f90674ce829)
 - [Django, React JWT Auth & Pagination](https://levelup.gitconnected.com/full-stack-web-tutorial-django-react-js-jwt-auth-rest-bootstrap-pagination-b00ebf7866c1)

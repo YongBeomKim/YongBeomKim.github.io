@@ -177,6 +177,21 @@ allauth.socialaccount.providers.oauth2.\
 <br/>
 
 ```python
+SITE_ID = 1
+REST_USE_JWT = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none' #'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend', # username in admin
+    'allauth.account.auth_backends.AuthenticationBackend', # login by e-mail
+]
+
 SOCIALACCOUNT_PROVIDERS = {
   'google': {
     'APP': {
@@ -234,9 +249,12 @@ class GoogleLogin(SocialLoginView):
   callback_url  = CALLBACK_URI
   client_class  = OAuth2Client
 
+# Redirect 클래스
 class GoogleLoginView(Google):
   def get(self, request):
-    return redirect(self.login_head + urlencode(self.login_query))
+    return redirect(
+      self.login_head + urlencode(self.login_query)
+    )
 ```
 
 ## Callback 함수
@@ -293,6 +311,7 @@ urlpatterns = [
 <br/>
 
 ## 참고사이트
+- [Naver 로그인 API 명세서](https://developers.naver.com/docs/login/api/api.md#%EB%84%A4%EC%9D%B4%EB%B2%84-%EB%A1%9C%EA%B7%B8%EC%9D%B8-api-%EB%AA%85%EC%84%B8)
 - [Django 로그인 시 cookie에 token 저장하기](https://velog.io/@rosewwross/Django-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%8B%9C-cookie%EC%97%90-token-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0)
 - [REST Framework를 사용한 JWT OAuth 로그인](https://funncy.github.io/django/2020/04/24/django-jwt/)
 - [소셜 로그인(구글) 학습](https://velog.io/@leehk77789/%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EA%B5%AC%EA%B8%80-%ED%95%99%EC%8A%B5)
