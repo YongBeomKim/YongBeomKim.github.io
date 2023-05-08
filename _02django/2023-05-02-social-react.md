@@ -39,3 +39,4 @@ tags:
 - https://velog.io/@leehk77789/%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EA%B5%AC%EA%B8%80-%ED%95%99%EC%8A%B5
 - https://velog.io/@kjyeon1101/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%EA%B8%80
 - https://medium.com/@aaron-ak/django-rest-framework-drf-with-google-oauth-server-side-flow-using-dj-auth-and-django-allauth-126dcd20374b
+https://techexpert.tips/ko/nginx-ko/nginx-url%EC%97%90-%EB%8C%80%ED%95%9C-%EC%95%A1%EC%84%B8%EC%8A%A4-%EC%B0%A8%EB%8B%A8/
