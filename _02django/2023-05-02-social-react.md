@@ -23,6 +23,7 @@ tags:
 <br/>
 
 ## 참고사이트
+- [Django와 React를 이용해서 github 로그인을 해봅시다](https://heokknkn.tistory.com/54)
 - [Social Authentication Using Django and React](https://medium.com/@ronakchitlangya1997/social-authentication-email-using-django-and-react-js-e1cc8456262d)
 - [Social Auth using Django and React](https://medium.com/@ronakchitlangya1997/social-authentication-email-using-django-and-react-js-e1cc8456262d)
 - [Social Logins in React.js & Django – Step by Step](https://www.geeksforgeeks.org/email-social-logins-in-django-step-by-step-guide/)
