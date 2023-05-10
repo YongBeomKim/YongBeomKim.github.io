@@ -51,8 +51,11 @@ JavaScript 에서 `Authorized JavaScript origins` 문제로 인해 발생하는 
 <br/>
 
 ## 참고사이트
+- [Django 소셜로그인 - NAVER LOGIN](https://pythonblog.co.kr/blog/84/)
+- [React 네아로(네이버아이디로그인) 구현](https://velog.io/@sssssssssy/%EB%84%A4%EC%9D%B4%EB%B2%84%EB%A1%9C%EA%B7%B8%EC%9D%B8)
 - [React+Django Kakao Social Login](https://velog.io/@jnano94/ReactDjangoKakao-Social-Login)
 - [React 구글 소셜 로그인 에러 삽질기 (feat. 커스텀 버튼)](https://prod.velog.io/@miyoni/google-social-login)
+- [Full Stack Web Tutorial: Django, React JS, JWT Auth, REST, Bootstrap, Pagination](https://levelup.gitconnected.com/full-stack-web-tutorial-django-react-js-jwt-auth-rest-bootstrap-pagination-b00ebf7866c1)
 
 - [Django와 React를 이용해서 github 로그인을 해봅시다](https://heokknkn.tistory.com/54)
 - [Social Authentication Using Django and React](https://medium.com/@ronakchitlangya1997/social-authentication-email-using-django-and-react-js-e1cc8456262d)
