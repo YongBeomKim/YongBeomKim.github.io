@@ -40,3 +40,10 @@ $ tar xf filename.tar.xz
 `OpenRefine` 을 실행한 뒤, 실행 주소와 포트 번호로 접속하면 바로 사용 가능합니다. 때문에 외부사용자가 접근 가능한 경우에는 보안설정을 추가로 필요로 하는데 이를 스크립트로 정리한 [psychemedia/openrefiine_secure.sh](https://gist.github.com/psychemedia/f256960c112347dd410c2beec8ce05e3) 등의 내용을 참고 합니다.
 
 별도의 모듈을 추가로 설치 및 관리하는 방법 [Introducing OpenRefine Authenticator and File Extensions](https://kb.refinepro.com/2022/04/introducing-openrefine-authenticator.html) 도 있습니다.
+
+<br/>
+
+# 참고사이트
+- [OpenRefine on AWS EC2 server](https://jonathansoma.com/lede/algorithms-2017/servers/openrefine/)
+- [How to password-protect an on-the-net OpenRefine instance](https://groups.google.com/g/openrefine/c/xCs2yiQ8RhU/m/uHAWp1qDDwAJ?pli=1)
+- 
