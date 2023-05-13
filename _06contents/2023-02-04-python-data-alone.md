@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (도서) 혼자 공부하는 데이터 분석
+title: (도서) ⚝⚝ 혼자 공부하는 데이터 분석
 tags:
 - python
 - book

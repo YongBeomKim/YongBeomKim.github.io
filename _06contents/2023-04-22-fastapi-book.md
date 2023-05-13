@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (도서) FASTAPI를 사용한 파이썬 웹개발
+title: (도서) ⚝⚝⚝ FASTAPI를 사용한 파이썬 웹개발
 tags:
 - book
 ---

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (도서) 데이터 품질의 비밀
+title: (도서) ⚝ 데이터 품질의 비밀
 tags:
 - book
 ---

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (도서) 트랜스포머를 활용한 자연어 처리
+title: (도서) ⚝⚝⚝ 트랜스포머를 활용한 자연어 처리
 tags:
 - book
 ---

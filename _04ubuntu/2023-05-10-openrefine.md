@@ -46,4 +46,4 @@ $ tar xf filename.tar.xz
 # 참고사이트
 - [OpenRefine on AWS EC2 server](https://jonathansoma.com/lede/algorithms-2017/servers/openrefine/)
 - [How to password-protect an on-the-net OpenRefine instance](https://groups.google.com/g/openrefine/c/xCs2yiQ8RhU/m/uHAWp1qDDwAJ?pli=1)
-- 
+- [Django application authorization server for Shiny](https://pawamoy.github.io/posts/django-auth-server-for-shiny/)

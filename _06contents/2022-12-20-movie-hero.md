@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (영화) `영웅` 영웅을 우습게 그린 작품
+title: (영화) ⚝ `영웅` 영웅을 우습게 그린 작품
 tags: 
 - movie
 ---
