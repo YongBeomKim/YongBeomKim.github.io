@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Django Ninja 를 10 단계로 이해하기
+title: Ninja 를 이해하는 10 단계
 tags:
 - pydantic
 ---
@@ -9,22 +9,29 @@ tags:
 
 - [**10 Steps of Django Ninja**](#10-steps-of-django-ninja)
   - [1 Introduction](#1-introduction)
-  - [2 Complex Payloads (Schema)](#2-complex-payloads-schema)
+  - [2 Types of `URL Query`](#2-types-of-url-query)
   - [3 Async 지원](#3-async-지원)
-  - [4 Example : Filter](#4-example--filter)
+  - [4 Example : Django ORM Filter](#4-example--django-orm-filter)
   - [5 Response Header \& Cookie](#5-response-header--cookie)
   - [6 Uploading Files](#6-uploading-files)
   - [7 중첩된 객체 (Nested Object)](#7-중첩된-객체-nested-object)
   - [8 Pagination](#8-pagination)
   - [9 Creating Schemas From Model](#9-creating-schemas-from-model)
   - [10 Large Project](#10-large-project)
+- [Appendix](#appendix)
+  - [**Resolve End Point**](#resolve-end-point)
+  - [**Get Items**](#get-items)
+  - [CRUD Example](#crud-example)
+- [참고 사이트](#참고-사이트)
 
 <br>
 <br>
 
 # **10 Steps of Django Ninja**
 
-Ninja 의 핵심 구성요소를 Schema 와 API 함수 2가지로 나눌 수 있습니다. 이 중 API 함수의 구성요소 이름을 간단하게 살펴보면 다음과 같습니다. `URL_PATH` 즉 **url 경로의 내용** 을 함수 내부에서도 사용하려면 `QUERY_PARAMS` 내부에 **동일한 변수 이름** 을 선언하면 자동으로 둘을 연결 합니다.
+Ninja 구성요소는 `API 함수` 와 `Schema` 2가지로 나눌 수 있습니다.
+
+API 함수의 구성요소는 `URL_PATH`, `QUERY_PARAMS`, `API_END_POINTS` 3가지로 나눠 집니다. `QUERY_PARAMS` 이름과 일치하는 `URL_PATH` 변수를 정의하면 이들은 자동으로 연결되어 작동 합니다. 1번 예시에서 `person_id` 변수가 `URL_PATH` 와 `QUERY_PARAMS` 에 동일하게 사용되고 있고 이로써 이들은 상호 연결되어 동작 합니다.
 
 ```python
 # Names
@@ -36,19 +43,16 @@ def function(request, QUERY_PARAMS):
 <br>
 
 ## 1 Introduction
+**Pydantic (API Endpoint) + Types (URL Query) + Django**
 
-pydantic + Type hints + Django
-
-- Step 1 : **pydantic (for Complex Payloads)**
-
+- Step 1 : **Pydantic**
 ```python
 class PersonSchema(Schema):
     name:str
     age:int
 ```
 
-- Step 2 : **Type hints**
-
+- Step 2 : **Types**
 ```python
 @api.get("/person/{person_id}", response=PersonSchema)
 def person(request, person_id: int):
@@ -56,7 +60,6 @@ def person(request, person_id: int):
 ```
 
 - Step 3 : **Django**
-
 ```python
 # urls.py
 urlpatterns = [
@@ -66,9 +69,8 @@ urlpatterns = [
 
 <br>
 
-## 2 Complex Payloads (Schema)
-
-API 연산에 필요한 변수들을 선언할 때, Ninja 의 `Schema` 클래스를 상속하여 선언할 수 있습니다. 
+## 2 Types of `URL Query`
+앞의 `person_id` 와 같이 `URL_PATH` 에서 동일한 이름을 정의하지 않으면 `URL Query` 변수로 활용 합니다. 여러 다수의 `Query` 를 선언할 때 `Schema` 클래스를 활용하면 아래의 예시처럼 간단하게 선언할 수 있습니다. `API 연산함수` 내부에서는 `payload` 변수를 사용하여 해당 쿼리에 할당된 값을 호출 및 활용 할 수 있습니다.
 
 ```python
 class NewPost(Schema):
@@ -77,8 +79,8 @@ class NewPost(Schema):
     tags: List[str] = []
 
 # payload Object 그대로 출력
-@api.post('/posts')                   # : Path Params
-def create(request, payload:NewPost): # : Query Params
+@api.post('/posts')                   # : URL Path Params
+def create(request, payload:NewPost): # : URL Query Params
     return payload.dict()
 
 # Object 중 특정 필드의 값 출력
@@ -90,9 +92,7 @@ def create_day(request, payload:NewPost):
 <br>
 
 ## 3 Async 지원
-
-Async 내용일 전부, 또는 일부만 추가하여 구현 할 수 있습니다.
-
+함수에서 외부 데이터를 받아서 처리하는 경우 `Async` 를 활용하게 되는데, 이러한 경우 함수의 전부, 또는 일부만 적용하여 구현 할 수 있습니다.
 ```python
 import asyncio
 
@@ -104,10 +104,8 @@ async def say_after(request, delay: int, word: str):
 
 <br>
 
-## 4 Example : Filter
-
+## 4 Example : Django ORM Filter
 Django ORM 필터링 명령 내용을 `Schema` 클래스를 활용하여 미리 정의 합니다.
-
 ```python
 class PostFilters(Schema):
     title__icontains: str = None
@@ -118,8 +116,7 @@ class PostFilters(Schema):
     timestamp__month: int = None
 ```
 
-이렇게 정의된 Schema 를 `Query Params` 로 불러온 뒤 연산을 진행합니다. 이때 `None` 초기값을 갖는 필드는 제외하는 옵션 `exclude_unset` 을 활용하여 필요한 작업만 명령할 수 있습니다.
-
+이렇게 정의된 Schema 는 `Query Params` 로 불러온 뒤 연산을 진행합니다. 이때 `None` 초기값을 갖는 필드는 제외하는 옵션 `exclude_unset` 을 활용하여 필요한 작업만 명령할 수 있습니다.
 ```python
 from ninja import Query
 
@@ -136,7 +133,6 @@ def post_filter(
 <br>
 
 ## 5 Response Header & Cookie
-
 Django 의 `HttpResponse` 기능을 활용하는 방법으로 Header 와 Cookie 값을 추가 할 수 있습니다. 이는 JWT 의 내용을 최소화 한 뒤 필요한 내용들을 추가하는데 적절한 방법 입니다.
 
 ```python
@@ -149,7 +145,6 @@ def swords(request, response: HttpResponse):
 ```
 
 Ninja 에서 제공하는 `Cookie` , `Header` 클래스를 활용하면 보다 체계적인 관리가 가능 합니다.
-
 ```python
 from ninja import Header, Cookie
 
@@ -166,7 +161,6 @@ def web_header(request,
 <br>
 
 ## 6 Uploading Files
-
 Rest ARI 를 활요하여, 1개 또는 여러개의 파일을 다루는 예제 입니다
 
 ```python
@@ -192,7 +186,6 @@ def upload(request,
 <br>
 
 ## 7 중첩된 객체 (Nested Object)
-
 Foreign Key 로 연관된 테이블은 `Schema` 클래스 객체를 필드에 연결하는 방법으로 구현할 수 있습니다.
 
 ```python
@@ -209,8 +202,7 @@ class PostSchema(Schema):
 <br>
 
 ## 8 Pagination
-
-Ninja 에서 제공하는 Decorator 를 추가하면 쉽게 활용할 수 있습니다.
+Ninja 에서 기본 제공하는 Decorator 를 추가하면 쉽게 활용할 수 있습니다.
 
 ```python
 from ninja.pagination import paginate
@@ -224,7 +216,6 @@ def list_post(request):
 <br>
 
 ## 9 Creating Schemas From Model
-
 DataBase 의 필드 고유한 값이 아닌, 사용자가 정의한 End Point 를 API 로 구현하고 싶은 경우에는 `ModelSchema` 클래스를 상속받아 활용합니다.
 
 ```python
@@ -248,7 +239,6 @@ class PostSchema(ModelSchema):
 <br>
 
 ## 10 Large Project
-
 다수의 App 과 각각의 모델들이 유기적인 관계를 갖을 때, 1개의 api를 상속받아 모두 연결하기 보다는 필요에 따라 분리하여 관리하는 방법을 필요로 합니다. `Router` 기능을 지원하는데 개별 `router` 객체를 작성한 뒤, 1개의 `api` 에 이들을 연결하는 방법으로 구현이 가능 합니다.
 
 ```python
@@ -272,3 +262,111 @@ api_private = NinjaAPI()
 api_v1 = NinjaAPI()
 api_v2 = NinjaAPI()
 ```
+
+<br/>
+
+# Appendix
+[Sneaky REST APIs With Django Ninja](https://realpython.com/courses/rest-apis-with-django-ninja/) 에서 1회당 20분을 넘기지 않는 분량의 전체 10회 강의 였습니다. 대신 동영상 대부분이 `terminal` 에서 진행되는 만큼 Django Project 의 structure 이해가 필요 합니다. 2023년 5월 접속해본 결과 현재 다수의 동영상이 `유료 동영상` 으로 전환되어 있었습니다. 때문에 과거 정리한 내용 중 추가로 언급된 내용들을 정리해 보겠습니다.
+
+## **Resolve End Point**
+사용자 정의 Endpoint 를 `클래스 메서드` 형식으로 추가할 수 있습니다. 아래의 예제는 `full_name` 과 `user_age` 엔드 포인트를 정의한 뒤, 사용자가 추가로 `resolve_엔드포인트 이름(obj)` 정의를 하면 자동으로 해당 함수의 연산 결과를 EndPoint 로 출력 합니다.
+
+```python
+# schema.py
+class PersonSchema(ModelSchema):
+
+    # Naming User Field
+    full_name: str
+    user_age: str
+
+    class Config:
+        model = Person
+        model_fields = ['id', 'birth_year',]
+
+    # User Field Function
+    # :: use `resolve_` method
+    @staticmethod
+    def resolve_full_name(obj):
+        return f'{obj.name}  {obj.title}'
+
+    @staticmethod
+    def resolve_user_age(obj):
+        age = 50 - obj.birth_year
+        return f'{obj.name}  {age}'
+```
+
+## **Get Items**
+라우터 함수에서는 `get_object_or_404` 를 사용하여 테이블 데이터를 호출 합니다.  
+```python
+from django.shortcuts import get_object_or_404
+
+@router.get("/person/{int:person_id}", response=PersonSchema)
+def person(request, person_id):
+    return get_object_or_404(Person, id=person_id)
+```
+
+Django Shell 을 사용하여 결과값을 테스트 할 수 있습니다.
+```python
+In [1]: from content.apis.krx.models import Person
+   ...: from content.apis.krx.schema import PersonSchema
+   ...: item = Person.objects.last()
+   ...: data = PersonSchema.from_orm(item)
+   ...: data
+Out[1]: PersonSchema(
+    id=2, birth_year=11, 
+    full_name='Django  the ORM of Django', 
+    user_age='Django  39'
+)
+
+In [2]: data.dict()
+Out[2]: 
+{'id': 2,
+ 'birth_year': 11,
+ 'full_name': 'Django  the ORM of Django',
+ 'user_age': 'Django  39'}
+
+In [3]: data.json()
+Out[3]: '{"id": 2, "birth_year": 11, "full_name": "Django  the ORM of Django", "user_age": "Django  39"}'
+```
+
+## CRUD Example
+```python
+@router.post("/gift", response=GiftOut, url_name="create_gift")
+def create_gift(request, payload: GiftIn):
+    body = WeddingGift.objects.create(**payload.dict())
+    return body
+
+# Read 1 : Item List
+@router.get("/gifts", response=List[GiftOut], url_name='list_gifts')
+def list_gifts(request):
+    return WeddingGift.objects.all()
+
+# Read 2 : Read Item
+@router.get('/gift/{int:id}', response=GiftOut, url_name='gift')
+def get_gist(request, id):
+    return get_object_or_404(WeddingGift, id=id)
+
+# Update
+@router.put('/gift/{int:id}', response=GiftOut)
+def update_gift(request, id, payload: GiftIn):
+    item = get_object_or_404(WeddingGift, id=id)
+    # Update Instance
+    for key, value in payload.dict().items():
+        setattr(item, key, value)
+    item.save()
+    return item
+
+# Delete
+@router.delete("/gift/{int:id}")
+def delete_gift(request, id):
+    item = get_object_or_404(WeddingGift, id=id)
+    item.delete()
+    return  {"success":True}
+```
+
+<br>
+
+# 참고 사이트 
+- [Building HTTP APIs with DRF](https://realpython.com/courses/django-rest-framework/)
+- [REST APIs: Interacting With Web Services](https://realpython.com/api-integration-in-python/)
+- [Test Driven Development of Django Restful API](https://realpython.com/test-driven-development-of-a-django-restful-api/)
