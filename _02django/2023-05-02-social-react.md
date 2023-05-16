@@ -22,23 +22,23 @@ Google 에서 제공하는 Login Button 형식은 3가지가 있습니다.
 
 [![Google Identity Services Login with React (2023 React Google Login)](https://i.ytimg.com/vi/roxC8SMs7HU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApQMKzT0T78QCQOM44HFitEgHL0g)](https://youtu.be/roxC8SMs7HU)
 
-## 
+<br/>
 
-## 리액트 만으로 소셜인증 시스템 구축하기
+# 현재까지 작업한 내용 & Stop Working ...
+## Django API 로 구현
+`OAuth` 인증은 요청 URL 에서 시작해서, `Callback URI` 에서 결과값을 출력합니다. 때문에 `axios` 또는 `fetch` 와 같은 함수를 사용하더라도 `Callback URI` 결과를 출력하는 화면에서 내용이 끝나게 됩니다.
 
-바로 앞 페이지에서, `Google` 에서 제공하는 `OAuth` 사용자 인증 과정과, Django 에서 구현하는 작업에 대해 자세히 알아 보았습니다. 이번 페이지는 앞에서 구현된 `Google Social Login` API를 `React.js` 페이지에서 연결 및 활용하는 내용을 알아보겠습니다.
+이러한 경우 [Auth Login with GitHub and Google in a React and Backend App](ttps://blog.bitsrc.io/how-to-auth-login-with-github-and-google-in-a-react-and-backend-app-77423565b506) 를 참고하여 적용하면 좋지만 능력부족(?) 으로 인해 실제 적용을 하진 못하였습니다.
 
-## **OAuth Resources**
-- `Resource Server` : Client 가 제어하려는 자원을 **보유하는** 서버 `ex)Google`
-- `Resource Owner` : 위 서비스를 통해 **로그인을 하려는 User**
-- `Client` : 앞의 Resource 를 **활용하려는 서비스**
+약간의 꼼수를 생각해 보자면, React.js 에서는 단순한 `Redirect` 를 적용하고 결과값을 Token 파일로 저장을 한 뒤 Home 화면으로 Redirect 하는 내용으로 마무리를 하고, `React.js` 에서 별도로 Token 파일값을 생성시간을 확인하여 쿠키 또는 LocalStorage 에 불러오는 방식으로 마무리를 하는 방식도 가능해 보입니다.
 
-<div style="text-align: center;">
-  <figure class="align-center">
-    <img src="{{site.baseurl}}/assets/linux/uri-url.jpg">
-    <figcaption>URI 와 URL</figcaption>
-  </figure>
-</div>
+## [OAuth react Google](https://www.npmjs.com/package/@react-oauth/google)
+리액트 타입스크립트 모듈로 프론트엔드에서 바로 구현을 확인하였습니다. 그런데 문제는 `Django` 서버 위에서 동작하는 `Vite.js` 환경에서는 `Dev` 또는 `Build` 그리고 `index.html` 을 `vite.js` 배포용을 사용했음에도 불구하고 `OAuth` 사용자 Token 값을 출력하지 않는 모습을 볼 수 있었습니다. 이 부분만 해결되면 될거 같은데......
+
+## 마무리
+우선은 사용자 이메일 인증을 구현하고, 추가적으로 Social 인증의 경우 Django 인증모듈로 저장파일을 사용하던 임시적인 방법등을 구현한 뒤에 차후 해당 문제를 점진적 확인하며 해당 문제는 향후과제로 남겨두고 구내식당 프로젝트를 마무리 하는 방향으로 작업을 진행하도록 합니다.
+
+<br/>
 
 
 # Errors
