@@ -313,6 +313,7 @@ urlpatterns = [
 ## 참고사이트
 - [Naver 로그인 API 명세서](https://developers.naver.com/docs/login/api/api.md#%EB%84%A4%EC%9D%B4%EB%B2%84-%EB%A1%9C%EA%B7%B8%EC%9D%B8-api-%EB%AA%85%EC%84%B8)
 - [Django 로그인 시 cookie에 token 저장하기](https://velog.io/@rosewwross/Django-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%8B%9C-cookie%EC%97%90-token-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0)
+- [Django CORS Guide : What It Is and How to Enable It](https://www.stackhawk.com/blog/django-cors-guide/)
 - [REST Framework를 사용한 JWT OAuth 로그인](https://funncy.github.io/django/2020/04/24/django-jwt/)
 - [소셜 로그인(구글) 학습](https://velog.io/@leehk77789/%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EA%B5%AC%EA%B8%80-%ED%95%99%EC%8A%B5)
 - [DRF 구글 소셜로그인 (JWT)](https://velog.io/@kjyeon1101/%EC%86%8C%EC%85%9C%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%EA%B8%80)
@@ -320,4 +321,3 @@ urlpatterns = [
 - [DRF에서 로그인 API 구현(Google, KaKao, Github)](https://medium.com/chanjongs-programming-diary/django-rest-framework%EB%A1%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-api-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0-google-kakao-github-2ccc4d49a781)
 - [django에서 kakao 로그인 api 사용하기 +(allauth 사용)](https://applepick.tistory.com/27)
 - [DRF 소셜 로그인 API 구현하기(Google, KaKao, Github)](https://medium.com/chanjongs-programming-diary/django-rest-framework%EB%A1%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-api-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EA%B8%B0-google-kakao-github-2ccc4d49a781)
-
