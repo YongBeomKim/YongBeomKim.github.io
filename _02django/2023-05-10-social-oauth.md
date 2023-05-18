@@ -151,5 +151,6 @@ app.run()
 [@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google) 또는 [google-api-python-client](https://github.com/googleapis/google-api-python-client) 등의 모듈을 사용할 때 계속 문제가 되는 부분이 `redirect_uri` 주소 였습니다. `8000`번 포트에서 실행하는 Django 서버 위에서, `5173` 포트에서 실행하는 `Vite.js` 로 빌드된 `React.js with TypeScript` 로 작업을 하고 있습니다. 이러한 환경이 생각보다 극한상황 이었구나 하는 두려움과 함께, 해결을 한 뒤에는 어떠한 문제가 발생 하더라도 다 극복 가능하다는 자신감(?)이 생겼지만 그만큼 가성비는 나빴던 상황이었던 만큼 보다 효율적으로 성과를 내는 방향을 빠르게 찾고, 이러한 문제해결 과정들을 기록으로 남겨서 비슷한 문제가 발생할 때에도 이전 보다는 더 효율적으로 작업을 완료하는 능력을 키워가는데 더 집중하도록 하겠습니다.
 
 ## 참고사이트
+- [Django cookie에 token 저장하기](https://velog.io/@rosewwross/Django-로그인-시-cookie에-token-저장하기)
 - [google oauth2 사용하기](https://idlecomputer.tistory.com/310)
 - [Drawio - OAuth Process Map](https://app.diagrams.net/#G1BuYCR-l3c1Xu2JR6XoE1KUDoutSA1ihB)
