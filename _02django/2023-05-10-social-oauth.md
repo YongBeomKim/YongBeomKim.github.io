@@ -57,8 +57,22 @@ url = """https://accounts.google.com/o/oauth2/v2/auth?
 redirect(url)
 ```
 
+로그인을 성공하면 유효한 `OAuth access_token` 을 발급합니다. 해당값은 아래에서 보는것과 동일 합니다. 
+
+```json
+{
+  "code": ["4/0AbUR2VM2K9YdQE2qMF5d0qcqzAbivHMTExH0AIEdiP11UqZ1AP79sOwm9T5y8EFlVEdywg"], 
+  "scope": ["email https://www.googleapis.com/auth/userinfo.email openid"],
+  "authuser": ["0"], 
+  "prompt": ["consent"]
+}
+```
+
 ## OAuth access_token
-로그인을 성공하면 유효한 `OAuth access_token` 을 발급합니다. 해당값은 아래에서 보는것과 동일 합니다. `redirect_uri` 주소로 값들을 전달하고, 해당 주소에서 나머지 작업을 실행 합니다. 자세한 내용은 [Step 5: Exchange authorization code for refresh and access tokens](https://developers.google.com/identity/protocols/oauth2/web-server#httprest_3) 공식 문서를 참고 합니다.
+`redirect_uri` 경로로 위의 값을 전달하고, 해당 주소에서 나머지 작업을 마무리 합니다. **Resource Sever** 에서 발급된 토큰의 유효시간은 대략 1시간 남짓 입니다. 발급받은 뒤 1시간 이내에 로그인 작업이 완료 되어야 합니다. 이후 과정부터는 프로젝트 내부에서 별도로 관리하는 `JWT` Token 을 사용 합니다.  
+
+파이썬 에서는 `Simple JWT` 를 사용합니다. 별도의 `JWT` 토큰을 발급 및 관리를 하면, 로그인 작업이 완료된 뒤 나머지 작업에서 Token 관리가 서비스 내부 DB 로도 가능해 집니다. 그리고 서비스 특성에 맞게 Token 을 발급 및 관리가 가능해 지는등 장점이 많아 집니다. 자세한 내용은 [Step 5: Exchange authorization code for refresh and access tokens](https://developers.google.com/identity/protocols/oauth2/web-server#httprest_3) 공식 문서를 참고 합니다.
+
 ```json
 {
   "access_token": "1/fFAGRNJru1FTz70BzhT3Zg",
@@ -131,11 +145,11 @@ app.debug = False
 app.run()
 ```
 
-## 마무리
-[@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google) 또는 [google-api-python-client](https://github.com/googleapis/google-api-python-client) 등의 모듈을 사용할 때 계속 문제가 되는 부분이 `redirect_uri` 주소 였습니다. `8000`번 포트에서 실행하는 Django 서버 위에서, `5173` 포트에서 실행하는 `Vite.js` 로 빌드된 `React.js with TypeScript` 로 작업을 하고 있습니다. 이러한 환경이 생각보다 극한상황 이었구나 하는 두려움과 함께, 해결을 한 뒤에는 어떠한 문제가 발생 하더라도 다 극복 가능하다는 자신감(?)이 생겼지만 그만큼 가성비는 나빴던 상황이었던 만큼 보다 효율적으로 성과를 내는 방향을 빠르게 찾고, 이러한 문제해결 과정들을 기록으로 남겨서 비슷한 문제가 발생할 때에도 이전 보다는 더 효율적으로 작업을 완료하는 능력을 키워가는데 더 집중하도록 하겠습니다.
-
 <br/>
 
-# 참고사이트
+# 마무리
+[@react-oauth/google](https://www.npmjs.com/package/@react-oauth/google) 또는 [google-api-python-client](https://github.com/googleapis/google-api-python-client) 등의 모듈을 사용할 때 계속 문제가 되는 부분이 `redirect_uri` 주소 였습니다. `8000`번 포트에서 실행하는 Django 서버 위에서, `5173` 포트에서 실행하는 `Vite.js` 로 빌드된 `React.js with TypeScript` 로 작업을 하고 있습니다. 이러한 환경이 생각보다 극한상황 이었구나 하는 두려움과 함께, 해결을 한 뒤에는 어떠한 문제가 발생 하더라도 다 극복 가능하다는 자신감(?)이 생겼지만 그만큼 가성비는 나빴던 상황이었던 만큼 보다 효율적으로 성과를 내는 방향을 빠르게 찾고, 이러한 문제해결 과정들을 기록으로 남겨서 비슷한 문제가 발생할 때에도 이전 보다는 더 효율적으로 작업을 완료하는 능력을 키워가는데 더 집중하도록 하겠습니다.
+
+## 참고사이트
 - [google oauth2 사용하기](https://idlecomputer.tistory.com/310)
 - [Drawio - OAuth Process Map](https://app.diagrams.net/#G1BuYCR-l3c1Xu2JR6XoE1KUDoutSA1ihB)
