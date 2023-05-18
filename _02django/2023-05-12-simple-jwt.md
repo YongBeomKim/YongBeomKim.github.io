@@ -66,7 +66,10 @@ jwt.decode(token, key, algorithms=['HS256'])
  'user_id': 2}
 ```
 
+<br/>
+
 # 참고사이트
+- [DRF의 simple-jwt를 이용한 로그인 기능 구현 (1)](https://smin1620.tistory.com/43)
 - [Create Token Manually](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/creating_tokens_manually.html?highlight=Token#creating-tokens-manually)
 - [Delete expired tokens from database](https://stackoverflow.com/questions/73153174/delete-expired-tokens-from-database-django-jwt)
 - [How to obtain a token for a user with payload](https://stackoverflow.com/questions/71920941/how-to-obtain-a-token-for-a-user-with-payload-using-django-simple-jwt)
