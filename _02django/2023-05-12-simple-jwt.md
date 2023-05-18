@@ -50,6 +50,22 @@ OutstandingToken.objects.filter(
 
 <br/>
 
+# JWT 
+## Decoding
+How to decode and verify [simple-jwt-django-rest-framework token](https://stackoverflow.com/questions/62877088/how-to-decode-and-verify-simple-jwt-django-rest-framework-token)
+```python
+import jwt
+from django.conf import settings
+key   = settings.SECRET_KEY
+token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2t'
+jwt.decode(token, key, algorithms=['HS256'])
+{'token_type': 'access',
+ 'exp': 1684425573,
+ 'iat': 1684371573,
+ 'jti': 'ac5b6d3939a9468c97a5d68b4ac778e7',
+ 'user_id': 2}
+```
+
 # 참고사이트
 - [Create Token Manually](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/creating_tokens_manually.html?highlight=Token#creating-tokens-manually)
 - [Delete expired tokens from database](https://stackoverflow.com/questions/73153174/delete-expired-tokens-from-database-django-jwt)
