@@ -88,6 +88,7 @@ jwt.decode(token, key, algorithms=['HS256'])
 <br/>
 
 # 참고사이트
+- [DRF JWT 인증](https://velog.io/@duo22088/DRF-JWT-%EC%9D%B8%EC%A6%9D)
 - [Simple JWT 를 이용한 TokenRefreshView 1](https://earthlyz9-dev.oopy.io/django/drf/simple-jwt/token-refresh-1)
 - [DRF의 simple-jwt를 이용한 로그인 기능 구현 (1)](https://smin1620.tistory.com/43)
 - [Create Token Manually](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/creating_tokens_manually.html?highlight=Token#creating-tokens-manually)
