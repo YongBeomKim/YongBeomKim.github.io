@@ -50,3 +50,14 @@ GPT 계열의 모델들이 수행하는 내용으로 **<span style="color:var(--
 궁극적인 목적은 **DownStream Task** 를 잘 수행하는 것입니다. 일반적으로는 **UpStream** 모델을 **<span style="color:var(--strong);">구조변경없이 그대로 사용</span>** 하거나, 또는 **<span style="color:var(--strong);">Task를 덧붙이는 형태</span>** 로 수행합니다. 문장생성형 Task 를 제외하면 **Bert** 계열을 사용합니다. 
 
 이번 책은 **<span style="color:var(--strong);">Fine-Tuning</span>** 을 활용하는데 그 내용은 **Bert** 모델 전체를 **<span style="color:var(--strong);">문서분류(긍/부정), 자연어 추론(두 문장사이 관계 참/거짓), 개체명 인식(단어가 속한 카테고리 분류), 질의응답(질문/응답 문장간의 확률), 문장 생성(문장 입력받아, 각 어휘에 대한 확률값으로 문장생성)</span>** 등의 최종 Task 데이터로 업데이트 합니다.
+
+### HugginFace DataSet & Cache
+[HuggingFace](https://huggingface.co/docs/datasets/cache) 에서 제공하는 모델은 `500mb` 그 이상의 크기를 갖기 때문에, 여러 데이터를 실습하다보면 캐시 데이터가 쌓이게 됩니다. 사용자 정의에 따라 해당 폴더를 삭제하거나 바꿀수 있는데 세부 내용은 위 링크내용을 참고 합니다.
+
+```bash
+$ ~/.cache/huggingface ➭ du -h --max-depth=1 .
+4.5G	./hub
+11M	./datasets
+80K	./modules
+4.5G	.
+```
