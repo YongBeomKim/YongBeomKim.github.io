@@ -5,7 +5,7 @@ tags:
 - book
 ---
 
-총평을 먼저 하자면, **Django** 관련 도서 또는 동영상 학습을 한번 이상 진행했던 분이라면 **대규모 API 서버 고급 개발자** 로 도약할 수 있도록 도와주는 최고의 도서라고 할 수 있습니다.
+총평을 먼저 하자면, **Django** 관련 도서 또는 동영상 학습을 한번 이상 진행했던 분이라면 **대규모 API 서버 고급 개발자** 로 도약할 수 있도록 도와주는 최고의 도서라고 할 수 있습니다. **취준생 분들** 에게는 이력관리 및 인터뷰때 도움이 되는 내용까지 함께 담겨져 있습니다 
 
 기존에 다뤘던 **FastAPI** 에서도 유사한 기능들을 제공하고 있지만, `Add-on` 및 **커뮤니티 활동** 측면에서 **Flask & Django** 가 활성화가 더 잘 되어 있어서 **Django** 처음 시작하는 분들이라면 **Fast API** 대신 **Django** 로 작업하는 것을 추천 합니다.
 
@@ -83,15 +83,4 @@ Chapter 4 에서는 [django rest framework](https://www.django-rest-framework.or
 
 <br/>
 
-# 참고사이트
-- []
-
-<figure class="align-center">
-  <img width="550px" src="{{site.baseurl}}/assets/book/dj-book-drf3.jpg">
-  <figcaption>Django Ninja 비교그림</figcaption>
-</figure>
-
-<figure class="align-center">
-  <img width="550px" src="{{site.baseurl}}/assets/book/dj-book-drf4.jpg">
-  <figcaption>Django Ninja 코드예시 (이게 전부여서 아쉬웠음..)</figcaption>
-</figure>
+※ 본 리뷰는 IT 현업개발자가, 한빛미디어 책을 제공받아 작성한 서평입니다.
