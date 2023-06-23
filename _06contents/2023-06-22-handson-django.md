@@ -82,3 +82,9 @@ DB 구조등을 설명할 때 삽입한 그림들이 **가로로 보기** 로 �
 <br/>
 
 ※ 본 리뷰는 IT 현업개발자가, 한빛미디어 책을 제공받아 작성한 서평입니다.
+
+
+<figure class="align-center">
+  <img width="450px" src="{{site.baseurl}}/assets/book/dj-book.jpg">
+  <figcaption>Book Cover</figcaption>
+</figure>
