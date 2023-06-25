@@ -118,5 +118,6 @@ Done in 4.07s.
 # 참고 사이트
 - [Vite code splitting that just works](https://sambitsahoo.com/blog/vite-code-splitting-that-works.html)
 - [Github - vite-react-split-template](https://github.com/KrishGarg/vite-react-vendor-split-template)
+- [[React+TypeScript] Lazy-loading & preload로 Component 성능 최적화하기](https://velog.io/@olwooz/ReactTypeScript-Lazy-loading-preload%EB%A1%9C-Component-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94%ED%95%98%EA%B8%B0)
 - [npm trends](https://npmtrends.com/normalize.css-vs-reset.css-vs-sanitize.css-vs-styled-normalize)
 - [Structure React Projects From Beginner To Advanced](https://blog.webdevsimplified.com/2022-07/react-folder-structure/)
