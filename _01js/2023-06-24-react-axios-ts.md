@@ -85,5 +85,6 @@ const DateCrud = ({date}:DateProps) => {
 <br/>
 
 # 참고사이트
+- [Using the Effect Hook](https://legacy.reactjs.org/docs/hooks-effect.html)
 - [왜 TypeScript는 void 타입을 사용해도 값을 return 할 수 있을까?](https://pozafly.github.io/typescript/why-can-typescript-return-any-value-using-void/)
 - [TypeScript 공식문서 - void](https://www.typescriptlang.org/ko/docs/handbook/2/functions.html#void)
