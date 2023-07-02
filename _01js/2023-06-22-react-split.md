@@ -29,19 +29,17 @@ Done in 7.60s.
 <br/>
 
 # React
-## React Router Dom
-`vite.js` 에서는 별도 설정할 내용이 없습니다. `react-router-dom` 설정 값에서 `lazy` 로 해당 컴포넌트를 호출하고 `Suspense` 를 사용하여, `Loading` 화면에서 제어할 내용을 아래와 같이 추가하면 됩니다.
-
+## Lazy Loading
+컴포넌트를 호출할 때 React 의 `lazy()` 함수를 활용하여 호출 합니다. 불러오는 방식에는 2가지가 있는데 함수를 사용하여 바로 호출하는 방법과 `Promise` 객체를 활용하여 **지연시간** 을 추가하는 방식이 있습니다.
 ```jsx
-import { lazy, Suspense } from "react";
-import { 
-  BrowserRouter, Routes, Route, Outlet, Link 
-} from "react-router-dom";
+import { lazy } from "react";
+(-) import SampleComponent from './components/Sample';
+(+) const SampleComponent = lazy(() => import("./components/Sample"));
+```
 
-// 지연시간 추가하기 (Loading 화면에서 지정한 시간만큼 지연)
-// https://dreamcoding.tistory.com/28
-// https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay
-const SampleComponent = lazy(() => import("./components/Sample"));
+[React 리액트 라우터 지연시간 걸기](https://dreamcoding.tistory.com/28) | [React suspense/lazy delay?](https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay) 방식을 활용하면, 모듈이 불완전하게 호출되어 화면이 깨지는 것을 피할 수 있습니다.
+```jsx
+import { lazy } from "react";
 const SampleComponent2 = lazy(() => {
   return Promise.all([
       import("./components/Sample"),
@@ -49,7 +47,16 @@ const SampleComponent2 = lazy(() => {
   ])
   .then(([moduleExports]) => moduleExports);
 });
+```
 
+## React Router Dom
+`vite.js` 에서는 별도 설정할 내용이 없습니다. `lazy` 로 호출한 컴포넌트를 `Suspense` 함수를  사용하여 `Router Dom` 에 연결을 하고, 지체된 시간동안 `Loading` 화면에서 제어할 내용을 추가 합니다.
+```jsx
+import { lazy, Suspense } from "react";
+import { 
+  BrowserRouter, Routes, Route, Outlet, Link 
+} from "react-router-dom";
+...
 const App = () => {
   return (
     <BrowserRouter>
@@ -57,12 +64,16 @@ const App = () => {
         <Route path="/" element={<Outlet />}>
           <Route
             index
-            element={<Link to="/sample">lazy sample</Link>}
+            element={
+              <Link to="/sample">lazy sample</Link>
+            }
           />
           <Route
             path="sample"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={
+                <div>Loading...</div>
+              }>
                 <SampleComponent />
               </Suspense>
             }
