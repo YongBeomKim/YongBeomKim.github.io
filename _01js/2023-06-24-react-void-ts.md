@@ -50,6 +50,11 @@ const Crud = ({date}:DateProps) => {
 }
 ```
 
+추가적인 방법으로는, 타입스크립트의 제너릭 선언을 활용하는 방법으로, 다음과 같이 `useState` 를 선언할 수 있습니다.
+```jsx
+  (+) const [items, setItems] = useState<Menu[]>([])
+```
+
 ## 중간적인 예외처리
 `axios` 또는 `fetch` 는 자동으로 타입처리를 진행합니다. 응답 데이터가 없는 `response.data => []` 결과값을 받을 때 함수들은 `void[]` 를 출력하는데, (1) `useState()` 에서 `void[]` 응답을 출력할때 사용할 추가적인 타입선언, (2) 그리고 `setItems` 에서도 해당 객체를 받은 뒤, `items.map()` 에서 반복작업을 할 때 `void[]` 객체에 대한 예외처리 등의 내용이 추가 되어야 합니다 
 
