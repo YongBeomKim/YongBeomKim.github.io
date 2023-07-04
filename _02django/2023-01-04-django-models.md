@@ -16,6 +16,7 @@ Django 의 Model 을 생성하고 관리하는데 필요한 기본 개념인 [Mo
 - **<span style="color:var(--strong);">외부참조 모델</span>** 이 있는경우
 
 ## Methods
+
 | **메서드**| **내용**                   |
 |:--------:|:-------------------------:|
 |all()     |테이블 모든 데이터셋           |
@@ -99,6 +100,8 @@ data3 = data1.intersection(data2)
 - `integer` 유효값은 `-2,147,483,648 ~ 2,147,483,647` `(4 Bytes)` 입니다.
 - `big integer` 유효값은 `9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807` `(8 Byte)` 입니다.
 
+<br/>
+
 ## Errors
 ### OperationalError: (1054, "Unknown column 'code_id' in 'where clause'")
 `name` 필드값을 `ForeignKey` 로 연결하면, Django 에서 `_id` 를 자동으로 붙여서 `column name` 을 생성하는데, 이름 자체에도 `_id` 를 붙여서 migrate 하는 바람에 `column name` 이 `market_krxinvestor.code_id` 이렇게 만들어 졌습니다. 
@@ -152,12 +155,14 @@ Django 에서 유용한 tip 들을 [gaussian37.github.io](https://gaussian37.git
 ## [Django QuerySet Filter](https://gaussian37.github.io/python-django-django-query-set/)
 - `exact` : 정확히 일치하는 데이터 찾기
 - `None`을 찾는 경우 `Null`을 찾는 명령을 사용 합니다. **isnull**
+
 ```python
 Entry.objects.get(id__exact=14)
 Entry.objects.get(id__exact=None)
 ``` 
 
 - `iexact` : 대소문자를 구분하지 않고 정확히 일치하는 데이터 찾기
+
 ```python
 Blog.objects.get(name__iexact='beatles blog')
 Blog.objects.get(name__iexact=None)
@@ -165,11 +170,13 @@ Blog.objects.get(name__iexact=None)
 
 - `contains`, `icontains` : 포함하는 문자열 찾기 (`icontains`는 대소문자 구분하지 않음)
 - 아래 코드는 headline에서 **Lennon**이라는 문자열을 포함하는 object를 찾습니다.
+
 ```python
 Entry.objects.get(headline__contains='Lennon')
 ```
 
 - `in` : list, tuple, string 또는 queryset과 같이 iterable한 객체를 대상으로 각 원소를 조회합니다.
+
 ```python
 Entry.objects.filter(id__in=[1, 3, 4])
 : SELECT ... WHERE id IN (1, 3, 4);
@@ -179,6 +186,7 @@ Entry.objects.filter(headline__in='abc')
 ``` 
 
 - queryset를 직접 조건으로 넣을 수 있습니다. (성능 체크 필요)
+
 ```python
 inner_qs = Blog.objects.filter(name__contains='Cheddar')
 entries = Entry.objects.filter(blog__in=inner_qs)
@@ -186,18 +194,21 @@ entries = Entry.objects.filter(blog__in=inner_qs)
 ```
 
 - `gt`, `gte`, `lt`, `lte` 와 같이 부등호를 사용할 수 있습니다.
+
 ```python
 Entry.objects.filter(id__gt=4)
 : SELECT ... WHERE id > 4;
 ```
 
 - `startswith`, `istartswith`, `endswith`, `iendswith`는 각각 접미사, 접두사를 찾습니다.
+
 ```python
 Entry.objects.filter(headline__startswith='Lennon')
 Entry.objects.filter(headline__endswith='Lennon')
 ```
 
 - `range`는 범위에 해당하는 object를 찾습니다.
+
 ```python
 import datetime
 start_date = datetime.date(2005, 1, 1)
@@ -221,6 +232,7 @@ Out[1]: <QuerySet [<...>]>
 
 예를 들어 `모델 A` 의 `pk` 를 `모델 B` 가 `fk` 로 사용하고 있다고 가정을 합니다.
 장고는 lazy 하게 SQL 작업을 수행하므로 ForeignKey로 접근한 데이터에 대한 작업이 여러번 필요한 경우에는, **join 연산이 필요** 한 경우로써 `prefetch_related` 를 사용하여 필요한 query를 바로 가져오는 것이 효율적 입니다. `prefetch_related`는 다음과 같이 사용할 수 있습니다.
+
 ```python
 A.objects.prefetch_related("B_set")
 ```
@@ -229,6 +241,7 @@ A.objects.prefetch_related("B_set")
 `prefetch_ralated` 내용은 제 블로그의 다른 글에서 확인해 보시면 되겠습니다.
 
 이 때 중요한 것은 related_name을 이용한 경우 `model_set` 형태가 아니라 `related_name` 을 사용 합니다. 예를 들면 아래와 같습니다.
+
 ```python
 class Price(models.Model):
     book = models.ForeignKey(Book, related_name='prices')
@@ -241,17 +254,20 @@ books = Book.objects.prefetch_related('prices')
 
 ## [QuerySet 정렬](https://gaussian37.github.io/python-django-queryset-%EC%98%A4%EB%A6%84%EC%B0%A8%EC%88%9C,-%EB%82%B4%EB%A6%BC%EC%B0%A8%EC%88%9C-%EC%A0%95%EB%A0%AC/)
 장고 ORM을 이용하여 DB를 읽을 때, 기본적으로 필요한 작업이 오름차순(ascending)/내림차순(descending)으로 특정 field를 가져오는 것입니다. ORM을 이용하여 DB를 가져올 때 어떻게 하면 될까요? `A`라는 모델이 있다고 가정합시다. `A`의 모든 데이터를 긁어 오려면 다음과 같이 입력하면 됩니다.
+
 ```python
 A.objects.all()
 ```
 
 그 다음에 `order_by()`를 사용하면 됩니다. 이 때 인자로 들어갈 문자열은 field의 이름입니다.
 A 라는 모델에 `point`라는 field가 있다고 합시다. 그러면 다음과 같이 읽어올 수 있습니다.
+
 ```python
 A.objects.all().order_by('point')
 ```
 
 이렇게 읽어오면 오름차순으로 읽어오게 됩니다. 기본값은 오름차순 입니다. 다음과 같이 읽으면 내림차순으로 읽어오게 됩니다.
+
 ```python
 A.objects.all().order_by('-point')
 ```
@@ -287,6 +303,7 @@ A.objects.all().order_by('-point')
 ```
 
 **filter(), exclude(), get(), Q()** 함수들은 **& (AND)** 그리고 **| (OR)** 필터를 혼용하여 활용 가능합니다.
+
 ```python
 [In] Author.objects.filter(Q(name__iexact="tommy") | Q(name__iexact="jerry"))
 [Out] QuerySet [<Author: tommy : tommy@example.com>...]
@@ -305,6 +322,7 @@ A.objects.all().order_by('-point')
 사용자가 원하는 모델의 클래스 Table, 필드 객체와 매칭하면 모델링은 어렵지 않게 접근 가능합니다. 다만 모든 테이블을 단일하게 구성하면 **불필요하게 반복되는 내용들로 성능에 저하** 가 생깁니다.
 
 개별 **Table 클래스** 객체에서는 활용가능한 여러 메소드들을 제공합니다.
+
 ```python
 from book.models import Book
 Book.objects.get()
@@ -341,6 +359,7 @@ class Book(models.Model):
 2. **(자식테이블 소문자)_set** 메소드로 **자식테이블** 에 접근합니다
 
 **Django Python Shell**
+
 ```python
 from books.models import Publisher, Book
 
@@ -372,7 +391,8 @@ mastering Django 내용보다 (694p) [위의 방식이](https://stackoverflow.co
 
 
 ## ManyToManyField(테이블 클래스)
-외래키와 대부분은 동일하고, 모델 instance 대신 **QuerySet** 값을 추출합니다
+외래키와 대부분은 동일하고, 모델 instance 대신 **QuerySet** 값을 추출합니다.
+
 ```python
 # Create your models here.
 class Author(models.Model):
@@ -383,6 +403,7 @@ class Book(models.Model):
 ```
 
 **Django Python Shell**
+
 ```python
 from books.models import Book, Author
 
@@ -412,6 +433,7 @@ django 에서 기본으로 제공하는 방식만이 아닌, 사용자가 원하
 
 ## **커스텀 모델 매니저** QuerySets 추가
 사용자 기능을 추가하기 위한 method 를 추가할 수 있습니다.
+
 ```python
 # Many to Many 로 연결된 field 의 객체를 검색해서 출력하기
 class TitleManager(models.Manager):
@@ -426,6 +448,7 @@ class Book(models.Model):
 ```
 
 ## **모델 관리자 QuerySet** 여럿 활용하기
+
 ```python
 class MaleManager(models.Manager):
     def get_queryset(self):
@@ -447,6 +470,7 @@ class Person(models.Model):
 ```
 
 ## **모델 메서드** 추가하기
+
 ```python
 import datetime as dt
 class Person(models.Model):
@@ -467,7 +491,8 @@ class Person(models.Model):
 ## **F 연산 객체로** 모델의 필드값 참조하기
 모델 클래스에서 **필드와 필드간 개별 값을** 비교하는 방법을 정리해 보겠습니다.
 
-이를 위해서는 **F** 식을 제공합니다. 아래의 예제는 **Book 모델 클래스**의 **n_page** 필드값 중 **n_total** 필드의 값과 비교하여 더 큰값을 갖는 경우에 해당 객체들을 추출합니다 
+이를 위해서는 **F** 식을 제공합니다. 아래의 예제는 **Book 모델 클래스**의 **n_page** 필드값 중 **n_total** 필드의 값과 비교하여 더 큰값을 갖는 경우에 해당 객체들을 추출합니다.
+
 ```python
 from django.db.models import F
 Book.objects.filter(n_page__gt = F('n_total'))
@@ -489,6 +514,7 @@ Book.objects.filter(blog__pk=3)
 
 ## **Q 조건문 객체를** 사용한 복잡한 조회
 **Q** 객체는 검색 키워드를 캡슐화 하는 객체로 **, &** 그리고 **|** 객체를 사용할 수 있고, 무효화 선언을 위한 **~** 를 사용할 수 있습니다.
+
 ```python
 from django.db.models import Q
 Q(entry__startswith="python")
@@ -497,6 +523,7 @@ Q(entry__startswith="python")|~Q(pub_date__year="2019")
 ```
 
 위의 조건식을 사용하여 **.filter(), exclude(), get()** 조회식에 활용하실 수 있습니다.
+
 ```python
 Book.objects.get(
     Q(title__startswith="python"),
@@ -505,6 +532,7 @@ Book.objects.get(
 ```
 
 또한 lookup 함수와 **Q()** 객체를 혼합하여 사용하실 수 있습니다.
+
 ```python
 Book.objects.get(
     Q(pub_date=date(2019,1,1))|Q(pub_date=date(2019,2,1)),
@@ -512,6 +540,7 @@ Book.objects.get(
 ```
 
 주의할 점은 위와달리, 아래와 같은 조건식 만으로는 결과를 출력하지 않는다는 점에 주의해야 합니다 **함수 우선실행조건**
+
 ```python
 Book.objects.get(
     title__startswith="python",
