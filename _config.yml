@@ -25,12 +25,12 @@ collections:
     title: Machine Learning (ML)
     default_open: false
     output: true
-  01js:
-    title: FrontEnd (Ts)
+  01django:
+    title: BackEnd (Django,Nginx)
     default_open: false
     output: true
-  02django:
-    title: BackEnd (Django,Nginx)
+  02js:
+    title: FrontEnd (Ts)
     default_open: false
     output: true
   03python:
