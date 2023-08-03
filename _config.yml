@@ -21,6 +21,10 @@ featured_posts:
     title: 'Featured post #3'
 
 collections:
+  00ml:
+    title: Machine Learning (ML)
+    default_open: false
+    output: true
   01js:
     title: FrontEnd (Ts)
     default_open: false
