@@ -2,7 +2,7 @@
 layout: blog
 title: 자연어수업 (통계적 NLP)
 tags: 
-- python
+- nlp
 ---
 
 Statistic NLP 를 앞으로 다룹니다. 이는 통계를 기반으로 하는 NLP : **Frequentist Approach** (빈도를 활용), **Bayesian Approach** (베이지안 활용) 방법이 있습니다.

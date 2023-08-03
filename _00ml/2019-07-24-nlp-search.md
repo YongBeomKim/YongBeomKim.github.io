@@ -2,7 +2,7 @@
 layout: blog
 title: 자연어수업 (자료검색)
 tags: 
-- python
+- nlp
 ---
 
 Doc Indexing, Ranking Model and Query Parser ,자료의 검색을 Search 대신  retrieval 단어를 사용 합니다. [TDM 에 대한 자세한 설명 블로그](https://medium.com/@omicro03/%EC%9E%90%EC%97%B0%EC%96%B4%EC%B2%98%EB%A6%AC-nlp-7%EC%9D%BC%EC%B0%A8-term-document-matrix-tdm-f959ce229ade)
