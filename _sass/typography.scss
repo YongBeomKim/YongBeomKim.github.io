@@ -9,9 +9,19 @@
   url('./fonts/open-sans-v17-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+
+/* https://mdbootstrap.com/docs/standard/extended/colors-code */
 :root {
   --typography__default: 'Gowun Dodum', 'IBM Plex Sans KR', sans-serif;
-  --accent:#fb2e01;
-  --strong:#956e00e1;
+  --accent:#a00202;
+  --strong:#ae5a00;
+  --link:#013589;
+  --comment:#005a24;
+  --primary:#3B71CA;
+  --secondary:#9FA6B2;
+  --success:#14A44D;
+  --danger:#b71c1c;
+  --warning:#E4A11B;
+  --info:#54B4D3;  
 }
 
