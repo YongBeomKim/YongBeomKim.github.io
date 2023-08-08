@@ -62,6 +62,7 @@ $ tree -d
 
 ## Django Setting
 Django 설치 후 기본내용은 다음과 같습니다.
+
 ```python
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -69,16 +70,14 @@ ALLOWED_HOSTS = []
 ```
 
 **<span style="color:var(--comment);">DEBUG = True</span>** 일 때에는 위 설정 만으로도 정상동작 합니다. **<span style="color:var(--comment);">DEBUG = False</span>** 로 변경 후 실행하면 다음과 같은 메세지를 출력 합니다.
+
 ```bash
 CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.
 ```
 
-**<span style="color:var(--comment);">DEBUG = False</span>** 옵션은 **<span style="color:var(--comment);">서버에서 배포</span>** 하는 상황 입니다. 때문에 배포를 하는 서버가 사용자 설정값과 동일한지를 점검하는데 위에서 표시된 **<span style="color:var(--link);">[ALLOWED_HOSTS](https://docs.djangoproject.com/en/4.2/ref/settings/)</span>** 와 **<span style="color:var(--link);">[INTERNAL_IPS](https://docs.djangoproject.com/en/4.2/ref/settings/#internal-ips)</span>** 값을 다음과 같이 추가 합니다.
+**<span style="color:var(--comment);">DEBUG = False</span>** 옵션은 **<span style="color:var(--comment);">서버에서 배포</span>** 하는 상황 입니다. 때문에 배포를 하는 서버가 사용자 설정값과 동일한지 점검하는데 위에서 표시된 **<span style="color:var(--link);">[ALLOWED_HOSTS](https://docs.djangoproject.com/en/4.2/ref/settings/)</span>** 에 대한 내용을 실행환경에 맞게 내용을 입력 합니다.
+
 ```python
-INTERNAL_IPS = [
-    "127.0.0.1",
-    'localhost',
-]
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
@@ -89,11 +88,113 @@ ALLOWED_HOSTS = [
 ]
 ```
 
+## Django Template
+리액트 프로젝트 내부에 생성된 템플릿 파일을 보면 다음과 같습니다.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="django"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+위 탬플릿은 `yarn dev` 로 리액트 프로젝트를 실행할 때 사용하는 파일 입니다. **<span style="color:var(--link);">[Backend Integration](https://vitejs.dev/guide/backend-integration.html)</span>** 내용을 참고하여 Django 의 Template 내용에 다음의 내용을 추가 합니다.
+
+```html
+{% raw %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mysite</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- if development -->
+    {% if debug %}
+      <h1>Development Mode</h1>
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+      </script>
+      <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+
+    <!-- production mode -->
+    {% else %}
+      <h1>Production Mode</h1>
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>
+
+{% endraw %}
+```
+
+**DEBUG=True** 일 때 동작하는 미들웨어가 ["django.template.context_processors.debug"](https://docs.djangoproject.com/en/4.2/ref/templates/api/#using-requestcontext) 입니다. 이때 추가로 **<span style="color:var(--link);">[INTERNAL_IPS](https://docs.djangoproject.com/en/4.2/ref/settings/#internal-ips)</span>** 설정 내용에 현재 동작하는 환경설정 값을 입력해야만 `{% debug %}` 정상작동 됩니다. 보다 자세한 내용은 [How to check the TEMPLATE_DEBUG flag in a django template?](https://stackoverflow.com/questions/1271631/how-to-check-the-template-debug-flag-in-a-django-template) 를 참고하시면 됩니다.
+
+```python
+# settings.py
+INTERNAL_IPS = [
+    "127.0.0.1",
+    'localhost',
+]
+```
+
+위 내용들이 정상적으로 입력 되었다면, **<span style="color:var(--comment);">DEBUG=True</span>** 일 때에는 리액트 내용을 화면에 출력하고, **<span style="color:var(--comment);">DEBUG=False</span>** 일 때에는 문자만 출력 합니다.
+
+## React Build Setting
+이번 단계부터는 서버에서 운영에 필요한 내용을 살펴보겠습니다. **<span style="color:var(--link);">vite.config.js</span>** 파일을 열고 다음의 내용을 추가 합니다. 참고로 vscode 에서 작업을 하면 es-lint 의 점검 결과 `(file)` 부분에 `Disable warning - Defined but never used` 오류표시를 출력합니다. 이 메세지를 비활성화 하려면 **<span style="color:var(--link);">[eslint-disable](https://stackoverflow.com/questions/45399923/eslint-disable-warning-defined-but-never-used-for-specific-function)</span>** 내용을 추가 하면 됩니다.
+
+```jsx
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react({
+    exclude: /\.stories\.(t|j)sx?$/,
+    include: '**/*.tsx',
+  })],
+  publicDir: './public',
+  /* eslint-disable */
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: (file) => {
+          return `static/dist/assets/css/index.min.css`
+        },
+        entryFileNames: (file) => {
+          return `static/dist/assets/js/[name].min.js`
+        }
+      }
+    }
+  }
+  /* eslint-enable */
+})
+```
 
 <br/>
 
 # 참고사이트
 - [Vite.js](https://vitejs.dev/guide)
 - [WhiteNoise](https://whitenoise.readthedocs.io/en/latest/)
+- [Code Split - Gitblog 정리내용](https://yongbeomkim.github.io/02js/2023-06-22-react-split.html)
 - [Code Split - Reactjs](https://ko.legacy.reactjs.org/docs/code-splitting.html)
 
