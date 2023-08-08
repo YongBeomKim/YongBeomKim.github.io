@@ -26,6 +26,18 @@ Done in 7.60s.
 
 처음 작업을 할 때부터 `Code Split` 내용이 중요하다는 이야기를 듣고는 있었지만 <strike>귀찮아서</strike> 프로젝트에 적용하지 않고 있었습니다. 이번에 `Vite.js` 를 미들웨어로 변경했고, 중형 크기의 프로젝트를 진행하면서 적용을 해야겠다는 생각에 내용들을 찾아서 정리해 보았습니다.
 
+<figure class="align-center">
+  <p style="text-align: center">
+  <iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/-4fyyyQjsz8" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+  </iframe>
+  </p>
+  <figcaption>How to Improve Performance in React with Code Splitting</figcaption>
+</figure>
+
 <br/>
 
 # React

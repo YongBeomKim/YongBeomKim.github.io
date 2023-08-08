@@ -411,10 +411,98 @@ STORAGES = {
 }
 ```
 
+## Custom Management Commands
+**Vite.js** 에서 빌드된 **index.html** 파일을 열어서 **index.js, index.css** 정보를 찾아서 Django 의 템플릿에 내용을 직접 입력하는 과정을 앞에서 살펴보았습니다. 수정을 할 때마다 이와같은 작업을 반복하게 되는데 **<span style="color:var(--link);">[Django Commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/)</span>** 를 활용해 보겠습니다.
+
+```bash
+.
+├── core
+│   ├── management
+│   │   └── commands
+│   │       ├── build.py
+│   │       └── __init__.py
+│   └── templates
+└── staticfiles
+    └── assets
+```
+
+위에 표시된 내용처럼 **core** 앱 내부에 폴더들을 추가한뒤 **build.py** 파일에 다음의 내용을 추가합니다. **file_django** 는 **Django Template** 의 경로를 입력하고  **file_build** 은 **Vite.js** 빌드된 템플릿 경로를 사용자 환경에 맞춰 입력하면 됩니다.
+
+```python
+import os
+import re
+from django.core.management.base import (
+    BaseCommand, CommandParser
+)
+
+
+class Command(BaseCommand):
+
+    r"""React Build & Django Template Auto Edit"""
+    message     = 'building js & css copy to html\n'
+    file_django = './core/templates/base.html'
+    file_build  = './staticfiles/index.html'
+
+    def add_arguments(self, parser: CommandParser) -> None:
+        return super().add_arguments(parser)
+
+    def handle(self, *args, **options):
+
+        # Pre Processing
+        build_data    = {}
+        build_targets = {'js':"/assets/",'css':"/assets/"}
+        if os.path.exists(self.file_build) == False:
+            self.stdout.write(f"{self.file_build} is not existed ...")
+            return None
+
+        # Process 1 : 빌드된 파일에서 필요한 정보찾기
+        with open(self.file_build, 'r') as f:
+            texts = f.readlines()
+
+        tokenizer = re.compile(r'assets/[tjscx]+/[A-z0-9\-\.]+.[tjscx]+')
+        for text in texts:
+            for file_type, hint in build_targets.items():
+                if (text.find(hint) != -1) & (text.find(f".{file_type}") != -1):
+                    text = "".join(tokenizer.findall(text))
+                    build_data[file_type] = text
+
+        # Process 2 : Django Template 에 추출한 내용 입력하기
+        with open(self.file_django, 'r') as f:
+            texts = f.readlines()
+
+        result_list  = []
+        result_text  = self.message
+        for text in texts:
+            for _type in ['css', 'js']:
+                if (text.find("{% static") != -1) & (text.find(f".{_type}") != -1):
+                    check = "".join(re.findall(r'assets/[jstcx]+/[.A-z0-9\-\.]+', text))
+                    text  = re.sub(check, build_data[_type], text)
+                    result_text += f"{check} => {build_data[_type]}\n"
+            result_list.append(text)
+
+        # 결과값 저장하기 & 결과 메세지 출력
+        with open(self.file_django, 'w') as f:
+            f.write("".join(result_list))
+        self.stdout.write(result_text)
+```
+
+이처럼 작업을 완료하고 나면, 아래의 내용처럼 실행 명령어를 확인해 볼 수 있습니다.
+
+```bash
+$ ./manage.py help     
+Type 'manage.py help <subcommand>' for help on a specific subcommand.
+Available subcommands:
+
+[core]
+  build
+```
+
+
 <br/>
 
 # 참고사이트
 - [Vite.js](https://vitejs.dev/guide)
 - [Code Split - Reactjs](https://ko.legacy.reactjs.org/docs/code-splitting.html)
 - [Static & Media Files in Django with WhiteNoise](https://testdriven.io/blog/django-static-files/)
-- [위 내용이 포함된 소스코드 | GitHub](https://github.com/YongBeomKim/Django-Vite-React-TS)
+- [Django Custom Management Commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/)
+- [위 내용이 포함된 소스코드 - GitHub](https://github.com/YongBeomKim/Django-Vite-React-TS)
