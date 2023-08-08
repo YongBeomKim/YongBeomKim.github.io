@@ -260,14 +260,16 @@ CACHES = {
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = 'static/'
 # for development
-STATICFILES_DIRS = [
-    (BASE_DIR.joinpath("../react/dist/")),
-]
+# staticfiles 작업기준 폴더
+if os.path.exists('../react/dist'):
+    STATICFILES_DIRS = [(BASE_DIR.joinpath("../react/dist/")),]
+else:
+    STATICFILES_DIRS = [(BASE_DIR.joinpath("../react/public/")),]
 # for publishment
 STATIC_ROOT = BASE_DIR.joinpath("staticfiles")
 ```
 
-이처럼 `WhiteNoise` 설정내용을 추가한 뒤 배포환경에서 작동하는지 확인해 보았습니다. 아래의 내용들을 보면 리액트에서 빌드된 파일을 운영에 활용할 수 있도록 다양한 형태로 생성하는 것을 확인할 수 있습니다.
+**<span style="color:var(--comment);">WhiteNoise</span>** 설정 내용을 추가한 뒤 배포환경에서 작동하는지 확인해 보았습니다. 아래의 내용들을 보면 리액트에서 빌드된 파일을 운영에 활용할 수 있도록 다양한 형태로 생성하는 것을 확인할 수 있습니다.
 
 ```bash
 $ tree -l
@@ -318,6 +320,95 @@ $ ../staticfiles ➭ tree -l
 ├── vite.8e3a10e157f7.svg.gz
 ├── vite.svg
 └── vite.svg.gz
+```
+
+## Django Template
+빌드된 파일값에 **<span style="color:var(--comment);">Hash</span>** 값들이 추가되어 있습니다. 어떤 파일이 중요한지 확인해 보기 위해서 **<span style="color:var(--comment);">staticfiles/index.html</span>** 파일을 한 번 열어보겠습니다.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+    <script type="module" crossorigin src="/assets/js/index-20bd6020.js"></script>
+    <link rel="stylesheet" href="/assets/css/index-d526a0c5.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+**<span style="color:var(--comment);">assets/js/index-20bd6020.js</span>** 파일과 **<span style="color:var(--comment);">assets/css/index-d526a0c5.css</span>** 파일이 중심이 되는것을 확인할 수 있습니다. 이 내용을 Django 의 Template 파일에 추가 합니다. 
+
+```html
+{% raw %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mysite</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- if development -->
+    {% if debug %}
+      <h1>Development Mode</h1>
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+      </script>
+      <script type="module" src="http://localhost:5173/src/main.tsx"></script>
+
+    <!-- production mode -->
+    {% else %}
+      <script type="module" crossorigin src="{% static 'assets/js/index-20bd6020.js' %}"></script>
+      <link rel="stylesheet" href="{% static 'assets/css/index-d526a0c5.css' %}">
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>
+
+{% endraw %}
+```
+
+작업 후 서버에서 **<span style="color:var(--comment);">500</span>** 오류를 출력하는 경우는 **<span style="color:var(--comment);">JS</span>** 파일 이름이 다르게 입력된 경우 였습니다.
+
+그리고 정상적으로 보이거나 일부분만 랜더링 되는 상태에서 Console 창에서 다음과 같은 오류를 출력하는 경우 있었습니다.
+
+```bash
+DOMException: Node.removeChild: The node to be removed 
+is not a child of this node 
+index-20bd6020.87dd29b3accb.js:40:161
+
+Uncaught DOMException: Node.removeChild: The node to be 
+removed is not a child of this node 
+index-20bd6020.87dd29b3accb.js:40
+```
+
+**<span style="color:var(--link);">[React DOMException: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node](https://stackoverflow.com/questions/54880669/react-domexception-failed-to-execute-removechild-on-node-the-node-to-be-re)</span>** 내용이 도움이 되었는데, 이유는 `<React.Fragment>...</React.Fragment>` 또는 `<>...</>` 태그를 `<div></div>` 로 변경함으로써 해결 되었습니다.
+
+참고로 이 오류는 Vite.js DEV 서버에서는 발생하지 않았고, 빌드된 이후에 발생하였습니다. 이점에서 생각해 볼때 **<span style="color:var(--comment);">WhiteNoise</span>** 에서 압축을 하면서 발생한 문제로 예상되었고, 다음의 설정을 비활성화 한뒤 실행해본 결과 오류없이 정상 작동하는 것을 볼 수 있었습니다.
+
+```python
+# settings.py
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 ```
 
 <br/>
