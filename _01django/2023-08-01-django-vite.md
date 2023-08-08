@@ -11,7 +11,7 @@ tags:
 
 하지만 연결된 파일들과 관련하여 React 또는 Vite.js 내부의 설정 오류로 인하여 실제 존재하는 경로와 다른 위치에서 파일들을 찾고 있었고, 이러한 Static 내부의 문제점을 배포파일이 여러개로 생성이 된 후, 그리고 nginx 서버에서 직접 운영을 한 뒤에서야 확인할 수 있었습니다.
 
-이번 페이지 에서는 Django 와 Vite.js 연결에 있어서 `Static` 설정과 관련된 개념들과 작업 내용에 대해서 중점적으로 살펴보겠습니다.
+이번 페이지 에서는 Django 와 Vite.js 연결에 있어서 `Static` 설정과 관련된 개념들과 작업 내용에 대해서 중점적으로 살펴보겠습니다. [GitHub : Django-Vite-React-TS](https://github.com/YongBeomKim/Django-Vite-React-TS) 저장소에 아래 내용이 모두 반영된 소스코드를 올려 놓았습니다.
 
 <br/>
 
@@ -417,3 +417,4 @@ STORAGES = {
 - [Vite.js](https://vitejs.dev/guide)
 - [Code Split - Reactjs](https://ko.legacy.reactjs.org/docs/code-splitting.html)
 - [Static & Media Files in Django with WhiteNoise](https://testdriven.io/blog/django-static-files/)
+- [위 내용이 포함된 소스코드 | GitHub](https://github.com/YongBeomKim/Django-Vite-React-TS)
