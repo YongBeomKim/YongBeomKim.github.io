@@ -113,44 +113,6 @@ ALLOWED_HOSTS = [
 
 위 탬플릿은 `yarn dev` 로 리액트 프로젝트를 실행할 때 사용하는 파일 입니다. **<span style="color:var(--link);">[Backend Integration](https://vitejs.dev/guide/backend-integration.html)</span>** 내용을 참고하여 Django 의 Template 내용에 다음의 내용을 추가 합니다.
 
-```html
-{% raw %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mysite</title>
-  </head>
-  <body>
-    <div id="root"></div>
-
-    <!-- if development -->
-    {% if debug %}
-      <h1>Development Mode</h1>
-      <script type="module" src="http://localhost:5173/@vite/client"></script>
-      <script type="module">
-        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
-        RefreshRuntime.injectIntoGlobalHook(window)
-        window.$RefreshReg$ = () => {}
-        window.$RefreshSig$ = () => (type) => type
-        window.__vite_plugin_react_preamble_installed__ = true
-      </script>
-      <script type="module" src="http://localhost:5173/src/main.tsx"></script>
-
-    <!-- production mode -->
-    {% else %}
-      <h1>Production Mode</h1>
-    {% endif %}
-
-    {% block content %}
-    {% endblock content %}
-  </body>
-</html>
-
-{% endraw %}
-```
 
 **DEBUG=True** 일 때 동작하는 미들웨어가 ["django.template.context_processors.debug"](https://docs.djangoproject.com/en/4.2/ref/templates/api/#using-requestcontext) 입니다. 이때 추가로 **<span style="color:var(--link);">[INTERNAL_IPS](https://docs.djangoproject.com/en/4.2/ref/settings/#internal-ips)</span>** 설정 내용에 현재 동작하는 환경설정 값을 입력해야만 `{% debug %}` 정상작동 됩니다. 보다 자세한 내용은 [How to check the TEMPLATE_DEBUG flag in a django template?](https://stackoverflow.com/questions/1271631/how-to-check-the-template-debug-flag-in-a-django-template) 를 참고하시면 됩니다.
 
@@ -319,8 +281,6 @@ $ ../staticfiles ➭ tree -l
 ├── vite.svg
 └── vite.svg.gz
 ```
-
-
 
 <br/>
 
