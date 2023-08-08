@@ -152,7 +152,7 @@ ALLOWED_HOSTS = [
 {% endraw %}
 ```
 
-**DEBUG=True** 일 때 동작하는 미들웨어가 ["django.template.context_processors.debug"](https://docs.djangoproject.com/en/4.2/ref/templates/api/#using-requestcontext) 입니다. 이때 추가로 **<span style="color:var(--link);">[INTERNAL_IPS](https://docs.djangoproject.com/en/4.2/ref/settings/#internal-ips)</span>** 설정 내용에 현재 동작하는 환경설정 값을 입력해야만 `{% debug %}` 정상작동 됩니다. 보다 자세한 내용은 [How to check the TEMPLATE_DEBUG flag in a django template?](https://stackoverflow.com/questions/1271631/how-to-check-the-template-debug-flag-in-a-django-template) 를 참고하시면 됩니다.
+**DEBUG=True** 일 때 동작하는 미들웨어가 ["django.template.context_processors.debug"](https://docs.djangoproject.com/en/4.2/ref/templates/api/#using-requestcontext) 입니다. 이때 추가로 **<span style="color:var(--link);">[INTERNAL_IPS](https://docs.djangoproject.com/en/4.2/ref/settings/#internal-ips)</span>** 설정 내용에 현재 동작하는 환경설정 값을 입력해야만 `debug` 값이 템플릿에서 정상작동 됩니다. 보다 자세한 내용은 [How to check the TEMPLATE_DEBUG flag in a django template?](https://stackoverflow.com/questions/1271631/how-to-check-the-template-debug-flag-in-a-django-template) 를 참고하시면 됩니다.
 
 ```python
 # settings.py
