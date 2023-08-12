@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Django Vite.js boiler plate
+title: (DevOps) Django & Vite.js
 tags:
 - django
 ---
@@ -429,6 +429,7 @@ STORAGES = {
 위에 표시된 내용처럼 **core** 앱 내부에 폴더들을 추가한뒤 **build.py** 파일에 다음의 내용을 추가합니다. **file_django** 는 **Django Template** 의 경로를 입력하고  **file_build** 은 **Vite.js** 빌드된 템플릿 경로를 사용자 환경에 맞춰 입력하면 됩니다.
 
 ```python
+{% raw %}
 import os
 import re
 from django.core.management.base import (
@@ -484,6 +485,7 @@ class Command(BaseCommand):
         with open(self.file_django, 'w') as f:
             f.write("".join(result_list))
         self.stdout.write(result_text)
+{% endraw %}
 ```
 
 이처럼 작업을 완료하고 나면, 아래의 내용처럼 실행 명령어를 확인해 볼 수 있습니다.

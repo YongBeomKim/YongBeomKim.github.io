@@ -1,12 +1,11 @@
 ---
 layout: blog
-title: CertBot for HTTPs
+title: (DevOps) HTTPs with CertBot
 tags:
-- django
 - nginx
 ---
 
-`uvicorn` 미들웨어로 `Django` 를 실행하고, `Nginx` 기본값으로 서버를 실행하면 `Http://` 주소를 사용 할 수 있습니다. 보안 측면에서 `Https://` 주소를 사용할 필요성이 큰 만큼 이번 기회에 `Https://` 로 배포하는 방법을 알아 보겠습니다. 전체적인 과정은 [Securely Deploy a Django App With Gunicorn, Nginx, & HTTPS](https://realpython.com/django-nginx-gunicorn/#making-your-site-production-ready-with-https) 를 참고하면 됩니다.
+지금까지 Django 와 React.js with Vite.js 로 작성한 내용을 우분투 서버의 서비스로 등록을 완료하고, Nginx 로 배포하는 작업까지 진행하였습니다. `Nginx` 기본값은 `Http://` 주소를 사용 합니다. 하지만 보안등 여러 측면에서 `Https://` 주소를 사용할 필요성이 큰 만큼 이번 기회에 `Https://` 로 배포하는 방법을 알아 보겠습니다. 전체적인 과정은 [Securely Deploy a Django App With Gunicorn, Nginx, & HTTPS](https://realpython.com/django-nginx-gunicorn/#making-your-site-production-ready-with-https) 를 참고하면 됩니다.
 
 <figure class="align-center">
   <img width="540px" src="{{site.baseurl}}/assets/fullstack/https-vs-https.png">
