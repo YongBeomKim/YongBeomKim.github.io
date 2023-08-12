@@ -45,7 +45,7 @@ Git 소스파일을 다운받아 `manage.py` 를 보다 쉽게 실행 가능하�
 # the execution bits.
 
 # writed by user
-sudo mount -t vfat -o iocharset=cp949 /dev/sda1  /home/erdos/exthdd/
+sudo mount -t vfat -o iocharset=cp949 /dev/sda1  /home/username/exthdd/
 if [ -f /aafirstboot ]; then /aafirstboot start ; fi
 exit 0
 ```

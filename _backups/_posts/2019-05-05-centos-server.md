@@ -62,7 +62,7 @@ $ scp -P 포트번호 *.mp4  /home/user/Download/
 ```javascript
 [root]# useradd python
 [root]# passwd python
-erdos 사용자의 비밀 번호 변경 중
+username 사용자의 비밀 번호 변경 중
 새  암호: 
 새  암호 재입력:
 passwd: 모든 인증 토큰이 성공적으로 업데이트 되었습니다.

@@ -124,7 +124,7 @@ Listen 8000
 출처: http://www.hides.kr/868 [Hide]
 
 ```
-WSGIDaemonProcess myproject python-home=/home/erdos/Python/Source/Django/project python-path=/home/sammy/myproject
+WSGIDaemonProcess myproject python-home=/home/username/Python/Source/Django/project python-path=/home/sammy/myproject
 
 <VirtualHost *:8000>
         ServerAdmin webmaster@localhost

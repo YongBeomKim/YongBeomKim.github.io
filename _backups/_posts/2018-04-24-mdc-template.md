@@ -51,9 +51,9 @@ Out[] '<p>Dear john,</p><p>Thanks April 23, 2018'
 ```python
 from django.template import Template, Context
 t = Template('hello, { { name } }')
-t.render(Context({'name':'erdos'}))
+t.render(Context({'name':'username'}))
 
-'hello, erdos'
+'hello, username'
 ```
 
 

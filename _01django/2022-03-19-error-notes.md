@@ -71,7 +71,7 @@ Celery 서비스 내용을 등록할 때, `args` 에서 `dict()` 객체로 파�
 해당 파라미터가 아닌 맨 처음 변수에 할당되어 오류가 발생 하였습니다.
 ```python
 df = get(slice=slice, start=start, end=end)
-  File "/home/erdos/Source/django/krx/utils/tasks.py", line 76, in get
+  File "/home/username/Source/django/krx/utils/tasks.py", line 76, in get
     codes = codes[:slice]
 TypeError: slice indices must be integers or None or have an __index__ method
 ```

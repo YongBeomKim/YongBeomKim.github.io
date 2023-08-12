@@ -43,7 +43,7 @@ toc: true
 ### static/js/name.js
 ```javascript
 const name = document.getElementById('name');
-name.innerText = 'erdos Lee Park';
+name.innerText = 'username Lee Park';
 
 if (module.hot) {
     module.hot.accept();

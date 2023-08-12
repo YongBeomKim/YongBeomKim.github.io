@@ -143,7 +143,7 @@ HTML5 & CSS3 Design Book 5장 - <small>**EBISUCOM**</small>
     <!-- footer Design -->
     <div class="box5">
         <div class="copyright">
-            <p>Copyright &copy; ErdosStock</p>
+            <p>Copyright &copy; usernameStock</p>
         </div>
     </div>
 </body>
@@ -337,7 +337,7 @@ div:not([class]) > div:not([class]){
 <!-- footer Design -->
 <div class="box5">
     <div class="copyright">
-        <p>Copyright &copy; ErdosStock</p>
+        <p>Copyright &copy; usernameStock</p>
     </div>
 </div>
 ```

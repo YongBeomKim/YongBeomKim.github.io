@@ -53,7 +53,7 @@ server {
 
   location /static/ {
     autoindex on;
-    alias /home/erdos/Source/django/staticfiles/;
+    alias /home/username/Source/django/staticfiles/;
     expires 1d;
   }
 
@@ -147,11 +147,11 @@ Requires=celery.service
 After=network.target
 
 [Service]
-User=erdos
+User=username
 Group=www-data
-WorkingDirectory=/home/erdos/Source/django
-Environment="PATH=/home/erdos/Source/venv/bin"
-ExecStart=/home/erdos/Source/venv/bin/celery -A 
+WorkingDirectory=/home/username/Source/django
+Environment="PATH=/home/username/Source/venv/bin"
+ExecStart=/home/username/Source/venv/bin/celery -A 
   server flower --url_prefix=flower --address=127.0.0.1 
   --broker=redis://localhost:6379/0 --basic_auth=username:password
 Restart=on-failure

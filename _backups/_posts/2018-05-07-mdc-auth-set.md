@@ -19,7 +19,7 @@ toc: true
 
 ### Super User 만들기 
 
-`$ python manage createsupteruser` 이후 정보를 입력한다. 또는 터미널에서 `$ python manage createsupteruser --username=erdos --email=django@django.net` 을 입력하면 바로 암호설정화면으로 넘어간다 
+`$ python manage createsupteruser` 이후 정보를 입력한다. 또는 터미널에서 `$ python manage createsupteruser --username=username --email=django@django.net` 을 입력하면 바로 암호설정화면으로 넘어간다 
 
 
 ### Shell 에서 사용자 만들기
@@ -41,7 +41,7 @@ user.save()
 ```python
 from django.contrib.auth.models import User
 
-u = User.objects.get(username='erdos')
+u = User.objects.get(username='username')
 u.set_password('django')
 u.save()
 ```

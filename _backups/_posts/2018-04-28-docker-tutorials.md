@@ -52,7 +52,7 @@ $ docker rmi $(docker images -q)                  # 모든 image 삭제
 ```
 $ docker info 
 
-erdos@tacademy:~$ docker info
+username@tacademy:~$ docker info
 Server Version: 18.04.0-ce
 Operating System: Ubuntu 14.04.5 LTS
 Architecture: x86_64

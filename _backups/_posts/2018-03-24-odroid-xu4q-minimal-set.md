@@ -184,7 +184,7 @@ $ sudo nano /Downloads/PurgeCompleted.sh
   done
 
 $ sudo chmod +x /home/odroid/Downloads/PurgeCompleted.sh    # 권한설정
-$ chown -R erdos /home/odroid/Downloads/
+$ chown -R username /home/odroid/Downloads/
 $ sudo /etc/init.d/transmission-daemon stop    
 $ sudo nano /etc/transmission-daemon/settings.json
   >>수정전
@@ -193,12 +193,12 @@ $ sudo nano /etc/transmission-daemon/settings.json
 
   >>수정후>
    "script-torrent-done-enabled": true,
-   "script-torrent-done-filename": "/home/erdos/download/transmission/PurgeCompleted.sh",
+   "script-torrent-done-filename": "/home/username/download/transmission/PurgeCompleted.sh",
 
 $ sudo /etc/init.d/transmission-daemon start
 ```
 
-/home/erdos/download/transmission/PurgeCompleted.sh",
+/home/username/download/transmission/PurgeCompleted.sh",
 
 
 
@@ -223,7 +223,7 @@ $ sudo nano /etc/fstab                  # blkid로 확인한 UUID info를 입력
     /dev/sda1  /home2  vfat    iocharset=cp949     0   0
     UUID=575   /home2  vfat    iocharset=cp949     0   1
 $ sudo mount -a                          # 새로입력한 정보 적용 
-$ sudo chmod -R 777 /home/erdos/exthdd   # 쓰기권한 부여
+$ sudo chmod -R 777 /home/username/exthdd   # 쓰기권한 부여
 
 ## 별도 설정 않는경우 아래에 스크립트를 추가한다
 $ sudo nano /etc/rc.local                # 부팅시마다 반복실행

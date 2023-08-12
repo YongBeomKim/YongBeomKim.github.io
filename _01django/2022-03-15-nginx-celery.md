@@ -193,7 +193,7 @@ Type=simple
 User=USERNAME
 Group=www-data
 WorkingDirectory=/home/USERNAME/Source
-ExecStart=/home/erdos/USERNAME/venv/bin/celery -A server beat -l info
+ExecStart=/home/USERNAME/venv/bin/celery -A server beat -l info
 Restart=always
 StartLimitBurst=0
 
