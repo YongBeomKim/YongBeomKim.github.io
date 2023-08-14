@@ -226,6 +226,42 @@ export default defineConfig({
 })
 ```
 
+이렇게 작업을 하면 `vite.js` 에서 빌드된 파일들은 **BASE_URL/assets/index-hash값.js** 에서 경로를 확인 합니다. 하지만 django 설정상 **STATIC** 주소를 앞에 추가하게 되는데 이처럼 배포시 기본이 되는 URL 주소가 달라지는 경우 해당 주소값을 보정해 주는 **[base : ](https://ko.vitejs.dev/guide/build.html#advanced-base-options)** 설정값을 추가 하면 됩니다.
+
+```jsx
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react({
+    exclude: /\.stories\.(t|j)sx?$/,
+    include: '**/*.(ts|tsx)',
+  })],
+
+ (+) base: '/static',
+
+  publicDir: './public',
+  build: {
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: ({name}) => {
+          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')){
+              return 'assets/images/[name]-[hash][extname]';
+          }
+          if (/\.css$/.test(name ?? '')) {
+              return 'assets/css/[name]-[hash][extname]';   
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    }
+  }
+})
+```
+
+
 ## WhiteNoise
 **<span style="color:var(--link);">[Using WhiteNoise with Django](https://whitenoise.readthedocs.io/en/latest/django.html)</span>** 은, Dev 모드와 Posting 모드일 때 `Static` 파일들을 자동으로 연결 및 설정을 돕는 파이썬 모듈 입니다. 배포파일의 압축 및 캐시활용 그리고 경로 자동완성 까지 모든 내용을 통합 관리합니다. 
 
