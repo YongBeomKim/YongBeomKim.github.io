@@ -1,3 +1,6 @@
+## 우분투 사용자 관리
+# https://jjeongil.tistory.com/2040
+
 ## Node.js
 # https://github.com/nodesource/distributions
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E zsh - &&\
