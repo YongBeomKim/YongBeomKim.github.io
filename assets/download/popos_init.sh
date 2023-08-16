@@ -77,6 +77,8 @@ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O 
 #        zsh-syntax-highlighting
 #)
 
-# 한컴오피스 파일 설치 후 Tian 실행링크 추가
+# 한컴오피스 파일 설치 
+# https://www.bada-ie.com/board/view/?page=1&uid=4366&category_code=uELK%7C%7CIXXn%7C%7C&code=all&key=&keyfield=
+# 설치 후
 # sudo ln -sf /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libqt5im-tian.so /opt/hnc/hoffice11/Bin/qt/plugins/platforminputcontexts/libqt5im-tian.so
 
