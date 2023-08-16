@@ -7,6 +7,8 @@ tags:
 
 우분투 설치 후 관련 자세한 초기설정 방법은 **[Ubuntu Setting in Win10](https://www.howtogeek.com/261417/how-to-change-your-user-account-in-windows-10s-ubuntu-bash-shell/)** 와 앞에서 정리한 [우분투 Setting & Tips](https://yongbeomkim.github.io/ubuntu/ubuntu-settings/) 내용을 참고합니다.
 
+[POP-OS 22.04 설치 기본 스크립트]:{{site.baseurl}}/assets/download/popos_init.sh
+
 <br>
 
 # **Tips**
