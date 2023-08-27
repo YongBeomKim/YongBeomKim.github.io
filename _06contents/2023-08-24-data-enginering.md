@@ -12,7 +12,7 @@ IT관련 전문서적을 구매하는 가장 큰 이유는, 해당 도서가 다
 이번 책을 리뷰하기에 앞서서 이런 이야기를 늘어놓는 이유는, 이번 도서는 앞에서 보았던 책들과 달리 종이책으로써 내용을 훝어보기에는 좋았지만, 소장 및 활용하는데 있어서는 전자책 형태가 더 좋은 내용으로 생각되었기 때문 입니다.
 
 <figure class="align-center">
-  <img width="450px" src="{{site.baseurl}}/assets/book/db-eng.png">
+  <img width="850px" src="{{site.baseurl}}/assets/book/db-eng.png">
   <figcaption>견고한 데이터 엔지니어링</figcaption>
 </figure>
 
@@ -20,7 +20,7 @@ IT관련 전문서적을 구매하는 가장 큰 이유는, 해당 도서가 다
 이 몇달전 리뷰를 했었던 [데이터 품질의 비밀](https://yongbeomkim.github.io/contents/data-quality) 도서의 상위호환 버젼의 내용입니다. 우선 머릿말에 재미있는 내용이 포함되어 있었는데 그 내용은 다음과 같습니다.
 
 <figure class="align-center">
-  <img width="450px" src="{{site.baseurl}}/assets/book/db-eng-01.jpg">
+  <img width="850px" src="{{site.baseurl}}/assets/book/db-eng-01.jpg">
   <figcaption>17 페이지 (이 책에 대하여)</figcaption>
 </figure>
 
