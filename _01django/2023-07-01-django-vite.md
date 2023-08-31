@@ -535,6 +535,19 @@ Available subcommands:
   build
 ```
 
+<br/>
+
+# Appendix
+## (2023-08-29) vite's HMR does not work when I use React.lazy() API for lazyload
+`vite dev server` 환경에서 작업을 하던 중, 어떤 내용이 추가되면 다음과 같은 메세지를 출력 하면서 `HMR` 모드가 작동되지 않았습니다.
+
+```bash
+00:00:00 PM [vite] hmr invalidate /src/Content/chart.tsx Could not Fast Refresh. Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+```
+
+이유는 다음의 내용에서 찾을 수 있었는데 [vite's HMR does not work when I use React.lazy() API for lazyload](https://github.com/vitejs/vite/issues/4298) 내용은 다음과 같습니다.
+
+메세지로 안내하는 컴포넌트 내부에서 `function()` 의 오동작으로 인하여 `react-refresh` 모듈의 `lazy()` 함수에서 정상적으로 인식을 하지 못하여 발생한 문제였습니다. 위 작업에서는 `@fake` 모듈에서 메서드가 변경되어 발생한 경고메세지에 따라, 새로운 메서드를 적용하고 난 뒤에 이같은 문제가 해결되었습니다.
 
 <br/>
 
