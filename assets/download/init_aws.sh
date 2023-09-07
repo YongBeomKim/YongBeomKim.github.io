@@ -23,11 +23,17 @@ sudo service nginx status
 
 ## Node.js
 # https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04
-cd ~ && curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
-source nodesource_setup.sh
-apt-get install -y nodejs
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
-npm install --location=global yarn --force
+#cd ~ && curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+#source nodesource_setup.sh
+#apt-get install -y nodejs
+#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | zsh
+#npm install --location=global yarn --force
+sudo apt-get update
+sudo apt-get install build-essential
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -- 
+sudo apt-get install nodejs
+
 
 ## Python DEV
 # install Python3.10
@@ -38,12 +44,12 @@ apt update
 apt-get install python3.10 -Y
 apt install python3-pip -y
 apt install python3.10-dev libpq-dev -y
-apt install python3.10-venv
+apt install python3.10-venv -y
 apt install python3.10 -y
 apt install python3.10-lib2to3 -y
 apt install python3.10-gdbm -y
 apt install python3.10-tk -y
-apt install python3-pip
+apt install python3-pip -y
 # apt install libpq-dev       # PostgreSQL
 apt install libmariadb-dev  # MariaDB
 apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev pkg-config make -y
@@ -52,8 +58,8 @@ rm -rf /var/lib/apt/lists/lock
 
 ## Redis Server
 # https://hayden-archive.tistory.com/429
-sudo apt-get install redis-server
-sudo apt install net-tools
+sudo apt-get install redis-server -y
+sudo apt install net-tools -y
 redis-server --version
 
 ## MariaDB
