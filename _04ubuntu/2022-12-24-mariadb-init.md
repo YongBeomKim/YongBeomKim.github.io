@@ -127,6 +127,22 @@ $ sudo apt-get purge "mariadb-*"
 
 <br/>
 
+# Backup
+## Backup Tools
+mariadb 를 백업 및 복원하는 방법을 살펴보겠습니다. [MariaDB 10.6 : Backup](https://www.server-world.info/en/note?os=Ubuntu_22.04&p=mariadb&f=3) 또는 [Mariabackup으로 증분백업하기](https://blog.devbox.kr/docs/mariabackup/) 에서 소개한 방법도 있지만 `MariaDB Foundation` 에서 작성한 유투브를 참고하여 진행해 보겠습니다.
+
+<p style="text-align: center">
+  <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/b-KFj8GfvzE?si=xIvkAPRo2gTk0Ld1" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+  </iframe>
+</p>
+
+
+<br/>
+
 # Appendix
 
 ## [MyCli](https://www.mycli.net/)

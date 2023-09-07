@@ -9,6 +9,8 @@ tags:
 
 이번 페이지는 구글 클라우드 가입 및 설정에 대해서 정리해 보겠습니다.
 
+**[GCP Ubuntu 22.04 기본설치 스크립트]({{site.baseurl}}/assets/download/init_gcp.sh)**
+
 <br/>
 
 # 인스턴스 관리

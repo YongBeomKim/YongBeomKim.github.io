@@ -78,7 +78,6 @@ $ sudo ssh-keygen -f "/home/user/.ssh/known_hosts" -R "34.64.138.200"
 $ sudo chown -v $USER ~/.ssh/known_hosts
 ```
 
-
 <br/>
 
 # 참고사이트
