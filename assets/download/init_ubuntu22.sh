@@ -1,15 +1,28 @@
-## AWS Ubuntu 22.04 LST init
-TITLE="\n\n >>> Neovim"
-echo $TITLE
-sudo add-apt-repository ppa:neovim-ppa/stable 
-sudo apt-get update -y
-sudo apt-get install neovim -y
+## Ubuntu 20,22 User & Shell
+userName='erdos'
+HOSTNAME="django"
 
 
-TITLE="\n\n >>> Korea LocalTime Setting"
-echo $TITLE
-sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
-sudo apt-get install language-pack-ko -y
+TITLE="\n\n >>> HostName Change"
+LINK="https://www.cyberciti.biz/faq/ubuntu-change-hostname-command"
+echo ${TITLE}"\n\n ::: name : "${HOSTNAME}"\n\n"${LINK}
+hostnamectl set-hostname ${HOSTNAME}
+
+
+TITLE="\n\n >>> Mirror Site 를 Kakao 로 변경"
+LINK="https://launchpad.net/ubuntu/+archivemirrors"
+echo ${TITLE}"\n\n ::: Mirror Sites : "${LINK}
+# https://greenfishblog.tistory.com/66
+# https://codechacha.com/ko/shell-script-variable/
+cp /etc/apt/sources.list /etc/apt/sources.list.bak 
+sed 's/"ap-northeast-2.ec2.archive.ubuntu"/"mirror.kakao"/g' < "/etc/apt/sources.list" > "/etc/apt/sources.list"
+
+
+TITLE="\n\n >>> Root & Add User"
+echo ${TITLE}"\n\n ::: UserName : "${userName}
+sudo passwd root
+sudo adduser "$userName"
+sudo usermod -aG sudo "$userName"
 
 
 TITLE="\n\n >>> Nginx 서버 추가"
@@ -77,8 +90,18 @@ apt-get -y install mariadb-server mariadb-client
 pip3 install mycli
 
 
-TITLE="\n\n >>> MariaDB Setting Port Change"
-echo ${TITLE}" \n Port :"${PORT}
-sed 's/"port = 3306"/"port = 15505"/g' < "/etc/mysql/mariadb.cnf" > "/etc/mysql/mariadb.cnf"
-sed 's/"bind-address"/"#bind-address"/g' < "/etc/mysql/mariadb.conf.d/50-server.cnf" > "/etc/mysql/mariadb.conf.d/50-server.cnf"
+TITLE="\n\n >>> Oh My Zshell"
+LINK="https://linuxips.com/how-to-install-zsh-on-ubuntu/"
+echo ${TITLE}"\n ::"${LINK}
+apt -y install git
+apt -y install zsh
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+## Add wisely, as too many plugins slow down shell startup.
+#plugins=(
+#        git
+#        zsh-autosuggestions
+#        zsh-syntax-highlighting
+#)
 

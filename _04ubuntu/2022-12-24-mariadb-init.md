@@ -5,19 +5,15 @@ tags:
 - sql
 ---
 
-`PostgreSQL` 에서 `16Gb` 데이터를 추출 후 압축을 진행해 보니 `1Gb` 로 줄어 들었습니다. 내용을 찾아보면 `PostgreSQL` 은 용량과 속도를 내주는 대신에, 활용성을 높인 데이터베이스로 간단한 반복작업을 하는 서비스 에서는 부적합 하다는 의견이 보였습니다. 대안으로 'MySQL', 'MariaDB' 를 활용하는 것이 속도와 용량등 모든 측면에서 유리하다는 의견들을 볼 수 있었습니다.
-
-다음의 내용은 [How to Install and Set Up MariaDB on Ubuntu 22.04](https://www.makeuseof.com/install-set-up-mariadb-on-ubuntu/) 을 따라 진행한 내용을 정리해 보겠습니다.
+`PostgreSQL` 에서 `16Gb` 데이터를 추출 후 압축을 진행해 보니 `1Gb` 로 줄어 들었습니다. 내용을 찾아보면 `PostgreSQL` 은 용량과 속도를 내주는 대신에, 활용성을 높인 데이터베이스로 간단한 반복작업을 하는 서비스 에서는 부적합 하다는 의견이 보였습니다. 대안으로 'MySQL', 'MariaDB' 를 활용하는 것이 속도와 용량에서 유리하는 의견이 있어서 교체를 하게 되었습니다. 보다 상세한 내용은 [How to Install and Set Up MariaDB on Ubuntu 22.04](https://www.makeuseof.com/install-set-up-mariadb-on-ubuntu/) 을 참고하시기 바랍니다.
 
 <br />
 
 # **설치하기**
-
 ## **MariaDB 설치하기**
-
 우분투 22.04 에서 부가적으로 필요한 모듈과, MariaDB 모듈을 설치하는 명령어는 다음과 같습니다. MadiaDB 는 10.06 LTS 버젼이 설치 됩니다 (2023.1.31)
 
-```r
+```bash
 sudo apt update && sudo apt upgrade
 sudo apt-get install wget software-properties-common dirmngr ca-certificates apt-transport-https -y
 sudo apt install mariadb-server mariadb-client
@@ -25,10 +21,11 @@ sudo pip install mycli
 ```
 
 설치된 이후 상태를 확인하는 명령어는 다음과 같습니다.
-
-```r
-mariadb --version
-sudo systemctl status mariadb
+```bash
+$ sudo systemctl status mariadb
+$ mariadb --version
+mariadb  Ver 15.1 Distrib 10.6.12-MariaDB
+for debian-linux-gnu (x86_64) using EditLine wrapper
 ```
 
 ## GCP 에서 방화벽 개방하기
@@ -37,29 +34,32 @@ sudo systemctl status mariadb
 `VPC 네트워크 >> 방화벽 규칙 세부정보` 에서 `tcp 3306` 포트를 사용할 수 있도록 설정내용을 추가 합니다.
 
 ## **한글설정 및 포트값 추가**
-- [MySQL default encoding UTF8로 바꾸기](https://sitos-dev.tistory.com/18)
-- [Docker MySQL, MariaDB 한글 깨짐 현상 관련 설정](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95)
+[MySQL default encoding UTF8로 바꾸기](https://sitos-dev.tistory.com/18) 과 [Docker MySQL, MariaDB 한글 깨짐 현상 관련 설정](https://velog.io/@jmjmjames/Docker-MySQL-MariaDB-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%ED%98%84%EC%83%81-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95) 등을 참고 합니다.
 
-```r
+MariaDB 포트를 변경하는 방법은 다음과 같습니다.
+```bash
 # MariaDB 포트값 변경
-$ sudo nvim /etc/mysql/my.cnf
-[mysqld]
-port=15501
+$ sudo nvim /etc/mysql/mariadb.cnf
+[client-server]
+port = 3306
+```
 
+MariaDB 를 외부에서 접속 가능하도록 다음의 설정을 비활성화 합니다.
+```bash
 # 외부 포트열기
 $ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf 
-#  bind-address = 127.0.0.1
+# bind-address = 127.0.0.1
 ```
 
 ## 포트내용 확인하기
-[Ubuntu) 포트, 방화벽 확인 및 포트 열기](https://archijude.tistory.com/392) 내용을 바탕으로 위의 포트를 변경한 뒤, 내용을 확인하는 명령 방법은 다음과 같습니다.
+[Ubuntu 포트 방화벽 확인 및 포트 열기](https://archijude.tistory.com/392) 내용을 바탕으로 위의 포트를 변경한 뒤, 내용을 확인하는 명령 방법은 다음과 같습니다.
 
 ```r
 $ netstat -nap | grep LISTEN
-tcp        0   0 0.0.0.0:15501   0.0.0.0:*   LISTEN      -                   
+tcp        0   0 0.0.0.0:3306   0.0.0.0:*   LISTEN      -                   
 
 $ sudo netstat -tulpen | grep db
-tcp        0   0 0.0.0.0:15501   0.0.0.0:*   2853/mariadbd       
+tcp        0   0 0.0.0.0:3306   0.0.0.0:*   2853/mariadbd       
 tcp6       0   0 :::15501        :::*        2853/mariadbd    
 ```
 
@@ -69,9 +69,7 @@ tcp6       0   0 :::15501        :::*        2853/mariadbd
 <br/>
 
 # 사용자 설정
-
 ## **Root 사용자 비밀번호 추가**
-
 root 초기 사용자 암호를 추가해야 합니다. 작업이 원할하게 진행되지 않는다면 `mysql.user` 테이블의 plugin 컬럼에서 `unix_socket` 값을 `mysql_native_password` 로 [변경](https://oziguyo.tistory.com/36) 하면 됩니다. 추가적인 내용은 [Create User & Password](https://www.codingfactory.net/11336) 를 참고 합니다.
 
 [**2023년 3월 31일 추가 내용**](https://oneboard.tistory.com/21) 설치 후 `sudo mysql -u root` 를 입력하면 보안명령 없이 접속할 수 있습니다. 예전의 `root` 사용자 변경 쿼리를 실행하면 `ERROR 1356` 을 출력하는데, 이유는 `user` 테이블에 `@localhost` 내용이 추가되는 방식으로 변경되어 있어서 두번째 방식으로 변경을 해야 합니다. `sudo mysql -u root` 를 사용하면 비밀번호 없이도 접속이 가능하기 때문에 `root` 사용자 정보를 따로 변경할 실익은 거의 없습니다.
