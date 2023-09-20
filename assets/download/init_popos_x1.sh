@@ -1,4 +1,20 @@
 # Thinkpad X1 Extream Development Computer
+TITLE="\n\n >>> Battery Charging Tools"
+LINK="https://askubuntu.com/questions/1411483/battery-full-indicator-22-04"
+GITHUB="https://github.com/tshakalekholoane/bat"
+# sudo tlp-stat -b
+# upower -e | grep -i "batt"
+# upower -i /org/freedesktop/UPower/devices/battery_BAT0
+echo ${TITLE}"\n ::"${LINK}"\n GitHub :"${GITHUB}
+sudo apt install make -y
+sudo apt install tlp tlp-rdw
+sudo snap install go --classic
+sudo wget -qO /usr/local/bin/bat https://github.com/tshakalekholoane/bat/releases/download/0.13/bat
+sudo chmod a+rx /usr/local/bin/bat
+bat threshold
+sudo bat threshold 78
+sudo bat persist
+
 
 TITLE="\n\n >>> Kakao Repo Change Need ..."
 LINK="https://wnw1005.tistory.com/26"
@@ -21,7 +37,7 @@ TITLE="\n\n >>> Pacman (for ArchLinux)"
 LINK="https://www.cyberithub.com/how-to-install-pacman-package-manager-on-ubuntu-20-04-lts"
 COMMENT="For :: https://pypi.org/project/pdf-bookmark"
 echo ${TITLE}"\n ::"${LINK}"\n"${COMMENT}
-wget wget https://gitlab.com/trivoxel-utils/deb-pacman/uploads/460d83f8711c1ab5e16065e57e7eeabc/deb-pacman-2.0-0.deb
+wget https://gitlab.com/trivoxel-utils/deb-pacman/uploads/460d83f8711c1ab5e16065e57e7eeabc/deb-pacman-2.0-0.deb
 sudo dpkg -i deb-pacman-2.0-0.deb
 sudo pacman -S pdftk -y
 sudo pacman -S ghostscript -y
@@ -48,15 +64,6 @@ echo 'LC_COLLATE="ko_KR.UTF-8"' | sudo tee -a /etc/environment
 sudo localedef -f EUC-KR -ci ko_KR /usr/lib/locale/ko_KR.EUC-KR 
 sudo localedef -f UTF-8 -ci ko_KR /usr/lib/locale/ko_KR.UTF-8
 sudo dpkg-reconfigure locales
-
-
-TITLE="\n\n >>> Battery Charging Tools"
-LINK="https://askubuntu.com/questions/1411483/battery-full-indicator-22-04"
-# sudo tlp-stat -b
-# upower -e | grep -i "batt"
-# upower -i /org/freedesktop/UPower/devices/battery_BAT0
-echo ${TITLE}"\n ::"${LINK}
-sudo apt install tlp tlp-rdw
 
 
 TITLE="\n\n >>> Tools 1 - Tilda, Neovim, Peek, Sticky Notes, NetTools, UnRAR"
@@ -144,7 +151,6 @@ echo ${TITLE}"\n ::"${LINK}
 sudo add-apt-repository ppa:alex-p/tesseract-ocr-devel
 sudo apt update
 sudo apt install -y tesseract-ocr-script-hang tesseract-ocr-script-hang-vert
-sudo snap install go --classic
 
 
 TITLE="\n\n >>> Dev 3 - React Native (with Java 11)"
