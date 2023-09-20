@@ -12,7 +12,7 @@ tags:
 **<span style="color:orange">개발자들이 경험하게 되는 문제점 사례들을 설명</span>** 하고 **<span style="color:orange">개선 방법에 대해 올바른 생각을 할 수 있는 각자의 창의력을 향상을 훈련하는 내용</span>**  입니다.
 
 <figure class="align-center">
-  <img width="850px" src="{{site.baseurl}}/assets/book/devdoc.jpg">
+  <img width="350px" src="{{site.baseurl}}/assets/book/devdoc.jpg">
   <figcaption>Docs for Developers 기술 문서 작성 완벽 가이드</figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ tags:
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="850px" src="{{site.baseurl}}/assets/book/creative.jpg">
+  <img width="550px" src="{{site.baseurl}}/assets/book/creative.jpg">
   <figcaption>크리에이티브 프로그래머</figcaption>
   </p>
 </figure>
