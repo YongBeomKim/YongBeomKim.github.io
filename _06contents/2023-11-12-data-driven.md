@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (도서) ⚝⚝⚝ 데이터 드리븐 리포트
+title: (도서) ⚝⚝⚝⚝ 데이터 드리븐 리포트
 tags:
 - book
 ---
@@ -42,7 +42,38 @@ tags:
 ## 2장 데이터 드리븐 보고절차
 > Pandas & Scipy 파이썬 모듈 학습
 
-이 책의 주요한 내용을 정리한 챕터가 2장과 3장 입니다. 1장에서 느낀점은 현재 실무에서 일하고 있는 코딩 비숙련자 분들이, 자신의 업무효율을 높이고 몸값을 높일 수 있도록 컴퓨터 기술적인 부분을 향상하는데 중점을 두고 있어 보입니다.
+파이썬을 활용한 **<span style="color:orange">기술통계적 분석</span>** 을 다루고 있습니다. 파이썬 실습 뿐만이라 아니라, 통계적인 내용을 아래의 사진과 같이 함께 다루고 있어서 통계지식이 부족한 독자들에게 많은 도움이 될 것입니다.
+
+<figure class="align-center">
+  <img width="510px" src="{{site.baseurl}}/assets/book/data_drive-01.jpg">
+  <figcaption>2장 96p</figcaption>
+</figure>
+
+## 3장 데이터 드리븐 보고 실전사례 with 챗GPT
+**기술통계적 분석** 에 관한 용어와 개념들의 이해, 그리고 이를 바탕으로 파이썬 실습하는 과정이 2장의 내용이었다면, 3장에서는 
+**<span style="color:orange">도메인 지식 (domain knowledge : 정의역 지식, 분야 지식은 특정한 전문화된 학문이나 분야의 지식)</span>** 을 얻는데 필요한 오픈소스 및 무료 도구들을 활용하는 내용을 다루고 있습니다.
+
+<figure class="align-center">
+  <img width="510px" src="{{site.baseurl}}/assets/book/data_drive-02.png">
+  <figcaption>ydata profile 분석내용</figcaption>
+</figure>
+
+챗GPT 도 앞에서 다룬 것처럼 파이썬 코딩이 아닌, [OpenAI 의 ChatGPT](https://chat.openai.com/auth/login?next=%2F%3Fmodel%3Dgpt-4) 서비스를 활용하는 방법을 다루고 있습니다. 이 책에서는 도메인 지식을 얻는 내용 보다는 **효과적인 파이썬 소스코드를 얻는 용도로** 챗GPT 서비스를 활용하고 있습니다.
+
+<figure class="align-center">
+  <img width="510px" src="{{site.baseurl}}/assets/book/data_drive-03.jpg">
+  <figcaption>Chat GPT 를 활용한 파이썬 코드</figcaption>
+</figure>
+
+## 4장 데이터 드리븐 커뮤니케이션
+마지막 50p 에 해당되는 내용으로 분석한 내용을 조직내에서 소통하는데 보다 효과적인 스킬들을 정리하고 있습니다.
+
+<br/>
+
+# 마무리
+이 책의 핵심은 2장과 3장 입니다. 특히 2장의 **기술통계 분석** 은 분석 프로세스 단위로 개념들을 설명하고, 설명한 내용을 파이썬 실습과정까지 연결하여 내용의 이해 및 실습을 할 수 있도록 짜임새 있게 구성되어 있었습니다. 이러한 점으로 인해 **<span style="color:orange">기술통계 내용을 이해하고 있는 파이썬 초보자</span>** 분들에 가장 적합한 내용들을 담고 있습니다.
+
+반대로 **파이썬은 다룰줄 알지만 기술통계 내용이 부족한** 분들에게도 기술통계적인 내용 설명들을 차근차근 따라가다 보면, 실전 업무에 투입되더라도 당황하지 않고 대처가 가능할 정도로 많은 도움이 될 것입니다.
 
 
 ※ 본 리뷰는 IT 현업개발자가, 한빛미디어 책을 제공받아 작성한 서평입니다.
