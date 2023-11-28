@@ -108,3 +108,8 @@ $ ./configure --enable-optimizations
 $ sudo make altinstall
 $ cat ~/.bash_history # less ~/.bash_history
 ```
+
+<br/>
+
+# 마무리
+이번 작업을 하기 전까지는 서버를 `x86` 으로 변경해야 하나, 아니면 작업 서버를 새로운 CPU로 변경을 해야하나 걱정을 했었는데, 단순 서비스를 제공하는 서버로는 지금 작업한 스펙으로도 충분하다는 결론을 내릴 수 있었습니다. 향후에 위 조건으로도 해결이 어렵거나 정말로 보완이 필요한 상황이 발생하면 추가정리 하겠습니다.
