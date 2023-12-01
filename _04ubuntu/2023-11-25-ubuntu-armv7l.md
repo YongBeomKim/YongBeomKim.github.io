@@ -56,7 +56,7 @@ pandas-2.0.1-cp310-cp310-macosx_10_9_x86_64.whl (11.8 MB view hashes)
 <figure class="align-center">
   <p style="text-align: center">
   <img width="590px" src="{{site.baseurl}}/assets/linux/piwheels-pandas.png">
-  <figcaption>piwheels.org/project/pandas</figcaption>
+  <figcaption>https://piwheels.org/project/pandas</figcaption>
   </p>
 </figure>
 
@@ -97,19 +97,27 @@ $ sudo snap install mycli
 우분투 22.04 는 `Python 3.10` 을 기본으로 설치되어 있습니다. 앞에서 언급한 것처럼 `Python 3.9` 환경을 필요로 하는데 라즈베리파이 에서 파이썬 **<span style="color:darkblue">[Raspberry pi - can't install Python 3.11](https://stackoverflow.com/questions/76942052/raspberry-pi-cant-install-python-3-11)</span>** 을 설치하는 내용 참고하여 진행 하였습니다. 진행내용은 다음과 같습니다.
 
 ```bash
-$ sudo apt-get install pkg-config zip g++ zlib1g-dev unzip default-jdk autoconf automake libtool
-$ sudo apt-get install python3-pip python3-numpy swig python3-dev
-$ sudo apt-get install libopenblas-dev
+sudo apt-get install pkg-config zip g++ zlib1g-dev unzip default-jdk autoconf automake libtool
+sudo apt-get install python3-pip python3-numpy swig python3-dev
+sudo apt-get install libopenblas-dev
+sudo apt-get install libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev
+sudo libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
+sudo libharfbuzz-dev libfribidi-dev libxcb1-dev
 
-$ wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz
-$ tar -xzvf Python-3.9.18.tgz 
-$ cd Python-3.9.18/
-$ ./configure --enable-optimizations
-$ sudo make altinstall
-$ cat ~/.bash_history # less ~/.bash_history
+wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz
+tar -xzvf Python-3.9.18.tgz 
+cd Python-3.9.18/
+./configure --enable-optimizations
+sudo make altinstall
+cat ~/.bash_history # less ~/.bash_history
 ```
 
 <br/>
 
 # 마무리
 이번 작업을 하기 전까지는 서버를 `x86` 으로 변경해야 하나, 아니면 작업 서버를 새로운 CPU로 변경을 해야하나 걱정을 했었는데, 단순 서비스를 제공하는 서버로는 지금 작업한 스펙으로도 충분하다는 결론을 내릴 수 있었습니다. 향후에 위 조건으로도 해결이 어렵거나 정말로 보완이 필요한 상황이 발생하면 추가정리 하겠습니다.
+
+<br/>
+
+# 참고사이트
+- [pillow Document](https://pillow.readthedocs.io/en/stable/installation.html)

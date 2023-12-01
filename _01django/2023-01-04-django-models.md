@@ -2,7 +2,7 @@
 layout: blog
 title: Django Models & Migrations
 tags:
-- django
+- orm
 ---
 
 Django 의 Model 을 생성하고 관리하는데 필요한 기본 개념인 [Model ORM](https://velog.io/@may_soouu/Django-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%A0%95%EB%A6%AC) 과
