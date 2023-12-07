@@ -29,8 +29,16 @@ Victory: free library
 ## **Victory**
 이 모듈도 업데이트도 활발하고 [Collaborators](https://www.npmjs.com/package/victory) 숫자가 가장 많은 모듈 입니다. 활용방법도 단순하고, [Victory 공식문서](https://formidable.com/open-source/victory/gallery) 잘 정리되어 있어서 활용하기에 적합한 모듈 입니다.
 
+## **Echarts**
+상대적으로 무겁지만 Chart.js 보다 활발하게 커뮤니티가 이루어져 있고, 다양한 차트의 예제를 제공하는 모듈 입니다. 커스텀이 어렵다는 단점이 있지만. 다른 모듈들을 찾다가 없으면 이 모듈로써 해결가능하다는 장점이 있습니다. [GitHub](https://github.com/apache/echarts) 및 [Gallery](https://echarts.apache.org/examples/en/index.html#chart-type-radar) 를 제공하고 있어서 활용하기 용이합니다.
+
 ## **<span style="color:var(--accent);">React Financial Charts</span>**
 앞에서 살펴본 내용들은 기본적인 차트를 제공하고 있습니다. 보다 복잡한 금융서비스에 적합한 내용으로는 이전에 정리 했었던 [react-financial-charts](https://github.com/react-financial/react-financial-charts) 를 추천 합니다. 이 모듈의 단점은 공식문서를 제공하고 있지 않다는 점 입니다. 지금은 업데이트를 하고 있지 않은 [react-stockcharts](https://github .com/rrag/react-stockcharts) 모듈의 예제 및 문서를 참고해야하는 번거로움이 있습니다. 그나마 최근에는 간단한 예시를 정리한 [React-financial-charts 사용 설명서](https://velog.io/@turtlemana/React-financial-charts-%EC%82%AC%EC%9A%A9-%EC%84%A4%EB%AA%85%EC%84%9C) 또는 [예제코드]([codesandbox.io/s/c88wz](https://codesandbox.io/p/sandbox/react-financial-charts-demo-c88wz?file=%2Findex.js)) 등을 참고하는 방식으로 접근을 하면 됩니다.
+
+<br/>
+
+# 마무리
+7개월 전에도 그렇고 뭔가 더 좋은게 있지 않을까? 하는 막연한 불안감 및 결핍에 빠져서, 마치 `행복의 파랑새를 찾아서` 동화속의 아이들 처럼 뭔가를 이루고 열매를 통한 성장을 하기보단, 성장하지 못한 불안해 하는 환경속에서 멈춰버리게 됩니다. 이러한 문제점을 인식하여 정해진 기간내 조금은 부족한 열매를 먹고, 이를 바탕으로 앞으로 나아갈 수 있는 자세를 갖는 2024년이 되었으면 합니다.
 
 <br/>
 
