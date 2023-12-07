@@ -5,9 +5,7 @@ tags:
 - typescript
 ---
 
-시각화 도구들에 대하여 알아본 내용들을 정리해 보겠습니다. 이전에도 한번 [Charts](https://yongbeomkim.github.io/02js/2022-01-21-charts.html) 내용을 정리한 적이 있었습니다. 이당시에는 **<span style="color:orange">금융 데이터를 위한 시각화</span>** 관련 모듈들을 중심으로 찾아보았습니다.
-
-이번에는 조금더 범용적으로  **<span style="color:darkblue">React.js</span>** 환경에서 활용하기에 적합한 모듈을 찾아보고 정리한 내용을 기록해 보려고 합니다.
+시각화 도구들에 대하여 알아본 내용들을 정리해 보겠습니다. 이전에도 한번 [Charts](https://yongbeomkim.github.io/02js/2022-01-21-charts.html) 내용을 정리한 적이 있었습니다. 이당시에는 **<span style="color:orange">금융 데이터를 위한 시각화</span>** 관련 모듈들을 중심으로 정리하였습니다. 이번에는 조금 더 범용적으로  **<span style="color:darkblue">React.js</span>** 환경에서 활용하기에 적합한 모듈을 찾아보고 정리한 내용을 기록해 보려고 합니다.
 
 ## ChatGPT
 
@@ -22,9 +20,7 @@ Victory: free library
 맨 처음 활용한 모듈이 **<span>react-chartjs-2</span>** 입니다. 가장 대중적인 만큼 예제들도 많아서 바로 적용할 수 있었지만 상대적으로 무거운 랜더링 및 부자연스러운 효과 등으로 조금더 가볍고 사용자조작이 편한 모듈로 대체가 필요하다는 느낌이 들었습니다.
 
 ## **ReCharts**
-현재 1순위로 활용하는 모듈 입니다. 처음에는 반응형 예제에서 화면이 보여지지 않는 문제가 있었지만, **[Rechart Responsive container does not render](https://stackoverflow.com/questions/47614196/rechart-responsive-container-does-not-render)** 를 참고하여 해결된 이후로는 적극 활용하고 있습니다.
-
-[업데이트](https://www.npmjs.com/package/recharts) 도 활발하고, [ReCharts Document](https://recharts.org/en-US/) 공식문서가 자세하게 잘 정리되어 있습니다.
+현재 1순위로 활용하는 모듈 입니다. 처음에는 반응형 예제에서 화면이 보여지지 않는 문제가 있었지만, **[Rechart Responsive container does not render](https://stackoverflow.com/questions/47614196/rechart-responsive-container-does-not-render)** 를 참고하여 해결된 이후로는 적극 활용하고 있습니다. [업데이트](https://www.npmjs.com/package/recharts) 도 활발하고, [ReCharts Document](https://recharts.org/en-US/) 공식문서가 자세하게 잘 정리되어 있습니다.
 
 ## **Victory**
 이 모듈도 업데이트도 활발하고 [Collaborators](https://www.npmjs.com/package/victory) 숫자가 가장 많은 모듈 입니다. 활용방법도 단순하고, [Victory 공식문서](https://formidable.com/open-source/victory/gallery) 잘 정리되어 있어서 활용하기에 적합한 모듈 입니다.
