@@ -11,7 +11,7 @@ tags:
 
 # **Install**
 ## x86 x64 CPU
-기본적인 설치방법 입니다. 우분투 기본 저장소를 활용하면 됩니다.
+[기본적인 설치방법](https://phoenixnap.com/kb/install-ffmpeg-ubuntu) 입니다. 우분투 기본 저장소를 활용하면 됩니다.
 ```bash
 sudo apt update
 sudo apt install ffmpeg
@@ -76,16 +76,31 @@ sudo apt-get updatesudo apt-get -y install cuda-toolkit-12-3
 sudo apt-get install -y cuda-drivers
 ```
 
+## YASM
+Yasm 이란 어셈블리 컴파일러인데 ffmpeg는 빌드 시 Yasm을 사용합니다. `apt install` 로는 설치가 진행되지 않는다면 [Yasm Downloads and Releases](https://yasm.tortall.net/Download.html) 공식 사이트에서 파일을 다운받아 진행을 하면 됩니다.
+```bash
+$ wget http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz
+$ tar xzvf yasm-1.3.0.tar.gz
+$ cd yasm-1.3.0
+$ ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin"
+$ make
+$ make install
+$ make distclean
+```
+
 ## FFMPEG
 [Using FFmpeg with NVIDIA GPU Hardware Acceleration](https://docs.nvidia.com/video-technologies/video-codec-sdk/12.1/ffmpeg-with-nvidia-gpu/index.html) 내용을 바탕으로 설치과정을 진행하면 됩니다. [FFMPEG - HWAccelIntro](https://trac.ffmpeg.org/wiki/HWAccelIntro) 공식문서 에서도 같은 내용을 자세하게 설명하고 있습니다.
+
 ```bash
 $ git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
 $ cd nv-codec-headers
 $ sudo make && sudo make install
 $ cd ..
 $ git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg/
-$ sudo apt-get install build-essential yasm cmake libtool libc6 libc6-dev unzip wget libnuma1 libnuma-dev
-$ ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 --disable-static --enable-shared
+$ sudo apt-get install build-essential yasm cmake
+$ sudo apt-get install libmp3lame-dev libc6 libc6-dev
+$ sudo apt-get install libtool unzip wget libnuma1 libnuma-dev
+$ ./configure --enable-nonfree --enable-libmp3lame --enable-cuda-nvcc --enable-libnpp --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64 --disable-static --enable-shared
 $ make -j 8
 $ sudo make install
 ```
@@ -96,7 +111,7 @@ ffmpeg: error while loading shared libraries: libavdevice.so.60:
 cannot open shared object file: No such file or directory
 ```
 
-파일
+오류가 발생한 파일을 로걸에서 찾으면 다음과 같은 결과를 볼 수 있었습니다.
 ```bash
 $ sudo find / -name libavdevice.so.60
 /usr/local/lib/libavdevice.so.60
@@ -108,3 +123,18 @@ $ sudo find / -name libavdevice.so.60
 $ cat .zshrc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ```
+
+그리고 위 내용 중 공식문서 내용 이외에 추가한 내용은 다음과 같습니다. 추가한 이유는 `mp3` 인코더 모듈이 설치되지 않았기 때문 입니다.
+```bash
+$ sudo apt-get install libmp3lame-dev
+$ ./configure --enable-libmp3lame
+```
+
+`$ ./configure --enable-nonfree --enable-cuda-nvcc --enable-libnpp` 옵션 내용을 살펴보면 다음과 같습니다. `--enable-nonfree` 는 [일부 외부 라이브러리 (non-free)](https://velog.io/@dashh/ffmpeg-1) 를 설치하는 옵션으로 결과물로 생성된 바이너리 파일 및 라이브러리는 재배포 해서는 안됩니다.
+
+<br/>
+
+# 참고자료
+- [FFmpeg - 개발역사와 기본 빌드](https://velog.io/@dashh/ffmpeg-1)
+- [FFmpeg MP3 Encoding Guide](https://trac.ffmpeg.org/wiki/Encode/MP3)
+- [ubuntu에서 FFmpeg, FFserver 설치하기](https://wnsgml972.github.io/ffmpeg/2018/02/09/ffmpeg_ffserver_config/)
