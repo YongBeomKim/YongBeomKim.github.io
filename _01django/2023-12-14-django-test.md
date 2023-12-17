@@ -46,7 +46,6 @@ import unittest
 from django.test import Client
 from django.contrib.auth import get_user_model
 
-
 class SimpleTest(unittest.TestCase):
 
     def setUp(self) -> None:
@@ -70,7 +69,32 @@ class SimpleTest(unittest.TestCase):
 
 <br/>
 
+# Django Ninja Test
+[Documentation about unit tests](https://github.com/vitalik/django-ninja/issues/258) and [JWT authentication](https://github.com/vitalik/django-ninja/issues/45)
+
+```python
+# Create your tests here.
+import unittest
+from django.test import Client
+
+class MyUnitTest(unittest.TestCase):
+    def setUp(self):
+        # Every test needs a client.
+        self.client = Client()
+
+    def test_product_health(self):
+        # Issue a GET request.
+        response = self.client.get('/api/v1/products/ping')
+        # Check that the response is 200 OK.
+        self.assertEqual(response.status_code, 200)
+        # Check that the rendered json contains valid data.
+        self.assertEqual(response.json().get('data'), 'Healthy')
+```
+
+<br/>
+
 # 참고사이트
+- [unittest vs pytest](https://www.bangseongbeom.com/unittest-vs-pytest.html)
 - [Django 웹 어플리케이션 테스트하기](https://developer.mozilla.org/ko/docs/Learn/Server-side/Django/Testing)
 - [Unittest - Python 공식문서](https://docs.python.org/3/library/unittest.html#unittest.TestCase)
 - [Writing and running tests](https://docs.djangoproject.com/ko/4.2/topics/testing/overview/)

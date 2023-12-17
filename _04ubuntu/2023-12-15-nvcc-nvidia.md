@@ -135,6 +135,7 @@ $ ./configure --enable-libmp3lame
 <br/>
 
 # 참고자료
+- [FFmpeg with x265 NEON arm64 cpu](https://gist.github.com/rromanchuk/d14901b520e5da3a496efd05b0a9bcf9)
 - [FFmpeg - 개발역사와 기본 빌드](https://velog.io/@dashh/ffmpeg-1)
 - [FFmpeg MP3 Encoding Guide](https://trac.ffmpeg.org/wiki/Encode/MP3)
 - [ubuntu에서 FFmpeg, FFserver 설치하기](https://wnsgml972.github.io/ffmpeg/2018/02/09/ffmpeg_ffserver_config/)
