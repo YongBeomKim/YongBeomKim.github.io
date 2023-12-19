@@ -51,6 +51,16 @@ Key is saved at:         /etc/letsencrypt/live/<도메인.주소>/privkey.pem
 This certificate expires on 2023-08-02.
 ```
 
+만약 [다음과 같은 오류](https://stackoverflow.com/questions/53223914/issue-using-certbot-with-nginx) 를 출력하면 추가로 필요한 의존성 모듈을 설치 하여야 합니다.
+```bash
+$ sudo certbot --nginx certonly
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Could not choose appropriate plugin: The requested nginx plugin does not appear to be installed
+The requested nginx plugin does not appear to be installed
+
+$ sudo apt-get install python3-certbot-nginx
+```
+
 ## Nginx Setting
 작업을 마치면, `Nginx` 에서도 `SSL` 인증서를 활용할 수 있도록 해야 됩니다. 하지만 `certbot` 에서 자동으로 필요한 내용을 추가했기 때문에 어떠한 내용이 추가되었는지 확인만 하고 넘어가겠습니다. 주석에 `# managed by Certbot` 가 붙어있는 부분이 자동으로 설정값을 추가한 내용 입니다.
 ```bash

@@ -77,6 +77,7 @@ pip install Pillow-10.1.0-cp39-cp39-linux_armv7l.whl
 pip install torch-1.8.1-cp39-cp39-linux_armv7l.whl
 pip install torchvision-0.9.1-cp39-cp39-linux_armv7l.whl
 pip install torchaudio-0.7.2-cp39-cp39-linux_armv7l.whl
+pip install opencv_python-4.6.0.66-cp39-cp39-linux_armv7l.whl
 ```
 
 <br/>
@@ -97,12 +98,16 @@ $ sudo snap install mycli
 우분투 22.04 는 `Python 3.10` 을 기본으로 설치되어 있습니다. 앞에서 언급한 것처럼 `Python 3.9` 환경을 필요로 하는데 라즈베리파이 에서 파이썬 **<span style="color:darkblue">[Raspberry pi - can't install Python 3.11](https://stackoverflow.com/questions/76942052/raspberry-pi-cant-install-python-3-11)</span>** 을 설치하는 내용 참고하여 진행 하였습니다. 진행내용은 다음과 같습니다.
 
 ```bash
-sudo apt-get install pkg-config zip g++ zlib1g-dev unzip default-jdk autoconf automake libtool
-sudo apt-get install python3-pip python3-numpy swig python3-dev
-sudo apt-get install libopenblas-dev
-sudo apt-get install libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev
-sudo libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
-sudo libharfbuzz-dev libfribidi-dev libxcb1-dev
+sudo apt-get install pkg-config zip g++ zlib1g-dev unzip 
+sudo apt-get install default-jdk autoconf automake libtool
+sudo apt-get install python3-pip python3-numpy python3-dev
+sudo apt-get install libopenblas-dev zlib1g-dev swig
+sudo apt-get install libjpeg62  # ImportError: libjpeg.so.62
+sudo apt-get install libwebp-dev # ImportError: libwebp.so.6
+sudo apt-get install libtiff5-dev libjpeg8-dev libopenjp2-7-dev
+sudo apt-get install libfreetype6-dev liblcms2-dev libwebp-dev 
+sudo apt-get install tcl8.6-dev tk8.6-dev python3-tk
+sudo apt-get install libharfbuzz-dev libfribidi-dev libxcb1-dev
 
 wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz
 tar -xzvf Python-3.9.18.tgz 

@@ -19,8 +19,10 @@ pip install opencv-python
 ```
 
 ## Armv7l
-32비트 환경에서 원활한 동작을 위해서는 비공식 별도로 컴파일 된 파일을 활용 합니다. `FFMPEG` 는 [ffmpeg : OpenRepos.](https://openrepos.net/content/sailffmpg/ffmpeg) [ffmpeg-xu4 : github](https://github.com/teacupx/ffmpeg-xu4) 그리고 `OpenCV` 경우에도 [install-opencv](https://github.com/sgjava/install-opencv#install-opencv) 혹은 [opencv-mobile : github](https://github.com/nihui/opencv-mobile), [https://medium.com/analytics-vidhya/iot-opencv-4-1-on-odroid-xu4-8a14d395f191](https://medium.com/analytics-vidhya/iot-opencv-4-1-on-odroid-xu4-8a14d395f191) 를 참고 합니다.
+32비트 환경에서 원활한 동작을 위해서는 비공식 별도로 컴파일 된 파일을 활용 합니다. `FFMPEG` 는 [ffmpeg : OpenRepos.](https://openrepos.net/content/sailffmpg/ffmpeg) [ffmpeg-xu4 : github](https://github.com/teacupx/ffmpeg-xu4) 그리고 `OpenCV`는 [OpenCV 4.1 on ODROID-XU4](https://github.com/zmacario/OpenCV-4.1-on-ODROID-XU4) [install-opencv](https://github.com/sgjava/install-opencv#install-opencv) 혹은 [opencv-mobile : github](https://github.com/nihui/opencv-mobile), [https://medium.com/analytics-vidhya/iot-opencv-4-1-on-odroid-xu4-8a14d395f191](https://medium.com/analytics-vidhya/iot-opencv-4-1-on-odroid-xu4-8a14d395f191) 를 참고 합니다.
 ```bash
+sudo apt install libwebp-dev libtiff-dev libilmbase-dev 
+sudo apt install libopenexr-dev libgstreamer1.0-dev libswscale-dev
 ```
 
 ## GPU
