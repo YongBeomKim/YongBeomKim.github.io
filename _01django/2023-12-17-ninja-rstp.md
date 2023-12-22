@@ -68,7 +68,7 @@ def test_stream_view(request):
 
 # OPENCV in Django
 ## OPENCV
-지금까지 작업에 필요한 개념 및 코드들을 살펴 보았습니다. 다음의 예시는 OPENCV 를 사용하여 [Django Ninja](https://github.com/vitalik/django-ninja/issues/919) 를 활용하여 웹캠 서비스를 제공하는 End Point 입니다. FrontEnd 에서 받을 때에는 `<img />` 태그를 활용하면 됩니다. 마치 움짤과 같은 연속하는 **jpg** 이미지를 제공하는 API 입니다.
+지금까지 작업에 필요한 개념 및 코드들을 살펴 보았습니다. 다음의 예시는 [파이썬에서 OPENCV](https://www.appsloveworld.com/django/100/18/opencv-live-stream-from-camera-in-django-webpage) 를 사용하여 [Django Ninja](https://github.com/vitalik/django-ninja/issues/919) 모듈을 활용한 웹캠 End Point 입니다.
 ```python
 import cv2
 from ninja import Router
@@ -104,9 +104,52 @@ def cctv_stream(request):
       )
 ```
 
-## with Thread
-이처럼 구동여부를 확인했다면 `Thread` 를 같이 활용하는 코드를 작성해 보겠습니다. 향후에 정확한 성능비교를 위해서는 2개의 API 를 사용하여 응답 및 CPU 리소스 소모까지 확인해 보면 더 정확하게 그 차이를 비교할 수 있습니다. 비교 분석내용은 [파이썬 서버 프레임워크 선정기 with Django, FastAPI, Sanic - 카카오Pay](https://tech.kakaopay.com/post/image-processing-server-framework/) 문서를 참고하여 진행해 보도록 하겠습니다.
+## Async and TimeLimit;
+Django 공식문서 내부의 질의응답 중 [Channels cannot be used with StreamingHttpResponse](https://forum.djangoproject.com/t/channels-cannot-be-used-with-streaminghttpresponse/10105) 를 보면 `Async` 를 사용하는 방법을 설명하고 있습니다.
+```python
+import cv2
+from django.http import StreamingHttpResponse
 
+class VideoCamera:
+
+  def __init__(self) -> None:
+    self.video = cv2.VideoCapture(0)
+
+  def __del__(self) -> None:
+    cv2.destroyAllWindows()
+
+  async def get_frame(self):
+    while True:
+      if self.video.isOpened():
+        success, frame = self.video.read()
+        ret, jpeg = cv2.imencode('.jpg', frame)
+        jpeg_bytes = jpeg.tobytes()
+        yield (b'--frame\r\n'
+          b'Content-Type: image/jpeg\r\n\r\n' + \
+          jpeg_bytes + b'\r\n\r\n')
+    else:
+      yield b'a'
+
+
+cam = VideoCamera()
+
+def video_stream(request):
+  return StreamingHttpResponse(
+    cam.get_frame(),
+    content_type='multipart/x-mixed-replace; boundary=frame'
+  )
+```
+
+앞에서 살펴본 End-Point 는 연속하는 **jpg** 이미지를 제공하는 API 입니다. FrontEnd 에서는 `<img src={...address} />` 를 적용하면 됩니다. 
+```html
+<img src='http://localhost:8000/camera' />
+```
+
+## with Thread
+이 작업을 시작한 계기가, 다수의 CCTV를 하나의 페이지에서 모니터링 가능했으면 좋겠다는 아이디어에서 시작 되었습니다. GIL 구조를 갖는 파이썬의 특징상 thread 분산을 적용하기 위해서 `Thread` 를 활용해 보겠습니다. 다음의 내용은 [Multi-Threading Approach for Faster OpenCV Video Streaming in Python](https://sihabsahariar.medium.com/a-multi-threading-approach-for-faster-opencv-video-streaming-in-python-7324f11dbd2f) 을 참고 하였습니다. 작업이 완료된 뒤 목적한 대로 작동이 되고 있는지 비교분석을 할 때에는 [파이썬 서버 프레임워크 선정기 with Django, FastAPI, Sanic - 카카오Pay](https://tech.kakaopay.com/post/image-processing-server-framework/) 문서를 참고합니다.
+```python
+
+```
 
 <br/>
 
@@ -138,22 +181,6 @@ def cctv_stream(request):
 # 읽어볼만한 글
 - [Python Celery (Processes vs Threads](https://medium.com/@iamlal/scale-up-messaging-queue-with-python-celery-processes-vs-threads-402533be269e)
 - [Async Support in Django](https://mdhvkothari.medium.com/async-support-in-django-part-2-f2137b15de0c)
-
-
-  
-
-
-<figure class="align-center">
-  <p style="text-align: center">
-  <iframe width="560" height="315" 
-  src="https://www.youtube.com/embed/A_Z1lgZLSNc?si=ZluWpVlbq5_kOExW" 
-  title="YouTube video player" frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-  </iframe>
-  </p>
-</figure>  
-
-
 
 https://nrsyed.com/2018/07/05/multithreading-with-opencv-python-to-improve-video-processing-performance/
 
