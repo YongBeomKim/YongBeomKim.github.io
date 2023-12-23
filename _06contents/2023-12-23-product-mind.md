@@ -52,7 +52,7 @@ Notion 으로 작성된 [PM 실무 템플릿 모음](https://kinghong.notion.sit
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="400px" src="{{site.baseurl}}/assets/book/product02.jpg">
+  <img width="400px" src="{{site.baseurl}}/assets/book/product01.jpg">
   <figcaption>흐름도 구성요소 - 직접 안해보면 모른다 (110 page)</figcaption>
   </p>
 </figure>
