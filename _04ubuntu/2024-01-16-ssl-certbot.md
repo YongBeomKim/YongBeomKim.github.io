@@ -63,7 +63,7 @@ $ sudo apt-get install python3-certbot-nginx
 
 ## Nginx Setting
 작업을 마치면, `Nginx` 에서도 `SSL` 인증서를 활용할 수 있도록 해야 됩니다. 하지만 `certbot` 에서 자동으로 필요한 내용을 추가했기 때문에 어떠한 내용이 추가되었는지 확인만 하고 넘어가겠습니다. 주석에 `# managed by Certbot` 가 붙어있는 부분이 자동으로 설정값을 추가한 내용 입니다.
-```bash
+```python
 server {
 	server_name 도메인.이름;
 
@@ -221,7 +221,7 @@ Type=oneshot
 
 ## 리버스 프록시로 Transmisson Https 실행하기
 이 내용은 앞에서 `flower` 모듈이 `5505` 포트에서 실행하는 것을 `/flower` 경로 에서도 동일한 내용을 확인할 수 있도록 작업을 했었던 내용 입니다. [Transmission 의 리버스 프록시](https://dietpi.com/forum/t/reverse-proxy-ssl-nginx-for-transmission/15870) 관련 `Nginx` 설정 내용은 링크 내용을 확인후 적용을 하면 큰 문제없이 실행되는 것을 볼 수 있었습니다.
-```bash
+```python
 location /transmission/ {
   proxy_read_timeout 300;
   proxy_pass_header  X-Transmission-Session-Id;

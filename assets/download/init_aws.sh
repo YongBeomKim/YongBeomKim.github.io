@@ -41,6 +41,26 @@ sudo apt-get update
 sudo apt-get install nodejs -y
 
 
+TITLE="\n\n >>> Redis Server"
+LINK="https://hayden-archive.tistory.com/429"
+echo ${TITLE}"\n ::"${LINK}
+sudo apt-get install redis-server -y
+sudo apt install net-tools -y
+redis-server --version
+
+
+TITLE="\n\n >>> MariaDB"
+echo ${TITLE}
+apt-get -y install mariadb-server mariadb-client
+pip3 install mycli
+
+
+TITLE="\n\n >>> MariaDB Setting Port Change"
+echo ${TITLE}" \n Port :"${PORT}
+sed 's/"port = 3306"/"port = 15505"/g' < "/etc/mysql/mariadb.cnf" > "/etc/mysql/mariadb.cnf"
+sed 's/"bind-address"/"#bind-address"/g' < "/etc/mysql/mariadb.conf.d/50-server.cnf" > "/etc/mysql/mariadb.conf.d/50-server.cnf"
+
+
 TITLE="\n\n >>> Python 3.10 DEV"
 LINK="https://www.itsupportwale.com/blog/how-to-upgrade-to-python-3-11-on-ubuntu-20-04-and-22-04-lts"
 echo ${TITLE}"\n ::"${LINK}
@@ -61,24 +81,4 @@ apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev l
 # apt install libpq-dev       # PostgreSQL
 # pip3.10 install pgcli psycopg2
 rm -rf /var/lib/apt/lists/lock
-
-
-TITLE="\n\n >>> Redis Server"
-LINK="https://hayden-archive.tistory.com/429"
-echo ${TITLE}"\n ::"${LINK}
-sudo apt-get install redis-server -y
-sudo apt install net-tools -y
-redis-server --version
-
-
-TITLE="\n\n >>> MariaDB"
-echo ${TITLE}
-apt-get -y install mariadb-server mariadb-client
-pip3 install mycli
-
-
-TITLE="\n\n >>> MariaDB Setting Port Change"
-echo ${TITLE}" \n Port :"${PORT}
-sed 's/"port = 3306"/"port = 15505"/g' < "/etc/mysql/mariadb.cnf" > "/etc/mysql/mariadb.cnf"
-sed 's/"bind-address"/"#bind-address"/g' < "/etc/mysql/mariadb.conf.d/50-server.cnf" > "/etc/mysql/mariadb.conf.d/50-server.cnf"
 
