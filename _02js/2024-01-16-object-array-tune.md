@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: React 객체관리
+title: Table Json 데이터에 RowSpan 추가하기
 tags:
 - typescript
 ---
@@ -64,10 +64,44 @@ const Table = () => {
 }
 ```
 
-작업 목표는 입력한 Object Array 데이터에서 연산일 필요한 Key Array 값을 입력하면 해당 객체들의 중복여부를 연산하여 이에 필요한 형태로 원본을 변환 및 `RowSpan` 값을 Object Array 에 추가하는 함수를 덧붙이는 것으로 해결 가능 합니다.
+<br/>
 
-JavaScript 에서 기본적인 자료구조 형태에 대하여 필요한 내용을 정리한 뒤 필요한 객체를 생성하는 함수를 작성해 보도록 하겠습니다.
+## JavaScript
+`useMemo()` 에서 다음과 같은 내용으로 중복여부를 확인 한 뒤, 중복갯수를 기준으로 `rowSpan` 값을 생성하게 됩니다. 실제 결과에서는 적용하지 못했는데, 이유는 `checkBox` 로 개별 라인별 숨기기를 하게되면 `rowSpan` 값이 그대로 적용됨에 따라 테이블이 깨지게 되었기 때문입니다. 향후에 이를 적용할 때를 대비하여 작업 결과를 정리해 보면 다음과 같습니다.
+```jsx
+  // 중복되는 갯수확인
+  function countDuplicates(array:(string|number)[]) {
+    let countMap: any = {};
+    array.forEach(function(i){countMap[i] = (countMap[i]||0)+1;});
+    return countMap
+  }
 
+  // useMemo 로 수집데이터 최적화
+  const data = useMemo(() => {
+
+    let checkName: any = {}
+    const names: string[] = items.map((item) => {
+      return item.type + item.menu
+    })
+
+    const checkCounts = countDuplicates(names) // Add NewKey
+
+    items.map((item) => {
+      if(checkName[item.type + item.menu]){
+        item.rowSpan = 0
+      } else {
+        item.rowSpan = checkCounts[item.type + item.menu]
+        checkName[item.type + item.menu] = 1
+      }
+    })
+
+    return [...items].sort(
+      function (a,b) { 
+        return a['id'] - b['id'] 
+      }
+    )
+  },[items])
+```
 
 <br/>
 
