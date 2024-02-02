@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Google OAuth Login with Django
+title: Social Login Google in Django
 tags:
 - django
 ---
