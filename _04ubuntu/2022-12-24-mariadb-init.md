@@ -141,10 +141,21 @@ mariadb 를 백업 및 복원하는 방법을 살펴보겠습니다. [MariaDB 10
 
 <br/>
 
-# Appendix
-
-## [MyCli](https://www.mycli.net/)
+# [MyCli](https://www.mycli.net/)
 MySQL, madiadb 를 터미널에서 접속할 때, 자동완성 기능을 돕는 CLI 입니다. 설치시 몇가지 주의할 점들이 있어서 정리를 해 보았습니다.
+
+## Connection
+[mycli 문서](https://www.mycli.net/) 를 참고해 보면 접속방법은 다음과 같습니다.
+
+```bash
+mycli mysql://UserName@SiteAddress.com:5432/DBName
+
+MariaDB 10.6.16
+mycli 1.27.0
+MariaDB UserName@SiteAddress.com/DBName>
+```
+
+기존에는 `$ mycli -u UserName -h SiteAddress.com -p 2146 DBName` 로 접속을 했었지만, SSL 도메인으로 변경한 뒤에는 `Time Out` 오류가 발생 했었습니다.
 
 ## Python: OSError: mariadb_config not found
 파이썬 [mysqlclient](https://pypi.org/project/mysqlclient/) 모듈을 설치하다 보면 위의 오류가 발생하는 경우가 있습니다. [mariadb 패키지 요구사항](https://int-i.github.io/python/2021-03-01/mariadb-config-not-found/) 을 충족하지 못해서 발생하는 문제점으로 이를 해결하면 정상적인 진행이 가능합니다.
