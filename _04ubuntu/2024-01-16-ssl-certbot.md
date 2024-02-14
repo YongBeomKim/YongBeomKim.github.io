@@ -97,7 +97,7 @@ https://www.sslshopper.com/ssl-checker.html?hostname=도메인.이름
 `443` 번 포트 개방여부를 확인 **<span style="color:var(--strong);">(안 열려 있는경우 무한로딩 상태)</span>**, `Django Allowed host & CSRF` 설정값 확인 **<span style="color:var(--strong);">(문제가 있는 경우, 400 Bad Request 메세지를 Nginx 에서 출력)</span>**, `Nginx` 정상동작 확인을 거치고 나면 이제 정상적으로 서비스를 하는것을 확이할 수 있습니다. 기존의 `http://:80` 주소를 입력하면 `Nginx` 에서 자동으로 `Http://443` 주소값으로 자동으로 `Re-direct` 합니다.
 
 ## 인증서 정보확인
-`https:\\` 주소로 접속되고 있으면 브라우저를 통해 인증서 내용을 확인할 수 있습니다. 서버에 접속한 상태에서도 동일한 정보를 확인할 수 있고, 터미널에서 갱신작업을 완료한 뒤, 해당 인증서 유효기간이 연장되었는지를 확인하는다 유용 합니다.
+`https:\\` 주소로 접속되고 있으면 브라우저를 통해 인증서 내용을 확인할 수 있습니다. 서버에 접속한 상태에서도 동일한 정보를 확인할 수 있고, 터미널에서 갱신작업을 완료한 뒤, 해당 인증서 유효기간이 연장되었는지를 확인하는데 유용 합니다.
 ```bash
 $ sudo certbot certificates
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
