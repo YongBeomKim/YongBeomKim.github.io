@@ -44,7 +44,7 @@ def LinearRegressor(nn.Module):
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="510px" src="{{site.baseurl}}/assets/python/rat_fastapi.jpg">
+  <img width="510px" src="{{site.baseurl}}/assets/ml/words.jpg">
   <figcaption>용어설명 (143 P)</figcaption>
   </p>
 </figure>
