@@ -7,7 +7,7 @@ tags:
 
 이 책의 원서를 [Causal Inference in Python 1st Edition](https://www.amazon.com/Causal-Inference-Python-Applying-Industry/dp/1098140257/ref=sr_1_1?dib=eyJ2IjoiMSJ9.n37_MKjLByuOg-8pqek40oppMf_vvGhVdYtEJ1ogCYI.pJ3MPJrBmTK3WJ32MqxPO-qDBEGdo9ruQUfW9OWFiSM&dib_tag=se&keywords=Matheus+Facure&qid=1710668569&sr=8-1) 아마존에서 검색을 해 보면 `23년 8월` 에 출간된 책 입니다. 반년도 안되서 500p 분량을 빠르게 번역되어 나왔기 때문에, 번역된 내용에 대한 품질에 관해 의심이 생길 수 밖에 없었습니다.
 
-하지만 이러한 의심은 `1부` 내용을 상세하게 읽어보고 난 뒤에는 얼마나 번역하신 분이 열과 성을 다해서 내용을 번역했는지 바로 알 수 있었습니다. `옮긴이의 주석` 이 독자가 어려워 할 때마다 구석 구석 모든 곳에서 도움의 손길을 내밀 고 있었기 때문입니다.
+하지만 이러한 의심은 `1부` 내용을 상세하게 읽어보고 난 뒤에는 얼마나 번역하신 분이 열과 성을 다해서 내용을 번역했는지 바로 알 수 있었습니다. `옮긴이의 주석` 이 독자가 어려워 할 때마다 구석 구석 모든 곳에서 도움의 손길을 내밀 고 있었습니다.
 
 <figure class="align-center">
   <p style="text-align: center">
@@ -15,6 +15,19 @@ tags:
   <figcaption>옮긴이 주석 (43 P)</figcaption>
   </p>
 </figure>
+
+`인과추론`을 분석에 도입하는 것이 아직은 초기단계라고 느낄수 있었던 부분이, 관련된 분들이 자신의 지식을 최대한 많은 분들에게 알려주기 위한 많은 활동들을 하고 계셨습니다. 옮긴이가 특별하게 감사드리는 분 중 한분인 **<span style="color:orange">**더 유니버시티 오브 노스캐롤라이나 앳 그린즈버러</span>** 대학의 **<span style="color:orange">박지용</span>** 교수님이 만드신 **<span style="color:orange">2023년 인과추론 [온라인 특강](https://sites.google.com/view/causal-inference2023) 사이트</span>** 가 있고 여기에는 한글로 만들어진 강의 유투브 동영상과 강의자료 PPT 모두 무료로 공개가 되어 있었습니다. 강의내용을 참고하신다면 초보자 분들에게도 많은 도움이 될 것입니다.
+
+<figure class="align-center">
+  <p style="text-align: center">
+    <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/F-oPi3Zp2ak?si=XHGh4CqjF8j6p85v" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+    </iframe>
+  </p>
+</figure> 
 
 <br/>
 
