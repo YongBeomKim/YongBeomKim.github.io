@@ -39,16 +39,25 @@ for debian-linux-gnu (x86_64) using EditLine wrapper
 MariaDB 포트를 변경하는 방법은 다음과 같습니다.
 ```bash
 # MariaDB 포트값 변경
-$ sudo nvim /etc/mysql/mariadb.cnf
+$ sudo nvim /etc/mysql/my.cnf  
 [client-server]
 port = 3306
 ```
 
-MariaDB 를 외부에서 접속 가능하도록 다음의 설정을 비활성화 합니다.
+MariaDB 에서 DB를 생성할때 인코딩 정보와, 외부에서 접속 가능하도록 외부접속을 활성화 합니다.
 ```bash
 # 외부 포트열기
-$ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf 
+$ sudo nvim /etc/mysql/mariadb.conf.d/50-server.cnf
+[server]
+character-set-server=utf8
 # bind-address = 127.0.0.1
+```
+
+위와같이 기본설정값을 변경한 경우에는 DB를 재시동 해 주어야 해당 설정값들이 적용 됩니다.
+```bash
+$ sudo systemctl status mariadb.service 
+$ sudo systemctl stop mariadb.service 
+$ sudo systemctl restart mariadb.service 
 ```
 
 ## 포트내용 확인하기
@@ -110,6 +119,7 @@ MariaDB []> FLUSH PRIVILEGES;
 
 ```sql
 MariaDB> CREATE DATABASE <DB이름>;
+MariaDB> ALTER DATABASE <DB이름> default character set=utf8;
 MariaDB> GRANT ALL PRIVILEGES ON <DB이름>.*  to  '<사용자이름>'@'%';
 MariaDB> SHOW GRANTS FOR '<사용자이름>'@'%';
 MariaDB> FLUSH PRIVILEGES;
@@ -175,6 +185,8 @@ $ sudo apt-get install build-essential libssl-dev libffi-dev \
 ```
 
 ## 참고사이트
+- [Django와 mariadb 연동하기](https://velog.io/@jhkim990212/Django%EC%99%80-mariadb-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0)
+- [MySQL, MariaDB 한글 깨짐 현상 해결](https://heum-story.tistory.com/34)
 - [사용자 추가, 권한 부여하기, 원격접속 허용 설정하기](https://kig6022.tistory.com/14)
 - [ERROR mysql ERROR 1698 (28000): Access denied](https://velog.io/@yhe228/ERRORmysql-ERROR-1698-28000-Access-denied-for-user-rootlocalhost)
 - [AWS MariaDB 원격접속 하기](https://conkjh032.tistory.com/28)
