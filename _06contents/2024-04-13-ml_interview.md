@@ -58,14 +58,7 @@ tags:
 
 아래 사진은 `5장 ML 설계 편의 자연어 이해` 와 관련된 내용인데 소제목으로 **<span style="color:orange">의도분류, 정보추출, 엔터티 해결</span>** 이 3가지를 다루고 있습니다. 다른 부분들은 용어의 혼동이 적어서 그나마 다행이었는데 아랫 사진의 **<span style="color:red">엔터티 해결</span>** 부분은 책만 읽을 때에는 저의 지식이 부족한 부분도 크겠지만 잘 이해가 되지 않았습니다.
 
-<figure class="align-center">
-  <p style="text-align: center">
-  <img width="510px" src="{{site.baseurl}}/assets/ml/nlp_subtitle.jpg">
-  <figcaption>자연어 이해관련 질의응답 (211 P)</figcaption>
-  </p>
-</figure>
-
-나머지 **<span style="color:orange">nlp 의도분류, nlp 정보추출</span>** 개념은 구글에서 검색하면 관련 내용의 상세개념 설명 문서들과 원어 내용을 바로 찾을 수 있었습니다.
+**<span style="color:orange">nlp 의도분류, nlp 정보추출</span>** 개념은 구글에서 검색하면 관련 내용의 상세개념 설명 문서들과 원어 내용을 바로 찾을 수 있었습니다.
 
 <figure class="align-center">
   <p style="text-align: center">
@@ -75,6 +68,13 @@ tags:
 </figure>
 
 반면 **<span style="color:red">nlp 엔터티 해결</span>** 을 검색하면 일치하는 단어가 포함된 문서를 찾지 못한채 **<span style="color:orange">개체명 인식</span>** 관련 문서를 상위에서 찾아줍니다. 
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="510px" src="{{site.baseurl}}/assets/ml/nlp_subtitle.jpg">
+  <figcaption>자연어 이해관련 질의응답 (211 P)</figcaption>
+  </p>
+</figure>
 
 <figure class="align-center">
   <p style="text-align: center">
