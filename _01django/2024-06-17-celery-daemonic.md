@@ -45,4 +45,5 @@ worker: Warm shotdown (MainProcess)
 
 # 참고사이트
 - [Git - daemonic processes are not allowed to have children](https://github.com/celery/celery/issues/4525#issuecomment-566503932)
+- [Celery 에서 worker별로 task를 부여하는 방법](https://iam.namjun.kim/celery/2018/09/09/celery-routing/)
 - [Celery 한 프로세스에서 여러 gpu 할당 및 사용하기](https://medium.com/@sujohn478/celery-%ED%95%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%97%90%EC%84%9C-gpu-%EC%97%AC%EB%9F%AC%EA%B0%9C-%ED%95%A0%EB%8B%B9-%EB%B0%8F-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-0eb6e1a0a1e8)
