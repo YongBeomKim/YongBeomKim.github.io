@@ -76,6 +76,11 @@ apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev l
 rm -rf /var/lib/apt/lists/lock
 
 
+TITLE="\n\n >>> JAVA 11"
+echo ${TITLE}"\n ::"
+sudo apt install openjdk-11-jdk
+
+
 TITLE="\n\n >>> Redis Server"
 LINK="https://hayden-archive.tistory.com/429"
 echo ${TITLE}"\n ::"${LINK}
