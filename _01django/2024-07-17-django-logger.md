@@ -1,16 +1,10 @@
 ---
 layout: blog
-title: Django Grappelli
+title: Django logger
 tags:
 - django
-- admin
 ---
 
 Django Admin 작업을 진행하면서, 대략 테이블 크기가 600 Mb가 넘으면 페이지 구분을 해도 데이터를 로딩하는데 많은 시간이 소요되었습니다. Admin 커스텀도 가능하면서 기능적인 보완도 가능하게 만드는 추가모듈을 설치해 보겠습니다.
 
-[Django Grappelli 4.0.1 documentation » Customization](https://django-grappelli.readthedocs.io/en/latest/customization.html)
-
-```bash
-$ pip install django-grappelli
-```
-설치 및 관련내용은 위의 공식문서를 참고하면 됩니다. (추후 내용추가 예정)
+https://velog.io/@qlgks1/Django-Celery-%ED%9A%A8%EA%B3%BC%EC%A0%81%EC%9D%B8-%EB%94%94%EB%B2%84%EA%B9%85-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-Logging-Flower-Prometheus-Grafanawith-Loki-Promtail

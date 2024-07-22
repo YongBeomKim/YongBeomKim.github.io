@@ -243,3 +243,4 @@ location /rpc {
 - [SSL Certbot을 이용한 인증서 갱신하기.](https://smoh.tistory.com/406)
 - [Nginx 리버스 프록시(Reverse Proxy) 개념 및 사용법](https://narup.tistory.com/238)
 - [Transmisson Nginx](https://www.clien.net/service/board/cm_nas/15265772)
+- [우분투 업데이트 시 certbot 에러](https://dobiho.com/64414/)
