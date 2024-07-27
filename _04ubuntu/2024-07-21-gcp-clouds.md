@@ -13,6 +13,11 @@ tags:
 
 <br/>
 
+> (2024-07-24 추가내용)
+VM 인스턴스를 수정하려다 Google Service Account 오류로 인하여 수정을 하지 못하는 문제가 발생하였습니다. 이러한 이유로 기존의 인스턴스는 삭제하고 새롭게 인스턴스를 생성하며 내용들을 재 확인해 보도록 하겠습니다. [Google Cloud Service Free Tire 안내 페이지](https://cloud.google.com/free/docs/free-cloud-features?hl=ko#free-tier)
+
+<br/>
+
 # 인스턴스 관리
 ## 가입하기
 구글 계정이 있으면 빠르게 가입할 수 있었습니다. 절차가 완료되면 개인에게는 $300 달러, 사업자 계정에게는 $400 달러 크레딧이 제공 됩니다. 대략 1년정도 사용해본 결과 개인계정으로 제공되는 $300 만으로도 충분 했었습니다.
@@ -47,7 +52,8 @@ Ubuntu 22.04 버전에서 실행 가능한 스크립트 입니다. 처음 우분
 
 ```bash
 $ sudo nvim /etc/ssh/sshd_config
-#PermitRootLogin prohibit-password
+
+# PermitRootLogin prohibit-password
 PermitRootLogin yes
 # PasswordAuthentication no
 PasswordAuthentication yes
@@ -138,10 +144,14 @@ SQL 은 <span style="color:var(--strong);">공개 IP 설정 만으로는 외부�
 <br/>
 
 # (참고) Naver Cloud
-
 네이버 클라우드는 Ubuntu 18.04 까지만 현재 지원하고 있습니다. 때문에 Python 은 3.6 버젼이고, Nginx 은 설정값을 추가해야만 정상적인 설치 작업이 진행 됩니다.
 
 - [Naver Cloud 콘솔 메뉴얼](https://www.ncloud.com/)
 - [Naver Cloud AAG(보안설정) 등 기초설정 방법](https://m.blog.naver.com/nieah914/221609709142)
 - [Naver Cloud Nginx 설치 및 포트포워딩](https://prohannah.tistory.com/84)
 - [Naver Cloud 서버 반납하기](https://growingsaja.tistory.com/325)
+
+<br/>
+
+# 참고사이트
+- [GCP 구글 클라우드 플랫폼 평생 무료서버 구축](https://annealing.tistory.com/211)
