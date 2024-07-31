@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Ubuntu 22.04
+title: (Ubuntu) Ubuntu 22.04
 tags:
 - ubuntu
 ---

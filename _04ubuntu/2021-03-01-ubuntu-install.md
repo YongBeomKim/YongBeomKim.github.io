@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 우분투 설치 and Tips
+title: (Ubuntu) 우분투 설치 and Tips
 tags:
 - ubuntu
 ---

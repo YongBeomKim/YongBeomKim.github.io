@@ -1,8 +1,8 @@
 ---
 layout: blog
-title: Celery Flower on Nginx
+title: Celery & Flower with Nginx
 tags:
-- nginx
+- flower
 ---
 
 Celery, Flower 의 서버설정 과정을 정리해 보았습니다.

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Apt GPG Error
+title: (Apt) GPG Error
 tags:
 - ubuntu
 ---

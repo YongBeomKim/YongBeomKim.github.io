@@ -1,8 +1,8 @@
 ---
 layout: blog
-title: SSH in Ubuntu
+title: (SSH) SSH in Ubuntu
 tags: 
-- blog
+- ssh
 ---
 
 서비스를 제작하다 보면 **서버 인스턴스의 교체** 및 **도메인 변경작업** 을 진행하다보면 자주 서버정보가 변경될 수 밖에 없고 다음과 같은 메세지 **<span style="color:var(--comment);">WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</span>** 를 마주하게 됩니다. 이러한 상황에 처했을 때 어떤 내용이 문제가 되고 해결방법은 어떤 방법이 있는지 알아보도록 하겠습니다

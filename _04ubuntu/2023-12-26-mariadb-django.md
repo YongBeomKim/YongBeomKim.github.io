@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: MariaDB for Django
+title: (MySQL) MariaDB with Django
 tags:
 - sql
 ---

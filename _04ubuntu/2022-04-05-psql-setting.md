@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: PostgreSQL 초기설정
+title: (PostgreSQL) 초기설정
 tags:
 - sql
 ---

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: TransMission 설정하기
+title: (TransMission) 설정하기
 tags:
 - ubuntu
 ---

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: PostgreSQL 기초 명령어2
+title: (PostgreSQL) 기초 명령어2
 tags:
 - sql
 ---

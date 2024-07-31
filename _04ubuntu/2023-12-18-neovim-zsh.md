@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Neovim PlugIn
+title: (Neovim) PlugIn
 tags:
 - ubuntu
 ---

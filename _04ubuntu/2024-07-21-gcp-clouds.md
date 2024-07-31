@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 구글 클라우트 플랫폼 with Free Tier
+title: (Cloue) GCP with Free Tier
 tags:
 - cloud
 ---

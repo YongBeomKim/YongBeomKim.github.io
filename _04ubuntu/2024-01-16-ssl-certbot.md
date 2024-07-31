@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (DevOps) HTTPs with CertBot
+title: (SSL) HTTPs with CertBot
 tags:
 - nginx
 ---

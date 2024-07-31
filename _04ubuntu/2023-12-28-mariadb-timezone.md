@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: MariaDB TimeZone of Django 
+title: (MySQL) MariaDB & Django TimeZone 
 tags:
 - sql
 - django

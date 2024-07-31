@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: SSH 접속 오류 (known_hosts Permission denied)
+title: (SSH) 접속 오류 (known_hosts Permission denied)
 tags:
 - ubuntu
 ---

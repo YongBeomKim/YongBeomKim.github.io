@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 우분투 에서 Python 패키지 설치 (armv7l)
+title: (ARM) 우분투 에서 Python 패키지 설치 (armv7l)
 tags:
 - ubuntu
 ---

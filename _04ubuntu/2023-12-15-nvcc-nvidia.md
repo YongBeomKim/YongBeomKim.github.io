@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Nvidia-smi & NVCC
+title: (Nvidia) Nvidia-smi & NVCC
 tags:
 - ubuntu
 ---

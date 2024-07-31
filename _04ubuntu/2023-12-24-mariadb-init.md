@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: MariaDB on Ubuntu 22.04
+title: (MySQL) MariaDB on Ubuntu 22.04
 tags:
 - sql
 ---
