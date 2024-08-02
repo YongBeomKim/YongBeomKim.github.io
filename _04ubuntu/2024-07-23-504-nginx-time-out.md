@@ -130,6 +130,7 @@ No certificates found.
 ```
 
 ## Re Install
+[Let’s Encrypt 인증서로 NGINX SSL 설정하기](https://nginxstore.com/blog/nginx/lets-encrypt-%EC%9D%B8%EC%A6%9D%EC%84%9C%EB%A1%9C-nginx-ssl-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/) 내용으로 재설치 과정을 진행하겠습니다...
 
 ```bash
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
