@@ -60,6 +60,20 @@ $ python -m gunicorn server.asgi:application
 
 <br/>
 
+# Nginx
+## Warning
+```bash
+$ nginx -t
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:2
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: [emerg] open() "/run/nginx.pid" failed (13: Permission denied)
+nginx: configuration file /etc/nginx/nginx.conf test failed
+
+$ sudo nvim /etc/nginx/nginx.conf
+```
+
+<br/>
+
 # Linux
 ## Sub-process /usr/bin/dpkg returned an error code (1)
 패키지 설치 및 업데이트를 진행하는 경우, 다음과 같은 오류가 발생하였습니다.
