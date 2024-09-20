@@ -547,3 +547,8 @@ Book.objects.get(
     Q(pub_date=date(2019,1,1))|Q(pub_date=date(2019,2,1))
     )
 ```
+
+<br/>
+
+# 참고사이트
+- [Django ORM](https://brownbears.tistory.com/63)
