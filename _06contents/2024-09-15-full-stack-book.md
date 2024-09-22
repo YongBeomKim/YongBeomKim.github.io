@@ -94,7 +94,7 @@ IT 소프트웨어의 설계에 대한 전반적인 내용을 다루고 있는 �
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="510px" src="{{site.baseurl}}/assets/fullstack/plan_dev_06.jpg">
+  <img width="510px" src="{{site.baseurl}}/assets/fullstack/plan_dev_07.jpg">
   </p>
 </figure>
 
