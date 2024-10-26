@@ -1,8 +1,8 @@
 ---
 layout: blog
-title: MySQL (2006, Server has gone away)
+title: OperationalError (2006, MySQL server has gone away)
 tags:
-- django
+- mysql
 ---
 
 MariaDB 를 연결한 Django 에서 대규모 테이블을 `bulk_create` 로 업데이트할 때 다음과 같은 오류를 출력하였습니다.
