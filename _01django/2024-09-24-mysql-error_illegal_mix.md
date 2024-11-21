@@ -1,25 +1,31 @@
 ---
 layout: blog
-title: OperationalError (2006, MySQL server has gone away)
+title: OperationalError (1271, Illegal mix of collations for operation 'in')
 tags:
 - mysql
 ---
 
-`for-loop` 명령으로 반복작업이 많은 Celery 작동 내용에서 다음과 같은 오류가 발생하였습니다.
-```bash
-2024/09/26 15:39:18 [celery.app.trace] Task app.ohlcv
-[asdfq234-150q3qga0-23fsdzfgsdf] raised unexpected:
+함수 내부에서 발생한 오류가 아닌, 특정조건에서 실행시 다음과 같은 오류를 출력 하였습니다. 아랫 내용을 살펴보면 
 
+```bash
 The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
-  File "../data/instance.py", line 33, in <lambda>
-    filter(lambda x : model.objects.filter(code=x).count() == 0,
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "../python/site-packages/MySQLdb/cursors.py", line 179, in execute
+  File "/django/app_name/tasks/news.py", line 42, in run_news_section
+    df = filter_title(df, engine) # DB 와 필터링
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.11/site-packages/MySQLdb/cursors.py", 
+    line 179, in execute
     res = self._query(mogrified_query)
           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-django.db.utils.OperationalError: (2013, 'Lost connection to MySQL server during query')
+django.db.utils.OperationalError: (
+  1271, "Illegal mix of collations for operation 'in'"
+)
 ```
+
+오류 내용은, 특정 칼럼에 `IN` 검색을 실행하면 오류가 발생했다는 내용 입니다.
+
+
 
 chatGPT 검색결과 서버응답 대기시간이 너무 길어져서 해당 접속을 유지하기 어려워서 발생한 오류 였습니다.
 ```sql
