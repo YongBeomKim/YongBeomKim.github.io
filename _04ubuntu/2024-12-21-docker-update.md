@@ -18,6 +18,8 @@ Flask 및 Django 서비스를 배포하는 경우에는 `Cent OS, Ubuntu` 환경
 <br/>
 
 # 참고사이트
+- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [Step-by-Step 우분투 도커 설치하기](https://donotfear.tistory.com/106)
 - [docker 설치관련 이전 포스트](https://yongbeomkim.github.io/ubuntu/docker)
 - [docker ps - permission denied 오류해결 방법](https://wscode.tistory.com/112)
 
@@ -60,3 +62,14 @@ $ sudo chmod 666 /var/run/docker.sock
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
+
+<br/>
+
+# Docker Daemon
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="510px" src="{{site.baseurl}}/assets/linux/docker_hosts.png">
+  <figcaption>docker Components Process</figcaption>
+  </p>
+</figure>
