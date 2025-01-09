@@ -29,6 +29,8 @@ $ sudo mycli -u root -h localhost mysql  # https://django-mysql.readthedocs.io/e
 ```
 ```sql
 mysql> CREATE DATABASE <테이블이름>;
+mysql> CREATE DATABASE <테이블이름> DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+
 mysql> CREATE USER '<사용자이름>'@'localhost' IDENTIFIED BY '<비밀번호>';
 mysql> GRANT ALL PRIVILEGES ON <테이블이름>.*  to  '<사용자이름>'@'localhost';
 mysql> SHOW GRANTS FOR '<사용자이름>'@'localhost';

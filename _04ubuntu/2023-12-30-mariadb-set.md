@@ -136,6 +136,28 @@ $ sudo apt-get purge "mariadb-*"
 <br/>
 
 # Backup
+## DB Size
+[데이터베이스별 / 테이블별 용량 확인 하기](https://info-lab.tistory.com/296) 를 하려면 다음의 쿼리를 입력하면 됩니다.
+```sql
+SELECT 
+	table_schema AS DBMS,
+	CONCAT((SUM(data_length + index_length) / 1024 / 1024)," MB") AS "Size"
+FROM
+	information_schema.TABLES
+GROUP BY 
+	table_schema;
+
++--------------------+-----------------+
+| DBMS               | Size            |
++--------------------+-----------------+
+| information_schema | 0.20312500 MB   |
+| services           | 925.45312500 MB |
+| mysql              | 10.82812500 MB  |
+| performance_schema | 0.00000000 MB   |
+| sys                | 0.03125000 MB   |
++--------------------+-----------------+
+```
+
 ## Backup Tools
 mariadb 를 백업 및 복원하는 방법을 살펴보겠습니다. [MariaDB 10.6 : Backup](https://www.server-world.info/en/note?os=Ubuntu_22.04&p=mariadb&f=3) 또는 [Mariabackup으로 증분백업하기](https://blog.devbox.kr/docs/mariabackup/) 에서 소개한 방법도 있지만 `MariaDB Foundation` 에서 작성한 유투브를 참고하여 진행해 보겠습니다.
 
