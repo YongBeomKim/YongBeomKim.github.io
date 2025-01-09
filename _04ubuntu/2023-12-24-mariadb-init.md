@@ -116,8 +116,6 @@ MariaDB []> FLUSH PRIVILEGES;
 
 ## **데이터베이스 추가 및 권한설정**
 새로운 데이터베이스를 생성하고, 추가 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다. <strike>`ALTER DATABASE <DB이름> default character set=utf8;`</strike> 
-
-
 ```sql
 MariaDB> CREATE DATABASE <DB이름>;
 MariaDB> ALTER DATABASE <DB이름> CHARACTER SET=utf8mb4 

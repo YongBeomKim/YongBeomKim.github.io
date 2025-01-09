@@ -21,12 +21,13 @@ $ pip install django-mysql (선택)
 
 ## **Maria DB (MySQL) 실행**
 
-아래의 스크립트는 `root` 계정으로 접속한 뒤, 새로운 사용자와 데이터베이스를 생성하고, 추가한 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다.
-
-```r
+아래의 스크립트는 `root` 계정으로 접속하는 방법 입니다.
+```bash
 $ sudo mariadb -u root -p
 $ sudo mycli -u root -h localhost mysql  # https://django-mysql.readthedocs.io/en/latest/cache.html
 ```
+
+새로운 사용자와 데이터베이스를 생성하고, 추가한 사용자에게 생성한 데이터베이스 권한을 추가하는 내용 입니다.
 ```sql
 mysql> CREATE DATABASE <테이블이름>;
 mysql> CREATE DATABASE <테이블이름> DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
@@ -35,6 +36,27 @@ mysql> CREATE USER '<사용자이름>'@'localhost' IDENTIFIED BY '<비밀번호>
 mysql> GRANT ALL PRIVILEGES ON <테이블이름>.*  to  '<사용자이름>'@'localhost';
 mysql> SHOW GRANTS FOR '<사용자이름>'@'localhost';
 mysql> FLUSH PRIVILEGES;
+```
+
+[데이터베이스별 / 테이블별 용량 확인 하기](https://info-lab.tistory.com/296) 를 하려면 다음의 쿼리를 입력하면 됩니다.
+```sql
+SELECT 
+	table_schema AS DBMS,
+	CONCAT((SUM(data_length + index_length) / 1024 / 1024)," MB") AS "Size"
+FROM
+	information_schema.TABLES
+GROUP BY 
+	table_schema;
+
++--------------------+-----------------+
+| DBMS               | Size            |
++--------------------+-----------------+
+| information_schema | 0.20312500 MB   |
+| services           | 925.45312500 MB |
+| mysql              | 10.82812500 MB  |
+| performance_schema | 0.00000000 MB   |
+| sys                | 0.03125000 MB   |
++--------------------+-----------------+
 ```
 
 ## Django 와 연결하기
