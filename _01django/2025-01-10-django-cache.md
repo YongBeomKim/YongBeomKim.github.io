@@ -115,6 +115,27 @@ In [3]: ticker_dict = cache.get('python')
 Out[3]: NoneType
 ```
 
+## Django RAW ORM
+DataBase Cache 테이블 이름을 `<django_cache_table>` 로 정의한 경우, DataBase 에 직접 접속을 해서 아래와 같이 테이블과 컬럼명, 그리고 해당 컬럼에 검색할 문자열을 활용하여 필요한 값을 확인 가능합니다.
+```python
+In [1]: from django.db import connection
+   ...: cursor = connection.cursor()
+   ...: sql_query = """
+   ...:     SELECT cache_key, expires 
+   ...:     FROM   <django_cache_table> 
+   ...:     WHERE  cache_key LIKE '%key_name%';"""
+
+In [2]: queryset = cursor.execute(sql_query)
+   ...: result   = cursor.fetchall()
+   ...: result
+Out[2]: (
+          (
+            ':1:key_name_KO', 
+            datetime.datetime(2025, 1, 1, 1, 0, 0)
+          ),
+        )
+```
+
 기타 나머지 수단에서 에서 Cache FrameWork 재활용 방법은 추가로 정리해 보도록 하겠습니다.
 
 
