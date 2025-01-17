@@ -117,6 +117,8 @@ Out[3]: NoneType
 
 ## Django RAW ORM
 DataBase Cache 테이블 이름을 `<django_cache_table>` 로 정의한 경우, DataBase 에 직접 접속을 해서 아래와 같이 테이블과 컬럼명, 그리고 해당 컬럼에 검색할 문자열을 활용하여 필요한 값을 확인 가능합니다.
+
+검색을 진행할 때 `%er` 에서 `%` 의 의미는 Regex 에서 `*` 과 같은 의미를 갖습니다.
 ```python
 In [1]: from django.db import connection
    ...: cursor = connection.cursor()
