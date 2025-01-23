@@ -149,3 +149,4 @@ Out[2]: (
 - [Django에서 cache 사용하기 - 230313](https://velog.io/@kimphysicsman/230313-TIL-Django%EC%97%90%EC%84%9C-cache-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-feat.-ChatGPT-vs-Django-Document)
 - [Efficient caching in python: Building @decorator to cache function call](https://minh-cao.medium.com/efficient-caching-in-python-building-a-decorator-to-cache-function-calls-c49f6793a230)
 - [Django Caching 101: Understanding the Basics and Beyond](https://dev.to/pragativerma18/django-caching-101-understanding-the-basics-and-beyond-49p)
+- [SQL Where Contains String](https://www.freecodecamp.org/news/sql-where-contains-string-substring-query-example/)
