@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (MySQL) MariaDB with Django
+title: (MySQL) MariaDB with Django - Size Check
 tags:
 - sql
 ---
@@ -57,6 +57,31 @@ GROUP BY
 | performance_schema | 0.00000000 MB   |
 | sys                | 0.03125000 MB   |
 +--------------------+-----------------+
+```
+
+다음의 내용으로도 동일한 내용을 확인할 수 있습니다.
+```sql
+SELECT table_schema AS "Database", 
+ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS "Size (MB)" 
+FROM information_schema.TABLES 
+GROUP BY table_schema;
+```
+
+해당 데이터베이스의 개별 테이블 단위 크기를 확인하는 방법은 다음과 같습니다.
+```sql
+SELECT table_name AS "Table",
+ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = "<데이터베이스 이름>"
+ORDER BY (data_length + index_length) DESC;
+
++----------------------------------+-----------+
+| Table                            | Size (MB) |
++----------------------------------+-----------+
+| app_market_krxpriceohlc          | 530.77    |
+| app_market_krxloan               | 389.56    |
+| app_news_navercontent            | 1.53      |
++----------------------------------+-----------+
 ```
 
 ## Django 와 연결하기
@@ -157,10 +182,9 @@ with connection.cursor() as cursor:
     # row = cursor.fetchone()
 ```
 
-
-
 # 참고 사이트
 - [Django MySQL](https://django-mysql.readthedocs.io/en/latest/cache.html)
 - [Django에 MySQL 연동하기](https://daphne-dev.github.io/2020/10/01/django-mysql/)
 - [MariaDB 초기 접속암호 분실시](https://funfunit.tistory.com/104)
 - [리눅스 mysql,mariadb 한글 깨짐 현상 해결 방법](https://heum-story.tistory.com/34)
+- [How to check MySQL database and table sizes](https://www.a2hosting.com/kb/developer-corner/mysql/determining-the-size-of-mysql-databases-and-tables/)
