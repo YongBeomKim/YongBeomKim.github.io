@@ -27,10 +27,31 @@ CSV 파일 4GB 정도의 데이터를 저장했을 때, 다음과 같은 용량�
 # Perplexity 한글설명
 
 ## Setting
-
 Django 프로젝트에서 MariaDB의 압축 테이블을 설정하는 방법은 데이터베이스 설정과 마이그레이션 작업을 통해 구현됩니다. 다음은 단계별 가이드입니다:
 
 ### 1. MariaDB 서버 설정
+설정파일 확인하는 방법은 다음과 같습니다. 기본적인 MaraiDB 설정파일은 `my.cnf` 이지만 실질적으로는 아래에서 보는것과 같이 동적폴더를 활용하여 설정값을 구분하여 저장 및 활용하는것이 일반적입니다. `/etc/mysql/mariadb.conf.d/50-server.cnf` 내용을 살펴보면 설정에 필요한 InnoDB 에 대하여 정의하는 내용을 볼 수 있습니다.
+```bash
+{9:20}/etc/mysql >> cat my.cnf       
+# The MariaDB configuration file
+...
+# Import all .cnf files from configuration directory
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/
+
+{9:20}/etc/mysql/mariadb.conf.d >> cat 50-server.cnf 
+# These groups are read by MariaDB server.
+...
+
+# * InnoDB
+# InnoDB is enabled by default with a 10MB datafile in /var/lib/mysql/.
+# Read the manual for more InnoDB related options. There are many!
+# Most important is to give InnoDB 80 % of the system RAM for buffer use:
+# https://mariadb.com/kb/en/innodb-system-variables/#innodb_buffer_pool_size
+#innodb_buffer_pool_size = 8G
+```
+
+
 ```sql
 -- 필수 시스템 변수 설정 (my.cnf 또는 동적 설정)
 SET GLOBAL innodb_file_per_table=ON;
