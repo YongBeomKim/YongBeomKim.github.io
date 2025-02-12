@@ -7,7 +7,92 @@ tags:
 
 [(MariaDB) InnoDB 01 - Row Format]() 에 이어서 보다 향상된 압축관리 방법인 Page Compression 에 대해서 작업을 진행해 보도록 하겠습니다.
 
+# MariaDB InnoDB
+## lzma 알고리즘 추가하기
+```bash
+# LZMA 라이브러리 설치
+sudo apt-get install liblzma-dev  # Ubuntu/Debian
 
+# 설치에 필요한 내용 다운로드
+$ wget https://downloads.mariadb.com/MariaDB/mariadb-10.6.12/source/mariadb-10.6.12.tar.gz\ntar -xvzf mariadb-10.6.12.tar.gz\ncd mariadb-10.6.12/
+$ cd mariadb-10.6.12
+
+# MariaDB 빌드 시 LZMA 지원 추가
+# MariaDB를 빌드할 때 -DLZMA=ON 플래그를 추가하여 lzma 라이브러리를 활성화합니다.
+$ cmake . -DLZMA=ON
+$ make -j$(nproc)
+$ sudo make install
+```
+
+
+## MariaDB Setting
+마리아 DB 에서 설정파일에 다음과 같은 내용을 추가하는 방식으로 내용을 수정 합니다.
+```bash
+```bash
+/etc/mysql/mariadb.conf.d/50-server.cnf
+
+# * InnoDB
+# https://mariadb.com/kb/en/innodb-system-variables/#innodb_buffer_pool_size
+innodb_buffer_pool_size = 1G
+
+[mariadb]
+innodb_compression_default=ON
+innodb_compression_algorithm=zlib
+```
+
+
+
+## Status
+```sql
+SHOW VARIABLES LIKE 'innodb_compression_algorithm';
++------------------------------+-------+
+| Variable_name                | Value |
++------------------------------+-------+
+| innodb_compression_algorithm | zlib  |
++------------------------------+-------+
+```
+
+```sql
+SHOW TABLE STATUS WHERE Name = 'pricedata';
++-----------+--------+------------+----------------------------+
+| Name      | Engine | Row_format | Create_options             |
++-----------+--------+------------+----------------------------+
+| pricedata | InnoDB | Dynamic    | `PAGE_COMPRESSED`=1        | 
+|           |        |            | `PAGE_COMPRESSION_LEVEL`=7 |
++-----------+--------+-----------------------------------------+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+기본적인 설치방법을 진행하고 나면 다음과 같은 InnoDB 의 압축 알고리즘 내용을 확인할 수 있습니다.
+```sql
+SHOW GLOBAL STATUS WHERE Variable_name IN (
+  'Innodb_have_lz4',
+  'Innodb_have_lzo', 
+  'Innodb_have_lzma', 
+  'Innodb_have_bzip2', 
+  'Innodb_have_snappy'
+);
++--------------------+-------+
+| Variable_name      | Value |
++--------------------+-------+
+| Innodb_have_lz4    | ON    |
+| Innodb_have_lzo    | OFF   |
+| Innodb_have_lzma   | OFF   |
+| Innodb_have_bzip2  | OFF   |
+| Innodb_have_snappy | ON    |
++--------------------+-------+
+```
 
 
 <br/>
@@ -238,24 +323,6 @@ SHOW GLOBAL STATUS LIKE 'Innodb_num_pages_page_compressed';
 
 ```
 
-```sql
-SHOW GLOBAL STATUS WHERE Variable_name IN (
-  'Innodb_have_lz4', 
-  'Innodb_have_lzo', 
-  'Innodb_have_lzma', 
-  'Innodb_have_bzip2', 
-  'Innodb_have_snappy'
-);
-+--------------------+-------+
-| Variable_name      | Value |
-+--------------------+-------+
-| Innodb_have_lz4    | ON    |
-| Innodb_have_lzo    | OFF   |
-| Innodb_have_lzma   | OFF   |
-| Innodb_have_bzip2  | OFF   |
-| Innodb_have_snappy | ON    |
-+--------------------+-------+
-```
 
 
 
