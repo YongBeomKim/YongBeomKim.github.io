@@ -37,11 +37,11 @@ innodb_compression_algorithm=zlib
 설정완료 후 재부팅을 한 뒤 <span style="color:darkorange">**MariaDB 의 ENGINES**</span>에 InnoDB 가 잘 적용되고 있는지 확인하는 방법은 다음과 같습니다.
 ```sql
 > SHOW ENGINES;
-+---------+---------+------------+--------------+-----+------------+
-| Engine  | Support | Comment    | Transactions | XA  | Savepoints |
-+---------+---------+------------+--------------+-----+------------+
-| InnoDB  | DEFAULT | Supports.. | YES          | YES | YES        |
-+---------+---------+------------+--------------+-----+------------+
++---------+---------+------------+--------------+
+| Engine  | Support | Comment    | Transactions |
++---------+---------+------------+--------------+
+| InnoDB  | DEFAULT | Supports.. | YES          |
++---------+---------+------------+--------------+
 ```
 
 ## Django Migration
@@ -79,25 +79,39 @@ class Migration(migrations.Migration):
 
 위 내용이 DataBase 에 적용 되었는지 확인 합니다
 ```sql
-$ SHOW TABLE STATUS WHERE Name = 'mysite_data';
-+-------------+--------+------------+----------------------------------------+
-| Name        | Engine | Row_format | Create_options                         |
-+-------------+--------+------------+----------------------------------------+
-| mysite_data | InnoDB | Compressed | row_format=COMPRESSED key_block_size=4 |
-+-------------+--------+------------+----------------------------------------+
+$ SHOW TABLE STATUS WHERE Name = 'mysite';
++--------+--------+------------+----------------------+
+| Name   | Engine | Row_format | Create_options       |
++--------+--------+------------+----------------------+
+| mysite | InnoDB | Compressed | row_format=COMPRESSED|
+|        |        |            | key_block_size=4     |
++--------+--------+------------+----------------------+
 ```
 
 ## key_block_size
 데이터를 압축해서 보관함으로 파일 `I/O` 를 감소시키는 것이 가장 큰 목적입니다 (반대로 압축을 하면 Update 속도가 느려 집니다) 테이블 압축의 옵션인 <span style="color:darkorange">**key_block_size**</span>(블록 사이즈) 는 **2,4,8,16KB** 로 설정할 수 있습니다. 크기에 따른 성능의 차이는 [DATA 전문가로 가는 길:티스토리](https://estenpark.tistory.com/377) 블로그에서 자세하게 확인할 수 있습니다. 대략적인 성능비교 테이블은 다음과 같습니다.
+
+```sql
+`139Mb` -> 8kb, 4kb 일 때 
++----------------+--------+
+| DBMS           | Size   |
++----------------+--------+
+| normal         | 376 MB |
+| compress (8kb) | 179 MB |
+| compress (4kb) | 120 MB |
+| sys            | 0.03MB |
++----------------+--------+
+```
+
 |블록 사이즈 | 압축률   | 조회시간 |
-|----------|--------|--------|
+|:--------:|--------|--------|
 |  -       | -      | 0.42   |
 |  2Kb     | 76.2%  | 0.39   |
 |  4Kb     | 76.2%  | 0.377  |
-|  8Kb     | 76.2%  | 0.398  |
-| 16Kb     | 76.2%  | 0.433  |
+|  8Kb     | 56.4%  | 0.398  |
+| 16Kb     | 14.9%  | 0.433  |
 
-`139Mb` 파일을 위의 설정값으로 압축을 진행한 결과, 데이터베이스의 크기는 다음과 같았습니다.
+`139Mb` CSV 파일을 위의 설정값으로 압축을 진행한 결과, 데이터베이스의 크기는 다음과 같았습니다.
 ```sql
 > SELECT table_schema AS DBMS,
   CONCAT((SUM(data_length + index_length) / 1024 / 1024)," MB") AS "Size"
@@ -133,3 +147,4 @@ $ SHOW TABLE STATUS WHERE Name = 'mysite_data';
 
 # 참고사이트
 - [InnoDB COMPRESSED Row Format](https://mariadb.com/kb/en/innodb-compressed-row-format/)
+- [InnoDB Row 압축(Compression)](https://estenpark.tistory.com/377)
