@@ -129,33 +129,33 @@ ALTER TABLE sensor_data PAGE_COMPRESSION_LEVEL=9;  -- [5]
 Django ORM은 기본적으로 테이블 압축 설정을 직접 지원하지 않으므로, 마이그레이션 단계에서 SQL 명령을 통해 압축을 적용해야 합니다. 프로덕션 환경 적용 전 반드시 **성능 테스트**를 권장합니다[7][20].
 
 Citations:
-[1] https://dinogeek.me/EN/MariaDB/How-to-compress-MariaDB-tables-to-save-disk-space.html
-[2] https://mariadb.com/kb/en/innodb-page-compression/
-[3] https://github.com/techsmartkids/django-mysql-compressed-fields
-[4] https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/
-[5] https://mariadb.com/docs/server/storage-engines/innodb/operations/configure-page-compression/
-[6] http://www.arnebrodowski.de/blog/435-Implementing-a-CompressedTextField-for-Django.html
-[7] https://mariadb.com/kb/en/innodb-compressed-row-format/
-[8] https://mariadb.com/kb/en/innodb-dynamic-row-format/
-[9] https://docs.djangoproject.com/en/5.1/ref/databases/
-[10] https://stackoverflow.com/questions/14909565/how-can-i-use-a-compressed-connection-between-django-and-mysql
-[11] https://stackoverflow.com/questions/13454978/serving-django-compressed-files-in-production/13457259
-[12] https://yongbeomkim.github.io/ubuntu/mariadb-django
-[13] https://dba.stackexchange.com/questions/343093/is-it-possible-to-compress-or-parition-existing-huge-table-in-place-for-mariadb
-[14] https://dba.stackexchange.com/questions/322577/mariadb-column-compression-and-binlog
-[15] https://forum.djangoproject.com/t/made-a-compressed-json-field/30044
-[16] https://django-mysql.readthedocs.io/_/downloads/en/stable/pdf/
-[17] https://www.percona.com/blog/mysql-compression-compressed-and-uncompressed-data-size/
-[18] https://django-mysql.readthedocs.io/en/latest/checks.html
-[19] https://code.djangoproject.com/ticket/18392?cnum_hist=8&cversion=0
-[20] https://www.percona.com/blog/innodb-page-compression/
-[21] https://forum.djangoproject.com/t/processing-of-large-input-files-csv-or-json/19688
-[22] https://cheat.readthedocs.io/en/latest/django/compressor.html
-[23] https://loadforge.com/guides/the-ultimate-guide-to-django-performance-best-practices-for-scaling-and-optimization
-[24] https://www.reddit.com/r/Database/comments/1cvv9nn/the_most_space_efficient_database/
-[25] https://dev.mysql.com/doc/refman/8.4/en/innodb-compression-usage.html
-[26] https://stackoverflow.com/questions/35378884/mariadb-enabling-page-compression/38927341
-[27] https://www.percona.com/blog/mysql-blob-compression-performance-benefits/
+- [1](https://dinogeek.me/EN/MariaDB/How-to-compress-MariaDB-tables-to-save-disk-space.html)
+- [2](https://mariadb.com/kb/en/innodb-page-compression/)
+- [3](https://github.com/techsmartkids/django-mysql-compressed-fields)
+- [4](https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/)
+- [5](https://mariadb.com/docs/server/storage-engines/innodb/operations/configure-page-compression/)
+- [6](http://www.arnebrodowski.de/blog/435-Implementing-a-CompressedTextField-for-Django.html)
+- [7](https://mariadb.com/kb/en/innodb-compressed-row-format/)
+- [8](https://mariadb.com/kb/en/innodb-dynamic-row-format/)
+- [9](https://docs.djangoproject.com/en/5.1/ref/databases/)
+- [10](https://stackoverflow.com/questions/14909565/how-can-i-use-a-compressed-connection-between-django-and-mysql)
+- [11](https://stackoverflow.com/questions/13454978/serving-django-compressed-files-in-production/13457259)
+- [12](https://yongbeomkim.github.io/ubuntu/mariadb-django)
+- [13](https://dba.stackexchange.com/questions/343093/is-it-possible-to-compress-or-parition-existing-huge-table-in-place-for-mariadb)
+- [14](https://dba.stackexchange.com/questions/322577/mariadb-column-compression-and-binlog)
+- [15](https://forum.djangoproject.com/t/made-a-compressed-json-field/30044)
+- [16](https://django-mysql.readthedocs.io/_/downloads/en/stable/pdf/)
+- [17](https://www.percona.com/blog/mysql-compression-compressed-and-uncompressed-data-size/)
+- [18](https://django-mysql.readthedocs.io/en/latest/checks.html)
+- [19](https://code.djangoproject.com/ticket/18392?cnum_hist=8&cversion=0)
+- [20](https://www.percona.com/blog/innodb-page-compression/)
+- [21](https://forum.djangoproject.com/t/processing-of-large-input-files-csv-or-json/19688)
+- [22](https://cheat.readthedocs.io/en/latest/django/compressor.html)
+- [23](https://loadforge.com/guides/the-ultimate-guide-to-django-performance-best-practices-for-scaling-and-optimization)
+- [24](https://www.reddit.com/r/Database/comments/1cvv9nn/the_most_space_efficient_database/)
+- [25](https://dev.mysql.com/doc/refman/8.4/en/innodb-compression-usage.html)
+- [26](https://stackoverflow.com/questions/35378884/mariadb-enabling-page-compression/38927341)
+- [27](https://www.percona.com/blog/mysql-blob-compression-performance-benefits/)
 
 <br/>
 
@@ -250,37 +250,37 @@ def check_compression():
 이 방식은 모델 상속을 통해 테이블 생성 시 자동으로 압축 설정이 적용되며, `makemigrations` 실행 시 필요한 SQL 명령을 자동으로 생성합니다[1][5]. 실제 운영 환경 적용 전 반드시 **테스트 환경에서 압축률과 성능 검증**이 필요합니다.
 
 Citations:
-[1] https://mariadb.com/kb/en/innodb-page-compression/
-[2] https://stackoverflow.com/questions/35378884/mariadb-enabling-page-compression/38927341
-[3] https://django-mysql.readthedocs.io/en/latest/cache.html
-[4] https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/
-[5] https://github.com/techsmartkids/django-mysql-compressed-fields
-[6] https://django-mysql.readthedocs.io/en/latest/checks.html
-[7] https://mariadb.com/kb/en/upgrading-from-mysql-to-mariadb/
-[8] https://stackoverflow.com/questions/13707210/django-mysql-enable-row-format-compress-with-syncdb
-[9] https://rescale.com/blog/using-database-views-in-django-orm/
-[10] https://docs.djangoproject.com/en/5.1/topics/db/fixtures/
-[11] https://django-mysql.readthedocs.io/_/downloads/en/stable/pdf/
-[12] https://docs.platform.sh/add-services/mysql.html
-[13] https://dba.stackexchange.com/questions/256427/unable-to-create-tables-with-row-format-compressed
-[14] https://docs.weblate.org/en/latest/admin/install.html
-[15] https://docs.djangoproject.com/en/5.1/ref/django-admin/
-[16] https://loadforge.com/guides/optimizing-django-rest-framework-10-essential-packages
-[17] https://stackoverflow.com/questions/42262463/cant-use-django-compress-with-heroku/42352853
-[18] https://github.com/adamchainz/django-mysql
-[19] https://yongbeomkim.github.io/ubuntu/mariadb-django
-[20] https://docs.djangoproject.com/en/5.1/ref/databases/
-[21] https://forum.djangoproject.com/t/made-a-compressed-json-field/30044
-[22] https://mariadb.com/kb/en/could-you-suggest-a-connector-which-can-work-for-django-and-mariadb/
-[23] https://pypi.org/project/django-mysql/
-[24] https://github.com/techsmartkids/django-mysql-compressed-fields/blob/main/pyproject.toml
-[25] https://github.com/jazzband/django-dbbackup
-[26] https://learn.microsoft.com/en-us/sql/relational-databases/data-compression/enable-compression-on-a-table-or-index?view=sql-server-ver16&viewFallbackFrom=sql-server-2014&redirectedfrom=MSDN
-[27] https://dba.stackexchange.com/questions/343093/is-it-possible-to-compress-or-parition-existing-huge-table-in-place-for-mariadb
-[28] https://dev.mysql.com/doc/refman/8.4/en/innodb-compression-usage.html
-[29] https://aws.amazon.com/blogs/database/reduce-network-transfer-time-with-connection-compression-in-amazon-rds-for-mysql-and-amazon-rds-for-mariadb/
-[30] https://mariadb.com/kb/en/optimization-and-tuning-compression/
-[31] https://stackoverflow.com/questions/14909565/how-can-i-use-a-compressed-connection-between-django-and-mysql
+- [1](https://mariadb.com/kb/en/innodb-page-compression/)
+- [2](https://stackoverflow.com/questions/35378884/mariadb-enabling-page-compression/38927341)
+- [3](https://django-mysql.readthedocs.io/en/latest/cache.html)
+- [4](https://dafoster.net/articles/2022/07/07/compressed-text-field-for-django-and-mysql-is-released/)
+- [5](https://github.com/techsmartkids/django-mysql-compressed-fields)
+- [6](https://django-mysql.readthedocs.io/en/latest/checks.html)
+- [7](https://mariadb.com/kb/en/upgrading-from-mysql-to-mariadb/)
+- [8](https://stackoverflow.com/questions/13707210/django-mysql-enable-row-format-compress-with-syncdb)
+- [9](https://rescale.com/blog/using-database-views-in-django-orm/)
+- [10](https://docs.djangoproject.com/en/5.1/topics/db/fixtures/)
+- [11](https://django-mysql.readthedocs.io/_/downloads/en/stable/pdf/)
+- [12](https://docs.platform.sh/add-services/mysql.html)
+- [13](https://dba.stackexchange.com/questions/256427/unable-to-create-tables-with-row-format-compressed)
+- [14](https://docs.weblate.org/en/latest/admin/install.html)
+- [15](https://docs.djangoproject.com/en/5.1/ref/django-admin/)
+- [16](https://loadforge.com/guides/optimizing-django-rest-framework-10-essential-packages)
+- [17](https://stackoverflow.com/questions/42262463/cant-use-django-compress-with-heroku/42352853)
+- [18](https://github.com/adamchainz/django-mysql)
+- [19](https://yongbeomkim.github.io/ubuntu/mariadb-django)
+- [20](https://docs.djangoproject.com/en/5.1/ref/databases/)
+- [21](https://forum.djangoproject.com/t/made-a-compressed-json-field/30044)
+- [22](https://mariadb.com/kb/en/could-you-suggest-a-connector-which-can-work-for-django-and-mariadb/)
+- [23](https://pypi.org/project/django-mysql/)
+- [24](https://github.com/techsmartkids/django-mysql-compressed-fields/blob/main/pyproject.toml)
+- [25](https://github.com/jazzband/django-dbbackup)
+- [26](https://learn.microsoft.com/en-us/sql/relational-databases/data-compression/enable-compression-on-a-table-or-index?view=sql-server-ver16&viewFallbackFrom=sql-server-2014&redirectedfrom=MSDN)
+- [27](https://dba.stackexchange.com/questions/343093/is-it-possible-to-compress-or-parition-existing-huge-table-in-place-for-mariadb)
+- [28](https://dev.mysql.com/doc/refman/8.4/en/innodb-compression-usage.html)
+- [29](https://aws.amazon.com/blogs/database/reduce-network-transfer-time-with-connection-compression-in-amazon-rds-for-mysql-and-amazon-rds-for-mariadb/)
+- [30](https://mariadb.com/kb/en/optimization-and-tuning-compression/)
+- [31](https://stackoverflow.com/questions/14909565/how-can-i-use-a-compressed-connection-between-django-and-mysql)
 
 <br/>
 
@@ -527,7 +527,7 @@ def update_metrics():
 
 ### 문제 진단 체크리스트
 1. **압축 실패 시**: `innodb_strict_mode` 활성화 상태 확인[1]
-2. **성능 저하 발생 시**: `SHOW ENGINE INNODB STATUS`로 버퍼 풀 경합 확인
+2. **성능 저하 발생 시**: `SHOW ENGINE INNODB STATUS` 로 버퍼 풀 경합 확인
 3. **데이터 손상 의심 시**: `CHECK TABLE` 실행 후 복구 계획 수립
 
 **최적화 권장 사항**:

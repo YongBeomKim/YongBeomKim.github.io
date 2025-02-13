@@ -34,7 +34,7 @@ innodb_compression_default=ON
 innodb_compression_algorithm=zlib
 ```
 
-설정완료 후 재부팅을 한 뒤 <span style="color:darkorange">**MariaDB 의 ENGINES**</span>에 InnoDB 가 잘 적용되고 있는지 확인하는 방법은 다음과 같습니다.
+설정완료 후 재부팅을 한 뒤 <span style="color:darkorange">**MariaDB 의 ENGINES**</span>에 **InnoDB** 가 잘 적용되고 있는지 확인하는 방법은 다음과 같습니다.
 ```sql
 > SHOW ENGINES;
 +---------+---------+------------+--------------+
@@ -47,9 +47,9 @@ innodb_compression_algorithm=zlib
 ## Django Migration
 DataBase 환경설정을 확인했으면 Django 와 MariaDB를 연결한 뒤 Django 에서 지원하는 `MakeMigrations` 옵션을 실행합니다. 그 결과 파이썬으로 작성된 DataBase Migration 파일들의 목록을 확인할 수 있습니다.
 ```bash
-$ ./manage.py makemigrations my_site
+$ ./manage.py makemigrations mysite
 
-Migrations for 'my_site':
+Migrations for 'mysite':
   my_site/migrations/0001_initial.py
     + Create model Data
 ```
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
     # Key Block Size 단위 성능비교
     # https://estenpark.tistory.com/377
     migrations.RunSQL(
-        """ALTER TABLE  app_data_pricedata 
+        """ALTER TABLE  mysite 
         ENGINE=INNODB DEFAULT  CHARSET=UTF8MB4 
         ROW_FORMAT=COMPRESSED  KEY_BLOCK_SIZE=4;""",
         # "ROW_FORMAT=DYNAMIC;" # 롤백 시 기본값으로 복구
@@ -89,7 +89,7 @@ $ SHOW TABLE STATUS WHERE Name = 'mysite';
 ```
 
 ## key_block_size
-데이터를 압축해서 보관함으로 파일 `I/O` 를 감소시키는 것이 가장 큰 목적입니다 (반대로 압축을 하면 Update 속도가 느려 집니다) 테이블 압축의 옵션인 <span style="color:darkorange">**key_block_size**</span>(블록 사이즈) 는 **2,4,8,16KB** 로 설정할 수 있습니다. 크기에 따른 성능의 차이는 [DATA 전문가로 가는 길:티스토리](https://estenpark.tistory.com/377) 블로그에서 자세하게 확인할 수 있습니다. 대략적인 성능비교 테이블은 다음과 같습니다.
+데이터를 압축해서 보관함으로 파일 `I/O` 를 감소시키는 것이 가장 큰 목적입니다 (반대로 압축을 하면 Update 속도가 느려 집니다) 테이블 압축의 옵션인 <span style="color:darkorange">**key_block_size**</span>(블록 사이즈) 는 **2/4/8/16KB** 로 설정할 수 있습니다. 크기에 따른 성능의 차이는 [DATA 전문가로 가는 길:티스토리](https://estenpark.tistory.com/377) 블로그에서 자세하게 확인할 수 있습니다. 대략적인 성능비교 테이블은 다음과 같습니다.
 
 ```sql
 `139Mb` -> 8kb, 4kb 일 때 

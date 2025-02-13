@@ -40,8 +40,6 @@ innodb_compression_default=ON
 innodb_compression_algorithm=zlib
 ```
 
-
-
 ## Status
 ```sql
 SHOW VARIABLES LIKE 'innodb_compression_algorithm';
@@ -261,6 +259,7 @@ MariaDB 에서 해당 파일에 설정내용이 정확하게 반영 되었는지
 |         | KEY_BLOCK_SIZE=4               |
 +---------+--------------------------------+
 ```
+
 ```sql
 > SELECT table_schema AS DBMS,
   CONCAT((SUM(data_length + index_length) / 1024 / 1024)," MB") AS "Size"
