@@ -45,7 +45,7 @@ Downloading and installing node v23.8.0...
 $ npm install --global yarn
 ```
 
-`.nvmrc` 파일에는 다음과 같은 방법으로 Node.js 버전을 명시할 수 있습니다.
+작업 폴더에서 `.nvmrc` 파일을 활용하여 아래의 표와 같은 방법으로 Node.js 버전을 명시할 수 있습니다.
 
 | 텍스트  | 실행내용 설명 |
 |-------|----------------|
@@ -53,6 +53,16 @@ $ npm install --global yarn
 |   18  | Node.js 18 버전 |
 | lts/* | LTS(Long Term Support) 버전 중 최신 버전 |
 | node  | 현재 시스템에 설치된 Node.js 버전 |
+
+위 파일이 있는 폴더 위치에서 <span style="color:red">**다음과 같이 실행**</span>을 하면, 버전의 내용을 해당 파일을 기초로 확인하고 실행을 합니다. <strike>자동으로 설정파일의 해당 버젼이 적용되진 않습니다.</strike>
+```bash
+$ cat .nvmrc
+22.14.0
+
+$ nvm use          
+Found '/home/username/.nvmrc' with version <22.14.0>
+Now using node v22.14.0 (npm v10.9.2)
+```
 
 ## NPM, NPX
 `npx` 는 `Node.js 관련 패키지` 를 `localhost` 에 설치된 내용등을 확인하지 않고 온라인으로 소스를 가져와서 실행 합니다. 장점은 별도의 cache 를 남기지 않고, 실행시점의 최신버젼을 바로 사용 가능합니다. 단점은 온라인에 항상 연결되어 있어야 하며, 관련 파일을 다운받아야 되서 시간이 조금 더 필요로 합니다. 
