@@ -60,6 +60,13 @@ launch_ssh_cloudflared(password=ssl_password)
   </p>
 </figure>
 
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="510px" src="{{site.baseurl}}/assets/linux/ssh_code_detail.png">
+  <figcaption>SSH Client Detail Configuration</figcaption>
+  </p>
+</figure>
+
 ## SSH of Cloudflare
 설치가 완료된 우분투에서 위 화면에 나타난 주소와 연결을 위한 `./.ssh/config` 설정파일을 생성한 뒤 다음의 내용을 추가합니다
 ```bash
