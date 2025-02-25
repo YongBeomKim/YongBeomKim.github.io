@@ -147,4 +147,5 @@ $ SHOW TABLE STATUS WHERE Name = 'mysite';
 
 # 참고사이트
 - [InnoDB COMPRESSED Row Format](https://mariadb.com/kb/en/innodb-compressed-row-format/)
+- [MySQL - InnoDB 행(Row)형식](https://myinfrabox.tistory.com/59?category=967261)
 - [InnoDB Row 압축(Compression)](https://estenpark.tistory.com/377)

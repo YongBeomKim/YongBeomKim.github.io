@@ -329,7 +329,7 @@ SHOW GLOBAL STATUS LIKE 'Innodb_num_pages_page_compressed';
 <br/>
 
 # 참고사이트
-- [InnoDB COMPRESSED Row Format](https://mariadb.com/kb/en/innodb-compressed-row-format/)
+- [MySQL - InnoDB 페이지 압축](https://myinfrabox.tistory.com/58)
 - [InnoDB Page Compression](https://mariadb.com/kb/en/innodb-page-compression/)
 - [InnoDB File Format](https://mariadb.com/kb/en/innodb-file-format/)
 - [How to change Innodb fileformat to Barracuda](https://mariadb.com/kb/en/how-to-change-innodb-fileformat-to-barracuda/)
