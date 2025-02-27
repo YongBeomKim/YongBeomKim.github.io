@@ -1,133 +1,138 @@
 ---
 layout: blog
-title: (Django) Application Compress
+title: (Django - 압축) Custom Model Field
 tags:
 - django
 ---
-xzz
-앞서서 `MariaDB` 에서 압축 algorithm 을 활용하는 방법들을 살펴 보았습니다. 실제로 적용한 결과, 데이터를 저장할 때 전체 데이터베이스 리소스 비용이 올라가는 것을 확인 할 수 있었습니다. 차후에 데이테베이스 테이블의 컬럼별 효과적인 적용방법을 찾게 되면 해당 내용을 활용한 뒤 내용을 추가로 정리해 보겠습니다.
 
-이번에 정리하려는 내용은 `Django` 자체적으로 데이터를 효율적으로 압축하는 방법들 입니다. 내용을 크게 정리하면 2가지로 다음과 같습니다.
-1. `float` 데이터는 자릿수를 제한하여 `IntegerField` 에 저장 및 호출 합니다.
-2. `CharField` 데이터는 `BinaryField` 로 대체하여 `zlib` 알고리즘으로 압축저장 합니다
+이번에 정리하려는 내용은 `Django` 내부의 `Model Field` 자체적으로 데이터를 효율적으로 압축하는 방법들 입니다. 이번 페이지에서 정리할 내용은 2가지로 다음과 같습니다.
+1. `CharField` 에 `string` 데이터를 `zlib` 알고리즘으로 압축저장
+1. `IntegerField` 에 `float` 데이터는 자릿수를 제한하여 저장 및 호출
 
 <br/>
 
-# 문자열 데이터 압축
-Django에서 압축을 적용하려면 `zlib.compress()` 및 `zlib.decompress()`를 활용하여 데이터를 변환하고, `BinaryField` 또는 `TextField`를 활용하는 것이 일반적인 방법입니다. **압축된 데이터를 조회할 일이 많다면 압축률과 성능을 고려하여 선택**하는 것이 중요합니다.
+# Django with `zlib`
+## `zlib` 압축 알고리즘
+`zlib` 알고리즘으로 문자열을 압축하고, 압축한 내용을 풀어내는 과정은 다음과 같습니다.
+```python
+import zlib
 
-`BinaryField`를 활용하여 압축된 데이터를 직접 저장하거나, `base64`로 변환한 뒤 `TextField` 또는 `CharField`에 ㄷ `save` 및 `load` 시점에서 압축과 해제를 수행할 수 있습니다. 참고로 `base64` 로 저장하게 되면 데이터가 33% 이상 커지는 단점이 있습니다.
+def compress_data(data):
+    return zlib.compress(data.encode('utf-8'))
 
+def decompress_data(compressed_data):
+    return zlib.decompress(compressed_data).decode('utf-8')
+
+
+original_data = "This is a long string that will be compressed."
+compressed_data   = compress_data(original_data)     # 데이터 압축
+decompressed_data = decompress_data(compressed_data) # 압축해체
+decompressed_data, type(compressed_data)
+# ('This is a long string that will be compressed.', bytes)
+```
+
+압축을 하면 `bytes` 형식으로 저장을 하게 됩니다. **DATABASE** 특성상 해당 타입을 지원하지 않는 경우가 있는데, 이러한 경우에는 `base64` 로 문자열로 변환을 하면, 문자열 데이터로 저장 가능합니다. 대신 저장용량이 대략 33% 커지는 문제가 있습니다.
+```python
+import zlib, base64
+
+def compress_data(value):
+    compressed_data = zlib.compress(value.encode('utf-8'))
+    return base64.b64encode(compressed_data).decode('utf-8')
+
+def decompress_data(value):
+    decoded_data = base64.b64decode(value.encode('utf-8'))
+    return zlib.decompress(decoded_data).decode('utf-8')
+
+
+original_data = "This is a long string that will be compressed."
+compressed_data   = compress_data(original_data)     # 데이터 압축
+decompressed_data = decompress_data(compressed_data) # 압축해체
+decompressed_data, type(compressed_data)
+# ('This is a long string that will be compressed.', str)
+```
+
+## Django Field API reference
+`Django` 필드별 내부에 사용자 정의 함수를 추가할 수 있습니다. <span style="color:orange">**Django Models Field**</span> 는 데이터베이스 테이블 열을 정의하는 **추상 클래스** 입니다. **Django** 는 Field Method 를 활용하여 데이터베이스 테이블을 생성하고([`db_type()`](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.Field.db_type)), 파이썬 유형을 데이터베이스에 매핑하며([`get_prep_value()`](Django Field API reference)), 그 반대로도 ([`from_db_value()`](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.Field.from_db_value)) 작동하고 있습니다. [출처 : Django Field API reference](https://docs.djangoproject.com/en/5.1/ref/models/fields/#field-api-reference)
+
+다음의 예제는 문자열로 압축을 하는 내용 입니다. Django 에서 `models.TextField` 필드를 상속하여 `base64` 와 `zlib` 를 활용하여 저장시 압축을 하고, 사용시 압축 해제를 하는 내용 입니다.
+```python
+# Text Field 를 활용한 압축
+class CompressedTextField(models.TextField):
+    """데이터를 zlib으로 압축하여 저장하는 TextField"""
+    
+    def from_db_value(self, value, expression, connection):
+        """데이터베이스에서 값을 가져올 때 자동으로 압축 해제"""
+        if value is None:
+            return value
+        return self.decompress(value)
+
+    def get_prep_value(self, value):
+        """저장하기 전에 데이터를 압축"""
+        if value is None:
+            return value
+        return self.compress(value)
+
+    def compress(self, value):
+        """zlib을 사용하여 문자열 압축 후 base64로 인코딩"""
+        if isinstance(value, str):
+            compressed_data = zlib.compress(value.encode('utf-8'))
+            return base64.b64encode(compressed_data).decode('utf-8')  # Base64로 인코딩하여 저장
+        return value
+
+    def decompress(self, value):
+        """zlib을 사용하여 base64로 저장된 데이터를 압축 해제"""
+        try:
+            decoded_data = base64.b64decode(value.encode('utf-8'))
+            return zlib.decompress(decoded_data).decode('utf-8')
+        except Exception:
+            return value
+```
+
+Mysql, MariaDB 는 `bytes` 데이터를 저장할 수 있습니다. DATABASE 에서는 `BLOB` 형식으로 저장 되는데, 최대 용량이 `64Kb`로 제한이 되어 있습니다. [출처 : String Data Types - MariaDB](https://mariadb.com/kb/en/columnstore-data-types/#string-data-types) 
+
+다음의 예제는 압축 데이터를 `bytes` 형식으로 저장하는 내용 입니다. Django 에서 `models.BinaryField` 필드를 상속하여 `zlib` 를 활용하여 저장시 압축을 하고, 활용시 압축을 해제를 하는 내용 입니다.
+```python
+# Binary Field 를 활용한 압축
+class CompressedBinaryField(models.BinaryField):
+
+    def from_db_value(self, value, expression, connection):
+        """데이터베이스에서 값을 가져올 때 : 자동으로 압축 해제"""
+        if value is None:
+            return value
+        return self.decompress(value)
+
+    def get_prep_value(self, value):
+        """저장하기 전에 : 데이터를 압축"""
+        if value is None:
+            return value
+        return self.compress(value)
+
+    def compress(self, value):
+        """zlib을 사용하여 문자열 압축 후 base64로 인코딩"""
+        if isinstance(value, str):
+            return zlib.compress(value.encode('utf-8'))
+        return value
+
+    def decompress(self, value):
+        """zlib을 사용하여 base64로 저장된 데이터를 압축 해제"""
+        try:
+            return zlib.decompress(value).decode('utf-8')
+        except Exception:
+            return value
+```
+
+<br/>
+
+# 남은과제
+향후 PostgreSQL 을 활용하는 프로젝트에서는 보다 다양한 설정이 가능하다고 합니다. 이 내용은 향후에 알아보겠습니다.
 | 방법                        | 장점  | 단점  |
 |----------------------------|------|------|
 | `BinaryField` + zlib       | 압축률이 좋고, 바이너리 데이터 저장 가능 | 직접 압축 및 해제 메서드를 호출해야 함 |
 | `TextField` + Custom Field | 자동으로 압축 및 해제 | 저장 공간은 줄지만, 조회 성능이 다소 떨어질 수 있음 |
 | PostgreSQL `BYTEA` 필드     | 대용량 데이터 저장에 적합 | PostgreSQL 전용 |
 
-## 1 **BinaryField** 를 활용한 압축
-`zlib`을 활용하여 데이터를 압축하여 저장하고, 불러올 때 압축을 해제하는 방법입니다. 다음은 `models.py` 에서 정의하는 내용 입니다.
-```python
-import zlib
-from django.db import models
-
-class CompressedModel(models.Model):
-    compressed_data = models.BinaryField()
-
-    def set_data(self, data: str):
-        """ 문자열 데이터를 zlib을 이용해 압축 후 저장 """
-        compressed = zlib.compress(data.encode('utf-8'))
-        self.compressed_data = compressed
-
-    def get_data(self) -> str:
-        """ 압축된 데이터를 복원하여 반환 """
-        return zlib.decompress(self.compressed_data).decode('utf-8')
-```
-
-이렇게 정의한 모델을 활용하는 내용 입니다.
-```python
-instance = CompressedModel()
-instance.set_data("압축할 데이터입니다.")
-instance.save()
-
-retrieved_instance = CompressedModel.objects.get(id=instance.id)
-print(retrieved_instance.get_data())  # "압축할 데이터입니다."
-```
-
-## 2 **Custom Field** 를 활용한 자동 압축 및 해제
-Django의 `Field`를 상속받아 `TextField`에 대해 자동으로 압축 및 해제를 수행하는 방법입니다. 다음의 내용은 `models.py` 에서 활용을 위한 `CustomField`를 정의하는 내용 입니다.
-```python
-import zlib
-from django.db import models
-
-class CompressedTextField(models.TextField):
-    def from_db_value(self, value, expression, connection):
-        """DB에서 불러올 때 압축 해제"""
-        if value is None:
-            return value
-        return zlib.decompress(value).decode('utf-8')
-
-    def get_prep_value(self, value):
-        """DB에 저장하기 전에 압축"""
-        if value is None:
-            return value
-        return zlib.compress(value.encode('utf-8'))
-
-    def to_python(self, value):
-        """모델 인스턴스에서 사용할 때 변환"""
-        if isinstance(value, bytes):
-            return zlib.decompress(value).decode('utf-8')
-        return value
-```
-
-`models.py` 에서 모델을 정의하는 내용 입니다.
-```python
-class CompressedModel(models.Model):
-    compressed_text = CompressedTextField()
-```
-
-활용하는 예시는 다음과 같습니다.
-```python
-instance = CompressedModel(compressed_text="압축된 문자열 저장 테스트")
-instance.save()
-
-retrieved_instance = CompressedModel.objects.get(id=instance.id)
-print(retrieved_instance.compressed_text)  # "압축된 문자열 저장 테스트"
-```
-
-## 3 **PostgreSQL `BYTEA` 필드** 활용
-PostgreSQL을 사용한다면 `BinaryField` 또는 `BYTEA` 필드를 직접 활용하여 압축된 데이터를 저장할 수도 있습니다.
-```python
-class CompressedBinaryModel(models.Model):
-    compressed_data = models.BinaryField()
-
-    def set_data(self, data: str):
-        self.compressed_data = zlib.compress(data.encode('utf-8'))
-
-    def get_data(self) -> str:
-        return zlib.decompress(self.compressed_data).decode('utf-8')
-```
-
-이 방법은 **큰 데이터를 압축할 때 유용**하며, PostgreSQL의 `BYTEA` 필드와 함께 활용할 수 있습니다.
-
-
-# Float -> Integer
-
-https://www.geeksforgeeks.org/binaryfield-django-models/
-
-https://velog.io/@qlgks1/Django-Model-%ED%95%84%EB%93%9Cfiled-%EB%AA%A8%EC%9D%8C%EC%A7%91
-
-```bash
-# GEMINA 에서 질문내용
-Django Project 에서 field 단위로 save, load 메서드를 사용자가 zlib 압축 알고리즘을 적용하는 내용을 예제코드와 함께 보여줘
-```
-
 
 <br/>
 
 # 참고사이트
-- [MySQL - InnoDB 페이지 압축](https://myinfrabox.tistory.com/58)
-- [InnoDB Page Compression](https://mariadb.com/kb/en/innodb-page-compression/)
-- [InnoDB File Format](https://mariadb.com/kb/en/innodb-file-format/)
-- [How to change Innodb fileformat to Barracuda](https://mariadb.com/kb/en/how-to-change-innodb-fileformat-to-barracuda/)
-- [Mysql, MariaDB 환경설정 파일 my.cnf](https://docs.3rdeyesys.com/docs/database/mysql-mariadb/configure/config-file-my-cnf-position/)
-- [MariaDB/MySQL InnoDB 테이블 압축](https://estenpark.tistory.com/377)
+- [Django Model - Field API 한글해설](https://brunch.co.kr/@ddangdol/11)
