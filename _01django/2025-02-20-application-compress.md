@@ -121,6 +121,32 @@ class CompressedBinaryField(models.BinaryField):
             return value
 ```
 
+# Round Up Float
+실수 데이터를 정부 필드로 변환저장 및 활용하는 예시는 다음과 같습니다.
+```python
+class FloatRoundUpField(models.IntegerField):
+
+    round_tens = 1000 # 반올림 숫자자리
+
+    def get_prep_value(self, value):
+        r"""저장할 때, 실수를 정수로 변환"""
+        if value is None:
+            return value
+
+        float_roundup_int = value * self.round_tens
+        return int(float_roundup_int)
+
+
+    def from_db_value(self, value, expression, connection):
+        r"""DB에서 호출할 때, 자릿수 복귀"""
+        if value is None:
+            return value
+
+        float_number = value / self.round_tens
+        return float_number
+```
+
+
 <br/>
 
 # 남은과제
