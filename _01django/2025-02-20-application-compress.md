@@ -52,7 +52,7 @@ decompressed_data, type(compressed_data)
 ```
 
 ## Django Field API reference
-`Django` 필드별 내부에 사용자 정의 함수를 추가할 수 있습니다. <span style="color:orange">**Django Models Field**</span> 는 데이터베이스 테이블 열을 정의하는 **추상 클래스** 입니다. **Django** 는 Field Method 를 활용하여 데이터베이스 테이블을 생성하고([`db_type()`](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.Field.db_type)), 파이썬 유형을 데이터베이스에 매핑하며([`get_prep_value()`](Django Field API reference)), 그 반대로도 ([`from_db_value()`](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.Field.from_db_value)) 작동하고 있습니다. [출처 : Django Field API reference](https://docs.djangoproject.com/en/5.1/ref/models/fields/#field-api-reference)
+`Django` 필드별 내부에 사용자 정의 함수를 추가할 수 있습니다. <span style="color:orange">**Django Models Field**</span> 는 데이터베이스 테이블 열을 정의하는 **추상 클래스** 입니다. **Django** 는 Field Method 를 활용하여 데이터베이스 테이블을 생성하고([db_type()](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.Field.db_type)), 파이썬 유형을 데이터베이스에 매핑하며([get_prep_value()](Django Field API reference)), 그 반대로도 ([from_db_value()](https://docs.djangoproject.com/en/5.1/ref/models/fields/#django.db.models.Field.from_db_value)) 작동하고 있습니다. [출처 : Django Field API reference](https://docs.djangoproject.com/en/5.1/ref/models/fields/#field-api-reference)
 
 다음의 예제는 문자열로 압축을 하는 내용 입니다. Django 에서 `models.TextField` 필드를 상속하여 `base64` 와 `zlib` 를 활용하여 저장시 압축을 하고, 사용시 압축 해제를 하는 내용 입니다.
 ```python
@@ -122,7 +122,7 @@ class CompressedBinaryField(models.BinaryField):
 ```
 
 # Round Up Float
-실수 데이터를 정부 필드로 변환저장 및 활용하는 예시는 다음과 같습니다.
+실수 데이터를 정수 필드로 변환저장 및 활용하는 예시는 다음과 같습니다.
 ```python
 class FloatRoundUpField(models.IntegerField):
 
@@ -151,6 +151,7 @@ class FloatRoundUpField(models.IntegerField):
 
 # 남은과제
 향후 PostgreSQL 을 활용하는 프로젝트에서는 보다 다양한 설정이 가능하다고 합니다. 이 내용은 향후에 알아보겠습니다.
+
 | 방법                        | 장점  | 단점  |
 |----------------------------|------|------|
 | `BinaryField` + zlib       | 압축률이 좋고, 바이너리 데이터 저장 가능 | 직접 압축 및 해제 메서드를 호출해야 함 |
