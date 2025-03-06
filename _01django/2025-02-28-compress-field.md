@@ -39,6 +39,9 @@ Out[10]: <QuerySet [<NewsListTextCompressed: 한동훈 "'김 여사 라인' 없�
 
 `Django 5.1.6` 과 `MariaDB 10.6.12` 환경에서도 위와 같이 정상적으로 동작하는 것을 확인 하였습니다. 설치 및 프로젝트에 적용 등 관련된 세부 내용은 [PyPi - django-mysql-compressed-fields](https://pypi.org/project/django-mysql-compressed-fields/) 를 참고하시면 됩니다.
 
+
+참고로 이와같은 `zlib` 알고리즘을 활용한 압축은 `MySQL, MariaDB` 를 활용할 때에 더 효과적이고, `PostgreSQL` 에서는 상대적으로 용량을 더 많이 필요로 하는 것으로 알려지고 있습니다. [Compressed model field for Django - mjnaderi](https://gist.github.com/mjnaderi/7b86a2863eb15f9266729d9ffa68006a)
+
 <br/>
 
 # 참고사이트
