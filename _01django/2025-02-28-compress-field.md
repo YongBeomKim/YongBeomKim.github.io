@@ -1,0 +1,45 @@
+---
+layout: blog
+title: (MySQL) django-mysql-compressed-fields
+tags:
+- django
+---
+
+앞에서는 사용자 `Django Model Class` 를 만들어서 압축기능을 활용하는 내용에 대하여 정리해 보았습니다. 이러한 경우에는 DB 에 압축이 된 상태로 저장되어 있어서 `Django ORM` 기능을 일정부분 포기하게 됩니다. 이번에 발견한 [django-mysql-compressed-fields](https://pypi.org/project/django-mysql-compressed-fields/) 를 활용한 결과 압축성능도 좋고, 검색기능도 활용 가능하다는 것을 확인할 수 있었습니다.
+
+```sql
+-- 압축성능의 비교
+-- 앞의 `zlib Binary` 와 비슷한 압축률
+ SELECT 
+     table_schema AS `Database`, 
+     table_name AS `Table`, 
+     ROUND(data_length/(1024*1024),2) AS `Size(MB)`
+ FROM     information_schema.TABLES
+ WHERE    table_schema = 'compress' -- 데이터베이스 이름
+ ORDER BY data_length + index_length DESC;
++------------------------------+----------+
+| Table                        | Size(MB) |
++------------------------------+----------+
+| app_newslist                 | 574.00   |
+| app_newslisttextcompressed   | 287.80   |
+| app_newslistbinarycompressed | 286.80   |
+| django_admin_log             | 0.02     |
+| django_migrations            | 0.02     |
++------------------------------+----------+
+```
+
+```python
+# 검색 Query 활성화 비교
+In [9]: NewsListBinaryCompressed.objects.filter(summary__contains='한동훈')
+Out[9]: <QuerySet []>
+
+In [10]: NewsListTextCompressed.objects.filter(summary__contains='한동훈')[:2]
+Out[10]: <QuerySet [<NewsListTextCompressed: 한동훈 "'김 여사 라인' 없으면 없다고, 아니면 없애겠다고 해야" ...>, <NewsListTextCompressed: 재보궐 D-3, 한동훈·이재명 부산 금정 ...>]>
+```
+
+`Django 5.1.6` 과 `MariaDB 10.6.12` 환경에서도 위와 같이 정상적으로 동작하는 것을 확인 하였습니다. 설치 및 프로젝트에 적용 등 관련된 세부 내용은 [PyPi - django-mysql-compressed-fields](https://pypi.org/project/django-mysql-compressed-fields/) 를 참고하시면 됩니다.
+
+<br/>
+
+# 참고사이트
+- [django-mysql-compressed-fields 1.2.0 - PYPI](https://pypi.org/project/django-mysql-compressed-fields/)
