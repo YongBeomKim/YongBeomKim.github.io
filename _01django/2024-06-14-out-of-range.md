@@ -2,7 +2,7 @@
 layout: blog
 title: MySQL (Out of range value for column)
 tags:
-- django
+- mysql
 ---
 
 Django 의 Integer 필드에 입력할 때 다음과 같은 오류를 출력하였습니다. 오류의 원인은 컬럼의 `data Type` 이 불일치 해서 발생한 문제였습니다.

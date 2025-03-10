@@ -2,7 +2,7 @@
 layout: blog
 title: (MariaDB) InnoDB 02 - Page Compression
 tags:
-- django
+- mysql
 ---
 
 [(MariaDB) InnoDB 01 - Row Format]() 에 이어서 보다 향상된 압축관리 방법인 Page Compression 에 대해서 작업을 진행해 보도록 하겠습니다.

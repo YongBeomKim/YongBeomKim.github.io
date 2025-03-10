@@ -2,7 +2,7 @@
 layout: blog
 title: (django) - ORM 문법정리
 tags:
-- django
+- orm
 ---
 
 Django 에서 ORM 문법을 활용하여 데이터를 호출하는 때에 초보자가 혼동하는 부분이 `.first()` 와 `.last()` 입니다. 데이터 베이스에 가장 최근에 저장된 내용이 `.first()` 이고, 저장한지 오래된 자료가 `.last()` 메서드를 활용하여 호출 하면 됩니다.
