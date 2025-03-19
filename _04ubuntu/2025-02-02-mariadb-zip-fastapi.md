@@ -2,7 +2,7 @@
 layout: blog
 title: Compress MariaDB tables in FastAPI
 tags:
-- sql
+- mysql
 ---
 
 

@@ -2,7 +2,7 @@
 layout: blog
 title: MariaDB from 10.6 to 11.4
 tags:
-- sql
+- mysql
 ---
 
 Ubuntu 22.04 에서 MariaDB 를 일반적인 설치방법으로 진행하면 2025년 2월 현재까지도 `MariaDB 10.6.12`버젼이 설치 됩니다. [MraiaDB Currently maintained long-term releases](https://mariadb.org/about/#maintenance-policy ) 표를 보면 `10.5, 10.6, 10.11, 11.4` 까지 LTS 로 지정이 되어 있고 올해에는 `11.8` 버젼이 새로운 LTS 버젼으로 지정될 예정 입니다.

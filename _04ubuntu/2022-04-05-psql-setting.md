@@ -2,7 +2,7 @@
 layout: blog
 title: (PostgreSQL) 초기설정
 tags:
-- sql
+- psql
 ---
 
 POSTGRESQL DataBase 의 설치 및 기본 Setting 및 명령어 들을 정리해 보겠습니다.

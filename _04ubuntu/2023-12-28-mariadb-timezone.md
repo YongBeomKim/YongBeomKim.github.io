@@ -2,7 +2,7 @@
 layout: blog
 title: (MySQL) MariaDB & Django TimeZone 
 tags:
-- sql
+- mysql
 - django
 ---
 

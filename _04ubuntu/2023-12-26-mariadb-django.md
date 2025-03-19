@@ -2,7 +2,7 @@
 layout: blog
 title: (MySQL) MariaDB with Django - Size Check
 tags:
-- sql
+- mysql
 ---
 
 앞선 과정을 모두 마쳤으면 `MariaDB` 에서 정상적인 작업들이 가능할 것입니다. 이제부터 `Django` 와 연결과 관련한 내용들을 정리해 보겠습니다.
