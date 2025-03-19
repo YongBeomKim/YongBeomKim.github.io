@@ -232,7 +232,7 @@ $ sudo umount ./exthdd                   # 폴더연결 드라이브 언마운�
 
 ```
 $ sudo apt-get install hdparm   # 슬립모드 구성
-$ sudo nano /etc/hdparm.conf      # 제일 아래줄에 추가한다.
+$ sudo nano /etc/hdparm.conf    # 제일 아래줄에 추가한다.
   /dev/sda1 {                   # /dev/sda1 은 외장 HDD 경로명
     spindown_time = 120         # 120(10초) HDD가 동작않으면 대기진입
 }

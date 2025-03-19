@@ -1,4 +1,5 @@
 # Odroid H3 "DEL" key while booting
+# 2025/03 Update
 # https://wiki.odroid.com/odroid-h2/hardware/h2_bios_update
 
 TITLE="\n\n >>> Mirror 사이트 변경 (Kakao) and Locale Setting"
@@ -26,6 +27,7 @@ LINK2="https://www.realtek.com/en/component/zoo/category/network-interface-contr
 # lsmod | grep r8
 echo ${TITLE}"\n"${LINK1}"\n"${LINK2}
 sudo apt install build-essential
+wget https://github.com/YongBeomKim/YongBeomKim.github.io/blob/master/assets/download/r8125-9.012.03.tar.bz2
 tar -xf r8125-9.012.03.tar.bz2
 cd r8125-9.012.03
 sudo ./autorun.sh
@@ -69,6 +71,49 @@ echo 'LC_COLLATE="ko_KR.UTF-8"' | sudo tee -a /etc/environment
 sudo localedef -f EUC-KR -ci ko_KR /usr/lib/locale/ko_KR.EUC-KR 
 sudo localedef -f UTF-8 -ci ko_KR /usr/lib/locale/ko_KR.UTF-8
 sudo dpkg-reconfigure locales
+
+
+TITLE="\n\n >>> Python 3.12"
+LINK="https://www.python.org/downloads/"
+echo ${TITLE}"\n ::"${LINK}
+
+# 사용자가 특정한 버젼의 파이썬을 설치 합니다.
+VERSION=3.12.9
+
+# `zlib` 알고리즘 및 기타 의존성 모듈을 설치합니다.
+sudo apt install zlib1g-dev -y
+sudo apt install libmariadb-dev -y  # MariaDB
+sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev pkg-config make -y
+sudo apt install python3-pip -y
+
+# 파이썬 특정 버젼을 설치 진행합니다
+wget https://www.python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz
+tar -xzvf Python-${VERSION}.tgz 
+cd Python-${VERSION}/
+./configure --enable-optimizations
+sudo make altinstall
+sudo apt install python3.12-dev libpq-dev -y
+sudo apt install python3.12-venv -y
+sudo apt install python3.12-lib2to3 -y
+sudo apt install python3.12-gdbm -y
+sudo apt install python3.12-tk -y
+
+
+TITLE="\n\n >>> MariaDB 설치하기"
+LINK="https://linuxips.com/how-to-install-zsh-on-ubuntu"
+VERSION="10.6.18"
+sudo apt install software-properties-common dirmngr curl ca-certificates apt-transport-https
+curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup
+sudo bash -s -- --mariadb-server-version="mariadb-${VERSION}"
+sudo apt update && sudo apt upgrade
+sudo apt-get install wget software-properties-common dirmngr ca-certificates apt-transport-https -y
+sudo apt install mariadb-server mariadb-client
+sudo pip install mycli
+
+
+# Port Statement filtering
+sudo netstat -tulpen | grep tor
+sudo lsof -i -P -n | grep tor                                   
 
 
 TITLE="\n\n >>> Oh My Zshell"
