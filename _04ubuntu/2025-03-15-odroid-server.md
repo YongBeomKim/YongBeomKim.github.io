@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (Odroid H3) 서버 재설치 하기
+title: (Odroid H3) 서버 설치하기
 tags:
 - Linux
 ---
@@ -13,6 +13,31 @@ sudo chmod +x python.sh
 nohup sudo ./python.sh &!
 tail -10 nohup.out
 ```
+
+- [Nginx](#nginx)
+  - [Introdiction](#introdiction)
+  - [Install](#install)
+- [Python](#python)
+  - [Install](#install-1)
+- [MariaDB](#mariadb)
+  - [Install](#install-2)
+  - [Setting](#setting)
+  - [Root 사용자 설정](#root-사용자-설정)
+  - [사용자 추가](#사용자-추가)
+  - [데이터베이스와 사용자 연결](#데이터베이스와-사용자-연결)
+  - [외부에서 연결하기](#외부에서-연결하기)
+- [참고사이트](#참고사이트)
+- [FTP](#ftp)
+  - [Install](#install-3)
+  - [Add User](#add-user)
+- [transmission-daemon](#transmission-daemon)
+  - [Install by Apt](#install-by-apt)
+  - [Remove](#remove)
+  - [Install by Snap](#install-by-snap)
+      - [transmission-daemon 설치](#transmission-daemon-설치)
+- [Docker](#docker)
+  - [Install Docker](#install-docker)
+  - [CLI run](#cli-run)
 
 <br/>
 
@@ -114,6 +139,80 @@ innodb_compression_algorithm=zlib
 $ sudo netstat -tulpn | grep db
 tcp   0.0.0.0:3306   0.0.0.0:*  29179/mariadbd      
 tcp6  :::3306        :::*       29179/mariadbd 
+```
+
+## Root 사용자 설정
+`Root` 사용자는 `auth_socket` 설정값이 활성화 되어 있어서 `sudo` 를 사용하면 별도의 Password 없이도 MySQL/ MariaDB 에 접속 가능합니다. 방법은 다음과 같습니다.
+```bash
+$ sudo mycli
+  Connecting to socket /var/run/mysqld/mysqld.sock, owned by user mysql 
+  MariaDB 10.6.18
+  mycli 1.29.2
+  MariaDB root@(none):(none)>
+```
+
+만약 외부에서도 `root` 사용자로 접속 가능하기 위해서는 사용자 관련 `plug in` 설정값을 `mysql_native_password` 로 변경 하야아 합니다. 그렇지 않으면 다음과 같은 오류를 출력합니다. 변경과 관련 내용은 [Ubuntu 환경일 때](https://oziguyo.tistory.com/36) [Docker 환경일 때](https://kdh0518.tistory.com/66) 를 확인 합니다.
+```bash
+$ mysql -u root -p
+  Enter password: 
+  ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+```
+
+## 사용자 추가
+`root` 사용자로 접속한 뒤 `mysql` <span style="color:orange">**데이터베이스**</span> 에서 외부에서 접속 가능한 사용자를 입력하는 예시는 다음과 같습니다.
+```sql
+use mysql;
+SELECT host,user FROM `user`;
++-----------+-------------+
+| Host      | User        |
++-----------+-------------+
+| localhost | mariadb.sys |
+| localhost | mysql       |
+| localhost | root        |
++-----------+-------------+
+
+-- @'localhost' : 내부만 접속
+-- @'%'         : 외부접속 가능
+CREATE USER 'username'@'%' IDENTIFIED BY 'password!2$';
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password!2$';
+FLUSH PRIVILEGES;
+
+SELECT host,user FROM `user`;
++-----------+-------------+
+| Host      | User        |
++-----------+-------------+
+| %         | username    |
+| localhost | username    |
+| localhost | mariadb.sys |
+| localhost | mysql       |
+| localhost | root        |
++-----------+-------------+
+```
+
+## 데이터베이스와 사용자 연결
+```sql
+CREATE DATABASE mydb;
+ALTER DATABASE mydb CHARACTER SET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+GRANT ALL PRIVILEGES ON mydb.* to 'username'@'%';
+SHOW GRANTS FOR 'username'@'%';
++--------------------------------------------------------------------+
+| Grants for username@%                                              |
++--------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `username`@`%` IDENTIFIED BY PASSWORD '*123' |
+| GRANT ALL PRIVILEGES ON `mydb`.* TO `momukji`@`localhost`          |
++--------------------------------------------------------------------+
+
+FLUSH PRIVILEGES;
+```
+
+## 외부에서 연결하기
+```bash
+mycli mysql://username@sitename.com:3306/mydb
+  Password: 
+  MariaDB 10.6.18
+  mycli 1.27.0
+
+  MariaDB username@sitename.com:mydb>
 ```
 
 <br/>
