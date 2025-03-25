@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: `select_related` 와 `prefetch_related`
+title: select_related 와 prefetch_related
 tags:
 - orm
 ---
