@@ -22,7 +22,7 @@ featured_posts:
 
 collections:
   00ml:
-    title: Machine Learning (ML)
+    title: Machine Learning
     default_open: false
     output: true
   01django:
@@ -30,7 +30,7 @@ collections:
     default_open: false
     output: true
   02js:
-    title: FrontEnd (Ts)
+    title: FrontEnd (React,Ts)
     default_open: false
     output: true
   03python:
@@ -51,6 +51,10 @@ collections:
     output: true
   07posts:
     title: 기타
+    default_open: false
+    output: true
+  08errors:
+    title: 오답노트
     default_open: false
     output: true
 
