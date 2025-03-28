@@ -26,11 +26,19 @@ tail -10 nohup.out
   - [사용자 추가](#사용자-추가)
   - [데이터베이스와 사용자 연결](#데이터베이스와-사용자-연결)
   - [외부에서 연결하기](#외부에서-연결하기)
+- [transmission-daemon](#transmission-daemon)
+  - [필수 패키지 설치](#필수-패키지-설치)
+  - [Transmission 소스 코드 다운로드](#transmission-소스-코드-다운로드)
+  - [빌드 디렉토리 생성 및 이동](#빌드-디렉토리-생성-및-이동)
+  - [CMake를 사용하여 빌드 구성](#cmake를-사용하여-빌드-구성)
+  - [컴파일 및 설치](#컴파일-및-설치)
+  - [시스템 서비스 파일 생성](#시스템-서비스-파일-생성)
+  - [웹 인터페이스 활성화](#웹-인터페이스-활성화)
 - [참고사이트](#참고사이트)
 - [FTP](#ftp)
   - [Install](#install-3)
   - [Add User](#add-user)
-- [transmission-daemon](#transmission-daemon)
+- [transmission-daemon](#transmission-daemon-1)
   - [Install by Apt](#install-by-apt)
   - [Remove](#remove)
   - [Install by Snap](#install-by-snap)
@@ -217,11 +225,90 @@ mycli mysql://username@sitename.com:3306/mydb
 
 <br/>
 
+# transmission-daemon
+Ubuntu 22.04에서 `transmission-daemon` 4.0.6 버전을 설치하려면, 소스 코드를 컴파일하는 방법이 필요합니다. 이는 최신 기능을 활용할 수 있지만, 약간의 추가 작업이 필요합니다. 다음은 단계별 가이드입니다.
+
+## 필수 패키지 설치
+컴파일에 필요한 패키지를 먼저 설치합니다.
+```bash
+sudo apt update
+sudo apt install -y build-essential automake autoconf cmake libtool pkg-config intltool \
+libcurl4-openssl-dev libglib2.0-dev libevent-dev libminiupnpc-dev libssl-dev libsystemd-dev
+```
+
+만약 Transmission의 데스크탑 GUI를 사용하려면 추가로 GTK 관련 패키지를 설치해야 합니다:
+```bash
+sudo apt install -y libgtk-3-dev libappindicator3-dev
+```
+
+## Transmission 소스 코드 다운로드
+Transmission의 공식 GitHub 저장소에서 소스 코드를 클론합니다. 이 명령은 서브모듈까지 포함하여 저장소를 클론합니다.
+```bash
+git clone --recurse-submodules https://github.com/transmission/transmission Transmission
+```
+
+## 빌드 디렉토리 생성 및 이동
+```bash
+cd Transmission
+mkdir build
+cd build
+```
+
+## CMake를 사용하여 빌드 구성
+빌드 구성을 생성합니다. 여기서 `-DENABLE_CLI=ON` 옵션은 CLI 클라이언트를 활성화합니다. 데스크탑 GUI를 사용하려면 추가로 `-DENABLE_GTK=ON` 또는 `-DENABLE_QT=ON` 옵션을 추가하세요.
+```bash
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -DENABLE_CLI=ON ..
+```
+
+## 컴파일 및 설치
+이 과정은 시스템 성능에 따라 시간이 소요될 수 있습니다.
+```bash
+make
+sudo make install
+```
+
+## 시스템 서비스 파일 생성
+`transmission`이라는 시스템 사용자를 생성합니다.
+```bash
+sudo adduser --system --group transmission
+```
+
+그런 다음, 서비스 파일을 복사하고 활성화합니다.
+```bash
+sudo cp ~/Transmission/daemon/transmission-daemon.service /lib/systemd/system/
+sudo systemctl enable transmission-daemon.service
+sudo systemctl start transmission-daemon.service
+```
+
+## 웹 인터페이스 활성화
+웹 인터페이스를 사용하려면 설정 파일을 수정해야 합니다. 먼저 서비스를 중지합니다. 그런 다음 설정 파일을 편집합니다.
+```bash
+sudo systemctl stop transmission-daemon.service
+sudo nano /home/transmission/.config/transmission-daemon/settings.json
+```
+
+파일에서 `"rpc-enabled"`를 `true`로 설정하고, `"rpc-whitelist"`에 접근을 허용할 IP 주소를 추가하거나, 전체 접근을 허용하려면 `"rpc-whitelist-enabled"`를 `false`로 설정합니다.
+```json
+"rpc-enabled": true,
+"rpc-whitelist": "127.0.0.1,192.168.*.*",
+"rpc-whitelist-enabled": false,
+```
+
+설정을 저장한 후, 서비스를 다시 시작합니다:
+```bash
+sudo systemctl start transmission-daemon.service
+```
+
+이제 브라우저에서 `http://<서버_IP>:9091`로 접속하여 Transmission 웹 인터페이스를 사용할 수 있습니다. **참고로** 이 과정은 `Transmission 4.0.6` 버전을 설치하기 위한 일반적인 절차이며, 시스템 환경에 따라 일부 단계가 다를 수 있습니다. 자세한 내용은 [Pi My Life Up의 가이드](https://pimylifeup.com/ubuntu-transmission/)를 참고하시기 바랍니다. 
+
+<br/>
+
 # 참고사이트
 - [NAS 우분투 서버 22.04 트랜스미션 서버 설치](https://theleast.tistory.com/62)
 - [Transmission 4.0 on Ubuntu 22.04](https://ogdenslake.ca/2023/03/20/transmission-4-0-on-ubuntu-22-04/)
 - [MariaDB InnoDB - Row Format](https://yongbeomkim.github.io/01django/2025-02-08-innodb-row.html)
 - [리눅스 - 우분투 22.04 nginx stable 업그레이드](https://magnuxx.tistory.com/entry/%EB%A6%AC%EB%88%85%EC%8A%A4-%EC%9A%B0%EB%B6%84%ED%88%AC-2204-nginx-stable-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C)
+- [transmission (torrent) 설정법](https://soopsokbaram.tistory.com/37)
 
 <br/>
 
@@ -285,7 +372,7 @@ sudo snap install transmission
     transmission 4.0.6 from Sameer Sharma (sameersharma2006) installed
 ```
 
-1. torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
+torrent 설치 [link](http://vvchunvv.tistory.com/37) 및 환경설정
 
 #### transmission-daemon 설치
 - [폴더원한 설정](https://www.raspberrypi.org/forums/viewtopic.php?f=91&t=13650)
@@ -372,4 +459,3 @@ $ docker ps -a --filter ancestor=36d17f72f4f3
 $ docker run -it 1f48792ccb92
 ```
 
-[transmission (torrent) 설정법](https://soopsokbaram.tistory.com/37)
