@@ -39,6 +39,10 @@ guest/guest 로 기본접속이 가능합니다. 대신 보안의 이유로 `loc
 # 외부접속 계정생성 방법은 다음과 같습니다.
 $ sudo rabbitmqctl add_user <사용자_이름> <비밀번호>
 $ sudo rabbitmqctl set_user_tags <사용자_이름> administrator
+
+$ sudo rabbitmqctl add_user your_username your_password
+$ sudo rabbitmqctl set_user_tags your_username administrator
+$ sudo rabbitmqctl set_permissions -p / your_username ".*" ".*" ".*"
 ```
 
 Celery 에 연결하는 방식은 다음과 같습니다.
