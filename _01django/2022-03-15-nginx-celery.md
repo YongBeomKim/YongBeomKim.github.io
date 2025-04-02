@@ -2,6 +2,7 @@
 layout: blog
 title: Celery & Flower with Nginx
 tags:
+- celery
 - flower
 ---
 

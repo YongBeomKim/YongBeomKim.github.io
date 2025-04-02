@@ -1,8 +1,8 @@
 ---
 layout: blog
-title: Celer (daemonic processes are not allowed to have children)
+title: Celery (daemonic processes are not allowed to have children)
 tags:
-- multiprocessing
+- celery
 ---
 
 Django 서비스에서 정해진 시간마다 반복하는 작업이 있을 때 `Celery` 를 활용합니다. Celery 에 포함된 Task 중 에서 `multiprocessing` 을 포함하는 경우, 다음과 같은 오류를 출력하였습니다.
@@ -25,13 +25,11 @@ AssertionError: daemonic processes are not allowed to have children
 <br/>
 
 ## 원인분석
-
 `AssertionError: daemonic processes are not allowed to have children` 오류는 `assert not _current_process._config.get(’daemon’)` 조건을 만족시키지 못해서 발생 하는 것입니다. 즉 Celery 의 Task 데몬 프로세스에서 자식 프로세스를 만들 수 없는데 현재 실행중인 Task 의 process 가 데몬 프로세스이므로 새로운 프로세스를 만드는 작업을 할 수 없어서 발생한 오류 입니다. [출처 - AssertionError: daemonic processes are not allowed to have children 의 해결](https://leo-bb.tistory.com/87)
 
 <br/>
 
 ## 해결방법
-
 [Celery Issue - daemonic processes are not allowed to have children #4525](https://github.com/celery/celery/issues/4525#issuecomment-566503932) 에 나온것 처럼 Celery Worker 실행할 때 옵션을 추가하면 해결 되었습니다.
 
 ```bash

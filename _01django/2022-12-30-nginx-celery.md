@@ -2,8 +2,7 @@
 layout: blog
 title: Nginx, Celery, Flower
 tags:
-- django
-- nginx
+- celery
 ---
 
 Django 서비스 배포와 관련한 내용들을 순서대로 모아보는 시간을 갖도록 하겠습니다. 작업의 순서는 1. Nginx 위에 Django 올리기, 2. Celery 동작 확인하기 3. Flower 단계로 진행하겠습니다. Celery 와 관련된 코딩 내용을 앞에 상세하게 서술된 만큼 이번 페이지 에서는 배포를 위한 내용을 중심으로 진행 하겠습니다.
