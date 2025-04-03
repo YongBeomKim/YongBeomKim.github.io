@@ -38,11 +38,15 @@ guest/guest 로 기본접속이 가능합니다. 대신 보안의 이유로 `loc
 # guest/guest 는 localhost 에서만 접속가능
 # 외부접속 계정생성 방법은 다음과 같습니다.
 $ sudo rabbitmqctl add_user <사용자_이름> <비밀번호>
-$ sudo rabbitmqctl set_user_tags <사용자_이름> administrator
+  Adding user <사용자_이름> ...
+  Done. Don`t forget to grant the user permissions to some virtual hosts! 
+  See `rabbitmqctl help set_permissions` to learn more ...
 
-$ sudo rabbitmqctl add_user your_username your_password
-$ sudo rabbitmqctl set_user_tags your_username administrator
-$ sudo rabbitmqctl set_permissions -p / your_username ".*" ".*" ".*"
+$ sudo rabbitmqctl set_user_tags <사용자_이름> administrator
+  Setting tags for user <사용자_이름> to [administrator] ...
+
+$ sudo rabbitmqctl set_permissions -p / <사용자_이름> ".*" ".*" ".*"
+  Setting permissions for user <사용자_이름> in vhost "/" ...
 ```
 
 Celery 에 연결하는 방식은 다음과 같습니다.
