@@ -35,9 +35,8 @@ tail -10 nohup.out
   - [시스템 서비스 파일 생성](#시스템-서비스-파일-생성)
   - [웹 인터페이스 활성화](#웹-인터페이스-활성화)
 - [참고사이트](#참고사이트)
-- [FTP](#ftp)
+- [SFTP](#sftp)
   - [Install](#install-3)
-  - [Add User](#add-user)
 - [transmission-daemon](#transmission-daemon-1)
   - [Install by Apt](#install-by-apt)
   - [Remove](#remove)
@@ -312,40 +311,32 @@ sudo systemctl start transmission-daemon.service
 
 <br/>
 
-# FTP
+# SFTP
+**SSH**는 리눅스 서버를 **원격으로 조작**하기 위한 보안 통신 수단입니다. **SFTP**는 SSH 위에서 동작하는 **파일 전송 기능만 따로 떼어낸** 프로토콜입니다. 이처럼 프로토콜이 동일하고 **동일한 포트(22번)** 를 사용해서, **SSH가 설치되어 있으면 SFTP는 자동으로 지원**됩니다.
+
+| 항목              | SSH (Secure Shell)                             | SFTP (SSH File Transfer Protocol)                    |
+|-------------------|------------------------------------------------|-------------------------------------------------------|
+| **기본 개념**     | 원격 시스템에 보안 연결로 접속하는 프로토콜     | SSH 위에서 동작하는 파일 전송 프로토콜               |
+| **목적**          | 원격 로그인 및 명령어 실행                       | 원격 서버와 파일 전송 (업로드/다운로드)              |
+| **기반 프로토콜** | 자체 프로토콜 (TCP 22번 포트 사용)              | SSH 프로토콜 위에서 동작함 (포트도 22번 사용)        |
+| **기능**          | - 원격 명령 실행<br>- 터미널 접속<br>- 포트 포워딩 등 | - 파일 업로드/다운로드<br>- 디렉토리 생성/삭제 등     |
+| **보안**          | 암호화된 세션 제공 (비밀번호 또는 키 인증)       | SSH의 보안 기능을 그대로 사용                        |
+| **접속 방법**     | `ssh user@host`                                 | `sftp user@host`                                     |
+| **CLI 명령어**    | 예: `ls`, `cd`, `mkdir`, `top` 등 터미널 명령어  | 예: `put`, `get`, `ls`, `cd`, `mkdir` 등 SFTP 명령어  |
+| **주 용도**       | 서버 관리, 원격 제어                             | 파일 전송 (보안 FTP 대체용)                          |
+
 ## Install
 ```bash
-$ sudo apt-get install vsftpd  # ftp 설치하기
-$ sudo nano /etc/vsftpd.conf   # 설정값 추가
-
-    write_enable=YES           # 쓰기값 추가 
-    anon_upload_enable=YES
-    anon_mkdir_write_enable=YES
-
-    chroot_local_user=YES      # 사용자 home 폴더에 묶음
-    chroot_list_enable=YES
-    chroot_list_file=/etc/vsftpd.chroot_list (계정이름 추가)
-
-$ sudo echo  사용자명 > /etc/vsftpd.chroot_list
-$ sudo service vsftpd start    # ftp 재활성화
-
--- 사용자 추가 ---
-$ sudo adduser 사용자명        # 별도 사용자를 추가 (이 계정으로 접속된다)
-$ visudo -f /etc/sudoers       # 사용자 계정을 sudo 연결 
-   # User alias specification
-   사용자명   ALL=(ALL:ALL) ALL    
-   # User privilege specification
-   root  ALL=(ALL:ALL) ALL
-
-$ su - 사용자명                # cf) root 전환은 `$ su -` 
+$ sudo apt update
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
 ```
 
-## Add User
-설치를 하면 `root` 사용자에게 허용된 것을 볼 수 있습니다.
-```bash
-$ sudo lsof -i -P -n | grep vsftpd
-vsftpd 2135 root 3u IPv6  29589  0t0  TCP *:21 (LISTEN)
-```
+| 상황 | 사용할 것 |
+|------|-----------|
+| 서버에서 로그를 확인하거나 명령어를 실행하고 싶다 | **SSH** |
+| 로컬에서 서버로 파일을 올리거나, 서버에서 받아오고 싶다 | **SFTP** |
+
 
 <br/>
 
