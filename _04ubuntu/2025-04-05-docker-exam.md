@@ -1,8 +1,8 @@
 ---
 layout: blog
-title: (Odroid H3) 서버 설치하기
+title: Docker 실습예제 (Nginx, docker-compose & Celery)
 tags:
-- Linux
+- docker
 ---
 
 GPT 질문은 다음과 같습니다 `docker registry는 내부 5000포트로 두고,  Nginx + Let's Encrypt 자동 인증 버전 443 포트에서 HTTPS를 처리한 뒤 registry에 프록시하는 방식 docker-compose.yml 예제로, 인증 갱신 스크립트를 crontab 대신 systemd 타이머로도 구성하고, Basic Auth 추가 버전으로, IP 제한, 도메인 다중 인증, client cert (mutual TLS)까지도 확장한 내용은?`
