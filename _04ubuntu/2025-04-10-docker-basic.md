@@ -53,6 +53,18 @@ nginx: [emerg] host not found in upstream "django:8000"
 in /etc/nginx/conf.d/default.conf:7
 ```
 
-## 컨테이너 연동하기
+## `NetWork` 컨테이너 연동하기
+```bash
+$ docker network create mynetwork
+$ docker network ls
+ NETWORK ID     NAME        DRIVER    SCOPE
+3061f14cac94   mynetwork   bridge    local
 
+$ docker container run -d -p 8000:8000 --network mynetwork --name django mydjango
+$ docker container run -d -p 80:80 --network mynetwork --name nginx mynginx
+$ docker ps
+CONTAINER ID   IMAGE     STATUS         PORTS      NAMES
+a6a0609d7b57   mynginx   Up 11 minutes  [::]:80    nginx
+177463489c3c   mydjango  Up 13 minutes  [::]:8000  django
+```
 
