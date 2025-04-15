@@ -104,20 +104,23 @@ Docker Compose version v2.5.0
 </figure>
 
 ## 아쉬운 점
-`docker` 하나에 집중을 하다보니, 실전에서 활용하고 있는 `docker compose` 까지 활용하시는데는 부족함이 있습니다.
-이처럼 아쉬운 부분은  [한권으로 배우는 도커 & 쿠버네티스](https://www.hanbit.co.kr/store/books/look.php?p_code=B9392058056) 등 많은 대체제가 있기 때문에 크게 걱정하실 필요는 없습니다. 
+`docker` 하나에 집중을 하다보니 여러개의 서비스를 `Network` 로 묶어서 연결하는 방법까지는 다루고 있지만 실무에서는 여러개를 묶어서 한꺼번에 설정 및 실행이 가능한 `docker compose` 에 대해서는 한 두 페이지 밖에 다루고 있지 않아서, 실제 활용하는데는 부족함이 많았습니다. 
 
-오히려 `docker` 에 대하여 어려워서 도입을 주저하고 있는 분들에게는 `docker` 의 기본기를 빠르게 익히기에는 이만한 도서는 없다고 생각 합니다.
+하지만 이와같은 아쉬운 부분은  [한권으로 배우는 도커 & 쿠버네티스](https://www.hanbit.co.kr/store/books/look.php?p_code=B9392058056) 등 많은 대체제가 있기 때문에 크게 걱정하실 필요는 없습니다. 
 <figure class="align-center">
   <p style="text-align: center">
   <img width="510px" src="{{site.baseurl}}/assets/docker/pic_docker_books_list.jpg">
   </p>
 </figure>
 
+`docker` 에 대하여 다른 책들을 보더라도 많은 분량으로 손대기가 어려워서 주저하고 있는 분들 이라면 `docker` 에 대한 기본기와 주변 개념들에 대하여 빠르게 익히는 데에는 이 책 이외의 대안이 아직은 없기 때문에 초보자 분들에게는 이 책을 적극 추천 합니다.
+
 <br/>
 
 # 마무리
-`docker` 가 어려운 이유가 운영체계를 다룬다는 점 입니다. 수식 및 이미지를 다루는 것과는 다르게 보이지 않는 개념과 대상을 다룬다는 것 때문에 무엇이 바뀌는지 명확하게 알기 어렵다는 점 입니다. 아래의 내용은 이 책을 읽으면서 개인적으로 정리한 내용으로 `docker` 의 `container`에 대한 개념들과 구성에 대하여 머릿속에 그림을 그리며 개념을 정리할 수 있었던 시간이었습니다. 
+`docker` 가 어려운 이유가 운영체계를 다룬다는 점 입니다. 수식 및 이미지를 다루는 것과는 다르게 보이지 않는 개념과 대상을 다룬다는 것 때문에 무엇이 바뀌는지 명확하게 알기가 어렵습니다.
+
+아래의 그림은 이 책을 읽으면서 제가 개인적으로 정리한 내용으로 `docker` 의 `container`에 대한 개념들과 구성에 대하여 머릿속에 그림을 그리며 개념을 정리할 수 있었던 시간이었습니다. 
 <figure class="align-center">
   <p style="text-align: center">
   <img width="510px" src="{{site.baseurl}}/assets/docker/docker_ps.jpg">
@@ -125,8 +128,7 @@ Docker Compose version v2.5.0
   <figcaption>docker 에서 HOST,IMAGE,CONTAINER 개념에 대한 스케치</figcaption>
 </figure>
 
-이 책이 조금 어려운 분들이라면 제가 작성했던 스케치 처럼 막연하게 떠오르는 내용들을 차근차근 그림으로 그려가면서 정리를 해 나아가신다면 많은 도움이 되어줄 것입니다.
-
+이 책을 진행하기에도 어려움이 있는 분들이라면 제가 위의 예시로 작성했던 것처럼, 실제와는 다르더라도 본인의 머릿속에 막연하게 떠오르는 내용들을 차근차근 그림으로 그려가면서 정리작업을 진행 하신다면 많은 도움이 되어줄 것입니다.
 <figure class="align-center">
   <p style="text-align: center">
   <img width="510px" src="{{site.baseurl}}/assets/docker/pic_docker_books.jpg">
