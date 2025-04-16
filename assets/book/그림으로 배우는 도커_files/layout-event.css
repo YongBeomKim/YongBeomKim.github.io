@@ -1,0 +1,60 @@
+﻿@charset "utf-8";
+
+/* --------------------- Event 공통 --------------------- */
+
+/* 공통 - 레이아웃 */
+.event_wrap {position:relative; width:1140px; margin:0 auto;}
+
+
+
+
+
+
+
+
+
+/* 진행중 이벤트 리스트 */
+.event_list_area {clear:both;}
+.event_list_area ul {width:1154px; margin:0 -7px;}
+.event_list_area li.event_list {position:relative; float:left; width:274px; margin:0 7px 60px;}
+.event_list_area li.event_list a {}
+.event_list_area li.event_list a:hover {text-decoration:underline;}
+.event_list_area li.event_list a img {width:274px; height:274px;}
+.event_list_area li.event_list a:hover img {opacity:0.8;}
+.event_list_area li.event_list .li_tit {height:46px; margin:7px 0 0; line-height:20px;}
+.event_list_area li.event_list .date {font-size:12px; color:#777;}
+/* //진행중 이벤트 리스트 */
+
+
+/* 진행중 이벤트 상세*/
+.board_view_area .event_contents {}
+.event_wrap .reply_repl .i_textarea2 {float:left; width:860px; height:60px; padding:10px; border:1px solid #aaa;}
+.event_wrap .reply_event_form {padding:20px 30px;}
+.event_wrap .reply_event_form .i_textarea2 {float:left; width:910px; height:80px; padding:10px; border:1px solid #aaa;}
+.event_wrap .detail_reply_area {margin-bottom:0;}
+/*.event_wrap .btn_area_board {position:relative; overflow:hidden; width:1140px; margin-top:40px; padding:0; border-top:none;}*/
+
+.event_discount {overflow:hidden; position:relative; width:1140px; margin:0 auto; padding:30px 0;}
+.event_discount h3 {padding-bottom:10px; margin-bottom:40px; border-bottom:#ddd 1px solid;}
+.event_discount .sub_book_list_area {}
+
+.sub_book_list .view_box .view_box_block .discount_rate {width:56px; height:56px; position:absolute; left:-9px; top:-258px; background:#222; color:#53e0d1; font-size:28px; font-weight:bold; border-radius:28px; -moz-border-radius:28px; -khtml-border-radius:28px; -webkit-border-radius:28px; line-height:56px; z-index:1;}
+.sub_book_list .view_box .view_box_block .discount_rate sub {font-size:14px;}
+.sub_book_list .view_box .view_box_block:hover .discount_rate { display:none;}
+
+
+/* //진행중 이벤트 상세*/
+
+
+
+/* 지난 이벤트 리스트 */
+.event_wrap .e_past {width:61px; height:61px; position:absolute; right:0; top:213px; background:url(/images/common/icon_e_past.png);}
+.event_wrap .e_past:hover img {opacity:100;}
+
+.event_list_area li.event_list a:hover .e_past img {opacity:100;}
+
+/* //지난 이벤트 리스트 */
+
+
+
+
