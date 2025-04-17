@@ -69,3 +69,12 @@ MariaDB name@0.0.0.0:db_name>
 
 ## 결론
 `Dockerfile` 을 사용하여 개별 패키지의 기본 포트값을 변경하고, 이를 `docker-compose`에서 적용을 하는 과정에서 실수가 발행하여 생긴 문제였습니다. 이는 `Dockerfile`을 개별적으로 만들어서 `Network` 로 테스트를 진행한 뒤 `docker-compose` 로 이식하는 과정에 내용을 제대로 이해하지 못해서 발생한 문제로 이제부터는 가능하면 `docker-compose` 설정값이 안정화 되면 이것을 기초로 작업을 진행하는 것이 더 효과적이겠다는 결과를 확인할 수 있었습니다.
+
+## 참고
+위와 같이 변경한 뒤 아래의 오류가 발행하였습니다. 이번에는 `Access denied for user` 오류로 사용자 정보가 잘못 입력되서 발생한 오류였습니다. 즉 접속은 제대로 되었음을 확인 할 수 있었습니다.
+```bash
+$ ./manage.py makemigrations
+/usr/local/lib/python3.12/site-packages/django/core/management/commands/makemigrations.py:160: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (1045, "Access denied for user 'user_name'@'172.20.0.4' (using password: YES)")
+  warnings.warn(
+No changes detected
+```
