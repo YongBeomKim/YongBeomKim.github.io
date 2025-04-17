@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Docker 실습예제 (Nginx, docker-compose & Celery)
+title: Docker 의 Cache 안전하게 정리하는 방법
 tags:
 - docker
 ---
