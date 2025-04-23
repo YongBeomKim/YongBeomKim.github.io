@@ -1,11 +1,35 @@
+# https://www.youtube.com/watch?v=H6GBwdGiOLM
+# How To Build UI Component Library in React | Learn Shadcn/ui in 20 Minutes
+
+
+
+FOLDER_NAME="$1"
+TITLE="\n\n >>> Checking folder name $1"
+echo ${TITLE}"\n ::"
+# 첫 번째 인자가 비어있으면 종료
+if [ -z "$1" ]; then
+  echo "folder_name : $1 <이름>"
+  exit 1
+fi
+
+
+
 TITLE="\n\n >>> Downloading `.editorconfig` file"
 echo ${TITLE}"\n ::"
+# `.editorconfig` download	
 wget -O .editorconfig https://raw.githubusercontent.com/YongBeomKim/YongBeomKim.github.io/refs/heads/master/assets/download/editorconfig
+
 
 
 TITLE="\n\n >>> react.js, TailwindCSS with Typescript"
 echo ${TITLE}"\n ::"
-yarn create vite frontend --template react-ts && cd frontend
+yarn create vite ${FOLDER_NAME} --template react-ts && cd ${FOLDER_NAME}
+mkdir src/pages
+mkdir src/routes
+mkdir src/styles
+mkdir src/types
+mkdir src/utils
+
 
 # yarn add --dev @types/react @types/react-dom
 yarn add --dev react@18.3.0 react-dom@18.3.0
@@ -19,6 +43,7 @@ yarn add --dev axios react-cookie react-helmet-async
 yarn add --dev postcss autoprefixer styled-components @types/styled-components
 
 
+
 # https://ui.shadcn.com/docs/installation/vite
 TITLE="\n\n >>> shadcn/UI settings in vite.js"
 echo ${TITLE}"\n ::"
@@ -30,7 +55,6 @@ echo ${TITLE}"\n ::"
 # https://ui.shadcn.com/docs/installation/manual
 echo '@import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -150,8 +174,7 @@ echo '@import "tailwindcss";
   body {
     @apply bg-background text-foreground;
   }
-}
-' > ./src/index.css
+}' > ./src/index.css
 
 # Edit `tsconfig.json` file
 echo '{
@@ -220,7 +243,6 @@ export default defineConfig({
   },
 })' > vite.config.ts
 
-
 # TailwindCSS 4 부터 init 기능이 제외됨
 # 따라서 수동으로 설정파일들을 생성
 
@@ -232,21 +254,29 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+    },
   },
-  plugins: [],
-}
-' > tailwind.config.js
+}' > tailwind.config.js
 
-# Create `postcss.config.js` file
-echo 'module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+# # [plugin:vite:css] Failed to load PostCSS config 오류로 비활성화
+# # Create `postcss.config.js` file
+# echo 'module.exports = {
+#   plugins: {
+#     tailwindcss: {},
+#     autoprefixer: {},
+#   },
+# }' > postcss.config.js
 
-' > postcss.config.js
 
 
 # https://ui.shadcn.com/docs/installation/vite
