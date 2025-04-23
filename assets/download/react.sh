@@ -1,3 +1,8 @@
+TITLE="\n\n >>> Downloading `.editorconfig` file"
+echo ${TITLE}"\n ::"
+wget -O .editorconfig https://raw.githubusercontent.com/YongBeomKim/YongBeomKim.github.io/refs/heads/master/assets/download/editorconfig
+
+
 TITLE="\n\n >>> react.js, TailwindCSS with Typescript"
 echo ${TITLE}"\n ::"
 yarn create vite frontend --template react-ts && cd frontend
@@ -214,6 +219,34 @@ export default defineConfig({
     },
   },
 })' > vite.config.ts
+
+
+# TailwindCSS 4 부터 init 기능이 제외됨
+# 따라서 수동으로 설정파일들을 생성
+
+# Create `tailwind.config.js` file
+echo '/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+' > tailwind.config.js
+
+# Create `postcss.config.js` file
+echo 'module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+
+' > postcss.config.js
 
 
 # https://ui.shadcn.com/docs/installation/vite
