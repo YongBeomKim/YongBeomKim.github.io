@@ -1,0 +1,32 @@
+# EditorConfig is awesome: https://EditorConfig.org
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+indent_style = tab
+indent_size = 2
+
+[*.{py,pyc}]
+indent_size = 4
+indent_style = tab
+
+# [*.{html}]
+# indent_size = 2
+
+# [*.{yml}]
+# indent_size = 2
+
+# [*.{js, jsx,json,ts,tsx}]
+# indent_size = 2
+
+# # Settings for JSON files
+# [*.json]
+# indent_style = space
+# indent_size = 2
+
+# [*.{css, scss,sass}]
+# indent_size = 2
+
+# [.babelrc]
+# indent_size = 2
