@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (Docker Compose) 에서 사용자 port 값 변경
+title: Docker Compose 에서 사용자 설정
 tags:
 - docker
 ---
@@ -10,6 +10,36 @@ tags:
 'default': (2002, "Can't connect to server on 'mariadb' (115)") 
 ```
 
+<br/>
+
+# 특정 서비스 제한하기
+기본적으로 `$ docker-compose up` 은 모든 서비스를 실행합니다. `django, mysql, rabbitmq, radis` 등을 활용하여 서비스를 제공하는 경우 대부분은 고정된 상태값을 활용하여 진행 가능하지만, `django & react` 부분은 수시로 내용들을 수정 보완을 하게되는데 이러한 경우에는 해당 서비스를 빌드를 멈추고, 새롭게 빌드를 해야 하는등의 번거로운 과정을 필요로 합니다.
+
+선택적인 서비스 실행을 하는 방법으로는 `profiles` 속성을 활용하는 방법이 있습니다. 이를 설정하는 경우에는 반대로 명시적으로 활성화하지 않는 이상 해당 서비스는 실행되지 않습니다.
+```yml
+# docker-compose.yml
+services:
+  web:
+    image: my-web-app
+
+  db:
+    image: mysql
+    profiles:
+      - exclude_me
+```
+
+위와같은 설정값을 정의한 경우 실행방법 및 결과는 다음과 같습니다.
+```bash
+# db를 제외하고 실행:
+$ docker compose up
+
+# db도 포함해서 실행:
+$ docker compose --profile exclude_me up
+```
+
+<br/>
+
+# Port 매핑
 ## Port 설정 및 출력값 해석하기
 실행 중인 Django 와 MariaDB 의 `Docker 컨테이너` 포트 매핑 정보를 확인하면 다음과 같았습니다. 각각의 내용에 대한 설명내용은 다음과 같습니다.
 ```bash

@@ -7,7 +7,7 @@ tags:
 
 `Django Ninja`는 자체적으로 **비동기 뷰를 완전히 지원**합니다. 1. `async def`를 사용하면 `asyncio` 기반의 코드도 원활하게 사용할 수 있습니다. 2. Django는 전통적으로 동기식 ORM을 사용하기 때문에, 이걸 비동기 컨텍스트에서 다룰 때는 `asgiref.sync.sync_to_async`를 사용할 수 있습니다.
 
-## **`async def`를 사용하는 경우 - 외부 API 호출 등 I/O 작업**
+## **[async def](https://django-ninja.dev/guides/async-support/) 를 사용하는 경우 - 외부 API 호출 등 I/O 작업**
 다음의 경우에는 `async def` 함수 안에서 `await`와 함께 `asyncio.sleep()`, `HTTP 요청`, `비동기 파일 처리` 등을 직접 사용할 수 있습니다. 이 경우는 완전히 **비동기 루틴만 사용**하므로 Django Ninja + asyncio 만으로 충분 합니다.
 ```python
 import asyncio
@@ -21,7 +21,7 @@ async def async_hello(request):
     return {"message": "Hello from async view!"}
 ```
 
-## **`sync_to_async`를 사용하는 경우 - Django ORM 같은 동기 코드가 포함될 때**
+## **[sync_to_async](https://velog.io/@so-eun/Django-synctoasync-Feat.-ninja)를 사용하는 경우 - Django ORM 같은 동기 코드가 포함될 때**
 Django ORM은 **동기 코드**입니다. 비동기 함수 내에서 `User.objects.get()` 같은 동기 코드를 직접 호출하면 **경고 메시지**가 발생하거나 **잠재적 deadlock**이 생길 수 있어서 `sync_to_async()`로 감싸줘야 안전합니다.
 
 Django ORM을 **비동기 함수에서 호출**해야 할 땐 `sync_to_async()`를 반드시 사용해야 합니다.
@@ -56,4 +56,5 @@ async def user_info(request, username: str):
 
 # 참고사이트
 - [Ninja Async support](https://django-ninja.dev/guides/async-support/)
+- [Django Sync_to_async (Feat. ninja)](https://velog.io/@so-eun/Django-synctoasync-Feat.-ninja)
 - [PyMySQL to Connect a Django](https://medium.com/@lebe_93/using-pymysql-to-connect-to-a-django-project-to-a-mysql-database-77bd5dade213)

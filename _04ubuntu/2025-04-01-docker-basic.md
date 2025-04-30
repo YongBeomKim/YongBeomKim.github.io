@@ -221,45 +221,6 @@ $ docker container run --name mysql --rm \
 
 `--mount type=volume` 는 `Volume Mount` 로써 컨테이너의 외부 공간인 `Volume` 에 데이터를 보관하는 방식입니다. 유사한 방식으로 `--mount type=bind.source` 도 있는데 이는 localhost 의 Host 머신의 특정공간을 활용하는 것으로써 호스트 머신에 문제가 발생하면 연동되어 컨테이너 실행에 문제가 발생할 수 있습니다. 때문에 `docker`가 관리하는 `Volume`을 활용하는 방식을 추천하고 있습니다.
 
-
-
-==================================================================================
-
-
-```bash
-$ docker container run --name mysql --rm \                                   
---env MYSQL_ROOT_PASSWORD=abc1234 \
---env MYSQL_USER=python \
---env MYSQL_PASSWORD=abc1234 \
---env MYSQL_DATABASE=sample \
---publish 3310:3306 mymariadb
-```
-
-
-
-
-
-
-
-
-## SecretsUsedInArgOrEnv, UndefinedVar
-GPT 검색결과대로 실행을 하면 다음과 같은 경고메세지로 인하여 사용자 등록 및 DataBase 생성이 되지 않았습니다. 이유는 환경변수를 보다 엄격하게 `docker` 내부규칙으로 아래와 같은 오류가 발생한 것입니다.
-```bash
-docker container run --name mysql --rm \
---env MYSQL_ROOT_PASSWORD=mmj1004@@ \
---env MYSQL_USER=momukji \
---env MYSQL_PASSWORD=mmj1004 \
---env MYSQL_DATABASE=sample \
---publish 3310:3306 mymariadb
-```  
-
-[+] Building 1.8s (5/5) FINISHED     docker:default
-...
- 6 warnings found (use docker --debug to expand):
- - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "MARIADB_PASSWORD") (line 12)
- - UndefinedVar: Usage of undefined variable '$MARIADB_ROOT_PASSWORD' (line 9)
-```
-
 ## `MariaDB` 와 `환경변수` 설정 및 활용하기
 - Dockerfile에서는 민감정보를 하드코딩하지 않음
 - MariaDB 컨테이너가 첫 실행 시 수행하는 docker-entrypoint-initdb.d/ 스크립트를 활용
