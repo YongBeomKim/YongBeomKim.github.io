@@ -75,7 +75,7 @@ SCHEDULE = {
 }
 ```
 
-## `server/celery.py` 에서 정의하기
+## `server/celery.py` 에서 작동내용 정의하기
 이전까지는 celery 에서 개별 `django app` 단위로 정의한 위의 `SCHEDULE` 객체들을 `./server/celery.py` 에 직접 불러 모아서 연결하는 방법을 사용했었습니다. 이러한 경우 (1) `celery` 가 실행될 때에는 `django` 내부의 필요한 함수들이 모두 활성화가 된 이후에 `celery` 가 실행되어야 하는 조건을 필요로 합니다 (2) 그리고 `celery` 를 실행할 때 불러오는 함수들이 꼬여서 실행에 문제가 발생할 수 있습니다.
 
 `settings.py` 에서 `CELERY_BEAT_SCHEDULE` 객체에 schedule 들을 모아놓으면 `app.config_from_object('django.conf:settings', namespace='CELERY')` 로 설정파일을 불러올 때 함께 내용을 불러옵니다.
@@ -99,6 +99,15 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # SCHEDULE 내용을 `settings.INSTALLED_APPS` 에서 자동으로 호출
 # `app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 app.autodiscover_tasks()
+```
+
+## `server/settings.py` 에서 스케쥴러 가져오기
+`settings.py` 에서 `CELERY_` 설정값을 불러올 때, `CELERY_BEAT_SCHEDULE` 의 내용으로 crontab 등의 파라미터를 확인 및 활용 합니다. 예시는 다음과 같습니다.
+```python
+from app_task.schedule  import SCHEDULE as schedule_task
+
+CELERY_BEAT_SCHEDULE = {}
+CELERY_BEAT_SCHEDULE.update(schedule_task)
 ```
 
 <br/>
