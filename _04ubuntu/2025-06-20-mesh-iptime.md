@@ -44,11 +44,11 @@ IPTIME 공유기에서 지원하는 `Mesh` 연결을 진행하는 것으로 이�
 </figure>
 
 ## 동영상 간단정리
-**<span style="color:orange">WAN 랜선<span>** 연결된 공유기가 `Mesh 컨트롤러`가 됩니다. 해당 공유기 Mesh 설정에서 `Mesh 컨트롤러`를 활성화 하고 **<span style="color:orange">접속관리자 계정</span>** 및 **<span style="color:orange">Mesh Wifi 이름과 비밀번호</span>** 를 정의 합니다.
+**<span style="color:orange">WAN 랜선</span>** 연결된 공유기가 `Mesh 컨트롤러`가 됩니다. 해당 공유기 Mesh 설정에서 `Mesh 컨트롤러`를 활성화 하고 **<span style="color:orange">접속관리자 계정</span>** 및 **<span style="color:orange">Mesh Wifi 이름과 비밀번호</span>** 를 정의 합니다.
 
 이제는 창고 사무실에 설치된 공유기에 전원과 연결하는 LAN 선을 연결합니다. 이때 주의할 점은 LAN 선을 **<span style="color:red">WAN 포트에 연결하지 않고 일반 포트에 연결을 하여야 합니다.<span>** 만약 컨트롤러에서 빠져나온 LAN선을 WAN 포트에 연결하면 이를 별도의 다른 공유기로 인식하게 되고, **<span style="color:red">Mesh 접속 가능한 공유기에서는 제외</span>** 됩니다.
 
-MESH 연결에 대한 설정값 등은 **<span style="color:orange">위부 WAN 랜선이 연결된 MESH 컨트롤러 공유기</span>** 내부의 MESH 설정에 들어가서 필요한 연결절차를 진행하여야 합니다. 이와같은 내용들만 주의하여 진행한다면 어려움 없이 Mesh 연결 설정을 진행하실 수 있으실 겁니다.
+MESH 연결에 대한 설정값 등은 **<span style="color:orange">위부 WAN 랜선이 연결된 Mesh 컨트롤러 공유기</span>** 내부의 MESH 설정에 들어가서 필요한 연결절차를 진행하여야 합니다. 이와같은 내용들만 주의하여 진행한다면 어려움 없이 Mesh 연결 설정을 진행하실 수 있으실 겁니다.
 
 # 참고사이트
 - [ipTIME Mesh 접속기 v1.36](https://iptime.com/iptime/?page_id=126&uid=20609&mod=document)
