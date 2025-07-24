@@ -17,10 +17,11 @@ tags:
 Gnome 과 plasma 5 를 비교하면 다음과 같다. 이번에는 가볍고 안정적인 운영체계를 추구하기 위해서 [Kubuntu](https://distrowatch.com/table.php?distribution=kubuntu) 를 설치해 보겠습니다. 그러다가 나무위키 문서와 검색을 한 결과, 보다 더 경량화 버전인 [Lubuntu](https://lubuntu.me/) 로 결정하게 되었습니다.
 
 
-| 항목          | **GNOME**            | **Xfce**        | **LXQt**            |
+| 항목          | **GNOME**            | **Xfce**       | **LXQt**            |
+|             | **Ubuntu**            | **Xubuntu**    | **Lubuntu**         |
 | ----------- | -------------------- | --------------- | ------------------- |
-| **기반**      | GTK                  | GTK             | Qt                  |
-| **시스템 요구**  | 높음 (2GB+ RAM)        | 중간 (1\~2GB RAM) | 낮음 (512MB\~1GB RAM) |
+| **기반**     | GTK                  | GTK             | Qt                  |
+| **시스템 요구**| 높음 (2GB+ RAM)      | 중간 (1\~2GB RAM) | 낮음 (512MB\~1GB RAM)|
 | **UI/UX**   | 모던, 세련됨              | 클래식, 직관적        | 최소화, 단순함            |
 | **애니메이션**   | 있음 (많음)              | 적음              | 거의 없음               |
 | **확장성**     | 매우 좋음 (`extensions`) | 기본 수준           | 제한적                 |
