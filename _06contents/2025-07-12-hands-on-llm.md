@@ -7,7 +7,7 @@ tags:
 
 **<span style="color:orange">IT 현업개발자가, 별도의 광고료 없이 한빛미디어의 책만 제공받아서 작성한 서평입니다.</span>**
 
-이번에 리뷰한 책은 `핸즈온 LLM` 입니다. 이 책의 특징을 한마디로 정리하면 **<span style="color:red">Sentence-Transformer 와 OpenAPI 활용한 LLM 세부내용을 그림으로 설명하는 책</span>** 입니다. 이 책을 2번 이상 살펴보았고, 반복 할 때마다 **Sentence-Transformer 와 OpenAPI 활용한 LLM** 에 대하여 그동안 내가 잘 몰랐거나, 놓쳤던 부분이 어디고, 해당 부분이 어떠한 원리로 동작을 하고 있었는지 발견하는 내용이 많아서 좋았습니다. 
+이번에 리뷰한 책은 `핸즈온 LLM` 입니다. 이 책의 특징을 한마디로 정리하면 **<span style="color:red">Sentence-Transformer 와 OpenAPI 를 활용한 LLM 각각의 세부적인 구조를 그림으로 설명하는 책</span>** 입니다. 이 책을 다 읽자마자 바로 2번 이상 살펴보았고, 반복 할 때마다 **Sentence-Transformer 와 OpenAPI 활용한 LLM** 에 대하여 그동안 내가 잘 몰랐거나, 놓쳤던 부분이 어디고, 해당 부분이 어떠한 원리로 동작을 하고 있었는지 발견하는 내용이 많아서 좋았습니다. 
 
 <figure class="align-center">
   <p style="text-align: center">
