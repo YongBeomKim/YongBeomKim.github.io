@@ -18,6 +18,12 @@
 </footer>
 {% if site.javascript_enabled %}
   <script src="/assets/main.js"></script>
-{% endif %}
+
+  <!-- ✅ Mermaid.js 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  {% endif %}
 </body>
 </html>
