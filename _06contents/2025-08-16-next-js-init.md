@@ -14,7 +14,7 @@ tags:
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="450px" src="{{site.baseurl}}/assets/book/first-met-nextjs.jpg">
+  <img width="450px" src="{{site.baseurl}}/assets/book/next-js-cover.jpg">
   </p>
 </figure>
 
