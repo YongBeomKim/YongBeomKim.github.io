@@ -1,15 +1,15 @@
 ---
 layout: blog
-title: (Docker) 개념 및 Quick Start
+title: (Docker) Quick Start
 tags:
 - docker
 ---
 
-이번에 `Docker` 관련 책을 리뷰 및 실습을 하면서 알게된 내용들을 정리해 보겠습니다.
+`Docker` 와 관련한 기본지식들을 정리해 보겠습니다.
 
-# Docker
+# Docker Setting
 ## Install
-설치직후에 `docker`를 실행하면 아래와 같은 오류를 출력 합니다.
+[Docker docs](https://docs.docker.com/engine/install/ubuntu/) 의 공식문서를 참고하여 설치 작업을 진행합니다. 설치 후 `docker` 이미지 생성등의 작업을 실행하면 아래와 같은 오류를 출력 합니다.
 <figure class="align-center">
   <p style="text-align: center">
   <img width="510px" src="{{site.baseurl}}/assets/docker/error_sudo.png">
@@ -17,21 +17,86 @@ tags:
   <figcaption>설치 직후 실행시 발생한 오류</figcaption>
 </figure>
 
-이를 해결하는 방법으로 현재 사용자를 `docker` 그룹에 추가하면 문제가 해결 됩니다.
+`root` 사용자만 제어 가능하도록 설정되어 발생한 문제로, 현재 사용자를 `docker` 사용자 그룹에 추가합니다.
 ```bash
 $ sudo usermod -aG docker $USER
 ```
 
-## Container
-`Docker`와 비슷한 개념을 이야기 한다면, `Python Venv`이 있습니다. **Host PC** 의 리소스를 제한없이 사용 가능합니다. 사용자가 특정 가능한 `Docker Container`를 생성하면서 필요한 내용들을 **Docker 이미지** 에서 가져와서 필요한 설치과정을 진행합니다. 
+# Container
+개별 Container 는 별도의 제한이 없는 상태에서는 **Host PC** 리소스를 제한없이 사용 가능합니다. 사용자가 특정 가능한 `Docker Container`를 생성하면서 필요한 내용들을 **Docker 이미지** 에서 가져와서 필요한 설치과정을 진행합니다. 
+
+`docker` 이미지를 생성하는데, volume, network, cache 등이 남아있게 됩니다. 이처럼 효과적인 방법으로 `docker image`를 생성하고, 잔여 이미지들을 `prune` 하는 방법에 대하여 알아보도록 하겠습니다.
 
 `Docker Container` 는 실행 실패시 로그값 확인등의 이유로 `$ docker container rm <컨테이너 ID>` 를 실행하기 전 까지는  남아 있습니다. 이러한 내용들은 **Docker 이미지** 를 삭제할 때 제한요인이 됩니다.
+
 <figure class="align-center">
   <p style="text-align: center">
   <img width="510px" src="{{site.baseurl}}/assets/docker/docker_ps.jpg">
   </p>
   <figcaption>도커 컨테이너 상태별 관리내용</figcaption>
 </figure>
+
+## Container Image Build
+`docker compose up --build`는 기본적으로 **캐시를 사용해서 빌드**합니다. 만약 **캐시를 무시하고 새로 빌드**하고 싶다면, **`--build`와 함께 `docker compose build --no-cache`를 먼저 실행** 합니다. 참고로 `docker compose up`에는 `--no-cache` 옵션이 없습니다. 그래서 **반드시 `build` 명령어에만 `--no-cache`**를 사용해야 합니다.
+
+캐시 없이 완전 새로 빌드하고 `up` 실행하는 방법들로 다음 중 선택하여 실행 합니다.
+
+```bash
+# 두 명령어로 나눠서 실행
+$ docker compose build --no-cache
+$ docker compose up
+
+# 캐시 없이 한 줄로 실행 (쉘에서 && 연결)
+$ docker compose build --no-cache && docker compose up
+
+# 캐시 없이 한 줄로 실행 (쉘에서 && 연결 && 백그라운드 모드로 실행)
+docker compose build --no-cache && docker compose up -d
+```
+
+## 빌드 캐시 정리
+`docker compose`를 실행하고 테스트하다 보면 **캐시나 불필요한 이미지, 컨테이너, 볼륨, 네트워크, 빌드 캐시** 등이 계속 쌓이게 되죠. 아래에 **안전하게 정리하는 방법**을 목적별로 정리해드릴게요.
+```bash
+# 빌드 캐시만 삭제하고 싶을 때
+$ docker builder prune
+# 확인 없이 강제로:
+$ docker builder prune -f
+# 예: `Dockerfile` 수정 후 캐시 없이 새로 빌드하려면
+$ docker compose build --no-cache
+```
+
+## 사용하지 않는 모든 것 정리 (`docker system prune`)
+```bash
+# 중지된 컨테이너 + 안 쓰는 이미지 + 네트워크 + 캐시 모두 정리
+$ docker system prune
+# 강력한 정리 (볼륨 포함)
+# `--volumes` 옵션은 데이터베이스 데이터까지 날릴 수 있습니다
+$ docker system prune --volumes
+```
+
+## 중지된 컨테이너 제거
+```bash
+# 중지된 컨테이너만 제거
+$ docker container prune
+
+# 안 쓰는 이미지만 제거
+$ docker image prune
+
+# 사용되지 않는 네트워크 제거
+$ docker network prune
+
+# 사용되지 않는 볼륨 제거
+$ docker volume prune
+```
+
+## 실전 예시 - `compose` 테스트 끝나고 전체 클린업
+- `down -v`: 관련된 볼륨까지 삭제
+- `--rmi all`: 생성된 이미지 삭제
+- `--remove-orphans`: 연결되지 않은 서비스 컨테이너 제거
+- `system prune`: 나머지 불필요한 캐시, 중지 컨테이너 등 정리
+```bash
+$ docker compose down -v --rmi all --remove-orphans
+$ docker system prune -f --volumes
+```
 
 ## 오류 컨테이너 로그값 확인
 `mydjango` 와 `mynginx` 2개를 실행했는데, 결과는 1개만 정상동작을 하고, 나머지 `mynginx` 는 실행 후 바로 Exits 해 버린 것을 확인할 수 있습니다.
