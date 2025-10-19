@@ -27,7 +27,7 @@ qwen2.5-coder:1.5b `(약 1 GB 미만, 코드 자동 완성 (Autocomplete), 매�
 
 <br/>
 
-# **_Continue - vscode**
+# **_Continue - vscode_**
 
 ## Continue
 vscode 확장도구인 [Continue - open-source AI code agent](https://marketplace.visualstudio.com/items?itemName=Continue.continue)를 설치 합니다.
