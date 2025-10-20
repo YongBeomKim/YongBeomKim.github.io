@@ -11,6 +11,13 @@ tags:
 
 이처럼 `Chat GPT` 가 알려준 내용의 문제가 있을 때, 해당 내용을 재 입력하는 방법도 있지만 근본적인 해결책은 아닙니다. 가장 근본적인 해결방법은 `오류 메세지` 내용을 확인하고 `해당 내용의 원인이 되는 내용`을 명확하게 찾아나가는 능력이 어느때 보다 더 중요한 시대가 되었습니다. 이와 같은 내용을 도와주는 책 입니다.
 
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="820px" src="{{site.baseurl}}/assets/js/js_quiz_cover.jpg">
+  </p>
+  <figcaption></figcaption>
+</figure>
+
 <br/>
 
 # 총평
@@ -53,7 +60,7 @@ tags:
 이 책을 통해서 가장 생소했던 개념이 `#Symbol` 이었습니다. 객체내부의 비밀스러운(?) 내용을 관리하는 역할을 하고 있습니다. 나중에 다시 봐야겠다고 생각하고 색인을 찾아 봐야 겠다고 생각을 하고 책을 뒤지다가 앞부분에 아래와 같이 정리되어 있는 것을 확인 할 수 있었습니다.
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="820px" src="{{site.baseurl}}/assets/js/js_quiz_04.jpg">
+  <img width="420px" src="{{site.baseurl}}/assets/js/js_quiz_04.jpg">
   </p>
   <figcaption>"18 페이지"</figcaption>
 </figure>
@@ -86,11 +93,4 @@ tags:
 처음에는 저자가 여럿이라서 챕터별 차이가 크지 않을까 우려된 부분이 있었습니다. 전체 내용을 다 본 결과 개별챕터를 분담하여 작성한 것은 아닌 것으로 보입니다. 챕터별 차이가 있지 않은것으로 보아, 다른 저자가 기본개념을 하면, 또 다른 저자가 같은 챕터의 퀴즈와 해설을 작성함으로써 앞에서 설명했던 내용의 반복이 아니여서 심화학습을 하는 것처럼 느껴저서 좋았습니다. 
 
 `자바스크립트`를 기반으로 작업을 하면서 겪었던 어려움이 많은 분 일수록 도움을 받을 내용이 많은 책입니다. 이를 반대로 이야기 하면 `자바스크립트` 기반의 작업경험이 부족한 초보자 분들 일 수록 이 책에서 전달하려는 내용이 방대하기 때문에 힘들어서 어려움을 격으실 수도 있어 보였습니다. 개념에 대하여 너무 많은 분량을 할당하고 있다고 생각되는 분이라면 상대적으로 얇고 실습으로 구성된 다른 기본서 및 강의를 학습하신 뒤 이 책을 다시 접하신다면 많은 도움이 되어줄 것입니다.
-
-<figure class="align-center">
-  <p style="text-align: center">
-  <img width="820px" src="{{site.baseurl}}/assets/js/js_quiz_cover.jpg">
-  </p>
-  <figcaption></figcaption>
-</figure>
 
