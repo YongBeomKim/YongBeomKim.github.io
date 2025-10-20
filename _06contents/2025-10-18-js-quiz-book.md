@@ -62,7 +62,7 @@ tags:
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="820px" src="{{site.baseurl}}/assets/js/js_quiz_04.jpg">
+  <img width="820px" src="{{site.baseurl}}/assets/js/js_quiz_03.jpg">
   </p>
   <figcaption>"73 페이지"</figcaption>
 </figure>
