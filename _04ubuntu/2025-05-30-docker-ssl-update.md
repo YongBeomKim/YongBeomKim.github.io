@@ -8,6 +8,17 @@ tags:
 지금 제공하신 `default.conf`와 `Dockerfile` 내용으로 보면,
 현재 `certbot` 인증서 갱신 실패(→ SSL 만료)의 **직접 원인**이 95% 명확합니다.
 
+```bash
+>> Warning: Potential Security Risk Ahead
+
+Websites prove their identity via certificates, which are valid for a set time period. The certificate for website.com expired on 8/23/2025.
+ 
+Error code: SEC_ERROR_EXPIRED_CERTIFICATE
+ 
+View Certificate
+```
+
+
 ## 결론 요약
 
 > **원인:**
