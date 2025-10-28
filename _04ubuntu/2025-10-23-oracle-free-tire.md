@@ -84,3 +84,8 @@ Run 'do-release-upgrade' to upgrade to it.
 Last login: Fri Oct 01 01:01:01 2000 from 44.33.22.111
 ubuntu@<클라우드 인스턴스 이름>:~$ 
 ```
+
+<br/>
+
+# 참고사이트
+[Always FREE VM Oracle Cloud](https://www.youtube.com/watch?v=uyuHSFo0QQo)
