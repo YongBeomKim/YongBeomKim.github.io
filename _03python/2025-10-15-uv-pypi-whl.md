@@ -10,6 +10,15 @@ tags:
 
 <br/>
 
+# UV
+`uv` 를 활용하여 파이썬을 보다 효율적을 사용할 수 있습니다. `uv` 패키지를 활용하여 실행가능한 명령들로는 다음의 내용들이 있습니다.
+
+> A single tool to replace `pip, pip-tools, pipx, poetry, pyenv, twine, virtualenv`, and more.
+
+패키지와 관련하여 `twine` 를 실행하는 경우에는 `$ uv twine ~` 으로 명령을 실행하면 됩니다.ㅕㅍ ㅑ 
+
+<br/>
+
 # Package
 ## [package with uv locally](https://www.sarahglasmacher.com/how-to-build-python-package-uv/)
 우선 작업을 진행할 Host 운영체계에서 작업을 진할 내용을 정리해 보겠습니다.
@@ -41,30 +50,79 @@ $ tree -L 3
 
 ## [Publishing Package to PyPI](https://pydevtools.com/handbook/tutorial/publishing-your-first-python-package-to-pypi/)
 작업진행 과정을 살펴보면 다음과 같습니다.
-1. 사용자 로그인 -> Account Setting > API tokens > Add API token
-1. Create API Token
+1. 사용자 로그인 -> `Account Setting > API tokens > Add API token`
+1. `Create API Token` 내용값 입력
 1. 발급된 token 값을 `~/.pypirc` 파일로 생성
 1. `$ uv build` 빌드작업 진행하여 `./dist/*.whl` 생성
 1. `$ uv run pip install --upgrade twine` 업로드
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="650px" src="{{site.baseurl}}/assets/linux/pypi_token-01.jpg">
+  <img width="850px" src="{{site.baseurl}}/assets/linux/pypi_token-01.jpg">
   <figcaption>Create API Token</figcaption>
   </p>
 </figure>
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="650px" src="{{site.baseurl}}/assets/linux/pypi_token-02.jpg">
+  <img width="850px" src="{{site.baseurl}}/assets/linux/pypi_token-02.jpg">
   <figcaption>Token 값 안내 -> `~/.pypirc` 파일로 생성 안내내용</figcaption>
   </p>
 </figure>
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="650px" src="{{site.baseurl}}/assets/linux/pypi_token-03.jpg">
+  <img width="850px" src="{{site.baseurl}}/assets/linux/pypi_token-03.jpg">
   <figcaption>Token 값 생성</figcaption>
+  </p>
+</figure>
+
+
+```bash
+$ uv add twine
+$ uv run twine upload --verbose dist/* 
+
+INFO     Using configuration from /home/buffet/.pypirc
+Uploading distributions to https://upload.pypi.org/legacy/
+INFO     dist/pytip-0.0.17-py3-none-any.whl (28.9 KB)
+INFO     dist/pytip-0.0.17.tar.gz (21.5 KB)
+INFO     username set by command options
+INFO     password set from config file
+INFO     username: __token__
+INFO     password: <hidden>
+Uploading pytip-0.0.17-py3-none-any.whl
+100% ━━━━━━━━━━━━━━━━━━━ 33.1/33.1 kB • 00:00 • 123.2 MB/s
+
+INFO     Response from https://upload.pypi.org/legacy/:
+         200 OK                                                                       
+INFO     <html>
+          <body>
+           <h1>200 OK</h1>
+          </body>
+         </html>
+Uploading pytip-0.0.17.tar.gz
+100% ━━━━━━━━━━━━━━━━━━━ 33.1/33.1 kB • 00:00 • 123.2 MB/s
+
+INFO     Response from https://upload.pypi.org/legacy/:
+         200 OK
+INFO     <html>
+          <body>
+           <h1>200 OK</h1>
+          </body>
+         </html>
+
+View at:
+https://pypi.org/project/pytip/0.0.17/
+```
+
+<figure class="align-center">
+  <p style="text-align: center">
+    <iframe width="560" height="315" 
+      src="https://www.youtube.com/embed/WKc2BdgmGZE?si=KHK9asJgTP1sKN6o"
+      title="YouTube video player" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
   </p>
 </figure>
 
