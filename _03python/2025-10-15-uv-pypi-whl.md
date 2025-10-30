@@ -49,21 +49,21 @@ $ tree -L 3
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="400px" src="{{site.baseurl}}/assets/linux/pypi_token-01.jpg">
+  <img width="650px" src="{{site.baseurl}}/assets/linux/pypi_token-01.jpg">
   <figcaption>Create API Token</figcaption>
   </p>
 </figure>
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="400px" src="{{site.baseurl}}/assets/linux/pypi_token-02.jpg">
+  <img width="650px" src="{{site.baseurl}}/assets/linux/pypi_token-02.jpg">
   <figcaption>Token 값 안내 -> `~/.pypirc` 파일로 생성 안내내용</figcaption>
   </p>
 </figure>
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="400px" src="{{site.baseurl}}/assets/linux/pypi_token-03.jpg">
+  <img width="650px" src="{{site.baseurl}}/assets/linux/pypi_token-03.jpg">
   <figcaption>Token 값 생성</figcaption>
   </p>
 </figure>
