@@ -63,7 +63,7 @@ $ tree -L 3
 
 <figure class="align-center">
   <p style="text-align: center">
-  <img width="400px" src="{{site.baseurl}}/assets/linux/pypi_token-02.jpg">
+  <img width="400px" src="{{site.baseurl}}/assets/linux/pypi_token-03.jpg">
   <figcaption>Token 값 생성</figcaption>
   </p>
 </figure>
