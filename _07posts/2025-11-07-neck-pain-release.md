@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (건강) 목 안쪽 근육이 뭉쳤을 때
+title: (건강) 흉쇄유돌근 풀어주기
 tags:
 - health
 ---
