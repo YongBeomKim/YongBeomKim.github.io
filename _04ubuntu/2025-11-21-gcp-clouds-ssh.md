@@ -47,8 +47,8 @@ Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 6.8.0-1041-gcp x86_64)
  * Support:        https://ubuntu.com/pro
 ...
 
-buffet@123.456.78.9-home:~$ su - django
+buffet@momukji-home:~$ su - django
 Password: 
 
-django@123.456.78.9-home:~$ 
+django@momukji-home:~$ 
 ```
