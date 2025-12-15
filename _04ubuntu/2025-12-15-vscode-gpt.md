@@ -42,3 +42,10 @@ tags:
   </p>
   <figcaption></figcaption>
 </figure>
+
+<br/>
+
+# Cline
+참고로 GPT 에이전트를 연결하는 Vs Code 확장 프로그램으로는 [CLine](https://cline.bot/) 이 있습니다. 
+
+[Vscode + cline 사용 후기 - 공부 기록하려고 만든 블로그](https://toyourlight.tistory.com/136) 를 보면, Cline 은 전체적인 프로젝트 매니저와 같은 역할을 하는 것을 알 수 있습니다. 가벼운 작업은 CONTINUE 를 활용하고 완성된 프로젝트를 관리하는 단계에서는 Cline 으로 관리감독 및 보완하는 방식으로 진행할 계획 입니다.
