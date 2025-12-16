@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: Linux for Game
+title: (Linux) Linux for Game
 tags:
 - ubuntu
 ---
