@@ -9,7 +9,9 @@ tags:
 
 <br/>
 
-# 기능 기반 폴더 구조 (Feature-Based / Domain-Based)
+# Project 특징
+
+## 기능 기반 폴더 구조 (Feature-Based / Domain-Based)
 앱이 커질수록 각 기능(Feature)별로 모든 관련 파일을 묶는 것이 유지보수에 유리합니다.
 ```yaml
 src/
