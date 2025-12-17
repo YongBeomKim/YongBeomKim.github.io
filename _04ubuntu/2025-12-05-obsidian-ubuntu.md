@@ -2,7 +2,7 @@
 layout: blog
 title: Obsidian Ubuntu 24 설치하기
 tags:
-- ubuntu
+- obsidian
 ---
 
 Obsidian을 **최초 설치한 뒤**, 이전에 **Remotely Save 플러그인**을 사용하여 Dropbox에 백업해 두었던 내용을 **복구(=동기화)** 하려고 합니다. **Ubuntu 24 또는 Windows/macOS 모두 공통적으로 적용되는 전체 단계**입니다.

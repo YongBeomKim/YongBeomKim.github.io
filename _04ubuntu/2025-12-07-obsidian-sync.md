@@ -2,7 +2,7 @@
 layout: blog
 title: Obsidian 을 Android 에서 동기화(Sync)
 tags:
-- content
+- obsidian
 ---
 
 `remote-safely` 등을 활용하여 동기화 하는 방법에 대하여 간단하게 정리해 보겠습니다.
