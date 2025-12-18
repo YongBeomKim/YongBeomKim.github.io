@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: React 19, Tailwind 4 & Vite.js
+title: (React) Shadcn UI, Daisy UI ...
 tags:
 - react
 ---

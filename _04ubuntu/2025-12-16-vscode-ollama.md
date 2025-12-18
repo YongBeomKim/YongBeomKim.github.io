@@ -2,7 +2,7 @@
 layout: blog
 title: vscode 에서 ollama Local 모델 활용하기
 tags:
-- vscode
+- ollama
 ---
 
 `ubuntu 24` 에서 `Ollama` 를 활용하여 vscode 의 Auto Suggestion 을 적용해 보겠습니다.
