@@ -82,3 +82,23 @@ for line in response.iter_lines():
   if line:
     print(line.decode("utf-8"))
 ```
+
+## 모델 빌드하여 활용하기
+(ollama.com/library)[https://ollama.com/library] 에서 `Ollama` 에서 직접 모델을 활용 가능한 내용들을 확인할 수 있습니다. 
+
+`huggingface` 에서 `GGUF` 학습모델이 있을 때에는  [Use Ollama with any GGUF Model on Hugging Face Hub](https://huggingface.co/docs/hub/ollama) 에서 안내하는 것 처럼 모델을 설치 및 활용할 수 있습니다.
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="910px" src="{{site.baseurl}}/assets/linux/ollama-modelpage-light.gif">
+  </p>
+</figure>
+
+<br/>
+
+# 참고사이트
+[1]: https://github.com/ollama/ollama/issues/11243?utm_source=chatgpt.com "Multi-Modal Support · Issue #11243 · ollama/ollama · GitHub"
+[2]: https://ollama.com/blog/multimodal-models?utm_source=chatgpt.com "Ollama's new engine for multimodal models · Ollama Blog"
+[3]: https://github.com/ollama/ollama/issues/11798?utm_source=chatgpt.com "Feature Request: Add Audio Input Support for Multimodal Models · Issue #11798 · ollama/ollama · GitHub"
+[4]: https://toolerific.ai/ai-tools/opensource/Leon-Sander-Local-Multimodal-AI-Chat?utm_source=chatgpt.com "github- Local-Multimodal-AI-Chat :Features,Alternatives | Toolerific"
+[5]: https://itlab.tistory.com/159?utm_source=chatgpt.com "LangChain에서 Ollama 사용하는 법 :: IT Lab"
