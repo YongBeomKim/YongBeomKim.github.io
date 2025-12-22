@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: HuggingFace 모델 활용하기
+title: HuggingFace 활용 - Vision
 tags:
 - ollama
 - huggingface
@@ -12,12 +12,12 @@ Diffusion 또는 Whisper 등을 활용하여 이미지 및 사운드를 활용�
 
 | 기능          | Ollama | 보완 도구                    |
 |--------------| ------ | ---------------------------|
-| 텍스트 LLM     | ✅    | —                          |
-| 이미지 분석     | ✅    | —                          |
-| 이미지 생성     | ❌    | Stable Diffusion / ComfyUI |
-| 음성 입력(STT)  | ❌    | Whisper, Vosk, Coqui STT   |
-| 음성 출력(TTS)  | ❌    | Coqui TTS, Mozilla TTS     |
-| 멀티모달 챗      | 부분   | 여러 모델 + 툴 연결           |
+| 텍스트 LLM    | ✅    | —                          |
+| 이미지 분석    | ✅    | —                          |
+| 이미지 생성    | ❌    | Stable Diffusion / ComfyUI |
+| 음성 입력(STT) | ❌    | Whisper, Vosk, Coqui STT   |
+| 음성 출력(TTS) | ❌    | Coqui TTS, Mozilla TTS     |
+| 멀티모달 챗     | 부분   | 여러 모델 + 툴 연결           |
 
 
 `Ollama` 는 `OpenAI-style REST API` 방식도 제공 합니다. 따라서 아래의 예제처럼 이미지 파일을 첨부하여 전달하는 방식으로도 구현이 가능 합니다. 반면 `Whisper` 와 같은 음성 (실시간 음성) 은 지원하지 않습니다.

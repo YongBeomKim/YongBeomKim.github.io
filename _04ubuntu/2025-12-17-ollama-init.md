@@ -92,6 +92,7 @@ for line in response.iter_lines():
   <p style="text-align: center">
   <img width="910px" src="{{site.baseurl}}/assets/linux/ollama-modelpage-light.gif">
   </p>
+  <figcaption><a href="https://huggingface.co/docs/hub/ollama">Use Ollama with GGUF</a></figcaption>
 </figure>
 
 <br/>
