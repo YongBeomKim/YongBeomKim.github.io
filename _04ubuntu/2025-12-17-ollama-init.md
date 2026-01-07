@@ -14,9 +14,7 @@ pulling manifest
 Error: pull model manifest: 412: 
 
 The model you are attempting to pull requires a newer version of Ollama.
-
 Please download the latest version at:
-
 	https://ollama.com/download
 ```
 
@@ -36,6 +34,34 @@ $ curl -fsSL https://ollama.com/install.sh | sh
 만약 업데이트 후 반영이 되지 않았다면, 시스템을 재 실행하거나 다음의 명령어로 서비스를 수동으로 재 실행 하면 됩니다.
 ```bash
 sudo systemctl restart ollama
+```
+
+## Setting
+`/etc/systemd/system/ollama.service.d/override.conf` 에서 사용자 설정값을 입력 및 수정할 수 있습니다. 이 내용을 반영한 전체 설정내용을 확인하는 방법은 `sudo systemctl edit ollama.service` 입니다. 설정내용이 변경 되었다면 `$ sudo systemctl daemon-reload && sudo systemctl restart ollama` 를 실행하는 방법으로 `Ollama` 를 재실행 하여야 합니다.
+
+```bash
+$ sudo nvim /etc/systemd/system/ollama.service.d/override.conf
+[Service]
+# 사용자님의 24코어를 강제로 지정하여 오버헤드 방지
+Environment="OMP_NUM_THREADS=16"
+# 모델을 메모리에 상주시켜 응답 속도 향상 (예: 1시간 상주)
+Environment="OLLAMA_KEEP_ALIVE=60m"
+# Docker Container 에서도 접속 가능하도록 환경변수 추가
+Environment="OLLAMA_HOST=0.0.0.0"
+# 동시 실행 모델 수 제한 (메모리 파편화 방지)
+Environment="OLLAMA_MAX_LOADED_MODELS=1"
+# 병렬 요청 처리 제한
+Environment="OLLAMA_NUM_PARALLEL=1"
+# 무한정 요청을 쌓아두지 않고 거절하게 하여 프로세스 과부하를 막습니다.
+Environment="OLLAMA_MAX_QUEUE=512"
+# 큰 컨텍스트를 요구로 메모리 오류를 방지합니다.
+Environment="OLLAMA_CONTEXT_LENGTH=4096"
+
+$ sudo systemctl edit ollama.service
+... <전체 설정내용의 확인>
+
+$ sudo systemctl daemon-reload && sudo systemctl restart ollama
+... 변경된 내용 서비스에 적용하기
 ```
 
 ## Models
