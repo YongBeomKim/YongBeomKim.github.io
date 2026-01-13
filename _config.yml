@@ -41,8 +41,8 @@ collections:
     title: Ubuntu
     default_open: false
     output: true
-  05stock:
-    title: 금융투자
+  05gpt:
+    title: GPT (LLM/AI)
     default_open: false
     output: true
   06contents:
