@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: HuggingFace 활용 - Vision
+title: HuggingFace 활용방법 - Vision
 tags:
 - ollama
 - huggingface
