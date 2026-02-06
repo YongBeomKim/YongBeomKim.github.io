@@ -38,7 +38,12 @@ print(res.json())
 $ ollama run hf.co/microsoft/phi-4-gguf:Q4_K_S                
 
 pulling manifest 
-Error: pull model manifest: 429: {"error":"We had to rate limit your IP (1.0.100.111). To continue using our service, create a HF account or login to your existing account, and make sure you pass a HF_TOKEN if you're using the API."}
+Error: pull model manifest: 429: {
+  "error":"We had to rate limit your IP (1.0.100.111). 
+  To continue using our service, create a HF account or login 
+  to your existing account, and make sure you pass a HF_TOKEN 
+  if you're using the API."
+}
 ```
 
 ## `SSH` 사용자 정보 등록
@@ -65,6 +70,7 @@ huggingface 를 어떠한 용도로 사용할 것인지를 지정하고, 해당 
 
 ```bash
 $ cat /etc/systemd/system/ollama.service.d/override.conf
+
 [Service]
 # 사용자님의 24코어를 강제로 지정하여 오버헤드 방지 (16)
 Environment="OMP_NUM_THREADS=24" 
@@ -139,8 +145,7 @@ bartowski/nvidia_Nemotron-Cascade-14B-Thinking-GGUF:Q4_K_M        9.0 GB
 **RTX 5070 Ti Mobile · VRAM 12GB** 환경에서는 *“작은 모델 여러 개를 역할별로 굴리는 전략”*을 추천합니다. 아래는 **VS Code + Opencode 기준**으로 **Autocomplete / Edit / Chat** 역할별로 **실전 모델을 추천**하는 내용 입니다.
 
 ## Autocomplete (가장 중요 ⚡)
-
-> ✨ 목표: *0.2~0.4초 응답 / 끊김 없음*
+* ✨ 목표: *0.2~0.4초 응답 / 끊김 없음*
 
 ### 1순위 -🥇 **qwen3-coder:4b  VRAM: ~2.6GB** ⭐⭐⭐⭐⭐
 * 토큰 예측 정확도 매우 높음
@@ -165,8 +170,7 @@ bartowski/nvidia_Nemotron-Cascade-14B-Thinking-GGUF:Q4_K_M        9.0 GB
 ---
 
 ## Edit / Refactor / Fix (Ctrl+I, Apply Edit)
-
-> ✨ 목표: *코드 이해 + 안정적 수정*
+* ✨ 목표: *코드 이해 + 안정적 수정*
 
 ### 1순위 - 🥇 **Qwen3-8B-GPT-5-Codex-Distill (Q4_K_M)  VRAM: ~5GB** ⭐⭐⭐⭐⭐
 * Codex 계열 → **edit 정확도 최고**
@@ -186,11 +190,9 @@ bartowski/nvidia_Nemotron-Cascade-14B-Thinking-GGUF:Q4_K_M        9.0 GB
 ---
 
 ## Chat / 설계 / 디버깅 / 리뷰 (Thinking 필요)
-
-> ✨ 목표: *설계·추론·원인 분석*
+* ✨ 목표: *설계·추론·원인 분석*
 
 ### 1순위 -🥇 **Qwen3-14B-Claude-Sonnet-4.5-Reasoning VRAM: ~9GB** ⭐⭐⭐⭐⭐
-
 * Claude 계열 reasoning 스타일
 * 코드 리뷰, 설계, 버그 원인 분석 매우 강함
 * Opencode Chat에 **가장 잘 맞음**
@@ -203,7 +205,6 @@ bartowski/nvidia_Nemotron-Cascade-14B-Thinking-GGUF:Q4_K_M        9.0 GB
   * 응답이 다소 verbose
   * 코딩 감각은 Qwen보다 ↓
 
-
 ### 3순위 -🥉 Llama3.3-8B-Thinking
 * 추론은 좋음
 * CPU/GPU 대비 효율 낮음
@@ -212,8 +213,7 @@ bartowski/nvidia_Nemotron-Cascade-14B-Thinking-GGUF:Q4_K_M        9.0 GB
 ---
 
 ## 빠른 Chat (Thinking OFF)
-
-> 가볍게 질문 / 간단 설명
+* 가볍게 질문 / 간단 설명
 
 ### ✅ phi-4 (Q4_K_S)
 * 빠름
