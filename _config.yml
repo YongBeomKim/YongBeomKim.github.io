@@ -45,15 +45,19 @@ collections:
     title: GPT (LLM/AI)
     default_open: false
     output: true
-  06contents:
+  06health:
+    title: 건강관리
+    default_open: false
+    output: true
+  07contents:
     title: 리뷰 및 후기
     default_open: false
     output: true
-  07posts:
+  08posts:
     title: 기타
     default_open: false
     output: true
-  08errors:
+  09errors:
     title: 오답노트
     default_open: false
     output: true
