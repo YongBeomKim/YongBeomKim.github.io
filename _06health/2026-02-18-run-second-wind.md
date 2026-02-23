@@ -55,7 +55,24 @@ tags:
 단순한 국민체조가 아닌, 고관절과 발목의 가동 범위를 넓히는 훈련이 필요합니다.
 
 * **레그 스윙(Leg Swings):** 앞뒤, 좌우로 다리를 흔들어 고관절 주변 근육을 활성화합니다.
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="520px" src="https://i.pinimg.com/736x/ea/64/c5/ea64c54e1a1670c4bb51dac8787d90ba.jpg">
+  </p>
+  <figcaption></figcaption>
+</figure>
+
+
 * **카프 레이즈(Calf Raises):** 발목 주변의 신경을 깨워 초반부터 탄성을 활용할 수 있게 합니다.
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="520px" src="https://trainingstation.co.uk/cdn/shop/articles/standing-calf-raises_eaa81211-4f0c-41bd-8e60-09268e568799_1400x.png">
+  </p>
+  <figcaption></figcaption>
+</figure>
+
 
 ### ⚡ 질주(Strides) 훈련 추가
 
