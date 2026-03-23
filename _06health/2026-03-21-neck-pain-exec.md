@@ -274,7 +274,7 @@ OPENAI 를 활용하여 통증의 원인을 분석하고, 완화하는 방법에
 <figure class="align-center">
   <p style="text-align: center">
   <a href="https://thebarbellphysio.com/best-thoracic-spine-mobility-exercises" target="_blank">
-  <img width="510px" src="https://thebarbellphysio.com/wp-content/uploads/2017/07/Thoracic-spine-mobility.png">
+  <img width="510px" src="{{site.baseurl}}/assets/health/Thoracic-spine-mobility.png">
   </a>
   <figcaption>목 주변 근육 스트레칭</figcaption>
   </p>
