@@ -1,7 +1,6 @@
 ---
 layout: blog
 title: (건강) 흉추 후만증 치료
-tags:
 - health
 - kyphosis
 ---
@@ -178,6 +177,150 @@ tags:
 - ❌ 한쪽만 과하게 스트레칭
 
 ---
+
+<br/>
+
+# 현재의 증상 맞춤형 교정운동
+**일반 스트레칭이 아니라 “좌우를 다르게 써야 풀리는 케이스”** 입니다. 그리고 목표는 **“긴장을 빼는 것” 입니다. 절대 늘리려고 하지 않도록** 주의 해야 합니다.
+
+```text id="pd9dh3"
+왼쪽: 관자/귀/목 긴장 = 과사용 (과긴장 → 풀어야 함)
+오른쪽: 가슴/어깨 당김 = 단축 (짧아짐 → 늘려야 함)
+```
+
+이로써 교정전략은 다음과 같습니다.
+- 왼쪽 (관자/목) : **“풀기 + 진정”**
+- 오른쪽 (가슴/어깨) : **“늘리기 + 열기”**
+
+```text id="kxwr3y"
+왼쪽은 “빼고”
+오른쪽은 “열어야” 균형이 맞는다
+```
+
+<br/>
+
+# 좌우 분리 루틴 (핵심)
+## 1. 왼쪽 루틴 : 관자 + 목 풀기 
+### 01 관자놀이 마사지 (왼쪽만)
+👉 포인트 : “누르는 게 아니라 녹인다”
+* 손가락으로 원 그리기
+* 30초 × 2
+
+### 02 귀 기울이기 스트레칭 (왼쪽)
+👉 스트레칭 시간 : 20초 × 3
+* 오른쪽으로 기울임
+* 손으로 살짝 보조
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <a href="https://www.medicalnewstoday.com/articles/es/trapecio" target="_blank">
+  <img width="420px" src="{{site.baseurl}}/assets/health/ear-to-shoulder-neck-stretch.webp">
+  </a>
+  </p>
+  <!-- <figcaption>Thoracic Side Bend</figcaption> -->
+</figure>
+
+### 03 뒤통수 이완 (서브옥시피탈)
+👉 스트레칭 시간 : 1분
+* 누워서 테니스볼
+* 머리 살짝 좌우 움직임
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <a href="https://www.ranneycoaching.co/resources/neck-and-shoulder-pain-stretches" target="_blank">
+  <img width="320px" src="https://images.squarespace-cdn.com/content/v1/6096912851e51924364a4831/d1524c2c-5ce9-493e-8928-6c438cb34300/Neck_Shoulder_Pain_Stretches.png">
+  </a>
+  </p>
+  <!-- <figcaption>Thoracic Side Bend</figcaption> -->
+</figure>
+
+<br/>
+
+## 2. 오른쪽 루틴 : 가슴 + 어깨 열기
+주요목표는 **“닫힌 가슴을 열어주는 것”** 입니다.
+
+### 1. 한쪽 가슴 스트레칭 (오른쪽만)
+👉 총 횟수 : 30초 × 3번
+* 문틀 잡고 몸을 왼쪽으로 회전
+
+### 2. 팔 벌려 벽 스트레치
+👉 총 횟수 : 20초 × 3번
+* 오른팔 벽에 고정
+* 몸 회전
+
+### 3. 가슴 열고 호흡
+👉 총 횟수 : 5회 반복
+* 오른쪽 가슴으로 숨 들이마심
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="520px" src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*zvsrOkiunStR1zqqErEE1g.png">
+  </p>
+</figure>
+
+<br/>
+
+## 3. 중앙 리셋 (좌우 연결)
+목표는 좌우 균형 맞추기 입니다.
+👉총 3분 실행합니다.
+* 누워서 호흡
+* 양쪽 갈비뼈 균형
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <a href="https://www.inalignedmovement.com/while-you-walk-posts/rib-breathing" target="_blank">
+  <img width="520px" src="https://images.squarespace-cdn.com/content/v1/5d3f46561c59eb00015d4035/1631880098979-0DWOULIOGIXXOQDRNGA1/Rib%2BBreathing.jpg">
+  </a>
+  </p>
+  <!-- <figcaption>Thoracic Side Bend</figcaption> -->
+</figure>
+
+---
+
+<br/>
+
+# 실전 스케줄
+
+## 🌙 저녁 (메인 루틴 15분)
+1. 왼쪽 관자/목 풀기
+2. 오른쪽 가슴 스트레칭
+3. 호흡 리셋
+
+## 🪑 낮 (간단 루틴)
+* 오른쪽 가슴 스트레칭 1세트
+* 왼쪽 목 스트레칭 1세트
+
+## ⚠️ 5️⃣ 절대 하지 말아야 하는 것
+❌ 양쪽 동일 스트레칭
+❌ 왼쪽 강하게 늘리기
+❌ 오른쪽 마사지 위주
+
+👉 이유
+```text id="y2epk4"
+왼쪽은 이미 과긴장 → 더 자극하면 악화
+오른쪽은 단축 → 풀기보다 늘려야 함
+```
+
+---
+
+<br/>
+
+# 📈 6️⃣ 교정되는 신호
+## 초기 (3~5일)
+* 왼쪽 두통 감소
+* 오른쪽 가슴 덜 당김
+
+## 1~2주
+* 목 긴장 좌우 차이 줄어듦
+* 어깨 높이 균형 개선
+
+## 3~4주
+* 러닝 시 비틀림 감소
+* 호흡 안정
+
+---
+
+<br/>
 
 # 따라하기 좋은 영상 (핵심 2개만 엄선)
 
