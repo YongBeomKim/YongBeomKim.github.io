@@ -13,7 +13,7 @@ tags:
 | 고급 코딩 (React/TS/Py) | Qwen3-14B-Claude-Sonnet... | 14B 체급으로 복잡한 React 컴포넌트 구조와 TypeScript 타입을 가장 정확하게 설계합니다. |
 | 코드 자동 완성 (VSCode) | qwen2.5-coder:1.5b | VRAM을 거의 먹지 않으면서(1GB 미만) 타자 속도에 맞춰 실시간 추천을 띄워줍니다. |
 | 이미지 분석 & OCR | gemma3:latest | 구글의 최신 멀티모달 모델로, UI 스크린샷 분석이나 이미지 내 텍스트 추출에 최적입니다. |
-| 번역 및 논리 사고 | Llama3.3-8B-Instruct-Thinking... | 번역 시 문맥 파악 능력이 탁월하며, 복잡한 로직을 단계별로 추론(Thinking)해 줍니다. |
+| 번역 및 논리 사고 | gemma3:latest  | 번역 시 문맥 파악 능력이 탁월하며, 복잡한 로직을 단계별로 연산해 줍니다. |
 | 표준 코딩 & 리뷰 | freehuntx/qwen3-coder:8b | 14B 모델이 무겁게 느껴질 때 데일리 코딩 및 코드 리뷰용으로 가장 균형 잡힌 모델입니다. |
 
 
