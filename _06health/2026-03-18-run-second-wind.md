@@ -15,6 +15,31 @@ tags:
 
 하프 마라톤 데이터를 보면 전형적인 **'예열 부족'**과 **'초반 오버스트라이드'** 경향이 관찰되었습니다. 7km 지점부터 몸이 풀리는 느낌은 소위 말하는 '세컨드 윈드(Second Wind)' 상태에 진입하며 근신경계와 혈류가 최적화되었기 때문입니다. 이처럼 초반의 어려움에 대한 원인 분석과 해결책을 정리해 드립니다.
 
+결론만 이야기 하면 다음과 같습니다.
+
+👉 러닝 전 : 통합 루틴 (완성형)
+* Fast feet (20초 × 2)
+* A-skip (30m × 2)
+* 포고 점프 (20회 × 2)
+* 1km 천천히
+* 스트라이드 3~5회
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="820px" src="https://liftmanual.com/wp-content/uploads/2023/04/quick-feet.jpg">
+  </p>
+  <figcaption>Fast feet</figcaption>
+</figure>
+
+<figure class="align-center">
+  <p style="text-align: center">
+  <img width="520px" src="https://i0.wp.com/run4prs.co/wp-content/uploads/2017/05/img_0850.jpg">
+  </p>
+  <figcaption>A-skip</figcaption>
+</figure>
+
+
+
 <br/>
 
 # 문제점 분석

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: (마라톤) 서울 레이스 21K 후기 및 대응법
+title: (마라톤-리뷰) 서울 레이스 21K 후기 및 대응법
 tags:
 - health
 - marathon
