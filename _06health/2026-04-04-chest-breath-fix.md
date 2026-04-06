@@ -1,6 +1,7 @@
 ---
 layout: blog
 title: (건강) 올바르게 앉는 법
+tags:
 - health
 - chair
 ---
