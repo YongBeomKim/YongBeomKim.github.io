@@ -11,7 +11,7 @@ tags:
 
 <figure class="align-center">
   <p style="text-align: center">
-  <video src="{{site.baseurl}}/assets/health/Instagram  - 바른생활습관 good_lifestyle_habit.mp4" controls width="100%" muted></video>
+  <video src="{{site.baseurl}}/assets/health/Instagram-바른생활습관_good_lifestyle_habit.mp4" controls width="50%" muted></video>
   </p>
   <figcaption>인스타그램 - 바른생활</figcaption>
 </figure>
