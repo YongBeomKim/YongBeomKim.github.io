@@ -12,12 +12,12 @@ tags:
 ## 가장 추천하는 순서
 
 효과가 좋은 순서입니다.
-① 횡격막 호흡 (⭐⭐⭐⭐⭐)
-② NSDR(Non-Sleep Deep Rest : ⭐⭐⭐⭐⭐)
-③ 바디스캔 명상 (⭐⭐⭐⭐⭐)
-④ 4-6 또는 4-8 호흡 (⭐⭐⭐⭐☆)
-⑤ Box Breathing (⭐⭐⭐⭐☆)
-⑥ Progressive Muscle Relaxation (PMR : ⭐⭐⭐⭐☆)
+1. 횡격막 호흡 (⭐⭐⭐⭐⭐)
+1. NSDR(Non-Sleep Deep Rest : ⭐⭐⭐⭐⭐)
+1. 바디스캔 명상 (⭐⭐⭐⭐⭐)
+1. 4-6 또는 4-8 호흡 (⭐⭐⭐⭐☆)
+1. Box Breathing (⭐⭐⭐⭐☆)
+1. Progressive Muscle Relaxation (PMR : ⭐⭐⭐⭐☆)
 
 <br/>
 
