@@ -57,6 +57,8 @@ tags:
    [![Thread-the-Needle 스트레칭](/assets/health/july-2w-Thread-the-Needle.jpg|350)](https://yogajala.com/thread-the-needle-pose-parsva-balasana/)
 4. Band Pull Apart 스트레칭 (15회 : 견갑골 살짝 내리며 실행)
    [![Band Pull Apart 스트레칭](/assets/health/july-2w-band-pull.jpg|350)](https://youtube.com/shorts/GiIfwH4VV_I)
+5. Y 스트레칭 (15회)
+   [![Y 스트레칭](/assets/health/y-stratching.jpeg|400)](https://youtube.com/shorts/z5WQaRN0bNo)
 
 ## 일과중 실행 1 (앉아서 매시간 2~3분)
 
