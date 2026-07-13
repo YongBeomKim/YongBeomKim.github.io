@@ -48,49 +48,58 @@ tags:
 ## 오전루틴 (약 10분)
 
 1. 요가블록 흉추 신전 (1분 X 3회 : 가슴만 열기)
-   [![요가블록으로 흉추 신천](/assets/health/july-2w-yoga-block.jpg|350)](https://youtu.be/sybsWyYrddI)
-
-[![요가블록 흉추 신천](/assert/health/july-2w-yoga-block.jpg)](https://youtube.com/shorts/z5WQaRN0bNo?si=VWVUFumsNm-aRDNQ)
+   [![요가블록으로 흉추 신천]({{site.baseurl}}/assets/health/july-2w-yoga-block.jpg|350)](https://youtu.be/sybsWyYrddI)
 
 2. Cat-Cow 스트레칭 (10회 : 등만 움직이고, 목은 최소로 한다)
-   [![Cat-Cow 스트레칭](/assets/health/july-2w-cat-cow.jpg|350)](https://youtu.be/vuyUwtHl694)
+   [![Cat-Cow 스트레칭]({{site.baseurl}}/assets/health/july-2w-cat-cow.jpg|350)](https://youtu.be/vuyUwtHl694)
+
 3. Thread-the-Needle 스트레칭 (좌우 10회 : 목이 아니라 흉추만 움직이며 스트레칭)
-   [![Thread-the-Needle 스트레칭](/assets/health/july-2w-Thread-the-Needle.jpg|350)](https://yogajala.com/thread-the-needle-pose-parsva-balasana/)
+   [![Thread-the-Needle 스트레칭]({{site.baseurl}}/assets/health/july-2w-Thread-the-Needle.jpg|350)](https://yogajala.com/thread-the-needle-pose-parsva-balasana/)
+
 4. Band Pull Apart 스트레칭 (15회 : 견갑골 살짝 내리며 실행)
-   [![Band Pull Apart 스트레칭](/assets/health/july-2w-band-pull.jpg|350)](https://youtube.com/shorts/GiIfwH4VV_I)
+   [![Band Pull Apart 스트레칭]({{site.baseurl}}/assets/health/july-2w-band-pull.jpg|350)](https://youtube.com/shorts/GiIfwH4VV_I)
+
 5. Y 스트레칭 (15회)
-   [![Y 스트레칭](/assets/health/y-stratching.jpeg|400)](https://youtube.com/shorts/z5WQaRN0bNo)
+   [![Y 스트레칭]({{site.baseurl}}/assets/health/y-stratching.jpeg|400)](https://youtube.com/shorts/z5WQaRN0bNo)
 
 ## 일과중 실행 1 (앉아서 매시간 2~3분)
 
 1. Chin Nod (10회 : 20% 강도)
-   [![Chin Nod 스트레칭](/assets/health/july-2w-chin-nod.jpg|350)](https://youtube.com/shorts/8QWTOyuqa2E)
+   [![Chin Nod 스트레칭]({{site.baseurl}}/assets/health/july-2w-chin-nod.jpg|350)](https://youtube.com/shorts/8QWTOyuqa2E)
+
 2. 목 회전 (좌우 5회 : 끝까지 돌리지 않고 70% 까지만 회전)
-   [![목 좌우 회전 스트레칭](/assets/health/july-2w-neck-spin.jpeg|350)](https://brunch.co.kr/@gfph/1022)
+   [![목 좌우 회전 스트레칭]({{site.baseurl}}/assets/health/july-2w-neck-spin.jpeg|350)](https://brunch.co.kr/@gfph/1022)
+
 3. 귀와 어깨 멀어지기 (30초 : 양손 허벅지 올린 뒤 어깨를 내리고 귀는 올리는 느낌으로 실행)
-   [![목 좌우 회전 스트레칭](/assets/health/july-2w-neck-strech.jpeg|350)](https://youtu.be/yxY60VtMSLQ)
+   [![목 좌우 회전 스트레칭]({{site.baseurl}}/assets/health/july-2w-neck-strech.jpeg|350)](https://youtu.be/yxY60VtMSLQ)
+
 4. 밴드 External Rotation (15회 : 팔꿈치를 고정하고 90도 회전)
-   [![목 좌우 회전 스트레칭](/assets/health/july-2w-band-streach.jpeg|350)](https://youtu.be/iY-vlVIx62A)
+   [![목 좌우 회전 스트레칭]({{site.baseurl}}/assets/health/july-2w-band-streach.jpeg|350)](https://youtu.be/iY-vlVIx62A)
 
 ## 일과중 실행 2 (서서 매시간 2~3분)
 
 1. Wall Slide 스트레칭 (10회 : 허리가 뜨지 않게 갈비뼈 벌이지 않고서 실행)
-   [![Wall Slide 스트레칭](/assets/health/july-2w-wall-slide.jpeg|350)](https://youtube.com/shorts/aBmVmQs3wGo)
+   [![Wall Slide 스트레칭]({{site.baseurl}}/assets/health/july-2w-wall-slide.jpeg|350)](https://youtube.com/shorts/aBmVmQs3wGo)
+
 2. Wall Angel 스트레칭 (10회 : 끝까지 올리지 말고 80% 까지만 실행)
-   [![벽 천사 스트레칭](/assets/health/july-2w-wall-angel.jpeg|350)](https://youtube.com/shorts/aBmVmQs3wGo)
+   [![벽 천사 스트레칭]({{site.baseurl}}/assets/health/july-2w-wall-angel.jpeg|350)](https://youtube.com/shorts/aBmVmQs3wGo)
+
 3. 벽에 등 기대고 Chin Tuck (10초 X 10회 : 목 뒤에 힘주지 않기)
-   [![벽에 등 기대고 Chin Tuck](/assets/health/july-2w-chin-nock-with-wall.jpeg|350)](https://youtu.be/u8C5LgpK3r4)
+   [![벽에 등 기대고 Chin Tuck]({{site.baseurl}}/assets/health/july-2w-chin-nock-with-wall.jpeg|350)](https://youtu.be/u8C5LgpK3r4)
 
 ## Band 를 활용한 스트레칭
 
 1. Face Pull (15회 X 2세트)
-   [![Banded Face Pull](/assets/health/july-2w-band-face-pull.jpg|350)](https://youtu.be/toHfpKStJ48)
+   [![Banded Face Pull]({{site.baseurl}}/assets/health/july-2w-band-face-pull.jpg|350)](https://youtu.be/toHfpKStJ48)
+
 2. Band Pull Apart 스트레칭 (15회 : 견갑골 살짝 내리며 실행)
-   [![Band Pull Apart 스트레칭](/assets/health/july-2w-band-pull.jpg|350)](https://youtube.com/shorts/GiIfwH4VV_I)
+   [![Band Pull Apart 스트레칭]({{site.baseurl}}/assets/health/july-2w-band-pull.jpg|350)](https://youtube.com/shorts/GiIfwH4VV_I)
+
 3. Serratus Punch 스트레칭 (20회 : 전거근 활성화)
    [![Serratus Punch 스트레칭](https://i.ytimg.com/vi/Vn7ur-0O4CY/maxresdefault.jpg|350)](https://youtu.be/Vn7ur-0O4CY?si=CzXqw7KyPcpa1DfF)
+
 4. Band Overhead Reach (10회 : 천천히 실행)
-   [![Band Overhead Reach](</assets/health/july-2w-Resistance%20Band%20Overhead.jpg|350>)](https://youtu.be/yjL_9LerGnw)
+   [![Band Overhead Reach](<{{site.baseurl}}/assets/health/july-2w-Resistance%20Band%20Overhead.jpg|350>)](https://youtu.be/yjL_9LerGnw)
 
 ## 요가블록을 활용한 스트레칭
 
@@ -106,17 +115,22 @@ tags:
 
 1. 케이블 Face Pull ⭐⭐⭐⭐⭐
 2. Chest Supported Row ⭐⭐⭐⭐⭐
-   ![Chest Supported Row](/assets/health/chest-supported-row.jpg|350)
+   ![Chest Supported Row]({{site.baseurl}}/assets/health/chest-supported-row.jpg|350)
+
 3. Incline Push-up ⭐⭐⭐⭐☆
-   ![인클라인 푸쉬 업](/assets/health/incline-push-up.jpg|350)
+   ![인클라인 푸쉬 업]({{site.baseurl}}/assets/health/incline-push-up.jpg|350)
+
 4. Landmine Press ⭐⭐⭐⭐☆
-   ![Landmine Press](/assets/health/landmine-press.jpg|350)
+   ![Landmine Press]({{site.baseurl}}/assets/health/landmine-press.jpg|350)
+
 5. Farmer Carry ⭐⭐⭐⭐☆
-   ![Farmer Carry](/assets/health/farmer-carry.jpg|350)
+   ![Farmer Carry]({{site.baseurl}}/assets/health/farmer-carry.jpg|350)
+
 6. Goblet Squat ⭐⭐⭐⭐☆
-   ![Farmer Carry](/assets/health/goblet-squat.png|350)
+   ![Farmer Carry]({{site.baseurl}}/assets/health/goblet-squat.png|350)
+
 7. Romanian Deadlift(가벼운 중량) ⭐⭐⭐⭐☆
-   ![Romanian Deadlift](/assets/health/romanian-deadlift.jpeg|350)
+   ![Romanian Deadlift]({{site.baseurl}}/assets/health/romanian-deadlift.jpeg|350)
 
 <br/>
 
