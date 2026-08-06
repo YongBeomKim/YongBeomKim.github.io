@@ -2,8 +2,7 @@
 layout: blog
 title: Ollama 모델 리뷰
 tags:
-- ollama
-- openclaw
+- llm
 ---
 
 지금까지 작업을 하면서 수집한 모델들이 여럿이 있는데 이들의 최적 용도들을 GPT 에 질문한 내용이 다음과 같다.
