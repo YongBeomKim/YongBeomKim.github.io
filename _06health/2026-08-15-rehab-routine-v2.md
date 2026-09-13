@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 굳어 있는 흉추를 풀어주는 루틴
+title: 굳어 있는 흉추를 풀어주는 루틴 v1
 tags:
 - health
 ---
