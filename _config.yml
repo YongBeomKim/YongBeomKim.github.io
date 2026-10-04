@@ -49,6 +49,10 @@ collections:
     title: 건강관리
     default_open: false
     output: true
+  06marathon:
+    title: 러닝
+    default_open: false
+    output: true
   07contents:
     title: 리뷰 및 후기
     default_open: false

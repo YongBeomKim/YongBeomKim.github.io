@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: 접혀 있는 흉추를 풀어주는 루틴
+title: 접혀 있는 흉추를 풀어주는 루틴 v3
 tags:
 - health
 ---
